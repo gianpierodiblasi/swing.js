@@ -1,4 +1,4 @@
-package giada.jswingjs;
+package giada.swingjs;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;

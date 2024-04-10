@@ -1,4 +1,4 @@
-package giada.jswingjs;
+package giada.swingjs;
 
 /**
  * The javax.swing.JPanel clone
