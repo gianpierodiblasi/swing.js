@@ -25,12 +25,11 @@ public class TestJFrame1 extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jPanel1 = new JPanel();
+    JPanel jPanel1 = new JPanel();
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
   }// </editor-fold>//GEN-END:initComponents
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private JPanel jPanel1;
   // End of variables declaration//GEN-END:variables
 }

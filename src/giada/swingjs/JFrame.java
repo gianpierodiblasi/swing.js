@@ -10,11 +10,21 @@ import def.dom.HTMLElement;
  */
 public class JFrame extends JComponent {
 
+  public static JFrame currentJFrame;
+
+  private final JPanel contentPane = new JPanel();
+
   public JFrame() {
     super();
-    
+
     HTMLElement div = document.createElement("div");
     div.classList.add("jframe");
     document.querySelector("body").appendChild(div);
+
+    JFrame.currentJFrame = this;
+  }
+
+  public JPanel getContentPane() {
+    return this.contentPane;
   }
 }

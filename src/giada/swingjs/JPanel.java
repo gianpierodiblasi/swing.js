@@ -18,4 +18,7 @@ public class JPanel extends JComponent {
     this.panel = document.createElement("div");
     this.panel.classList.add("jpanel");
   }
+
+  public void add(JComponent component, Object constraints) {
+  }
 }
