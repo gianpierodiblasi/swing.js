@@ -1,5 +1,8 @@
 package giada.swingjs;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author gianpiero.diblasi
@@ -21,8 +24,13 @@ public class TestJFrame1 extends javax.swing.JFrame {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
-  }// </editor-fold>//GEN-END:initComponents
 
+    jPanel1 = new JPanel();
+
+    getContentPane().add(jPanel1, BorderLayout.PAGE_START);
+  }// </editor-fold>//GEN-END:initComponents
+  
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private JPanel jPanel1;
   // End of variables declaration//GEN-END:variables
 }
