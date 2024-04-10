@@ -10,7 +10,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
   public TestJFrame1() {
     super();
-    initComponents();
+    this.initComponents();
   }
 
   /**

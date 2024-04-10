@@ -6,6 +6,7 @@
 class JFrame extends JComponent {
 
   constructor() {
+    super();
     let div = document.createElement("div");
     div.classList.add("jframe");
     document.querySelector("body").appendChild(div);

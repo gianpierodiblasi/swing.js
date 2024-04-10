@@ -5,5 +5,7 @@ package giada.swingjs;
  * @author gianpiero.diblasi
  */
 public class JComponent {
-  
+
+  public JComponent() {
+  }
 }

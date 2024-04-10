@@ -3,4 +3,7 @@
  * @author gianpiero.diblasi
  */
 class JComponent {
+
+  constructor() {
+  }
 }

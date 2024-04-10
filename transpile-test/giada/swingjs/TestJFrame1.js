@@ -1,13 +1,13 @@
 /**
  * @author gianpiero.diblasi
  */
-class TestJFrame1 extends javax.swing.JFrame {
+class TestJFrame1 extends JFrame {
 
   static  serialVersionUID = 1;
 
   constructor() {
     super();
-    initComponents();
+    this.initComponents();
   }
 
   /**

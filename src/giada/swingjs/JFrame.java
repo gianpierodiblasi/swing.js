@@ -11,6 +11,8 @@ import def.dom.HTMLElement;
 public class JFrame extends JComponent {
 
   public JFrame() {
+    super();
+    
     HTMLElement div = document.createElement("div");
     div.classList.add("jframe");
     document.querySelector("body").appendChild(div);
