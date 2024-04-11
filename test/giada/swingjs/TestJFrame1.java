@@ -1,5 +1,7 @@
 package giada.swingjs;
 
+import static def.dom.Globals.console;
+
 /**
  *
  * @author gianpiero.diblasi
@@ -11,6 +13,15 @@ public class TestJFrame1 extends javax.swing.JFrame {
   public TestJFrame1() {
     super();
     initComponents();
+    
+    javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
+    javax.swing.JButton jButton2 = new javax.swing.JButton();
+    
+    jButton2.setText("jButton2");
+    jButton2.addActionListener(new TestJFrame1ActionListener());
+    jPanel2.add(jButton2);
+
+    getContentPane().add(jPanel2, java.awt.BorderLayout.SOUTH);
   }
 
   /**
@@ -31,11 +42,11 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton1.addActionListener(this::jButton1ActionPerformed);
     jPanel1.add(jButton1);
 
-    getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+    getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
+    console.log("FROM LAMBDA");
   }//GEN-LAST:event_jButton1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

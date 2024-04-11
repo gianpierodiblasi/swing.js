@@ -9,5 +9,6 @@ public interface ActionListener {
 
   public void actionPerformed(ActionEvent event);
 
-  public void $apply(ActionEvent event);
+  public default void $apply(ActionEvent event) {
+  }
 }
