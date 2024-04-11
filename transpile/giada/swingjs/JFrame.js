@@ -5,15 +5,13 @@
  */
 class JFrame extends JComponent {
 
-  static  currentJFrame = null;
-
    contentPane = new JPanel();
 
   constructor() {
     super();
-    JFrame.currentJFrame = this;
     this.contentPane.element.classList.remove("jpanel");
     this.contentPane.element.classList.add("jframe");
+    this.contentPane.setLayout(new BorderLayout());
     this.element = document.querySelector("body");
     this.element.textContent = "";
     this.element.appendChild(this.contentPane.element);

@@ -12,5 +12,6 @@ class FlowLayout extends LayoutManager {
   static  LEADING = 3;
 
   constructor() {
+    super();
   }
 }

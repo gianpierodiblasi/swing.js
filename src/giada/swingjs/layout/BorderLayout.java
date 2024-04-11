@@ -22,5 +22,6 @@ public class BorderLayout implements LayoutManager {
   public static final String LINE_END = BorderLayout.AFTER_LINE_ENDS;
 
   public BorderLayout() {
+    super();
   }
 }

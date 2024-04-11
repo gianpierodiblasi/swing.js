@@ -5,6 +5,8 @@
  */
 class JPanel extends JComponent {
 
+   layoutManager = new FlowLayout();
+
   constructor() {
     super();
     this.element = document.createElement("div");
@@ -12,6 +14,7 @@ class JPanel extends JComponent {
   }
 
    setLayout(layoutManager) {
+    this.layoutManager = layoutManager;
   }
 
    add(component, constraints) {

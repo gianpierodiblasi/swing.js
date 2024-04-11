@@ -30,5 +30,6 @@ class BorderLayout extends LayoutManager {
   static  LINE_END = BorderLayout.AFTER_LINE_ENDS;
 
   constructor() {
+    super();
   }
 }

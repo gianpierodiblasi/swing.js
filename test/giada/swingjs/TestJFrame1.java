@@ -15,8 +15,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
   public TestJFrame1() {
     super();
     initComponents();
-    new java.awt.BorderLayout();
-    new FlowLayout();
   }
 
   /**
@@ -28,13 +26,12 @@ public class TestJFrame1 extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jPanel1 = new javax.swing.JPanel();
+    javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
 
     setTitle("Test JFrame1");
     getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
   }// </editor-fold>//GEN-END:initComponents
-  
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  javax.swing.JPanel jPanel1;
   // End of variables declaration//GEN-END:variables
 }

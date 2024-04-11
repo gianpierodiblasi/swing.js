@@ -12,5 +12,6 @@ public class FlowLayout implements LayoutManager {
   public static final int LEADING = 3;
 
   public FlowLayout() {
+    super();
   }
 }
