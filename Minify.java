@@ -13,11 +13,11 @@ import java.nio.file.StandardCopyOption;
 public class Minify {
 
   public static void main(String[] args) throws Exception {
-    String content = Files.readString(Path.of(args[0]));
+    String content = Files.readString(Path.of(args[1]));
     content = URLEncoder.encode(content, Charset.forName("utf-8"));
     byte[] data = ("input=" + content).getBytes(StandardCharsets.UTF_8);
 
-    HttpURLConnection conn = (HttpURLConnection) new URL("https://www.toptal.com/developers/javascript-minifier/api/raw").openConnection();
+    HttpURLConnection conn = (HttpURLConnection) new URL(args[0]).openConnection();
     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
     conn.setRequestProperty("Content-Length", Integer.toString(data.length));
     conn.setRequestProperty("charset", "utf-8");
@@ -31,6 +31,6 @@ public class Minify {
       wr.write(data);
     }
 
-    Files.copy(conn.getInputStream(), new File(args[1]).toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Files.copy(conn.getInputStream(), new File(args[2]).toPath(), StandardCopyOption.REPLACE_EXISTING);
   }
 }

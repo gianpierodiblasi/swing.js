@@ -60,14 +60,14 @@ class JPanel extends JComponent {
             this.element.appendChild(component.element);
             break;
           case BorderLayout.WEST:
-            component.element.style.marginRight = (this.layoutManager).hGap + "px";
+            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.CENTER:
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.EAST:
-            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
+            component.element.style.marginRight = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
         }
