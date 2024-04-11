@@ -1,7 +1,7 @@
 /**
  * @author gianpiero.diblasi
  */
-class BorderLayout {
+class BorderLayout extends LayoutManager {
 
   static  NORTH = "North";
 

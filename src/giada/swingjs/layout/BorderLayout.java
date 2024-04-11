@@ -4,7 +4,7 @@ package giada.swingjs.layout;
  *
  * @author gianpiero.diblasi
  */
-public class BorderLayout {
+public class BorderLayout implements LayoutManager {
 
   public static final String NORTH = "North";
   public static final String SOUTH = "South";

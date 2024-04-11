@@ -1,7 +1,8 @@
 package giada.swingjs;
 
 import static def.dom.Globals.document;
-import def.dom.HTMLElement;
+import giada.swingjs.layout.FlowLayout;
+import giada.swingjs.layout.LayoutManager;
 
 /**
  * The javax.swing.JPanel clone
@@ -10,13 +11,17 @@ import def.dom.HTMLElement;
  */
 public class JPanel extends JComponent {
 
-  private final HTMLElement panel;
+  private LayoutManager layoutManager = new FlowLayout();
 
   public JPanel() {
     super();
 
-    this.panel = document.createElement("div");
-    this.panel.classList.add("jpanel");
+    this.element = document.createElement("div");
+    this.element.classList.add("jpanel");
+  }
+
+  public void setLayout(LayoutManager layoutManager) {
+    this.layoutManager = layoutManager;
   }
 
   public void add(JComponent component, Object constraints) {

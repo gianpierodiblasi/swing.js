@@ -5,12 +5,13 @@
  */
 class JPanel extends JComponent {
 
-   panel = null;
-
   constructor() {
     super();
-    this.panel = document.createElement("div");
-    this.panel.classList.add("jpanel");
+    this.element = document.createElement("div");
+    this.element.classList.add("jpanel");
+  }
+
+   setLayout(layoutManager) {
   }
 
    add(component, constraints) {

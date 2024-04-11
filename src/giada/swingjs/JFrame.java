@@ -1,7 +1,10 @@
 package giada.swingjs;
 
+import def.dom.Element;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
+import giada.swingjs.layout.BorderLayout;
+import static simulation.js.$Globals.$exists;
 
 /**
  * The javax.swing.JFrame clone
@@ -10,18 +13,29 @@ import def.dom.HTMLElement;
  */
 public class JFrame extends JComponent {
 
-  public static JFrame currentJFrame;
-
   private final JPanel contentPane = new JPanel();
 
   public JFrame() {
     super();
 
-    HTMLElement div = document.createElement("div");
-    div.classList.add("jframe");
-    document.querySelector("body").appendChild(div);
+    this.contentPane.element.classList.remove("jpanel");
+    this.contentPane.element.classList.add("jframe");
+    this.contentPane.setLayout(new BorderLayout());
 
-    JFrame.currentJFrame = this;
+    this.element = (HTMLElement) document.querySelector("body");
+    this.element.textContent = "";
+    this.element.appendChild(this.contentPane.element);
+  }
+
+  public void setTitle(String title) {
+    if ($exists(title)) {
+      Element tag = document.querySelector("title");
+      if (!$exists(tag)) {
+        tag = document.createElement("title");
+        document.getElementsByTagName("head").$get(0).appendChild(tag);
+      }
+      tag.textContent = title;
+    }
   }
 
   public JPanel getContentPane() {

@@ -10,12 +10,10 @@ import def.dom.HTMLElement;
  */
 public class JButton extends JComponent {
 
-  private final HTMLElement button;
-
   public JButton() {
     super();
 
-    this.button = document.createElement("button");
-    this.button.classList.add("jframe");
+    this.element = document.createElement("button");
+    this.element.classList.add("jbutton");
   }
 }

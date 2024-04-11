@@ -4,7 +4,7 @@ package giada.swingjs.layout;
  *
  * @author gianpiero.diblasi
  */
-public class FlowLayout {
+public class FlowLayout implements LayoutManager {
 
   public static final int LEFT = 0;
   public static final int CENTER = 1;

@@ -5,11 +5,9 @@
  */
 class JButton extends JComponent {
 
-   button = null;
-
   constructor() {
     super();
-    this.button = document.createElement("button");
-    this.button.classList.add("jframe");
+    this.element = document.createElement("button");
+    this.element.classList.add("jbutton");
   }
 }
