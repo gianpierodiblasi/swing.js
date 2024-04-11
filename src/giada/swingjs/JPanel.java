@@ -39,7 +39,7 @@ public class JPanel extends JComponent {
     switch (this.layoutManager.css) {
       case "borderlayout":
         HTMLElement middle = document.createElement("div");
-        middle.classList.add("middle");
+        middle.classList.add("borderlayout-middle");
         this.element.appendChild(middle);
         break;
       case "flowlayout":
@@ -72,11 +72,11 @@ public class JPanel extends JComponent {
           case BorderLayout.WEST:
           case BorderLayout.CENTER:
           case BorderLayout.EAST:
-            this.element.querySelector(".middle").appendChild(component.element);
+            this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
         }
 
-        component.element.classList.add(((String) constraints).toLowerCase());
+        component.element.classList.add("borderlayout-" + ((String) constraints).toLowerCase());
         component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
         component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
         component.element.style.marginTop = ((BorderLayout) this.layoutManager).vGap + "px";
