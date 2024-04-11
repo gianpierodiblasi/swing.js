@@ -11,33 +11,37 @@ html, body {
 .jpanel {
 
 }
-.jpanel.borderlayout {
+
+.jframe.borderlayout, .jpanel.borderlayout {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 100%;
   height: 100%;
 }
-.jpanel.borderlayout > * {
-  align-items: stretch;
-}
-.jpanel.borderlayout .north {
+.jframe.borderlayout > .north, .jpanel.borderlayout > .north {
   width: 100%;
   order: 1;
 }
-.jpanel.borderlayout .east {
+.jframe.borderlayout > .middle, .jpanel.borderlayout .middle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-grow: 1;
   order: 2;
 }
-.borderlayout .middle .center {
+.jframe.borderlayout > .middle > .west, .jpanel.borderlayout > .middle > .west {
+  order: 1;
+}
+.jframe.borderlayout > .middle > .center, .jpanel.borderlayout > .middle > .center {
   flex-grow: 1;
+  order: 2;
+}
+.jframe.borderlayout > .middle > .east, .jpanel.borderlayout .middle > .east {
   order: 3;
 }
-.jpanel.borderlayout .west {
-  order: 4;
-}
-.jpanel.borderlayout .south {
+.jframe.borderlayout .south, .jpanel.borderlayout .south {
   width: 100%;
-  order: 5;
+  order: 3;
 }
 
 .jbutton {

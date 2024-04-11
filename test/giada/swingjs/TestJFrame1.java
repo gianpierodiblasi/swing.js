@@ -25,7 +25,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton2.addActionListener(new TestJFrame1ActionListener());
     jPanel2.add(jButton2);
 
-    getContentPane().add(jPanel2, BorderLayout.SOUTH);
+    getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
 
   /**
@@ -46,7 +46,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
     JButton jButton3 = new JButton();
     JPanel jPanel4 = new JPanel();
     JButton jButton4 = new JButton();
-    JPanel jPanel5 = new JPanel();
 
     setTitle("Test JFrame1");
 
@@ -73,7 +72,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel4.add(jButton4);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_START);
-    getContentPane().add(jPanel5, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

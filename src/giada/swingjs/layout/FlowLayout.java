@@ -11,6 +11,7 @@ public class FlowLayout extends LayoutManager {
   public static final int CENTER = 1;
   public static final int RIGHT = 2;
   public static final int LEADING = 3;
+  public static final int TRAILING = 4;
 
   public final int align;
   public final int hGap;

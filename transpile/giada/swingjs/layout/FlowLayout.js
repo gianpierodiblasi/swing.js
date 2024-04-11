@@ -13,6 +13,8 @@ class FlowLayout extends LayoutManager {
 
   static  LEADING = 3;
 
+  static  TRAILING = 4;
+
    align = 0;
 
    hGap = 0;

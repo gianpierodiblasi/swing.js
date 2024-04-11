@@ -13,7 +13,7 @@ class TestJFrame1 extends JFrame {
     jButton2.setText("jButton2");
     jButton2.addActionListener(new TestJFrame1ActionListener());
     jPanel2.add(jButton2);
-    this.getContentPane().add(jPanel2, BorderLayout.SOUTH);
+    this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
 
   /**
@@ -31,7 +31,6 @@ class TestJFrame1 extends JFrame {
     let jButton3 = new JButton();
     let jPanel4 = new JPanel();
     let jButton4 = new JButton();
-    let jPanel5 = new JPanel();
     this.setTitle("Test JFrame1");
     jButton1.setText("jButton1");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
@@ -48,7 +47,6 @@ class TestJFrame1 extends JFrame {
     jButton4.setText("jButton4");
     jPanel4.add(jButton4);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_START);
-    this.getContentPane().add(jPanel5, BorderLayout.CENTER);
   }
 
   // </editor-fold>//GEN-END:initComponents

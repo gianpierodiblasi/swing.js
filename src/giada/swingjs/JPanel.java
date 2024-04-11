@@ -1,9 +1,11 @@
 package giada.swingjs;
 
 import static def.dom.Globals.document;
+import def.dom.HTMLElement;
 import giada.swingjs.layout.BorderLayout;
 import giada.swingjs.layout.FlowLayout;
 import giada.swingjs.layout.LayoutManager;
+import static simulation.js.$Globals.$exists;
 
 /**
  * The javax.swing.JPanel clone
@@ -12,43 +14,81 @@ import giada.swingjs.layout.LayoutManager;
  */
 public class JPanel extends JComponent {
 
-  private LayoutManager layoutManager = new FlowLayout(FlowLayout.CENTER, 5, 5);
+  private LayoutManager layoutManager;
 
   public JPanel() {
     super();
 
     this.element = document.createElement("div");
     this.element.classList.add("jpanel");
+
+    this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
   }
 
   public void setLayout(LayoutManager layoutManager) {
+    if ($exists(this.layoutManager)) {
+      this.element.classList.remove(this.layoutManager.css);
+      this.element.style.textAlign = "";
+      this.element.textContent = "";
+
+    }
+
     this.layoutManager = layoutManager;
     this.element.classList.add(this.layoutManager.css);
 
     switch (this.layoutManager.css) {
       case "borderlayout":
-        this.element.style.paddingLeft = ((BorderLayout) this.layoutManager).hGap + "px";
-        this.element.style.paddingRight = ((BorderLayout) this.layoutManager).hGap + "px";
-        this.element.style.paddingTop = ((BorderLayout) this.layoutManager).vGap + "px";
-        this.element.style.paddingBottom = ((BorderLayout) this.layoutManager).vGap + "px";
+        HTMLElement middle = document.createElement("div");
+        middle.classList.add("middle");
+        this.element.appendChild(middle);
         break;
       case "flowlayout":
-        this.element.style.paddingLeft = ((FlowLayout) this.layoutManager).hGap + "px";
-        this.element.style.paddingRight = ((FlowLayout) this.layoutManager).hGap + "px";
-        this.element.style.paddingTop = ((FlowLayout) this.layoutManager).vGap + "px";
-        this.element.style.paddingBottom = ((FlowLayout) this.layoutManager).vGap + "px";
+        switch (((FlowLayout) this.layoutManager).align) {
+          case FlowLayout.LEFT:
+          case FlowLayout.LEADING:
+            this.element.style.textAlign = "left";
+            break;
+          case FlowLayout.CENTER:
+            this.element.style.textAlign = "center";
+            break;
+          case FlowLayout.RIGHT:
+          case FlowLayout.TRAILING:
+            this.element.style.textAlign = "right";
+            break;
+        }
+
         break;
     }
   }
 
   public void add(JComponent component, Object constraints) {
-    this.element.appendChild(component.element);
-
     switch (this.layoutManager.css) {
-      case "BorderLayout":
-        this.element.classList.add(((String) constraints).toLowerCase());
+      case "borderlayout":
+        switch (((String) constraints)) {
+          case BorderLayout.NORTH:
+          case BorderLayout.SOUTH:
+            this.element.appendChild(component.element);
+            break;
+          case BorderLayout.WEST:
+          case BorderLayout.CENTER:
+          case BorderLayout.EAST:
+            this.element.querySelector(".middle").appendChild(component.element);
+            break;
+        }
+
+        component.element.classList.add(((String) constraints).toLowerCase());
+        component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
+        component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
+        component.element.style.marginTop = ((BorderLayout) this.layoutManager).vGap + "px";
+        component.element.style.marginBottom = ((BorderLayout) this.layoutManager).vGap + "px";
         break;
       case "flowlayout":
+        this.element.appendChild(component.element);
+
+        component.element.style.marginLeft = ((FlowLayout) this.layoutManager).hGap + "px";
+        component.element.style.marginRight = ((FlowLayout) this.layoutManager).hGap + "px";
+        component.element.style.marginTop = ((FlowLayout) this.layoutManager).vGap + "px";
+        component.element.style.marginBottom = ((FlowLayout) this.layoutManager).vGap + "px";
         break;
     }
   }
