@@ -13,6 +13,7 @@ class TestJFrame1 extends JFrame {
     jButton2.setText("jButton2");
     jButton2.addActionListener(new TestJFrame1ActionListener());
     jPanel2.add(jButton2);
+    jPanel2.setBackground(new Color(200, 100, 200));
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
 
@@ -32,18 +33,23 @@ class TestJFrame1 extends JFrame {
     let jPanel4 = new JPanel();
     let jButton4 = new JButton();
     this.setTitle("Test JFrame1");
+    this.getContentPane().setLayout(new BorderLayout(5, 5));
+    jPanel1.setBackground(new Color(255, 255, 0));
     jButton1.setText("jButton1");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);
     jButton5.setText("jButton5");
     jPanel1.add(jButton5);
     this.getContentPane().add(jPanel1, BorderLayout.NORTH);
+    jPanel2.setBackground(new Color(102, 102, 255));
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
+    jPanel3.setBackground(new Color(153, 255, 153));
     jButton3.setText("jButton3");
     jPanel3.add(jButton3);
     this.getContentPane().add(jPanel3, BorderLayout.LINE_END);
+    jPanel4.setBackground(new Color(0, 51, 0));
     jButton4.setText("jButton4");
     jPanel4.add(jButton4);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_START);

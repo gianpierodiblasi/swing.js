@@ -2,9 +2,9 @@ package giada.swingjs;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
-import giada.swingjs.layout.BorderLayout;
-import giada.swingjs.layout.FlowLayout;
-import giada.swingjs.layout.LayoutManager;
+import giada.awtjs.BorderLayout;
+import giada.awtjs.FlowLayout;
+import giada.awtjs.LayoutManager;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -64,23 +64,30 @@ public class JPanel extends JComponent {
   public void add(JComponent component, Object constraints) {
     switch (this.layoutManager.css) {
       case "borderlayout":
+        component.element.classList.add("borderlayout-" + ((String) constraints).toLowerCase());
+
         switch (((String) constraints)) {
           case BorderLayout.NORTH:
+            this.element.appendChild(component.element);
+            component.element.style.marginBottom = ((BorderLayout) this.layoutManager).vGap + "px";
+            break;
           case BorderLayout.SOUTH:
+            component.element.style.marginTop = ((BorderLayout) this.layoutManager).vGap + "px";
             this.element.appendChild(component.element);
             break;
           case BorderLayout.WEST:
+            component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
+            this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            break;
           case BorderLayout.CENTER:
+            this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            break;
           case BorderLayout.EAST:
+            component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
         }
 
-        component.element.classList.add("borderlayout-" + ((String) constraints).toLowerCase());
-        component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
-        component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
-        component.element.style.marginTop = ((BorderLayout) this.layoutManager).vGap + "px";
-        component.element.style.marginBottom = ((BorderLayout) this.layoutManager).vGap + "px";
         break;
       case "flowlayout":
         this.element.appendChild(component.element);

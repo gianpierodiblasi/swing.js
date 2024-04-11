@@ -1,4 +1,4 @@
-package giada.swingjs.layout;
+package giada.awtjs;
 
 /**
  * the java.awt.BorderLayout clone
@@ -15,8 +15,8 @@ public class BorderLayout extends LayoutManager {
 
   public static final String BEFORE_FIRST_LINE = BorderLayout.NORTH;
   public static final String AFTER_LAST_LINE = BorderLayout.SOUTH;
-  public static final String BEFORE_LINE_BEGINS = BorderLayout.EAST;
-  public static final String AFTER_LINE_ENDS = BorderLayout.WEST;
+  public static final String BEFORE_LINE_BEGINS = BorderLayout.WEST;
+  public static final String AFTER_LINE_ENDS = BorderLayout.EAST;
   public static final String PAGE_START = BorderLayout.BEFORE_FIRST_LINE;
   public static final String PAGE_END = BorderLayout.AFTER_LAST_LINE;
   public static final String LINE_START = BorderLayout.BEFORE_LINE_BEGINS;

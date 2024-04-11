@@ -49,22 +49,28 @@ class JPanel extends JComponent {
    add(component, constraints) {
     switch(this.layoutManager.css) {
       case "borderlayout":
+        component.element.classList.add("borderlayout-" + (constraints).toLowerCase());
         switch((constraints)) {
           case BorderLayout.NORTH:
+            this.element.appendChild(component.element);
+            component.element.style.marginBottom = (this.layoutManager).vGap + "px";
+            break;
           case BorderLayout.SOUTH:
+            component.element.style.marginTop = (this.layoutManager).vGap + "px";
             this.element.appendChild(component.element);
             break;
           case BorderLayout.WEST:
+            component.element.style.marginRight = (this.layoutManager).hGap + "px";
+            this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            break;
           case BorderLayout.CENTER:
+            this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            break;
           case BorderLayout.EAST:
+            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
         }
-        component.element.classList.add("borderlayout-" + (constraints).toLowerCase());
-        component.element.style.marginLeft = (this.layoutManager).hGap + "px";
-        component.element.style.marginRight = (this.layoutManager).hGap + "px";
-        component.element.style.marginTop = (this.layoutManager).vGap + "px";
-        component.element.style.marginBottom = (this.layoutManager).vGap + "px";
         break;
       case "flowlayout":
         this.element.appendChild(component.element);

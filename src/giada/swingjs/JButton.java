@@ -2,8 +2,8 @@ package giada.swingjs;
 
 import static def.dom.Globals.document;
 import def.js.Array;
-import giada.swingjs.event.ActionEvent;
-import giada.swingjs.event.ActionListener;
+import giada.awtjs.event.ActionEvent;
+import giada.awtjs.event.ActionListener;
 import static simulation.js.$Globals.$typeof;
 
 /**

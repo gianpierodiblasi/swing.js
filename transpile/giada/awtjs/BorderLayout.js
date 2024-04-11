@@ -19,9 +19,9 @@ class BorderLayout extends LayoutManager {
 
   static  AFTER_LAST_LINE = BorderLayout.SOUTH;
 
-  static  BEFORE_LINE_BEGINS = BorderLayout.EAST;
+  static  BEFORE_LINE_BEGINS = BorderLayout.WEST;
 
-  static  AFTER_LINE_ENDS = BorderLayout.WEST;
+  static  AFTER_LINE_ENDS = BorderLayout.EAST;
 
   static  PAGE_START = BorderLayout.BEFORE_FIRST_LINE;
 

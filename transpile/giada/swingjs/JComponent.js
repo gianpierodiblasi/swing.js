@@ -9,4 +9,8 @@ class JComponent {
 
   constructor() {
   }
+
+   setBackground(color) {
+    this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
+  }
 }

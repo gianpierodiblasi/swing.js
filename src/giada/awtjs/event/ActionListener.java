@@ -1,4 +1,4 @@
-package giada.swingjs.event;
+package giada.awtjs.event;
 
 /**
  * the java.awt.event.ActionListener clone

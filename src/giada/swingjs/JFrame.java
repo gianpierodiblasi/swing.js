@@ -3,7 +3,7 @@ package giada.swingjs;
 import def.dom.Element;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
-import giada.swingjs.layout.BorderLayout;
+import giada.awtjs.BorderLayout;
 import static simulation.js.$Globals.$exists;
 
 /**

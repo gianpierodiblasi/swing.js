@@ -1,4 +1,4 @@
-package giada.swingjs.layout;
+package giada.awtjs;
 
 /**
  * the java.awt.FlowLayout clone

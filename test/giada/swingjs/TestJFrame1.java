@@ -2,6 +2,7 @@ package giada.swingjs;
 
 import static def.dom.Globals.console;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -11,20 +12,21 @@ import javax.swing.JPanel;
  * @author gianpiero.diblasi
  */
 public class TestJFrame1 extends javax.swing.JFrame {
-
+  
   private static final long serialVersionUID = 1;
-
+  
   public TestJFrame1() {
     super();
     initComponents();
-
+    
     JPanel jPanel2 = new JPanel();
     JButton jButton2 = new JButton();
-
+    
     jButton2.setText("jButton2");
     jButton2.addActionListener(new TestJFrame1ActionListener());
     jPanel2.add(jButton2);
-
+    jPanel2.setBackground(new Color(200, 100, 200));
+    
     getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
 
@@ -48,6 +50,9 @@ public class TestJFrame1 extends javax.swing.JFrame {
     JButton jButton4 = new JButton();
 
     setTitle("Test JFrame1");
+    getContentPane().setLayout(new BorderLayout(5, 5));
+
+    jPanel1.setBackground(new Color(255, 255, 0));
 
     jButton1.setText("jButton1");
     jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -58,15 +63,21 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     getContentPane().add(jPanel1, BorderLayout.NORTH);
 
+    jPanel2.setBackground(new Color(102, 102, 255));
+
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
+    jPanel3.setBackground(new Color(153, 255, 153));
+
     jButton3.setText("jButton3");
     jPanel3.add(jButton3);
 
     getContentPane().add(jPanel3, BorderLayout.LINE_END);
+
+    jPanel4.setBackground(new Color(0, 51, 0));
 
     jButton4.setText("jButton4");
     jPanel4.add(jButton4);
