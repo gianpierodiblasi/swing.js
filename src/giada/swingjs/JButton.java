@@ -2,7 +2,9 @@ package giada.swingjs;
 
 import static def.dom.Globals.document;
 import def.js.Array;
+import giada.swingjs.event.ActionEvent;
 import giada.swingjs.event.ActionListener;
+import static simulation.js.$Globals.$typeof;
 
 /**
  * The javax.swing.JButton clone
@@ -18,6 +20,7 @@ public class JButton extends JComponent {
 
     this.element = document.createElement("button");
     this.element.classList.add("jbutton");
+    this.element.onclick = (event) -> this.onclick();
   }
 
   public void setText(String text) {
@@ -26,5 +29,18 @@ public class JButton extends JComponent {
 
   public void addActionListener(ActionListener listener) {
     this.listeners.push(listener);
+  }
+
+  private Object onclick() {
+    ActionEvent event = new ActionEvent();
+
+    this.listeners.forEach(listener -> {
+      if ($typeof(listener, "function")) {
+        listener.$apply(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
   }
 }

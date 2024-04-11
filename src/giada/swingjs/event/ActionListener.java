@@ -8,4 +8,6 @@ package giada.swingjs.event;
 public interface ActionListener {
 
   public void actionPerformed(ActionEvent event);
+
+  public void $apply(ActionEvent event);
 }

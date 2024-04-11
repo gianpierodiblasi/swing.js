@@ -11,6 +11,7 @@ class JButton extends JComponent {
     super();
     this.element = document.createElement("button");
     this.element.classList.add("jbutton");
+    this.element.onclick = (event) => this.onclick();
   }
 
    setText(text) {
@@ -19,5 +20,17 @@ class JButton extends JComponent {
 
    addActionListener(listener) {
     this.listeners.push(listener);
+  }
+
+   onclick() {
+    let event = new ActionEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
   }
 }
