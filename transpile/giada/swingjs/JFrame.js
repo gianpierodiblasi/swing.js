@@ -11,7 +11,7 @@ class JFrame extends JComponent {
     super();
     this.contentPane.element.classList.remove("jpanel");
     this.contentPane.element.classList.add("jframe");
-    this.contentPane.setLayout(new BorderLayout());
+    this.contentPane.setLayout(new BorderLayout(0, 0));
     this.element = document.querySelector("body");
     this.element.textContent = "";
     this.element.appendChild(this.contentPane.element);

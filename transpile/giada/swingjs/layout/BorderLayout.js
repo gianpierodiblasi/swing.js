@@ -1,5 +1,6 @@
 /**
  * the java.awt.BorderLayout clone
+ *
  * @author gianpiero.diblasi
  */
 class BorderLayout extends LayoutManager {
@@ -14,13 +15,13 @@ class BorderLayout extends LayoutManager {
 
   static  CENTER = "Center";
 
-  static  BEFORE_FIRST_LINE = "First";
+  static  BEFORE_FIRST_LINE = BorderLayout.NORTH;
 
-  static  AFTER_LAST_LINE = "Last";
+  static  AFTER_LAST_LINE = BorderLayout.SOUTH;
 
-  static  BEFORE_LINE_BEGINS = "Before";
+  static  BEFORE_LINE_BEGINS = BorderLayout.EAST;
 
-  static  AFTER_LINE_ENDS = "After";
+  static  AFTER_LINE_ENDS = BorderLayout.WEST;
 
   static  PAGE_START = BorderLayout.BEFORE_FIRST_LINE;
 
@@ -30,7 +31,13 @@ class BorderLayout extends LayoutManager {
 
   static  LINE_END = BorderLayout.AFTER_LINE_ENDS;
 
-  constructor() {
-    super();
+   hGap = 0;
+
+   vGap = 0;
+
+  constructor(hGap, vGap) {
+    super("borderlayout");
+    this.hGap = hGap;
+    this.vGap = vGap;
   }
 }

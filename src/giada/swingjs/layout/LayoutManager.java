@@ -5,5 +5,11 @@ package giada.swingjs.layout;
  *
  * @author gianpiero.diblasi
  */
-public interface LayoutManager {
+public abstract class LayoutManager {
+
+  public final String css;
+
+  public LayoutManager(String css) {
+    this.css = css;
+  }
 }

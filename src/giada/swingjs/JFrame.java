@@ -20,7 +20,7 @@ public class JFrame extends JComponent {
 
     this.contentPane.element.classList.remove("jpanel");
     this.contentPane.element.classList.add("jframe");
-    this.contentPane.setLayout(new BorderLayout());
+    this.contentPane.setLayout(new BorderLayout(0, 0));
 
     this.element = (HTMLElement) document.querySelector("body");
     this.element.textContent = "";

@@ -1,6 +1,10 @@
 package giada.swingjs;
 
 import static def.dom.Globals.console;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,15 +17,15 @@ public class TestJFrame1 extends javax.swing.JFrame {
   public TestJFrame1() {
     super();
     initComponents();
-    
-    javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
-    javax.swing.JButton jButton2 = new javax.swing.JButton();
-    
+
+    JPanel jPanel2 = new JPanel();
+    JButton jButton2 = new JButton();
+
     jButton2.setText("jButton2");
     jButton2.addActionListener(new TestJFrame1ActionListener());
     jPanel2.add(jButton2);
 
-    getContentPane().add(jPanel2, java.awt.BorderLayout.SOUTH);
+    getContentPane().add(jPanel2, BorderLayout.SOUTH);
   }
 
   /**
@@ -33,8 +37,16 @@ public class TestJFrame1 extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
-    javax.swing.JButton jButton1 = new javax.swing.JButton();
+    JPanel jPanel1 = new JPanel();
+    JButton jButton1 = new JButton();
+    JButton jButton5 = new JButton();
+    JPanel jPanel2 = new JPanel();
+    JButton jButton2 = new JButton();
+    JPanel jPanel3 = new JPanel();
+    JButton jButton3 = new JButton();
+    JPanel jPanel4 = new JPanel();
+    JButton jButton4 = new JButton();
+    JPanel jPanel5 = new JPanel();
 
     setTitle("Test JFrame1");
 
@@ -42,10 +54,29 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton1.addActionListener(this::jButton1ActionPerformed);
     jPanel1.add(jButton1);
 
-    getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
+    jButton5.setText("jButton5");
+    jPanel1.add(jButton5);
+
+    getContentPane().add(jPanel1, BorderLayout.NORTH);
+
+    jButton2.setText("jButton2");
+    jPanel2.add(jButton2);
+
+    getContentPane().add(jPanel2, BorderLayout.PAGE_END);
+
+    jButton3.setText("jButton3");
+    jPanel3.add(jButton3);
+
+    getContentPane().add(jPanel3, BorderLayout.LINE_END);
+
+    jButton4.setText("jButton4");
+    jPanel4.add(jButton4);
+
+    getContentPane().add(jPanel4, BorderLayout.LINE_START);
+    getContentPane().add(jPanel5, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     console.log("FROM LAMBDA");
   }//GEN-LAST:event_jButton1ActionPerformed
 
