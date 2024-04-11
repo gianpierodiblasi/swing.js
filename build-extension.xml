@@ -102,4 +102,11 @@
       </classpath>
     </java>
   </target>
+  
+  <target name="watch-transpile" depends="version">
+    <java sourcefile="${basedir}/BuildJS.java">
+      <arg value="${transpile.dir}"/>
+      <arg value="${build.dir}/swing-bundle-${version}.js"/>
+    </java>
+  </target>
 </project>

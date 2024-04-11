@@ -61,6 +61,23 @@ class Color {
   }
 }
 /**
+ * the java.awt.event.ActionEvent clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionEvent {
+}
+/**
+ * the java.awt.event.ActionListener clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionListener {
+
+   actionPerformed(event) {
+  }
+}
+/**
  * the java.awt.FlowLayout clone
  *
  * @author gianpiero.diblasi
@@ -101,23 +118,6 @@ class LayoutManager {
 
   constructor(css) {
     this.css = css;
-  }
-}
-/**
- * the java.awt.event.ActionEvent clone
- *
- * @author gianpiero.diblasi
- */
-class ActionEvent {
-}
-/**
- * the java.awt.event.ActionListener clone
- *
- * @author gianpiero.diblasi
- */
-class ActionListener {
-
-   actionPerformed(event) {
   }
 }
 /**
