@@ -1,7 +1,7 @@
 package giada.swingjs.layout;
 
 /**
- *
+ * the java.awt.FlowLayout clone
  * @author gianpiero.diblasi
  */
 public class FlowLayout implements LayoutManager {

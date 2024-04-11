@@ -17,10 +17,20 @@ class TestJFrame1 extends JFrame {
    */
    initComponents() {
     let jPanel1 = new JPanel();
+    let jButton1 = new JButton();
     this.setTitle("Test JFrame1");
+    jButton1.setText("jButton1");
+    jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton1);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
   }
+
   // </editor-fold>//GEN-END:initComponents
+   jButton1ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton1ActionPerformed
+    // TODO add your handling code here:
+  }
+  // GEN-LAST:event_jButton1ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables
 }

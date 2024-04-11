@@ -1,4 +1,5 @@
 /**
+ * the java.awt.FlowLayout clone
  * @author gianpiero.diblasi
  */
 class FlowLayout extends LayoutManager {

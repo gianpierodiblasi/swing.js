@@ -1,7 +1,7 @@
 package giada.swingjs.layout;
 
 /**
- *
+ * the java.awt.BorderLayout clone
  * @author gianpiero.diblasi
  */
 public class BorderLayout implements LayoutManager {

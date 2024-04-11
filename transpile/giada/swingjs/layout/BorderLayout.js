@@ -1,4 +1,5 @@
 /**
+ * the java.awt.BorderLayout clone
  * @author gianpiero.diblasi
  */
 class BorderLayout extends LayoutManager {
