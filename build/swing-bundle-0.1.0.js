@@ -1,7 +1,3 @@
-/* global JFrame */
-
-getContentPane = () => JFrame.current.getContentPane();
-setTitle = (title) => JFrame.current.setTitle(title);
 /**
  * the java.awt.event.ActionListener clone
  *
@@ -245,13 +241,10 @@ class JButton extends JComponent {
  */
 class JFrame extends JComponent {
 
-  static  current = null;
-
    contentPane = new JPanel();
 
   constructor() {
     super();
-    JFrame.current = this;
     this.contentPane.element.classList.remove("jpanel");
     this.contentPane.element.classList.add("jframe");
     this.contentPane.setLayout(new BorderLayout(0, 0));
