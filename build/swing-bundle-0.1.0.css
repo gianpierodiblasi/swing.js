@@ -14,8 +14,6 @@ html, body {
 .jframe.borderlayout, .jpanel.borderlayout {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
 }
 .jframe.borderlayout > borderlayout-north, .jpanel.borderlayout > borderlayout-north {
   width: 100%;
@@ -41,6 +39,13 @@ html, body {
 .jframe.borderlayout .borderlayout-south, .jpanel.borderlayout .borderlayout-south {
   width: 100%;
   order: 3;
+}
+
+.jframe.flowlayout, .jpanel.flowlayout {
+}
+
+.jframe.gridlayout, .jpanel.gridlayout {
+  display: grid;
 }
 
 .jbutton {

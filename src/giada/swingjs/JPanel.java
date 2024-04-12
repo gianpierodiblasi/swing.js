@@ -1,11 +1,14 @@
 package giada.swingjs;
 
+import static def.dom.Globals.console;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import giada.awtjs.BorderLayout;
 import giada.awtjs.FlowLayout;
+import giada.awtjs.GridLayout;
 import giada.awtjs.LayoutManager;
 import static simulation.js.$Globals.$exists;
+import static simulation.js.$Globals.parseInt;
 
 /**
  * The javax.swing.JPanel clone
@@ -56,7 +59,17 @@ public class JPanel extends JComponent {
             this.element.style.textAlign = "right";
             break;
         }
-
+        break;
+      case "gridlayout":
+        String gridTemplateAreas = "";
+        for (int row = 1; row <= ((GridLayout) this.layoutManager).rows; row++) {
+          String gridTemplateRow = "";
+          for (int col = 1; col <= ((GridLayout) this.layoutManager).cols; col++) {
+            gridTemplateRow += "p" + ((row - 1) * ((GridLayout) this.layoutManager).cols + col) + " ";
+          }
+          gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
+        }
+        this.element.style.setProperty("grid-template-areas", gridTemplateAreas);
         break;
     }
   }
@@ -96,6 +109,19 @@ public class JPanel extends JComponent {
         component.element.style.marginRight = ((FlowLayout) this.layoutManager).hGap + "px";
         component.element.style.marginTop = ((FlowLayout) this.layoutManager).vGap + "px";
         component.element.style.marginBottom = ((FlowLayout) this.layoutManager).vGap + "px";
+        break;
+      case "gridlayout":
+        this.element.appendChild(component.element);
+        component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
+        
+        int row = parseInt(this.element.childElementCount / ((GridLayout) this.layoutManager).cols);
+        int col = parseInt(this.element.childElementCount % ((GridLayout) this.layoutManager).cols);
+        console.log(this.element.childElementCount,row,col);
+        
+//        component.element.style.marginLeft = ((GridLayout) this.layoutManager).hGap + "px";
+//        component.element.style.marginRight = ((GridLayout) this.layoutManager).hGap + "px";
+//        component.element.style.marginTop = ((GridLayout) this.layoutManager).vGap + "px";
+//        component.element.style.marginBottom = ((GridLayout) this.layoutManager).vGap + "px";
         break;
     }
   }

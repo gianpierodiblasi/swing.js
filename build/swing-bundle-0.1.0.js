@@ -1,3 +1,7 @@
+/* global JFrame */
+
+getContentPane = () => JFrame.current.getContentPane();
+setTitle = (title) => JFrame.current.setTitle(title);
 /**
  * the java.awt.event.ActionListener clone
  *
@@ -95,6 +99,29 @@ class FlowLayout extends LayoutManager {
   }
 }
 /**
+ * the java.awt.GridLayout clone
+ *
+ * @author gianpiero.diblasi
+ */
+class GridLayout extends LayoutManager {
+
+   rows = 0;
+
+   cols = 0;
+
+   hGap = 0;
+
+   vGap = 0;
+
+  constructor(rows, cols, hGap, vGap) {
+    super("gridlayout");
+    this.rows = rows;
+    this.cols = cols;
+    this.hGap = hGap;
+    this.vGap = vGap;
+  }
+}
+/**
  * the java.awt.event.ActionEvent clone
  *
  * @author gianpiero.diblasi
@@ -179,10 +206,13 @@ class JButton extends JComponent {
  */
 class JFrame extends JComponent {
 
+  static  current = null;
+
    contentPane = new JPanel();
 
   constructor() {
     super();
+    JFrame.current = this;
     this.contentPane.element.classList.remove("jpanel");
     this.contentPane.element.classList.add("jframe");
     this.contentPane.setLayout(new BorderLayout(0, 0));
@@ -251,6 +281,17 @@ class JPanel extends JComponent {
             break;
         }
         break;
+      case "gridlayout":
+        let gridTemplateAreas = "";
+        for (let row = 1; row <= (this.layoutManager).rows; row++) {
+          let gridTemplateRow = "";
+          for (let col = 1; col <= (this.layoutManager).cols; col++) {
+            gridTemplateRow += "p" + ((row - 1) * (this.layoutManager).cols + col) + " ";
+          }
+          gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
+        }
+        this.element.style.setProperty("grid-template-areas", gridTemplateAreas);
+        break;
     }
   }
 
@@ -286,6 +327,17 @@ class JPanel extends JComponent {
         component.element.style.marginRight = (this.layoutManager).hGap + "px";
         component.element.style.marginTop = (this.layoutManager).vGap + "px";
         component.element.style.marginBottom = (this.layoutManager).vGap + "px";
+        break;
+      case "gridlayout":
+        this.element.appendChild(component.element);
+        component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
+        let row = parseInt(this.element.childElementCount / (this.layoutManager).cols);
+        let col = parseInt(this.element.childElementCount % (this.layoutManager).cols);
+        console.log(this.element.childElementCount, row, col);
+        // component.element.style.marginLeft = ((GridLayout) this.layoutManager).hGap + "px";
+        // component.element.style.marginRight = ((GridLayout) this.layoutManager).hGap + "px";
+        // component.element.style.marginTop = ((GridLayout) this.layoutManager).vGap + "px";
+        // component.element.style.marginBottom = ((GridLayout) this.layoutManager).vGap + "px";
         break;
     }
   }

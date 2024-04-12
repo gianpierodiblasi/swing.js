@@ -3,6 +3,7 @@ package giada.swingjs;
 import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -42,6 +43,9 @@ public class TestJFrame1 extends javax.swing.JFrame {
     JPanel jPanel1 = new JPanel();
     JButton jButton1 = new JButton();
     JButton jButton5 = new JButton();
+    JButton jButton6 = new JButton();
+    JButton jButton7 = new JButton();
+    JButton jButton8 = new JButton();
     JPanel jPanel2 = new JPanel();
     JButton jButton2 = new JButton();
     JPanel jPanel3 = new JPanel();
@@ -53,6 +57,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
     getContentPane().setLayout(new BorderLayout(5, 5));
 
     jPanel1.setBackground(new Color(255, 255, 0));
+    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
 
     jButton1.setText("jButton1");
     jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -60,6 +65,15 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     jButton5.setText("jButton5");
     jPanel1.add(jButton5);
+
+    jButton6.setText("jButton6");
+    jPanel1.add(jButton6);
+
+    jButton7.setText("jButton7");
+    jPanel1.add(jButton7);
+
+    jButton8.setText("jButton8");
+    jPanel1.add(jButton8);
 
     getContentPane().add(jPanel1, BorderLayout.NORTH);
 

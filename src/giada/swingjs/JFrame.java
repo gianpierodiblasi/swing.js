@@ -13,11 +13,13 @@ import static simulation.js.$Globals.$exists;
  */
 public class JFrame extends JComponent {
 
+  public static JFrame current;
   private final JPanel contentPane = new JPanel();
 
   public JFrame() {
     super();
 
+    JFrame.current = this;
     this.contentPane.element.classList.remove("jpanel");
     this.contentPane.element.classList.add("jframe");
     this.contentPane.setLayout(new BorderLayout(0, 0));

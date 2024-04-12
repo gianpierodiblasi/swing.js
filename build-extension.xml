@@ -6,7 +6,7 @@
   <property name="build.dir" value="${basedir}/build" /> 
   <property name="test.dir" value="${basedir}/test" /> 
   <property name="transpile-test.dir" value="${basedir}/transpile-test" /> 
-  <property name="josetta.jar" value="${basedir}/lib/josetta-1.10.2-jar-with-dependencies.jar" /> 
+  <property name="josetta.jar" value="${basedir}/lib/josetta-1.10.3-jar-with-dependencies.jar" /> 
   
   <target name="clean"> 
     <delete>
@@ -45,6 +45,7 @@
   <target name="build_js" depends="version,transpile">
     <java sourcefile="${basedir}/BuildJS.java">
       <arg value="b"/>
+      <arg value="${src.dir}/swing.js"/>
       <arg value="${transpile.dir}"/>
       <arg value="${build.dir}/swing-bundle-${version}.js"/>
     </java>
@@ -102,6 +103,7 @@
   <target name="watch-transpile" depends="version">
     <java sourcefile="${basedir}/BuildJS.java">
       <arg value="w"/>
+      <arg value="${src.dir}/swing.js"/>
       <arg value="${transpile.dir}"/>
       <arg value="${build.dir}/swing-bundle-${version}.js"/>
     </java>
