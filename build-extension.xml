@@ -24,7 +24,6 @@
       <arg value="${src.dir}"/>
       <arg value="-out"/>
       <arg value="${transpile.dir}"/>
-      <arg value="-nbmo"/>
       <classpath>
         <pathelement path="${josetta.jar}"/>
       </classpath>
@@ -83,7 +82,6 @@
       <arg value="-out"/>
       <arg value="${transpile.dir}"/>
       <arg value="-w"/>
-      <arg value="-nbmo"/>
       <classpath>
         <pathelement path="${josetta.jar}"/>
       </classpath>
