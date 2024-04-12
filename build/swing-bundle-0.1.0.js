@@ -69,6 +69,45 @@ class BorderLayout extends LayoutManager {
   }
 }
 /**
+ * the java.awt.BoxLayout clone
+ *
+ * @author gianpiero.diblasi
+ */
+class BoxLayout extends LayoutManager {
+
+  static  X_AXIS = 0;
+
+  static  Y_AXIS = 1;
+
+  static  LINE_AXIS = 2;
+
+  static  PAGE_AXIS = 3;
+
+   axis = 0;
+
+  constructor(target, axis) {
+    super("flowlayout");
+    this.axis = axis;
+  }
+}
+/**
+ * the java.awt.CardLayout clone
+ *
+ * @author gianpiero.diblasi
+ */
+class CardLayout extends LayoutManager {
+
+   hGap = 0;
+
+   vGap = 0;
+
+  constructor(hGap, vGap) {
+    super("flowlayout");
+    this.hGap = typeof hGap === "undefined" ? 0 : hGap;
+    this.vGap = typeof vGap === "undefined" ? 0 : vGap;
+  }
+}
+/**
  * the java.awt.FlowLayout clone
  *
  * @author gianpiero.diblasi
