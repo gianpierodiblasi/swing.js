@@ -11,10 +11,10 @@ import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class BuildJS {
 
@@ -54,22 +54,60 @@ public class BuildJS {
     out.delete();
     Path outPath = out.toPath();
 
-    List<String> rows = Files.
-            find(in.toPath(), 999, (p, bfa) -> bfa.isRegularFile() && p.getFileName().toString().matches(".*\\.js")).
-            flatMap(path -> {
-              try {
-                return Files.readAllLines(path).stream();
-              } catch (IOException ex) {
-                ex.printStackTrace();
-                return null;
-              }
-            }).collect(Collectors.toList());
+    Map<String, String> origins = new HashMap<>();
+    Map<String, List<String>> derived = new HashMap<>();
+
+    Files.find(in.toPath(), 999, (p, bfa) -> bfa.isRegularFile() && p.getFileName().toString().matches(".*\\.js")).forEach(path -> {
+      try {
+        String content = Files.readString(path);
+        int indexStart = content.indexOf("class ");
+        int indexStop = content.indexOf(' ', indexStart + 6);
+        String name = content.substring(indexStart + 6, indexStop);
+
+        indexStart = content.indexOf(" extends ");
+        indexStop = content.indexOf(' ', indexStart + 9);
+
+        if (indexStart != -1) {
+          String parentName = content.substring(indexStart + 9, indexStop);
+          if (!derived.containsKey(parentName)) {
+            derived.put(parentName, new ArrayList<>());
+          }
+          derived.get(parentName).add(content);
+        } else {
+          origins.put(name, content);
+        }
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+    });
 
     System.out.println("writing " + in + " into " + out);
-    Files.write(outPath, rows, StandardOpenOption.CREATE);
+    origins.entrySet().forEach(entry -> {
+      try {
+        Files.write(outPath, entry.getValue().getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
+        if (derived.containsKey(entry.getKey())) {
+          derived.get(entry.getKey()).forEach(content -> {
+            try {
+              Files.write(outPath, content.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            } catch (IOException ex) {
+              ex.printStackTrace();
+            }
+          });
+        }
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+    });
   }
 
   public static void main(String[] args) throws Exception {
-    BuildJS.watch(new File(args[0]), new File(args[1]));
+    switch (args[0]) {
+      case "w":
+        BuildJS.watch(new File(args[1]), new File(args[2]));
+        break;
+      case "b":
+        BuildJS.write(new File(args[1]), new File(args[2]));
+    }
   }
 }

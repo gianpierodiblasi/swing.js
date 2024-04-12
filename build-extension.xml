@@ -43,18 +43,14 @@
   </target>
   
   <target name="build_js" depends="version,transpile">
-    <concat destfile="${build.dir}/swing-bundle-${version}.js" fixlastline="yes">
-      <filterchain>
-        <linecontainsregexp negate="true">
-          <regexp pattern="/* global .* */"/>
-        </linecontainsregexp>
-      </filterchain>
-      
-      <fileset dir="${transpile.dir}"/>
-    </concat>
+    <java sourcefile="${basedir}/BuildJS.java">
+      <arg value="b"/>
+      <arg value="${transpile.dir}"/>
+      <arg value="${build.dir}/swing-bundle-${version}.js"/>
+    </java>
   </target>
 
-  <target name="copy_css">
+  <target name="copy_css" depends="version">
     <copy file="${src.dir}/swing.css" tofile="${build.dir}/swing-bundle-${version}.css"/>
   </target>
   
@@ -105,6 +101,7 @@
   
   <target name="watch-transpile" depends="version">
     <java sourcefile="${basedir}/BuildJS.java">
+      <arg value="w"/>
       <arg value="${transpile.dir}"/>
       <arg value="${build.dir}/swing-bundle-${version}.js"/>
     </java>

@@ -1,4 +1,27 @@
 /**
+ * the java.awt.event.ActionListener clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionListener {
+
+   actionPerformed(event) {
+  }
+}
+/**
+ * the java.awt.LayoutManager clone
+ *
+ * @author gianpiero.diblasi
+ */
+class LayoutManager {
+
+   css = null;
+
+  constructor(css) {
+    this.css = css;
+  }
+}
+/**
  * the java.awt.BorderLayout clone
  *
  * @author gianpiero.diblasi
@@ -42,42 +65,6 @@ class BorderLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.Color clone
- *
- * @author gianpiero.diblasi
- */
-class Color {
-
-   red = 0;
-
-   green = 0;
-
-   blue = 0;
-
-  constructor(red, green, blue) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
-  }
-}
-/**
- * the java.awt.event.ActionEvent clone
- *
- * @author gianpiero.diblasi
- */
-class ActionEvent {
-}
-/**
- * the java.awt.event.ActionListener clone
- *
- * @author gianpiero.diblasi
- */
-class ActionListener {
-
-   actionPerformed(event) {
-  }
-}
-/**
  * the java.awt.FlowLayout clone
  *
  * @author gianpiero.diblasi
@@ -108,16 +95,45 @@ class FlowLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.LayoutManager clone
+ * the java.awt.event.ActionEvent clone
  *
  * @author gianpiero.diblasi
  */
-class LayoutManager {
+class ActionEvent {
+}
+/**
+ * the java.awt.Color clone
+ *
+ * @author gianpiero.diblasi
+ */
+class Color {
 
-   css = null;
+   red = 0;
 
-  constructor(css) {
-    this.css = css;
+   green = 0;
+
+   blue = 0;
+
+  constructor(red, green, blue) {
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+  }
+}
+/**
+ * The javax.swing.JComponent clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JComponent {
+
+   element = null;
+
+  constructor() {
+  }
+
+   setBackground(color) {
+    this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
   }
 }
 /**
@@ -154,22 +170,6 @@ class JButton extends JComponent {
       }
     });
     return null;
-  }
-}
-/**
- * The javax.swing.JComponent clone
- *
- * @author gianpiero.diblasi
- */
-class JComponent {
-
-   element = null;
-
-  constructor() {
-  }
-
-   setBackground(color) {
-    this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
   }
 }
 /**
