@@ -5,6 +5,8 @@ An ES6 implementation of the Java Swing API (WORK IN PROGRESS!)
 ![swing-js.png](https://github.com/gianpierodiblasi/swing.js/blob/master/swing-js.png?raw=true)
 
 ## Dependencies
+- josetta - [link](https://github.com/gianpierodiblasi/josetta)
+- jsweet-core - [link](https://repository.jsweet.org/artifactory/libs-release-local/org/jsweet/jsweet-core/)
 
 ## Build
 swing.js is developed in NetBeans as an ANT project. In order to perform a build you can use ANT [link](https://ant.apache.org/), NetBeans [link](https://netbeans.apache.org/)  or any IDE compatible with ANT.
