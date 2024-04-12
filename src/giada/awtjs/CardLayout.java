@@ -13,7 +13,7 @@ public class CardLayout extends LayoutManager {
   public final int vGap;
 
   public CardLayout(int hGap, int vGap) {
-    super("flowlayout");
+    super("cardlayout");
 
     this.hGap = $Globals.$typeof(hGap, "undefined") ? 0 : hGap;
     this.vGap = $Globals.$typeof(vGap, "undefined") ? 0 : vGap;

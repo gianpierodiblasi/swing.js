@@ -17,7 +17,7 @@ public class BoxLayout extends LayoutManager {
   public final int axis;
 
   public BoxLayout(JComponent target, int axis) {
-    super("flowlayout");
+    super("boxlayout");
 
     this.axis = axis;
   }
