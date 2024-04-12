@@ -14,7 +14,7 @@ class TestJFrame1 extends JFrame {
     jButton2.addActionListener(new TestJFrame1ActionListener());
     jPanel2.add(jButton2);
     jPanel2.setBackground(new Color(200, 100, 200));
-    this.getContentPane().add(jPanel2, BorderLayout.CENTER);
+    getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
 
   /**
@@ -51,7 +51,8 @@ class TestJFrame1 extends JFrame {
     jButton8.setText("jButton8");
     jPanel1.add(jButton8);
     getContentPane().add(jPanel1, BorderLayout.NORTH);
-    jPanel2.setBackground(new Color(102, 102, 255));
+    jPanel2.setBackground(new Color(0, 102, 102));
+    jPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);

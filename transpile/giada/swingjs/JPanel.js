@@ -18,6 +18,9 @@ class JPanel extends JComponent {
     if (this.layoutManager) {
       this.element.classList.remove(this.layoutManager.css);
       this.element.style.textAlign = "";
+      this.element.style.removeProperty("grid-template-areas");
+      this.element.style.removeProperty("row-gap");
+      this.element.style.removeProperty("column-gap");
       this.element.textContent = "";
     }
     this.layoutManager = layoutManager;
@@ -53,6 +56,8 @@ class JPanel extends JComponent {
           gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
         }
         this.element.style.setProperty("grid-template-areas", gridTemplateAreas);
+        this.element.style.setProperty("row-gap", (this.layoutManager).hGap + "px");
+        this.element.style.setProperty("column-gap", (this.layoutManager).hGap + "px");
         break;
     }
   }
@@ -71,14 +76,14 @@ class JPanel extends JComponent {
             this.element.appendChild(component.element);
             break;
           case BorderLayout.WEST:
-            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
+            component.element.style.marginRight = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.CENTER:
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.EAST:
-            component.element.style.marginRight = (this.layoutManager).hGap + "px";
+            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
         }
@@ -93,13 +98,6 @@ class JPanel extends JComponent {
       case "gridlayout":
         this.element.appendChild(component.element);
         component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
-        let row = parseInt(this.element.childElementCount / (this.layoutManager).cols);
-        let col = parseInt(this.element.childElementCount % (this.layoutManager).cols);
-        console.log(this.element.childElementCount, row, col);
-        // component.element.style.marginLeft = ((GridLayout) this.layoutManager).hGap + "px";
-        // component.element.style.marginRight = ((GridLayout) this.layoutManager).hGap + "px";
-        // component.element.style.marginTop = ((GridLayout) this.layoutManager).vGap + "px";
-        // component.element.style.marginBottom = ((GridLayout) this.layoutManager).vGap + "px";
         break;
     }
   }

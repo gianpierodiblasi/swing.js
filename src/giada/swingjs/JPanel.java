@@ -1,6 +1,5 @@
 package giada.swingjs;
 
-import static def.dom.Globals.console;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import giada.awtjs.BorderLayout;
@@ -8,7 +7,6 @@ import giada.awtjs.FlowLayout;
 import giada.awtjs.GridLayout;
 import giada.awtjs.LayoutManager;
 import static simulation.js.$Globals.$exists;
-import static simulation.js.$Globals.parseInt;
 
 /**
  * The javax.swing.JPanel clone
@@ -32,6 +30,9 @@ public class JPanel extends JComponent {
     if ($exists(this.layoutManager)) {
       this.element.classList.remove(this.layoutManager.css);
       this.element.style.textAlign = "";
+      this.element.style.removeProperty("grid-template-areas");
+      this.element.style.removeProperty("row-gap");
+      this.element.style.removeProperty("column-gap");
       this.element.textContent = "";
 
     }
@@ -70,6 +71,8 @@ public class JPanel extends JComponent {
           gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
         }
         this.element.style.setProperty("grid-template-areas", gridTemplateAreas);
+        this.element.style.setProperty("row-gap", ((GridLayout) this.layoutManager).hGap + "px");
+        this.element.style.setProperty("column-gap", ((GridLayout) this.layoutManager).hGap + "px");
         break;
     }
   }
@@ -89,14 +92,14 @@ public class JPanel extends JComponent {
             this.element.appendChild(component.element);
             break;
           case BorderLayout.WEST:
-            component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
+            component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.CENTER:
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.EAST:
-            component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
+            component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
         }
@@ -113,15 +116,6 @@ public class JPanel extends JComponent {
       case "gridlayout":
         this.element.appendChild(component.element);
         component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
-        
-        int row = parseInt(this.element.childElementCount / ((GridLayout) this.layoutManager).cols);
-        int col = parseInt(this.element.childElementCount % ((GridLayout) this.layoutManager).cols);
-        console.log(this.element.childElementCount,row,col);
-        
-//        component.element.style.marginLeft = ((GridLayout) this.layoutManager).hGap + "px";
-//        component.element.style.marginRight = ((GridLayout) this.layoutManager).hGap + "px";
-//        component.element.style.marginTop = ((GridLayout) this.layoutManager).vGap + "px";
-//        component.element.style.marginBottom = ((GridLayout) this.layoutManager).vGap + "px";
         break;
     }
   }

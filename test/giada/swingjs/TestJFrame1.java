@@ -3,6 +3,7 @@ package giada.swingjs;
 import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -18,7 +19,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
   
   public TestJFrame1() {
     super();
-    initComponents();
+    this.initComponents();
     
     JPanel jPanel2 = new JPanel();
     JButton jButton2 = new JButton();
@@ -77,7 +78,8 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     getContentPane().add(jPanel1, BorderLayout.NORTH);
 
-    jPanel2.setBackground(new Color(102, 102, 255));
+    jPanel2.setBackground(new Color(0, 102, 102));
+    jPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);

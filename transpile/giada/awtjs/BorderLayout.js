@@ -37,7 +37,7 @@ class BorderLayout extends LayoutManager {
 
   constructor(hGap, vGap) {
     super("borderlayout");
-    this.hGap = hGap;
-    this.vGap = vGap;
+    this.hGap = typeof hGap === "undefined" ? 0 : hGap;
+    this.vGap = typeof vGap === "undefined" ? 0 : vGap;
   }
 }

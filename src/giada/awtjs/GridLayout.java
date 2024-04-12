@@ -1,5 +1,7 @@
 package giada.awtjs;
 
+import simulation.js.$Globals;
+
 /**
  * the java.awt.GridLayout clone
  *
@@ -17,7 +19,7 @@ public class GridLayout extends LayoutManager {
 
     this.rows = rows;
     this.cols = cols;
-    this.hGap = hGap;
-    this.vGap = vGap;
+    this.hGap = $Globals.$typeof(hGap, "undefined") ? 0 : hGap;
+    this.vGap = $Globals.$typeof(vGap, "undefined") ? 0 : vGap;
   }
 }

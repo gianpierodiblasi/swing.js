@@ -24,7 +24,7 @@ class FlowLayout extends LayoutManager {
   constructor(align, hGap, vGap) {
     super("flowlayout");
     this.align = align;
-    this.hGap = hGap;
-    this.vGap = vGap;
+    this.hGap = typeof hGap === "undefined" ? 5 : hGap;
+    this.vGap = typeof vGap === "undefined" ? 5 : vGap;
   }
 }

@@ -1,5 +1,7 @@
 package giada.awtjs;
 
+import simulation.js.$Globals;
+
 /**
  * the java.awt.BorderLayout clone
  *
@@ -28,7 +30,7 @@ public class BorderLayout extends LayoutManager {
   public BorderLayout(int hGap, int vGap) {
     super("borderlayout");
 
-    this.hGap = hGap;
-    this.vGap = vGap;
+    this.hGap = $Globals.$typeof(hGap, "undefined") ? 0 : hGap;
+    this.vGap = $Globals.$typeof(vGap, "undefined") ? 0 : vGap;
   }
 }

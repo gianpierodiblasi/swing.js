@@ -1,5 +1,7 @@
 package giada.awtjs;
 
+import simulation.js.$Globals;
+
 /**
  * the java.awt.FlowLayout clone
  *
@@ -21,7 +23,7 @@ public class FlowLayout extends LayoutManager {
     super("flowlayout");
 
     this.align = align;
-    this.hGap = hGap;
-    this.vGap = vGap;
+    this.hGap = $Globals.$typeof(hGap, "undefined") ? 5 : hGap;
+    this.vGap = $Globals.$typeof(vGap, "undefined") ? 5 : vGap;
   }
 }

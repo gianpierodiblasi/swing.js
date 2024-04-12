@@ -17,7 +17,7 @@ class GridLayout extends LayoutManager {
     super("gridlayout");
     this.rows = rows;
     this.cols = cols;
-    this.hGap = hGap;
-    this.vGap = vGap;
+    this.hGap = typeof hGap === "undefined" ? 0 : hGap;
+    this.vGap = typeof vGap === "undefined" ? 0 : vGap;
   }
 }
