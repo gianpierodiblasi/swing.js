@@ -7,12 +7,14 @@
   <property name="test.dir" value="${basedir}/test" /> 
   <property name="transpile-test.dir" value="${basedir}/transpile-test" /> 
   <property name="tools.dir" value="${basedir}/tools" /> 
+  <property name="doc.dir" value="${basedir}/doc" /> 
   <property name="josetta.jar" value="${basedir}/lib/josetta-1.11.1-jar-with-dependencies.jar" /> 
   
   <target name="clean"> 
     <delete>
-      <fileset dir="${build.dir}" includes="**/*-bundle-*.js"/>
+      <fileset dir="${build.dir}" includes="**/*-bundle-*.*"/>
     </delete> 
+    <delete dir="${doc.dir}"/>
   </target> 
   
   <target name="version">
@@ -73,7 +75,12 @@
     </java>
   </target>
   
-  <target name="build" depends="clean,build_js_min,build_css_min">
+  <target name="javadoc">
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${basedir}/lib/jsweet-core-6.3.1.jar" windowtitle="swing.js" excludepackagenames="simulation.*">
+    </javadoc>
+  </target>
+  
+  <target name="build" depends="clean,build_js_min,build_css_min,javadoc">
   </target>
   
   <target name="watch">
