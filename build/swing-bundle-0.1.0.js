@@ -82,7 +82,7 @@ class BoxLayout extends LayoutManager {
    axis = 0;
 
   constructor(target, axis) {
-    super("flowlayout");
+    super("boxlayout");
     this.axis = axis;
   }
 }
@@ -98,7 +98,7 @@ class CardLayout extends LayoutManager {
    vGap = 0;
 
   constructor(hGap, vGap) {
-    super("flowlayout");
+    super("cardlayout");
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
     this.vGap = typeof vGap === "undefined" ? 0 : vGap;
   }

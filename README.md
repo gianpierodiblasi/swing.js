@@ -2,7 +2,7 @@
 An ES6 implementation of the Java Swing API (WORK IN PROGRESS!)
 
 ## Description
-![swing-js.png](https://github.com/gianpierodiblasi/swing.js/blob/master/swing-js.png?raw=true)
+![swing-js.png](https://github.com/gianpierodiblasi/swing.js/blob/master/readme/swing-js.png?raw=true)
 
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)

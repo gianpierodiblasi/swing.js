@@ -6,7 +6,8 @@
   <property name="build.dir" value="${basedir}/build" /> 
   <property name="test.dir" value="${basedir}/test" /> 
   <property name="transpile-test.dir" value="${basedir}/transpile-test" /> 
-  <property name="josetta.jar" value="${basedir}/lib/josetta-1.11.0-jar-with-dependencies.jar" /> 
+  <property name="tools.dir" value="${basedir}/tools" /> 
+  <property name="josetta.jar" value="${basedir}/lib/josetta-1.11.1-jar-with-dependencies.jar" /> 
   
   <target name="clean"> 
     <delete>
@@ -44,7 +45,7 @@
   </target>
   
   <target name="build_js" depends="version,transpile">
-    <java sourcefile="${basedir}/BuildJS.java">
+    <java sourcefile="${tools.dir}/BuildJS.java">
       <arg value="b"/>
       <arg value="${src.dir}/swing.js"/>
       <arg value="${transpile.dir}"/>
@@ -57,7 +58,7 @@
   </target>
   
   <target name="build_js_min" depends="build_js">
-    <java sourcefile="${basedir}/Minify.java">
+    <java sourcefile="${tools.dir}/Minify.java">
       <arg value="https://www.toptal.com/developers/javascript-minifier/api/raw"/>
       <arg value="${build.dir}/swing-bundle-${version}.js"/>
       <arg value="${build.dir}/swing-bundle-min-${version}.js"/>
@@ -65,7 +66,7 @@
   </target>
     
   <target name="build_css_min" depends="copy_css">
-    <java sourcefile="${basedir}/Minify.java">
+    <java sourcefile="${tools.dir}/Minify.java">
       <arg value="https://www.toptal.com/developers/cssminifier/api/raw"/>
       <arg value="${build.dir}/swing-bundle-${version}.css"/>
       <arg value="${build.dir}/swing-bundle-min-${version}.css"/>
@@ -103,7 +104,7 @@
   </target>
   
   <target name="watch-transpile" depends="version">
-    <java sourcefile="${basedir}/BuildJS.java">
+    <java sourcefile="${tools.dir}/BuildJS.java">
       <arg value="w"/>
       <arg value="${src.dir}/swing.js"/>
       <arg value="${transpile.dir}"/>

@@ -16,7 +16,7 @@ class BoxLayout extends LayoutManager {
    axis = 0;
 
   constructor(target, axis) {
-    super("flowlayout");
+    super("boxlayout");
     this.axis = axis;
   }
 }
