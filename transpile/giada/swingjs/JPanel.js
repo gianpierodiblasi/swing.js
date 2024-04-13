@@ -16,12 +16,14 @@ class JPanel extends JComponent {
 
    setLayout(layoutManager) {
     if (this.layoutManager) {
+      this.element.textContent = "";
       this.element.classList.remove(this.layoutManager.css);
-      this.element.style.textAlign = "";
+      // flow
+      this.element.style.justifyContent = "";
+      // grid
       this.element.style.removeProperty("grid-template-areas");
       this.element.style.removeProperty("row-gap");
       this.element.style.removeProperty("column-gap");
-      this.element.textContent = "";
     }
     this.layoutManager = layoutManager;
     this.element.classList.add(this.layoutManager.css);
@@ -35,14 +37,14 @@ class JPanel extends JComponent {
         switch((this.layoutManager).align) {
           case FlowLayout.LEFT:
           case FlowLayout.LEADING:
-            this.element.style.textAlign = "left";
+            this.element.style.justifyContent = "flex-start";
             break;
           case FlowLayout.CENTER:
-            this.element.style.textAlign = "center";
+            this.element.style.justifyContent = "center";
             break;
           case FlowLayout.RIGHT:
           case FlowLayout.TRAILING:
-            this.element.style.textAlign = "right";
+            this.element.style.justifyContent = "flex-end";
             break;
         }
         break;

@@ -14,6 +14,22 @@ class TestJFrame1 extends JFrame {
     jButton22.addActionListener(new TestJFrame1ActionListener());
     jPanel22.add(jButton22);
     jPanel22.setBackground(new Color(200, 100, 200));
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
+    jPanel22.add(new JButton());
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
   }
 

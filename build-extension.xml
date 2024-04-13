@@ -80,7 +80,7 @@
     </javadoc>
   </target>
   
-  <target name="build" depends="clean,build_js_min,build_css_min,javadoc">
+  <target name="build" depends="clean,build_js_min,build_css_min">
   </target>
   
   <target name="watch">
