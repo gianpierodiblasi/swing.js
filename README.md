@@ -4,6 +4,9 @@ An ES6 implementation of the Java Swing API (WORK IN PROGRESS!)
 ## Description
 ![swing-js.png](https://github.com/gianpierodiblasi/swing.js/blob/master/readme/swing-js.png?raw=true)
 
+### Special Use Cases
+JComponent setName/getName/getClientProperty/putClientProperty
+
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)
 - jsweet-core - [link](https://repository.jsweet.org/artifactory/libs-release-local/org/jsweet/jsweet-core/)

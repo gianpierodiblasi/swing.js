@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -163,8 +163,23 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ADD_CLASS_LIST">ADD_CLASS_LIST</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>def.dom.HTMLElement</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#element">element</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#REMOVE_CLASS_LIST">REMOVE_CLASS_LIST</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#TOGGLE_CLASS_LIST">TOGGLE_CLASS_LIST</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -207,9 +222,37 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>java.lang.Object</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getClientProperty(java.lang.Object)">getClientProperty</a></span>&#8203;(java.lang.Object&nbsp;key)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getName()">getName</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Special use case: this method gets the ID of the HTML element</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putClientProperty(java.lang.Object,java.lang.Object)">putClientProperty</a></span>&#8203;(java.lang.Object&nbsp;key,
+                 java.lang.Object&nbsp;value)</code></th>
+<td class="colLast">
+<div class="block">Special use case: in general this method adds an arbitrary key/value
+ "client property" to this component, with the following exceptions:</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackground(giada.awt.Color)">setBackground</a></span>&#8203;(<a href="../awt/Color.html" title="class in giada.awt">Color</a>&nbsp;color)</code></th>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setName(java.lang.String)">setName</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
+<td class="colLast">
+<div class="block">Special use case: this method sets the ID of the HTML element</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -238,10 +281,49 @@ extends java.lang.Object</pre>
 <a id="element">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>element</h4>
 <pre>public&nbsp;def.dom.HTMLElement element</pre>
+</li>
+</ul>
+<a id="ADD_CLASS_LIST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ADD_CLASS_LIST</h4>
+<pre>public static final&nbsp;java.lang.String ADD_CLASS_LIST</pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../constant-values.html#giada.swing.JComponent.ADD_CLASS_LIST">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a id="REMOVE_CLASS_LIST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REMOVE_CLASS_LIST</h4>
+<pre>public static final&nbsp;java.lang.String REMOVE_CLASS_LIST</pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../constant-values.html#giada.swing.JComponent.REMOVE_CLASS_LIST">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a id="TOGGLE_CLASS_LIST">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TOGGLE_CLASS_LIST</h4>
+<pre>public static final&nbsp;java.lang.String TOGGLE_CLASS_LIST</pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../constant-values.html#giada.swing.JComponent.TOGGLE_CLASS_LIST">Constant Field Values</a></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -276,10 +358,77 @@ extends java.lang.Object</pre>
 <a id="setBackground(giada.awt.Color)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setBackground</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setBackground&#8203;(<a href="../awt/Color.html" title="class in giada.awt">Color</a>&nbsp;color)</pre>
+</li>
+</ul>
+<a id="setName(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setName</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setName&#8203;(java.lang.String&nbsp;name)</pre>
+<div class="block">Special use case: this method sets the ID of the HTML element</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The ID of the HTML element</dd>
+</dl>
+</li>
+</ul>
+<a id="getName()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getName</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getName()</pre>
+<div class="block">Special use case: this method gets the ID of the HTML element</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The ID of the HTML element</dd>
+</dl>
+</li>
+</ul>
+<a id="putClientProperty(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>putClientProperty</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;putClientProperty&#8203;(java.lang.Object&nbsp;key,
+                              java.lang.Object&nbsp;value)</pre>
+<div class="block">Special use case: in general this method adds an arbitrary key/value
+ "client property" to this component, with the following exceptions:
+ <p>
+ 1. if <i>key</i> = "add-class-list" (or the constant value
+ <i>JComponent.ADD_CLASS_LIST</i>) then this method adds the <i>value</i>
+ parameter to the class list of the HTML element</p>
+ <p>
+ 2. if <i>key</i> = "remove-class-list" (or the constant value
+ <i>JComponent.REMOVE_CLASS_LIST</i>) then this method removes the
+ <i>value</i> parameter from the class list of the HTML element</p>
+ <p>
+ 3. if <i>key</i> = "toggle-class-list" (ore the constant value
+ <i>JComponent.TOGGLE_CLASS_LIST</i>) then this method toggles the
+ <i>value</i> parameter in the class list of the HTML element (if
+ <i>value</i> is set removes it, otherwise adds it)</p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key</dd>
+<dd><code>value</code> - The value</dd>
+</dl>
+</li>
+</ul>
+<a id="getClientProperty(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getClientProperty</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Object&nbsp;getClientProperty&#8203;(java.lang.Object&nbsp;key)</pre>
 </li>
 </ul>
 </li>
