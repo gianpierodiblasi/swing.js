@@ -4,8 +4,10 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -69,12 +71,20 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton8 = new JButton();
     jPanel2 = new JPanel();
     jButton2 = new JButton();
+    filler1 = new Box.Filler(new Dimension(10, 0), new Dimension(10, 0), new Dimension(10, 32767));
     jButton9 = new JButton();
+    filler4 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
+    jButton11 = new JButton();
     jPanel3 = new JPanel();
     jButton3 = new JButton();
     jButton10 = new JButton();
     jPanel4 = new JPanel();
     jButton4 = new JButton();
+    filler2 = new Box.Filler(new Dimension(0, 20), new Dimension(0, 20), new Dimension(32767, 20));
+    jButton12 = new JButton();
+    filler3 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
+    jButton13 = new JButton();
+    filler5 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 32767));
 
     setTitle("Test JFrame1");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -105,9 +115,14 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);
+    jPanel2.add(filler1);
 
     jButton9.setText("jButton9");
     jPanel2.add(jButton9);
+    jPanel2.add(filler4);
+
+    jButton11.setText("jButton11");
+    jPanel2.add(jButton11);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
@@ -123,9 +138,19 @@ public class TestJFrame1 extends javax.swing.JFrame {
     getContentPane().add(jPanel3, BorderLayout.LINE_END);
 
     jPanel4.setBackground(new Color(0, 51, 0));
+    jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.PAGE_AXIS));
 
     jButton4.setText("jButton4");
     jPanel4.add(jButton4);
+    jPanel4.add(filler2);
+
+    jButton12.setText("jButton12");
+    jPanel4.add(jButton12);
+    jPanel4.add(filler3);
+
+    jButton13.setText("jButton13");
+    jPanel4.add(jButton13);
+    jPanel4.add(filler5);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_START);
   }// </editor-fold>//GEN-END:initComponents
@@ -135,8 +160,16 @@ public class TestJFrame1 extends javax.swing.JFrame {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private Box.Filler filler1;
+  private Box.Filler filler2;
+  private Box.Filler filler3;
+  private Box.Filler filler4;
+  private Box.Filler filler5;
   private JButton jButton1;
   private JButton jButton10;
+  private JButton jButton11;
+  private JButton jButton12;
+  private JButton jButton13;
   private JButton jButton2;
   private JButton jButton3;
   private JButton jButton4;

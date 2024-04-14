@@ -48,12 +48,20 @@ class TestJFrame1 extends JFrame {
     this.jButton8 = new JButton();let jButton8 = this.jButton8;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.jButton2 = new JButton();let jButton2 = this.jButton2;
+    this.filler1 = new Filler(new Dimension(10, 0), new Dimension(10, 0), new Dimension(10, 32767));let filler1 = this.filler1;
     this.jButton9 = new JButton();let jButton9 = this.jButton9;
+    this.filler4 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));let filler4 = this.filler4;
+    this.jButton11 = new JButton();let jButton11 = this.jButton11;
     this.jPanel3 = new JPanel();let jPanel3 = this.jPanel3;
     this.jButton3 = new JButton();let jButton3 = this.jButton3;
     this.jButton10 = new JButton();let jButton10 = this.jButton10;
     this.jPanel4 = new JPanel();let jPanel4 = this.jPanel4;
     this.jButton4 = new JButton();let jButton4 = this.jButton4;
+    this.filler2 = new Filler(new Dimension(0, 20), new Dimension(0, 20), new Dimension(32767, 20));let filler2 = this.filler2;
+    this.jButton12 = new JButton();let jButton12 = this.jButton12;
+    this.filler3 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));let filler3 = this.filler3;
+    this.jButton13 = new JButton();let jButton13 = this.jButton13;
+    this.filler5 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 32767));let filler5 = this.filler5;
     this.setTitle("Test JFrame1");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jPanel1.setBackground(new Color(255, 255, 0));
@@ -74,8 +82,12 @@ class TestJFrame1 extends JFrame {
     jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.LINE_AXIS));
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);
+    jPanel2.add(filler1);
     jButton9.setText("jButton9");
     jPanel2.add(jButton9);
+    jPanel2.add(filler4);
+    jButton11.setText("jButton11");
+    jPanel2.add(jButton11);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
     jPanel3.setBackground(new Color(153, 255, 153));
     jPanel3.setLayout(new CardLayout());
@@ -85,8 +97,16 @@ class TestJFrame1 extends JFrame {
     jPanel3.add(jButton10, "card3");
     this.getContentPane().add(jPanel3, BorderLayout.LINE_END);
     jPanel4.setBackground(new Color(0, 51, 0));
+    jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.PAGE_AXIS));
     jButton4.setText("jButton4");
     jPanel4.add(jButton4);
+    jPanel4.add(filler2);
+    jButton12.setText("jButton12");
+    jPanel4.add(jButton12);
+    jPanel4.add(filler3);
+    jButton13.setText("jButton13");
+    jPanel4.add(jButton13);
+    jPanel4.add(filler5);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_START);
   }
 
@@ -98,9 +118,25 @@ class TestJFrame1 extends JFrame {
 
   // GEN-LAST:event_jButton1ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
+   filler1 = null;
+
+   filler2 = null;
+
+   filler3 = null;
+
+   filler4 = null;
+
+   filler5 = null;
+
    jButton1 = null;
 
    jButton10 = null;
+
+   jButton11 = null;
+
+   jButton12 = null;
+
+   jButton13 = null;
 
    jButton2 = null;
 
