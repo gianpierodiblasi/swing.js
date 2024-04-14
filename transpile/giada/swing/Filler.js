@@ -8,7 +8,7 @@ class Filler extends JComponent {
   constructor(min, pref, max) {
     super();
     this.element = document.createElement("span");
-    this.element.classList.add("jcomponent-box");
+    this.element.classList.add("jcomponent-box-filler");
     this.element.style.minWidth = min.width + "px";
     this.element.style.minHeight = min.height + "px";
     this.element.style.width = pref.width + "px";

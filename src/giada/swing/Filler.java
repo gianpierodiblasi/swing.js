@@ -14,7 +14,7 @@ public class Filler extends JComponent {
     super();
 
     this.element = document.createElement("span");
-    this.element.classList.add("jcomponent-box");
+    this.element.classList.add("jcomponent-box-filler");
 
     this.element.style.minWidth = min.width + "px";
     this.element.style.minHeight = min.height + "px";
