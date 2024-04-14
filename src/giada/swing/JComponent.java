@@ -10,7 +10,7 @@ import giada.awt.Color;
  */
 public class JComponent {
 
-  HTMLElement element;
+  public HTMLElement element;
 
   public JComponent() {
   }

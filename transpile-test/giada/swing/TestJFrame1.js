@@ -90,10 +90,12 @@ class TestJFrame1 extends JFrame {
     jPanel2.add(jButton11);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
     jPanel3.setBackground(new Color(153, 255, 153));
-    jPanel3.setLayout(new CardLayout());
+    jPanel3.setLayout(new CardLayout(5, 5));
     jButton3.setText("jButton3");
+    jButton3.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton3ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel3.add(jButton3, "card2");
     jButton10.setText("jButton10");
+    jButton10.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton10ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel3.add(jButton10, "card3");
     this.getContentPane().add(jPanel3, BorderLayout.LINE_END);
     jPanel4.setBackground(new Color(0, 51, 0));
@@ -117,6 +119,18 @@ class TestJFrame1 extends JFrame {
   }
 
   // GEN-LAST:event_jButton1ActionPerformed
+   jButton3ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton3ActionPerformed
+    (this.jPanel3.getLayout()).show(this.jPanel3, "card3");
+  }
+
+  // GEN-LAST:event_jButton3ActionPerformed
+   jButton10ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton10ActionPerformed
+    (this.jPanel3.getLayout()).show(this.jPanel3, "card2");
+  }
+
+  // GEN-LAST:event_jButton10ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    filler1 = null;
 

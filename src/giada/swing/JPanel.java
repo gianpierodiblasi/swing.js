@@ -4,6 +4,7 @@ import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import giada.awt.BorderLayout;
 import giada.awt.BoxLayout;
+import giada.awt.CardLayout;
 import giada.awt.FlowLayout;
 import giada.awt.GridLayout;
 import giada.awt.LayoutManager;
@@ -94,7 +95,13 @@ public class JPanel extends JComponent {
             break;
         }
         break;
+      case "cardlayout":
+        break;
     }
+  }
+
+  public LayoutManager getLayout() {
+    return this.layoutManager;
   }
 
   public void add(JComponent component, Object constraints) {
@@ -108,19 +115,19 @@ public class JPanel extends JComponent {
             component.element.style.marginBottom = ((BorderLayout) this.layoutManager).vGap + "px";
             break;
           case BorderLayout.SOUTH:
-            component.element.style.marginTop = ((BorderLayout) this.layoutManager).vGap + "px";
             this.element.appendChild(component.element);
+            component.element.style.marginTop = ((BorderLayout) this.layoutManager).vGap + "px";
             break;
           case BorderLayout.WEST:
-            component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            component.element.style.marginRight = ((BorderLayout) this.layoutManager).hGap + "px";
             break;
           case BorderLayout.CENTER:
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.EAST:
-            component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            component.element.style.marginLeft = ((BorderLayout) this.layoutManager).hGap + "px";
             break;
         }
 
@@ -139,6 +146,20 @@ public class JPanel extends JComponent {
         break;
       case "boxlayout":
         this.element.appendChild(component.element);
+        break;
+      case "cardlayout":
+        this.element.appendChild(component.element);
+
+        component.element.setAttribute("card", (String) constraints);
+        component.element.setAttribute("old-display", component.element.style.display);
+        if (this.element.childElementCount > 1) {
+          component.element.style.display = "none";
+        }
+        component.element.style.flexGrow = "1";
+        component.element.style.marginLeft = ((CardLayout) this.layoutManager).hGap + "px";
+        component.element.style.marginRight = ((CardLayout) this.layoutManager).hGap + "px";
+        component.element.style.marginTop = ((CardLayout) this.layoutManager).vGap + "px";
+        component.element.style.marginBottom = ((CardLayout) this.layoutManager).vGap + "px";
         break;
     }
   }

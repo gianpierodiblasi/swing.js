@@ -17,21 +17,21 @@ import javax.swing.JPanel;
  * @author gianpiero.diblasi
  */
 public class TestJFrame1 extends javax.swing.JFrame {
-  
+
   private static final long serialVersionUID = 1;
-  
+
   public TestJFrame1() {
     super();
     this.initComponents();
-    
+
     JPanel jPanel22 = new JPanel();
     JButton jButton22 = new JButton();
-    
+
     jButton22.setText("jButton2");
     jButton22.addActionListener(new TestJFrame1ActionListener());
     jPanel22.add(jButton22);
     jPanel22.setBackground(new Color(200, 100, 200));
-    
+
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
@@ -48,9 +48,9 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
-    
+
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
-    
+
     this.jPanel2.add(new JButton());
   }
 
@@ -127,12 +127,14 @@ public class TestJFrame1 extends javax.swing.JFrame {
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
     jPanel3.setBackground(new Color(153, 255, 153));
-    jPanel3.setLayout(new CardLayout());
+    jPanel3.setLayout(new CardLayout(5, 5));
 
     jButton3.setText("jButton3");
+    jButton3.addActionListener(this::jButton3ActionPerformed);
     jPanel3.add(jButton3, "card2");
 
     jButton10.setText("jButton10");
+    jButton10.addActionListener(this::jButton10ActionPerformed);
     jPanel3.add(jButton10, "card3");
 
     getContentPane().add(jPanel3, BorderLayout.LINE_END);
@@ -158,6 +160,14 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     console.log("FROM LAMBDA");
   }//GEN-LAST:event_jButton1ActionPerformed
+
+  private void jButton3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    ((CardLayout) this.jPanel3.getLayout()).show(this.jPanel3, "card3");
+  }//GEN-LAST:event_jButton3ActionPerformed
+
+  private void jButton10ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    ((CardLayout) this.jPanel3.getLayout()).show(this.jPanel3, "card2");
+  }//GEN-LAST:event_jButton10ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private Box.Filler filler1;

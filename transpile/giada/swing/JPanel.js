@@ -78,7 +78,13 @@ class JPanel extends JComponent {
             break;
         }
         break;
+      case "cardlayout":
+        break;
     }
+  }
+
+   getLayout() {
+    return this.layoutManager;
   }
 
    add(component, constraints) {
@@ -91,19 +97,19 @@ class JPanel extends JComponent {
             component.element.style.marginBottom = (this.layoutManager).vGap + "px";
             break;
           case BorderLayout.SOUTH:
-            component.element.style.marginTop = (this.layoutManager).vGap + "px";
             this.element.appendChild(component.element);
+            component.element.style.marginTop = (this.layoutManager).vGap + "px";
             break;
           case BorderLayout.WEST:
-            component.element.style.marginRight = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            component.element.style.marginRight = (this.layoutManager).hGap + "px";
             break;
           case BorderLayout.CENTER:
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
             break;
           case BorderLayout.EAST:
-            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
             this.element.querySelector(".borderlayout-middle").appendChild(component.element);
+            component.element.style.marginLeft = (this.layoutManager).hGap + "px";
             break;
         }
         break;
@@ -120,6 +126,19 @@ class JPanel extends JComponent {
         break;
       case "boxlayout":
         this.element.appendChild(component.element);
+        break;
+      case "cardlayout":
+        this.element.appendChild(component.element);
+        component.element.setAttribute("card", constraints);
+        component.element.setAttribute("old-display", component.element.style.display);
+        if (this.element.childElementCount > 1) {
+          component.element.style.display = "none";
+        }
+        component.element.style.flexGrow = "1";
+        component.element.style.marginLeft = (this.layoutManager).hGap + "px";
+        component.element.style.marginRight = (this.layoutManager).hGap + "px";
+        component.element.style.marginTop = (this.layoutManager).vGap + "px";
+        component.element.style.marginBottom = (this.layoutManager).vGap + "px";
         break;
     }
   }
