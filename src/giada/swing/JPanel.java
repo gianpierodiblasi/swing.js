@@ -3,6 +3,7 @@ package giada.swing;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import giada.awt.BorderLayout;
+import giada.awt.BoxLayout;
 import giada.awt.FlowLayout;
 import giada.awt.GridLayout;
 import giada.awt.LayoutManager;
@@ -30,13 +31,16 @@ public class JPanel extends JComponent {
     if ($exists(this.layoutManager)) {
       this.element.textContent = "";
       this.element.classList.remove(this.layoutManager.css);
-      
+
       //flow
       this.element.style.justifyContent = "";
       //grid
       this.element.style.removeProperty("grid-template-areas");
       this.element.style.removeProperty("row-gap");
       this.element.style.removeProperty("column-gap");
+      //box
+      this.element.style.flexDirection = "";
+      this.element.style.alignItems = "";
     }
 
     this.layoutManager = layoutManager;
@@ -75,6 +79,20 @@ public class JPanel extends JComponent {
         this.element.style.setProperty("grid-template-areas", gridTemplateAreas);
         this.element.style.setProperty("row-gap", ((GridLayout) this.layoutManager).hGap + "px");
         this.element.style.setProperty("column-gap", ((GridLayout) this.layoutManager).hGap + "px");
+        break;
+      case "boxlayout":
+        switch (((BoxLayout) this.layoutManager).axis) {
+          case BoxLayout.LINE_AXIS:
+          case BoxLayout.X_AXIS:
+            this.element.style.flexDirection = "row";
+            this.element.style.alignItems = "center";
+            break;
+          case BoxLayout.PAGE_AXIS:
+          case BoxLayout.Y_AXIS:
+            this.element.style.flexDirection = "column";
+            this.element.style.alignItems = "flex-start";
+            break;
+        }
         break;
     }
   }
@@ -118,6 +136,9 @@ public class JPanel extends JComponent {
       case "gridlayout":
         this.element.appendChild(component.element);
         component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
+        break;
+      case "boxlayout":
+        this.element.appendChild(component.element);
         break;
     }
   }

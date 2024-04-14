@@ -52,5 +52,10 @@ html, body {
   display: grid;
 }
 
+.jframe.boxlayout, .jpanel.boxlayout {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 .jbutton {
 }
