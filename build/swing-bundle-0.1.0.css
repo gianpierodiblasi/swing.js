@@ -42,6 +42,10 @@ html, body {
 }
 
 .jframe.flowlayout, .jpanel.flowlayout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
 }
 
 .jframe.gridlayout, .jpanel.gridlayout {
