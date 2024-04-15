@@ -43,14 +43,15 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridy = 0;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     gridBagConstraints.weightx = 100.0;
-    gridBagConstraints.insets = new Insets(1, 1, 1, 1);
+    gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     this.getContentPane().add(jComboBox1, gridBagConstraints);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.ipadx = 10;
+    gridBagConstraints.ipady = 10;
     gridBagConstraints.weightx = 100.0;
-    gridBagConstraints.insets = new Insets(1, 1, 1, 1);
     this.getContentPane().add(jComboBox2, gridBagConstraints);
     jCheckBox1.setText("Bold");
     gridBagConstraints = new GridBagConstraints();

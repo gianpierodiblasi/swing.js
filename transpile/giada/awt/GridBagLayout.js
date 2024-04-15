@@ -158,5 +158,13 @@ class GridBagLayout extends LayoutManager {
         component.element.style.setProperty("align-self", "stretch");
         break;
     }
+    component.element.style.marginTop = constraints.insets.top + "px";
+    component.element.style.marginBottom = constraints.insets.bottom + "px";
+    component.element.style.marginLeft = constraints.insets.left + "px";
+    component.element.style.marginRight = constraints.insets.right + "px";
+    component.element.style.paddingTop = constraints.ipady + "px";
+    component.element.style.paddingBottom = constraints.ipady + "px";
+    component.element.style.paddingLeft = constraints.ipadx + "px";
+    component.element.style.paddingRight = constraints.ipadx + "px";
   }
 }
