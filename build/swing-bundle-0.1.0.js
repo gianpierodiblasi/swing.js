@@ -1,5 +1,10 @@
 /**
- * the java.awt.event.ActionListener clone
+ * @author gianpiero.diblasi
+ */
+class GridBagConstraints {
+}
+/**
+ * The java.awt.event.ActionListener clone
  *
  * @author gianpiero.diblasi
  */
@@ -9,7 +14,7 @@ class ActionListener {
   }
 }
 /**
- * the java.awt.LayoutManager clone
+ * The java.awt.LayoutManager clone
  *
  * @author gianpiero.diblasi
  */
@@ -22,7 +27,7 @@ class LayoutManager {
   }
 }
 /**
- * the java.awt.BorderLayout clone
+ * The java.awt.BorderLayout clone
  *
  * @author gianpiero.diblasi
  */
@@ -65,7 +70,7 @@ class BorderLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.BoxLayout clone
+ * The java.awt.BoxLayout clone
  *
  * @author gianpiero.diblasi
  */
@@ -87,7 +92,7 @@ class BoxLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.CardLayout clone
+ * The java.awt.CardLayout clone
  *
  * @author gianpiero.diblasi
  */
@@ -112,7 +117,7 @@ class CardLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.FlowLayout clone
+ * The java.awt.FlowLayout clone
  *
  * @author gianpiero.diblasi
  */
@@ -142,7 +147,7 @@ class FlowLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.GridBagLayout clone
+ * The java.awt.GridBagLayout clone
  *
  * @author gianpiero.diblasi
  */
@@ -153,7 +158,7 @@ class GridBagLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.GridLayout clone
+ * The java.awt.GridLayout clone
  *
  * @author gianpiero.diblasi
  */
@@ -176,14 +181,14 @@ class GridLayout extends LayoutManager {
   }
 }
 /**
- * the java.awt.event.ActionEvent clone
+ * The java.awt.event.ActionEvent clone
  *
  * @author gianpiero.diblasi
  */
 class ActionEvent {
 }
 /**
- * the java.awt.Color clone
+ * The java.awt.Color clone
  *
  * @author gianpiero.diblasi
  */
@@ -370,6 +375,46 @@ class JButton extends JComponent {
   }
 }
 /**
+ * The javax.swing.JCheckBox clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JCheckBox extends JComponent {
+
+   checkbox = null;
+
+   text = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jcheckbox");
+    this.checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    this.element.appendChild(checkbox);
+    this.text = document.createTextNode("");
+    this.element.appendChild(text);
+  }
+
+   setText(text) {
+    this.text.textContent = text;
+  }
+}
+/**
+ * The javax.swing.JComboBox clone
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class JComboBox extends JComponent {
+
+  constructor() {
+    super();
+    this.element = document.createElement("select");
+    this.element.classList.add("jcombobox");
+  }
+}
+/**
  * The javax.swing.JFrame clone
  *
  * @author gianpiero.diblasi
@@ -401,6 +446,23 @@ class JFrame extends JComponent {
 
    getContentPane() {
     return this.contentPane;
+  }
+}
+/**
+ * The javax.swing.JLabel clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JLabel extends JComponent {
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jlabel");
+  }
+
+   setText(text) {
+    this.element.textContent = text;
   }
 }
 /**
@@ -531,6 +593,9 @@ class JPanel extends JComponent {
       case "cardlayout":
         this.addInCardLayout(component, constraints);
         break;
+      case "gridbaglayout":
+        this.addInGridBagLayout(component, constraints);
+        break;
     }
   }
 
@@ -588,6 +653,9 @@ class JPanel extends JComponent {
     component.element.style.marginRight = (this.layoutManager).hGap + "px";
     component.element.style.marginTop = (this.layoutManager).vGap + "px";
     component.element.style.marginBottom = (this.layoutManager).vGap + "px";
+  }
+
+   addInGridBagLayout(component, constraints) {
   }
 }
 /**

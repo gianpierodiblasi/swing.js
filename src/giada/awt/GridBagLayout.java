@@ -1,7 +1,7 @@
 package giada.awt;
 
 /**
- * the java.awt.GridBagLayout clone
+ * The java.awt.GridBagLayout clone
  *
  * @author gianpiero.diblasi
  */

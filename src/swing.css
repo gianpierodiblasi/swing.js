@@ -61,5 +61,9 @@ html, body {
   display: flex;
 }
 
+.jframe.gridbaglayout, .jpanel.gridbaglayout {
+  display: grid;
+}
+
 .jbutton {
 }

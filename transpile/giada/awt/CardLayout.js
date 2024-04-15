@@ -1,5 +1,5 @@
 /**
- * the java.awt.CardLayout clone
+ * The java.awt.CardLayout clone
  *
  * @author gianpiero.diblasi
  */

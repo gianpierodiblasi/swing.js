@@ -3,7 +3,7 @@ package giada.awt;
 import giada.swing.JComponent;
 
 /**
- * the java.awt.BoxLayout clone
+ * The java.awt.BoxLayout clone
  *
  * @author gianpiero.diblasi
  */

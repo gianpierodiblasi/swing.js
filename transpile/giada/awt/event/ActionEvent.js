@@ -1,5 +1,5 @@
 /**
- * the java.awt.event.ActionEvent clone
+ * The java.awt.event.ActionEvent clone
  *
  * @author gianpiero.diblasi
  */

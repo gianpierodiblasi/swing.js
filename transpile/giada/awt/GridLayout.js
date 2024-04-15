@@ -1,5 +1,5 @@
 /**
- * the java.awt.GridLayout clone
+ * The java.awt.GridLayout clone
  *
  * @author gianpiero.diblasi
  */

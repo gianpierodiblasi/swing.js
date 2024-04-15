@@ -143,6 +143,9 @@ public class JPanel extends JComponent {
       case "cardlayout":
         this.addInCardLayout(component, constraints);
         break;
+      case "gridbaglayout":
+        this.addInGridBagLayout(component, constraints);
+        break;
     }
   }
 
@@ -203,5 +206,9 @@ public class JPanel extends JComponent {
     component.element.style.marginRight = ((CardLayout) this.layoutManager).hGap + "px";
     component.element.style.marginTop = ((CardLayout) this.layoutManager).vGap + "px";
     component.element.style.marginBottom = ((CardLayout) this.layoutManager).vGap + "px";
+  }
+
+  private void addInGridBagLayout(JComponent component, Object constraints) {
+
   }
 }

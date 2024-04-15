@@ -1,5 +1,5 @@
 /**
- * the java.awt.Color clone
+ * The java.awt.Color clone
  *
  * @author gianpiero.diblasi
  */

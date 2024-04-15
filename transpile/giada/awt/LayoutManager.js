@@ -1,5 +1,5 @@
 /**
- * the java.awt.LayoutManager clone
+ * The java.awt.LayoutManager clone
  *
  * @author gianpiero.diblasi
  */

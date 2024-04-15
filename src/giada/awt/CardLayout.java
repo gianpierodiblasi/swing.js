@@ -6,7 +6,7 @@ import giada.swing.JPanel;
 import simulation.js.$Globals;
 
 /**
- * the java.awt.CardLayout clone
+ * The java.awt.CardLayout clone
  *
  * @author gianpiero.diblasi
  */

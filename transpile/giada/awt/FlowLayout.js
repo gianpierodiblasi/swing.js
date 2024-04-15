@@ -1,5 +1,5 @@
 /**
- * the java.awt.FlowLayout clone
+ * The java.awt.FlowLayout clone
  *
  * @author gianpiero.diblasi
  */

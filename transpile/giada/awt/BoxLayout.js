@@ -1,5 +1,5 @@
 /**
- * the java.awt.BoxLayout clone
+ * The java.awt.BoxLayout clone
  *
  * @author gianpiero.diblasi
  */

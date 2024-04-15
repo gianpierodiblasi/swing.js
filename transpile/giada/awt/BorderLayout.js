@@ -1,5 +1,5 @@
 /**
- * the java.awt.BorderLayout clone
+ * The java.awt.BorderLayout clone
  *
  * @author gianpiero.diblasi
  */
