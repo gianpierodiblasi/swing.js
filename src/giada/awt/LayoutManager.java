@@ -10,9 +10,9 @@ import giada.swing.JPanel;
  */
 public interface LayoutManager {
 
-  public abstract void setPanel(JPanel panel);
+  public void setPanel(JPanel panel);
 
-  public abstract void resetPanel(JPanel panel);
+  public void resetPanel(JPanel panel);
 
-  public abstract void addInPanel(JPanel panel, JComponent component, Object constraints);
+  public void addInPanel(JPanel panel, JComponent component, Object constraints);
 }
