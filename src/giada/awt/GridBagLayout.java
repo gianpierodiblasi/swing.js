@@ -3,6 +3,7 @@ package giada.awt;
 import def.js.Array;
 import giada.swing.JComponent;
 import giada.swing.JPanel;
+import static simulation.js.$Globals.$exists;
 
 /**
  * The java.awt.GridBagLayout clone
@@ -10,6 +11,9 @@ import giada.swing.JPanel;
  * @author gianpiero.diblasi
  */
 public class GridBagLayout implements LayoutManager {
+
+  public Array<Double> columnWidths;
+  public Array<Double> rowHeights;
 
   private final Array<Array<String>> gridTemplateAreas = new Array<>();
   private final Array<GridBagConstraints> constraintsArray = new Array<>();
@@ -40,8 +44,8 @@ public class GridBagLayout implements LayoutManager {
 
     panel.element.appendChild(component.element);
     panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas((GridBagConstraints) constraints));
-    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty"));
-    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas.$get(0), "gridx", "gridwidth", "weightx") : "");
+    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty", this.rowHeights));
+    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas.$get(0), "gridx", "gridwidth", "weightx", this.columnWidths) : "");
 
     this.setComponent(component, (GridBagConstraints) constraints);
   }
@@ -54,7 +58,7 @@ public class GridBagLayout implements LayoutManager {
 
     for (int y = 0; y < this.gridTemplateAreas.length; y++) {
       for (int x = this.gridTemplateAreas.$get(y).length; x < constraint.gridx + constraint.gridwidth; x++) {
-        this.gridTemplateAreas.$get(y).push("p0");
+        this.gridTemplateAreas.$get(y).push(".");
       }
     }
 
@@ -76,7 +80,7 @@ public class GridBagLayout implements LayoutManager {
     return gta;
   }
 
-  private String getWeight(Array<?> array, String keyAxis, String keySize, String keyWeight) {
+  private String getWeight(Array<?> array, String keyAxis, String keySize, String keyWeight, Array<Double> fixedSize) {
     Array<Double> gridTemplate = new Array<>();
     for (int index = 0; index < array.length; index++) {
       gridTemplate.push(0.0);
@@ -97,7 +101,11 @@ public class GridBagLayout implements LayoutManager {
 
     String gt = "";
     for (int index = 0; index < gridTemplate.length; index++) {
-      gt += gridTemplate.$get(index) == 0.0 ? "auto " : gridTemplate.$get(index) + "fr ";
+      if ($exists(fixedSize) && $exists(fixedSize.$get(index))) {
+        gt += fixedSize.$get(index) + "px ";
+      } else {
+        gt += gridTemplate.$get(index) == 0.0 ? "auto " : gridTemplate.$get(index) + "fr ";
+      }
     }
     return gt;
   }

@@ -50,7 +50,7 @@ class JComponent {
    * <p>
    * 1. if <i>key</i> = "class-list" (or the constant value
    * <i>JComponent.CLASS_LIST</i>) then this method throws an exception (the key
-   * is a reserved word and cannot be used</p>
+   * is a reserved word and cannot be used)</p>
    * <p>
    * 2. if <i>key</i> = "add-class-list" (or the constant value
    * <i>JComponent.ADD_CLASS_LIST</i>) then this method adds the <i>value</i>
@@ -67,6 +67,8 @@ class JComponent {
    *
    * @param key The key
    * @param value The value
+   * @throws java.lang.Exception thrown if <i>key</i> = "class-list" (or the
+   * constant value <i>JComponent.CLASS_LIST</i>)
    */
    putClientProperty(key, value) {
     if (JComponent.CLASS_LIST === key) {

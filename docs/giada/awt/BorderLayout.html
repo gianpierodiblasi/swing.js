@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":10,"i1":10,"i2":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -91,7 +97,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -117,22 +123,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="LayoutManager.html" title="class in giada.awt">giada.awt.LayoutManager</a></li>
-<li>
-<ul class="inheritance">
 <li>giada.awt.BorderLayout</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="LayoutManager.html" title="interface in giada.awt">LayoutManager</a></code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">BorderLayout</span>
-extends <a href="LayoutManager.html" title="class in giada.awt">LayoutManager</a></pre>
-<div class="block">the java.awt.BorderLayout clone</div>
+extends java.lang.Object
+implements <a href="LayoutManager.html" title="interface in giada.awt">LayoutManager</a></pre>
+<div class="block">The java.awt.BorderLayout clone</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>gianpiero.diblasi</dd>
@@ -233,13 +239,6 @@ extends <a href="LayoutManager.html" title="class in giada.awt">LayoutManager</a
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="fields.inherited.from.class.giada.awt.LayoutManager">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;giada.awt.<a href="LayoutManager.html" title="class in giada.awt">LayoutManager</a></h3>
-<code><a href="LayoutManager.html#css">css</a></code></li>
-</ul>
 </li>
 </ul>
 </section>
@@ -272,6 +271,31 @@ extends <a href="LayoutManager.html" title="class in giada.awt">LayoutManager</a
 <!--   -->
 </a>
 <h3>Method Summary</h3>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addInPanel(giada.swing.JPanel,giada.swing.JComponent,java.lang.Object)">addInPanel</a></span>&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel,
+          <a href="../swing/JComponent.html" title="class in giada.swing">JComponent</a>&nbsp;component,
+          java.lang.Object&nbsp;constraints)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetPanel(giada.swing.JPanel)">resetPanel</a></span>&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPanel(giada.swing.JPanel)">setPanel</a></span>&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -505,6 +529,57 @@ extends <a href="LayoutManager.html" title="class in giada.awt">LayoutManager</a
 </li>
 </ul>
 </section>
+<!-- ============ METHOD DETAIL ========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a id="setPanel(giada.swing.JPanel)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPanel</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setPanel&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="LayoutManager.html#setPanel(giada.swing.JPanel)">setPanel</a></code>&nbsp;in interface&nbsp;<code><a href="LayoutManager.html" title="interface in giada.awt">LayoutManager</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="resetPanel(giada.swing.JPanel)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resetPanel</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;resetPanel&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="LayoutManager.html#resetPanel(giada.swing.JPanel)">resetPanel</a></code>&nbsp;in interface&nbsp;<code><a href="LayoutManager.html" title="interface in giada.awt">LayoutManager</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="addInPanel(giada.swing.JPanel,giada.swing.JComponent,java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>addInPanel</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addInPanel&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel,
+                       <a href="../swing/JComponent.html" title="class in giada.swing">JComponent</a>&nbsp;component,
+                       java.lang.Object&nbsp;constraints)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="LayoutManager.html#addInPanel(giada.swing.JPanel,giada.swing.JComponent,java.lang.Object)">addInPanel</a></code>&nbsp;in interface&nbsp;<code><a href="LayoutManager.html" title="interface in giada.awt">LayoutManager</a></code></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 </li>
 </ul>
 </div>
@@ -562,7 +637,7 @@ extends <a href="LayoutManager.html" title="class in giada.awt">LayoutManager</a
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">

@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":6,"i1":6,"i2":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -83,15 +89,15 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -110,28 +116,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">giada.awt</a></div>
-<h2 title="Class LayoutManager" class="title">Class LayoutManager</h2>
+<h2 title="Interface LayoutManager" class="title">Interface LayoutManager</h2>
 </div>
 <div class="contentContainer">
-<ul class="inheritance">
-<li>java.lang.Object</li>
-<li>
-<ul class="inheritance">
-<li>giada.awt.LayoutManager</li>
-</ul>
-</li>
-</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>Direct Known Subclasses:</dt>
-<dd><code><a href="BorderLayout.html" title="class in giada.awt">BorderLayout</a></code>, <code><a href="BoxLayout.html" title="class in giada.awt">BoxLayout</a></code>, <code><a href="CardLayout.html" title="class in giada.awt">CardLayout</a></code>, <code><a href="FlowLayout.html" title="class in giada.awt">FlowLayout</a></code>, <code><a href="GridLayout.html" title="class in giada.awt">GridLayout</a></code></dd>
+<dt>All Known Implementing Classes:</dt>
+<dd><code><a href="BorderLayout.html" title="class in giada.awt">BorderLayout</a></code>, <code><a href="BoxLayout.html" title="class in giada.awt">BoxLayout</a></code>, <code><a href="CardLayout.html" title="class in giada.awt">CardLayout</a></code>, <code><a href="FlowLayout.html" title="class in giada.awt">FlowLayout</a></code>, <code><a href="GridBagLayout.html" title="class in giada.awt">GridBagLayout</a></code>, <code><a href="GridLayout.html" title="class in giada.awt">GridLayout</a></code></dd>
 </dl>
 <hr>
-<pre>public abstract class <span class="typeNameLabel">LayoutManager</span>
-extends java.lang.Object</pre>
-<div class="block">the java.awt.LayoutManager clone</div>
+<pre>public interface <span class="typeNameLabel">LayoutManager</span></pre>
+<div class="block">The java.awt.LayoutManager clone</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>gianpiero.diblasi</dd>
@@ -142,50 +139,6 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- =========== FIELD SUMMARY =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.summary">
-<!--   -->
-</a>
-<h3>Field Summary</h3>
-<table class="memberSummary">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Field</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#css">css</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="constructor.summary">
-<!--   -->
-</a>
-<h3>Constructor Summary</h3>
-<table class="memberSummary">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Constructor</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String)">LayoutManager</a></span>&#8203;(java.lang.String&nbsp;css)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- ========== METHOD SUMMARY =========== -->
 <section role="region">
 <ul class="blockList">
@@ -193,13 +146,31 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
-</ul>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addInPanel(giada.swing.JPanel,giada.swing.JComponent,java.lang.Object)">addInPanel</a></span>&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel,
+          <a href="../swing/JComponent.html" title="class in giada.swing">JComponent</a>&nbsp;component,
+          java.lang.Object&nbsp;constraints)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetPanel(giada.swing.JPanel)">resetPanel</a></span>&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPanel(giada.swing.JPanel)">setPanel</a></span>&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 </li>
 </ul>
 </section>
@@ -209,39 +180,40 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
+<!-- ============ METHOD DETAIL ========== -->
 <section role="region">
 <ul class="blockList">
-<li class="blockList"><a id="field.detail">
+<li class="blockList"><a id="method.detail">
 <!--   -->
 </a>
-<h3>Field Detail</h3>
-<a id="css">
+<h3>Method Detail</h3>
+<a id="setPanel(giada.swing.JPanel)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPanel</h4>
+<pre class="methodSignature">void&nbsp;setPanel&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</pre>
+</li>
+</ul>
+<a id="resetPanel(giada.swing.JPanel)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resetPanel</h4>
+<pre class="methodSignature">void&nbsp;resetPanel&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel)</pre>
+</li>
+</ul>
+<a id="addInPanel(giada.swing.JPanel,giada.swing.JComponent,java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>css</h4>
-<pre>public final&nbsp;java.lang.String css</pre>
-</li>
-</ul>
-</li>
-</ul>
-</section>
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>LayoutManager</h4>
-<pre>public&nbsp;LayoutManager&#8203;(java.lang.String&nbsp;css)</pre>
+<h4>addInPanel</h4>
+<pre class="methodSignature">void&nbsp;addInPanel&#8203;(<a href="../swing/JPanel.html" title="class in giada.swing">JPanel</a>&nbsp;panel,
+                <a href="../swing/JComponent.html" title="class in giada.swing">JComponent</a>&nbsp;component,
+                java.lang.Object&nbsp;constraints)</pre>
 </li>
 </ul>
 </li>
@@ -296,15 +268,15 @@ extends java.lang.Object</pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">

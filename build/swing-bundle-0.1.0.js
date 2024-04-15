@@ -425,6 +425,10 @@ class FlowLayout extends LayoutManager {
  */
 class GridBagLayout extends LayoutManager {
 
+   columnWidths = null;
+
+   rowHeights = null;
+
    gridTemplateAreas = new Array();
 
    constraintsArray = new Array();
@@ -451,8 +455,8 @@ class GridBagLayout extends LayoutManager {
     this.constraintsArray.push(constraints);
     panel.element.appendChild(component.element);
     panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas(constraints));
-    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty"));
-    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas[0], "gridx", "gridwidth", "weightx") : "");
+    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty", this.rowHeights));
+    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas[0], "gridx", "gridwidth", "weightx", this.columnWidths) : "");
     this.setComponent(component, constraints);
   }
 
@@ -462,7 +466,7 @@ class GridBagLayout extends LayoutManager {
     }
     for (let y = 0; y < this.gridTemplateAreas.length; y++) {
       for (let x = this.gridTemplateAreas[y].length; x < constraint.gridx + constraint.gridwidth; x++) {
-        this.gridTemplateAreas[y].push("p0");
+        this.gridTemplateAreas[y].push(".");
       }
     }
     for (let y = constraint.gridy; y < constraint.gridy + constraint.gridheight; y++) {
@@ -482,7 +486,7 @@ class GridBagLayout extends LayoutManager {
     return gta;
   }
 
-   getWeight(array, keyAxis, keySize, keyWeight) {
+   getWeight(array, keyAxis, keySize, keyWeight, fixedSize) {
     let gridTemplate = new Array();
     for (let index = 0; index < array.length; index++) {
       gridTemplate.push(0.0);
@@ -501,7 +505,11 @@ class GridBagLayout extends LayoutManager {
     }
     let gt = "";
     for (let index = 0; index < gridTemplate.length; index++) {
-      gt += gridTemplate[index] === 0.0 ? "auto " : gridTemplate[index] + "fr ";
+      if (fixedSize && fixedSize[index]) {
+        gt += fixedSize[index] + "px ";
+      } else {
+        gt += gridTemplate[index] === 0.0 ? "auto " : gridTemplate[index] + "fr ";
+      }
     }
     return gt;
   }
@@ -717,7 +725,7 @@ class JComponent {
    * <p>
    * 1. if <i>key</i> = "class-list" (or the constant value
    * <i>JComponent.CLASS_LIST</i>) then this method throws an exception (the key
-   * is a reserved word and cannot be used</p>
+   * is a reserved word and cannot be used)</p>
    * <p>
    * 2. if <i>key</i> = "add-class-list" (or the constant value
    * <i>JComponent.ADD_CLASS_LIST</i>) then this method adds the <i>value</i>
@@ -734,6 +742,8 @@ class JComponent {
    *
    * @param key The key
    * @param value The value
+   * @throws java.lang.Exception thrown if <i>key</i> = "class-list" (or the
+   * constant value <i>JComponent.CLASS_LIST</i>)
    */
    putClientProperty(key, value) {
     if (JComponent.CLASS_LIST === key) {

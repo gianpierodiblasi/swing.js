@@ -40,7 +40,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton1 = new JButton();
 
     setTitle("Test JFrame2");
-    getContentPane().setLayout(new GridBagLayout());
+    GridBagLayout layout = new GridBagLayout();
+    layout.columnWidths = new int[] {0, 5, 0, 5, 0};
+    layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
+    getContentPane().setLayout(layout);
 
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();
@@ -52,19 +55,19 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jLabel2.setText("Size:");
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.anchor = GridBagConstraints.EAST;
     getContentPane().add(jLabel2, gridBagConstraints);
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     getContentPane().add(jComboBox1, gridBagConstraints);
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     gridBagConstraints.ipadx = 10;
     gridBagConstraints.ipady = 10;
@@ -73,25 +76,25 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
     jCheckBox1.setText("Bold");
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 2;
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 4;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.weighty = 100.0;
     getContentPane().add(jCheckBox1, gridBagConstraints);
 
     jCheckBox2.setText("Italic");
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 6;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.weighty = 100.0;
     getContentPane().add(jCheckBox2, gridBagConstraints);
 
     jButton1.setText("jButton1");
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridx = 4;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 4;
+    gridBagConstraints.gridheight = 7;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.weighty = 100.0;

@@ -132,7 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="Filler.html" title="class in giada.swing">Filler</a></code>, <code><a href="JButton.html" title="class in giada.swing">JButton</a></code>, <code><a href="JFrame.html" title="class in giada.swing">JFrame</a></code>, <code><a href="JPanel.html" title="class in giada.swing">JPanel</a></code></dd>
+<dd><code><a href="Filler.html" title="class in giada.swing">Filler</a></code>, <code><a href="JButton.html" title="class in giada.swing">JButton</a></code>, <code><a href="JCheckBox.html" title="class in giada.swing">JCheckBox</a></code>, <code><a href="JComboBox.html" title="class in giada.swing">JComboBox</a></code>, <code><a href="JFrame.html" title="class in giada.swing">JFrame</a></code>, <code><a href="JLabel.html" title="class in giada.swing">JLabel</a></code>, <code><a href="JPanel.html" title="class in giada.swing">JPanel</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">JComponent</span>
@@ -426,13 +426,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>putClientProperty</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;putClientProperty&#8203;(java.lang.Object&nbsp;key,
-                              java.lang.Object&nbsp;value)</pre>
+                              java.lang.Object&nbsp;value)
+                       throws java.lang.Exception</pre>
 <div class="block">Special use case: in general this method adds an arbitrary key/value
  "client property" to this component, with the following exceptions:
  <p>
  1. if <i>key</i> = "class-list" (or the constant value
  <i>JComponent.CLASS_LIST</i>) then this method throws an exception (the key
- is a reserved word and cannot be used</p>
+ is a reserved word and cannot be used)</p>
  <p>
  2. if <i>key</i> = "add-class-list" (or the constant value
  <i>JComponent.ADD_CLASS_LIST</i>) then this method adds the <i>value</i>
@@ -450,6 +451,9 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key</dd>
 <dd><code>value</code> - The value</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Exception</code> - thrown if <i>key</i> = "class-list" (or the
+ constant value <i>JComponent.CLASS_LIST</i>)</dd>
 </dl>
 </li>
 </ul>
