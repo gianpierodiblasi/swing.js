@@ -12,8 +12,7 @@ import giada.swing.JPanel;
 public class GridBagLayout implements LayoutManager {
 
   private final Array<Array<String>> gridTemplateAreas = new Array<>();
-  private final Array<Double> gridTemplateRows = new Array<>();
-  private final Array<Double> gridTemplateColumns = new Array<>();
+  private final Array<GridBagConstraints> constraintsArray = new Array<>();
 
   private int position = 1;
 
@@ -37,10 +36,12 @@ public class GridBagLayout implements LayoutManager {
 
   @Override
   public void addInPanel(JPanel panel, JComponent component, Object constraints) {
+    this.constraintsArray.push((GridBagConstraints) constraints);
+
     panel.element.appendChild(component.element);
     panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas((GridBagConstraints) constraints));
-    panel.element.style.setProperty("grid-template-rows", this.setGridTemplateRows((GridBagConstraints) constraints));
-    panel.element.style.setProperty("grid-template-columns", this.setGridTemplateColumns((GridBagConstraints) constraints));
+    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty"));
+    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas.$get(0), "gridx", "gridwidth", "weightx") : "");
 
     this.setComponent(component, (GridBagConstraints) constraints);
   }
@@ -75,36 +76,30 @@ public class GridBagLayout implements LayoutManager {
     return gta;
   }
 
-  private String setGridTemplateRows(GridBagConstraints constraint) {
-    for (int y = this.gridTemplateRows.length; y < constraint.gridy + constraint.gridheight; y++) {
-      this.gridTemplateRows.push(0.0);
+  private String getWeight(Array<?> array, String keyAxis, String keySize, String keyWeight) {
+    Array<Double> gridTemplate = new Array<>();
+    for (int index = 0; index < array.length; index++) {
+      gridTemplate.push(0.0);
     }
 
-    for (int y = constraint.gridy; y < constraint.gridy + constraint.gridheight; y++) {
-      this.gridTemplateRows.$set(y, Math.min(this.gridTemplateRows.$get(y), constraint.weighty));
+    for (int index = 1; index <= array.length; index++) {
+      final double gridsize = index;
+      this.constraintsArray.filter(constraint -> constraint.get(keySize) == gridsize).forEach(constraint -> {
+        boolean ok = false;
+        for (int index2 = (int) constraint.get(keyAxis); index2 < constraint.get(keyAxis) + constraint.get(keySize); index2++) {
+          ok |= gridTemplate.$get(index2) >= constraint.get(keyWeight);
+        }
+        if (!ok) {
+          gridTemplate.$set((int) constraint.get(keyAxis) + (int) constraint.get(keySize) - 1, constraint.get(keyWeight));
+        }
+      });
     }
 
-    String gtr = "";
-    for (int y = 0; y < this.gridTemplateRows.length; y++) {
-      gtr += this.gridTemplateRows.$get(y) == 0.0 ? "auto " : this.gridTemplateRows.$get(y) + "fr ";
+    String gt = "";
+    for (int index = 0; index < gridTemplate.length; index++) {
+      gt += gridTemplate.$get(index) == 0.0 ? "auto " : gridTemplate.$get(index) + "fr ";
     }
-    return gtr;
-  }
-
-  private String setGridTemplateColumns(GridBagConstraints constraint) {
-    for (int x = this.gridTemplateColumns.length; x < constraint.gridx + constraint.gridwidth; x++) {
-      this.gridTemplateColumns.push(0.0);
-    }
-
-    for (int x = constraint.gridx; x < constraint.gridx + constraint.gridwidth; x++) {
-      this.gridTemplateColumns.$set(x, Math.min(this.gridTemplateColumns.$get(x), constraint.weightx));
-    }
-
-    String gtc = "";
-    for (int x = 0; x < this.gridTemplateColumns.length; x++) {
-      gtc += this.gridTemplateColumns.$get(x) == 0.0 ? "auto " : this.gridTemplateColumns.$get(x) + "fr ";
-    }
-    return gtc;
+    return gt;
   }
 
   private void setComponent(JComponent component, GridBagConstraints constraints) {

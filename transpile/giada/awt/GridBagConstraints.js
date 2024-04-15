@@ -107,4 +107,31 @@ class GridBagConstraints {
     // 
     this.ipady = 0;
   }
+
+   get(key) {
+    switch(key) {
+      case "gridx":
+        return this.gridx;
+      case "gridy":
+        return this.gridy;
+      case "gridwidth":
+        return this.gridwidth;
+      case "gridheight":
+        return this.gridheight;
+      case "weightx":
+        return this.weightx;
+      case "weighty":
+        return this.weighty;
+      case "anchor":
+        return this.anchor;
+      case "fill":
+        return this.fill;
+      case "ipadx":
+        return this.ipadx;
+      case "ipady":
+        return this.ipady;
+      default:
+        return 0;
+    }
+  }
 }

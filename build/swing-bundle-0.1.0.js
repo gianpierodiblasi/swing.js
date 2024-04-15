@@ -107,6 +107,33 @@ class GridBagConstraints {
     // 
     this.ipady = 0;
   }
+
+   get(key) {
+    switch(key) {
+      case "gridx":
+        return this.gridx;
+      case "gridy":
+        return this.gridy;
+      case "gridwidth":
+        return this.gridwidth;
+      case "gridheight":
+        return this.gridheight;
+      case "weightx":
+        return this.weightx;
+      case "weighty":
+        return this.weighty;
+      case "anchor":
+        return this.anchor;
+      case "fill":
+        return this.fill;
+      case "ipadx":
+        return this.ipadx;
+      case "ipady":
+        return this.ipady;
+      default:
+        return 0;
+    }
+  }
 }
 /**
  * The java.awt.Insets clone
@@ -403,9 +430,7 @@ class GridBagLayout extends LayoutManager {
 
    gridTemplateAreas = new Array();
 
-   gridTemplateRows = new Array();
-
-   gridTemplateColumns = new Array();
+   constraintsArray = new Array();
 
    position = 1;
 
@@ -426,10 +451,11 @@ class GridBagLayout extends LayoutManager {
   }
 
    addInPanel(panel, component, constraints) {
+    this.constraintsArray.push(constraints);
     panel.element.appendChild(component.element);
     panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas(constraints));
-    panel.element.style.setProperty("grid-template-rows", this.setGridTemplateRows(constraints));
-    panel.element.style.setProperty("grid-template-columns", this.setGridTemplateColumns(constraints));
+    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty"));
+    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas[0], "gridx", "gridwidth", "weightx") : "");
     this.setComponent(component, constraints);
   }
 
@@ -459,32 +485,28 @@ class GridBagLayout extends LayoutManager {
     return gta;
   }
 
-   setGridTemplateRows(constraint) {
-    for (let y = this.gridTemplateRows.length; y < constraint.gridy + constraint.gridheight; y++) {
-      this.gridTemplateRows.push(0.0);
+   getWeight(array, keyAxis, keySize, keyWeight) {
+    let gridTemplate = new Array();
+    for (let index = 0; index < array.length; index++) {
+      gridTemplate.push(0.0);
     }
-    for (let y = constraint.gridy; y < constraint.gridy + constraint.gridheight; y++) {
-      this.gridTemplateRows[y] = Math.min(this.gridTemplateRows[y], constraint.weighty);
+    for (let index = 1; index <= array.length; index++) {
+      let gridsize = index;
+      this.constraintsArray.filter(constraint => constraint.get(keySize) === gridsize).forEach(constraint => {
+        let ok = false;
+        for (let index2 = constraint.get(keyAxis); index2 < constraint.get(keyAxis) + constraint.get(keySize); index2++) {
+          ok |= gridTemplate[index2] >= constraint.get(keyWeight);
+        }
+        if (!ok) {
+          gridTemplate[constraint.get(keyAxis) + constraint.get(keySize) - 1] = constraint.get(keyWeight);
+        }
+      });
     }
-    let gtr = "";
-    for (let y = 0; y < this.gridTemplateRows.length; y++) {
-      gtr += this.gridTemplateRows[y] === 0.0 ? "auto " : this.gridTemplateRows[y] + "fr ";
+    let gt = "";
+    for (let index = 0; index < gridTemplate.length; index++) {
+      gt += gridTemplate[index] === 0.0 ? "auto " : gridTemplate[index] + "fr ";
     }
-    return gtr;
-  }
-
-   setGridTemplateColumns(constraint) {
-    for (let x = this.gridTemplateColumns.length; x < constraint.gridx + constraint.gridwidth; x++) {
-      this.gridTemplateColumns.push(0.0);
-    }
-    for (let x = constraint.gridx; x < constraint.gridx + constraint.gridwidth; x++) {
-      this.gridTemplateColumns[x] = Math.min(this.gridTemplateColumns[x], constraint.weightx);
-    }
-    let gtc = "";
-    for (let x = 0; x < this.gridTemplateColumns.length; x++) {
-      gtc += this.gridTemplateColumns[x] === 0.0 ? "auto " : this.gridTemplateColumns[x] + "fr ";
-    }
-    return gtc;
+    return gt;
   }
 
    setComponent(component, constraints) {

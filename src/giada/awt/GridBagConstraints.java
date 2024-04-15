@@ -48,12 +48,12 @@ public class GridBagConstraints {
   public int gridy;
   public int gridwidth;
   public int gridheight;
-  
+
   public double weightx;
   public double weighty;
   public int anchor;
   public int fill;
-  
+
   public Insets insets;
   public int ipadx;
   public int ipady;
@@ -72,5 +72,32 @@ public class GridBagConstraints {
     this.insets = new Insets(0, 0, 0, 0); //
     this.ipadx = 0; //
     this.ipady = 0; //
+  }
+
+  public double get(String key) {
+    switch (key) {
+      case "gridx":
+        return this.gridx;
+      case "gridy":
+        return this.gridy;
+      case "gridwidth":
+        return this.gridwidth;
+      case "gridheight":
+        return this.gridheight;
+      case "weightx":
+        return this.weightx;
+      case "weighty":
+        return this.weighty;
+      case "anchor":
+        return this.anchor;
+      case "fill":
+        return this.fill;
+      case "ipadx":
+        return this.ipadx;
+      case "ipady":
+        return this.ipady;
+      default:
+        return 0;
+    }
   }
 }
