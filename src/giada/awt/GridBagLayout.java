@@ -39,8 +39,8 @@ public class GridBagLayout implements LayoutManager {
   public void addInPanel(JPanel panel, JComponent component, Object constraints) {
     panel.element.appendChild(component.element);
     panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas((GridBagConstraints) constraints));
-//    panel.element.style.setProperty("grid-template-rows", this.setGridTemplateRows((GridBagConstraints) constraints));
-//    panel.element.style.setProperty("grid-template-columns", this.setGridTemplateColumns((GridBagConstraints) constraints));
+    panel.element.style.setProperty("grid-template-rows", this.setGridTemplateRows((GridBagConstraints) constraints));
+    panel.element.style.setProperty("grid-template-columns", this.setGridTemplateColumns((GridBagConstraints) constraints));
 
     this.setComponent(component, (GridBagConstraints) constraints);
   }

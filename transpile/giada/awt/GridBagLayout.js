@@ -32,8 +32,8 @@ class GridBagLayout extends LayoutManager {
    addInPanel(panel, component, constraints) {
     panel.element.appendChild(component.element);
     panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas(constraints));
-    // panel.element.style.setProperty("grid-template-rows", this.setGridTemplateRows((GridBagConstraints) constraints));
-    // panel.element.style.setProperty("grid-template-columns", this.setGridTemplateColumns((GridBagConstraints) constraints));
+    panel.element.style.setProperty("grid-template-rows", this.setGridTemplateRows(constraints));
+    panel.element.style.setProperty("grid-template-columns", this.setGridTemplateColumns(constraints));
     this.setComponent(component, constraints);
   }
 
