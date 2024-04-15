@@ -26,7 +26,7 @@ class TestJFrame2 extends JFrame {
     this.jButton1 = new JButton();let jButton1 = this.jButton1;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
-    layout.columnWidths = [0, 5, 0, 5, 0, ];
+    layout.columnWidths = [0, 15, 0, 15, 0, ];
     layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");

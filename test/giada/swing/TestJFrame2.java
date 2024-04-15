@@ -41,7 +41,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
-    layout.columnWidths = new int[] {0, 5, 0, 5, 0};
+    layout.columnWidths = new int[] {0, 15, 0, 15, 0};
     layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
     getContentPane().setLayout(layout);
 
