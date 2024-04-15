@@ -1,15 +1,18 @@
 package giada.awt;
 
+import giada.swing.JComponent;
+import giada.swing.JPanel;
+
 /**
  * The java.awt.LayoutManager clone
  *
  * @author gianpiero.diblasi
  */
-public abstract class LayoutManager {
+public interface LayoutManager {
 
-  public final String css;
+  public abstract void setPanel(JPanel panel);
 
-  public LayoutManager(String css) {
-    this.css = css;
-  }
+  public abstract void resetPanel(JPanel panel);
+
+  public abstract void addInPanel(JPanel panel, JComponent component, Object constraints);
 }

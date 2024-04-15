@@ -147,10 +147,13 @@ class ActionListener {
  */
 class LayoutManager {
 
-   css = null;
+   setPanel(panel) {
+  }
 
-  constructor(css) {
-    this.css = css;
+   resetPanel(panel) {
+  }
+
+   addInPanel(panel, component, constraints) {
   }
 }
 /**
@@ -191,9 +194,46 @@ class BorderLayout extends LayoutManager {
    vGap = 0;
 
   constructor(hGap, vGap) {
-    super("borderlayout");
+    super();
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
     this.vGap = typeof vGap === "undefined" ? 0 : vGap;
+  }
+
+   setPanel(panel) {
+    let middle = document.createElement("div");
+    middle.classList.add("borderlayout-middle");
+    panel.element.appendChild(middle);
+    panel.element.classList.add("borderlayout");
+  }
+
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("borderlayout");
+  }
+
+   addInPanel(panel, component, constraints) {
+    component.element.classList.add("borderlayout-" + (constraints).toLowerCase());
+    switch((constraints)) {
+      case BorderLayout.NORTH:
+        panel.element.appendChild(component.element);
+        component.element.style.marginBottom = this.vGap + "px";
+        break;
+      case BorderLayout.SOUTH:
+        panel.element.appendChild(component.element);
+        component.element.style.marginTop = this.vGap + "px";
+        break;
+      case BorderLayout.WEST:
+        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
+        component.element.style.marginRight = this.hGap + "px";
+        break;
+      case BorderLayout.CENTER:
+        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
+        break;
+      case BorderLayout.EAST:
+        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
+        component.element.style.marginLeft = this.hGap + "px";
+        break;
+    }
   }
 }
 /**
@@ -214,8 +254,35 @@ class BoxLayout extends LayoutManager {
    axis = 0;
 
   constructor(target, axis) {
-    super("boxlayout");
+    super();
     this.axis = axis;
+  }
+
+   setPanel(panel) {
+    panel.element.classList.add("boxlayout");
+    switch(this.axis) {
+      case BoxLayout.LINE_AXIS:
+      case BoxLayout.X_AXIS:
+        panel.element.style.flexDirection = "row";
+        panel.element.style.alignItems = "center";
+        break;
+      case BoxLayout.PAGE_AXIS:
+      case BoxLayout.Y_AXIS:
+        panel.element.style.flexDirection = "column";
+        panel.element.style.alignItems = "flex-start";
+        break;
+    }
+  }
+
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("boxlayout");
+    panel.element.style.flexDirection = "";
+    panel.element.style.alignItems = "";
+  }
+
+   addInPanel(panel, component, constraints) {
+    panel.element.appendChild(component.element);
   }
 }
 /**
@@ -230,9 +297,32 @@ class CardLayout extends LayoutManager {
    vGap = 0;
 
   constructor(hGap, vGap) {
-    super("cardlayout");
+    super();
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
     this.vGap = typeof vGap === "undefined" ? 0 : vGap;
+  }
+
+   setPanel(panel) {
+    panel.element.classList.add("cardlayout");
+  }
+
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("cardlayout");
+  }
+
+   addInPanel(panel, component, constraints) {
+    panel.element.appendChild(component.element);
+    component.element.setAttribute("card", constraints);
+    component.element.setAttribute("old-display", component.element.style.display);
+    if (panel.element.childElementCount > 1) {
+      component.element.style.display = "none";
+    }
+    component.element.style.flexGrow = "1";
+    component.element.style.marginLeft = this.hGap + "px";
+    component.element.style.marginRight = this.hGap + "px";
+    component.element.style.marginTop = this.vGap + "px";
+    component.element.style.marginBottom = this.vGap + "px";
   }
 
    show(parent, name) {
@@ -267,10 +357,41 @@ class FlowLayout extends LayoutManager {
    vGap = 0;
 
   constructor(align, hGap, vGap) {
-    super("flowlayout");
+    super();
     this.align = align;
     this.hGap = typeof hGap === "undefined" ? 5 : hGap;
     this.vGap = typeof vGap === "undefined" ? 5 : vGap;
+  }
+
+   setPanel(panel) {
+    panel.element.classList.add("flowlayout");
+    switch(this.align) {
+      case FlowLayout.LEFT:
+      case FlowLayout.LEADING:
+        panel.element.style.justifyContent = "flex-start";
+        break;
+      case FlowLayout.CENTER:
+        panel.element.style.justifyContent = "center";
+        break;
+      case FlowLayout.RIGHT:
+      case FlowLayout.TRAILING:
+        panel.element.style.justifyContent = "flex-end";
+        break;
+    }
+  }
+
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("flowlayout");
+    panel.element.style.justifyContent = "";
+  }
+
+   addInPanel(panel, component, constraints) {
+    panel.element.appendChild(component.element);
+    component.element.style.marginLeft = this.hGap + "px";
+    component.element.style.marginRight = this.hGap + "px";
+    component.element.style.marginTop = this.vGap + "px";
+    component.element.style.marginBottom = this.vGap + "px";
   }
 }
 /**
@@ -289,133 +410,163 @@ class GridBagLayout extends LayoutManager {
    position = 1;
 
   constructor() {
-    super("gridbaglayout");
+    super();
   }
 
-   addConstraint(component, constraint) {
-    this.setComponent(component, constraint);
-    return this.setGrid(constraint);
+   setPanel(panel) {
+    panel.element.classList.add("gridbaglayout");
   }
 
-   setComponent(component, constraint) {
-    component.element.style.setProperty("grid-area", "p" + this.position);
-    switch(constraint.anchor) {
-      case GridBagConstraints.CENTER:
-      case GridBagConstraints.BASELINE:
-      case GridBagConstraints.ABOVE_BASELINE:
-      case GridBagConstraints.BELOW_BASELINE:
-        component.element.style.setProperty("justify-self", "center");
-        component.element.style.setProperty("align-self", "center");
-        break;
-      case GridBagConstraints.NORTH:
-      case GridBagConstraints.PAGE_START:
-        component.element.style.setProperty("justify-self", "center");
-        component.element.style.setProperty("align-self", "start");
-        break;
-      case GridBagConstraints.NORTHEAST:
-      case GridBagConstraints.FIRST_LINE_END:
-        component.element.style.setProperty("justify-self", "end");
-        component.element.style.setProperty("align-self", "start");
-        break;
-      case GridBagConstraints.EAST:
-      case GridBagConstraints.LINE_END:
-      case GridBagConstraints.BASELINE_TRAILING:
-      case GridBagConstraints.ABOVE_BASELINE_TRAILING:
-      case GridBagConstraints.BELOW_BASELINE_TRAILING:
-        component.element.style.setProperty("justify-self", "end");
-        component.element.style.setProperty("align-self", "center");
-        break;
-      case GridBagConstraints.SOUTHEAST:
-      case GridBagConstraints.LAST_LINE_END:
-        component.element.style.setProperty("justify-self", "end");
-        component.element.style.setProperty("align-self", "end");
-        break;
-      case GridBagConstraints.SOUTH:
-      case GridBagConstraints.PAGE_END:
-        component.element.style.setProperty("justify-self", "center");
-        component.element.style.setProperty("align-self", "end");
-        break;
-      case GridBagConstraints.SOUTHWEST:
-      case GridBagConstraints.LAST_LINE_START:
-        component.element.style.setProperty("justify-self", "start");
-        component.element.style.setProperty("align-self", "end");
-        break;
-      case GridBagConstraints.WEST:
-      case GridBagConstraints.LINE_START:
-      case GridBagConstraints.BASELINE_LEADING:
-      case GridBagConstraints.ABOVE_BASELINE_LEADING:
-      case GridBagConstraints.BELOW_BASELINE_LEADING:
-        component.element.style.setProperty("justify-self", "start");
-        component.element.style.setProperty("align-self", "center");
-        break;
-      case GridBagConstraints.NORTHWEST:
-      case GridBagConstraints.FIRST_LINE_START:
-        component.element.style.setProperty("justify-self", "start");
-        component.element.style.setProperty("align-self", "start");
-        break;
-    }
-    switch(constraint.fill) {
-      case GridBagConstraints.NONE:
-        break;
-      case GridBagConstraints.BOTH:
-        component.element.style.setProperty("justify-self", "stretch");
-        component.element.style.setProperty("align-self", "stretch");
-        break;
-      case GridBagConstraints.HORIZONTAL:
-        component.element.style.setProperty("justify-self", "stretch");
-        break;
-      case GridBagConstraints.VERTICAL:
-        component.element.style.setProperty("align-self", "stretch");
-        break;
-    }
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("gridbaglayout");
+    panel.element.style.removeProperty("grid-template-areas");
+    panel.element.style.removeProperty("grid-template-rows");
+    panel.element.style.removeProperty("grid-template-columns");
   }
 
-   setGrid(constraint) {
-    for (let y = this.gridTemplateAreas.length; y < constraint.gridy + constraint.gridheight; y++) {
-      this.gridTemplateAreas.push(new Array());
-    }
-    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
-      for (let x = this.gridTemplateAreas[y].length; x < constraint.gridx + constraint.gridwidth; x++) {
-        this.gridTemplateAreas[y].push("p0");
-      }
-    }
-    for (let y = this.gridTemplateRows.length; y < constraint.gridy + constraint.gridheight; y++) {
-      this.gridTemplateRows.push(0.0);
-    }
-    for (let x = this.gridTemplateColumns.length; x < constraint.gridx + constraint.gridwidth; x++) {
-      this.gridTemplateColumns.push(0.0);
-    }
-    for (let y = constraint.gridy; y < constraint.gridy + constraint.gridheight; y++) {
-      let array = this.gridTemplateAreas[y];
-      for (let x = constraint.gridx; x < constraint.gridx + constraint.gridwidth; x++) {
-        array[x] = "p" + this.position;
-        this.gridTemplateColumns[x] = Math.min(this.gridTemplateColumns[x], constraint.weightx);
-      }
-      this.gridTemplateRows[y] = Math.min(this.gridTemplateRows[y], constraint.weighty);
-    }
-    this.position++;
-    let gta = "";
-    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
-      let row = "";
-      for (let x = 0; x < this.gridTemplateAreas[y].length; x++) {
-        row += this.gridTemplateAreas[y][x] + " ";
-      }
-      gta += "\"" + row + "\"\n";
-    }
-    let gtr = "";
-    for (let y = 0; y < this.gridTemplateRows.length; y++) {
-      gtr += this.gridTemplateRows[y] === 0.0 ? "auto " : this.gridTemplateRows[y] + "fr ";
-    }
-    let gtc = "";
-    for (let x = 0; x < this.gridTemplateColumns.length; x++) {
-      gtc += this.gridTemplateColumns[x] === 0.0 ? "auto " : this.gridTemplateColumns[x] + "fr ";
-    }
-    let object = new Object();
-    object["grid-template-areas"] = gta;
-    object["grid-template-rows"] = gtr;
-    object["grid-template-columns"] = gtc;
-    return object;
+   addInPanel(panel, component, constraints) {
+    panel.element.appendChild(component.element);
+    // $Object object = ((GridBagLayout) this.layoutManager).addConstraint(component, (GridBagConstraints) constraints);
+    // this.element.style.setProperty("grid-template-areas", object.$get("grid-template-areas"));
+    // this.element.style.setProperty("grid-template-rows", object.$get("grid-template-rows"));
+    // this.element.style.setProperty("grid-template-columns", object.$get("grid-template-columns"));
   }
+  // public $Object addConstraint(JComponent component, GridBagConstraints constraint) {
+  // this.setComponent(component, constraint);
+  // return this.setGrid(constraint);
+  // }
+  // 
+  // private void setComponent(JComponent component, GridBagConstraints constraint) {
+  // component.element.style.setProperty("grid-area", "p" + this.position);
+  // 
+  // switch (constraint.anchor) {
+  // case GridBagConstraints.CENTER:
+  // case GridBagConstraints.BASELINE:
+  // case GridBagConstraints.ABOVE_BASELINE:
+  // case GridBagConstraints.BELOW_BASELINE:
+  // component.element.style.setProperty("justify-self", "center");
+  // component.element.style.setProperty("align-self", "center");
+  // break;
+  // case GridBagConstraints.NORTH:
+  // case GridBagConstraints.PAGE_START:
+  // component.element.style.setProperty("justify-self", "center");
+  // component.element.style.setProperty("align-self", "start");
+  // break;
+  // case GridBagConstraints.NORTHEAST:
+  // case GridBagConstraints.FIRST_LINE_END:
+  // component.element.style.setProperty("justify-self", "end");
+  // component.element.style.setProperty("align-self", "start");
+  // break;
+  // case GridBagConstraints.EAST:
+  // case GridBagConstraints.LINE_END:
+  // case GridBagConstraints.BASELINE_TRAILING:
+  // case GridBagConstraints.ABOVE_BASELINE_TRAILING:
+  // case GridBagConstraints.BELOW_BASELINE_TRAILING:
+  // component.element.style.setProperty("justify-self", "end");
+  // component.element.style.setProperty("align-self", "center");
+  // break;
+  // case GridBagConstraints.SOUTHEAST:
+  // case GridBagConstraints.LAST_LINE_END:
+  // component.element.style.setProperty("justify-self", "end");
+  // component.element.style.setProperty("align-self", "end");
+  // break;
+  // case GridBagConstraints.SOUTH:
+  // case GridBagConstraints.PAGE_END:
+  // component.element.style.setProperty("justify-self", "center");
+  // component.element.style.setProperty("align-self", "end");
+  // break;
+  // case GridBagConstraints.SOUTHWEST:
+  // case GridBagConstraints.LAST_LINE_START:
+  // component.element.style.setProperty("justify-self", "start");
+  // component.element.style.setProperty("align-self", "end");
+  // break;
+  // case GridBagConstraints.WEST:
+  // case GridBagConstraints.LINE_START:
+  // case GridBagConstraints.BASELINE_LEADING:
+  // case GridBagConstraints.ABOVE_BASELINE_LEADING:
+  // case GridBagConstraints.BELOW_BASELINE_LEADING:
+  // component.element.style.setProperty("justify-self", "start");
+  // component.element.style.setProperty("align-self", "center");
+  // break;
+  // case GridBagConstraints.NORTHWEST:
+  // case GridBagConstraints.FIRST_LINE_START:
+  // component.element.style.setProperty("justify-self", "start");
+  // component.element.style.setProperty("align-self", "start");
+  // break;
+  // }
+  // 
+  // switch (constraint.fill) {
+  // case GridBagConstraints.NONE:
+  // break;
+  // case GridBagConstraints.BOTH:
+  // component.element.style.setProperty("justify-self", "stretch");
+  // component.element.style.setProperty("align-self", "stretch");
+  // break;
+  // case GridBagConstraints.HORIZONTAL:
+  // component.element.style.setProperty("justify-self", "stretch");
+  // break;
+  // case GridBagConstraints.VERTICAL:
+  // component.element.style.setProperty("align-self", "stretch");
+  // break;
+  // }
+  // }
+  // 
+  // @SuppressWarnings("unchecked")
+  // private $Object setGrid(GridBagConstraints constraint) {
+  // for (int y = this.gridTemplateAreas.length; y < constraint.gridy + constraint.gridheight; y++) {
+  // this.gridTemplateAreas.push(new Array<>());
+  // }
+  // 
+  // for (int y = 0; y < this.gridTemplateAreas.length; y++) {
+  // for (int x = this.gridTemplateAreas.$get(y).length; x < constraint.gridx + constraint.gridwidth; x++) {
+  // this.gridTemplateAreas.$get(y).push("p0");
+  // }
+  // }
+  // 
+  // for (int y = this.gridTemplateRows.length; y < constraint.gridy + constraint.gridheight; y++) {
+  // this.gridTemplateRows.push(0.0);
+  // }
+  // for (int x = this.gridTemplateColumns.length; x < constraint.gridx + constraint.gridwidth; x++) {
+  // this.gridTemplateColumns.push(0.0);
+  // }
+  // 
+  // for (int y = constraint.gridy; y < constraint.gridy + constraint.gridheight; y++) {
+  // Array<String> array = this.gridTemplateAreas.$get(y);
+  // for (int x = constraint.gridx; x < constraint.gridx + constraint.gridwidth; x++) {
+  // array.$set(x, "p" + this.position);
+  // this.gridTemplateColumns.$set(x, Math.min(this.gridTemplateColumns.$get(x), constraint.weightx));
+  // }
+  // this.gridTemplateRows.$set(y, Math.min(this.gridTemplateRows.$get(y), constraint.weighty));
+  // }
+  // 
+  // this.position++;
+  // 
+  // String gta = "";
+  // for (int y = 0; y < this.gridTemplateAreas.length; y++) {
+  // String row = "";
+  // for (int x = 0; x < this.gridTemplateAreas.$get(y).length; x++) {
+  // row += this.gridTemplateAreas.$get(y).$get(x) + " ";
+  // }
+  // gta += "\"" + row + "\"\n";
+  // }
+  // 
+  // String gtr = "";
+  // for (int y = 0; y < this.gridTemplateRows.length; y++) {
+  // gtr += this.gridTemplateRows.$get(y) == 0.0 ? "auto " : this.gridTemplateRows.$get(y) + "fr ";
+  // }
+  // String gtc = "";
+  // for (int x = 0; x < this.gridTemplateColumns.length; x++) {
+  // gtc += this.gridTemplateColumns.$get(x) == 0.0 ? "auto " : this.gridTemplateColumns.$get(x) + "fr ";
+  // }
+  // 
+  // $Object object = new $Object();
+  // object.$set("grid-template-areas", gta);
+  // object.$set("grid-template-rows", gtr);
+  // object.$set("grid-template-columns", gtc);
+  // 
+  // return object;
+  // }
 }
 /**
  * The java.awt.GridLayout clone
@@ -433,11 +584,39 @@ class GridLayout extends LayoutManager {
    vGap = 0;
 
   constructor(rows, cols, hGap, vGap) {
-    super("gridlayout");
+    super();
     this.rows = rows;
     this.cols = cols;
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
     this.vGap = typeof vGap === "undefined" ? 0 : vGap;
+  }
+
+   setPanel(panel) {
+    panel.element.classList.add("gridlayout");
+    let gridTemplateAreas = "";
+    for (let row = 1; row <= this.rows; row++) {
+      let gridTemplateRow = "";
+      for (let col = 1; col <= this.cols; col++) {
+        gridTemplateRow += "p" + ((row - 1) * this.cols + col) + " ";
+      }
+      gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
+    }
+    panel.element.style.setProperty("grid-template-areas", gridTemplateAreas);
+    panel.element.style.setProperty("row-gap", this.hGap + "px");
+    panel.element.style.setProperty("column-gap", this.hGap + "px");
+  }
+
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("gridlayout");
+    panel.element.style.removeProperty("grid-template-areas");
+    panel.element.style.removeProperty("row-gap");
+    panel.element.style.removeProperty("column-gap");
+  }
+
+   addInPanel(panel, component, constraints) {
+    panel.element.appendChild(component.element);
+    component.element.style.setProperty("grid-area", "p" + panel.element.childElementCount);
   }
 }
 /**
@@ -742,94 +921,11 @@ class JPanel extends JComponent {
   }
 
    setLayout(layoutManager) {
-    this.purgeOldLayout();
-    this.layoutManager = layoutManager;
-    this.element.classList.add(this.layoutManager.css);
-    switch(this.layoutManager.css) {
-      case "borderlayout":
-        this.setBorderLayout();
-        break;
-      case "flowlayout":
-        this.setFlowLayout();
-        break;
-      case "gridlayout":
-        this.setGridLayout();
-        break;
-      case "boxlayout":
-        this.setBoxLayout();
-        break;
-      case "cardlayout":
-        break;
-      case "gridbaglayout":
-        break;
-    }
-  }
-
-   purgeOldLayout() {
     if (this.layoutManager) {
-      this.element.textContent = "";
-      this.element.classList.remove(this.layoutManager.css);
-      // flow
-      this.element.style.justifyContent = "";
-      // grid
-      this.element.style.removeProperty("grid-template-areas");
-      this.element.style.removeProperty("row-gap");
-      this.element.style.removeProperty("column-gap");
-      // box
-      this.element.style.flexDirection = "";
-      this.element.style.alignItems = "";
+      this.layoutManager.resetPanel(this);
     }
-  }
-
-   setBorderLayout() {
-    let middle = document.createElement("div");
-    middle.classList.add("borderlayout-middle");
-    this.element.appendChild(middle);
-  }
-
-   setFlowLayout() {
-    switch((this.layoutManager).align) {
-      case FlowLayout.LEFT:
-      case FlowLayout.LEADING:
-        this.element.style.justifyContent = "flex-start";
-        break;
-      case FlowLayout.CENTER:
-        this.element.style.justifyContent = "center";
-        break;
-      case FlowLayout.RIGHT:
-      case FlowLayout.TRAILING:
-        this.element.style.justifyContent = "flex-end";
-        break;
-    }
-  }
-
-   setGridLayout() {
-    let gridTemplateAreas = "";
-    for (let row = 1; row <= (this.layoutManager).rows; row++) {
-      let gridTemplateRow = "";
-      for (let col = 1; col <= (this.layoutManager).cols; col++) {
-        gridTemplateRow += "p" + ((row - 1) * (this.layoutManager).cols + col) + " ";
-      }
-      gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
-    }
-    this.element.style.setProperty("grid-template-areas", gridTemplateAreas);
-    this.element.style.setProperty("row-gap", (this.layoutManager).hGap + "px");
-    this.element.style.setProperty("column-gap", (this.layoutManager).hGap + "px");
-  }
-
-   setBoxLayout() {
-    switch((this.layoutManager).axis) {
-      case BoxLayout.LINE_AXIS:
-      case BoxLayout.X_AXIS:
-        this.element.style.flexDirection = "row";
-        this.element.style.alignItems = "center";
-        break;
-      case BoxLayout.PAGE_AXIS:
-      case BoxLayout.Y_AXIS:
-        this.element.style.flexDirection = "column";
-        this.element.style.alignItems = "flex-start";
-        break;
-    }
+    this.layoutManager = layoutManager;
+    this.layoutManager.setPanel(this);
   }
 
    getLayout() {
@@ -837,90 +933,7 @@ class JPanel extends JComponent {
   }
 
    add(component, constraints) {
-    switch(this.layoutManager.css) {
-      case "borderlayout":
-        this.addInBorderLayout(component, constraints);
-        break;
-      case "flowlayout":
-        this.addInFlowLayout(component, constraints);
-        break;
-      case "gridlayout":
-        this.addInGridLayout(component, constraints);
-        break;
-      case "boxlayout":
-        this.addInBoxLayout(component, constraints);
-        break;
-      case "cardlayout":
-        this.addInCardLayout(component, constraints);
-        break;
-      case "gridbaglayout":
-        this.addInGridBagLayout(component, constraints);
-        break;
-    }
-  }
-
-   addInBorderLayout(component, constraints) {
-    component.element.classList.add("borderlayout-" + (constraints).toLowerCase());
-    switch((constraints)) {
-      case BorderLayout.NORTH:
-        this.element.appendChild(component.element);
-        component.element.style.marginBottom = (this.layoutManager).vGap + "px";
-        break;
-      case BorderLayout.SOUTH:
-        this.element.appendChild(component.element);
-        component.element.style.marginTop = (this.layoutManager).vGap + "px";
-        break;
-      case BorderLayout.WEST:
-        this.element.querySelector(".borderlayout-middle").appendChild(component.element);
-        component.element.style.marginRight = (this.layoutManager).hGap + "px";
-        break;
-      case BorderLayout.CENTER:
-        this.element.querySelector(".borderlayout-middle").appendChild(component.element);
-        break;
-      case BorderLayout.EAST:
-        this.element.querySelector(".borderlayout-middle").appendChild(component.element);
-        component.element.style.marginLeft = (this.layoutManager).hGap + "px";
-        break;
-    }
-  }
-
-   addInFlowLayout(component, constraints) {
-    this.element.appendChild(component.element);
-    component.element.style.marginLeft = (this.layoutManager).hGap + "px";
-    component.element.style.marginRight = (this.layoutManager).hGap + "px";
-    component.element.style.marginTop = (this.layoutManager).vGap + "px";
-    component.element.style.marginBottom = (this.layoutManager).vGap + "px";
-  }
-
-   addInGridLayout(component, constraints) {
-    this.element.appendChild(component.element);
-    component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
-  }
-
-   addInBoxLayout(component, constraints) {
-    this.element.appendChild(component.element);
-  }
-
-   addInCardLayout(component, constraints) {
-    this.element.appendChild(component.element);
-    component.element.setAttribute("card", constraints);
-    component.element.setAttribute("old-display", component.element.style.display);
-    if (this.element.childElementCount > 1) {
-      component.element.style.display = "none";
-    }
-    component.element.style.flexGrow = "1";
-    component.element.style.marginLeft = (this.layoutManager).hGap + "px";
-    component.element.style.marginRight = (this.layoutManager).hGap + "px";
-    component.element.style.marginTop = (this.layoutManager).vGap + "px";
-    component.element.style.marginBottom = (this.layoutManager).vGap + "px";
-  }
-
-   addInGridBagLayout(component, constraints) {
-    this.element.appendChild(component.element);
-    let object = (this.layoutManager).addConstraint(component, constraints);
-    this.element.style.setProperty("grid-template-areas", object["grid-template-areas"]);
-    this.element.style.setProperty("grid-template-rows", object["grid-template-rows"]);
-    this.element.style.setProperty("grid-template-columns", object["grid-template-columns"]);
+    this.layoutManager.addInPanel(this, component, constraints);
   }
 }
 /**

@@ -5,9 +5,12 @@
  */
 class LayoutManager {
 
-   css = null;
+   setPanel(panel) {
+  }
 
-  constructor(css) {
-    this.css = css;
+   resetPanel(panel) {
+  }
+
+   addInPanel(panel, component, constraints) {
   }
 }

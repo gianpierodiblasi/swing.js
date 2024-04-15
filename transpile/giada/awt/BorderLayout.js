@@ -36,8 +36,45 @@ class BorderLayout extends LayoutManager {
    vGap = 0;
 
   constructor(hGap, vGap) {
-    super("borderlayout");
+    super();
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
     this.vGap = typeof vGap === "undefined" ? 0 : vGap;
+  }
+
+   setPanel(panel) {
+    let middle = document.createElement("div");
+    middle.classList.add("borderlayout-middle");
+    panel.element.appendChild(middle);
+    panel.element.classList.add("borderlayout");
+  }
+
+   resetPanel(panel) {
+    panel.element.textContent = "";
+    panel.element.classList.remove("borderlayout");
+  }
+
+   addInPanel(panel, component, constraints) {
+    component.element.classList.add("borderlayout-" + (constraints).toLowerCase());
+    switch((constraints)) {
+      case BorderLayout.NORTH:
+        panel.element.appendChild(component.element);
+        component.element.style.marginBottom = this.vGap + "px";
+        break;
+      case BorderLayout.SOUTH:
+        panel.element.appendChild(component.element);
+        component.element.style.marginTop = this.vGap + "px";
+        break;
+      case BorderLayout.WEST:
+        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
+        component.element.style.marginRight = this.hGap + "px";
+        break;
+      case BorderLayout.CENTER:
+        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
+        break;
+      case BorderLayout.EAST:
+        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
+        component.element.style.marginLeft = this.hGap + "px";
+        break;
+    }
   }
 }
