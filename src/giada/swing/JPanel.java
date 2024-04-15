@@ -6,9 +6,12 @@ import giada.awt.BorderLayout;
 import giada.awt.BoxLayout;
 import giada.awt.CardLayout;
 import giada.awt.FlowLayout;
+import giada.awt.GridBagConstraints;
+import giada.awt.GridBagLayout;
 import giada.awt.GridLayout;
 import giada.awt.LayoutManager;
 import static simulation.js.$Globals.$exists;
+import simulation.js.$Object;
 
 /**
  * The javax.swing.JPanel clone
@@ -16,24 +19,24 @@ import static simulation.js.$Globals.$exists;
  * @author gianpiero.diblasi
  */
 public class JPanel extends JComponent {
-
+  
   private LayoutManager layoutManager;
-
+  
   public JPanel() {
     super();
-
+    
     this.element = document.createElement("div");
     this.element.classList.add("jpanel");
-
+    
     this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
   }
-
+  
   public void setLayout(LayoutManager layoutManager) {
     this.purgeOldLayout();
-
+    
     this.layoutManager = layoutManager;
     this.element.classList.add(this.layoutManager.css);
-
+    
     switch (this.layoutManager.css) {
       case "borderlayout":
         this.setBorderLayout();
@@ -53,7 +56,7 @@ public class JPanel extends JComponent {
         break;
     }
   }
-
+  
   private void purgeOldLayout() {
     if ($exists(this.layoutManager)) {
       this.element.textContent = "";
@@ -70,13 +73,13 @@ public class JPanel extends JComponent {
       this.element.style.alignItems = "";
     }
   }
-
+  
   private void setBorderLayout() {
     HTMLElement middle = document.createElement("div");
     middle.classList.add("borderlayout-middle");
     this.element.appendChild(middle);
   }
-
+  
   private void setFlowLayout() {
     switch (((FlowLayout) this.layoutManager).align) {
       case FlowLayout.LEFT:
@@ -92,7 +95,7 @@ public class JPanel extends JComponent {
         break;
     }
   }
-
+  
   private void setGridLayout() {
     String gridTemplateAreas = "";
     for (int row = 1; row <= ((GridLayout) this.layoutManager).rows; row++) {
@@ -106,7 +109,7 @@ public class JPanel extends JComponent {
     this.element.style.setProperty("row-gap", ((GridLayout) this.layoutManager).hGap + "px");
     this.element.style.setProperty("column-gap", ((GridLayout) this.layoutManager).hGap + "px");
   }
-
+  
   private void setBoxLayout() {
     switch (((BoxLayout) this.layoutManager).axis) {
       case BoxLayout.LINE_AXIS:
@@ -121,11 +124,11 @@ public class JPanel extends JComponent {
         break;
     }
   }
-
+  
   public LayoutManager getLayout() {
     return this.layoutManager;
   }
-
+  
   public void add(JComponent component, Object constraints) {
     switch (this.layoutManager.css) {
       case "borderlayout":
@@ -148,10 +151,10 @@ public class JPanel extends JComponent {
         break;
     }
   }
-
+  
   private void addInBorderLayout(JComponent component, Object constraints) {
     component.element.classList.add("borderlayout-" + ((String) constraints).toLowerCase());
-
+    
     switch (((String) constraints)) {
       case BorderLayout.NORTH:
         this.element.appendChild(component.element);
@@ -174,28 +177,28 @@ public class JPanel extends JComponent {
         break;
     }
   }
-
+  
   private void addInFlowLayout(JComponent component, Object constraints) {
     this.element.appendChild(component.element);
-
+    
     component.element.style.marginLeft = ((FlowLayout) this.layoutManager).hGap + "px";
     component.element.style.marginRight = ((FlowLayout) this.layoutManager).hGap + "px";
     component.element.style.marginTop = ((FlowLayout) this.layoutManager).vGap + "px";
     component.element.style.marginBottom = ((FlowLayout) this.layoutManager).vGap + "px";
   }
-
+  
   private void addInGridLayout(JComponent component, Object constraints) {
     this.element.appendChild(component.element);
     component.element.style.setProperty("grid-area", "p" + this.element.childElementCount);
   }
-
+  
   private void addInBoxLayout(JComponent component, Object constraints) {
     this.element.appendChild(component.element);
   }
-
+  
   private void addInCardLayout(JComponent component, Object constraints) {
     this.element.appendChild(component.element);
-
+    
     component.element.setAttribute("card", (String) constraints);
     component.element.setAttribute("old-display", component.element.style.display);
     if (this.element.childElementCount > 1) {
@@ -207,8 +210,13 @@ public class JPanel extends JComponent {
     component.element.style.marginTop = ((CardLayout) this.layoutManager).vGap + "px";
     component.element.style.marginBottom = ((CardLayout) this.layoutManager).vGap + "px";
   }
-
+  
   private void addInGridBagLayout(JComponent component, Object constraints) {
-
+    this.element.appendChild(component.element);
+    
+    $Object object = ((GridBagLayout) this.layoutManager).addConstraint(component, (GridBagConstraints) constraints);
+    this.element.style.setProperty("grid-template-areas", object.$get("grid-template-areas"));
+    this.element.style.setProperty("grid-template-rows", object.$get("grid-template-rows"));
+    this.element.style.setProperty("grid-template-columns", object.$get("grid-template-columns"));
   }
 }

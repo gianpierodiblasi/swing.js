@@ -3,7 +3,6 @@ package giada.swing;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -40,7 +39,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox2 = new JCheckBox();
     jButton1 = new JButton();
 
-    setTitle("Test JFrame1");
+    setTitle("Test JFrame2");
     getContentPane().setLayout(new GridBagLayout());
 
     jLabel1.setText("Face:");

@@ -21,11 +21,11 @@ public class JCheckBox extends JComponent {
     this.element.classList.add("jcheckbox");
 
     this.checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    this.element.appendChild(checkbox);
+    this.checkbox.setAttribute("type", "checkbox");
+    this.element.appendChild(this.checkbox);
 
     this.text = document.createTextNode("");
-    this.element.appendChild(text);
+    this.element.appendChild(this.text);
   }
 
   public void setText(String text) {

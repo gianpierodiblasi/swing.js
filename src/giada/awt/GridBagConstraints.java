@@ -69,8 +69,8 @@ public class GridBagConstraints {
     this.anchor = GridBagConstraints.CENTER;
     this.fill = GridBagConstraints.NONE;
 
-    this.insets = new Insets(0, 0, 0, 0);
-    this.ipadx = 0;
-    this.ipady = 0;
+    this.insets = new Insets(0, 0, 0, 0); //
+    this.ipadx = 0; //
+    this.ipady = 0; //
   }
 }

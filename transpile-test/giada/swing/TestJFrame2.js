@@ -24,7 +24,7 @@ class TestJFrame2 extends JFrame {
     this.jCheckBox1 = new JCheckBox();let jCheckBox1 = this.jCheckBox1;
     this.jCheckBox2 = new JCheckBox();let jCheckBox2 = this.jCheckBox2;
     this.jButton1 = new JButton();let jButton1 = this.jButton1;
-    this.setTitle("Test JFrame1");
+    this.setTitle("Test JFrame2");
     this.getContentPane().setLayout(new GridBagLayout());
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();

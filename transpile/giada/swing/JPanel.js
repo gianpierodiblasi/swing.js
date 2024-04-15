@@ -189,5 +189,10 @@ class JPanel extends JComponent {
   }
 
    addInGridBagLayout(component, constraints) {
+    this.element.appendChild(component.element);
+    let object = (this.layoutManager).addConstraint(component, constraints);
+    this.element.style.setProperty("grid-template-areas", object["grid-template-areas"]);
+    this.element.style.setProperty("grid-template-rows", object["grid-template-rows"]);
+    this.element.style.setProperty("grid-template-columns", object["grid-template-columns"]);
   }
 }

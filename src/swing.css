@@ -63,6 +63,8 @@ html, body {
 
 .jframe.gridbaglayout, .jpanel.gridbaglayout {
   display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .jbutton {
