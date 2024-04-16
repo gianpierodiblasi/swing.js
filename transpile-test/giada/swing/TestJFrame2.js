@@ -12,10 +12,11 @@ class TestJFrame2 extends JFrame {
   }
 
    postInitComponents() {
-    // AbstractComboBoxModelAndRenderer<Integer> modelAndRenderer=new DefaultComboBoxModelAndRenderer<Integer>(this.jComboBox2);
-    // this.sizeModel.addElement(10);
-    // this.sizeModel.addElement(20);
-    // this.sizeModel.addElement(30);
+    let modelAndRenderer = new DefaultComboBoxModelAndRenderer();
+    modelAndRenderer.addElement(10);
+    modelAndRenderer.addElement(20);
+    modelAndRenderer.addElement(30);
+    this.jComboBox2.putClientProperty("model-and-renderer", modelAndRenderer);
   }
 
   /**

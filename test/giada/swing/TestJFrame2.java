@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -17,21 +16,22 @@ import javax.swing.JRadioButton;
  * @author gianpiero.diblasi
  */
 public class TestJFrame2 extends javax.swing.JFrame {
-  
+
   private static final long serialVersionUID = 1;
-  
+
   public TestJFrame2() {
     super();
     this.initComponents();
     this.postInitComponents();
   }
-  
+
   private void postInitComponents() {
-//    AbstractComboBoxModelAndRenderer<Integer> modelAndRenderer=new DefaultComboBoxModelAndRenderer<Integer>(this.jComboBox2);
+    AbstractComboBoxModelAndRenderer<Integer> modelAndRenderer = new DefaultComboBoxModelAndRenderer<>();
+    modelAndRenderer.addElement(10);
+    modelAndRenderer.addElement(20);
+    modelAndRenderer.addElement(30);
     
-//    this.sizeModel.addElement(10);
-//    this.sizeModel.addElement(20);
-//    this.sizeModel.addElement(30);
+    this.jComboBox2.putClientProperty("model-and-renderer", modelAndRenderer);
   }
 
   /**

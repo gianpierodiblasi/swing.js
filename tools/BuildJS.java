@@ -72,10 +72,10 @@ public class BuildJS {
         return null;
       }
     }).collect(Collectors.toList());
-    
+
     nodes.forEach(node -> {
       if (node.parentName != null) {
-        nodes.stream().filter(parent -> parent.name.equals(node.parentName)).findFirst().get().children.add(node);
+        nodes.stream().filter(parent -> parent.name.equals(node.parentName)).findFirst().ifPresentOrElse(parent -> parent.children.add(node), () -> System.err.println(" parent class not found name = " + node.name + ", parentName = " + node.parentName));
       }
     });
 
@@ -103,6 +103,11 @@ public class BuildJS {
     String parentName;
     String content;
     List<TreeNode> children = new ArrayList<>();
+
+    @Override
+    public String toString() {
+      return "*" + name + "*->*" + parentName + "*";
+    }
   }
 
   public static void main(String[] args) throws Exception {

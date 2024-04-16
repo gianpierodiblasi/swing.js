@@ -694,6 +694,55 @@ class GridLayout extends LayoutManager {
   }
 }
 /**
+ * The abstract object to model and render a combobox
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class AbstractComboBoxModelAndRenderer {
+
+   combobox = null;
+
+   elements = new Array();
+
+   getElementAt(index) {
+    return this.elements[index];
+  }
+
+   setComboBox(combobox) {
+    this.combobox = combobox;
+    this.elements.forEach(element => this.addOption(element));
+  }
+
+   addElement(element) {
+    this.elements.push(element);
+    if (this.combobox) {
+      this.addOption(element);
+    }
+  }
+
+   addOption(element) {
+    let option = document.createElement("option");
+    option.textContent = this.render(element);
+    this.combobox.element.appendChild(option);
+  }
+
+   render(element) {
+  }
+}
+/**
+ * The default implementation of the AbstractComboBoxModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
+
+   render(element) {
+    return element.toString();
+  }
+}
+/**
  * The javax.swing.ButtonGroup clone
  *
  * @author gianpiero.diblasi
@@ -898,19 +947,21 @@ class JComboBox extends AbstractButton {
 
   static  MODEL_AND_RENDERER = "model-and-renderer";
 
-  // AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
+   modelAndRenderer = null;
+
   constructor() {
     super();
     this.element = document.createElement("select");
     this.element.classList.add("jcombobox");
-    this.element.onclick = (event) => this.onclick();
+    this.element.onchange = (event) => this.onclick();
   }
 
-  // public Object getSelectedItem() {
-  // return (($HTMLElement) this.element).value;
-  // }
+   getSelectedItem() {
+    return this.modelAndRenderer.getElementAt((this.element).selectedIndex);
+  }
+
   /**
-   * Special use case: in general this method calls
+   * Special use case: in general this method calls the
    * <i>super.putClientProperty</i> implementation, with the following
    * exception: if <i>key</i> = "model-and-renderer" (or the constant value
    * <i>JComboBox.MODEL_AND_RENDERER</i>) then this method sets an object able
@@ -920,12 +971,30 @@ class JComboBox extends AbstractButton {
    * @param value The value
    */
    putClientProperty(key, value) {
-    // if (JComboBox.MODEL_AND_RENDERER == key) {
-    // this.modelAndRenderer = (AbstractComboBoxModelAndRenderer<T>) value;
-    // this.modelAndRenderer.setComboBox(this);
-    // } else {
-    // super.putClientProperty(key, value);
-    // }
+    if (JComboBox.MODEL_AND_RENDERER === key) {
+      this.modelAndRenderer = value;
+      this.modelAndRenderer.setComboBox(this);
+    } else {
+      super.putClientProperty(key, value);
+    }
+  }
+
+  /**
+   * Special use case: in general this method calls the
+   * <i>super.getClientProperty</i> implementation, with the following
+   * exception: if <i>key</i> = "model-and-renderer" (or the constant value
+   * <i>JComboBox.MODEL_AND_RENDERER</i>) then this method gets an object able
+   * to model and render this JComboBox
+   *
+   * @param key The key
+   * @return The value
+   */
+   getClientProperty(key) {
+    if (JComboBox.MODEL_AND_RENDERER === key) {
+      return this.modelAndRenderer;
+    } else {
+      return super.getClientProperty(key);
+    }
   }
 }
 /**
