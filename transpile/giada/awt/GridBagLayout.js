@@ -44,8 +44,12 @@ class GridBagLayout extends LayoutManager {
     for (let y = this.gridTemplateAreas.length; y < constraint.gridy + constraint.gridheight; y++) {
       this.gridTemplateAreas.push(new Array());
     }
+    let maxX = 0;
     for (let y = 0; y < this.gridTemplateAreas.length; y++) {
-      for (let x = this.gridTemplateAreas[y].length; x < constraint.gridx + constraint.gridwidth; x++) {
+      maxX = Math.max(maxX, this.gridTemplateAreas[y].length);
+    }
+    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
+      for (let x = this.gridTemplateAreas[y].length; x < Math.max(maxX, constraint.gridx + constraint.gridwidth); x++) {
         this.gridTemplateAreas[y].push(".");
       }
     }

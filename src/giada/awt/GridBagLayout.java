@@ -56,8 +56,13 @@ public class GridBagLayout implements LayoutManager {
       this.gridTemplateAreas.push(new Array<>());
     }
 
+    int maxX = 0;
     for (int y = 0; y < this.gridTemplateAreas.length; y++) {
-      for (int x = this.gridTemplateAreas.$get(y).length; x < constraint.gridx + constraint.gridwidth; x++) {
+      maxX = Math.max(maxX, this.gridTemplateAreas.$get(y).length);
+    }
+
+    for (int y = 0; y < this.gridTemplateAreas.length; y++) {
+      for (int x = this.gridTemplateAreas.$get(y).length; x < Math.max(maxX, constraint.gridx + constraint.gridwidth); x++) {
         this.gridTemplateAreas.$get(y).push(".");
       }
     }

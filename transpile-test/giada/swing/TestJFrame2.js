@@ -26,6 +26,7 @@ class TestJFrame2 extends JFrame {
    */
    initComponents() {
     let gridBagConstraints = null;
+    this.buttonGroup1 = new ButtonGroup();let buttonGroup1 = this.buttonGroup1;
     this.jLabel1 = new JLabel();let jLabel1 = this.jLabel1;
     this.jLabel2 = new JLabel();let jLabel2 = this.jLabel2;
     this.jComboBox1 = new JComboBox();let jComboBox1 = this.jComboBox1;
@@ -33,10 +34,12 @@ class TestJFrame2 extends JFrame {
     this.jCheckBox1 = new JCheckBox();let jCheckBox1 = this.jCheckBox1;
     this.jCheckBox2 = new JCheckBox();let jCheckBox2 = this.jCheckBox2;
     this.jButton1 = new JButton();let jButton1 = this.jButton1;
+    this.jRadioButton1 = new JRadioButton();let jRadioButton1 = this.jRadioButton1;
+    this.jRadioButton2 = new JRadioButton();let jRadioButton2 = this.jRadioButton2;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
-    layout.columnWidths = [0, 15, 0, 15, 0, ];
-    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, ];
+    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, ];
+    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();
@@ -92,6 +95,21 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.weighty = 100.0;
     this.getContentPane().add(jButton1, gridBagConstraints);
+    buttonGroup1.add(jRadioButton1);
+    jRadioButton1.setSelected(true);
+    jRadioButton1.setText("pomodoro");
+    jRadioButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jRadioButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 8;
+    this.getContentPane().add(jRadioButton1, gridBagConstraints);
+    buttonGroup1.add(jRadioButton2);
+    jRadioButton2.setText("patate");
+    jRadioButton2.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jRadioButton2ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 10;
+    this.getContentPane().add(jRadioButton2, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -107,7 +125,21 @@ class TestJFrame2 extends JFrame {
   }
 
   // GEN-LAST:event_jComboBox2ActionPerformed
+   jRadioButton1ActionPerformed(evt) {
+    // GEN-FIRST:event_jRadioButton1ActionPerformed
+    this.jButton1.setText(this.jRadioButton1.getText());
+  }
+
+  // GEN-LAST:event_jRadioButton1ActionPerformed
+   jRadioButton2ActionPerformed(evt) {
+    // GEN-FIRST:event_jRadioButton2ActionPerformed
+    this.jButton1.setText(this.jRadioButton2.getText());
+  }
+
+  // GEN-LAST:event_jRadioButton2ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
+   buttonGroup1 = null;
+
    jButton1 = null;
 
    jCheckBox1 = null;
@@ -121,5 +153,9 @@ class TestJFrame2 extends JFrame {
    jLabel1 = null;
 
    jLabel2 = null;
+
+   jRadioButton1 = null;
+
+   jRadioButton2 = null;
   // End of variables declaration//GEN-END:variables
 }

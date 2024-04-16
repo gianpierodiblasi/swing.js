@@ -506,8 +506,12 @@ class GridBagLayout extends LayoutManager {
     for (let y = this.gridTemplateAreas.length; y < constraint.gridy + constraint.gridheight; y++) {
       this.gridTemplateAreas.push(new Array());
     }
+    let maxX = 0;
     for (let y = 0; y < this.gridTemplateAreas.length; y++) {
-      for (let x = this.gridTemplateAreas[y].length; x < constraint.gridx + constraint.gridwidth; x++) {
+      maxX = Math.max(maxX, this.gridTemplateAreas[y].length);
+    }
+    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
+      for (let x = this.gridTemplateAreas[y].length; x < Math.max(maxX, constraint.gridx + constraint.gridwidth); x++) {
         this.gridTemplateAreas[y].push(".");
       }
     }
@@ -687,6 +691,19 @@ class GridLayout extends LayoutManager {
    addInPanel(panel, component, constraints) {
     panel.element.appendChild(component.element);
     component.element.style.setProperty("grid-area", "p" + panel.element.childElementCount);
+  }
+}
+/**
+ * The javax.swing.ButtonGroup clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ButtonGroup {
+
+   name = "ButtonGroup_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
+
+   add(button) {
+    button.element.querySelector("[type=radio]").setAttribute("name", this.name);
   }
 }
 /**
@@ -912,6 +929,45 @@ class JComboBox extends AbstractButton {
 
    getSelectedItem() {
     return (this.element).value;
+  }
+}
+/**
+ * The javax.swing.JRadioButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JRadioButton extends AbstractButton {
+
+   radiobutton = null;
+
+   text = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jradiobutton");
+    this.radiobutton = document.createElement("input");
+    this.radiobutton.setAttribute("type", "radio");
+    this.radiobutton.onchange = (event) => this.onclick();
+    this.element.appendChild(this.radiobutton);
+    this.text = document.createTextNode("");
+    this.element.appendChild(this.text);
+  }
+
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+   getText() {
+    return this.text.textContent;
+  }
+
+   setSelected(selected) {
+    this.radiobutton.checked = selected;
+  }
+
+   isSelected() {
+    return this.radiobutton.checked;
   }
 }
 /**
