@@ -3,11 +3,20 @@
  */
 class TestJFrame2 extends JFrame {
 
+   sizeModel = new DefaultComboBoxModel();
+
   static  serialVersionUID = 1;
 
   constructor() {
     super();
     this.initComponents();
+    this.postInitComponents();
+  }
+
+   postInitComponents() {
+    this.sizeModel.addElement(10);
+    this.sizeModel.addElement(20);
+    this.sizeModel.addElement(30);
   }
 
   /**
@@ -48,6 +57,8 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     this.getContentPane().add(jComboBox1, gridBagConstraints);
+    jComboBox2.setModel(this.sizeModel);
+    jComboBox2.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jComboBox2ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 2;
@@ -90,6 +101,12 @@ class TestJFrame2 extends JFrame {
   }
 
   // GEN-LAST:event_jCheckBox1ActionPerformed
+   jComboBox2ActionPerformed(evt) {
+    // GEN-FIRST:event_jComboBox2ActionPerformed
+    this.jButton1.setText(this.jComboBox2.getSelectedItem().toString());
+  }
+
+  // GEN-LAST:event_jComboBox2ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton1 = null;
 

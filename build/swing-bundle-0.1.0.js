@@ -690,6 +690,27 @@ class GridLayout extends LayoutManager {
   }
 }
 /**
+ * The javax.swing.DefaultComboBoxModel clone
+ *
+ * @author gianpiero.diblasi
+ * @param <E> The element type
+ */
+class DefaultComboBoxModel {
+
+   comboBox = null;
+
+   addElement(element) {
+    let option = document.createElement("option");
+    option.setAttribute("value", element.toString());
+    option.textContent = element.toString();
+    this.comboBox.element.appendChild(option);
+  }
+
+   setComboBox(comboBox) {
+    this.comboBox = comboBox;
+  }
+}
+/**
  * The javax.swing.JComponent clone
  *
  * @author gianpiero.diblasi
@@ -871,6 +892,29 @@ class JCheckBox extends AbstractButton {
   }
 }
 /**
+ * The javax.swing.JComboBox clone
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class JComboBox extends AbstractButton {
+
+  constructor() {
+    super();
+    this.element = document.createElement("select");
+    this.element.classList.add("jcombobox");
+    this.element.onclick = (event) => this.onclick();
+  }
+
+   setModel(model) {
+    model.setComboBox(this);
+  }
+
+   getSelectedItem() {
+    return (this.element).value;
+  }
+}
+/**
  * The javax.swing.Box clone
  *
  * @author gianpiero.diblasi
@@ -903,20 +947,6 @@ class Filler extends JComponent {
     if (min.width === 0 && min.height === 0 && pref.width === 0 && pref.height === 0) {
       this.element.style.flexGrow = "1";
     }
-  }
-}
-/**
- * The javax.swing.JComboBox clone
- *
- * @author gianpiero.diblasi
- * @param <T> The type
- */
-class JComboBox extends JComponent {
-
-  constructor() {
-    super();
-    this.element = document.createElement("select");
-    this.element.classList.add("jcombobox");
   }
 }
 /**

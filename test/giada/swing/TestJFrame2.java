@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -14,12 +15,20 @@ import javax.swing.JLabel;
  * @author gianpiero.diblasi
  */
 public class TestJFrame2 extends javax.swing.JFrame {
-
+  
+  private final DefaultComboBoxModel<Integer> sizeModel = new DefaultComboBoxModel<>();
   private static final long serialVersionUID = 1;
-
+  
   public TestJFrame2() {
     super();
     this.initComponents();
+    this.postInitComponents();
+  }
+  
+  private void postInitComponents() {
+    this.sizeModel.addElement(10);
+    this.sizeModel.addElement(20);
+    this.sizeModel.addElement(30);
   }
 
   /**
@@ -66,6 +75,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     getContentPane().add(jComboBox1, gridBagConstraints);
+
+    jComboBox2.setModel(this.sizeModel);
+    jComboBox2.addActionListener(this::jComboBox2ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 2;
@@ -108,12 +120,16 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.jCheckBox2.setSelected(this.jCheckBox1.isSelected());
   }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+  private void jComboBox2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    this.jButton1.setText(this.jComboBox2.getSelectedItem().toString());
+  }//GEN-LAST:event_jComboBox2ActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
   private JCheckBox jCheckBox1;
   private JCheckBox jCheckBox2;
   private JComboBox<String> jComboBox1;
-  private JComboBox<String> jComboBox2;
+  private JComboBox<Integer> jComboBox2;
   private JLabel jLabel1;
   private JLabel jLabel2;
   // End of variables declaration//GEN-END:variables
