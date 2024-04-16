@@ -4,7 +4,7 @@ import def.dom.Element;
 import def.dom.HTMLElement;
 import giada.swing.JComponent;
 import giada.swing.JPanel;
-import simulation.js.$Globals;
+import static simulation.js.$Globals.$typeof;
 
 /**
  * The java.awt.CardLayout clone
@@ -19,8 +19,8 @@ public class CardLayout implements LayoutManager {
   public CardLayout(int hGap, int vGap) {
     super();
 
-    this.hGap = $Globals.$typeof(hGap, "undefined") ? 0 : hGap;
-    this.vGap = $Globals.$typeof(vGap, "undefined") ? 0 : vGap;
+    this.hGap = $typeof(hGap, "undefined") ? 0 : hGap;
+    this.vGap = $typeof(vGap, "undefined") ? 0 : vGap;
   }
 
   @Override

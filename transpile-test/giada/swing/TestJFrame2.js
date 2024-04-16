@@ -86,7 +86,7 @@ class TestJFrame2 extends JFrame {
   // </editor-fold>//GEN-END:initComponents
    jCheckBox1ActionPerformed(evt) {
     // GEN-FIRST:event_jCheckBox1ActionPerformed
-    jCheckBox2.setSelected(jCheckBox1.isSelected());
+    this.jCheckBox2.setSelected(this.jCheckBox1.isSelected());
   }
 
   // GEN-LAST:event_jCheckBox1ActionPerformed

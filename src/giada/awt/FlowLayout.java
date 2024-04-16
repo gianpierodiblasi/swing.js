@@ -2,7 +2,7 @@ package giada.awt;
 
 import giada.swing.JComponent;
 import giada.swing.JPanel;
-import simulation.js.$Globals;
+import static simulation.js.$Globals.$typeof;
 
 /**
  * The java.awt.FlowLayout clone
@@ -25,8 +25,8 @@ public class FlowLayout implements LayoutManager {
     super();
 
     this.align = align;
-    this.hGap = $Globals.$typeof(hGap, "undefined") ? 5 : hGap;
-    this.vGap = $Globals.$typeof(vGap, "undefined") ? 5 : vGap;
+    this.hGap = $typeof(hGap, "undefined") ? 5 : hGap;
+    this.vGap = $typeof(vGap, "undefined") ? 5 : vGap;
   }
 
   @Override

@@ -105,7 +105,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-    jCheckBox2.setSelected(jCheckBox1.isSelected());
+    this.jCheckBox2.setSelected(this.jCheckBox1.isSelected());
   }//GEN-LAST:event_jCheckBox1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
