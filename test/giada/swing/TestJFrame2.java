@@ -203,6 +203,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider4.setOrientation(JSlider.VERTICAL);
     jSlider4.setPaintLabels(true);
     jSlider4.setPaintTicks(true);
+    jSlider4.setPaintTrack(false);
     jSlider4.setValue(230);
     jSlider4.addChangeListener(this::jSlider4StateChanged);
     gridBagConstraints = new GridBagConstraints();

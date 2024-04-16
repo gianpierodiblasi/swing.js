@@ -92,13 +92,22 @@ html, body {
 .jslider {
   display: flex;
 }
+.jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: rgba(255,255,255);
+}
+.jslider > input.no-paint-track::-ms-track {
+  background-color: rgba(255,255,255);
+}
+.jslider > input.no-paint-track::-moz-range-track {
+  background-color: rgba(255,255,255);
+}
 .jslider > datalist {
   justify-content: space-between;
 }
 .jslider-horizontal {
   flex-direction: column;
 }
-.jslider-horizontal.jslider-inverted > input{
+.jslider-horizontal.jslider-inverted > input {
   direction: rtl;
 }
 .jslider-horizontal.jslider-inverted > datalist {

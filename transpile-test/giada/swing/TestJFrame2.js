@@ -168,6 +168,7 @@ class TestJFrame2 extends JFrame {
     jSlider4.setOrientation(JSlider.VERTICAL);
     jSlider4.setPaintLabels(true);
     jSlider4.setPaintTicks(true);
+    jSlider4.setPaintTrack(false);
     jSlider4.setValue(230);
     jSlider4.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider4StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();

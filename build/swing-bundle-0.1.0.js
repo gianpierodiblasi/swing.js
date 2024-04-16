@@ -1288,6 +1288,14 @@ class JSlider extends JComponent {
     }
   }
 
+   setPaintTrack(b) {
+    if (b) {
+      this.slider.classList.remove("no-paint-track");
+    } else {
+      this.slider.classList.add("no-paint-track");
+    }
+  }
+
    setValue(value) {
     this.slider.setAttribute("value", "" + value);
   }
