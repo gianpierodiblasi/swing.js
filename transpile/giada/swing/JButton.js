@@ -3,9 +3,7 @@
  *
  * @author gianpiero.diblasi
  */
-class JButton extends JComponent {
-
-   listeners = new Array();
+class JButton extends AbstractButton {
 
   constructor() {
     super();
@@ -16,21 +14,5 @@ class JButton extends JComponent {
 
    setText(text) {
     this.element.textContent = text;
-  }
-
-   addActionListener(listener) {
-    this.listeners.push(listener);
-  }
-
-   onclick() {
-    let event = new ActionEvent();
-    this.listeners.forEach(listener => {
-      if (typeof listener === "function") {
-        listener(event);
-      } else {
-        listener.actionPerformed(event);
-      }
-    });
-    return null;
   }
 }

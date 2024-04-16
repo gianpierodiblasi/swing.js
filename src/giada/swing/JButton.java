@@ -11,9 +11,7 @@ import static simulation.js.$Globals.$typeof;
  *
  * @author gianpiero.diblasi
  */
-public class JButton extends JComponent {
-
-  private final Array<ActionListener> listeners = new Array<>();
+public class JButton extends AbstractButton {
 
   public JButton() {
     super();
@@ -25,22 +23,5 @@ public class JButton extends JComponent {
 
   public void setText(String text) {
     this.element.textContent = text;
-  }
-
-  public void addActionListener(ActionListener listener) {
-    this.listeners.push(listener);
-  }
-
-  private Object onclick() {
-    ActionEvent event = new ActionEvent();
-
-    this.listeners.forEach(listener -> {
-      if ($typeof(listener, "function")) {
-        listener.$apply(event);
-      } else {
-        listener.actionPerformed(event);
-      }
-    });
-    return null;
   }
 }

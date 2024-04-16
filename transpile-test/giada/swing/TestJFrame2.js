@@ -56,7 +56,9 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.ipady = 10;
     gridBagConstraints.weightx = 100.0;
     this.getContentPane().add(jComboBox2, gridBagConstraints);
+    jCheckBox1.setSelected(true);
     jCheckBox1.setText("Bold");
+    jCheckBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 4;
@@ -82,6 +84,12 @@ class TestJFrame2 extends JFrame {
   }
 
   // </editor-fold>//GEN-END:initComponents
+   jCheckBox1ActionPerformed(evt) {
+    // GEN-FIRST:event_jCheckBox1ActionPerformed
+    jCheckBox2.setSelected(jCheckBox1.isSelected());
+  }
+
+  // GEN-LAST:event_jCheckBox1ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton1 = null;
 

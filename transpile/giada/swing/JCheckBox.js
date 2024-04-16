@@ -3,7 +3,7 @@
  *
  * @author gianpiero.diblasi
  */
-class JCheckBox extends JComponent {
+class JCheckBox extends AbstractButton {
 
    checkbox = null;
 
@@ -22,5 +22,9 @@ class JCheckBox extends JComponent {
 
    setText(text) {
     this.text.textContent = text;
+  }
+
+   setSelected(selected) {
+    this.checkbox.setAttribute("checked", selected ? "checked" : "");
   }
 }

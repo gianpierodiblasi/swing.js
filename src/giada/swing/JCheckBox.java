@@ -9,26 +9,30 @@ import def.dom.Text;
  *
  * @author gianpiero.diblasi
  */
-public class JCheckBox extends JComponent {
-
+public class JCheckBox extends AbstractButton {
+  
   private final Element checkbox;
   private final Text text;
-
+  
   public JCheckBox() {
     super();
-
+    
     this.element = document.createElement("label");
     this.element.classList.add("jcheckbox");
-
+    
     this.checkbox = document.createElement("input");
     this.checkbox.setAttribute("type", "checkbox");
     this.element.appendChild(this.checkbox);
-
+    
     this.text = document.createTextNode("");
     this.element.appendChild(this.text);
   }
-
+  
   public void setText(String text) {
     this.text.textContent = text;
+  }
+  
+  public void setSelected(boolean selected) {
+    this.checkbox.setAttribute("checked", selected ? "checked" : "");
   }
 }

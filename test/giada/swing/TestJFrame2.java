@@ -3,6 +3,7 @@ package giada.swing;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -74,7 +75,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.weightx = 100.0;
     getContentPane().add(jComboBox2, gridBagConstraints);
 
+    jCheckBox1.setSelected(true);
     jCheckBox1.setText("Bold");
+    jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 4;
@@ -100,6 +103,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.weighty = 100.0;
     getContentPane().add(jButton1, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
+
+  private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    jCheckBox2.setSelected(jCheckBox1.isSelected());
+  }//GEN-LAST:event_jCheckBox1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;

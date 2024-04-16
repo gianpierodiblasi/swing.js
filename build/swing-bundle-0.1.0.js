@@ -1,4 +1,56 @@
 /**
+ * The java.awt.Color clone
+ *
+ * @author gianpiero.diblasi
+ */
+class Color {
+
+   red = 0;
+
+   green = 0;
+
+   blue = 0;
+
+  constructor(red, green, blue) {
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+  }
+}
+/**
+ * The java.awt.Dimension clone
+ *
+ * @author gianpiero.diblasi
+ */
+class Dimension {
+
+   width = 0;
+
+   height = 0;
+
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+}
+/**
+ * The java.awt.event.ActionEvent clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionEvent {
+}
+/**
+ * The java.awt.event.ActionListener clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionListener {
+
+   actionPerformed(event) {
+  }
+}
+/**
  * The java.awt.GridBagConstraints clone
  *
  * @author gianpiero.diblasi
@@ -152,16 +204,6 @@ class Insets {
     this.left = left;
     this.bottom = bottom;
     this.right = right;
-  }
-}
-/**
- * The java.awt.event.ActionListener clone
- *
- * @author gianpiero.diblasi
- */
-class ActionListener {
-
-   actionPerformed(event) {
   }
 }
 /**
@@ -648,32 +690,6 @@ class GridLayout extends LayoutManager {
   }
 }
 /**
- * The java.awt.event.ActionEvent clone
- *
- * @author gianpiero.diblasi
- */
-class ActionEvent {
-}
-/**
- * The java.awt.Color clone
- *
- * @author gianpiero.diblasi
- */
-class Color {
-
-   red = 0;
-
-   green = 0;
-
-   blue = 0;
-
-  constructor(red, green, blue) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
-  }
-}
-/**
  * The javax.swing.JComponent clone
  *
  * @author gianpiero.diblasi
@@ -773,6 +789,83 @@ class JComponent {
   }
 }
 /**
+ * The javax.swing.AbstractButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class AbstractButton extends JComponent {
+
+   listeners = new Array();
+
+  constructor() {
+    super();
+  }
+
+   addActionListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onclick() {
+    let event = new ActionEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
+  }
+}
+/**
+ * The javax.swing.JButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JButton extends AbstractButton {
+
+  constructor() {
+    super();
+    this.element = document.createElement("button");
+    this.element.classList.add("jbutton");
+    this.element.onclick = (event) => this.onclick();
+  }
+
+   setText(text) {
+    this.element.textContent = text;
+  }
+}
+/**
+ * The javax.swing.JCheckBox clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JCheckBox extends AbstractButton {
+
+   checkbox = null;
+
+   text = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jcheckbox");
+    this.checkbox = document.createElement("input");
+    this.checkbox.setAttribute("type", "checkbox");
+    this.element.appendChild(this.checkbox);
+    this.text = document.createTextNode("");
+    this.element.appendChild(this.text);
+  }
+
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+   setSelected(selected) {
+    this.checkbox.setAttribute("checked", selected ? "checked" : "");
+  }
+}
+/**
  * The javax.swing.Box clone
  *
  * @author gianpiero.diblasi
@@ -805,68 +898,6 @@ class Filler extends JComponent {
     if (min.width === 0 && min.height === 0 && pref.width === 0 && pref.height === 0) {
       this.element.style.flexGrow = "1";
     }
-  }
-}
-/**
- * The javax.swing.JButton clone
- *
- * @author gianpiero.diblasi
- */
-class JButton extends JComponent {
-
-   listeners = new Array();
-
-  constructor() {
-    super();
-    this.element = document.createElement("button");
-    this.element.classList.add("jbutton");
-    this.element.onclick = (event) => this.onclick();
-  }
-
-   setText(text) {
-    this.element.textContent = text;
-  }
-
-   addActionListener(listener) {
-    this.listeners.push(listener);
-  }
-
-   onclick() {
-    let event = new ActionEvent();
-    this.listeners.forEach(listener => {
-      if (typeof listener === "function") {
-        listener(event);
-      } else {
-        listener.actionPerformed(event);
-      }
-    });
-    return null;
-  }
-}
-/**
- * The javax.swing.JCheckBox clone
- *
- * @author gianpiero.diblasi
- */
-class JCheckBox extends JComponent {
-
-   checkbox = null;
-
-   text = null;
-
-  constructor() {
-    super();
-    this.element = document.createElement("label");
-    this.element.classList.add("jcheckbox");
-    this.checkbox = document.createElement("input");
-    this.checkbox.setAttribute("type", "checkbox");
-    this.element.appendChild(this.checkbox);
-    this.text = document.createTextNode("");
-    this.element.appendChild(this.text);
-  }
-
-   setText(text) {
-    this.text.textContent = text;
   }
 }
 /**
@@ -964,21 +995,5 @@ class JPanel extends JComponent {
 
    add(component, constraints) {
     this.layoutManager.addInPanel(this, component, constraints);
-  }
-}
-/**
- * The java.awt.Dimension clone
- *
- * @author gianpiero.diblasi
- */
-class Dimension {
-
-   width = 0;
-
-   height = 0;
-
-  constructor(width, height) {
-    this.width = width;
-    this.height = height;
   }
 }

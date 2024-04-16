@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10};
+var data = {"i0":10,"i1":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -126,7 +126,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="JComponent.html" title="class in giada.swing">giada.swing.JComponent</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="AbstractButton.html" title="class in giada.swing">giada.swing.AbstractButton</a></li>
+<li>
+<ul class="inheritance">
 <li>giada.swing.JCheckBox</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,7 +142,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public class <span class="typeNameLabel">JCheckBox</span>
-extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></pre>
+extends <a href="AbstractButton.html" title="class in giada.swing">AbstractButton</a></pre>
 <div class="block">The javax.swing.JCheckBox clone</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -203,10 +208,22 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSelected(boolean)">setSelected</a></span>&#8203;(boolean&nbsp;selected)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setText(java.lang.String)">setText</a></span>&#8203;(java.lang.String&nbsp;text)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.giada.swing.AbstractButton">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;giada.swing.<a href="AbstractButton.html" title="class in giada.swing">AbstractButton</a></h3>
+<code><a href="AbstractButton.html#addActionListener(giada.awt.event.ActionListener)">addActionListener</a>, <a href="AbstractButton.html#onclick()">onclick</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.giada.swing.JComponent">
 <!--   -->
@@ -259,10 +276,19 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 <a id="setText(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setText</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setText&#8203;(java.lang.String&nbsp;text)</pre>
+</li>
+</ul>
+<a id="setSelected(boolean)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setSelected</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setSelected&#8203;(boolean&nbsp;selected)</pre>
 </li>
 </ul>
 </li>
