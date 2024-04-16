@@ -15,6 +15,8 @@ public class JPanel extends JComponent {
   private LayoutManager layoutManager;
 
   public JPanel() {
+    super();
+    
     this.element = document.createElement("div");
     this.element.classList.add("jpanel");
 

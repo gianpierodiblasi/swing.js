@@ -90,7 +90,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
     getContentPane().setLayout(new BorderLayout(5, 5));
 
     jPanel1.setBackground(new Color(255, 255, 0));
-    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
+    jPanel1.setLayout(new GridLayout(2, 3, 20, 5));
 
     jButton1.setText("jButton1");
     jButton1.addActionListener(this::jButton1ActionPerformed);

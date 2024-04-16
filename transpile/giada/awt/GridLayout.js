@@ -32,7 +32,7 @@ class GridLayout extends LayoutManager {
       gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
     }
     panel.element.style.setProperty("grid-template-areas", gridTemplateAreas);
-    panel.element.style.setProperty("row-gap", this.hGap + "px");
+    panel.element.style.setProperty("row-gap", this.vGap + "px");
     panel.element.style.setProperty("column-gap", this.hGap + "px");
   }
 

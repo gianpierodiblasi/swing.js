@@ -8,6 +8,7 @@ class JPanel extends JComponent {
    layoutManager = null;
 
   constructor() {
+    super();
     this.element = document.createElement("div");
     this.element.classList.add("jpanel");
     this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

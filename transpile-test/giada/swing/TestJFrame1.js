@@ -65,7 +65,7 @@ class TestJFrame1 extends JFrame {
     this.setTitle("Test JFrame1");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jPanel1.setBackground(new Color(255, 255, 0));
-    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
+    jPanel1.setLayout(new GridLayout(2, 3, 20, 5));
     jButton1.setText("jButton1");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);

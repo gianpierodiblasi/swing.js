@@ -12,7 +12,7 @@ public class JComboBox<T> extends AbstractButton {
   
   public final static String MODEL_AND_RENDERER = "model-and-renderer";
   
-  AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
+//  AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
   
   public JComboBox() {
     super();
@@ -38,11 +38,11 @@ public class JComboBox<T> extends AbstractButton {
   @Override
   @SuppressWarnings("unchecked")
   public void putClientProperty(Object key, Object value) throws Exception {
-    if (JComboBox.MODEL_AND_RENDERER == key) {
-      this.modelAndRenderer = (AbstractComboBoxModelAndRenderer<T>) value;
-      this.modelAndRenderer.setComboBox(this);
-    } else {
-      super.putClientProperty(key, value);
-    }
+//    if (JComboBox.MODEL_AND_RENDERER == key) {
+//      this.modelAndRenderer = (AbstractComboBoxModelAndRenderer<T>) value;
+//      this.modelAndRenderer.setComboBox(this);
+//    } else {
+//      super.putClientProperty(key, value);
+//    }
   }
 }

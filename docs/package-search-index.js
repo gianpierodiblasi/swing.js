@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"giada.awt"},{"l":"giada.awt.event"},{"l":"giada.swing"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"giada.awt.event"}]

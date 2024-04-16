@@ -8,8 +8,7 @@ class JComboBox extends AbstractButton {
 
   static  MODEL_AND_RENDERER = "model-and-renderer";
 
-   modelAndRenderer = null;
-
+  // AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
   constructor() {
     super();
     this.element = document.createElement("select");
@@ -31,11 +30,11 @@ class JComboBox extends AbstractButton {
    * @param value The value
    */
    putClientProperty(key, value) {
-    if (JComboBox.MODEL_AND_RENDERER === key) {
-      this.modelAndRenderer = value;
-      this.modelAndRenderer.setComboBox(this);
-    } else {
-      super.putClientProperty(key, value);
-    }
+    // if (JComboBox.MODEL_AND_RENDERER == key) {
+    // this.modelAndRenderer = (AbstractComboBoxModelAndRenderer<T>) value;
+    // this.modelAndRenderer.setComboBox(this);
+    // } else {
+    // super.putClientProperty(key, value);
+    // }
   }
 }
