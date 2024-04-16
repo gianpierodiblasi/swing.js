@@ -72,7 +72,6 @@ public class BuildJS {
         return null;
       }
     }).collect(Collectors.toList());
-
     
     nodes.forEach(node -> {
       if (node.parentName != null) {
@@ -107,14 +106,12 @@ public class BuildJS {
   }
 
   public static void main(String[] args) throws Exception {
-//    switch (args[0]) {
-//      case "w":
-//        BuildJS.watch(new File(args[1]), new File(args[2]), new File(args[3]));
-//        break;
-//      case "b":
-//        BuildJS.write(new File(args[1]), new File(args[2]), new File(args[3]));
-//    }
-
-    BuildJS.write(new File("C:\\Users\\gianpiero.diblasi\\codice\\Personale\\swing.js\\src\\swing.js"), new File("C:\\Users\\gianpiero.diblasi\\codice\\Personale\\swing.js\\transpile"), new File("C:\\Users\\gianpiero.diblasi\\codice\\Personale\\swing.js\\build\\swing-bundle-0.1.0.js"));
+    switch (args[0]) {
+      case "w":
+        BuildJS.watch(new File(args[1]), new File(args[2]), new File(args[3]));
+        break;
+      case "b":
+        BuildJS.write(new File(args[1]), new File(args[2]), new File(args[3]));
+    }
   }
 }
