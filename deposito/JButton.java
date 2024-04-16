@@ -1,10 +1,6 @@
 package giada.swing;
 
 import static def.dom.Globals.document;
-import def.js.Array;
-import giada.awt.event.ActionEvent;
-import giada.awt.event.ActionListener;
-import static simulation.js.$Globals.$typeof;
 
 /**
  * The javax.swing.JButton clone

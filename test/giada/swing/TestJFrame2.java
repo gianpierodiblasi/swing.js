@@ -18,7 +18,6 @@ import javax.swing.JRadioButton;
  */
 public class TestJFrame2 extends javax.swing.JFrame {
   
-  private final DefaultComboBoxModel<Integer> sizeModel = new DefaultComboBoxModel<>();
   private static final long serialVersionUID = 1;
   
   public TestJFrame2() {
@@ -28,9 +27,11 @@ public class TestJFrame2 extends javax.swing.JFrame {
   }
   
   private void postInitComponents() {
-    this.sizeModel.addElement(10);
-    this.sizeModel.addElement(20);
-    this.sizeModel.addElement(30);
+//    AbstractComboBoxModelAndRenderer<Integer> modelAndRenderer=new DefaultComboBoxModelAndRenderer<Integer>(this.jComboBox2);
+    
+//    this.sizeModel.addElement(10);
+//    this.sizeModel.addElement(20);
+//    this.sizeModel.addElement(30);
   }
 
   /**
@@ -81,7 +82,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     getContentPane().add(jComboBox1, gridBagConstraints);
 
-    jComboBox2.setModel(this.sizeModel);
     jComboBox2.addActionListener(this::jComboBox2ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;

@@ -17,9 +17,6 @@ class JComponent {
 
    clientProperties = new Array();
 
-  constructor() {
-  }
-
    setBackground(color) {
     this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
   }
@@ -94,6 +91,10 @@ class JComponent {
    * @return The value
    */
    getClientProperty(key) {
-    return this.clientProperties[key];
+    if (JComponent.CLASS_LIST === key) {
+      return this.element.classList;
+    } else {
+      return this.clientProperties[key];
+    }
   }
 }

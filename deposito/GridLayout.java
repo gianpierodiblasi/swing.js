@@ -11,10 +11,10 @@ import static simulation.js.$Globals.$typeof;
  */
 public class GridLayout implements LayoutManager {
 
-  public final int rows;
-  public final int cols;
-  public final int hGap;
-  public final int vGap;
+  private final int rows;
+  private final int cols;
+  private final int hGap;
+  private final int vGap;
 
   public GridLayout(int rows, int cols, int hGap, int vGap) {
     super();

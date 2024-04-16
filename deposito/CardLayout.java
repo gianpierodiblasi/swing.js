@@ -13,8 +13,8 @@ import static simulation.js.$Globals.$typeof;
  */
 public class CardLayout implements LayoutManager {
 
-  public final int hGap;
-  public final int vGap;
+  private final int hGap;
+  private final int vGap;
 
   public CardLayout(int hGap, int vGap) {
     super();

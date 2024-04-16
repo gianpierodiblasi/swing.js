@@ -28,8 +28,8 @@ public class BorderLayout implements LayoutManager {
   public static final String LINE_START = BorderLayout.BEFORE_LINE_BEGINS;
   public static final String LINE_END = BorderLayout.AFTER_LINE_ENDS;
 
-  public final int hGap;
-  public final int vGap;
+  private final int hGap;
+  private final int vGap;
 
   public BorderLayout(int hGap, int vGap) {
     super();

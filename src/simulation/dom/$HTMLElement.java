@@ -10,7 +10,7 @@ import def.dom.HTMLElement;
 public class $HTMLElement extends HTMLElement {
 
 //  public double valueAsNumber;
-  public String value;
+//  public String value;
   public boolean checked;
 
 //  public void addEventListener(String event, EventListener listener, $Object options) {

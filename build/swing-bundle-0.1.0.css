@@ -67,5 +67,19 @@ html, body {
   align-content: center;
 }
 
+.jcomponent-box-filler {
+}
 .jbutton {
+}
+.jcheckbox {
+  display: flex;
+  align-items: center;
+}
+.jcombobox {
+}
+.jlabel {
+}
+.jradiobutton {
+  display: flex;
+  align-items: center;
 }

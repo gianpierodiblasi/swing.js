@@ -72,6 +72,8 @@ html, body {
 .jbutton {
 }
 .jcheckbox {
+  display: flex;
+  align-items: center;
 }
 .jcombobox {
 }

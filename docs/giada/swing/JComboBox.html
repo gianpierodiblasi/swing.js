@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -89,9 +95,9 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -120,7 +126,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="JComponent.html" title="class in giada.swing">giada.swing.JComponent</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="AbstractButton.html" title="class in giada.swing">giada.swing.AbstractButton</a></li>
+<li>
+<ul class="inheritance">
 <li>giada.swing.JComboBox&lt;T&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -135,7 +146,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">JComboBox&lt;T&gt;</span>
-extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></pre>
+extends <a href="AbstractButton.html" title="class in giada.swing">AbstractButton</a></pre>
 <div class="block">The javax.swing.JComboBox clone</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -154,6 +165,19 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 <!--   -->
 </a>
 <h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MODEL_AND_RENDERER">MODEL_AND_RENDERER</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="fields.inherited.from.class.giada.swing.JComponent">
 <!--   -->
@@ -192,12 +216,39 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 <!--   -->
 </a>
 <h3>Method Summary</h3>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putClientProperty(java.lang.Object,java.lang.Object)">putClientProperty</a></span>&#8203;(java.lang.Object&nbsp;key,
+                 java.lang.Object&nbsp;value)</code></th>
+<td class="colLast">
+<div class="block">Special use case: in general this method calls
+ <i>super.putClientProperty</i> implementation, with the following
+ exception: if <i>key</i> = "model-and-renderer" (or the constant value
+ <i>JComboBox.MODEL_AND_RENDERER</i>) then this method sets an object able
+ to model and render this JComboBox</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.giada.swing.AbstractButton">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;giada.swing.<a href="AbstractButton.html" title="class in giada.swing">AbstractButton</a></h3>
+<code><a href="AbstractButton.html#addActionListener(giada.awt.event.ActionListener)">addActionListener</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.giada.swing.JComponent">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;giada.swing.<a href="JComponent.html" title="class in giada.swing">JComponent</a></h3>
-<code><a href="JComponent.html#getClientProperty(java.lang.Object)">getClientProperty</a>, <a href="JComponent.html#getName()">getName</a>, <a href="JComponent.html#putClientProperty(java.lang.Object,java.lang.Object)">putClientProperty</a>, <a href="JComponent.html#setBackground(giada.awt.Color)">setBackground</a>, <a href="JComponent.html#setName(java.lang.String)">setName</a></code></li>
+<code><a href="JComponent.html#getClientProperty(java.lang.Object)">getClientProperty</a>, <a href="JComponent.html#getName()">getName</a>, <a href="JComponent.html#setBackground(giada.awt.Color)">setBackground</a>, <a href="JComponent.html#setName(java.lang.String)">setName</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -215,6 +266,29 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="MODEL_AND_RENDERER">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>MODEL_AND_RENDERER</h4>
+<pre>public static final&nbsp;java.lang.String MODEL_AND_RENDERER</pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../constant-values.html#giada.swing.JComboBox.MODEL_AND_RENDERER">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -229,6 +303,42 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 <li class="blockList">
 <h4>JComboBox</h4>
 <pre>public&nbsp;JComboBox()</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- ============ METHOD DETAIL ========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a id="putClientProperty(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>putClientProperty</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;putClientProperty&#8203;(java.lang.Object&nbsp;key,
+                              java.lang.Object&nbsp;value)
+                       throws java.lang.Exception</pre>
+<div class="block">Special use case: in general this method calls
+ <i>super.putClientProperty</i> implementation, with the following
+ exception: if <i>key</i> = "model-and-renderer" (or the constant value
+ <i>JComboBox.MODEL_AND_RENDERER</i>) then this method sets an object able
+ to model and render this JComboBox</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="JComponent.html#putClientProperty(java.lang.Object,java.lang.Object)">putClientProperty</a></code>&nbsp;in class&nbsp;<code><a href="JComponent.html" title="class in giada.swing">JComponent</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key</dd>
+<dd><code>value</code> - The value</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Exception</code> - thrown if <i>key</i> = "class-list" (or the
+ constant value <i>JComponent.CLASS_LIST</i>)</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -289,9 +399,9 @@ extends <a href="JComponent.html" title="class in giada.swing">JComponent</a></p
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">

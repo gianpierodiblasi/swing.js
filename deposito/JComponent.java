@@ -19,9 +19,6 @@ public class JComponent {
   public final static String TOGGLE_CLASS_LIST = "toggle-class-list";
   private final Array<String> clientProperties = new Array<>();
 
-  public JComponent() {
-  }
-
   public void setBackground(Color color) {
     this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
   }
@@ -96,6 +93,10 @@ public class JComponent {
    * @return The value
    */
   public Object getClientProperty(Object key) {
-    return this.clientProperties.$get((String) key);
+    if (JComponent.CLASS_LIST == key) {
+      return this.element.classList;
+    } else {
+      return this.clientProperties.$get((String) key);
+    }
   }
 }

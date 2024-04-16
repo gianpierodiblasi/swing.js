@@ -5,5 +5,6 @@ package giada.awt.event;
  *
  * @author gianpiero.diblasi
  */
+@SuppressWarnings("ClassMayBeInterface")
 public class ActionEvent {
 }

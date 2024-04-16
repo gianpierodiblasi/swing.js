@@ -17,9 +17,9 @@ public class FlowLayout implements LayoutManager {
   public static final int LEADING = 3;
   public static final int TRAILING = 4;
 
-  public final int align;
-  public final int hGap;
-  public final int vGap;
+  private final int align;
+  private final int hGap;
+  private final int vGap;
 
   public FlowLayout(int align, int hGap, int vGap) {
     super();

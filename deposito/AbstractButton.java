@@ -22,7 +22,7 @@ public abstract class AbstractButton extends JComponent {
     this.listeners.push(listener);
   }
 
-  protected Object onclick() {
+  Object onclick() {
     ActionEvent event = new ActionEvent();
 
     this.listeners.forEach(listener -> {

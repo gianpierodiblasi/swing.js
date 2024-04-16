@@ -3,8 +3,6 @@
  */
 class TestJFrame2 extends JFrame {
 
-   sizeModel = new DefaultComboBoxModel();
-
   static  serialVersionUID = 1;
 
   constructor() {
@@ -14,9 +12,10 @@ class TestJFrame2 extends JFrame {
   }
 
    postInitComponents() {
-    this.sizeModel.addElement(10);
-    this.sizeModel.addElement(20);
-    this.sizeModel.addElement(30);
+    // AbstractComboBoxModelAndRenderer<Integer> modelAndRenderer=new DefaultComboBoxModelAndRenderer<Integer>(this.jComboBox2);
+    // this.sizeModel.addElement(10);
+    // this.sizeModel.addElement(20);
+    // this.sizeModel.addElement(30);
   }
 
   /**
@@ -60,7 +59,6 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     this.getContentPane().add(jComboBox1, gridBagConstraints);
-    jComboBox2.setModel(this.sizeModel);
     jComboBox2.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jComboBox2ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;

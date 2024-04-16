@@ -15,7 +15,7 @@ public class BoxLayout implements LayoutManager {
   public static final int LINE_AXIS = 2;
   public static final int PAGE_AXIS = 3;
 
-  public final int axis;
+  private final int axis;
 
   public BoxLayout(JComponent target, int axis) {
     super();
