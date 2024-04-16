@@ -3,7 +3,6 @@ package simulation.js;
 //import simulation.dom.$Document;
 //import simulation.dom.$Navigator;
 //import simulation.dom.$Window;
-
 /**
  * Simulation of the global functions
  *
@@ -14,7 +13,6 @@ public class $Globals {
 //  public static $Navigator navigator;
 //  public static $Window window;
 //  public static $Document document;
-
   public static boolean $exists(Object object) {
     return false;
   }
@@ -24,6 +22,10 @@ public class $Globals {
   }
 
   public static int parseInt(double v) {
+    return 0;
+  }
+
+  public static int parseInt(java.lang.String str) {
     return 0;
   }
 
@@ -46,7 +48,6 @@ public class $Globals {
 //  public static int setInternal($Apply_0_Void function, double milliseconds) {
 //    return 0;
 //  }
-  
   private $Globals() {
   }
 }

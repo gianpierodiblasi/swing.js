@@ -37,10 +37,11 @@ class TestJFrame2 extends JFrame {
     this.jRadioButton1 = new JRadioButton();let jRadioButton1 = this.jRadioButton1;
     this.jRadioButton2 = new JRadioButton();let jRadioButton2 = this.jRadioButton2;
     this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
+    this.jSlider1 = new JSlider();let jSlider1 = this.jSlider1;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
-    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, ];
-    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
+    layout.columnWidths = [0, 15, 0, 15, 0, ];
+    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();
@@ -116,6 +117,19 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridy = 8;
     gridBagConstraints.gridheight = 3;
     this.getContentPane().add(jToggleButton1, gridBagConstraints);
+    jSlider1.setMajorTickSpacing(50);
+    jSlider1.setMaximum(300);
+    jSlider1.setMinimum(100);
+    jSlider1.setPaintLabels(true);
+    jSlider1.setPaintTicks(true);
+    jSlider1.setValue(230);
+    jSlider1.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider1StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 12;
+    gridBagConstraints.gridwidth = 5;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.getContentPane().add(jSlider1, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -143,6 +157,12 @@ class TestJFrame2 extends JFrame {
   }
 
   // GEN-LAST:event_jRadioButton2ActionPerformed
+   jSlider1StateChanged(evt) {
+    // GEN-FIRST:event_jSlider1StateChanged
+    this.jButton1.setText(this.jSlider1.getValueIsAdjusting() + " " + this.jSlider1.getValue());
+  }
+
+  // GEN-LAST:event_jSlider1StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -163,6 +183,8 @@ class TestJFrame2 extends JFrame {
    jRadioButton1 = null;
 
    jRadioButton2 = null;
+
+   jSlider1 = null;
 
    jToggleButton1 = null;
   // End of variables declaration//GEN-END:variables
