@@ -85,6 +85,14 @@ class JSlider extends JComponent {
     }
   }
 
+   setInverted(b) {
+    if (b) {
+      this.element.classList.add("jslider-inverted");
+    } else {
+      this.element.classList.remove("jslider-inverted");
+    }
+  }
+
    setValue(value) {
     this.slider.setAttribute("value", "" + value);
   }

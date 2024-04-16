@@ -97,6 +97,14 @@ public class JSlider extends JComponent {
     }
   }
 
+  public void setInverted(boolean b) {
+    if (b) {
+      this.element.classList.add("jslider-inverted");
+    } else {
+      this.element.classList.remove("jslider-inverted");
+    }
+  }
+
   public void setValue(int value) {
     this.slider.setAttribute("value", "" + value);
   }

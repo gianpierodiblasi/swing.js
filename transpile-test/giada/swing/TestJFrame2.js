@@ -39,10 +39,12 @@ class TestJFrame2 extends JFrame {
     this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
     this.jSlider1 = new JSlider();let jSlider1 = this.jSlider1;
     this.jSlider2 = new JSlider();let jSlider2 = this.jSlider2;
+    this.jSlider3 = new JSlider();let jSlider3 = this.jSlider3;
+    this.jSlider4 = new JSlider();let jSlider4 = this.jSlider4;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
-    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
-    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
+    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
+    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();
@@ -125,9 +127,10 @@ class TestJFrame2 extends JFrame {
     jSlider1.setPaintLabels(true);
     jSlider1.setPaintTicks(true);
     jSlider1.setValue(230);
+    jSlider1.setInverted(true);
     jSlider1.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider1StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 6;
+    gridBagConstraints.gridx = 8;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridheight = 13;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
@@ -138,13 +141,41 @@ class TestJFrame2 extends JFrame {
     jSlider2.setPaintLabels(true);
     jSlider2.setPaintTicks(true);
     jSlider2.setValue(230);
+    jSlider2.setInverted(true);
     jSlider2.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider2StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 14;
+    gridBagConstraints.gridwidth = 5;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.getContentPane().add(jSlider2, gridBagConstraints);
+    jSlider3.setMajorTickSpacing(50);
+    jSlider3.setMaximum(300);
+    jSlider3.setMinimum(100);
+    jSlider3.setPaintLabels(true);
+    jSlider3.setPaintTicks(true);
+    jSlider3.setValue(230);
+    jSlider3.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider3StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 12;
     gridBagConstraints.gridwidth = 5;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.getContentPane().add(jSlider2, gridBagConstraints);
+    this.getContentPane().add(jSlider3, gridBagConstraints);
+    jSlider4.setMajorTickSpacing(50);
+    jSlider4.setMaximum(300);
+    jSlider4.setMinimum(100);
+    jSlider4.setOrientation(JSlider.VERTICAL);
+    jSlider4.setPaintLabels(true);
+    jSlider4.setPaintTicks(true);
+    jSlider4.setValue(230);
+    jSlider4.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider4StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 6;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.fill = GridBagConstraints.VERTICAL;
+    this.getContentPane().add(jSlider4, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -180,10 +211,22 @@ class TestJFrame2 extends JFrame {
   // GEN-LAST:event_jSlider1StateChanged
    jSlider2StateChanged(evt) {
     // GEN-FIRST:event_jSlider2StateChanged
-    // TODO add your handling code here:
+    this.jButton1.setText(this.jSlider2.getValueIsAdjusting() + " " + this.jSlider2.getValue());
   }
 
   // GEN-LAST:event_jSlider2StateChanged
+   jSlider3StateChanged(evt) {
+    // GEN-FIRST:event_jSlider3StateChanged
+    this.jButton1.setText(this.jSlider3.getValueIsAdjusting() + " " + this.jSlider3.getValue());
+  }
+
+  // GEN-LAST:event_jSlider3StateChanged
+   jSlider4StateChanged(evt) {
+    // GEN-FIRST:event_jSlider4StateChanged
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.jSlider4.getValue());
+  }
+
+  // GEN-LAST:event_jSlider4StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -208,6 +251,10 @@ class TestJFrame2 extends JFrame {
    jSlider1 = null;
 
    jSlider2 = null;
+
+   jSlider3 = null;
+
+   jSlider4 = null;
 
    jToggleButton1 = null;
   // End of variables declaration//GEN-END:variables

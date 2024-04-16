@@ -97,7 +97,12 @@ html, body {
 }
 .jslider-horizontal {
   flex-direction: column;
-  align-items: stretch;
+}
+.jslider-horizontal.jslider-inverted > input {
+  direction: rtl;
+}
+.jslider-horizontal.jslider-inverted > datalist {
+  flex-direction: row-reverse;
 }
 .jslider-vertical {
   flex-direction: row;
@@ -107,6 +112,12 @@ html, body {
 }
 .jslider-vertical > datalist {
   flex-direction: column-reverse;
+}
+.jslider-vertical.jslider-inverted > input {
+  transform: rotate(180deg) scale(-1, 1);
+}
+.jslider-vertical.jslider-inverted > datalist {
+  flex-direction: column;
 }
 
 .jtogglebutton {
