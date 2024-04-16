@@ -18,6 +18,9 @@ import static simulation.js.$Globals.parseInt;
  */
 public class JSlider extends JComponent {
 
+  public static final int HORIZONTAL = 0;
+  public static final int VERTICAL = 1;
+
   private int majorTickSpacing;
   private boolean paintTicks;
   private boolean paintLabels;
@@ -34,6 +37,7 @@ public class JSlider extends JComponent {
 
     this.element = document.createElement("div");
     this.element.classList.add("jslider");
+    this.element.classList.add("jslider-horizontal");
 
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
@@ -77,6 +81,20 @@ public class JSlider extends JComponent {
   public void setMinimum(int value) {
     this.slider.setAttribute("min", "" + value);
     this.setDatalist();
+  }
+
+  public void setOrientation(int orientation) {
+    this.element.classList.remove("jslider-horizontal");
+    this.element.classList.remove("jslider-vertical");
+
+    switch (orientation) {
+      case JSlider.HORIZONTAL:
+        this.element.classList.add("jslider-horizontal");
+        break;
+      case JSlider.VERTICAL:
+        this.element.classList.add("jslider-vertical");
+        break;
+    }
   }
 
   public void setValue(int value) {

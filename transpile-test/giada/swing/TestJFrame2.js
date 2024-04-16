@@ -38,9 +38,10 @@ class TestJFrame2 extends JFrame {
     this.jRadioButton2 = new JRadioButton();let jRadioButton2 = this.jRadioButton2;
     this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
     this.jSlider1 = new JSlider();let jSlider1 = this.jSlider1;
+    this.jSlider2 = new JSlider();let jSlider2 = this.jSlider2;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
-    layout.columnWidths = [0, 15, 0, 15, 0, ];
+    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
     layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");
@@ -120,16 +121,30 @@ class TestJFrame2 extends JFrame {
     jSlider1.setMajorTickSpacing(50);
     jSlider1.setMaximum(300);
     jSlider1.setMinimum(100);
+    jSlider1.setOrientation(JSlider.VERTICAL);
     jSlider1.setPaintLabels(true);
     jSlider1.setPaintTicks(true);
     jSlider1.setValue(230);
     jSlider1.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider1StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 6;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.fill = GridBagConstraints.VERTICAL;
+    this.getContentPane().add(jSlider1, gridBagConstraints);
+    jSlider2.setMajorTickSpacing(50);
+    jSlider2.setMaximum(300);
+    jSlider2.setMinimum(100);
+    jSlider2.setPaintLabels(true);
+    jSlider2.setPaintTicks(true);
+    jSlider2.setValue(230);
+    jSlider2.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider2StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 12;
     gridBagConstraints.gridwidth = 5;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.getContentPane().add(jSlider1, gridBagConstraints);
+    this.getContentPane().add(jSlider2, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -163,6 +178,12 @@ class TestJFrame2 extends JFrame {
   }
 
   // GEN-LAST:event_jSlider1StateChanged
+   jSlider2StateChanged(evt) {
+    // GEN-FIRST:event_jSlider2StateChanged
+    // TODO add your handling code here:
+  }
+
+  // GEN-LAST:event_jSlider2StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -185,6 +206,8 @@ class TestJFrame2 extends JFrame {
    jRadioButton2 = null;
 
    jSlider1 = null;
+
+   jSlider2 = null;
 
    jToggleButton1 = null;
   // End of variables declaration//GEN-END:variables

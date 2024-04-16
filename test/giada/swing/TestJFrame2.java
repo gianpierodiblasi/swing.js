@@ -59,10 +59,11 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton2 = new JRadioButton();
     jToggleButton1 = new JToggleButton();
     jSlider1 = new JSlider();
+    jSlider2 = new JSlider();
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
-    layout.columnWidths = new int[] {0, 15, 0, 15, 0};
+    layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
     layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
     getContentPane().setLayout(layout);
 
@@ -152,16 +153,31 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider1.setMajorTickSpacing(50);
     jSlider1.setMaximum(300);
     jSlider1.setMinimum(100);
+    jSlider1.setOrientation(JSlider.VERTICAL);
     jSlider1.setPaintLabels(true);
     jSlider1.setPaintTicks(true);
     jSlider1.setValue(230);
     jSlider1.addChangeListener(this::jSlider1StateChanged);
     gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 6;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.fill = GridBagConstraints.VERTICAL;
+    getContentPane().add(jSlider1, gridBagConstraints);
+
+    jSlider2.setMajorTickSpacing(50);
+    jSlider2.setMaximum(300);
+    jSlider2.setMinimum(100);
+    jSlider2.setPaintLabels(true);
+    jSlider2.setPaintTicks(true);
+    jSlider2.setValue(230);
+    jSlider2.addChangeListener(this::jSlider2StateChanged);
+    gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 12;
     gridBagConstraints.gridwidth = 5;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    getContentPane().add(jSlider1, gridBagConstraints);
+    getContentPane().add(jSlider2, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -184,6 +200,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.jButton1.setText(this.jSlider1.getValueIsAdjusting() + " " + this.jSlider1.getValue());
   }//GEN-LAST:event_jSlider1StateChanged
 
+  private void jSlider2StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jSlider2StateChanged
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
   private JButton jButton1;
@@ -196,6 +216,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton1;
   private JRadioButton jRadioButton2;
   private JSlider jSlider1;
+  private JSlider jSlider2;
   private JToggleButton jToggleButton1;
   // End of variables declaration//GEN-END:variables
 }

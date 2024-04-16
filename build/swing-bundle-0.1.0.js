@@ -1200,6 +1200,10 @@ class JPanel extends JComponent {
  */
 class JSlider extends JComponent {
 
+  static  HORIZONTAL = 0;
+
+  static  VERTICAL = 1;
+
    majorTickSpacing = 0;
 
    paintTicks = false;
@@ -1220,6 +1224,7 @@ class JSlider extends JComponent {
     super();
     this.element = document.createElement("div");
     this.element.classList.add("jslider");
+    this.element.classList.add("jslider-horizontal");
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
@@ -1260,6 +1265,19 @@ class JSlider extends JComponent {
    setMinimum(value) {
     this.slider.setAttribute("min", "" + value);
     this.setDatalist();
+  }
+
+   setOrientation(orientation) {
+    this.element.classList.remove("jslider-horizontal");
+    this.element.classList.remove("jslider-vertical");
+    switch(orientation) {
+      case JSlider.HORIZONTAL:
+        this.element.classList.add("jslider-horizontal");
+        break;
+      case JSlider.VERTICAL:
+        this.element.classList.add("jslider-vertical");
+        break;
+    }
   }
 
    setValue(value) {
