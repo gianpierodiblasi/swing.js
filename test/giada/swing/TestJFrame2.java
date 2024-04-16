@@ -10,6 +10,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -54,6 +55,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton1 = new JButton();
     jRadioButton1 = new JRadioButton();
     jRadioButton2 = new JRadioButton();
+    jToggleButton1 = new JToggleButton();
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
@@ -136,6 +138,13 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 10;
     getContentPane().add(jRadioButton2, gridBagConstraints);
+
+    jToggleButton1.setText("jToggleButton1");
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 4;
+    gridBagConstraints.gridy = 8;
+    gridBagConstraints.gridheight = 3;
+    getContentPane().add(jToggleButton1, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -165,5 +174,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JLabel jLabel2;
   private JRadioButton jRadioButton1;
   private JRadioButton jRadioButton2;
+  private JToggleButton jToggleButton1;
   // End of variables declaration//GEN-END:variables
 }

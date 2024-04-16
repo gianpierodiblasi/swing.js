@@ -36,6 +36,7 @@ class TestJFrame2 extends JFrame {
     this.jButton1 = new JButton();let jButton1 = this.jButton1;
     this.jRadioButton1 = new JRadioButton();let jRadioButton1 = this.jRadioButton1;
     this.jRadioButton2 = new JRadioButton();let jRadioButton2 = this.jRadioButton2;
+    this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
     layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, ];
@@ -109,6 +110,12 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 10;
     this.getContentPane().add(jRadioButton2, gridBagConstraints);
+    jToggleButton1.setText("jToggleButton1");
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 4;
+    gridBagConstraints.gridy = 8;
+    gridBagConstraints.gridheight = 3;
+    this.getContentPane().add(jToggleButton1, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -156,5 +163,7 @@ class TestJFrame2 extends JFrame {
    jRadioButton1 = null;
 
    jRadioButton2 = null;
+
+   jToggleButton1 = null;
   // End of variables declaration//GEN-END:variables
 }
