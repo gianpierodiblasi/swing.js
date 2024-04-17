@@ -20,7 +20,19 @@ There are some special use cases to perform typical JS/CSS tasks by means of Jav
   - methods
     - *putClientProperty*: in general this method calls the *super.putClientProperty* implementation, with the following exception: if *key* = "model-and-renderer" (or the constant value *giada.swing.JComboBox.MODEL_AND_RENDERER*) then this method sets an object able to model and render the JComboBox
     - *getClientProperty*: in general this method calls the *super.getClientProperty* implementation, with the following exception: if *key* = "model-and-renderer" (or the constant value *giada.swing.JComboBox.MODEL_AND_RENDERER*) then this method gets an object able to model and render the JComboBox
-  - model and renderer: to model and render the JComboBox, do not use the *javax.swing* classes and in alternative use a class extending *giada.swing.AbstractComboBoxModelAndRenderer* (for example *giada.swing.DefaultComboBoxModelAndRenderer*); the object has to be set/get by means of the methods *putClientProperty*/*getClientProperty* as described above
+  - model and renderer: to model and render the JComboBox, do not use the *javax.swing* classes and in alternative use a class extending *giada.swing.MnR.AbstractComboBoxModelAndRenderer* (for example *giada.swing.MnR.DefaultComboBoxModelAndRenderer*);
+    the object has to be set/get by means of the methods *putClientProperty*/*getClientProperty* as described above
+- class *JSlider*
+  - methods
+    - *putClientProperty*: in general this method calls the *super.putClientProperty* implementation, with the following exception: if *key* = "model-and-renderer" (or the constant value *giada.swing.JSlider.MODEL_AND_RENDERER*) then this method sets an object able to model and render the JSlider
+    - *getClientProperty*: in general this method calls the *super.getClientProperty* implementation, with the following exception: if *key* = "model-and-renderer" (or the constant value *giada.swing.JSlider.MODEL_AND_RENDERER*) then this method gets an object able to model and render the JSlider
+  - model and renderer: usually a slider is used to set numeric value, but if a class extending *giada.swing.MnR.AbstractSliderModelAndRenderer* (for example *giada.swing.MnR.DefaultSliderModelAndRenderer*) a custom modelling and rendering is obtained;
+    the object has to be set/get by means of the methods *putClientProperty*/*getClientProperty* as described above. When a renderer is set the following methods have no effect:
+    - *setMaximum*
+    - *setMinimum*
+    - *setMajorTickSpacing*
+    - *setPaintTicks*
+    - *setPaintLabels*
 
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)
