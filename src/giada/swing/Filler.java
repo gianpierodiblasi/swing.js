@@ -27,5 +27,4 @@ public class Filler extends JComponent {
       this.element.style.flexGrow = "1";
     }
   }
-
 }

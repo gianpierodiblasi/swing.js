@@ -4,6 +4,7 @@ import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import def.js.Array;
 import def.js.Date;
+import giada.swing.MnR.AbstractSliderModelAndRenderer;
 import giada.swing.event.ChangeEvent;
 import giada.swing.event.ChangeListener;
 import simulation.dom.$HTMLElement;
@@ -20,6 +21,9 @@ public class JSlider extends JComponent {
 
   public static final int HORIZONTAL = 0;
   public static final int VERTICAL = 1;
+  public final static String MODEL_AND_RENDERER = "model-and-renderer";
+
+  private AbstractSliderModelAndRenderer<?> modelAndRenderer;
 
   private int majorTickSpacing;
   private boolean paintTicks;
@@ -49,6 +53,10 @@ public class JSlider extends JComponent {
     this.dataList = document.createElement("datalist");
     this.dataList.id = this.dataListID;
     this.element.appendChild(this.dataList);
+
+    HTMLElement div = document.createElement("div");
+    div.style.display = "none";
+    this.element.appendChild(div);
   }
 
   public void addChangeListener(ChangeListener listener) {
@@ -112,7 +120,7 @@ public class JSlider extends JComponent {
       this.slider.classList.add("no-paint-track");
     }
   }
-  
+
   public void setValue(int value) {
     this.slider.setAttribute("value", "" + value);
   }
@@ -137,20 +145,62 @@ public class JSlider extends JComponent {
   }
 
   private void setDatalist() {
-    this.dataList.textContent = "";
-    this.dataList.style.display = "none";
+    if (!$exists(this.modelAndRenderer)) {
+      this.dataList.textContent = "";
+      this.dataList.style.display = "none";
 
-    if (this.paintTicks && $exists(this.majorTickSpacing)) {
-      if (this.paintLabels) {
-        this.dataList.style.display = "flex";
-      }
+      if (this.paintTicks && $exists(this.majorTickSpacing)) {
+        if (this.paintLabels) {
+          this.dataList.style.display = "flex";
+        }
 
-      for (int tick = parseInt(this.slider.getAttribute("min")); tick <= parseInt(this.slider.getAttribute("max")); tick += this.majorTickSpacing) {
-        HTMLElement option = document.createElement("option");
-        option.setAttribute("value", "" + tick);
-        option.setAttribute("label", "" + tick);
-        this.dataList.appendChild(option);
+        for (int tick = parseInt(this.slider.getAttribute("min")); tick <= parseInt(this.slider.getAttribute("max")); tick += this.majorTickSpacing) {
+          HTMLElement option = document.createElement("option");
+          option.setAttribute("value", "" + tick);
+          option.setAttribute("label", "" + tick);
+          this.dataList.appendChild(option);
+        }
       }
+    }
+  }
+
+  /**
+   * Special use case: in general this method calls the
+   * <i>super.putClientProperty</i> implementation, with the following
+   * exception: if <i>key</i> = "model-and-renderer" (or the constant value
+   * <i>JSlider.MODEL_AND_RENDERER</i>) then this method sets an object able to
+   * model and render this JSlider
+   *
+   * @param key The key
+   * @param value The value
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  public void putClientProperty(Object key, Object value) throws Exception {
+    if (JSlider.MODEL_AND_RENDERER == key) {
+      this.modelAndRenderer = (AbstractSliderModelAndRenderer<?>) value;
+      this.modelAndRenderer.setJSlider(this);
+    } else {
+      super.putClientProperty(key, value);
+    }
+  }
+
+  /**
+   * Special use case: in general this method calls the
+   * <i>super.getClientProperty</i> implementation, with the following
+   * exception: if <i>key</i> = "model-and-renderer" (or the constant value
+   * <i>JSlider.MODEL_AND_RENDERER</i>) then this method gets an object able to
+   * model and render this JSlider
+   *
+   * @param key The key
+   * @return The value
+   */
+  @Override
+  public Object getClientProperty(Object key) {
+    if (JSlider.MODEL_AND_RENDERER == key) {
+      return this.modelAndRenderer;
+    } else {
+      return super.getClientProperty(key);
     }
   }
 }

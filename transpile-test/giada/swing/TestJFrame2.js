@@ -3,6 +3,10 @@
  */
 class TestJFrame2 extends JFrame {
 
+   modelAndRendererS = null;
+
+   modelAndRendererS2 = null;
+
   static  serialVersionUID = 1;
 
   constructor() {
@@ -12,11 +16,21 @@ class TestJFrame2 extends JFrame {
   }
 
    postInitComponents() {
-    let modelAndRenderer = new DefaultComboBoxModelAndRenderer();
-    modelAndRenderer.addElement(10);
-    modelAndRenderer.addElement(20);
-    modelAndRenderer.addElement(30);
-    this.jComboBox2.putClientProperty("model-and-renderer", modelAndRenderer);
+    let modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    this.jComboBox2.putClientProperty("model-and-renderer", modelAndRendererCB);
+    this.modelAndRendererS = new DefaultSliderModelAndRenderer();
+    this.modelAndRendererS.addElement("A");
+    this.modelAndRendererS.addElement("B");
+    this.modelAndRendererS.addElement("C");
+    this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
+    this.modelAndRendererS2 = new TestJFrame2SliderModelAndRenderer();
+    this.modelAndRendererS2.addElement("A");
+    this.modelAndRendererS2.addElement("B");
+    this.modelAndRendererS2.addElement("C");
+    this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
   }
 
   /**
@@ -41,10 +55,12 @@ class TestJFrame2 extends JFrame {
     this.jSlider2 = new JSlider();let jSlider2 = this.jSlider2;
     this.jSlider3 = new JSlider();let jSlider3 = this.jSlider3;
     this.jSlider4 = new JSlider();let jSlider4 = this.jSlider4;
+    this.jSlider5 = new JSlider();let jSlider5 = this.jSlider5;
+    this.jSlider6 = new JSlider();let jSlider6 = this.jSlider6;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
     layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
-    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
+    layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();
@@ -132,7 +148,7 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 8;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.gridheight = 15;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     this.getContentPane().add(jSlider1, gridBagConstraints);
     jSlider2.setMajorTickSpacing(50);
@@ -174,9 +190,23 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 6;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.gridheight = 15;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     this.getContentPane().add(jSlider4, gridBagConstraints);
+    jSlider5.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider5StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 16;
+    gridBagConstraints.gridwidth = 9;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.getContentPane().add(jSlider5, gridBagConstraints);
+    jSlider6.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider6StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 18;
+    gridBagConstraints.gridwidth = 9;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.getContentPane().add(jSlider6, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -228,6 +258,18 @@ class TestJFrame2 extends JFrame {
   }
 
   // GEN-LAST:event_jSlider4StateChanged
+   jSlider5StateChanged(evt) {
+    // GEN-FIRST:event_jSlider5StateChanged
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+  }
+
+  // GEN-LAST:event_jSlider5StateChanged
+   jSlider6StateChanged(evt) {
+    // GEN-FIRST:event_jSlider6StateChanged
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()));
+  }
+
+  // GEN-LAST:event_jSlider6StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -256,6 +298,10 @@ class TestJFrame2 extends JFrame {
    jSlider3 = null;
 
    jSlider4 = null;
+
+   jSlider5 = null;
+
+   jSlider6 = null;
 
    jToggleButton1 = null;
   // End of variables declaration//GEN-END:variables

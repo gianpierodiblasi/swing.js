@@ -9,6 +9,10 @@ class JSlider extends JComponent {
 
   static  VERTICAL = 1;
 
+  static  MODEL_AND_RENDERER = "model-and-renderer";
+
+   modelAndRenderer = null;
+
    majorTickSpacing = 0;
 
    paintTicks = false;
@@ -39,6 +43,9 @@ class JSlider extends JComponent {
     this.dataList = document.createElement("datalist");
     this.dataList.id = this.dataListID;
     this.element.appendChild(this.dataList);
+    let div = document.createElement("div");
+    div.style.display = "none";
+    this.element.appendChild(div);
   }
 
    addChangeListener(listener) {
@@ -125,18 +132,57 @@ class JSlider extends JComponent {
   }
 
    setDatalist() {
-    this.dataList.textContent = "";
-    this.dataList.style.display = "none";
-    if (this.paintTicks && this.majorTickSpacing) {
-      if (this.paintLabels) {
-        this.dataList.style.display = "flex";
+    if (!this.modelAndRenderer) {
+      this.dataList.textContent = "";
+      this.dataList.style.display = "none";
+      if (this.paintTicks && this.majorTickSpacing) {
+        if (this.paintLabels) {
+          this.dataList.style.display = "flex";
+        }
+        for (let tick = parseInt(this.slider.getAttribute("min")); tick <= parseInt(this.slider.getAttribute("max")); tick += this.majorTickSpacing) {
+          let option = document.createElement("option");
+          option.setAttribute("value", "" + tick);
+          option.setAttribute("label", "" + tick);
+          this.dataList.appendChild(option);
+        }
       }
-      for (let tick = parseInt(this.slider.getAttribute("min")); tick <= parseInt(this.slider.getAttribute("max")); tick += this.majorTickSpacing) {
-        let option = document.createElement("option");
-        option.setAttribute("value", "" + tick);
-        option.setAttribute("label", "" + tick);
-        this.dataList.appendChild(option);
-      }
+    }
+  }
+
+  /**
+   * Special use case: in general this method calls the
+   * <i>super.putClientProperty</i> implementation, with the following
+   * exception: if <i>key</i> = "model-and-renderer" (or the constant value
+   * <i>JSlider.MODEL_AND_RENDERER</i>) then this method sets an object able to
+   * model and render this JSlider
+   *
+   * @param key The key
+   * @param value The value
+   */
+   putClientProperty(key, value) {
+    if (JSlider.MODEL_AND_RENDERER === key) {
+      this.modelAndRenderer = value;
+      this.modelAndRenderer.setJSlider(this);
+    } else {
+      super.putClientProperty(key, value);
+    }
+  }
+
+  /**
+   * Special use case: in general this method calls the
+   * <i>super.getClientProperty</i> implementation, with the following
+   * exception: if <i>key</i> = "model-and-renderer" (or the constant value
+   * <i>JSlider.MODEL_AND_RENDERER</i>) then this method gets an object able to
+   * model and render this JSlider
+   *
+   * @param key The key
+   * @return The value
+   */
+   getClientProperty(key) {
+    if (JSlider.MODEL_AND_RENDERER === key) {
+      return this.modelAndRenderer;
+    } else {
+      return super.getClientProperty(key);
     }
   }
 }

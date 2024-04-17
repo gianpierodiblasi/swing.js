@@ -1,5 +1,9 @@
 package giada.swing;
 
+import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
+import giada.swing.MnR.DefaultSliderModelAndRenderer;
+import giada.swing.MnR.AbstractComboBoxModelAndRenderer;
+import giada.swing.MnR.AbstractSliderModelAndRenderer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,6 +24,8 @@ import javax.swing.event.ChangeEvent;
  */
 public class TestJFrame2 extends javax.swing.JFrame {
 
+  private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
+  private transient AbstractSliderModelAndRenderer<String> modelAndRendererS2;
   private static final long serialVersionUID = 1;
 
   public TestJFrame2() {
@@ -29,12 +35,23 @@ public class TestJFrame2 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
-    AbstractComboBoxModelAndRenderer<Integer> modelAndRenderer = new DefaultComboBoxModelAndRenderer<>();
-    modelAndRenderer.addElement(10);
-    modelAndRenderer.addElement(20);
-    modelAndRenderer.addElement(30);
-
-    this.jComboBox2.putClientProperty("model-and-renderer", modelAndRenderer);
+    AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    this.jComboBox2.putClientProperty("model-and-renderer", modelAndRendererCB);
+    
+    this.modelAndRendererS = new DefaultSliderModelAndRenderer<>();
+    this.modelAndRendererS.addElement("A");
+    this.modelAndRendererS.addElement("B");
+    this.modelAndRendererS.addElement("C");
+    this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
+    
+    this.modelAndRendererS2=new TestJFrame2SliderModelAndRenderer();
+    this.modelAndRendererS2.addElement("A");
+    this.modelAndRendererS2.addElement("B");
+    this.modelAndRendererS2.addElement("C");
+    this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
   }
 
   /**
@@ -62,11 +79,13 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider2 = new JSlider();
     jSlider3 = new JSlider();
     jSlider4 = new JSlider();
+    jSlider5 = new JSlider();
+    jSlider6 = new JSlider();
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
     layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
-    layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+    layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
     getContentPane().setLayout(layout);
 
     jLabel1.setText("Face:");
@@ -164,7 +183,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 8;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.gridheight = 15;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     getContentPane().add(jSlider1, gridBagConstraints);
 
@@ -209,9 +228,25 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 6;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 13;
+    gridBagConstraints.gridheight = 15;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     getContentPane().add(jSlider4, gridBagConstraints);
+
+    jSlider5.addChangeListener(this::jSlider5StateChanged);
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 16;
+    gridBagConstraints.gridwidth = 9;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    getContentPane().add(jSlider5, gridBagConstraints);
+
+    jSlider6.addChangeListener(this::jSlider6StateChanged);
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 18;
+    gridBagConstraints.gridwidth = 9;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    getContentPane().add(jSlider6, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -246,6 +281,14 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.jSlider4.getValue());
   }//GEN-LAST:event_jSlider4StateChanged
 
+  private void jSlider5StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider5StateChanged
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+  }//GEN-LAST:event_jSlider5StateChanged
+
+  private void jSlider6StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider6StateChanged
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()));
+  }//GEN-LAST:event_jSlider6StateChanged
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
   private JButton jButton1;
@@ -261,6 +304,8 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JSlider jSlider2;
   private JSlider jSlider3;
   private JSlider jSlider4;
+  private JSlider jSlider5;
+  private JSlider jSlider6;
   private JToggleButton jToggleButton1;
   // End of variables declaration//GEN-END:variables
 }

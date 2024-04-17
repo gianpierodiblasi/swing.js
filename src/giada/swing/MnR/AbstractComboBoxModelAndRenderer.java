@@ -1,8 +1,9 @@
-package giada.swing;
+package giada.swing.MnR;
 
 import def.dom.Element;
 import static def.dom.Globals.document;
 import def.js.Array;
+import giada.swing.JComboBox;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -16,11 +17,11 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
   private JComboBox<T> combobox;
   private final Array<T> elements = new Array<>();
 
-  T getElementAt(int index) {
+  public T getElementAt(int index) {
     return this.elements.$get(index);
   }
 
-  void setComboBox(JComboBox<T> combobox) {
+  public void setComboBox(JComboBox<T> combobox) {
     this.combobox = combobox;
     this.elements.forEach(element -> this.addOption(element));
   }
@@ -39,5 +40,5 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
     this.combobox.element.appendChild(option);
   }
 
-  abstract String render(T element);
+  protected abstract String render(T element);
 }

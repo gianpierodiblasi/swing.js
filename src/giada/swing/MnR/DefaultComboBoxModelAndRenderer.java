@@ -1,4 +1,4 @@
-package giada.swing;
+package giada.swing.MnR;
 
 /**
  * The default implementation of the AbstractComboBoxModelAndRenderer
@@ -9,7 +9,7 @@ package giada.swing;
 public class DefaultComboBoxModelAndRenderer<T> extends AbstractComboBoxModelAndRenderer<T> {
 
   @Override
-  String render(T element) {
+  protected String render(T element) {
     return element.toString();
   }
 }

@@ -1,6 +1,7 @@
 package giada.swing;
 
 import static def.dom.Globals.document;
+import giada.swing.MnR.AbstractComboBoxModelAndRenderer;
 import simulation.dom.$HTMLElement;
 
 /**
