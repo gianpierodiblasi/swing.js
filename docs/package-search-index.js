@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"giada.awt"},{"l":"giada.awt.event"},{"l":"giada.swing"},{"l":"giada.swing.event"},{"l":"giada.swing.MnR"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"giada.awt"},{"l":"giada.awt.event"},{"l":"giada.swing"},{"l":"giada.swing.event"},{"l":"giada.swing.MnR"},{"l":"giada.swing.plaf"}]

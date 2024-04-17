@@ -1,6 +1,7 @@
 package giada.swing;
 
 import static def.dom.Globals.console;
+import giada.swing.plaf.LookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -10,9 +11,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import static simulation.js.$Globals.$exists;
 
 /**
  *
@@ -54,6 +57,10 @@ public class TestJFrame1 extends javax.swing.JFrame {
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
     
     this.jPanel2.add(new JButton());
+    
+    if ($exists(LookAndFeel.CURRENT)) {
+      this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
+    }
   }
 
   /**
@@ -70,13 +77,14 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton5 = new JButton();
     jButton6 = new JButton();
     jButton7 = new JButton();
-    jButton8 = new JButton();
     jSpinner1 = new JSpinner();
+    jLabel1 = new JLabel();
     jPanel2 = new JPanel();
     jButton2 = new JButton();
     filler1 = new Box.Filler(new Dimension(10, 0), new Dimension(10, 0), new Dimension(10, 32767));
     jButton9 = new JButton();
     filler4 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
+    jSpinner2 = new JSpinner();
     jButton11 = new JButton();
     jPanel3 = new JPanel();
     jButton3 = new JButton();
@@ -87,7 +95,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton12 = new JButton();
     filler3 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
     jButton13 = new JButton();
-    jSpinner2 = new JSpinner();
     filler5 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 32767));
 
     setTitle("Test JFrame1");
@@ -109,12 +116,12 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton7.setText("jButton7");
     jPanel1.add(jButton7);
 
-    jButton8.setText("jButton8");
-    jPanel1.add(jButton8);
-
     jSpinner1.setModel(new SpinnerNumberModel(6, 2, 10, 2));
     jSpinner1.addChangeListener(this::jSpinner1StateChanged);
     jPanel1.add(jSpinner1);
+
+    jLabel1.setText("jLabel1");
+    jPanel1.add(jLabel1);
 
     getContentPane().add(jPanel1, BorderLayout.NORTH);
 
@@ -128,6 +135,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton9.setText("jButton9");
     jPanel2.add(jButton9);
     jPanel2.add(filler4);
+    jPanel2.add(jSpinner2);
 
     jButton11.setText("jButton11");
     jPanel2.add(jButton11);
@@ -160,7 +168,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     jButton13.setText("jButton13");
     jPanel4.add(jButton13);
-    jPanel4.add(jSpinner2);
     jPanel4.add(filler5);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_START);
@@ -199,8 +206,8 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private JButton jButton5;
   private JButton jButton6;
   private JButton jButton7;
-  private JButton jButton8;
   private JButton jButton9;
+  private JLabel jLabel1;
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;

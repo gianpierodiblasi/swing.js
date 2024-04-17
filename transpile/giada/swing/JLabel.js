@@ -9,6 +9,9 @@ class JLabel extends JComponent {
     super();
     this.element = document.createElement("label");
     this.element.classList.add("jlabel");
+    if (LookAndFeel.CURRENT) {
+      LookAndFeel.CURRENT.styleJLabel(this);
+    }
   }
 
    setText(text) {

@@ -6,6 +6,7 @@ import giada.swing.MnR.AbstractSliderModelAndRenderer;
 import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
 import giada.swing.MnR.DefaultSliderModelAndRenderer;
 import giada.swing.MnR.HTMLImageSliderModelAndRenderer;
+import giada.swing.plaf.LookAndFeel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,6 +20,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
+import static simulation.js.$Globals.$exists;
 
 /**
  *
@@ -63,6 +65,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
     this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
     this.jSlider7.putClientProperty("model-and-renderer", this.modelAndRendererS3);
+    
+    if ($exists(LookAndFeel.CURRENT)) {
+      this.jLabel3.setText(LookAndFeel.CURRENT.getDescription());
+    }
   }
 
   /**
@@ -93,29 +99,30 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider5 = new JSlider();
     jSlider6 = new JSlider();
     jSlider7 = new JSlider();
+    jLabel3 = new JLabel();
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
-    layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
-    layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+    layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
+    layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
     getContentPane().setLayout(layout);
 
     jLabel1.setText("Face:");
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.anchor = GridBagConstraints.EAST;
     getContentPane().add(jLabel1, gridBagConstraints);
 
     jLabel2.setText("Size:");
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
+    gridBagConstraints.gridy = 4;
     gridBagConstraints.anchor = GridBagConstraints.EAST;
     getContentPane().add(jLabel2, gridBagConstraints);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.insets = new Insets(5, 5, 5, 5);
@@ -124,7 +131,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jComboBox2.addActionListener(this::jComboBox2ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
+    gridBagConstraints.gridy = 4;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     gridBagConstraints.ipadx = 10;
     gridBagConstraints.ipady = 10;
@@ -136,7 +143,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
+    gridBagConstraints.gridy = 6;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.weighty = 100.0;
     getContentPane().add(jCheckBox1, gridBagConstraints);
@@ -144,7 +151,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox2.setText("Italic");
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 6;
+    gridBagConstraints.gridy = 8;
     gridBagConstraints.weightx = 100.0;
     gridBagConstraints.weighty = 100.0;
     getContentPane().add(jCheckBox2, gridBagConstraints);
@@ -152,7 +159,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton1.setText("jButton1");
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 4;
-    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.gridheight = 7;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 100.0;
@@ -165,7 +172,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton1.addActionListener(this::jRadioButton1ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 8;
+    gridBagConstraints.gridy = 10;
     getContentPane().add(jRadioButton1, gridBagConstraints);
 
     buttonGroup1.add(jRadioButton2);
@@ -173,13 +180,13 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton2.addActionListener(this::jRadioButton2ActionPerformed);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 10;
+    gridBagConstraints.gridy = 12;
     getContentPane().add(jRadioButton2, gridBagConstraints);
 
     jToggleButton1.setText("jToggleButton1");
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 4;
-    gridBagConstraints.gridy = 8;
+    gridBagConstraints.gridy = 10;
     gridBagConstraints.gridheight = 3;
     getContentPane().add(jToggleButton1, gridBagConstraints);
 
@@ -194,7 +201,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider1.addChangeListener(this::jSlider1StateChanged);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 8;
-    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.gridheight = 15;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     getContentPane().add(jSlider1, gridBagConstraints);
@@ -209,7 +216,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider2.addChangeListener(this::jSlider2StateChanged);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 14;
+    gridBagConstraints.gridy = 16;
     gridBagConstraints.gridwidth = 5;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     getContentPane().add(jSlider2, gridBagConstraints);
@@ -223,7 +230,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider3.addChangeListener(this::jSlider3StateChanged);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 12;
+    gridBagConstraints.gridy = 14;
     gridBagConstraints.gridwidth = 5;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     getContentPane().add(jSlider3, gridBagConstraints);
@@ -239,7 +246,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider4.addChangeListener(this::jSlider4StateChanged);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 6;
-    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.gridheight = 15;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     getContentPane().add(jSlider4, gridBagConstraints);
@@ -247,7 +254,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider5.addChangeListener(this::jSlider5StateChanged);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 16;
+    gridBagConstraints.gridy = 18;
     gridBagConstraints.gridwidth = 9;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     getContentPane().add(jSlider5, gridBagConstraints);
@@ -255,7 +262,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider6.addChangeListener(this::jSlider6StateChanged);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 18;
+    gridBagConstraints.gridy = 20;
     gridBagConstraints.gridwidth = 9;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     getContentPane().add(jSlider6, gridBagConstraints);
@@ -263,11 +270,18 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider7.setOrientation(JSlider.VERTICAL);
     jSlider7.addChangeListener(this::jSlider7StateChanged);
     gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 14;
-    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridx = 10;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.gridheight = 19;
     gridBagConstraints.fill = GridBagConstraints.VERTICAL;
     getContentPane().add(jSlider7, gridBagConstraints);
+
+    jLabel3.setText("jLabel3");
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridwidth = 11;
+    getContentPane().add(jLabel3, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -323,6 +337,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JComboBox<Integer> jComboBox2;
   private JLabel jLabel1;
   private JLabel jLabel2;
+  private JLabel jLabel3;
   private JRadioButton jRadioButton1;
   private JRadioButton jRadioButton2;
   private JSlider jSlider1;

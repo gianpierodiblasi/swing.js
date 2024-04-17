@@ -10,6 +10,9 @@ class JButton extends AbstractButton {
     this.element = document.createElement("button");
     this.element.classList.add("jbutton");
     this.element.onclick = (event) => this.onclick();
+    if (LookAndFeel.CURRENT) {
+      LookAndFeel.CURRENT.styleJButton(this);
+    }
   }
 
    setText(text) {
