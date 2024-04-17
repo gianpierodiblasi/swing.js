@@ -3,8 +3,8 @@ package giada.swing;
 import giada.swing.MnR.AbstractComboBoxModelAndRenderer;
 import giada.swing.MnR.AbstractSliderModelAndRenderer;
 import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
-import giada.swing.MnR.DefaultHTMLImageProducer;
 import giada.swing.MnR.DefaultSliderModelAndRenderer;
+import giada.swing.MnR.HTMLImageProducer;
 import giada.swing.MnR.HTMLImageSliderModelAndRenderer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,7 +27,7 @@ import javax.swing.event.ChangeEvent;
 public class TestJFrame2 extends javax.swing.JFrame {
 
   private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
-  private transient AbstractSliderModelAndRenderer<DefaultHTMLImageProducer> modelAndRendererS2;
+  private transient AbstractSliderModelAndRenderer<HTMLImageProducer<String>> modelAndRendererS2;
   private static final long serialVersionUID = 1;
 
   public TestJFrame2() {
@@ -50,9 +50,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
 
     this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
-    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
-    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
-    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
     this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
   }
 
@@ -288,7 +288,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   }//GEN-LAST:event_jSlider5StateChanged
 
   private void jSlider6StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider6StateChanged
-    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()));
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }//GEN-LAST:event_jSlider6StateChanged
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

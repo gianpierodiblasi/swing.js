@@ -1456,7 +1456,8 @@ class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
  * An AbstractSliderModelAndRenderer able to render an HTML image
  *
  * @author gianpiero.diblasi
- * @param <T> The type
+ * @param <T> The image producer
+ * @param <S> The type
  */
 class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
@@ -1478,26 +1479,35 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
   }
 }
 /**
- * The interface of an object aple to produce an HTML image element
+ * The interface of an object able to produce an HTML image element to use in an
+ * AbstractSliderModelAndRenderer
  *
  * @author gianpiero.diblasi
+ * @param <T> The value type of the AbstractSliderModelAndRenderer
  */
 class HTMLImageProducer {
 
    produce() {
+  }
+
+   getValue() {
   }
 }
 /**
  * The default implementation of the HTMLImageProducer
  *
  * @author gianpiero.diblasi
+ * @param <T> The value type of the AbstractSliderModelAndRenderer
  */
 class DefaultHTMLImageProducer extends HTMLImageProducer {
 
+   value = null;
+
    src = null;
 
-  constructor(src) {
+  constructor(value, src) {
     super();
+    this.value = value;
     this.src = src;
   }
 
@@ -1505,5 +1515,9 @@ class DefaultHTMLImageProducer extends HTMLImageProducer {
     let img = document.createElement("img");
     img.src = this.src;
     return img;
+  }
+
+   getValue() {
+    return this.value;
   }
 }

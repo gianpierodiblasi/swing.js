@@ -8,9 +8,10 @@ import simulation.dom.$Image;
  * An AbstractSliderModelAndRenderer able to render an HTML image
  *
  * @author gianpiero.diblasi
- * @param <T> The type
+ * @param <T> The image producer
+ * @param <S> The type
  */
-public class HTMLImageSliderModelAndRenderer<T extends HTMLImageProducer> extends AbstractSliderModelAndRenderer<T> {
+public class HTMLImageSliderModelAndRenderer<T extends HTMLImageProducer<S>, S> extends AbstractSliderModelAndRenderer<T> {
 
   public HTMLImageSliderModelAndRenderer() {
     super(false);

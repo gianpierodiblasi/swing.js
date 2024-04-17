@@ -7,13 +7,16 @@ import simulation.dom.$Image;
  * The default implementation of the HTMLImageProducer
  *
  * @author gianpiero.diblasi
+ * @param <T> The value type of the AbstractSliderModelAndRenderer
  */
-public class DefaultHTMLImageProducer implements HTMLImageProducer {
+public class DefaultHTMLImageProducer<T> implements HTMLImageProducer<T> {
 
+  private final T value;
   private final String src;
 
-  public DefaultHTMLImageProducer(String src) {
+  public DefaultHTMLImageProducer(T value, String src) {
     super();
+    this.value = value;
     this.src = src;
   }
 
@@ -22,5 +25,10 @@ public class DefaultHTMLImageProducer implements HTMLImageProducer {
     $Image img = ($Image) document.createElement("img");
     img.src = this.src;
     return img;
+  }
+
+  @Override
+  public T getValue() {
+    return this.value;
   }
 }

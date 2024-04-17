@@ -27,9 +27,9 @@ class TestJFrame2 extends JFrame {
     this.modelAndRendererS.addElement("C");
     this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
     this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer();
-    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
-    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
-    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
     this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
   }
 
@@ -266,7 +266,7 @@ class TestJFrame2 extends JFrame {
   // GEN-LAST:event_jSlider5StateChanged
    jSlider6StateChanged(evt) {
     // GEN-FIRST:event_jSlider6StateChanged
-    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()));
+    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider6StateChanged

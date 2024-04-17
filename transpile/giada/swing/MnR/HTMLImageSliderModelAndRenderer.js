@@ -2,7 +2,8 @@
  * An AbstractSliderModelAndRenderer able to render an HTML image
  *
  * @author gianpiero.diblasi
- * @param <T> The type
+ * @param <T> The image producer
+ * @param <S> The type
  */
 class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
