@@ -23,5 +23,4 @@ public class DefaultHTMLImageProducer implements HTMLImageProducer {
     img.src = this.src;
     return img;
   }
-
 }

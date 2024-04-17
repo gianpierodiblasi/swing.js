@@ -13,8 +13,11 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
    render(element, slider, dataList, noDataList, option) {
     let img = element.produce();
     img.onload = (event) => {
-      (slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
-      (slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+      if (slider.element.classList.contains("jslider-horizontal")) {
+        (slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
+        (slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+      } else {
+      }
       return null;
     };
     noDataList.appendChild(img);

@@ -20,8 +20,12 @@ public class HTMLImageSliderModelAndRenderer<T extends HTMLImageProducer> extend
   protected void render(T element, JSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option) {
     $Image img = element.produce();
     img.onload = (event) -> {
-      ((HTMLElement) slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
-      ((HTMLElement) slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+      if (slider.element.classList.contains("jslider-horizontal")) {
+        ((HTMLElement) slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
+        ((HTMLElement) slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+      } else {
+      }
+
       return null;
     };
     noDataList.appendChild(img);
