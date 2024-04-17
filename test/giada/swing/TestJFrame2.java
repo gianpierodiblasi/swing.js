@@ -1,9 +1,11 @@
 package giada.swing;
 
-import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
-import giada.swing.MnR.DefaultSliderModelAndRenderer;
 import giada.swing.MnR.AbstractComboBoxModelAndRenderer;
 import giada.swing.MnR.AbstractSliderModelAndRenderer;
+import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
+import giada.swing.MnR.DefaultHTMLImageProducer;
+import giada.swing.MnR.DefaultSliderModelAndRenderer;
+import giada.swing.MnR.HTMLImageSliderModelAndRenderer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,7 +27,7 @@ import javax.swing.event.ChangeEvent;
 public class TestJFrame2 extends javax.swing.JFrame {
 
   private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
-  private transient AbstractSliderModelAndRenderer<String> modelAndRendererS2;
+  private transient AbstractSliderModelAndRenderer<DefaultHTMLImageProducer> modelAndRendererS2;
   private static final long serialVersionUID = 1;
 
   public TestJFrame2() {
@@ -40,17 +42,17 @@ public class TestJFrame2 extends javax.swing.JFrame {
     modelAndRendererCB.addElement(20);
     modelAndRendererCB.addElement(30);
     this.jComboBox2.putClientProperty("model-and-renderer", modelAndRendererCB);
-    
+
     this.modelAndRendererS = new DefaultSliderModelAndRenderer<>();
     this.modelAndRendererS.addElement("A");
     this.modelAndRendererS.addElement("B");
     this.modelAndRendererS.addElement("C");
     this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
-    
-    this.modelAndRendererS2=new TestJFrame2SliderModelAndRenderer();
-    this.modelAndRendererS2.addElement("A");
-    this.modelAndRendererS2.addElement("B");
-    this.modelAndRendererS2.addElement("C");
+
+    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
+    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
+    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
+    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
     this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
   }
 

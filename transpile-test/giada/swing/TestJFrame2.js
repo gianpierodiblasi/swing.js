@@ -26,10 +26,10 @@ class TestJFrame2 extends JFrame {
     this.modelAndRendererS.addElement("B");
     this.modelAndRendererS.addElement("C");
     this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
-    this.modelAndRendererS2 = new TestJFrame2SliderModelAndRenderer();
-    this.modelAndRendererS2.addElement("A");
-    this.modelAndRendererS2.addElement("B");
-    this.modelAndRendererS2.addElement("C");
+    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
+    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
+    this.modelAndRendererS2.addElement(new DefaultHTMLImageProducer("../../swing.png"));
     this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
   }
 

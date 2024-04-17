@@ -1332,3 +1332,175 @@ class JSlider extends JComponent {
     }
   }
 }
+/**
+ * The abstract object to model and render a combobox
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class AbstractComboBoxModelAndRenderer {
+
+   combobox = null;
+
+   elements = new Array();
+
+   getElementAt(index) {
+    return this.elements[index];
+  }
+
+   setComboBox(combobox) {
+    this.combobox = combobox;
+    this.elements.forEach(element => this.addOption(element));
+  }
+
+   addElement(element) {
+    this.elements.push(element);
+    if (this.combobox) {
+      this.addOption(element);
+    }
+  }
+
+   addOption(element) {
+    let option = document.createElement("option");
+    option.textContent = this.render(element);
+    this.combobox.element.appendChild(option);
+  }
+
+   render(element) {
+  }
+}
+/**
+ * The default implementation of the AbstractComboBoxModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
+
+   render(element) {
+    return element.toString();
+  }
+}
+/**
+ * The abstract object to model and render a slider
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class AbstractSliderModelAndRenderer {
+
+   slider = null;
+
+   renderByDataList = false;
+
+   elements = new Array();
+
+  constructor(renderByDataList) {
+    this.renderByDataList = renderByDataList;
+  }
+
+   getElementAt(index) {
+    return this.elements[index];
+  }
+
+   setJSlider(slider) {
+    this.slider = slider;
+    this.setDatalist();
+  }
+
+   addElement(element) {
+    this.elements.push(element);
+    if (this.slider) {
+      this.setDatalist();
+    }
+  }
+
+   setDatalist() {
+    this.slider.setValue(0);
+    this.slider.setMinimum(0);
+    this.slider.setMaximum(this.elements.length - 1);
+    let dataList = this.slider.element.querySelector("datalist");
+    dataList.textContent = "";
+    dataList.style.display = this.renderByDataList ? "flex" : "none";
+    let noDataList = this.slider.element.querySelector("div");
+    noDataList.textContent = "";
+    noDataList.style.display = !this.renderByDataList ? "flex" : "none";
+    this.elements.forEach((element, index, array) => {
+      let option = document.createElement("option");
+      option.setAttribute("value", "" + index);
+      this.render(element, this.slider, dataList, noDataList, option);
+      dataList.appendChild(option);
+    });
+  }
+
+   render(element, slider, dataList, noDataList, option) {
+  }
+}
+/**
+ * The default implementation of the AbstractSliderModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
+
+  constructor() {
+    super(true);
+  }
+
+   render(element, slider, dataList, noDataList, option) {
+    option.setAttribute("label", element.toString());
+  }
+}
+/**
+ * An AbstractSliderModelAndRenderer able to render an HTML image
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
+
+  constructor() {
+    super(false);
+  }
+
+   render(element, slider, dataList, noDataList, option) {
+    let img = element.produce();
+    img.onload = (event) => {
+      (slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
+      (slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+      return null;
+    };
+    noDataList.appendChild(img);
+  }
+}
+/**
+ * The interface of an object aple to produce an HTML image element
+ *
+ * @author gianpiero.diblasi
+ */
+class HTMLImageProducer {
+
+   produce() {
+  }
+}
+/**
+ * The default implementation of the HTMLImageProducer
+ *
+ * @author gianpiero.diblasi
+ */
+class DefaultHTMLImageProducer extends HTMLImageProducer {
+
+   src = null;
+
+  constructor(src) {
+    super();
+    this.src = src;
+  }
+
+   produce() {
+    let img = document.createElement("img");
+    img.src = this.src;
+    return img;
+  }
+}
