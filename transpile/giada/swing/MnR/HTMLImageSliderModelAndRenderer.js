@@ -16,8 +16,10 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
     img.onload = (event) => {
       if (slider.element.classList.contains("jslider-horizontal")) {
         (slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
-        (slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+        (slider.element.querySelector("input")).style.marginRight = (img.width / 2) + "px";
       } else {
+        (slider.element.querySelector("input")).style.marginTop = (img.height / 2) + "px";
+        (slider.element.querySelector("input")).style.marginBottom = (img.height / 2) + "px";
       }
       return null;
     };

@@ -7,6 +7,8 @@ class TestJFrame2 extends JFrame {
 
    modelAndRendererS2 = null;
 
+   modelAndRendererS3 = null;
+
   static  serialVersionUID = 1;
 
   constructor() {
@@ -30,7 +32,14 @@ class TestJFrame2 extends JFrame {
     this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
     this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
     this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
     this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
+    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
+    this.jSlider7.putClientProperty("model-and-renderer", this.modelAndRendererS3);
   }
 
   /**
@@ -57,9 +66,10 @@ class TestJFrame2 extends JFrame {
     this.jSlider4 = new JSlider();let jSlider4 = this.jSlider4;
     this.jSlider5 = new JSlider();let jSlider5 = this.jSlider5;
     this.jSlider6 = new JSlider();let jSlider6 = this.jSlider6;
+    this.jSlider7 = new JSlider();let jSlider7 = this.jSlider7;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
-    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
+    layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
     layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, ];
     this.getContentPane().setLayout(layout);
     jLabel1.setText("Face:");
@@ -207,6 +217,14 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridwidth = 9;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     this.getContentPane().add(jSlider6, gridBagConstraints);
+    jSlider7.setOrientation(JSlider.VERTICAL);
+    jSlider7.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider7StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 14;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 19;
+    gridBagConstraints.fill = GridBagConstraints.VERTICAL;
+    this.getContentPane().add(jSlider7, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -260,16 +278,22 @@ class TestJFrame2 extends JFrame {
   // GEN-LAST:event_jSlider4StateChanged
    jSlider5StateChanged(evt) {
     // GEN-FIRST:event_jSlider5StateChanged
-    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+    this.jButton1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
   }
 
   // GEN-LAST:event_jSlider5StateChanged
    jSlider6StateChanged(evt) {
     // GEN-FIRST:event_jSlider6StateChanged
-    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
+    this.jButton1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider6StateChanged
+   jSlider7StateChanged(evt) {
+    // GEN-FIRST:event_jSlider7StateChanged
+    this.jButton1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
+  }
+
+  // GEN-LAST:event_jSlider7StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -302,6 +326,8 @@ class TestJFrame2 extends JFrame {
    jSlider5 = null;
 
    jSlider6 = null;
+
+   jSlider7 = null;
 
    jToggleButton1 = null;
   // End of variables declaration//GEN-END:variables

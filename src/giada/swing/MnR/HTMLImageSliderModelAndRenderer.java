@@ -23,8 +23,10 @@ public class HTMLImageSliderModelAndRenderer<T extends HTMLImageProducer<S>, S> 
     img.onload = (event) -> {
       if (slider.element.classList.contains("jslider-horizontal")) {
         ((HTMLElement) slider.element.querySelector("input")).style.marginLeft = (img.width / 2) + "px";
-        ((HTMLElement) slider.element.querySelector("input")).style.marginRight = (img.height / 2) + "px";
+        ((HTMLElement) slider.element.querySelector("input")).style.marginRight = (img.width / 2) + "px";
       } else {
+        ((HTMLElement) slider.element.querySelector("input")).style.marginTop = (img.height / 2) + "px";
+        ((HTMLElement) slider.element.querySelector("input")).style.marginBottom = (img.height / 2) + "px";
       }
 
       return null;

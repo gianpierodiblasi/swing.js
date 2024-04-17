@@ -28,6 +28,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
   private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
   private transient AbstractSliderModelAndRenderer<HTMLImageProducer<String>> modelAndRendererS2;
+  private transient AbstractSliderModelAndRenderer<HTMLImageProducer<String>> modelAndRendererS3;
   private static final long serialVersionUID = 1;
 
   public TestJFrame2() {
@@ -53,7 +54,15 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
     this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
     this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
     this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
+    
+    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
+    this.jSlider7.putClientProperty("model-and-renderer", this.modelAndRendererS3);
   }
 
   /**
@@ -83,10 +92,11 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider4 = new JSlider();
     jSlider5 = new JSlider();
     jSlider6 = new JSlider();
+    jSlider7 = new JSlider();
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
-    layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
+    layout.columnWidths = new int[] {0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0};
     layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
     getContentPane().setLayout(layout);
 
@@ -249,6 +259,15 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.gridwidth = 9;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     getContentPane().add(jSlider6, gridBagConstraints);
+
+    jSlider7.setOrientation(JSlider.VERTICAL);
+    jSlider7.addChangeListener(this::jSlider7StateChanged);
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 14;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 19;
+    gridBagConstraints.fill = GridBagConstraints.VERTICAL;
+    getContentPane().add(jSlider7, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -284,12 +303,16 @@ public class TestJFrame2 extends javax.swing.JFrame {
   }//GEN-LAST:event_jSlider4StateChanged
 
   private void jSlider5StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider5StateChanged
-    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+    this.jButton1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
   }//GEN-LAST:event_jSlider5StateChanged
 
   private void jSlider6StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider6StateChanged
-    this.jButton1.setText(this.jSlider4.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
+    this.jButton1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }//GEN-LAST:event_jSlider6StateChanged
+
+  private void jSlider7StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider7StateChanged
+    this.jButton1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
+  }//GEN-LAST:event_jSlider7StateChanged
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
@@ -308,6 +331,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JSlider jSlider4;
   private JSlider jSlider5;
   private JSlider jSlider6;
+  private JSlider jSlider7;
   private JToggleButton jToggleButton1;
   // End of variables declaration//GEN-END:variables
 }

@@ -18,6 +18,8 @@ class TestJFrame2HTMLImageProducer extends DefaultHTMLImageProducer {
       case "C":
         img.style.filter = "drop-shadow(2px 4px 6px black)";
         break;
+      case "D":
+        break;
     }
     return img;
   }
