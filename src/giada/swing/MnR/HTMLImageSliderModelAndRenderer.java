@@ -11,7 +11,7 @@ import simulation.dom.$Image;
  * @param <T> The image producer
  * @param <S> The type
  */
-public class HTMLImageSliderModelAndRenderer<T extends HTMLImageProducer<S>, S> extends AbstractSliderModelAndRenderer<T> {
+public class HTMLImageSliderModelAndRenderer<T extends AbstractHTMLImageProducer<S>, S> extends AbstractSliderModelAndRenderer<T> {
 
   public HTMLImageSliderModelAndRenderer() {
     super(false);

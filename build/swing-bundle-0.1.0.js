@@ -1382,6 +1382,49 @@ class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
   }
 }
 /**
+ * The abstract object able to produce an HTML image element to use in an
+ * AbstractSliderModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The value type of the AbstractSliderModelAndRenderer
+ */
+class AbstractHTMLImageProducer {
+
+   value = null;
+
+  constructor(value) {
+    this.value = value;
+  }
+
+   produce() {
+  }
+
+   getValue() {
+    return this.value;
+  }
+}
+/**
+ * The default implementation of the AbstractHTMLImageProducer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The value type of the AbstractSliderModelAndRenderer
+ */
+class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
+
+   src = null;
+
+  constructor(value, src) {
+    super(value);
+    this.src = src;
+  }
+
+   produce() {
+    let img = document.createElement("img");
+    img.src = this.src;
+    return img;
+  }
+}
+/**
  * The abstract object to model and render a slider
  *
  * @author gianpiero.diblasi
@@ -1493,33 +1536,5 @@ class HTMLImageProducer {
   }
 
    getValue() {
-  }
-}
-/**
- * The default implementation of the HTMLImageProducer
- *
- * @author gianpiero.diblasi
- * @param <T> The value type of the AbstractSliderModelAndRenderer
- */
-class DefaultHTMLImageProducer extends HTMLImageProducer {
-
-   value = null;
-
-   src = null;
-
-  constructor(value, src) {
-    super();
-    this.value = value;
-    this.src = src;
-  }
-
-   produce() {
-    let img = document.createElement("img");
-    img.src = this.src;
-    return img;
-  }
-
-   getValue() {
-    return this.value;
   }
 }

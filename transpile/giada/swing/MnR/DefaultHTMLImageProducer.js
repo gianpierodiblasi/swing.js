@@ -1,18 +1,15 @@
 /**
- * The default implementation of the HTMLImageProducer
+ * The default implementation of the AbstractHTMLImageProducer
  *
  * @author gianpiero.diblasi
  * @param <T> The value type of the AbstractSliderModelAndRenderer
  */
-class DefaultHTMLImageProducer extends HTMLImageProducer {
-
-   value = null;
+class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
 
    src = null;
 
   constructor(value, src) {
-    super();
-    this.value = value;
+    super(value);
     this.src = src;
   }
 
@@ -20,9 +17,5 @@ class DefaultHTMLImageProducer extends HTMLImageProducer {
     let img = document.createElement("img");
     img.src = this.src;
     return img;
-  }
-
-   getValue() {
-    return this.value;
   }
 }

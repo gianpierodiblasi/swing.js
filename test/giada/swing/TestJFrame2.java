@@ -4,7 +4,7 @@ import giada.swing.MnR.AbstractComboBoxModelAndRenderer;
 import giada.swing.MnR.AbstractSliderModelAndRenderer;
 import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
 import giada.swing.MnR.DefaultSliderModelAndRenderer;
-import giada.swing.MnR.HTMLImageProducer;
+import giada.swing.MnR.AbstractHTMLImageProducer;
 import giada.swing.MnR.HTMLImageSliderModelAndRenderer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,8 +27,8 @@ import javax.swing.event.ChangeEvent;
 public class TestJFrame2 extends javax.swing.JFrame {
 
   private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
-  private transient AbstractSliderModelAndRenderer<HTMLImageProducer<String>> modelAndRendererS2;
-  private transient AbstractSliderModelAndRenderer<HTMLImageProducer<String>> modelAndRendererS3;
+  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
+  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
   private static final long serialVersionUID = 1;
 
   public TestJFrame2() {
