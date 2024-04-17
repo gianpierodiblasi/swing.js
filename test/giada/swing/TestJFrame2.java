@@ -1,10 +1,10 @@
 package giada.swing;
 
 import giada.swing.MnR.AbstractComboBoxModelAndRenderer;
+import giada.swing.MnR.AbstractHTMLImageProducer;
 import giada.swing.MnR.AbstractSliderModelAndRenderer;
 import giada.swing.MnR.DefaultComboBoxModelAndRenderer;
 import giada.swing.MnR.DefaultSliderModelAndRenderer;
-import giada.swing.MnR.AbstractHTMLImageProducer;
 import giada.swing.MnR.HTMLImageSliderModelAndRenderer;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
