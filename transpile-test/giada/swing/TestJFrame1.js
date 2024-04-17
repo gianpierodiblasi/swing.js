@@ -46,6 +46,7 @@ class TestJFrame1 extends JFrame {
     this.jButton6 = new JButton();let jButton6 = this.jButton6;
     this.jButton7 = new JButton();let jButton7 = this.jButton7;
     this.jButton8 = new JButton();let jButton8 = this.jButton8;
+    this.jSpinner1 = new JSpinner();let jSpinner1 = this.jSpinner1;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.jButton2 = new JButton();let jButton2 = this.jButton2;
     this.filler1 = new Filler(new Dimension(10, 0), new Dimension(10, 0), new Dimension(10, 32767));let filler1 = this.filler1;
@@ -61,6 +62,7 @@ class TestJFrame1 extends JFrame {
     this.jButton12 = new JButton();let jButton12 = this.jButton12;
     this.filler3 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));let filler3 = this.filler3;
     this.jButton13 = new JButton();let jButton13 = this.jButton13;
+    this.jSpinner2 = new JSpinner();let jSpinner2 = this.jSpinner2;
     this.filler5 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 32767));let filler5 = this.filler5;
     this.setTitle("Test JFrame1");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
@@ -77,6 +79,9 @@ class TestJFrame1 extends JFrame {
     jPanel1.add(jButton7);
     jButton8.setText("jButton8");
     jPanel1.add(jButton8);
+    jSpinner1.setModel(new SpinnerNumberModel(6, 2, 10, 2));
+    jSpinner1.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSpinner1StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jSpinner1);
     this.getContentPane().add(jPanel1, BorderLayout.NORTH);
     jPanel2.setBackground(new Color(0, 102, 102));
     jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.LINE_AXIS));
@@ -108,6 +113,7 @@ class TestJFrame1 extends JFrame {
     jPanel4.add(filler3);
     jButton13.setText("jButton13");
     jPanel4.add(jButton13);
+    jPanel4.add(jSpinner2);
     jPanel4.add(filler5);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_START);
   }
@@ -131,6 +137,12 @@ class TestJFrame1 extends JFrame {
   }
 
   // GEN-LAST:event_jButton10ActionPerformed
+   jSpinner1StateChanged(evt) {
+    // GEN-FIRST:event_jSpinner1StateChanged
+    this.jButton1.setText("" + this.jSpinner1.getValue());
+  }
+
+  // GEN-LAST:event_jSpinner1StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
    filler1 = null;
 
@@ -175,5 +187,9 @@ class TestJFrame1 extends JFrame {
    jPanel3 = null;
 
    jPanel4 = null;
+
+   jSpinner1 = null;
+
+   jSpinner2 = null;
   // End of variables declaration//GEN-END:variables
 }

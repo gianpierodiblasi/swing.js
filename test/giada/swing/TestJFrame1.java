@@ -11,27 +11,29 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
  * @author gianpiero.diblasi
  */
 public class TestJFrame1 extends javax.swing.JFrame {
-
+  
   private static final long serialVersionUID = 1;
-
+  
   public TestJFrame1() {
     super();
     this.initComponents();
-
+    
     JPanel jPanel22 = new JPanel();
     JButton jButton22 = new JButton();
-
+    
     jButton22.setText("jButton2");
     jButton22.addActionListener(new TestJFrame1ActionListener());
     jPanel22.add(jButton22);
     jPanel22.setBackground(new Color(200, 100, 200));
-
+    
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
@@ -48,9 +50,9 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
-
+    
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
-
+    
     this.jPanel2.add(new JButton());
   }
 
@@ -69,6 +71,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton6 = new JButton();
     jButton7 = new JButton();
     jButton8 = new JButton();
+    jSpinner1 = new JSpinner();
     jPanel2 = new JPanel();
     jButton2 = new JButton();
     filler1 = new Box.Filler(new Dimension(10, 0), new Dimension(10, 0), new Dimension(10, 32767));
@@ -84,6 +87,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton12 = new JButton();
     filler3 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
     jButton13 = new JButton();
+    jSpinner2 = new JSpinner();
     filler5 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 32767));
 
     setTitle("Test JFrame1");
@@ -107,6 +111,10 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     jButton8.setText("jButton8");
     jPanel1.add(jButton8);
+
+    jSpinner1.setModel(new SpinnerNumberModel(6, 2, 10, 2));
+    jSpinner1.addChangeListener(this::jSpinner1StateChanged);
+    jPanel1.add(jSpinner1);
 
     getContentPane().add(jPanel1, BorderLayout.NORTH);
 
@@ -152,6 +160,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     jButton13.setText("jButton13");
     jPanel4.add(jButton13);
+    jPanel4.add(jSpinner2);
     jPanel4.add(filler5);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_START);
@@ -168,6 +177,10 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private void jButton10ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
     ((CardLayout) this.jPanel3.getLayout()).show(this.jPanel3, "card2");
   }//GEN-LAST:event_jButton10ActionPerformed
+
+  private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+    this.jButton1.setText("" + this.jSpinner1.getValue());
+  }//GEN-LAST:event_jSpinner1StateChanged
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private Box.Filler filler1;
@@ -192,5 +205,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private JPanel jPanel2;
   private JPanel jPanel3;
   private JPanel jPanel4;
+  private JSpinner jSpinner1;
+  private JSpinner jSpinner2;
   // End of variables declaration//GEN-END:variables
 }

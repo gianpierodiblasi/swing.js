@@ -129,6 +129,11 @@ html, body {
   flex-direction: column;
 }
 
+.jspinner {
+  text-align: right;
+  
+}
+
 .jtogglebutton {
   display: flex;
   align-items: center;
