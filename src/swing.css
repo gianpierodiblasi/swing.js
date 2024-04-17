@@ -77,6 +77,9 @@ html, body {
   display: flex;
   align-items: center;
 }
+.jcheckbox > input {
+  accent-color: rgb(0 117 255);
+}
 
 .jcombobox {
 }
@@ -88,9 +91,15 @@ html, body {
   display: flex;
   align-items: center;
 }
+.jradiobutton > input {
+  accent-color: rgb(0 117 255);
+}
 
 .jslider {
   display: flex;
+}
+.jslider > input {
+  accent-color: rgb(0 117 255);
 }
 .jslider > input.no-paint-track::-webkit-slider-runnable-track {
   background-color: rgb(255,255,255);
@@ -131,10 +140,13 @@ html, body {
 
 .jspinner {
   text-align: right;
-  
+
 }
 
 .jtogglebutton {
   display: flex;
   align-items: center;
+}
+.jtogglebutton > input {
+  accent-color: rgb(0 117 255);
 }

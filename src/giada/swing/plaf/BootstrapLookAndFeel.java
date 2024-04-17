@@ -3,7 +3,10 @@ package giada.swing.plaf;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import giada.swing.JButton;
+import giada.swing.JCheckBox;
 import giada.swing.JLabel;
+import giada.swing.JRadioButton;
+import giada.swing.JToggleButton;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -78,5 +81,20 @@ public class BootstrapLookAndFeel extends LookAndFeel {
         label.element.style.fontSize = "20px";
         break;
     }
+  }
+
+  public void styleJCheckBoxAsButton(JCheckBox checkbox) {
+  }
+
+  public void styleJCheckBoxAsSwitch(JCheckBox checkbox) {
+  }
+
+  public void styleJRadioButtonAsButton(JRadioButton radiobutton) {
+  }
+
+  public void styleJRadioButtonAsSwitch(JRadioButton radiobutton) {
+  }
+
+  public void styleJToggleButtonAsSwitch(JToggleButton toggleButton) {
   }
 }

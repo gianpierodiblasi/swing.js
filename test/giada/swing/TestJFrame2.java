@@ -100,6 +100,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSlider6 = new JSlider();
     jSlider7 = new JSlider();
     jLabel3 = new JLabel();
+    jToggleButton2 = new JToggleButton();
 
     setTitle("Test JFrame2");
     GridBagLayout layout = new GridBagLayout();
@@ -187,7 +188,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 4;
     gridBagConstraints.gridy = 10;
-    gridBagConstraints.gridheight = 3;
     getContentPane().add(jToggleButton1, gridBagConstraints);
 
     jSlider1.setMajorTickSpacing(50);
@@ -282,6 +282,12 @@ public class TestJFrame2 extends javax.swing.JFrame {
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 11;
     getContentPane().add(jLabel3, gridBagConstraints);
+
+    jToggleButton2.setText("jToggleButton2");
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 4;
+    gridBagConstraints.gridy = 12;
+    getContentPane().add(jToggleButton2, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -348,5 +354,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JSlider jSlider6;
   private JSlider jSlider7;
   private JToggleButton jToggleButton1;
+  private JToggleButton jToggleButton2;
   // End of variables declaration//GEN-END:variables
 }

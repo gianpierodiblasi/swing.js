@@ -1675,6 +1675,21 @@ class BootstrapLookAndFeel extends LookAndFeel {
         break;
     }
   }
+
+   styleJCheckBoxAsButton(checkbox) {
+  }
+
+   styleJCheckBoxAsSwitch(checkbox) {
+  }
+
+   styleJRadioButtonAsButton(radiobutton) {
+  }
+
+   styleJRadioButtonAsSwitch(radiobutton) {
+  }
+
+   styleJToggleButtonAsSwitch(toggleButton) {
+  }
 }
 /**
  * The javax.swing.SpinnerNumberModel clone

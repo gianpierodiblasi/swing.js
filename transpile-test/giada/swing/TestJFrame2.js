@@ -71,6 +71,7 @@ class TestJFrame2 extends JFrame {
     this.jSlider6 = new JSlider();let jSlider6 = this.jSlider6;
     this.jSlider7 = new JSlider();let jSlider7 = this.jSlider7;
     this.jLabel3 = new JLabel();let jLabel3 = this.jLabel3;
+    this.jToggleButton2 = new JToggleButton();let jToggleButton2 = this.jToggleButton2;
     this.setTitle("Test JFrame2");
     let layout = new GridBagLayout();
     layout.columnWidths = [0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, 15, 0, ];
@@ -148,7 +149,6 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 4;
     gridBagConstraints.gridy = 10;
-    gridBagConstraints.gridheight = 3;
     this.getContentPane().add(jToggleButton1, gridBagConstraints);
     jSlider1.setMajorTickSpacing(50);
     jSlider1.setMaximum(300);
@@ -235,6 +235,11 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 11;
     this.getContentPane().add(jLabel3, gridBagConstraints);
+    jToggleButton2.setText("jToggleButton2");
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 4;
+    gridBagConstraints.gridy = 12;
+    this.getContentPane().add(jToggleButton2, gridBagConstraints);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -342,5 +347,7 @@ class TestJFrame2 extends JFrame {
    jSlider7 = null;
 
    jToggleButton1 = null;
+
+   jToggleButton2 = null;
   // End of variables declaration//GEN-END:variables
 }
