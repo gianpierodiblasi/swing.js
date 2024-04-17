@@ -26,7 +26,7 @@ There are some special use cases to perform typical JS/CSS tasks by means of Jav
   - methods
     - *putClientProperty*: in general this method calls the *super.putClientProperty* implementation, with the following exception: if *key* = "model-and-renderer" (or the constant value *giada.swing.JSlider.MODEL_AND_RENDERER*) then this method sets an object able to model and render the JSlider
     - *getClientProperty*: in general this method calls the *super.getClientProperty* implementation, with the following exception: if *key* = "model-and-renderer" (or the constant value *giada.swing.JSlider.MODEL_AND_RENDERER*) then this method gets an object able to model and render the JSlider
-  - model and renderer: usually a slider is used to set numeric value, but if a class extending *giada.swing.MnR.AbstractSliderModelAndRenderer* (for example *giada.swing.MnR.DefaultSliderModelAndRenderer*) a custom modelling and rendering is obtained;
+  - model and renderer: usually a slider is used to set numeric value, but if a class extending *giada.swing.MnR.AbstractSliderModelAndRenderer* (for example *giada.swing.MnR.DefaultSliderModelAndRenderer*) is used, then a custom modelling and rendering is obtained;
     the object has to be set/get by means of the methods *putClientProperty*/*getClientProperty* as described above. When a renderer is set the following methods have no effect:
     - *setMaximum*
     - *setMinimum*
