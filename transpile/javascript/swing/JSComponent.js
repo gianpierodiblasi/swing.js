@@ -49,7 +49,7 @@ class JSComponent {
    * @param cl The class to remove
    */
    cssRemoveClass(cl) {
-    this.element.classList.add(cl);
+    this.element.classList.remove(cl);
   }
 
   /**
@@ -59,7 +59,7 @@ class JSComponent {
    * @param cl The class to toggle
    */
    cssToggleClass(cl) {
-    this.element.classList.add(cl);
+    this.element.classList.toggle(cl);
   }
 
   /**

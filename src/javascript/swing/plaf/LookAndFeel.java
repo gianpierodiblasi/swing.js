@@ -1,6 +1,7 @@
 package javascript.swing.plaf;
 
 import javascript.swing.JSButton;
+import javascript.swing.JSCheckBox;
 import javascript.swing.JSLabel;
 import javascript.swing.JSSpinner;
 
@@ -33,13 +34,22 @@ public abstract class LookAndFeel {
   public abstract void styleJSButton(JSButton button);
 
   /**
+   * Applies the style to a checkbox
+   *
+   * @param checkbox The checkbox
+   */
+  public abstract void styleJSCheckBox(JSCheckBox checkbox);
+
+  /**
    * Applies the style to a label
+   *
    * @param label The label
    */
   public abstract void styleJSLabel(JSLabel label);
-  
+
   /**
    * Applies the style to a spinner
+   *
    * @param spinner The spinner
    */
   public abstract void styleJSSpinner(JSSpinner spinner);

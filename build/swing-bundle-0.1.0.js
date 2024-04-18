@@ -796,7 +796,7 @@ class JSComponent {
    * @param cl The class to remove
    */
    cssRemoveClass(cl) {
-    this.element.classList.add(cl);
+    this.element.classList.remove(cl);
   }
 
   /**
@@ -806,7 +806,7 @@ class JSComponent {
    * @param cl The class to toggle
    */
    cssToggleClass(cl) {
-    this.element.classList.add(cl);
+    this.element.classList.toggle(cl);
   }
 
   /**
@@ -877,6 +877,65 @@ class JSButton extends AbstractButton {
    */
    setText(text) {
     this.element.textContent = text;
+  }
+}
+/**
+ * The javax.swing.JCheckBox clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSCheckBox extends AbstractButton {
+
+   checkbox = null;
+
+   text = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jcheckbox");
+    this.checkbox = document.createElement("input");
+    this.checkbox.setAttribute("type", "checkbox");
+    this.checkbox.onchange = (event) => this.onclick();
+    this.element.appendChild(this.checkbox);
+    this.text = document.createTextNode("");
+    this.element.appendChild(this.text);
+    LookAndFeel.CURRENT.styleJSCheckBox(this);
+  }
+
+  /**
+   * Set this checkbox as a switch
+   */
+   setSwitch() {
+    this.element.querySelector("input").setAttribute("role", "switch");
+    LookAndFeel.CURRENT.styleJSCheckBox(this);
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setSelected
+   *
+   * @param selected true to select, false otherwise
+   */
+   setSelected(selected) {
+    this.checkbox.checked = selected;
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.isSelected
+   *
+   * @return true if selected, false otherwise
+   */
+   isSelected() {
+    return this.checkbox.checked;
   }
 }
 /**
@@ -1114,7 +1173,16 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a checkbox
+   *
+   * @param checkbox The checkbox
+   */
+   styleJSCheckBox(checkbox) {
+  }
+
+  /**
    * Applies the style to a label
+   *
    * @param label The label
    */
    styleJSLabel(label) {
@@ -1122,6 +1190,7 @@ class LookAndFeel {
 
   /**
    * Applies the style to a spinner
+   *
    * @param spinner The spinner
    */
    styleJSSpinner(spinner) {
@@ -1205,6 +1274,23 @@ class BootstrapLookAndFeel extends LookAndFeel {
     button.cssAddClass("btn-primary");
     if (this.size) {
       button.cssAddClass("btn-" + this.size);
+    }
+  }
+
+   styleJSCheckBox(checkbox) {
+    let input = checkbox.element.querySelector("input");
+    input.style.marginRight = "0.5em";
+    input.classList.add("form-check-input");
+    if (input.getAttribute("role") === "switch") {
+      checkbox.cssAddClass("form-switch");
+    }
+    switch(this.size) {
+      case "sm":
+        checkbox.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        checkbox.element.style.fontSize = "20px";
+        break;
     }
   }
 

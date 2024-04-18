@@ -29,7 +29,16 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a checkbox
+   *
+   * @param checkbox The checkbox
+   */
+   styleJSCheckBox(checkbox) {
+  }
+
+  /**
    * Applies the style to a label
+   *
    * @param label The label
    */
    styleJSLabel(label) {
@@ -37,6 +46,7 @@ class LookAndFeel {
 
   /**
    * Applies the style to a spinner
+   *
    * @param spinner The spinner
    */
    styleJSSpinner(spinner) {

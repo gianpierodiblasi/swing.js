@@ -1,7 +1,8 @@
-package giada.swing;
+package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.Text;
+import javascript.swing.plaf.LookAndFeel;
 import simulation.dom.$HTMLElement;
 
 /**
@@ -9,12 +10,12 @@ import simulation.dom.$HTMLElement;
  *
  * @author gianpiero.diblasi
  */
-public class JCheckBox extends AbstractButton {
+public class JSCheckBox extends AbstractButton {
 
   private final $HTMLElement checkbox;
   private final Text text;
 
-  public JCheckBox() {
+  public JSCheckBox() {
     super();
 
     this.element = document.createElement("label");
@@ -27,16 +28,41 @@ public class JCheckBox extends AbstractButton {
 
     this.text = document.createTextNode("");
     this.element.appendChild(this.text);
+
+    LookAndFeel.CURRENT.styleJSCheckBox(this);
   }
 
+  /**
+   * Set this checkbox as a switch
+   */
+  public void setSwitch() {
+    this.element.querySelector("input").setAttribute("role", "switch");
+    LookAndFeel.CURRENT.styleJSCheckBox(this);
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setText
+   *
+   * @param text The text
+   */
   public void setText(String text) {
     this.text.textContent = text;
   }
 
+  /**
+   * Clone of javax.swing.JCheckBox.setSelected
+   *
+   * @param selected true to select, false otherwise
+   */
   public void setSelected(boolean selected) {
     this.checkbox.checked = selected;
   }
 
+  /**
+   * Clone of javax.swing.JCheckBox.isSelected
+   *
+   * @return true if selected, false otherwise
+   */
   public boolean isSelected() {
     return this.checkbox.checked;
   }

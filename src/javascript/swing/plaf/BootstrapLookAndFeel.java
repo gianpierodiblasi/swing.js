@@ -3,6 +3,7 @@ package javascript.swing.plaf;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import javascript.swing.JSButton;
+import javascript.swing.JSCheckBox;
 import javascript.swing.JSLabel;
 import javascript.swing.JSSpinner;
 import static simulation.js.$Globals.$exists;
@@ -91,6 +92,27 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
     if ($exists(this.size)) {
       button.cssAddClass("btn-" + this.size);
+    }
+  }
+
+  @Override
+  @SuppressWarnings("StringEquality")
+  public void styleJSCheckBox(JSCheckBox checkbox) {
+    HTMLElement input = (HTMLElement) checkbox.element.querySelector("input");
+    input.style.marginRight = "0.5em";
+    input.classList.add("form-check-input");
+
+    if (input.getAttribute("role") == "switch") {
+      checkbox.cssAddClass("form-switch");
+    }
+    
+    switch (this.size) {
+      case "sm":
+        checkbox.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        checkbox.element.style.fontSize = "20px";
+        break;
     }
   }
 

@@ -55,7 +55,7 @@ public class JSComponent {
    * @param cl The class to remove
    */
   public void cssRemoveClass(String cl) {
-    this.element.classList.add(cl);
+    this.element.classList.remove(cl);
   }
 
   /**
@@ -65,7 +65,7 @@ public class JSComponent {
    * @param cl The class to toggle
    */
   public void cssToggleClass(String cl) {
-    this.element.classList.add(cl);
+    this.element.classList.toggle(cl);
   }
 
   /**

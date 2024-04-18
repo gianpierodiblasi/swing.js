@@ -79,6 +79,23 @@ class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
+   styleJSCheckBox(checkbox) {
+    let input = checkbox.element.querySelector("input");
+    input.style.marginRight = "0.5em";
+    input.classList.add("form-check-input");
+    if (input.getAttribute("role") === "switch") {
+      checkbox.cssAddClass("form-switch");
+    }
+    switch(this.size) {
+      case "sm":
+        checkbox.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        checkbox.element.style.fontSize = "20px";
+        break;
+    }
+  }
+
    styleJSLabel(label) {
     switch(this.size) {
       case "sm":
