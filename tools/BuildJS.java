@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class BuildJS {
 
   @SuppressWarnings({"UseOfSystemOutOrSystemErr", "CallToPrintStackTrace", "MismatchedQueryAndUpdateOfCollection"})
-  private static void watch(File swingjs, File in, File out) throws Exception {
+  private static void watch(File swingjs, File in, File out, boolean findParent, boolean rename) throws Exception {
     System.out.println("watching " + in + " into " + out);
 
     Map<WatchKey, Path> map = new HashMap<>();
@@ -40,7 +40,7 @@ public class BuildJS {
 
       watchKey.pollEvents().forEach(event -> {
         try {
-          BuildJS.write(swingjs, in, out);
+          BuildJS.write(swingjs, in, out, findParent, rename);
         } catch (Exception ex) {
           ex.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class BuildJS {
   }
 
   @SuppressWarnings("UseOfSystemOutOrSystemErr")
-  private static void write(File swingjs, File in, File out) throws Exception {
+  private static void write(File swingjs, File in, File out, boolean findParent, boolean rename) throws Exception {
     @SuppressWarnings({"CallToPrintStackTrace", "BroadCatchBlock", "TooBroadCatch", "UseSpecificCatch"})
     List<TreeNode> nodes = Files.find(in.toPath(), 999, (p, bfa) -> bfa.isRegularFile() && p.getFileName().toString().matches(".*\\.js")).map(path -> {
       try {
@@ -75,7 +75,13 @@ public class BuildJS {
 
     nodes.forEach(node -> {
       if (node.parentName != null) {
-        nodes.stream().filter(parent -> parent.name.equals(node.parentName)).findFirst().ifPresentOrElse(parent -> parent.children.add(node), () -> System.err.println(" parent class not found name = " + node.name + ", parentName = " + node.parentName));
+        nodes.stream().filter(parent -> parent.name.equals(node.parentName)).findFirst().ifPresentOrElse(parent -> parent.children.add(node), () -> {
+          if (findParent) {
+            System.err.println(" parent class not found name = " + node.name + ", parentName = " + node.parentName);
+          } else {
+            node.parentName = null;
+          }
+        });
       }
     });
 
@@ -111,12 +117,15 @@ public class BuildJS {
   }
 
   public static void main(String[] args) throws Exception {
+    boolean findParent = "-find_parent".equals(args[4]);
+    boolean rename = "-rename".equals(args[5]);
+
     switch (args[0]) {
       case "w":
-        BuildJS.watch("NOFILE".equals(args[1]) ? null : new File(args[1]), new File(args[2]), new File(args[3]));
+        BuildJS.watch("NOFILE".equals(args[1]) ? null : new File(args[1]), new File(args[2]), new File(args[3]), findParent, rename);
         break;
       case "b":
-        BuildJS.write("NOFILE".equals(args[1]) ? null : new File(args[1]), new File(args[2]), new File(args[3]));
+        BuildJS.write("NOFILE".equals(args[1]) ? null : new File(args[1]), new File(args[2]), new File(args[3]), findParent, rename);
     }
   }
 }

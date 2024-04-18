@@ -53,6 +53,8 @@
       <arg value="${src.dir}/swing.js"/>
       <arg value="${transpile.dir}"/>
       <arg value="${build.dir}/swing-bundle-${version}.js"/>
+      <arg value="-find_parent"/>
+      <arg value="-no_rename"/>
     </java>
   </target>
 
@@ -61,7 +63,9 @@
       <arg value="b"/>
       <arg value="NOFILE"/>
       <arg value="${transpile-test.dir}"/>
-      <arg value="${html-test.dir}/test.js"/>
+      <arg value="${html-test.dir}/swing-test.js"/>
+      <arg value="-no_find_parent"/>
+      <arg value="-rename"/>
     </java>
   </target>
   
@@ -125,6 +129,8 @@
       <arg value="${src.dir}/swing.js"/>
       <arg value="${transpile.dir}"/>
       <arg value="${build.dir}/swing-bundle-${version}.js"/>
+      <arg value="-find_parent"/>
+      <arg value="-no_rename"/>
     </java>
   </target>
   
@@ -133,7 +139,9 @@
       <arg value="w"/>
       <arg value="NOFILE"/>
       <arg value="${transpile-test.dir}"/>
-      <arg value="${html-test.dir}/test.js"/>
+      <arg value="${html-test.dir}/swing-test.js"/>
+      <arg value="-no_find_parent"/>
+      <arg value="-rename"/>
     </java>
   </target>
 </project>
