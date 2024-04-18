@@ -1,9 +1,9 @@
-package giada.awt;
+package javascript.awt;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
-import giada.swing.JComponent;
-import giada.swing.JPanel;
+import javascript.swing.JSComponent;
+import javascript.swing.JSPanel;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -39,22 +39,22 @@ public class BorderLayout implements LayoutManager {
   }
 
   @Override
-  public void setPanel(JPanel panel) {
+  public void setPanel(JSPanel panel) {
     HTMLElement middle = document.createElement("div");
     middle.classList.add("borderlayout-middle");
-    
+
     panel.element.appendChild(middle);
     panel.element.classList.add("borderlayout");
   }
 
   @Override
-  public void resetPanel(JPanel panel) {
+  public void resetPanel(JSPanel panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("borderlayout");
   }
 
   @Override
-  public void addInPanel(JPanel panel, JComponent component, Object constraints) {
+  public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     component.element.classList.add("borderlayout-" + ((String) constraints).toLowerCase());
 
     switch (((String) constraints)) {

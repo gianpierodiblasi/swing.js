@@ -7,8 +7,18 @@ package javascript.swing.event;
  */
 public interface ChangeListener {
 
+  /**
+   * Clone of javax.swing.event.ChangeListener.stateChanged
+   *
+   * @param event
+   */
   public void stateChanged(ChangeEvent event);
 
+  /**
+   * Used to perform lambda calls
+   *
+   * @param event
+   */
   public default void $apply(ChangeEvent event) {
   }
 }

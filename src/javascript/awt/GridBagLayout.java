@@ -1,8 +1,8 @@
-package giada.awt;
+package javascript.awt;
 
 import def.js.Array;
-import giada.swing.JComponent;
-import giada.swing.JPanel;
+import javascript.swing.JSComponent;
+import javascript.swing.JSPanel;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -25,12 +25,12 @@ public class GridBagLayout implements LayoutManager {
   }
 
   @Override
-  public void setPanel(JPanel panel) {
+  public void setPanel(JSPanel panel) {
     panel.element.classList.add("gridbaglayout");
   }
 
   @Override
-  public void resetPanel(JPanel panel) {
+  public void resetPanel(JSPanel panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("gridbaglayout");
     panel.element.style.removeProperty("grid-template-areas");
@@ -39,7 +39,7 @@ public class GridBagLayout implements LayoutManager {
   }
 
   @Override
-  public void addInPanel(JPanel panel, JComponent component, Object constraints) {
+  public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     this.constraintsArray.push((GridBagConstraints) constraints);
 
     panel.element.appendChild(component.element);
@@ -115,7 +115,7 @@ public class GridBagLayout implements LayoutManager {
     return gt;
   }
 
-  private void setComponent(JComponent component, GridBagConstraints constraints) {
+  private void setComponent(JSComponent component, GridBagConstraints constraints) {
     component.element.style.setProperty("grid-area", "p" + this.position);
     this.position++;
 

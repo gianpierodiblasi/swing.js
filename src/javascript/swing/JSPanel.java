@@ -1,8 +1,8 @@
-package giada.swing;
+package javascript.swing;
 
 import static def.dom.Globals.document;
-import giada.awt.FlowLayout;
-import giada.awt.LayoutManager;
+import javascript.awt.FlowLayout;
+import javascript.awt.LayoutManager;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -10,19 +10,24 @@ import static simulation.js.$Globals.$exists;
  *
  * @author gianpiero.diblasi
  */
-public class JPanel extends JComponent {
+public class JSPanel extends JSComponent {
 
   private LayoutManager layoutManager;
 
-  public JPanel() {
+  public JSPanel() {
     super();
-    
+
     this.element = document.createElement("div");
     this.element.classList.add("jpanel");
 
     this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
   }
 
+  /**
+   * Clone of javax.swing.JPanel.setLayout
+   *
+   * @param layoutManager
+   */
   public void setLayout(LayoutManager layoutManager) {
     if ($exists(this.layoutManager)) {
       this.layoutManager.resetPanel(this);
@@ -31,11 +36,22 @@ public class JPanel extends JComponent {
     this.layoutManager.setPanel(this);
   }
 
+  /**
+   * Clone of javax.swing.JPanel.getLayout
+   *
+   * @return
+   */
   public LayoutManager getLayout() {
     return this.layoutManager;
   }
 
-  public void add(JComponent component, Object constraints) {
+  /**
+   * Clone of javax.swing.JPanel.add
+   *
+   * @param component
+   * @param constraints
+   */
+  public void add(JSComponent component, Object constraints) {
     this.layoutManager.addInPanel(this, component, constraints);
   }
 }

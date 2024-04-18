@@ -1,7 +1,7 @@
-package giada.awt;
+package javascript.awt;
 
-import giada.swing.JComponent;
-import giada.swing.JPanel;
+import javascript.swing.JSComponent;
+import javascript.swing.JSPanel;
 
 /**
  * The java.awt.BoxLayout clone
@@ -17,14 +17,14 @@ public class BoxLayout implements LayoutManager {
 
   private final int axis;
 
-  public BoxLayout(JComponent target, int axis) {
+  public BoxLayout(JSComponent target, int axis) {
     super();
 
     this.axis = axis;
   }
 
   @Override
-  public void setPanel(JPanel panel) {
+  public void setPanel(JSPanel panel) {
     panel.element.classList.add("boxlayout");
 
     switch (this.axis) {
@@ -42,7 +42,7 @@ public class BoxLayout implements LayoutManager {
   }
 
   @Override
-  public void resetPanel(JPanel panel) {
+  public void resetPanel(JSPanel panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("boxlayout");
     panel.element.style.flexDirection = "";
@@ -50,7 +50,7 @@ public class BoxLayout implements LayoutManager {
   }
 
   @Override
-  public void addInPanel(JPanel panel, JComponent component, Object constraints) {
+  public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     panel.element.appendChild(component.element);
   }
 }

@@ -1,7 +1,7 @@
-package giada.awt;
+package javascript.awt;
 
-import giada.swing.JComponent;
-import giada.swing.JPanel;
+import javascript.swing.JSComponent;
+import javascript.swing.JSPanel;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -26,7 +26,7 @@ public class GridLayout implements LayoutManager {
   }
 
   @Override
-  public void setPanel(JPanel panel) {
+  public void setPanel(JSPanel panel) {
     panel.element.classList.add("gridlayout");
 
     String gridTemplateAreas = "";
@@ -43,7 +43,7 @@ public class GridLayout implements LayoutManager {
   }
 
   @Override
-  public void resetPanel(JPanel panel) {
+  public void resetPanel(JSPanel panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("gridlayout");
     panel.element.style.removeProperty("grid-template-areas");
@@ -52,7 +52,7 @@ public class GridLayout implements LayoutManager {
   }
 
   @Override
-  public void addInPanel(JPanel panel, JComponent component, Object constraints) {
+  public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     panel.element.appendChild(component.element);
     component.element.style.setProperty("grid-area", "p" + panel.element.childElementCount);
   }

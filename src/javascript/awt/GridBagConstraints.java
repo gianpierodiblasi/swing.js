@@ -1,4 +1,4 @@
-package giada.awt;
+package javascript.awt;
 
 /**
  * The java.awt.GridBagConstraints clone
@@ -74,6 +74,13 @@ public class GridBagConstraints {
     this.ipady = 0;
   }
 
+  /**
+   * Returns a constraint value by key
+   *
+   * @param key The key (options are: "gridx", "gridy", "gridwidth",
+   * "gridheight", "weightx", "weighty", "anchor", "fill", "ipadx" and "ipady")
+   * @return The value
+   */
   public double get(String key) {
     switch (key) {
       case "gridx":

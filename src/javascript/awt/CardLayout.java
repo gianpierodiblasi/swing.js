@@ -1,9 +1,9 @@
-package giada.awt;
+package javascript.awt;
 
 import def.dom.Element;
 import def.dom.HTMLElement;
-import giada.swing.JComponent;
-import giada.swing.JPanel;
+import javascript.swing.JSComponent;
+import javascript.swing.JSPanel;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -24,18 +24,18 @@ public class CardLayout implements LayoutManager {
   }
 
   @Override
-  public void setPanel(JPanel panel) {
+  public void setPanel(JSPanel panel) {
     panel.element.classList.add("cardlayout");
   }
 
   @Override
-  public void resetPanel(JPanel panel) {
+  public void resetPanel(JSPanel panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("cardlayout");
   }
 
   @Override
-  public void addInPanel(JPanel panel, JComponent component, Object constraints) {
+  public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     panel.element.appendChild(component.element);
 
     component.element.setAttribute("card", (String) constraints);
@@ -50,7 +50,7 @@ public class CardLayout implements LayoutManager {
     component.element.style.marginBottom = this.vGap + "px";
   }
 
-  public void show(JPanel parent, String name) {
+  public void show(JSPanel parent, String name) {
     for (int index = 0; index < parent.element.childElementCount; index++) {
       ((HTMLElement) parent.element.childNodes.$get(index)).style.display = "none";
     }

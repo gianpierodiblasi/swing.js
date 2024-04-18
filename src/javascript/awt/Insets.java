@@ -1,4 +1,4 @@
-package giada.awt;
+package javascript.awt;
 
 /**
  * The java.awt.Insets clone
