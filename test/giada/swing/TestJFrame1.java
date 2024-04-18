@@ -1,7 +1,6 @@
 package giada.swing;
 
 import static def.dom.Globals.console;
-import giada.swing.plaf.LookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -15,28 +14,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import static simulation.js.$Globals.$exists;
 
 /**
  *
  * @author gianpiero.diblasi
  */
 public class TestJFrame1 extends javax.swing.JFrame {
-  
+
   private static final long serialVersionUID = 1;
-  
+
   public TestJFrame1() {
     super();
     this.initComponents();
-    
+    this.postInitComponents();
+  }
+
+  private void postInitComponents() {
     JPanel jPanel22 = new JPanel();
     JButton jButton22 = new JButton();
-    
+
     jButton22.setText("jButton2");
     jButton22.addActionListener(new TestJFrame1ActionListener());
     jPanel22.add(jButton22);
     jPanel22.setBackground(new Color(200, 100, 200));
-    
+
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
@@ -53,14 +54,14 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
     jPanel22.add(new JButton());
-    
+
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
-    
+
     this.jPanel2.add(new JButton());
-    
-    if ($exists(LookAndFeel.CURRENT)) {
-      this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
-    }
+
+//    if ($exists(LookAndFeel.CURRENT)) {
+//      this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
+//    }
   }
 
   /**

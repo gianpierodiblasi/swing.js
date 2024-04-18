@@ -76,8 +76,7 @@
   </target>
   
   <target name="javadoc">
-    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${basedir}/lib/jsweet-core-6.3.1.jar" windowtitle="swing.js" excludepackagenames="simulation.*" additionalparam="-notimestamp">
-    </javadoc>
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${basedir}/lib/jsweet-core-6.3.1.jar" windowtitle="swing.js" excludepackagenames="simulation.*" additionalparam="-notimestamp --frames"></javadoc>
   </target>
   
   <target name="build" depends="clean,build_js_min,build_css_min,transpile-test,javadoc">
