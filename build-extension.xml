@@ -70,10 +70,11 @@
   </target>
   
   <target name="build_css" depends="version">
-    <!--<copy file="${src.dir}/swing.css" tofile="${build.dir}/swing-bundle-${version}.css"/>-->
-    <concat destfile="${build.dir}/swing-bundle-${version}.css" fixlastline="true">
-      <fileset dir="${src.dir}/css" />
-    </concat>
+    <java sourcefile="${tools.dir}/BuildCSS.java">
+      <arg value="b"/>
+      <arg value="${src.dir}/css"/>
+      <arg value="${build.dir}/swing-bundle-${version}.css"/>
+    </java>
   </target>
   
   <target name="build_js_min" depends="build_js">
@@ -145,6 +146,14 @@
       <arg value="${html-test.dir}/swing-test.js"/>
       <arg value="-no_find_parent"/>
       <arg value="-rename"/>
+    </java>
+  </target>
+  
+  <target name="watch_css" depends="version">
+    <java sourcefile="${tools.dir}/BuildCSS.java">
+      <arg value="w"/>
+      <arg value="${src.dir}/css"/>
+      <arg value="${build.dir}/swing-bundle-${version}.css"/>
     </java>
   </target>
 </project>
