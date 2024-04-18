@@ -1,4 +1,4 @@
-package giada.swing.event;
+package javascript.swing.event;
 
 /**
  * The javax.swing.event.ChangeListener clone
