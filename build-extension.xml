@@ -9,13 +9,16 @@
   <property name="html-test.dir" value="${basedir}/html-test" /> 
   <property name="tools.dir" value="${basedir}/tools" /> 
   <property name="doc.dir" value="${basedir}/docs" /> 
+  <property name="class.dir" value="${basedir}/class" /> 
   <property name="josetta.jar" value="${basedir}/lib/josetta-1.12.0-jar-with-dependencies.jar" /> 
+  <property name="jsweet.jar" value="${basedir}/lib/jsweet-core-6.3.1.jar" /> 
   
   <target name="clean"> 
     <delete>
       <fileset dir="${build.dir}" includes="**/*-bundle-*.*"/>
     </delete> 
     <delete dir="${doc.dir}"/>
+    <delete dir="${class.dir}"/>
   </target> 
   
   <target name="version">
@@ -45,6 +48,11 @@
         <pathelement path="${josetta.jar}"/>
       </classpath>
     </java>
+  </target>
+  
+  <target name="build_java" depends="version">
+    <mkdir dir="${class.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${class.dir}" classpath="${jsweet.jar}" includeantruntime="false"/>
   </target>
   
   <target name="build_js" depends="version,transpile">
@@ -77,6 +85,10 @@
     </java>
   </target>
   
+  <target name="build_jar" depends="build_java">
+    <jar destfile="${build.dir}/swing-bundle-${version}.jar" basedir="${class.dir}"/>
+  </target>
+    
   <target name="build_js_min" depends="build_js">
     <java sourcefile="${tools.dir}/Minify.java">
       <arg value="https://www.toptal.com/developers/javascript-minifier/api/raw"/>
@@ -97,7 +109,7 @@
     <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${basedir}/lib/jsweet-core-6.3.1.jar" windowtitle="swing.js" excludepackagenames="simulation.*" additionalparam="-notimestamp --frames"></javadoc>
   </target>
   
-  <target name="build" depends="clean,build_js_min,build_css_min,build_js-test,javadoc">
+  <target name="build" depends="clean,build_jar,build_js_min,build_css_min,build_js-test,javadoc">
   </target>
   
   <target name="watch">
