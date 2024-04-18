@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestJFrame1</title>
+    <link rel="icon" href="../../swing.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../src/swing.css" rel="stylesheet">
+    <script src="../../../build//swing-bundle-0.1.0.js"></script>
+    <script src="../../../transpile-test/giada/swing/TestJFrame1.js"></script>
+    <script src="../../../transpile-test/giada/swing/TestJFrame1ActionListener.js"></script>
+    <script>
+      window.onload = (event) => {
+        LookAndFeel.CURRENT = BootstrapLookAndFeel.create();
+        var testJFrame1 = new TestJFrame1();
+      };
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

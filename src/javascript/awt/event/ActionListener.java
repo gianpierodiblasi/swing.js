@@ -10,14 +10,14 @@ public interface ActionListener {
   /**
    * Clone of java.awt.event.ActionListener.actionPerformed
    *
-   * @param event
+   * @param event The event
    */
   public void actionPerformed(ActionEvent event);
 
   /**
    * Used to perform lambda calls
    *
-   * @param event
+   * @param event The event
    */
   public default void $apply(ActionEvent event) {
   }

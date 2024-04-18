@@ -16,7 +16,7 @@ public class JSComponent {
   /**
    * Clone of javax.swing.JComponent.setBackground
    *
-   * @param color
+   * @param color The color
    */
   public void setBackground(Color color) {
     this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";

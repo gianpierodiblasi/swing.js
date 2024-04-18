@@ -8,6 +8,10 @@ class TestJFrame1 extends JFrame {
   constructor() {
     super();
     this.initComponents();
+    this.postInitComponents();
+  }
+
+   postInitComponents() {
     let jPanel22 = new JPanel();
     let jButton22 = new JButton();
     jButton22.setText("jButton2");
@@ -32,9 +36,9 @@ class TestJFrame1 extends JFrame {
     jPanel22.add(new JButton());
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
     this.jPanel2.add(new JButton());
-    if (LookAndFeel.CURRENT) {
-      this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
-    }
+    // if ($exists(LookAndFeel.CURRENT)) {
+    // this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
+    // }
   }
 
   /**

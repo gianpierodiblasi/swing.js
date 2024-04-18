@@ -26,7 +26,7 @@ public class JSPanel extends JSComponent {
   /**
    * Clone of javax.swing.JPanel.setLayout
    *
-   * @param layoutManager
+   * @param layoutManager The layout manager
    */
   public void setLayout(LayoutManager layoutManager) {
     if ($exists(this.layoutManager)) {
@@ -39,7 +39,7 @@ public class JSPanel extends JSComponent {
   /**
    * Clone of javax.swing.JPanel.getLayout
    *
-   * @return
+   * @return The layout manager
    */
   public LayoutManager getLayout() {
     return this.layoutManager;
@@ -48,8 +48,8 @@ public class JSPanel extends JSComponent {
   /**
    * Clone of javax.swing.JPanel.add
    *
-   * @param component
-   * @param constraints
+   * @param component The component
+   * @param constraints The constraints
    */
   public void add(JSComponent component, Object constraints) {
     this.layoutManager.addInPanel(this, component, constraints);
