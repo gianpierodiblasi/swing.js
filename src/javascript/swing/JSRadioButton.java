@@ -6,30 +6,30 @@ import javascript.swing.plaf.LookAndFeel;
 import simulation.dom.$HTMLElement;
 
 /**
- * The javax.swing.JCheckBox clone
+ * The javax.swing.JRadioButton clone
  *
  * @author gianpiero.diblasi
  */
-public class JSCheckBox extends AbstractButton {
+public class JSRadioButton extends AbstractButton {
 
-  private final $HTMLElement checkbox;
+  private final $HTMLElement radiobutton;
   private final Text text;
 
-  public JSCheckBox() {
+  public JSRadioButton() {
     super();
 
     this.element = document.createElement("label");
-    this.element.classList.add("jcheckbox");
+    this.element.classList.add("jradiobutton");
 
-    this.checkbox = ($HTMLElement) document.createElement("input");
-    this.checkbox.setAttribute("type", "checkbox");
-    this.checkbox.onchange = (event) -> this.onclick();
-    this.element.appendChild(this.checkbox);
+    this.radiobutton = ($HTMLElement) document.createElement("input");
+    this.radiobutton.setAttribute("type", "radio");
+    this.radiobutton.onchange = (event) -> this.onclick();
+    this.element.appendChild(this.radiobutton);
 
     this.text = document.createTextNode("");
     this.element.appendChild(this.text);
-
-    LookAndFeel.CURRENT.styleJSCheckBox(this);
+    
+    LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
 
   /**
@@ -37,19 +37,19 @@ public class JSCheckBox extends AbstractButton {
    */
   public void setSwitch() {
     this.element.querySelector("input").setAttribute("role", "switch");
-    LookAndFeel.CURRENT.styleJSCheckBox(this);
-  }
-
-  /**
-   * Set this checkbox as a toggle
-   */
-  public void setToggle() {
-    this.element.querySelector("input").setAttribute("role", "toggle");
-    LookAndFeel.CURRENT.styleJSCheckBox(this);
+    LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
   
   /**
-   * Clone of javax.swing.JCheckBox.setText
+   * Set this radiobutton as a toggle
+   */
+  public void setToggle() {
+    this.element.querySelector("input").setAttribute("role", "toggle");
+    LookAndFeel.CURRENT.styleJSRadioButton(this);
+  }
+  
+  /**
+   * Clone of javax.swing.JRadioButton.setText
    *
    * @param text The text
    */
@@ -58,20 +58,20 @@ public class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Clone of javax.swing.JCheckBox.setSelected
+   * Clone of javax.swing.JRadioButton.setSelected
    *
    * @param selected true to select, false otherwise
    */
   public void setSelected(boolean selected) {
-    this.checkbox.checked = selected;
+    this.radiobutton.checked = selected;
   }
 
   /**
-   * Clone of javax.swing.JCheckBox.isSelected
+   * Clone of javax.swing.JRadioButton.isSelected
    *
    * @return true if selected, false otherwise
    */
   public boolean isSelected() {
-    return this.checkbox.checked;
+    return this.radiobutton.checked;
   }
 }

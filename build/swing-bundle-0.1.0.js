@@ -724,6 +724,24 @@ class GridLayout extends LayoutManager {
   }
 }
 /**
+ * The javax.swing.ButtonGroup clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ButtonGroup {
+
+   name = "ButtonGroup_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
+
+  /**
+   * Adds a button to the group
+   *
+   * @param button The button
+   */
+   add(button) {
+    button.element.querySelector("[type=radio]").setAttribute("name", this.name);
+  }
+}
+/**
  * The javax.swing.event.ChangeEvent clone
  *
  * @author gianpiero.diblasi
@@ -912,6 +930,14 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
+   * Set this checkbox as a toggle
+   */
+   setToggle() {
+    this.element.querySelector("input").setAttribute("role", "toggle");
+    LookAndFeel.CURRENT.styleJSCheckBox(this);
+  }
+
+  /**
    * Clone of javax.swing.JCheckBox.setText
    *
    * @param text The text
@@ -936,6 +962,73 @@ class JSCheckBox extends AbstractButton {
    */
    isSelected() {
     return this.checkbox.checked;
+  }
+}
+/**
+ * The javax.swing.JRadioButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSRadioButton extends AbstractButton {
+
+   radiobutton = null;
+
+   text = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jradiobutton");
+    this.radiobutton = document.createElement("input");
+    this.radiobutton.setAttribute("type", "radio");
+    this.radiobutton.onchange = (event) => this.onclick();
+    this.element.appendChild(this.radiobutton);
+    this.text = document.createTextNode("");
+    this.element.appendChild(this.text);
+    LookAndFeel.CURRENT.styleJSRadioButton(this);
+  }
+
+  /**
+   * Set this checkbox as a switch
+   */
+   setSwitch() {
+    this.element.querySelector("input").setAttribute("role", "switch");
+    LookAndFeel.CURRENT.styleJSRadioButton(this);
+  }
+
+  /**
+   * Set this radiobutton as a toggle
+   */
+   setToggle() {
+    this.element.querySelector("input").setAttribute("role", "toggle");
+    LookAndFeel.CURRENT.styleJSRadioButton(this);
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setSelected
+   *
+   * @param selected true to select, false otherwise
+   */
+   setSelected(selected) {
+    this.radiobutton.checked = selected;
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.isSelected
+   *
+   * @return true if selected, false otherwise
+   */
+   isSelected() {
+    return this.radiobutton.checked;
   }
 }
 /**
@@ -1189,6 +1282,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a radiobutton
+   *
+   * @param radiobutton The radiobutton
+   */
+   styleJSRadioButton(radiobutton) {
+  }
+
+  /**
    * Applies the style to a spinner
    *
    * @param spinner The spinner
@@ -1278,29 +1379,37 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSCheckBox(checkbox) {
-    let input = checkbox.element.querySelector("input");
-    input.style.marginRight = "0.5em";
-    input.classList.add("form-check-input");
-    if (input.getAttribute("role") === "switch") {
-      checkbox.cssAddClass("form-switch");
-    }
-    switch(this.size) {
-      case "sm":
-        checkbox.element.style.fontSize = "14px";
-        break;
-      case "lg":
-        checkbox.element.style.fontSize = "20px";
-        break;
-    }
+    this.setCheckAndRadio(checkbox);
   }
 
    styleJSLabel(label) {
-    switch(this.size) {
-      case "sm":
-        label.element.style.fontSize = "14px";
+    this.setSize(label);
+  }
+
+   styleJSRadioButton(radiobutton) {
+    this.setCheckAndRadio(radiobutton);
+  }
+
+   setCheckAndRadio(component) {
+    let input = component.element.querySelector("input");
+    input.classList.add("form-check-input");
+    switch(input.getAttribute("role")) {
+      case "switch":
+        input.style.marginRight = "0.5em";
+        component.cssAddClass("form-switch");
+        this.setSize(component);
         break;
-      case "lg":
-        label.element.style.fontSize = "20px";
+      case "toggle":
+        input.classList.add("btn-check");
+        component.cssAddClass("btn");
+        component.cssAddClass("btn-primary");
+        if (this.size) {
+          component.cssAddClass("btn-" + this.size);
+        }
+        break;
+      default:
+        input.style.marginRight = "0.5em";
+        this.setSize(component);
         break;
     }
   }
@@ -1310,6 +1419,17 @@ class BootstrapLookAndFeel extends LookAndFeel {
     spinner.cssAddClass("form-control");
     if (this.size) {
       spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+   setSize(component) {
+    switch(this.size) {
+      case "sm":
+        component.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        component.element.style.fontSize = "20px";
+        break;
     }
   }
 }

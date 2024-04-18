@@ -69,8 +69,11 @@
     </java>
   </target>
   
-  <target name="copy_css" depends="version">
-    <copy file="${src.dir}/swing.css" tofile="${build.dir}/swing-bundle-${version}.css"/>
+  <target name="build_css" depends="version">
+    <!--<copy file="${src.dir}/swing.css" tofile="${build.dir}/swing-bundle-${version}.css"/>-->
+    <concat destfile="${build.dir}/swing-bundle-${version}.css" fixlastline="true">
+      <fileset dir="${src.dir}/css" />
+    </concat>
   </target>
   
   <target name="build_js_min" depends="build_js">
@@ -81,7 +84,7 @@
     </java>
   </target>
     
-  <target name="build_css_min" depends="copy_css">
+  <target name="build_css_min" depends="build_css">
     <java sourcefile="${tools.dir}/Minify.java">
       <arg value="https://www.toptal.com/developers/cssminifier/api/raw"/>
       <arg value="${build.dir}/swing-bundle-${version}.css"/>

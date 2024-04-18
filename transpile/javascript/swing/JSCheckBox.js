@@ -31,6 +31,14 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
+   * Set this checkbox as a toggle
+   */
+   setToggle() {
+    this.element.querySelector("input").setAttribute("role", "toggle");
+    LookAndFeel.CURRENT.styleJSCheckBox(this);
+  }
+
+  /**
    * Clone of javax.swing.JCheckBox.setText
    *
    * @param text The text

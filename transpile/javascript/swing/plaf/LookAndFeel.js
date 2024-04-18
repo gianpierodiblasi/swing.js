@@ -45,6 +45,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a radiobutton
+   *
+   * @param radiobutton The radiobutton
+   */
+   styleJSRadioButton(radiobutton) {
+  }
+
+  /**
    * Applies the style to a spinner
    *
    * @param spinner The spinner

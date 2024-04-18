@@ -1,0 +1,9 @@
+.jcheckbox:has(.btn-check:checked) {
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}
+
+.jradiobutton:has(.btn-check:checked) {
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}

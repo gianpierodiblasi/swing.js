@@ -3,6 +3,7 @@ package javascript.swing.plaf;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSLabel;
+import javascript.swing.JSRadioButton;
 import javascript.swing.JSSpinner;
 
 /**
@@ -47,6 +48,13 @@ public abstract class LookAndFeel {
    */
   public abstract void styleJSLabel(JSLabel label);
 
+  /**
+   * Applies the style to a radiobutton
+   *
+   * @param radiobutton The radiobutton
+   */
+  public abstract void styleJSRadioButton(JSRadioButton radiobutton);
+  
   /**
    * Applies the style to a spinner
    *

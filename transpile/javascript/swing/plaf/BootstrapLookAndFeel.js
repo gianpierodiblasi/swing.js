@@ -80,29 +80,37 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSCheckBox(checkbox) {
-    let input = checkbox.element.querySelector("input");
-    input.style.marginRight = "0.5em";
-    input.classList.add("form-check-input");
-    if (input.getAttribute("role") === "switch") {
-      checkbox.cssAddClass("form-switch");
-    }
-    switch(this.size) {
-      case "sm":
-        checkbox.element.style.fontSize = "14px";
-        break;
-      case "lg":
-        checkbox.element.style.fontSize = "20px";
-        break;
-    }
+    this.setCheckAndRadio(checkbox);
   }
 
    styleJSLabel(label) {
-    switch(this.size) {
-      case "sm":
-        label.element.style.fontSize = "14px";
+    this.setSize(label);
+  }
+
+   styleJSRadioButton(radiobutton) {
+    this.setCheckAndRadio(radiobutton);
+  }
+
+   setCheckAndRadio(component) {
+    let input = component.element.querySelector("input");
+    input.classList.add("form-check-input");
+    switch(input.getAttribute("role")) {
+      case "switch":
+        input.style.marginRight = "0.5em";
+        component.cssAddClass("form-switch");
+        this.setSize(component);
         break;
-      case "lg":
-        label.element.style.fontSize = "20px";
+      case "toggle":
+        input.classList.add("btn-check");
+        component.cssAddClass("btn");
+        component.cssAddClass("btn-primary");
+        if (this.size) {
+          component.cssAddClass("btn-" + this.size);
+        }
+        break;
+      default:
+        input.style.marginRight = "0.5em";
+        this.setSize(component);
         break;
     }
   }
@@ -112,6 +120,17 @@ class BootstrapLookAndFeel extends LookAndFeel {
     spinner.cssAddClass("form-control");
     if (this.size) {
       spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+   setSize(component) {
+    switch(this.size) {
+      case "sm":
+        component.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        component.element.style.fontSize = "20px";
+        break;
     }
   }
 }

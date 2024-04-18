@@ -4,7 +4,9 @@ import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
+import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
+import javascript.swing.JSRadioButton;
 import javascript.swing.JSSpinner;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
@@ -98,32 +100,41 @@ public class BootstrapLookAndFeel extends LookAndFeel {
   @Override
   @SuppressWarnings("StringEquality")
   public void styleJSCheckBox(JSCheckBox checkbox) {
-    HTMLElement input = (HTMLElement) checkbox.element.querySelector("input");
-    input.style.marginRight = "0.5em";
-    input.classList.add("form-check-input");
-
-    if (input.getAttribute("role") == "switch") {
-      checkbox.cssAddClass("form-switch");
-    }
-    
-    switch (this.size) {
-      case "sm":
-        checkbox.element.style.fontSize = "14px";
-        break;
-      case "lg":
-        checkbox.element.style.fontSize = "20px";
-        break;
-    }
+    this.setCheckAndRadio(checkbox);
   }
 
   @Override
   public void styleJSLabel(JSLabel label) {
-    switch (this.size) {
-      case "sm":
-        label.element.style.fontSize = "14px";
+    this.setSize(label);
+  }
+
+  @Override
+  @SuppressWarnings("StringEquality")
+  public void styleJSRadioButton(JSRadioButton radiobutton) {
+    this.setCheckAndRadio(radiobutton);
+  }
+
+  private void setCheckAndRadio(JSComponent component) {
+    HTMLElement input = (HTMLElement) component.element.querySelector("input");
+    input.classList.add("form-check-input");
+
+    switch (input.getAttribute("role")) {
+      case "switch":
+        input.style.marginRight = "0.5em";
+        component.cssAddClass("form-switch");
+        this.setSize(component);
         break;
-      case "lg":
-        label.element.style.fontSize = "20px";
+      case "toggle":
+        input.classList.add("btn-check");
+        component.cssAddClass("btn");
+        component.cssAddClass("btn-primary");
+        if ($exists(this.size)) {
+          component.cssAddClass("btn-" + this.size);
+        }
+        break;
+      default:
+        input.style.marginRight = "0.5em";
+        this.setSize(component);
         break;
     }
   }
@@ -135,6 +146,17 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
     if ($exists(this.size)) {
       spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+  private void setSize(JSComponent component) {
+    switch (this.size) {
+      case "sm":
+        component.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        component.element.style.fontSize = "20px";
+        break;
     }
   }
 }
