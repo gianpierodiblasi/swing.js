@@ -2,9 +2,11 @@ package javascript.swing.plaf;
 
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
+import javascript.swing.JSComboBox;
 import javascript.swing.JSLabel;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSpinner;
+import javascript.swing.JSToggleButton;
 
 /**
  * The abstract object of any implementation able to redefine the look and feel
@@ -42,6 +44,13 @@ public abstract class LookAndFeel {
   public abstract void styleJSCheckBox(JSCheckBox checkbox);
 
   /**
+   * Applies the style to a combobox
+   *
+   * @param combobox The combobox
+   */
+  public abstract void styleJSComboBox(JSComboBox<?> combobox);
+
+  /**
    * Applies the style to a label
    *
    * @param label The label
@@ -54,11 +63,18 @@ public abstract class LookAndFeel {
    * @param radiobutton The radiobutton
    */
   public abstract void styleJSRadioButton(JSRadioButton radiobutton);
-  
+
   /**
    * Applies the style to a spinner
    *
    * @param spinner The spinner
    */
   public abstract void styleJSSpinner(JSSpinner spinner);
+
+  /**
+   * Applies the style to a togglebutton
+   *
+   * @param togglebutton The togglebutton
+   */
+  public abstract void styleJSToggleButton(JSToggleButton togglebutton);
 }

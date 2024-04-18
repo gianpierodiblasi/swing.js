@@ -36,7 +36,7 @@ public class JSRadioButton extends AbstractButton {
    * Set this checkbox as a switch
    */
   public void setSwitch() {
-    this.element.querySelector("input").setAttribute("role", "switch");
+    this.radiobutton.setAttribute("role", "switch");
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
   
@@ -44,7 +44,7 @@ public class JSRadioButton extends AbstractButton {
    * Set this radiobutton as a toggle
    */
   public void setToggle() {
-    this.element.querySelector("input").setAttribute("role", "toggle");
+    this.radiobutton.setAttribute("role", "toggle");
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
   

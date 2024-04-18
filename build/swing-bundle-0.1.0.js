@@ -931,7 +931,7 @@ class JSCheckBox extends AbstractButton {
    * Set this checkbox as a switch
    */
    setSwitch() {
-    this.element.querySelector("input").setAttribute("role", "switch");
+    this.checkbox.setAttribute("role", "switch");
     LookAndFeel.CURRENT.styleJSCheckBox(this);
   }
 
@@ -939,7 +939,7 @@ class JSCheckBox extends AbstractButton {
    * Set this checkbox as a toggle
    */
    setToggle() {
-    this.element.querySelector("input").setAttribute("role", "toggle");
+    this.checkbox.setAttribute("role", "toggle");
     LookAndFeel.CURRENT.styleJSCheckBox(this);
   }
 
@@ -971,6 +971,54 @@ class JSCheckBox extends AbstractButton {
   }
 }
 /**
+ * The javax.swing.JComboBox clone
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class JSComboBox extends AbstractButton {
+
+  static  MODEL_AND_RENDERER = "model-and-renderer";
+
+   modelAndRenderer = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("select");
+    this.element.classList.add("jcombobox");
+    this.element.onchange = (event) => this.onclick();
+    LookAndFeel.CURRENT.styleJSComboBox(this);
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.getSelectedItem
+   *
+   * @return The selected item
+   */
+   getSelectedItem() {
+    return this.modelAndRenderer.getElementAt((this.element).selectedIndex);
+  }
+
+  /**
+   * Sets the model
+   *
+   * @param modelAndRenderer The model
+   */
+   setModelAndRenderer(modelAndRenderer) {
+    this.modelAndRenderer = modelAndRenderer;
+    this.modelAndRenderer.setComboBox(this);
+  }
+
+  /**
+   * Returns the model
+   *
+   * @return The model
+   */
+   getModelAndRenderer() {
+    return this.modelAndRenderer;
+  }
+}
+/**
  * The javax.swing.JRadioButton clone
  *
  * @author gianpiero.diblasi
@@ -998,7 +1046,7 @@ class JSRadioButton extends AbstractButton {
    * Set this checkbox as a switch
    */
    setSwitch() {
-    this.element.querySelector("input").setAttribute("role", "switch");
+    this.radiobutton.setAttribute("role", "switch");
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
 
@@ -1006,7 +1054,7 @@ class JSRadioButton extends AbstractButton {
    * Set this radiobutton as a toggle
    */
    setToggle() {
-    this.element.querySelector("input").setAttribute("role", "toggle");
+    this.radiobutton.setAttribute("role", "toggle");
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
 
@@ -1035,6 +1083,58 @@ class JSRadioButton extends AbstractButton {
    */
    isSelected() {
     return this.radiobutton.checked;
+  }
+}
+/**
+ * The javax.swing.JToggleButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSToggleButton extends AbstractButton {
+
+   togglebutton = null;
+
+   text = null;
+
+  constructor() {
+    super();
+    this.element = document.createElement("label");
+    this.element.classList.add("jtogglebutton");
+    this.togglebutton = document.createElement("input");
+    this.togglebutton.setAttribute("type", "checkbox");
+    this.togglebutton.onchange = (event) => this.onclick();
+    this.togglebutton.setAttribute("role", "toggle");
+    this.element.appendChild(this.togglebutton);
+    this.text = document.createTextNode("");
+    this.element.appendChild(this.text);
+    LookAndFeel.CURRENT.styleJSToggleButton(this);
+  }
+
+  /**
+   * Clone of javax.swing.JToggleButton.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JToggleButton.setSelected
+   *
+   * @param selected true to select, false otherwise
+   */
+   setSelected(selected) {
+    this.togglebutton.checked = selected;
+  }
+
+  /**
+   * Clone of javax.swing.JToggleButton.isSelected
+   *
+   * @return true if selected, false otherwise
+   */
+   isSelected() {
+    return this.togglebutton.checked;
   }
 }
 /**
@@ -1242,6 +1342,77 @@ class JSSpinner extends JSComponent {
   }
 }
 /**
+ * The abstract object to model and render a combobox
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class AbstractComboBoxModelAndRenderer {
+
+   combobox = null;
+
+   elements = new Array();
+
+  /**
+   * Returns the element at an index
+   *
+   * @param index The index
+   * @return The element
+   */
+   getElementAt(index) {
+    return this.elements[index];
+  }
+
+  /**
+   * Sets the combobox managed by this model
+   *
+   * @param combobox The combobox
+   */
+   setComboBox(combobox) {
+    this.combobox = combobox;
+    this.elements.forEach(element => this.addOption(element));
+  }
+
+  /**
+   * Adds an element to this model
+   *
+   * @param element The element
+   */
+   addElement(element) {
+    this.elements.push(element);
+    if (this.combobox) {
+      this.addOption(element);
+    }
+  }
+
+   addOption(element) {
+    let option = document.createElement("option");
+    option.textContent = this.render(element);
+    this.combobox.element.appendChild(option);
+  }
+
+  /**
+   * Renders an element
+   *
+   * @param element The element
+   * @return The renderer element
+   */
+   render(element) {
+  }
+}
+/**
+ * The default implementation of the AbstractComboBoxModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
+
+   render(element) {
+    return element.toString();
+  }
+}
+/**
  * The abstract object of any implementation able to redefine the look and feel
  * of all components. It is mandatory to set a Look&amp;Feel before the creation
  * of the first component; the default Look&amp;Feel is the BootstrapLookAndFeel
@@ -1280,6 +1451,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a combobox
+   *
+   * @param combobox The combobox
+   */
+   styleJSComboBox(combobox) {
+  }
+
+  /**
    * Applies the style to a label
    *
    * @param label The label
@@ -1301,6 +1480,14 @@ class LookAndFeel {
    * @param spinner The spinner
    */
    styleJSSpinner(spinner) {
+  }
+
+  /**
+   * Applies the style to a togglebutton
+   *
+   * @param togglebutton The togglebutton
+   */
+   styleJSToggleButton(togglebutton) {
   }
 }
 /**
@@ -1388,12 +1575,32 @@ class BootstrapLookAndFeel extends LookAndFeel {
     this.setCheckAndRadio(checkbox);
   }
 
+   styleJSComboBox(combobox) {
+    combobox.element.style.width = "auto";
+    combobox.cssAddClass("form-select");
+    if (this.size) {
+      combobox.cssAddClass("form-select-" + this.size);
+    }
+  }
+
    styleJSLabel(label) {
     this.setSize(label);
   }
 
    styleJSRadioButton(radiobutton) {
     this.setCheckAndRadio(radiobutton);
+  }
+
+   styleJSSpinner(spinner) {
+    spinner.element.style.width = "auto";
+    spinner.cssAddClass("form-control");
+    if (this.size) {
+      spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+   styleJSToggleButton(togglebutton) {
+    this.setCheckAndRadio(togglebutton);
   }
 
    setCheckAndRadio(component) {
@@ -1417,14 +1624,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
         input.style.marginRight = "0.5em";
         this.setSize(component);
         break;
-    }
-  }
-
-   styleJSSpinner(spinner) {
-    spinner.element.style.width = "auto";
-    spinner.cssAddClass("form-control");
-    if (this.size) {
-      spinner.cssAddClass("form-control-" + this.size);
     }
   }
 

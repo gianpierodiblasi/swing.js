@@ -37,6 +37,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a combobox
+   *
+   * @param combobox The combobox
+   */
+   styleJSComboBox(combobox) {
+  }
+
+  /**
    * Applies the style to a label
    *
    * @param label The label
@@ -58,5 +66,13 @@ class LookAndFeel {
    * @param spinner The spinner
    */
    styleJSSpinner(spinner) {
+  }
+
+  /**
+   * Applies the style to a togglebutton
+   *
+   * @param togglebutton The togglebutton
+   */
+   styleJSToggleButton(togglebutton) {
   }
 }

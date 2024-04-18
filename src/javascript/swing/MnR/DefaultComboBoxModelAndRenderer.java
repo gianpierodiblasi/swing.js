@@ -1,4 +1,4 @@
-package giada.swing.MnR;
+package javascript.swing.MnR;
 
 /**
  * The default implementation of the AbstractComboBoxModelAndRenderer

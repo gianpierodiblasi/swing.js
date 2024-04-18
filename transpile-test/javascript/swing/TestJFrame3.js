@@ -19,6 +19,11 @@ class TestJFrame3 extends JFrame {
     (SwingJS.convert(this.jCheckBox3)).setToggle();
     (SwingJS.convert(this.jRadioButton2)).setSwitch();
     (SwingJS.convert(this.jRadioButton3)).setToggle();
+    let modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    (SwingJS.convert(this.jComboBox1)).setModelAndRenderer(modelAndRendererCB);
   }
 
   /**
@@ -33,10 +38,13 @@ class TestJFrame3 extends JFrame {
     this.jCheckBox2 = new JCheckBox();let jCheckBox2 = this.jCheckBox2;
     this.jCheckBox3 = new JCheckBox();let jCheckBox3 = this.jCheckBox3;
     this.jCheckBox4 = new JCheckBox();let jCheckBox4 = this.jCheckBox4;
+    this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
+    this.jToggleButton2 = new JToggleButton();let jToggleButton2 = this.jToggleButton2;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.jRadioButton1 = new JRadioButton();let jRadioButton1 = this.jRadioButton1;
     this.jRadioButton2 = new JRadioButton();let jRadioButton2 = this.jRadioButton2;
     this.jRadioButton3 = new JRadioButton();let jRadioButton3 = this.jRadioButton3;
+    this.jComboBox1 = new JComboBox();let jComboBox1 = this.jComboBox1;
     this.jPanel3 = new JPanel();let jPanel3 = this.jPanel3;
     this.jLabel1 = new JLabel();let jLabel1 = this.jLabel1;
     jCheckBox1.setText("jCheckBox1");
@@ -49,6 +57,11 @@ class TestJFrame3 extends JFrame {
     jPanel1.add(jCheckBox3);
     jCheckBox4.setText("jCheckBox4");
     jPanel1.add(jCheckBox4);
+    jToggleButton1.setText("jToggleButton1");
+    jToggleButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jToggleButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jToggleButton1);
+    jToggleButton2.setText("jToggleButton2");
+    jPanel1.add(jToggleButton2);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     buttonGroup1.add(jRadioButton1);
     jRadioButton1.setText("jRadioButton1");
@@ -59,6 +72,8 @@ class TestJFrame3 extends JFrame {
     buttonGroup1.add(jRadioButton3);
     jRadioButton3.setText("jRadioButton3");
     jPanel2.add(jRadioButton3);
+    jComboBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jComboBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel2.add(jComboBox1);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
     jLabel1.setText("jLabel1");
     jPanel3.add(jLabel1);
@@ -78,6 +93,18 @@ class TestJFrame3 extends JFrame {
   }
 
   // GEN-LAST:event_jCheckBox3ActionPerformed
+   jToggleButton1ActionPerformed(evt) {
+    // GEN-FIRST:event_jToggleButton1ActionPerformed
+    this.jToggleButton2.setSelected(this.jToggleButton1.isSelected());
+  }
+
+  // GEN-LAST:event_jToggleButton1ActionPerformed
+   jComboBox1ActionPerformed(evt) {
+    // GEN-FIRST:event_jComboBox1ActionPerformed
+    this.jLabel1.setText("" + this.jComboBox1.getSelectedItem());
+  }
+
+  // GEN-LAST:event_jComboBox1ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -88,6 +115,8 @@ class TestJFrame3 extends JFrame {
    jCheckBox3 = null;
 
    jCheckBox4 = null;
+
+   jComboBox1 = null;
 
    jLabel1 = null;
 
@@ -102,5 +131,9 @@ class TestJFrame3 extends JFrame {
    jRadioButton2 = null;
 
    jRadioButton3 = null;
+
+   jToggleButton1 = null;
+
+   jToggleButton2 = null;
   // End of variables declaration//GEN-END:variables
 }

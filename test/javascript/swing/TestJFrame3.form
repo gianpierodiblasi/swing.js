@@ -58,6 +58,19 @@
             <Property name="text" type="java.lang.String" value="jCheckBox4"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jToggleButton1"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jToggleButton2"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -92,6 +105,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton3"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBox1">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Integer&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

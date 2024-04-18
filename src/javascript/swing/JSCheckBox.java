@@ -36,7 +36,7 @@ public class JSCheckBox extends AbstractButton {
    * Set this checkbox as a switch
    */
   public void setSwitch() {
-    this.element.querySelector("input").setAttribute("role", "switch");
+    this.checkbox.setAttribute("role", "switch");
     LookAndFeel.CURRENT.styleJSCheckBox(this);
   }
 
@@ -44,7 +44,7 @@ public class JSCheckBox extends AbstractButton {
    * Set this checkbox as a toggle
    */
   public void setToggle() {
-    this.element.querySelector("input").setAttribute("role", "toggle");
+    this.checkbox.setAttribute("role", "toggle");
     LookAndFeel.CURRENT.styleJSCheckBox(this);
   }
   

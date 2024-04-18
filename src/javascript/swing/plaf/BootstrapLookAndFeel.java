@@ -4,10 +4,12 @@ import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
+import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSpinner;
+import javascript.swing.JSToggleButton;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
 
@@ -104,6 +106,16 @@ public class BootstrapLookAndFeel extends LookAndFeel {
   }
 
   @Override
+  public void styleJSComboBox(JSComboBox<?> combobox) {
+    combobox.element.style.width = "auto";
+    combobox.cssAddClass("form-select");
+
+    if ($exists(this.size)) {
+      combobox.cssAddClass("form-select-" + this.size);
+    }
+  }
+
+  @Override
   public void styleJSLabel(JSLabel label) {
     this.setSize(label);
   }
@@ -112,6 +124,21 @@ public class BootstrapLookAndFeel extends LookAndFeel {
   @SuppressWarnings("StringEquality")
   public void styleJSRadioButton(JSRadioButton radiobutton) {
     this.setCheckAndRadio(radiobutton);
+  }
+
+  @Override
+  public void styleJSSpinner(JSSpinner spinner) {
+    spinner.element.style.width = "auto";
+    spinner.cssAddClass("form-control");
+
+    if ($exists(this.size)) {
+      spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+  @Override
+  public void styleJSToggleButton(JSToggleButton togglebutton) {
+    this.setCheckAndRadio(togglebutton);
   }
 
   private void setCheckAndRadio(JSComponent component) {
@@ -136,16 +163,6 @@ public class BootstrapLookAndFeel extends LookAndFeel {
         input.style.marginRight = "0.5em";
         this.setSize(component);
         break;
-    }
-  }
-
-  @Override
-  public void styleJSSpinner(JSSpinner spinner) {
-    spinner.element.style.width = "auto";
-    spinner.cssAddClass("form-control");
-
-    if ($exists(this.size)) {
-      spinner.cssAddClass("form-control-" + this.size);
     }
   }
 

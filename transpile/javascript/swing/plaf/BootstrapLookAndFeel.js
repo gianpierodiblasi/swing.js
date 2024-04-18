@@ -83,12 +83,32 @@ class BootstrapLookAndFeel extends LookAndFeel {
     this.setCheckAndRadio(checkbox);
   }
 
+   styleJSComboBox(combobox) {
+    combobox.element.style.width = "auto";
+    combobox.cssAddClass("form-select");
+    if (this.size) {
+      combobox.cssAddClass("form-select-" + this.size);
+    }
+  }
+
    styleJSLabel(label) {
     this.setSize(label);
   }
 
    styleJSRadioButton(radiobutton) {
     this.setCheckAndRadio(radiobutton);
+  }
+
+   styleJSSpinner(spinner) {
+    spinner.element.style.width = "auto";
+    spinner.cssAddClass("form-control");
+    if (this.size) {
+      spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+   styleJSToggleButton(togglebutton) {
+    this.setCheckAndRadio(togglebutton);
   }
 
    setCheckAndRadio(component) {
@@ -112,14 +132,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
         input.style.marginRight = "0.5em";
         this.setSize(component);
         break;
-    }
-  }
-
-   styleJSSpinner(spinner) {
-    spinner.element.style.width = "auto";
-    spinner.cssAddClass("form-control");
-    if (this.size) {
-      spinner.cssAddClass("form-control-" + this.size);
     }
   }
 
