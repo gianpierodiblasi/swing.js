@@ -27,7 +27,8 @@ public class TestJFrame3 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
-    ((JSCheckBox) SwingJS.convert(this.jCheckBox3)).setSwitch();
+    ((JSCheckBox) SwingJS.convert(this.jCheckBox2)).setSwitch();
+    ((JSCheckBox) SwingJS.convert(this.jCheckBox3)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton2)).setSwitch();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton3)).setToggle();
   }

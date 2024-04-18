@@ -605,7 +605,8 @@ class TestJSFrame3 extends JSFrame {
   }
 
    postInitComponents() {
-    (SwingJS.convert(this.jCheckBox3)).setSwitch();
+    (SwingJS.convert(this.jCheckBox2)).setSwitch();
+    (SwingJS.convert(this.jCheckBox3)).setToggle();
     (SwingJS.convert(this.jRadioButton2)).setSwitch();
     (SwingJS.convert(this.jRadioButton3)).setToggle();
   }

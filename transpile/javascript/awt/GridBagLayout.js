@@ -26,6 +26,7 @@ class GridBagLayout extends LayoutManager {
    resetPanel(panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("gridbaglayout");
+    panel.element.style.removeProperty("grid-template");
     panel.element.style.removeProperty("grid-template-areas");
     panel.element.style.removeProperty("grid-template-rows");
     panel.element.style.removeProperty("grid-template-columns");

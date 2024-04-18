@@ -29,15 +29,20 @@ public class GridLayout implements LayoutManager {
   public void setPanel(JSPanel panel) {
     panel.element.classList.add("gridlayout");
 
-    String gridTemplateAreas = "";
+    String gridTemplate = "";
     for (int row = 1; row <= this.rows; row++) {
       String gridTemplateRow = "";
       for (int col = 1; col <= this.cols; col++) {
         gridTemplateRow += "p" + ((row - 1) * this.cols + col) + " ";
       }
-      gridTemplateAreas += "\"" + gridTemplateRow + "\"\n";
+      gridTemplate += "\"" + gridTemplateRow + "\" 1fr\n";
     }
-    panel.element.style.setProperty("grid-template-areas", gridTemplateAreas);
+    gridTemplate += "/";
+    for (int col = 1; col <= this.cols; col++) {
+      gridTemplate += " 1fr";
+    }
+
+    panel.element.style.setProperty("grid-template", gridTemplate);
     panel.element.style.setProperty("row-gap", this.vGap + "px");
     panel.element.style.setProperty("column-gap", this.hGap + "px");
   }
@@ -46,6 +51,7 @@ public class GridLayout implements LayoutManager {
   public void resetPanel(JSPanel panel) {
     panel.element.textContent = "";
     panel.element.classList.remove("gridlayout");
+    panel.element.style.removeProperty("grid-template");
     panel.element.style.removeProperty("grid-template-areas");
     panel.element.style.removeProperty("row-gap");
     panel.element.style.removeProperty("column-gap");
