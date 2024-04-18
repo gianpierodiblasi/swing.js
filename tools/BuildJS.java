@@ -83,7 +83,7 @@ public class BuildJS {
     Path outPath = out.toPath();
 
     System.out.println("writing " + in + " into " + out);
-    Files.write(outPath, Files.readAllBytes(swingjs.toPath()), StandardOpenOption.CREATE);
+    Files.write(outPath, swingjs != null ? Files.readAllBytes(swingjs.toPath()) : new byte[0], StandardOpenOption.CREATE);
     nodes.stream().filter(node -> node.parentName == null).forEach(node -> BuildJS.write(outPath, node));
   }
 
@@ -113,10 +113,10 @@ public class BuildJS {
   public static void main(String[] args) throws Exception {
     switch (args[0]) {
       case "w":
-        BuildJS.watch(new File(args[1]), new File(args[2]), new File(args[3]));
+        BuildJS.watch("NOFILE".equals(args[1]) ? null : new File(args[1]), new File(args[2]), new File(args[3]));
         break;
       case "b":
-        BuildJS.write(new File(args[1]), new File(args[2]), new File(args[3]));
+        BuildJS.write("NOFILE".equals(args[1]) ? null : new File(args[1]), new File(args[2]), new File(args[3]));
     }
   }
 }
