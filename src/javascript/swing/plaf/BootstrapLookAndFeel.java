@@ -3,6 +3,8 @@ package javascript.swing.plaf;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import javascript.swing.JSButton;
+import javascript.swing.JSLabel;
+import javascript.swing.JSSpinner;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
 
@@ -92,15 +94,24 @@ public class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
-//  @Override
-//  public void styleJLabel(JLabel label) {
-//    switch (this.size) {
-//      case "sm":
-//        label.element.style.fontSize = "14px";
-//        break;
-//      case "lg":
-//        label.element.style.fontSize = "20px";
-//        break;
-//    }
-//  }
+  @Override
+  public void styleJSLabel(JSLabel label) {
+    switch (this.size) {
+      case "sm":
+        label.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        label.element.style.fontSize = "20px";
+        break;
+    }
+  }
+
+  @Override
+  public void styleJSSpinner(JSSpinner spinner) {
+    spinner.cssAddClass("form-control");
+
+    if ($exists(this.size)) {
+      spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
 }

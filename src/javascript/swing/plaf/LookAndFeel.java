@@ -1,12 +1,14 @@
 package javascript.swing.plaf;
 
 import javascript.swing.JSButton;
+import javascript.swing.JSLabel;
+import javascript.swing.JSSpinner;
 
 /**
  * The abstract object of any implementation able to redefine the look and feel
- * of all components. It is mandatory to set a Look&amp;Feel before the creation of
- * the first component; the default Look&amp;Feel is the BootstrapLookAndFeel which
- * can be set in this way
+ * of all components. It is mandatory to set a Look&amp;Feel before the creation
+ * of the first component; the default Look&amp;Feel is the BootstrapLookAndFeel
+ * which can be set in this way
  * <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code>
  *
  * @author gianpiero.diblasi
@@ -30,5 +32,15 @@ public abstract class LookAndFeel {
    */
   public abstract void styleJSButton(JSButton button);
 
-//  public abstract void styleJLabel(JLabel label);
+  /**
+   * Applies the style to a label
+   * @param label The label
+   */
+  public abstract void styleJSLabel(JSLabel label);
+  
+  /**
+   * Applies the style to a spinner
+   * @param spinner The spinner
+   */
+  public abstract void styleJSSpinner(JSSpinner spinner);
 }

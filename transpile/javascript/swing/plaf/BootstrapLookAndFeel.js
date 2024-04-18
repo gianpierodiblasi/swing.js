@@ -78,15 +78,22 @@ class BootstrapLookAndFeel extends LookAndFeel {
       button.cssAddClass("btn-" + this.size);
     }
   }
-  // @Override
-  // public void styleJLabel(JLabel label) {
-  // switch (this.size) {
-  // case "sm":
-  // label.element.style.fontSize = "14px";
-  // break;
-  // case "lg":
-  // label.element.style.fontSize = "20px";
-  // break;
-  // }
-  // }
+
+   styleJSLabel(label) {
+    switch(this.size) {
+      case "sm":
+        label.element.style.fontSize = "14px";
+        break;
+      case "lg":
+        label.element.style.fontSize = "20px";
+        break;
+    }
+  }
+
+   styleJSSpinner(spinner) {
+    spinner.cssAddClass("form-control");
+    if (this.size) {
+      spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
 }

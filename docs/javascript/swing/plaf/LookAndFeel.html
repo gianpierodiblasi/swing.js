@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -142,9 +142,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public abstract class <span class="typeNameLabel">LookAndFeel</span>
 extends java.lang.Object</pre>
 <div class="block">The abstract object of any implementation able to redefine the look and feel
- of all components. It is mandatory to set a Look&amp;Feel before the creation of
- the first component; the default Look&amp;Feel is the BootstrapLookAndFeel which
- can be set in this way
+ of all components. It is mandatory to set a Look&amp;Feel before the creation
+ of the first component; the default Look&amp;Feel is the BootstrapLookAndFeel
+ which can be set in this way
  <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -230,6 +230,20 @@ extends java.lang.Object</pre>
 <div class="block">Applies the style to a button</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#styleJSLabel(javascript.swing.JSLabel)">styleJSLabel</a></span>&#8203;(<a href="../JSLabel.html" title="class in javascript.swing">JSLabel</a>&nbsp;label)</code></th>
+<td class="colLast">
+<div class="block">Applies the style to a label</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>abstract void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#styleJSSpinner(javascript.swing.JSSpinner)">styleJSSpinner</a></span>&#8203;(<a href="../JSSpinner.html" title="class in javascript.swing">JSSpinner</a>&nbsp;spinner)</code></th>
+<td class="colLast">
+<div class="block">Applies the style to a spinner</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -309,7 +323,7 @@ extends java.lang.Object</pre>
 <a id="styleJSButton(javascript.swing.JSButton)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>styleJSButton</h4>
 <pre class="methodSignature">public abstract&nbsp;void&nbsp;styleJSButton&#8203;(<a href="../JSButton.html" title="class in javascript.swing">JSButton</a>&nbsp;button)</pre>
@@ -317,6 +331,34 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>button</code> - The button</dd>
+</dl>
+</li>
+</ul>
+<a id="styleJSLabel(javascript.swing.JSLabel)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>styleJSLabel</h4>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;styleJSLabel&#8203;(<a href="../JSLabel.html" title="class in javascript.swing">JSLabel</a>&nbsp;label)</pre>
+<div class="block">Applies the style to a label</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>label</code> - The label</dd>
+</dl>
+</li>
+</ul>
+<a id="styleJSSpinner(javascript.swing.JSSpinner)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>styleJSSpinner</h4>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;styleJSSpinner&#8203;(<a href="../JSSpinner.html" title="class in javascript.swing">JSSpinner</a>&nbsp;spinner)</pre>
+<div class="block">Applies the style to a spinner</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>spinner</code> - The spinner</dd>
 </dl>
 </li>
 </ul>
