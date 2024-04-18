@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import javascript.swing.plaf.LookAndFeel;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -59,9 +60,7 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     this.jPanel2.add(new JButton());
 
-//    if ($exists(LookAndFeel.CURRENT)) {
-//      this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
-//    }
+    this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
   }
 
   /**

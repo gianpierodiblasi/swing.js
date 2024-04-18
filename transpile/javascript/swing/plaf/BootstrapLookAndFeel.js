@@ -91,6 +91,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSSpinner(spinner) {
+    spinner.element.style.width = "auto";
     spinner.cssAddClass("form-control");
     if (this.size) {
       spinner.cssAddClass("form-control-" + this.size);

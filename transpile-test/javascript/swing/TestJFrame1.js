@@ -36,9 +36,7 @@ class TestJFrame1 extends JFrame {
     jPanel22.add(new JButton());
     this.getContentPane().add(jPanel22, BorderLayout.CENTER);
     this.jPanel2.add(new JButton());
-    // if ($exists(LookAndFeel.CURRENT)) {
-    // this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
-    // }
+    this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
   }
 
   /**

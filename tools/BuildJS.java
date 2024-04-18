@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 
 public class BuildJS {
 
+  private final static List<String> toRename = List.of("Button", "Component", "Frame", "Label", "Panel", "Spinner");
+
   @SuppressWarnings({"UseOfSystemOutOrSystemErr", "CallToPrintStackTrace", "MismatchedQueryAndUpdateOfCollection"})
   private static void watch(File swingjs, File in, File out, boolean findParent, boolean rename) throws Exception {
     System.out.println("watching " + in + " into " + out);
@@ -57,7 +59,7 @@ public class BuildJS {
       try {
         TreeNode node = new TreeNode();
 
-        node.content = Files.readString(path);
+        node.content = rename ? BuildJS.rename(Files.readString(path)) : Files.readString(path);
         int indexStart = node.content.indexOf("class ");
         int indexStop = node.content.indexOf(' ', indexStart + 6);
         node.name = node.content.substring(indexStart + 6, indexStop);
@@ -101,6 +103,13 @@ public class BuildJS {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+  }
+
+  private static String rename(String content) {
+    for (String name : BuildJS.toRename) {
+      content = content.replace("J" + name, "JS" + name);
+    }
+    return content;
   }
 
   private static class TreeNode {
