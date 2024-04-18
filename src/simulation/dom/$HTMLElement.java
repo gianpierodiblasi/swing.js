@@ -1,6 +1,7 @@
 package simulation.dom;
 
 import def.dom.HTMLElement;
+import def.dom.Node;
 
 /**
  * The simulation of the HTMLElement object
@@ -19,7 +20,6 @@ public class $HTMLElement extends HTMLElement {
 //
 //  public void select() {
 //  }
-//  
-//  public void prepend(Node node) {
-//  }
+  public void prepend(Node node) {
+  }
 }

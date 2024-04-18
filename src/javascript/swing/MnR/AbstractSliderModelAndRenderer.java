@@ -1,9 +1,10 @@
-package giada.swing.MnR;
+package javascript.swing.MnR;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import def.js.Array;
-import giada.swing.JSlider;
+import javascript.swing.JSSlider;
+import simulation.dom.$HTMLElement;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -14,23 +15,45 @@ import static simulation.js.$Globals.$exists;
  */
 public abstract class AbstractSliderModelAndRenderer<T> {
 
-  private JSlider slider;
+  private JSSlider slider;
   private final boolean renderByDataList;
   private final Array<T> elements = new Array<>();
 
+  /**
+   * Creates the object
+   *
+   * @param renderByDataList true if this object uses the datalist tag to render
+   * data, false otherwise
+   */
   public AbstractSliderModelAndRenderer(boolean renderByDataList) {
     this.renderByDataList = renderByDataList;
   }
 
+  /**
+   * Returns the element at an index
+   *
+   * @param index The index
+   * @return The element
+   */
   public T getElementAt(int index) {
     return this.elements.$get(index);
   }
 
-  public void setJSlider(JSlider slider) {
+  /**
+   * Sets the slider managed by this model
+   *
+   * @param slider The combobox
+   */
+  public void setSlider(JSSlider slider) {
     this.slider = slider;
     this.setDatalist();
   }
 
+  /**
+   * Adds an element to this model
+   *
+   * @param element The element
+   */
   @SuppressWarnings("unchecked")
   public void addElement(T element) {
     this.elements.push(element);
@@ -44,7 +67,7 @@ public abstract class AbstractSliderModelAndRenderer<T> {
     this.slider.setMinimum(0);
     this.slider.setMaximum(this.elements.length - 1);
 
-    HTMLElement dataList = (HTMLElement) this.slider.element.querySelector("datalist");
+    $HTMLElement dataList = ($HTMLElement) this.slider.element.querySelector("datalist");
     dataList.textContent = "";
     dataList.style.display = this.renderByDataList ? "flex" : "none";
 
@@ -56,9 +79,27 @@ public abstract class AbstractSliderModelAndRenderer<T> {
       HTMLElement option = document.createElement("option");
       option.setAttribute("value", "" + index);
       this.render(element, this.slider, dataList, noDataList, option);
-      dataList.appendChild(option);
+
+      switch (this.slider.getOrientation()) {
+        case JSSlider.HORIZONTAL:
+          dataList.appendChild(option);
+          break;
+        case JSSlider.VERTICAL:
+          dataList.prepend(option);
+          break;
+      }
+
     });
   }
 
-  protected abstract void render(T element, JSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option);
+  /**
+   * Renders an element
+   *
+   * @param element The element
+   * @param slider The slider
+   * @param dataList The datalist tag
+   * @param noDataList The div tag
+   * @param option The option tag
+   */
+  protected abstract void render(T element, JSSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option);
 }

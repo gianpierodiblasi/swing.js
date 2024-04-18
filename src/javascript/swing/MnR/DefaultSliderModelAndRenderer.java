@@ -1,7 +1,7 @@
-package giada.swing.MnR;
+package javascript.swing.MnR;
 
 import def.dom.HTMLElement;
-import giada.swing.JSlider;
+import javascript.swing.JSSlider;
 
 /**
  * The default implementation of the AbstractSliderModelAndRenderer
@@ -16,7 +16,7 @@ public class DefaultSliderModelAndRenderer<T> extends AbstractSliderModelAndRend
   }
 
   @Override
-  protected void render(T element, JSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option) {
+  protected void render(T element, JSSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option) {
     option.setAttribute("label", element.toString());
   }
 }

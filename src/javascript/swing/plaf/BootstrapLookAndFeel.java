@@ -8,6 +8,7 @@ import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
 import javascript.swing.JSRadioButton;
+import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
 import javascript.swing.JSToggleButton;
 import static simulation.js.$Globals.$exists;
@@ -117,13 +118,18 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
   @Override
   public void styleJSLabel(JSLabel label) {
-    this.setSize(label);
+    this.setSize(label.element);
   }
 
   @Override
   @SuppressWarnings("StringEquality")
   public void styleJSRadioButton(JSRadioButton radiobutton) {
     this.setCheckAndRadio(radiobutton);
+  }
+
+  @Override
+  public void styleJSSlider(JSSlider slider) {
+    this.setSize((HTMLElement) slider.element.querySelector("datalist"));
   }
 
   @Override
@@ -149,7 +155,7 @@ public class BootstrapLookAndFeel extends LookAndFeel {
       case "switch":
         input.style.marginRight = "0.5em";
         component.cssAddClass("form-switch");
-        this.setSize(component);
+        this.setSize(component.element);
         break;
       case "toggle":
         input.classList.add("btn-check");
@@ -161,18 +167,18 @@ public class BootstrapLookAndFeel extends LookAndFeel {
         break;
       default:
         input.style.marginRight = "0.5em";
-        this.setSize(component);
+        this.setSize(component.element);
         break;
     }
   }
 
-  private void setSize(JSComponent component) {
+  private void setSize(HTMLElement element) {
     switch (this.size) {
       case "sm":
-        component.element.style.fontSize = "14px";
+        element.style.fontSize = "14px";
         break;
       case "lg":
-        component.element.style.fontSize = "20px";
+        element.style.fontSize = "20px";
         break;
     }
   }

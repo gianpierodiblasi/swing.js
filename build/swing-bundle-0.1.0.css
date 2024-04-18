@@ -8,10 +8,21 @@
   border-color: var(--bs-btn-active-border-color);
 }
 
+html[data-bs-theme=dark] .jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: var(--bs-body-bg);
+}
+html[data-bs-theme=dark] .jslider > input.no-paint-track::-ms-track {
+  background-color: var(--bs-body-bg);
+}
+html[data-bs-theme=dark] .jslider > input.no-paint-track::-moz-range-track {
+  background-color: var(--bs-body-bg);
+}
+
 .jtogglebutton:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
-}html, body {
+}
+html, body {
   height: 100%;
   margin: 0px;
 }

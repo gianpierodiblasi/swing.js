@@ -92,11 +92,15 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSLabel(label) {
-    this.setSize(label);
+    this.setSize(label.element);
   }
 
    styleJSRadioButton(radiobutton) {
     this.setCheckAndRadio(radiobutton);
+  }
+
+   styleJSSlider(slider) {
+    this.setSize(slider.element.querySelector("datalist"));
   }
 
    styleJSSpinner(spinner) {
@@ -118,7 +122,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
       case "switch":
         input.style.marginRight = "0.5em";
         component.cssAddClass("form-switch");
-        this.setSize(component);
+        this.setSize(component.element);
         break;
       case "toggle":
         input.classList.add("btn-check");
@@ -130,18 +134,18 @@ class BootstrapLookAndFeel extends LookAndFeel {
         break;
       default:
         input.style.marginRight = "0.5em";
-        this.setSize(component);
+        this.setSize(component.element);
         break;
     }
   }
 
-   setSize(component) {
+   setSize(element) {
     switch(this.size) {
       case "sm":
-        component.element.style.fontSize = "14px";
+        element.style.fontSize = "14px";
         break;
       case "lg":
-        component.element.style.fontSize = "20px";
+        element.style.fontSize = "20px";
         break;
     }
   }

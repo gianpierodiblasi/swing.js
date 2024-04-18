@@ -61,6 +61,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a slider
+   *
+   * @param slider The slider
+   */
+   styleJSSlider(slider) {
+  }
+
+  /**
    * Applies the style to a spinner
    *
    * @param spinner The spinner

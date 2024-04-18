@@ -48,6 +48,15 @@ class JSRadioButton extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JRadioButton.getText
+   *
+   * @return The text
+   */
+   getText() {
+    return this.text.textContent;
+  }
+
+  /**
    * Clone of javax.swing.JRadioButton.setSelected
    *
    * @param selected true to select, false otherwise

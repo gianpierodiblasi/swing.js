@@ -28,7 +28,7 @@ public class JSRadioButton extends AbstractButton {
 
     this.text = document.createTextNode("");
     this.element.appendChild(this.text);
-    
+
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
 
@@ -39,7 +39,7 @@ public class JSRadioButton extends AbstractButton {
     this.radiobutton.setAttribute("role", "switch");
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
-  
+
   /**
    * Set this radiobutton as a toggle
    */
@@ -47,7 +47,7 @@ public class JSRadioButton extends AbstractButton {
     this.radiobutton.setAttribute("role", "toggle");
     LookAndFeel.CURRENT.styleJSRadioButton(this);
   }
-  
+
   /**
    * Clone of javax.swing.JRadioButton.setText
    *
@@ -55,6 +55,15 @@ public class JSRadioButton extends AbstractButton {
    */
   public void setText(String text) {
     this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.getText
+   *
+   * @return The text
+   */
+  public String getText() {
+    return this.text.textContent;
   }
 
   /**

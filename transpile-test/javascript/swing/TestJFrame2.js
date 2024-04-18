@@ -3,9 +3,12 @@
  */
 class TestJFrame2 extends JFrame {
 
-  // private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
-  // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
-  // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
+   modelAndRendererS = null;
+
+   modelAndRendererS2 = null;
+
+   modelAndRendererS3 = null;
+
   static  serialVersionUID = 1;
 
   constructor() {
@@ -15,35 +18,29 @@ class TestJFrame2 extends JFrame {
   }
 
    postInitComponents() {
-    // AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
-    // modelAndRendererCB.addElement(10);
-    // modelAndRendererCB.addElement(20);
-    // modelAndRendererCB.addElement(30);
-    // this.jComboBox2.putClientProperty("model-and-renderer", modelAndRendererCB);
-    // 
-    // this.modelAndRendererS = new DefaultSliderModelAndRenderer<>();
-    // this.modelAndRendererS.addElement("A");
-    // this.modelAndRendererS.addElement("B");
-    // this.modelAndRendererS.addElement("C");
-    // this.jSlider5.putClientProperty("model-and-renderer", this.modelAndRendererS);
-    // 
-    // this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
-    // this.jSlider6.putClientProperty("model-and-renderer", this.modelAndRendererS2);
-    // 
-    // this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
-    // this.jSlider7.putClientProperty("model-and-renderer", this.modelAndRendererS3);
-    // 
-    // if ($exists(LookAndFeel.CURRENT)) {
-    // this.jLabel3.setText(LookAndFeel.CURRENT.getDescription());
-    // }
+    let modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    (SwingJS.convert(this.jComboBox2)).setModelAndRenderer(modelAndRendererCB);
+    this.modelAndRendererS = new DefaultSliderModelAndRenderer();
+    this.modelAndRendererS.addElement("A");
+    this.modelAndRendererS.addElement("B");
+    this.modelAndRendererS.addElement("C");
+    (SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
+    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
+    (SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
+    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../swing.png"));
+    (SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
+    this.jLabel3.setText(LookAndFeel.CURRENT.getDescription());
   }
 
   /**
@@ -294,19 +291,19 @@ class TestJFrame2 extends JFrame {
   // GEN-LAST:event_jSlider4StateChanged
    jSlider5StateChanged(evt) {
     // GEN-FIRST:event_jSlider5StateChanged
-    // this.jButton1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+    this.jButton1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
   }
 
   // GEN-LAST:event_jSlider5StateChanged
    jSlider6StateChanged(evt) {
     // GEN-FIRST:event_jSlider6StateChanged
-    // this.jButton1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
+    this.jButton1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider6StateChanged
    jSlider7StateChanged(evt) {
     // GEN-FIRST:event_jSlider7StateChanged
-    // this.jButton1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
+    this.jButton1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider7StateChanged

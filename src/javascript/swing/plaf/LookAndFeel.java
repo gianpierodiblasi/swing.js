@@ -5,6 +5,7 @@ import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSLabel;
 import javascript.swing.JSRadioButton;
+import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
 import javascript.swing.JSToggleButton;
 
@@ -64,6 +65,13 @@ public abstract class LookAndFeel {
    */
   public abstract void styleJSRadioButton(JSRadioButton radiobutton);
 
+  /**
+   * Applies the style to a slider
+   *
+   * @param slider The slider
+   */
+  public abstract void styleJSSlider(JSSlider slider);
+  
   /**
    * Applies the style to a spinner
    *
