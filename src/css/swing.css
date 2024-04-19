@@ -87,6 +87,14 @@ html, body {
 .jlabel {
 }
 
+.jprogressbar {
+  accent-color: rgb(0 117 255);
+}
+.jprogressbar-vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
 .jradiobutton {
   display: flex;
   align-items: center;

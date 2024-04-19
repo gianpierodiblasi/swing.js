@@ -53,6 +53,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a progressbar
+   *
+   * @param progressbar The progressbar
+   */
+   styleJSProgressBar(progressbar) {
+  }
+
+  /**
    * Applies the style to a radiobutton
    *
    * @param radiobutton The radiobutton

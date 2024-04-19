@@ -4,6 +4,7 @@ import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSLabel;
+import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
@@ -58,6 +59,13 @@ public abstract class LookAndFeel {
    */
   public abstract void styleJSLabel(JSLabel label);
 
+  /**
+   * Applies the style to a progressbar
+   *
+   * @param progressbar The progressbar
+   */
+  public abstract void styleJSProgressBar(JSProgressBar progressbar);
+  
   /**
    * Applies the style to a radiobutton
    *

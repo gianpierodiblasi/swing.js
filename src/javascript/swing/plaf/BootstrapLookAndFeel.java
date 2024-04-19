@@ -7,6 +7,7 @@ import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
+import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
@@ -119,6 +120,21 @@ public class BootstrapLookAndFeel extends LookAndFeel {
   @Override
   public void styleJSLabel(JSLabel label) {
     this.setSize(label.element);
+  }
+
+  @Override
+  public void styleJSProgressBar(JSProgressBar progressbar) {
+    switch (this.size) {
+      case "sm":
+        progressbar.element.style.fontSize = "31px";
+        break;
+      case "lg":
+        progressbar.element.style.fontSize = "40px";
+        break;
+      default:
+        progressbar.element.style.fontSize = "34px";
+        break;
+    }
   }
 
   @Override

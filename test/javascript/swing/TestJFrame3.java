@@ -1,6 +1,7 @@
 package javascript.swing;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
@@ -10,6 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 
@@ -68,6 +70,10 @@ public class TestJFrame3 extends javax.swing.JFrame {
     jComboBox1 = new JComboBox<>();
     jPanel3 = new JPanel();
     jLabel1 = new JLabel();
+    jPanel4 = new JPanel();
+    jProgressBar2 = new JProgressBar();
+    jProgressBar1 = new JProgressBar();
+    jProgressBar3 = new JProgressBar();
 
     jCheckBox1.setText("jCheckBox1");
     jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
@@ -111,12 +117,28 @@ public class TestJFrame3 extends javax.swing.JFrame {
     jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
     jPanel2.add(jComboBox1);
 
-    getContentPane().add(jPanel2, BorderLayout.PAGE_END);
+    getContentPane().add(jPanel2, BorderLayout.CENTER);
 
     jLabel1.setText("jLabel1");
     jPanel3.add(jLabel1);
 
     getContentPane().add(jPanel3, BorderLayout.LINE_START);
+
+    jPanel4.setLayout(new GridLayout(2, 1));
+
+    jProgressBar2.setIndeterminate(true);
+    jPanel4.add(jProgressBar2);
+
+    jProgressBar1.setMaximum(1000);
+    jProgressBar1.setMinimum(30);
+    jProgressBar1.setValue(570);
+    jPanel4.add(jProgressBar1);
+
+    getContentPane().add(jPanel4, BorderLayout.PAGE_END);
+
+    jProgressBar3.setOrientation(1);
+    jProgressBar3.setValue(30);
+    getContentPane().add(jProgressBar3, BorderLayout.LINE_END);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -146,6 +168,10 @@ public class TestJFrame3 extends javax.swing.JFrame {
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;
+  private JPanel jPanel4;
+  private JProgressBar jProgressBar1;
+  private JProgressBar jProgressBar2;
+  private JProgressBar jProgressBar3;
   private JRadioButton jRadioButton1;
   private JRadioButton jRadioButton2;
   private JRadioButton jRadioButton3;

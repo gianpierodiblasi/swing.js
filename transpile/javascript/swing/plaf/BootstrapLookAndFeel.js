@@ -95,6 +95,20 @@ class BootstrapLookAndFeel extends LookAndFeel {
     this.setSize(label.element);
   }
 
+   styleJSProgressBar(progressbar) {
+    switch(this.size) {
+      case "sm":
+        progressbar.element.style.fontSize = "31px";
+        break;
+      case "lg":
+        progressbar.element.style.fontSize = "40px";
+        break;
+      default:
+        progressbar.element.style.fontSize = "34px";
+        break;
+    }
+  }
+
    styleJSRadioButton(radiobutton) {
     this.setCheckAndRadio(radiobutton);
   }
