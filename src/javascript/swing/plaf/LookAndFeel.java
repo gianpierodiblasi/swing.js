@@ -13,8 +13,11 @@ import javascript.swing.JSToggleButton;
 /**
  * The abstract object of any implementation able to redefine the look and feel
  * of all components. It is mandatory to set a Look&amp;Feel before the creation
- * of the first component; the default Look&amp;Feel is the BootstrapLookAndFeel
+ * of the first component; the default Look&amp;Feel is the DefaultLookAndFeel
  * which can be set in this way
+ * <code>LookAndFeel.CURRENT = new DefaultLookAndFeel()</code>; the API provides
+ * a second Look&amp;Feel called BootstrapLookAndFeel (and using the Bootstrap
+ * library) which can be set (for example) in this way
  * <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code>
  *
  * @author gianpiero.diblasi
@@ -65,7 +68,7 @@ public abstract class LookAndFeel {
    * @param progressbar The progressbar
    */
   public abstract void styleJSProgressBar(JSProgressBar progressbar);
-  
+
   /**
    * Applies the style to a radiobutton
    *
@@ -79,7 +82,7 @@ public abstract class LookAndFeel {
    * @param slider The slider
    */
   public abstract void styleJSSlider(JSSlider slider);
-  
+
   /**
    * Applies the style to a spinner
    *

@@ -77,8 +77,10 @@ html, body {
   display: flex;
   align-items: center;
 }
-.jcheckbox > input {
-  accent-color: rgb(0 117 255);
+.jcheckbox:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
 }
 
 .jcombobox {
@@ -88,7 +90,7 @@ html, body {
 }
 
 .jprogressbar {
-  accent-color: rgb(0 117 255);
+  font-size: 34px;
 }
 .jprogressbar-vertical {
   writing-mode: vertical-lr;
@@ -99,15 +101,17 @@ html, body {
   display: flex;
   align-items: center;
 }
-.jradiobutton > input {
-  accent-color: rgb(0 117 255);
+.jradiobutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
 }
 
 .jslider {
   display: flex;
 }
-.jslider > input {
-  accent-color: rgb(0 117 255);
+.jslider > input:disabled+datalist {
+  opacity: 0.65;
 }
 .jslider > input.no-paint-track::-webkit-slider-runnable-track {
   background-color: rgb(255,255,255);
@@ -154,6 +158,8 @@ html, body {
   display: flex;
   align-items: center;
 }
-.jtogglebutton > input {
-  accent-color: rgb(0 117 255);
+.jtogglebutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: .65;
 }

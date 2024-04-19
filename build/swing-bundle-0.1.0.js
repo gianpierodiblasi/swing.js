@@ -2020,8 +2020,11 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 /**
  * The abstract object of any implementation able to redefine the look and feel
  * of all components. It is mandatory to set a Look&amp;Feel before the creation
- * of the first component; the default Look&amp;Feel is the BootstrapLookAndFeel
+ * of the first component; the default Look&amp;Feel is the DefaultLookAndFeel
  * which can be set in this way
+ * <code>LookAndFeel.CURRENT = new DefaultLookAndFeel()</code>; the API provides
+ * a second Look&amp;Feel called BootstrapLookAndFeel (and using the Bootstrap
+ * library) which can be set (for example) in this way
  * <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code>
  *
  * @author gianpiero.diblasi
@@ -2160,6 +2163,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
 
   constructor(dark, size, referenceFile) {
     super();
+    document.body.classList.add("bootstraplaf");
     this.dark = typeof dark === "undefined" ? false : dark;
     this.size = size;
     if (typeof referenceFile === "undefined" || referenceFile) {
@@ -2275,6 +2279,52 @@ class BootstrapLookAndFeel extends LookAndFeel {
         element.style.fontSize = "20px";
         break;
     }
+  }
+}
+/**
+ * The Default LookAndFeel
+ *
+ * @author gianpiero.diblasi
+ */
+class DefaultLookAndFeel extends LookAndFeel {
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super();
+    document.body.classList.add("defaultlaf");
+  }
+
+   getDescription() {
+    return "Default LookAndFeel";
+  }
+
+   styleJSButton(button) {
+  }
+
+   styleJSCheckBox(checkbox) {
+  }
+
+   styleJSComboBox(combobox) {
+  }
+
+   styleJSLabel(label) {
+  }
+
+   styleJSProgressBar(progressbar) {
+  }
+
+   styleJSRadioButton(radiobutton) {
+  }
+
+   styleJSSlider(slider) {
+  }
+
+   styleJSSpinner(spinner) {
+  }
+
+   styleJSToggleButton(togglebutton) {
   }
 }
 /**

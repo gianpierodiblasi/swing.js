@@ -1,50 +1,36 @@
-.jcheckbox:has(.btn-check:checked) {
+.bootstraplaf .jcheckbox:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.jcheckbox:has(input:disabled) {
-  opacity: .5;
-}
-.jcheckbox.btn:has(.btn-check:disabled) {
-  pointer-events: none;
-  filter: none;
-  opacity: .65;
+
+.bootstraplaf .jprogressbar {
+  accent-color: #0d6efd;
 }
 
-.jradiobutton:has(.btn-check:checked) {
+.bootstraplaf .jradiobutton:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.jradiobutton:has(input:disabled) {
-  opacity: .5;
+
+.bootstraplaf .jslider > input {
+  accent-color: #0d6efd;
 }
-.jradiobutton.btn:has(.btn-check:disabled) {
-  pointer-events: none;
-  filter: none;
-  opacity: .65;
+html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: var(--bs-body-bg);
+}
+html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-ms-track {
+  background-color: var(--bs-body-bg);
+}
+html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-range-track {
+  background-color: var(--bs-body-bg);
 }
 
-html[data-bs-theme=dark] .jslider > input.no-paint-track::-webkit-slider-runnable-track {
-  background-color: var(--bs-body-bg);
-}
-html[data-bs-theme=dark] .jslider > input.no-paint-track::-ms-track {
-  background-color: var(--bs-body-bg);
-}
-html[data-bs-theme=dark] .jslider > input.no-paint-track::-moz-range-track {
-  background-color: var(--bs-body-bg);
-}
-.jslider > input:disabled+datalist {
-  opacity: 0.5;
-}
-
-.jtogglebutton:has(.btn-check:checked) {
+.bootstraplaf .jtogglebutton:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
-.jtogglebutton:has(input:disabled) {
-  pointer-events: none;
-  filter: none;
-  opacity: .65;
+.defaultlaf * {
+  font-family: "Arial";
 }
 html, body {
   height: 100%;
@@ -125,8 +111,10 @@ html, body {
   display: flex;
   align-items: center;
 }
-.jcheckbox > input {
-  accent-color: rgb(0 117 255);
+.jcheckbox:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
 }
 
 .jcombobox {
@@ -136,7 +124,7 @@ html, body {
 }
 
 .jprogressbar {
-  accent-color: rgb(0 117 255);
+  font-size: 34px;
 }
 .jprogressbar-vertical {
   writing-mode: vertical-lr;
@@ -147,15 +135,17 @@ html, body {
   display: flex;
   align-items: center;
 }
-.jradiobutton > input {
-  accent-color: rgb(0 117 255);
+.jradiobutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
 }
 
 .jslider {
   display: flex;
 }
-.jslider > input {
-  accent-color: rgb(0 117 255);
+.jslider > input:disabled+datalist {
+  opacity: 0.65;
 }
 .jslider > input.no-paint-track::-webkit-slider-runnable-track {
   background-color: rgb(255,255,255);
@@ -202,6 +192,8 @@ html, body {
   display: flex;
   align-items: center;
 }
-.jtogglebutton > input {
-  accent-color: rgb(0 117 255);
+.jtogglebutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: .65;
 }

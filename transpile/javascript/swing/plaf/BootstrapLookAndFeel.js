@@ -47,6 +47,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
 
   constructor(dark, size, referenceFile) {
     super();
+    document.body.classList.add("bootstraplaf");
     this.dark = typeof dark === "undefined" ? false : dark;
     this.size = size;
     if (typeof referenceFile === "undefined" || referenceFile) {

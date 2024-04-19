@@ -63,6 +63,7 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
   private BootstrapLookAndFeel(boolean dark, String size, boolean referenceFile) {
     super();
+    document.body.classList.add("bootstraplaf");
     this.dark = $typeof(dark, "undefined") ? false : dark;
     this.size = size;
 
