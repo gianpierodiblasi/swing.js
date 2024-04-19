@@ -1,3 +1,15 @@
 .defaultlaf * {
-  font-family: "Arial";
+  font-family: arial;
+}
+
+.defaultlaf .jcheckbox {
+  align-items: baseline;
+}
+
+.defaultlaf .jradiobutton {
+  align-items: flex-start;
+}
+
+.defaultlaf .jtogglebutton {
+  align-items: baseline;
 }

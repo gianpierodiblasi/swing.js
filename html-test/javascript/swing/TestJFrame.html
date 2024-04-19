@@ -5,43 +5,85 @@
     <link rel="icon" href="../../swing.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+      table {
+        border-collapse: collapse;
+        border: 2px solid #8C8C8C;
+        font-family: arial;
+      }
+
+      thead {
+        text-align: center;
+      }
+
+      td {
+        border: 1px solid #A0A0A0;
+        padding: 8px 10px;
+      }
+
+      tbody tr td:nth-child(-n+4) * {
+        color: black;
+      }
+
+      thead tr:nth-child(2) td:nth-child(3),
+      tbody tr td:nth-last-child(-n+3), tbody tr td:nth-last-child(-n+3) * {
+        color: #dee2e6;
+        background: #212529;
+      }
+    </style>
   </head>
   <body>
-    <ul>
-      <li><a href="TestJFrame1.html">TestJFrame1</a></li>
-      <li><a href="TestJFrame1Dark.html">TestJFrame1 Dark</a></li>
-      <li><a href="TestJFrame1DarkLarge.html">TestJFrame1 Dark Large</a></li>
-      <li><a href="TestJFrame1DarkSmall.html">TestJFrame1 Dark Small</a></li>
-      <li><a href="TestJFrame1Light.html">TestJFrame1 Light</a></li>
-      <li><a href="TestJFrame1LightLarge.html">TestJFrame1 Light Large</a></li>
-      <li><a href="TestJFrame1LightSmall.html">TestJFrame1 Light Small</a></li>
-    </ul>
-    <ul>
-      <li><a href="TestJFrame2.html">TestJFrame2</a></li>
-      <li><a href="TestJFrame2Dark.html">TestJFrame2 Dark</a></li>
-      <li><a href="TestJFrame2DarkLarge.html">TestJFrame2 Dark Large</a></li>
-      <li><a href="TestJFrame2DarkSmall.html">TestJFrame2 Dark Small</a></li>
-      <li><a href="TestJFrame2Light.html">TestJFrame2 Light</a></li>
-      <li><a href="TestJFrame2LightLarge.html">TestJFrame2 Light Large</a></li>
-      <li><a href="TestJFrame2LightSmall.html">TestJFrame2 Light Small</a></li>
-    </ul>
-    <ul>
-      <li><a href="TestJFrame3.html">TestJFrame3</a></li>
-      <li><a href="TestJFrame3Light.html">TestJFrame3 Light</a></li>
-      <li><a href="TestJFrame3LightLarge.html">TestJFrame3 Light Large</a></li>
-      <li><a href="TestJFrame3LightSmall.html">TestJFrame3 Light Small</a></li>
-      <li><a href="TestJFrame3Dark.html">TestJFrame3 Dark</a></li>
-      <li><a href="TestJFrame3DarkLarge.html">TestJFrame3 Dark Large</a></li>
-      <li><a href="TestJFrame3DarkSmall.html">TestJFrame3 Dark Small</a></li>
-    </ul>
-    <ul>
-      <li><a href="TestJFrame4.html">TestJFrame4</a></li>
-      <li><a href="TestJFrame4Light.html">TestJFrame4 Light</a></li>
-      <li><a href="TestJFrame4LightLarge.html">TestJFrame4 Light Large</a></li>
-      <li><a href="TestJFrame4LightSmall.html">TestJFrame4 Light Small</a></li>
-      <li><a href="TestJFrame4Dark.html">TestJFrame4 Dark</a></li>
-      <li><a href="TestJFrame4DarkLarge.html">TestJFrame4 Dark Large</a></li>
-      <li><a href="TestJFrame4DarkSmall.html">TestJFrame4 Dark Small</a></li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <td>Default</td>
+          <td colspan="6">Bootstrap</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="3">Light</td>
+          <td colspan="3">Dark</td>
+        </tr>
+      </thead>    
+      <tbody>
+        <tr>
+          <td><a href="TestJFrame1.html">TestJFrame1</a></td>
+          <td><a href="TestJFrame1Light.html">Normal</a></td>
+          <td><a href="TestJFrame1LightLarge.html">Large</a></td>
+          <td><a href="TestJFrame1LightSmall.html">Small</a></td>
+          <td><a href="TestJFrame1Dark.html">Normal</a></td>
+          <td><a href="TestJFrame1DarkLarge.html">Large</a></td>
+          <td><a href="TestJFrame1DarkSmall.html">Small</a></td>
+        </tr>
+        <tr>
+          <td><a href="TestJFrame2.html">TestJFrame2</a></td>
+          <td><a href="TestJFrame2Light.html">Normal</a></td>
+          <td><a href="TestJFrame2LightLarge.html">Large</a></td>
+          <td><a href="TestJFrame2LightSmall.html">Small</a></td>
+          <td><a href="TestJFrame2Dark.html">Normal</a></td>
+          <td><a href="TestJFrame2DarkLarge.html">Large</a></td>
+          <td><a href="TestJFrame2DarkSmall.html">Small</a></td>
+        </tr>
+        <tr>
+          <td><a href="TestJFrame3.html">TestJFrame3</a></td>
+          <td><a href="TestJFrame3Light.html">Normal</a></td>
+          <td><a href="TestJFrame3LightLarge.html">Large</a></td>
+          <td><a href="TestJFrame3LightSmall.html">Small</a></td>
+          <td><a href="TestJFrame3Dark.html">Normal</a></td>
+          <td><a href="TestJFrame3DarkLarge.html">Large</a></td>
+          <td><a href="TestJFrame3DarkSmall.html">Small</a></td>
+        </tr>
+        <tr>
+          <td><a href="TestJFrame4.html">TestJFrame4</a></td>
+          <td><a href="TestJFrame4Light.html">Normal</a></td>
+          <td><a href="TestJFrame4LightLarge.html">Large</a></td>
+          <td><a href="TestJFrame4LightSmall.html">Small</a></td>
+          <td><a href="TestJFrame4Dark.html">Normal</a></td>
+          <td><a href="TestJFrame4DarkLarge.html">Large</a></td>
+          <td><a href="TestJFrame4DarkSmall.html">Small</a></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

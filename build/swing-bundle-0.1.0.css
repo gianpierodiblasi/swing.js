@@ -30,9 +30,20 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
   border-color: var(--bs-btn-active-border-color);
 }
 .defaultlaf * {
-  font-family: "Arial";
+  font-family: arial;
 }
-html, body {
+
+.defaultlaf .jcheckbox {
+  align-items: baseline;
+}
+
+.defaultlaf .jradiobutton {
+  align-items: flex-start;
+}
+
+.defaultlaf .jtogglebutton {
+  align-items: baseline;
+}html, body {
   height: 100%;
   margin: 0px;
 }
@@ -109,7 +120,6 @@ html, body {
 
 .jcheckbox {
   display: flex;
-  align-items: center;
 }
 .jcheckbox:has(input:disabled) {
   pointer-events: none;
@@ -133,7 +143,6 @@ html, body {
 
 .jradiobutton {
   display: flex;
-  align-items: center;
 }
 .jradiobutton:has(input:disabled) {
   pointer-events: none;
@@ -190,7 +199,6 @@ html, body {
 
 .jtogglebutton {
   display: flex;
-  align-items: center;
 }
 .jtogglebutton:has(input:disabled) {
   pointer-events: none;
