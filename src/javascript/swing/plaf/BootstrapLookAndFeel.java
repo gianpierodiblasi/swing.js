@@ -1,7 +1,9 @@
 package javascript.swing.plaf;
 
+import def.dom.Element;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
+import def.dom.NodeList;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
@@ -11,7 +13,9 @@ import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
+import javascript.swing.JSTabbedPane;
 import javascript.swing.JSToggleButton;
+import simulation.dom.$HTMLElement;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
 
@@ -156,6 +160,34 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
     if ($exists(this.size)) {
       spinner.cssAddClass("form-control-" + this.size);
+    }
+  }
+
+  @Override
+  public void styleJSTabbedPane(JSTabbedPane tabbedpane) {
+    Element tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    tabs.classList.add("nav");
+    tabs.classList.add("nav-tabs");
+
+    NodeList list = tabs.querySelectorAll(".jradiobutton");
+    for (int i = 0; i < list.length; i++) {
+      Element element = (Element) list.$get(i);
+      element.classList.add("nav-link");
+
+      $HTMLElement input = ($HTMLElement) element.querySelector("input");
+      input.style.display = "none";
+
+      if (input.checked) {
+        element.classList.add("active");
+      }
+
+      input.addEventListener("change", (event) -> {
+        NodeList listEvent = tabs.querySelectorAll(".jradiobutton");
+        for (int iEvent = 0; iEvent < listEvent.length; iEvent++) {
+          ((Element) listEvent.$get(iEvent)).classList.remove("active");
+        }
+        element.classList.add("active");
+      });
     }
   }
 

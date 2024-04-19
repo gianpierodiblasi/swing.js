@@ -738,13 +738,25 @@ class ButtonGroup {
 
    name = "ButtonGroup_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
 
+   count = 0;
+
   /**
-   * Adds a button to the group
+   * Clone of javax.swing.ButtonGroup.add
    *
    * @param button The button
    */
    add(button) {
     button.element.querySelector("[type=radio]").setAttribute("name", this.name);
+    this.count++;
+  }
+
+  /**
+   * Clone of javax.swing.ButtonGroup.getButtonCount
+   *
+   * @return the button count
+   */
+   getButtonCount() {
+    return this.count;
   }
 }
 /**
@@ -1347,6 +1359,45 @@ class JSPanel extends JSComponent {
    */
    add(component, constraints) {
     this.layoutManager.addInPanel(this, component, constraints);
+  }
+}
+/**
+ * The javax.swing.JSTabbedPane clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSTabbedPane extends JSPanel {
+
+   tabs = new JSPanel();
+
+   content = new JSPanel();
+
+   contentLayout = new CardLayout(0, 0);
+
+   tabsGroup = new ButtonGroup();
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super();
+    this.setLayout(new BorderLayout(0, 0));
+    this.tabs.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.add(this.tabs, BorderLayout.NORTH);
+    this.content.setLayout(this.contentLayout);
+    this.add(this.content, BorderLayout.CENTER);
+    LookAndFeel.CURRENT.styleJSTabbedPane(this);
+  }
+
+   addTab(title, component) {
+    let button = new JSRadioButton();
+    button.setText(title);
+    button.setSelected(this.tabsGroup.getButtonCount() === 0);
+    button.addActionListener((event) => this.contentLayout.show(this.content, title));
+    this.tabs.add(button, null);
+    this.tabsGroup.add(button);
+    this.content.add(component, title);
+    LookAndFeel.CURRENT.styleJSTabbedPane(this);
   }
 }
 /**
@@ -2107,6 +2158,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a tabbedpane
+   *
+   * @param tabbedpane The tabbedpane
+   */
+   styleJSTabbedPane(tabbedpane) {
+  }
+
+  /**
    * Applies the style to a togglebutton
    *
    * @param togglebutton The togglebutton
@@ -2242,6 +2301,29 @@ class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
+   styleJSTabbedPane(tabbedpane) {
+    let tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    tabs.classList.add("nav");
+    tabs.classList.add("nav-tabs");
+    let list = tabs.querySelectorAll(".jradiobutton");
+    for (let i = 0; i < list.length; i++) {
+      let element = list[i];
+      element.classList.add("nav-link");
+      let input = element.querySelector("input");
+      input.style.display = "none";
+      if (input.checked) {
+        element.classList.add("active");
+      }
+      input.addEventListener("change", (event) => {
+        let listEvent = tabs.querySelectorAll(".jradiobutton");
+        for (let iEvent = 0; iEvent < listEvent.length; iEvent++) {
+          (listEvent[iEvent]).classList.remove("active");
+        }
+        element.classList.add("active");
+      });
+    }
+  }
+
    styleJSToggleButton(togglebutton) {
     this.setCheckAndRadio(togglebutton);
   }
@@ -2322,6 +2404,9 @@ class DefaultLookAndFeel extends LookAndFeel {
   }
 
    styleJSSpinner(spinner) {
+  }
+
+   styleJSTabbedPane(tabbedpane) {
   }
 
    styleJSToggleButton(togglebutton) {

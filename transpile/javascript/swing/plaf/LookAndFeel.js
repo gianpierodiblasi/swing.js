@@ -88,6 +88,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a tabbedpane
+   *
+   * @param tabbedpane The tabbedpane
+   */
+   styleJSTabbedPane(tabbedpane) {
+  }
+
+  /**
    * Applies the style to a togglebutton
    *
    * @param togglebutton The togglebutton

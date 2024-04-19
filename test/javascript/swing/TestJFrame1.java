@@ -20,9 +20,8 @@ import javax.swing.SpinnerNumberModel;
  *
  * @author gianpiero.diblasi
  */
+@SuppressWarnings("serial")
 public class TestJFrame1 extends javax.swing.JFrame {
-
-  private static final long serialVersionUID = 1;
 
   public TestJFrame1() {
     super();

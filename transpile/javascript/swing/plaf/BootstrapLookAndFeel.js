@@ -126,6 +126,29 @@ class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
+   styleJSTabbedPane(tabbedpane) {
+    let tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    tabs.classList.add("nav");
+    tabs.classList.add("nav-tabs");
+    let list = tabs.querySelectorAll(".jradiobutton");
+    for (let i = 0; i < list.length; i++) {
+      let element = list[i];
+      element.classList.add("nav-link");
+      let input = element.querySelector("input");
+      input.style.display = "none";
+      if (input.checked) {
+        element.classList.add("active");
+      }
+      input.addEventListener("change", (event) => {
+        let listEvent = tabs.querySelectorAll(".jradiobutton");
+        for (let iEvent = 0; iEvent < listEvent.length; iEvent++) {
+          (listEvent[iEvent]).classList.remove("active");
+        }
+        element.classList.add("active");
+      });
+    }
+  }
+
    styleJSToggleButton(togglebutton) {
     this.setCheckAndRadio(togglebutton);
   }

@@ -11,13 +11,24 @@ import static simulation.js.$Globals.parseInt;
 public class ButtonGroup {
 
   private final String name = "ButtonGroup_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
+  private int count;
 
   /**
-   * Adds a button to the group
+   * Clone of javax.swing.ButtonGroup.add
    *
    * @param button The button
    */
   public void add(JSRadioButton button) {
     button.element.querySelector("[type=radio]").setAttribute("name", this.name);
+    this.count++;
+  }
+
+  /**
+   * Clone of javax.swing.ButtonGroup.getButtonCount
+   *
+   * @return the button count
+   */
+  public int getButtonCount() {
+    return this.count;
   }
 }

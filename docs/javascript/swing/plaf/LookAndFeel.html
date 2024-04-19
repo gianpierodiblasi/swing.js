@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -143,8 +143,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 extends java.lang.Object</pre>
 <div class="block">The abstract object of any implementation able to redefine the look and feel
  of all components. It is mandatory to set a Look&amp;Feel before the creation
- of the first component; the default Look&amp;Feel is the BootstrapLookAndFeel
+ of the first component; the default Look&amp;Feel is the DefaultLookAndFeel
  which can be set in this way
+ <code>LookAndFeel.CURRENT = new DefaultLookAndFeel()</code>; the API provides
+ a second Look&amp;Feel called BootstrapLookAndFeel (and using the Bootstrap
+ library) which can be set (for example) in this way
  <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -280,6 +283,13 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
+<td class="colFirst"><code>abstract void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#styleJSTabbedPane(javascript.swing.JSTabbedPane)">styleJSTabbedPane</a></span>&#8203;(<a href="../JSTabbedPane.html" title="class in javascript.swing">JSTabbedPane</a>&nbsp;tabbedpane)</code></th>
+<td class="colLast">
+<div class="block">Applies the style to a tabbedpane</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#styleJSToggleButton(javascript.swing.JSToggleButton)">styleJSToggleButton</a></span>&#8203;(<a href="../JSToggleButton.html" title="class in javascript.swing">JSToggleButton</a>&nbsp;togglebutton)</code></th>
 <td class="colLast">
@@ -471,6 +481,20 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>spinner</code> - The spinner</dd>
+</dl>
+</li>
+</ul>
+<a id="styleJSTabbedPane(javascript.swing.JSTabbedPane)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>styleJSTabbedPane</h4>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;styleJSTabbedPane&#8203;(<a href="../JSTabbedPane.html" title="class in javascript.swing">JSTabbedPane</a>&nbsp;tabbedpane)</pre>
+<div class="block">Applies the style to a tabbedpane</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>tabbedpane</code> - The tabbedpane</dd>
 </dl>
 </li>
 </ul>

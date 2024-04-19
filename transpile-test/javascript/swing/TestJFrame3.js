@@ -3,8 +3,6 @@
  */
 class TestJFrame3 extends JFrame {
 
-  static  serialVersionUID = 1;
-
   /**
    * Creates new form TestFrame3
    */

@@ -3,8 +3,6 @@
  */
 class TestJFrame4 extends JFrame {
 
-  static  serialVersionUID = 1;
-
   /**
    * Creates new form TestFrame3
    */
@@ -24,11 +22,21 @@ class TestJFrame4 extends JFrame {
    */
    initComponents() {
     this.jTabbedPane1 = new JTabbedPane();let jTabbedPane1 = this.jTabbedPane1;
+    this.jPanel1 = new JPanel();let jPanel1 = this.jPanel1;
+    this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
+    jPanel1.setBackground(new Color(255, 255, 0));
+    jTabbedPane1.addTab("tab1", jPanel1);
+    jPanel2.setBackground(new Color(255, 51, 51));
+    jTabbedPane1.addTab("tab2", jPanel2);
     this.getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
   }
 
   // </editor-fold>//GEN-END:initComponents
   // Variables declaration - do not modify//GEN-BEGIN:variables
+   jPanel1 = null;
+
+   jPanel2 = null;
+
    jTabbedPane1 = null;
   // End of variables declaration//GEN-END:variables
 }

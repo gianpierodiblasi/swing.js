@@ -19,9 +19,8 @@ import javax.swing.JToggleButton;
  *
  * @author gianpiero.diblasi
  */
+@SuppressWarnings("serial")
 public class TestJFrame3 extends javax.swing.JFrame {
-
-  private static final long serialVersionUID = 1;
 
   /**
    * Creates new form TestFrame3

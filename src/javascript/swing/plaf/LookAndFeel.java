@@ -8,6 +8,7 @@ import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
+import javascript.swing.JSTabbedPane;
 import javascript.swing.JSToggleButton;
 
 /**
@@ -90,6 +91,13 @@ public abstract class LookAndFeel {
    */
   public abstract void styleJSSpinner(JSSpinner spinner);
 
+  /**
+   * Applies the style to a tabbedpane
+   *
+   * @param tabbedpane The tabbedpane
+   */
+  public abstract void styleJSTabbedPane(JSTabbedPane tabbedpane);
+  
   /**
    * Applies the style to a togglebutton
    *

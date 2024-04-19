@@ -9,8 +9,6 @@ class TestJFrame2 extends JFrame {
 
    modelAndRendererS3 = null;
 
-  static  serialVersionUID = 1;
-
   constructor() {
     super();
     this.initComponents();

@@ -26,12 +26,12 @@ import javax.swing.event.ChangeEvent;
  *
  * @author gianpiero.diblasi
  */
+@SuppressWarnings("serial")
 public class TestJFrame2 extends javax.swing.JFrame {
 
   private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
   private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
   private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
-  private static final long serialVersionUID = 1;
 
   public TestJFrame2() {
     super();

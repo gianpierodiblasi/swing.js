@@ -41,6 +41,9 @@ class DefaultLookAndFeel extends LookAndFeel {
    styleJSSpinner(spinner) {
   }
 
+   styleJSTabbedPane(tabbedpane) {
+  }
+
    styleJSToggleButton(togglebutton) {
   }
 }

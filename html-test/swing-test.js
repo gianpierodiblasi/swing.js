@@ -3,8 +3,6 @@
  */
 class TestJSFrame1 extends JSFrame {
 
-  static  serialVersionUID = 1;
-
   constructor() {
     super();
     this.initComponents();
@@ -226,8 +224,6 @@ class TestJSFrame2 extends JSFrame {
    modelAndRendererS2 = null;
 
    modelAndRendererS3 = null;
-
-  static  serialVersionUID = 1;
 
   constructor() {
     super();
@@ -603,8 +599,6 @@ class TestJSFrame2HTMLImageProducer extends DefaultHTMLImageProducer {
  */
 class TestJSFrame3 extends JSFrame {
 
-  static  serialVersionUID = 1;
-
   /**
    * Creates new form TestFrame3
    */
@@ -769,8 +763,6 @@ class TestJSFrame3 extends JSFrame {
  */
 class TestJSFrame4 extends JSFrame {
 
-  static  serialVersionUID = 1;
-
   /**
    * Creates new form TestFrame3
    */
@@ -790,11 +782,21 @@ class TestJSFrame4 extends JSFrame {
    */
    initComponents() {
     this.jTabbedPane1 = new JSTabbedPane();let jTabbedPane1 = this.jTabbedPane1;
+    this.jPanel1 = new JSPanel();let jPanel1 = this.jPanel1;
+    this.jPanel2 = new JSPanel();let jPanel2 = this.jPanel2;
+    jPanel1.setBackground(new Color(255, 255, 0));
+    jTabbedPane1.addTab("tab1", jPanel1);
+    jPanel2.setBackground(new Color(255, 51, 51));
+    jTabbedPane1.addTab("tab2", jPanel2);
     this.getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
   }
 
   // </editor-fold>//GEN-END:initComponents
   // Variables declaration - do not modify//GEN-BEGIN:variables
+   jPanel1 = null;
+
+   jPanel2 = null;
+
    jTabbedPane1 = null;
   // End of variables declaration//GEN-END:variables
 }
