@@ -43,11 +43,13 @@
         <Component class="javax.swing.JCheckBox" name="jCheckBox2">
           <Properties>
             <Property name="text" type="java.lang.String" value="jCheckBox2"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox3">
           <Properties>
             <Property name="text" type="java.lang.String" value="jCheckBox3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox3ActionPerformed"/>
@@ -96,6 +98,7 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton2"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton3">
@@ -104,6 +107,7 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox1">

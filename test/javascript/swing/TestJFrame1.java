@@ -108,6 +108,8 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel1.add(jButton1);
 
     jButton5.setText("jButton5");
+    jButton5.setEnabled(false);
+    jButton5.addActionListener(this::jButton5ActionPerformed);
     jPanel1.add(jButton5);
 
     jButton6.setText("jButton6");
@@ -135,6 +137,8 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jButton9.setText("jButton9");
     jPanel2.add(jButton9);
     jPanel2.add(filler4);
+
+    jSpinner2.setEnabled(false);
     jPanel2.add(jSpinner2);
 
     jButton11.setText("jButton11");
@@ -188,6 +192,10 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
     this.jButton1.setText("" + this.jSpinner1.getValue());
   }//GEN-LAST:event_jSpinner1StateChanged
+
+  private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    console.log("FROM LAMBDA 2");
+  }//GEN-LAST:event_jButton5ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private Box.Filler filler1;

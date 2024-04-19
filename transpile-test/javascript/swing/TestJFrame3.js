@@ -51,8 +51,10 @@ class TestJFrame3 extends JFrame {
     jCheckBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox1);
     jCheckBox2.setText("jCheckBox2");
+    jCheckBox2.setEnabled(false);
     jPanel1.add(jCheckBox2);
     jCheckBox3.setText("jCheckBox3");
+    jCheckBox3.setEnabled(false);
     jCheckBox3.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox3ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox3);
     jCheckBox4.setText("jCheckBox4");
@@ -68,9 +70,11 @@ class TestJFrame3 extends JFrame {
     jPanel2.add(jRadioButton1);
     buttonGroup1.add(jRadioButton2);
     jRadioButton2.setText("jRadioButton2");
+    jRadioButton2.setEnabled(false);
     jPanel2.add(jRadioButton2);
     buttonGroup1.add(jRadioButton3);
     jRadioButton3.setText("jRadioButton3");
+    jRadioButton3.setEnabled(false);
     jPanel2.add(jRadioButton3);
     jComboBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jComboBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel2.add(jComboBox1);

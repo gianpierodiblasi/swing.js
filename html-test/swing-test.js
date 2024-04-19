@@ -77,6 +77,8 @@ class TestJSFrame1 extends JSFrame {
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);
     jButton5.setText("jButton5");
+    jButton5.setEnabled(false);
+    jButton5.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton5ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton5);
     jButton6.setText("jButton6");
     jPanel1.add(jButton6);
@@ -96,6 +98,7 @@ class TestJSFrame1 extends JSFrame {
     jButton9.setText("jButton9");
     jPanel2.add(jButton9);
     jPanel2.add(filler4);
+    jSpinner2.setEnabled(false);
     jPanel2.add(jSpinner2);
     jButton11.setText("jButton11");
     jPanel2.add(jButton11);
@@ -148,6 +151,12 @@ class TestJSFrame1 extends JSFrame {
   }
 
   // GEN-LAST:event_jSpinner1StateChanged
+   jButton5ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton5ActionPerformed
+    console.log("FROM LAMBDA 2");
+  }
+
+  // GEN-LAST:event_jButton5ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    filler1 = null;
 
@@ -296,6 +305,7 @@ class TestJSFrame2 extends JSFrame {
     gridBagConstraints.gridy = 4;
     gridBagConstraints.anchor = GridBagConstraints.EAST;
     this.getContentPane().add(jLabel2, gridBagConstraints);
+    jComboBox1.setEnabled(false);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 2;
@@ -322,6 +332,7 @@ class TestJSFrame2 extends JSFrame {
     gridBagConstraints.weighty = 100.0;
     this.getContentPane().add(jCheckBox1, gridBagConstraints);
     jCheckBox2.setText("Italic");
+    jCheckBox2.setEnabled(false);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 8;
@@ -340,6 +351,7 @@ class TestJSFrame2 extends JSFrame {
     buttonGroup1.add(jRadioButton1);
     jRadioButton1.setSelected(true);
     jRadioButton1.setText("pomodoro");
+    jRadioButton1.setEnabled(false);
     jRadioButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jRadioButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
@@ -353,6 +365,7 @@ class TestJSFrame2 extends JSFrame {
     gridBagConstraints.gridy = 12;
     this.getContentPane().add(jRadioButton2, gridBagConstraints);
     jToggleButton1.setText("jToggleButton1");
+    jToggleButton1.setEnabled(false);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 4;
     gridBagConstraints.gridy = 10;
@@ -378,6 +391,7 @@ class TestJSFrame2 extends JSFrame {
     jSlider2.setPaintLabels(true);
     jSlider2.setPaintTicks(true);
     jSlider2.setValue(230);
+    jSlider2.setEnabled(false);
     jSlider2.setInverted(true);
     jSlider2.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider2StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
@@ -637,8 +651,10 @@ class TestJSFrame3 extends JSFrame {
     jCheckBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox1);
     jCheckBox2.setText("jCheckBox2");
+    jCheckBox2.setEnabled(false);
     jPanel1.add(jCheckBox2);
     jCheckBox3.setText("jCheckBox3");
+    jCheckBox3.setEnabled(false);
     jCheckBox3.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox3ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox3);
     jCheckBox4.setText("jCheckBox4");
@@ -654,9 +670,11 @@ class TestJSFrame3 extends JSFrame {
     jPanel2.add(jRadioButton1);
     buttonGroup1.add(jRadioButton2);
     jRadioButton2.setText("jRadioButton2");
+    jRadioButton2.setEnabled(false);
     jPanel2.add(jRadioButton2);
     buttonGroup1.add(jRadioButton3);
     jRadioButton3.setText("jRadioButton3");
+    jRadioButton3.setEnabled(false);
     jPanel2.add(jRadioButton3);
     jComboBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jComboBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel2.add(jComboBox1);

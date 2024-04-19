@@ -73,4 +73,17 @@ class JSRadioButton extends AbstractButton {
    isSelected() {
     return this.radiobutton.checked;
   }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setEnabled
+   *
+   * @param b true to enable the radiobutton, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.radiobutton.removeAttribute("disabled");
+    } else {
+      this.radiobutton.setAttribute("disabled", "disabled");
+    }
+  }
 }

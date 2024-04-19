@@ -37,6 +37,19 @@ public class JSComboBox<T> extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JComboBox.setEnabled
+   *
+   * @param b true to enable the combobox, false otherwise
+   */
+  public void setEnabled(boolean b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
+  }
+  
+  /**
    * Sets the model
    *
    * @param modelAndRenderer The model

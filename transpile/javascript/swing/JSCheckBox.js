@@ -64,4 +64,17 @@ class JSCheckBox extends AbstractButton {
    isSelected() {
     return this.checkbox.checked;
   }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setEnabled
+   *
+   * @param b true to enable the checkbox, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.checkbox.removeAttribute("disabled");
+    } else {
+      this.checkbox.setAttribute("disabled", "disabled");
+    }
+  }
 }

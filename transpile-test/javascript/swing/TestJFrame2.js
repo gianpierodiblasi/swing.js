@@ -87,6 +87,7 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridy = 4;
     gridBagConstraints.anchor = GridBagConstraints.EAST;
     this.getContentPane().add(jLabel2, gridBagConstraints);
+    jComboBox1.setEnabled(false);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 2;
@@ -113,6 +114,7 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.weighty = 100.0;
     this.getContentPane().add(jCheckBox1, gridBagConstraints);
     jCheckBox2.setText("Italic");
+    jCheckBox2.setEnabled(false);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 8;
@@ -131,6 +133,7 @@ class TestJFrame2 extends JFrame {
     buttonGroup1.add(jRadioButton1);
     jRadioButton1.setSelected(true);
     jRadioButton1.setText("pomodoro");
+    jRadioButton1.setEnabled(false);
     jRadioButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jRadioButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 2;
@@ -144,6 +147,7 @@ class TestJFrame2 extends JFrame {
     gridBagConstraints.gridy = 12;
     this.getContentPane().add(jRadioButton2, gridBagConstraints);
     jToggleButton1.setText("jToggleButton1");
+    jToggleButton1.setEnabled(false);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 4;
     gridBagConstraints.gridy = 10;
@@ -169,6 +173,7 @@ class TestJFrame2 extends JFrame {
     jSlider2.setPaintLabels(true);
     jSlider2.setPaintTicks(true);
     jSlider2.setValue(230);
+    jSlider2.setEnabled(false);
     jSlider2.setInverted(true);
     jSlider2.addChangeListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jSlider2StateChanged(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     gridBagConstraints = new GridBagConstraints();

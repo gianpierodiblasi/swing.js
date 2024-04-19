@@ -77,4 +77,17 @@ public class JSSpinner extends JSComponent {
   public double getValue() {
     return (($HTMLElement) this.element).valueAsNumber;
   }
+  
+  /**
+   * Clone of javax.swing.JSpinner.setEnabled
+   *
+   * @param b true to enable the spinner, false otherwise
+   */
+  public void setEnabled(boolean b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
+  }
 }

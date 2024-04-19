@@ -45,6 +45,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox1">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -84,6 +87,7 @@
     <Component class="javax.swing.JCheckBox" name="jCheckBox2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Italic"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -108,6 +112,7 @@
         </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="pomodoro"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
@@ -137,6 +142,7 @@
     <Component class="javax.swing.JToggleButton" name="jToggleButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="jToggleButton1"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -172,6 +178,7 @@
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="paintTicks" type="boolean" value="true"/>
         <Property name="value" type="int" value="230"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="inverted" type="boolean" value="true"/>
       </Properties>
       <Events>

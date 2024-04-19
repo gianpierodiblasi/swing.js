@@ -897,10 +897,24 @@ class JSButton extends AbstractButton {
 
   /**
    * Clone of javax.swing.JButton.setText
+   *
    * @param text The text
    */
    setText(text) {
     this.element.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JButton.setEnabled
+   *
+   * @param b true to enable the button, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
   }
 }
 /**
@@ -969,6 +983,19 @@ class JSCheckBox extends AbstractButton {
    isSelected() {
     return this.checkbox.checked;
   }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setEnabled
+   *
+   * @param b true to enable the checkbox, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.checkbox.removeAttribute("disabled");
+    } else {
+      this.checkbox.setAttribute("disabled", "disabled");
+    }
+  }
 }
 /**
  * The javax.swing.JComboBox clone
@@ -997,6 +1024,19 @@ class JSComboBox extends AbstractButton {
    */
    getSelectedItem() {
     return this.modelAndRenderer.getElementAt((this.element).selectedIndex);
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.setEnabled
+   *
+   * @param b true to enable the combobox, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
   }
 
   /**
@@ -1093,6 +1133,19 @@ class JSRadioButton extends AbstractButton {
    isSelected() {
     return this.radiobutton.checked;
   }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setEnabled
+   *
+   * @param b true to enable the radiobutton, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.radiobutton.removeAttribute("disabled");
+    } else {
+      this.radiobutton.setAttribute("disabled", "disabled");
+    }
+  }
 }
 /**
  * The javax.swing.JToggleButton clone
@@ -1144,6 +1197,19 @@ class JSToggleButton extends AbstractButton {
    */
    isSelected() {
     return this.togglebutton.checked;
+  }
+
+  /**
+   * Clone of javax.swing.JToggleButton.setEnabled
+   *
+   * @param b true to enable the togglebutton, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.togglebutton.removeAttribute("disabled");
+    } else {
+      this.togglebutton.setAttribute("disabled", "disabled");
+    }
   }
 }
 /**
@@ -1458,6 +1524,19 @@ class JSSlider extends JSComponent {
   }
 
   /**
+   * Clone of javax.swing.JSlider.setEnabled
+   *
+   * @param b true to enable the slider, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.slider.removeAttribute("disabled");
+    } else {
+      this.slider.setAttribute("disabled", "disabled");
+    }
+  }
+
+  /**
    * Clone of javax.swing.JSlider.setMajorTickSpacing
    *
    * @param value The value
@@ -1603,6 +1682,19 @@ class JSSpinner extends JSComponent {
    */
    getValue() {
     return (this.element).valueAsNumber;
+  }
+
+  /**
+   * Clone of javax.swing.JSpinner.setEnabled
+   *
+   * @param b true to enable the spinner, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
   }
 }
 /**

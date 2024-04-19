@@ -16,15 +16,29 @@ public class JSButton extends AbstractButton {
     this.element = document.createElement("button");
     this.element.classList.add("jbutton");
     this.element.onclick = (event) -> this.onclick();
-    
+
     LookAndFeel.CURRENT.styleJSButton(this);
   }
 
   /**
    * Clone of javax.swing.JButton.setText
+   *
    * @param text The text
    */
   public void setText(String text) {
     this.element.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JButton.setEnabled
+   *
+   * @param b true to enable the button, false otherwise
+   */
+  public void setEnabled(boolean b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
   }
 }

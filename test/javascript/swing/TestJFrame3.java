@@ -74,9 +74,11 @@ public class TestJFrame3 extends javax.swing.JFrame {
     jPanel1.add(jCheckBox1);
 
     jCheckBox2.setText("jCheckBox2");
+    jCheckBox2.setEnabled(false);
     jPanel1.add(jCheckBox2);
 
     jCheckBox3.setText("jCheckBox3");
+    jCheckBox3.setEnabled(false);
     jCheckBox3.addActionListener(this::jCheckBox3ActionPerformed);
     jPanel1.add(jCheckBox3);
 
@@ -98,10 +100,12 @@ public class TestJFrame3 extends javax.swing.JFrame {
 
     buttonGroup1.add(jRadioButton2);
     jRadioButton2.setText("jRadioButton2");
+    jRadioButton2.setEnabled(false);
     jPanel2.add(jRadioButton2);
 
     buttonGroup1.add(jRadioButton3);
     jRadioButton3.setText("jRadioButton3");
+    jRadioButton3.setEnabled(false);
     jPanel2.add(jRadioButton3);
 
     jComboBox1.addActionListener(this::jComboBox1ActionPerformed);

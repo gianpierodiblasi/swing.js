@@ -77,6 +77,8 @@ class TestJFrame1 extends JFrame {
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);
     jButton5.setText("jButton5");
+    jButton5.setEnabled(false);
+    jButton5.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton5ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton5);
     jButton6.setText("jButton6");
     jPanel1.add(jButton6);
@@ -96,6 +98,7 @@ class TestJFrame1 extends JFrame {
     jButton9.setText("jButton9");
     jPanel2.add(jButton9);
     jPanel2.add(filler4);
+    jSpinner2.setEnabled(false);
     jPanel2.add(jSpinner2);
     jButton11.setText("jButton11");
     jPanel2.add(jButton11);
@@ -148,6 +151,12 @@ class TestJFrame1 extends JFrame {
   }
 
   // GEN-LAST:event_jSpinner1StateChanged
+   jButton5ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton5ActionPerformed
+    console.log("FROM LAMBDA 2");
+  }
+
+  // GEN-LAST:event_jButton5ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    filler1 = null;
 

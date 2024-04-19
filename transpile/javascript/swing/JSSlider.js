@@ -173,6 +173,19 @@ class JSSlider extends JSComponent {
   }
 
   /**
+   * Clone of javax.swing.JSlider.setEnabled
+   *
+   * @param b true to enable the slider, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.slider.removeAttribute("disabled");
+    } else {
+      this.slider.setAttribute("disabled", "disabled");
+    }
+  }
+
+  /**
    * Clone of javax.swing.JSlider.setMajorTickSpacing
    *
    * @param value The value

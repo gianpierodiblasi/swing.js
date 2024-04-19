@@ -2,10 +2,26 @@
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
+.jcheckbox:has(input:disabled) {
+  opacity: .5;
+}
+.jcheckbox.btn:has(.btn-check:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: .65;
+}
 
 .jradiobutton:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
+}
+.jradiobutton:has(input:disabled) {
+  opacity: .5;
+}
+.jradiobutton.btn:has(.btn-check:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: .65;
 }
 
 html[data-bs-theme=dark] .jslider > input.no-paint-track::-webkit-slider-runnable-track {
@@ -17,10 +33,18 @@ html[data-bs-theme=dark] .jslider > input.no-paint-track::-ms-track {
 html[data-bs-theme=dark] .jslider > input.no-paint-track::-moz-range-track {
   background-color: var(--bs-body-bg);
 }
+.jslider > input:disabled+datalist {
+  opacity: 0.5;
+}
 
 .jtogglebutton:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
+}
+.jtogglebutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: .65;
 }
 html, body {
   height: 100%;

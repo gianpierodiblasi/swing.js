@@ -15,9 +15,23 @@ class JSButton extends AbstractButton {
 
   /**
    * Clone of javax.swing.JButton.setText
+   *
    * @param text The text
    */
    setText(text) {
     this.element.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JButton.setEnabled
+   *
+   * @param b true to enable the button, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
   }
 }

@@ -59,4 +59,17 @@ public class JSToggleButton extends AbstractButton {
   public boolean isSelected() {
     return this.togglebutton.checked;
   }
+  
+  /**
+   * Clone of javax.swing.JToggleButton.setEnabled
+   *
+   * @param b true to enable the togglebutton, false otherwise
+   */
+  public void setEnabled(boolean b) {
+    if (b) {
+      this.togglebutton.removeAttribute("disabled");
+    } else {
+      this.togglebutton.setAttribute("disabled", "disabled");
+    }
+  }
 }

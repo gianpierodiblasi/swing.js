@@ -112,6 +112,16 @@
   <target name="build" depends="clean,build_jar,build_js_min,build_css_min,build_js-test,javadoc">
   </target>
   
+  <target name="watch-all">
+    <parallel threadCount="5">
+      <antcall target="watch"/>
+      <antcall target="watch-test"/>
+      <antcall target="watch-transpile"/>
+      <antcall target="watch-transpile-test"/>
+      <antcall target="watch_css"/>      
+    </parallel>
+  </target>
+  
   <target name="watch">
     <java classname="giada.josetta.Josetta">
       <arg value="-in"/>
