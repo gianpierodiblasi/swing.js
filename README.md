@@ -20,8 +20,9 @@ I'm a Java developer, I love Java, I love NetBeans, I love everything in Java, b
 On the other hand it is very difficult for an old style Java Swing developer to project UI for the web.
 So, I decided to rewrite Java Swing in JavaScript (to be more precise in ES6).
 Only a very limited portion of the Java Swing API has been rewritten (the portion I need for...) and for some objects new methods have
-been introduced to power up them (see the [documentation]() for major details).
-To distinguish "native" methods and new methods see the [documentation](), if a method is a clone of a corresponding native method then it is documented as follows
+been introduced to power up them (see the [documentation](https://gianpierodiblasi.github.io/swing.js/) for major details).
+To distinguish "native" methods and new methods see the [documentation](https://gianpierodiblasi.github.io/swing.js/),
+if a method is a clone of a corresponding native method then it is documented as follows
 ```java
 /**
  * Clone of javax.swing.<class>.<method>
