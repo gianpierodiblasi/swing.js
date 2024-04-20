@@ -2309,30 +2309,20 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSTabbedPane(tabbedpane, tab, component) {
-    // Element tabs = tabbedpane.element.querySelector(".borderlayout-north");
-    // tabs.classList.add("nav");
-    // tabs.classList.add("nav-tabs");
-    // 
-    // NodeList list = tabs.querySelectorAll(".jradiobutton");
-    // for (int i = 0; i < list.length; i++) {
-    // Element element = (Element) list.$get(i);
-    // element.classList.add("nav-link");
-    // 
-    // $HTMLElement input = ($HTMLElement) element.querySelector("input");
-    // input.style.display = "none";
-    // 
-    // if (input.checked) {
-    // element.classList.add("active");
-    // }
-    // 
-    // input.addEventListener("change", (event) -> {
-    // NodeList listEvent = tabs.querySelectorAll(".jradiobutton");
-    // for (int iEvent = 0; iEvent < listEvent.length; iEvent++) {
-    // ((Element) listEvent.$get(iEvent)).classList.remove("active");
-    // }
-    // element.classList.add("active");
-    // });
-    // }
+    let tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    tabs.classList.add("nav");
+    tabs.classList.add("nav-tabs");
+    tab.element.classList.add("nav-link");
+    tab.element.style.cursor = "pointer";
+    let input = tab.element.querySelector("input");
+    input.style.display = "none";
+    if (input.checked) {
+      tab.cssAddClass("active");
+    }
+    input.addEventListener("change", (event) => {
+      tabs.querySelector(".jradiobutton.active").classList.remove("active");
+      tab.cssAddClass("active");
+    });
   }
 
    styleJSToggleButton(togglebutton) {
