@@ -1,7 +1,7 @@
 package javascript.swing;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -37,6 +37,11 @@ public class TestJFrame4 extends javax.swing.JFrame {
     jTabbedPane1 = new JTabbedPane();
     jPanel1 = new JPanel();
     jPanel2 = new JPanel();
+    jTabbedPane2 = new JTabbedPane();
+    jPanel3 = new JPanel();
+    jPanel4 = new JPanel();
+
+    getContentPane().setLayout(new GridLayout(2, 1));
 
     jPanel1.setBackground(new Color(255, 255, 0));
     jTabbedPane1.addTab("tab1", jPanel1);
@@ -44,12 +49,25 @@ public class TestJFrame4 extends javax.swing.JFrame {
     jPanel2.setBackground(new Color(255, 51, 51));
     jTabbedPane1.addTab("tab2", jPanel2);
 
-    getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
+    getContentPane().add(jTabbedPane1);
+
+    jTabbedPane2.setTabPlacement(JTabbedPane.BOTTOM);
+
+    jPanel3.setBackground(new Color(0, 255, 0));
+    jTabbedPane2.addTab("tab1", jPanel3);
+
+    jPanel4.setBackground(new Color(0, 0, 204));
+    jTabbedPane2.addTab("tab2", jPanel4);
+
+    getContentPane().add(jTabbedPane2);
   }// </editor-fold>//GEN-END:initComponents
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JPanel jPanel1;
   private JPanel jPanel2;
+  private JPanel jPanel3;
+  private JPanel jPanel4;
   private JTabbedPane jTabbedPane1;
+  private JTabbedPane jTabbedPane2;
   // End of variables declaration//GEN-END:variables
 }

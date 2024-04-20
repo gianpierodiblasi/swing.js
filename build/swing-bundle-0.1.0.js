@@ -1374,11 +1374,19 @@ class JSPanel extends JSComponent {
   }
 }
 /**
- * The javax.swing.JSTabbedPane clone
+ * The javax.swing.JTabbedPane clone
  *
  * @author gianpiero.diblasi
  */
 class JSTabbedPane extends JSPanel {
+
+  static  TOP = 1;
+
+  static  LEFT = 2;
+
+  static  BOTTOM = 3;
+
+  static  RIGHT = 4;
 
    tabs = new JSPanel();
 
@@ -1387,6 +1395,8 @@ class JSTabbedPane extends JSPanel {
    contentLayout = new CardLayout(0, 0);
 
    tabsGroup = new ButtonGroup();
+
+   tabPlacement = JSTabbedPane.TOP;
 
   constructor() {
     super();
@@ -1397,6 +1407,30 @@ class JSTabbedPane extends JSPanel {
     this.add(this.content, BorderLayout.CENTER);
   }
 
+  /**
+   * Clone of javax.swing.JTabbedPane.setTabPlacement
+   *
+   * @param tabPlacement The tab placement
+   */
+   setTabPlacement(tabPlacement) {
+    this.tabPlacement = tabPlacement;
+  }
+
+  /**
+   * Clone of javax.swing.JTabbedPane.getTabPlacement
+   *
+   * @return The tab placement
+   */
+   getTabPlacement() {
+    return this.tabPlacement;
+  }
+
+  /**
+   * Clone of javax.swing.JTabbedPane.addTab
+   *
+   * @param title The tab title
+   * @param component The added component
+   */
    addTab(title, component) {
     let button = new JSRadioButton();
     button.setText(title);
@@ -1409,7 +1443,7 @@ class JSTabbedPane extends JSPanel {
   }
 }
 /**
- * The javax.swing.JSProgressBar clone
+ * The javax.swing.JProgressBar clone
  *
  * @author gianpiero.diblasi
  */

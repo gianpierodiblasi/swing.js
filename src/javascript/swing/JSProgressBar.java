@@ -4,7 +4,7 @@ import static def.dom.Globals.document;
 import javascript.swing.plaf.LookAndFeel;
 
 /**
- * The javax.swing.JSProgressBar clone
+ * The javax.swing.JProgressBar clone
  *
  * @author gianpiero.diblasi
  */

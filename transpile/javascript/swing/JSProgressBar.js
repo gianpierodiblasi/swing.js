@@ -1,5 +1,5 @@
 /**
- * The javax.swing.JSProgressBar clone
+ * The javax.swing.JProgressBar clone
  *
  * @author gianpiero.diblasi
  */

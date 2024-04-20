@@ -784,11 +784,21 @@ class TestJSFrame4 extends JSFrame {
     this.jTabbedPane1 = new JSTabbedPane();let jTabbedPane1 = this.jTabbedPane1;
     this.jPanel1 = new JSPanel();let jPanel1 = this.jPanel1;
     this.jPanel2 = new JSPanel();let jPanel2 = this.jPanel2;
+    this.jTabbedPane2 = new JSTabbedPane();let jTabbedPane2 = this.jTabbedPane2;
+    this.jPanel3 = new JSPanel();let jPanel3 = this.jPanel3;
+    this.jPanel4 = new JSPanel();let jPanel4 = this.jPanel4;
+    this.getContentPane().setLayout(new GridLayout(2, 1));
     jPanel1.setBackground(new Color(255, 255, 0));
     jTabbedPane1.addTab("tab1", jPanel1);
     jPanel2.setBackground(new Color(255, 51, 51));
     jTabbedPane1.addTab("tab2", jPanel2);
-    this.getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
+    this.getContentPane().add(jTabbedPane1);
+    jTabbedPane2.setTabPlacement(JSTabbedPane.BOTTOM);
+    jPanel3.setBackground(new Color(0, 255, 0));
+    jTabbedPane2.addTab("tab1", jPanel3);
+    jPanel4.setBackground(new Color(0, 0, 204));
+    jTabbedPane2.addTab("tab2", jPanel4);
+    this.getContentPane().add(jTabbedPane2);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -797,6 +807,12 @@ class TestJSFrame4 extends JSFrame {
 
    jPanel2 = null;
 
+   jPanel3 = null;
+
+   jPanel4 = null;
+
    jTabbedPane1 = null;
+
+   jTabbedPane2 = null;
   // End of variables declaration//GEN-END:variables
 }
