@@ -35,15 +35,16 @@ Two PLAF are available in swing.js (but others can be easily added):
 Some components provide special methods to customize the UI (switch, toggle, etc.) but the result is highly related to the used PLAF.
 
 ## How To Use
-swing.js can be used in two different ways: as a JavaScript library or as a Java library
+swing.js can be used in two different ways: as a JavaScript library or as a Java library.
 
 ### swing.js as a JavaScript Library
 If you want to use swing.js as a JavaScript library then simply add it to your project and start to write your UIs in JavaScript with a Java Swing-like approach.
-To do this reference the *swing-bundle-\<version\>.js* and *swing-bundle-\<version\>.css* files (or the corresponding minified versions) available in the build folder.
+To do this, reference the *swing-bundle-\<version\>.js* and *swing-bundle-\<version\>.css* files (or the corresponding minified versions) available in the build folder.
 
 ### swing.js as a Java Library
-If you want to use swing.js as a Java library then add the *swing-bundle-\<version\>.jar* file to the classpath, write your code and then transpille it by means of (for example)
+If you want to use swing.js as a Java library then add the *swing-bundle-\<version\>.jar* file to your classpath, write your Java code and then transpille it by means of (for example)
 [josetta](https://github.com/gianpierodiblasi/josetta) (swing.js itself has been written in Java and transpilled in JavaScript by using [josetta](https://github.com/gianpierodiblasi/josetta)).
+If you want you can also create your UI by means of a visual IDE (for example the NetBeans GUI Builder,codename Matisse).
 
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)
