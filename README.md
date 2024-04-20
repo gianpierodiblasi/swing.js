@@ -44,7 +44,7 @@ To do this, reference the *swing-bundle-\<version\>.js* and *swing-bundle-\<vers
 ### swing.js as a Java Library
 If you want to use swing.js as a Java library then add the *swing-bundle-\<version\>.jar* file to your classpath, write your Java code and then transpille it by means of (for example)
 [josetta](https://github.com/gianpierodiblasi/josetta) (swing.js itself has been written in Java and transpilled in JavaScript by using [josetta](https://github.com/gianpierodiblasi/josetta)).
-If you want you can also create your UIs by means of a visual IDE (for example the NetBeans GUI Builder, codename Matisse).
+If you want you can also create your UIs by means of a visual IDE (for example the [NetBeans](https://netbeans.apache.org/) GUI Builder, codename Matisse).
 
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)
