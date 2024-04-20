@@ -12,27 +12,22 @@ import javascript.swing.plaf.LookAndFeel;
  */
 @SuppressWarnings("serial")
 public class JSTabbedPane extends JSPanel {
-  
+
   private final JSPanel tabs = new JSPanel();
   private final JSPanel content = new JSPanel();
   private final CardLayout contentLayout = new CardLayout(0, 0);
   private final ButtonGroup tabsGroup = new ButtonGroup();
 
-  /**
-   * Creates the object
-   */
   public JSTabbedPane() {
     super();
     this.setLayout(new BorderLayout(0, 0));
-    
+
     this.tabs.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
     this.add(this.tabs, BorderLayout.NORTH);
     this.content.setLayout(this.contentLayout);
     this.add(this.content, BorderLayout.CENTER);
-    
-    LookAndFeel.CURRENT.styleJSTabbedPane(this);
   }
-  
+
   public void addTab(String title, JSComponent component) {
     JSRadioButton button = new JSRadioButton();
     button.setText(title);
@@ -40,9 +35,9 @@ public class JSTabbedPane extends JSPanel {
     button.addActionListener((event) -> this.contentLayout.show(this.content, title));
     this.tabs.add(button, null);
     this.tabsGroup.add(button);
-    
+
     this.content.add(component, title);
-    
-    LookAndFeel.CURRENT.styleJSTabbedPane(this);
+
+    LookAndFeel.CURRENT.styleJSTabbedPane(this, button, component);
   }
 }

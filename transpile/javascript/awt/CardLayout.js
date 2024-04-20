@@ -38,6 +38,12 @@ class CardLayout extends LayoutManager {
     component.element.style.marginBottom = this.vGap + "px";
   }
 
+  /**
+   * The java.awt.CardLayout.show clone
+   *
+   * @param parent The parent component
+   * @param name The name of the card to show
+   */
    show(parent, name) {
     for (let index = 0; index < parent.element.childElementCount; index++) {
       (parent.element.childNodes[index]).style.display = "none";

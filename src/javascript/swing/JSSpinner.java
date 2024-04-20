@@ -25,7 +25,7 @@ public class JSSpinner extends JSComponent {
     this.element.classList.add("jspinner");
     this.element.oninput = (event) -> this.onchange();
     (($HTMLElement) this.element).valueAsNumber = 0;
-    
+
     LookAndFeel.CURRENT.styleJSSpinner(this);
   }
 
@@ -77,7 +77,7 @@ public class JSSpinner extends JSComponent {
   public double getValue() {
     return (($HTMLElement) this.element).valueAsNumber;
   }
-  
+
   /**
    * Clone of javax.swing.JSpinner.setEnabled
    *

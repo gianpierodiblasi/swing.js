@@ -23,7 +23,8 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a switch
+   * Set this checkbox as a switch; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
    setSwitch() {
     this.checkbox.setAttribute("role", "switch");
@@ -31,7 +32,8 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a toggle
+   * Set this checkbox as a toggle; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
    setToggle() {
     this.checkbox.setAttribute("role", "toggle");

@@ -13,9 +13,6 @@ class JSTabbedPane extends JSPanel {
 
    tabsGroup = new ButtonGroup();
 
-  /**
-   * Creates the object
-   */
   constructor() {
     super();
     this.setLayout(new BorderLayout(0, 0));
@@ -23,7 +20,6 @@ class JSTabbedPane extends JSPanel {
     this.add(this.tabs, BorderLayout.NORTH);
     this.content.setLayout(this.contentLayout);
     this.add(this.content, BorderLayout.CENTER);
-    LookAndFeel.CURRENT.styleJSTabbedPane(this);
   }
 
    addTab(title, component) {
@@ -34,6 +30,6 @@ class JSTabbedPane extends JSPanel {
     this.tabs.add(button, null);
     this.tabsGroup.add(button);
     this.content.add(component, title);
-    LookAndFeel.CURRENT.styleJSTabbedPane(this);
+    LookAndFeel.CURRENT.styleJSTabbedPane(this, button, component);
   }
 }

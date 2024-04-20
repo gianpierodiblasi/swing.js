@@ -33,7 +33,8 @@ public class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a switch
+   * Set this checkbox as a switch; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
   public void setSwitch() {
     this.checkbox.setAttribute("role", "switch");
@@ -41,13 +42,14 @@ public class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a toggle
+   * Set this checkbox as a toggle; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
   public void setToggle() {
     this.checkbox.setAttribute("role", "toggle");
     LookAndFeel.CURRENT.styleJSCheckBox(this);
   }
-  
+
   /**
    * Clone of javax.swing.JCheckBox.setText
    *
@@ -74,7 +76,7 @@ public class JSCheckBox extends AbstractButton {
   public boolean isSelected() {
     return this.checkbox.checked;
   }
-  
+
   /**
    * Clone of javax.swing.JCheckBox.setEnabled
    *

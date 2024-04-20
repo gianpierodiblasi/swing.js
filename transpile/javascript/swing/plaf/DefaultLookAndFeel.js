@@ -5,9 +5,6 @@
  */
 class DefaultLookAndFeel extends LookAndFeel {
 
-  /**
-   * Creates the object
-   */
   constructor() {
     super();
     document.body.classList.add("defaultlaf");
@@ -41,7 +38,7 @@ class DefaultLookAndFeel extends LookAndFeel {
    styleJSSpinner(spinner) {
   }
 
-   styleJSTabbedPane(tabbedpane) {
+   styleJSTabbedPane(tabbedpane, tab, component) {
   }
 
    styleJSToggleButton(togglebutton) {

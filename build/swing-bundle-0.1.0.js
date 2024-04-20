@@ -421,6 +421,12 @@ class CardLayout extends LayoutManager {
     component.element.style.marginBottom = this.vGap + "px";
   }
 
+  /**
+   * The java.awt.CardLayout.show clone
+   *
+   * @param parent The parent component
+   * @param name The name of the card to show
+   */
    show(parent, name) {
     for (let index = 0; index < parent.element.childElementCount; index++) {
       (parent.element.childNodes[index]).style.display = "none";
@@ -954,7 +960,8 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a switch
+   * Set this checkbox as a switch; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
    setSwitch() {
     this.checkbox.setAttribute("role", "switch");
@@ -962,7 +969,8 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a toggle
+   * Set this checkbox as a toggle; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
    setToggle() {
     this.checkbox.setAttribute("role", "toggle");
@@ -1095,7 +1103,8 @@ class JSRadioButton extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a switch
+   * Set this radiobutton as a switch; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
    setSwitch() {
     this.radiobutton.setAttribute("role", "switch");
@@ -1103,7 +1112,8 @@ class JSRadioButton extends AbstractButton {
   }
 
   /**
-   * Set this radiobutton as a toggle
+   * Set this radiobutton as a toggle; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
    setToggle() {
     this.radiobutton.setAttribute("role", "toggle");
@@ -1160,7 +1170,9 @@ class JSRadioButton extends AbstractButton {
   }
 }
 /**
- * The javax.swing.JToggleButton clone
+ * The javax.swing.JToggleButton clone; the visual appearance depends on the
+ * used Look&amp;Feel, with the DefaultLookAndFeel it will be rendered as a
+ * checkbox
  *
  * @author gianpiero.diblasi
  */
@@ -1376,9 +1388,6 @@ class JSTabbedPane extends JSPanel {
 
    tabsGroup = new ButtonGroup();
 
-  /**
-   * Creates the object
-   */
   constructor() {
     super();
     this.setLayout(new BorderLayout(0, 0));
@@ -1386,7 +1395,6 @@ class JSTabbedPane extends JSPanel {
     this.add(this.tabs, BorderLayout.NORTH);
     this.content.setLayout(this.contentLayout);
     this.add(this.content, BorderLayout.CENTER);
-    LookAndFeel.CURRENT.styleJSTabbedPane(this);
   }
 
    addTab(title, component) {
@@ -1397,7 +1405,7 @@ class JSTabbedPane extends JSPanel {
     this.tabs.add(button, null);
     this.tabsGroup.add(button);
     this.content.add(component, title);
-    LookAndFeel.CURRENT.styleJSTabbedPane(this);
+    LookAndFeel.CURRENT.styleJSTabbedPane(this, button, component);
   }
 }
 /**
@@ -2036,9 +2044,6 @@ class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
  */
 class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
-  /**
-   * Creates the object
-   */
   constructor() {
     super(false);
   }
@@ -2161,8 +2166,10 @@ class LookAndFeel {
    * Applies the style to a tabbedpane
    *
    * @param tabbedpane The tabbedpane
+   * @param tab The added tab
+   * @param component The added component
    */
-   styleJSTabbedPane(tabbedpane) {
+   styleJSTabbedPane(tabbedpane, tab, component) {
   }
 
   /**
@@ -2301,27 +2308,31 @@ class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
-   styleJSTabbedPane(tabbedpane) {
-    let tabs = tabbedpane.element.querySelector(".borderlayout-north");
-    tabs.classList.add("nav");
-    tabs.classList.add("nav-tabs");
-    let list = tabs.querySelectorAll(".jradiobutton");
-    for (let i = 0; i < list.length; i++) {
-      let element = list[i];
-      element.classList.add("nav-link");
-      let input = element.querySelector("input");
-      input.style.display = "none";
-      if (input.checked) {
-        element.classList.add("active");
-      }
-      input.addEventListener("change", (event) => {
-        let listEvent = tabs.querySelectorAll(".jradiobutton");
-        for (let iEvent = 0; iEvent < listEvent.length; iEvent++) {
-          (listEvent[iEvent]).classList.remove("active");
-        }
-        element.classList.add("active");
-      });
-    }
+   styleJSTabbedPane(tabbedpane, tab, component) {
+    // Element tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    // tabs.classList.add("nav");
+    // tabs.classList.add("nav-tabs");
+    // 
+    // NodeList list = tabs.querySelectorAll(".jradiobutton");
+    // for (int i = 0; i < list.length; i++) {
+    // Element element = (Element) list.$get(i);
+    // element.classList.add("nav-link");
+    // 
+    // $HTMLElement input = ($HTMLElement) element.querySelector("input");
+    // input.style.display = "none";
+    // 
+    // if (input.checked) {
+    // element.classList.add("active");
+    // }
+    // 
+    // input.addEventListener("change", (event) -> {
+    // NodeList listEvent = tabs.querySelectorAll(".jradiobutton");
+    // for (int iEvent = 0; iEvent < listEvent.length; iEvent++) {
+    // ((Element) listEvent.$get(iEvent)).classList.remove("active");
+    // }
+    // element.classList.add("active");
+    // });
+    // }
   }
 
    styleJSToggleButton(togglebutton) {
@@ -2370,9 +2381,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
  */
 class DefaultLookAndFeel extends LookAndFeel {
 
-  /**
-   * Creates the object
-   */
   constructor() {
     super();
     document.body.classList.add("defaultlaf");
@@ -2406,7 +2414,7 @@ class DefaultLookAndFeel extends LookAndFeel {
    styleJSSpinner(spinner) {
   }
 
-   styleJSTabbedPane(tabbedpane) {
+   styleJSTabbedPane(tabbedpane, tab, component) {
   }
 
    styleJSToggleButton(togglebutton) {
@@ -2436,6 +2444,7 @@ class SpinnerNumberModel {
 
   /**
    * Sets the spinner managed by this model
+   *
    * @param spinner The spinner
    */
    setJSSpinner(spinner) {

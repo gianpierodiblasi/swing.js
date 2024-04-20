@@ -3,6 +3,7 @@ package javascript.swing.plaf;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
+import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
 import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
@@ -95,9 +96,11 @@ public abstract class LookAndFeel {
    * Applies the style to a tabbedpane
    *
    * @param tabbedpane The tabbedpane
+   * @param tab The added tab
+   * @param component The added component
    */
-  public abstract void styleJSTabbedPane(JSTabbedPane tabbedpane);
-  
+  public abstract void styleJSTabbedPane(JSTabbedPane tabbedpane, JSRadioButton tab, JSComponent component);
+
   /**
    * Applies the style to a togglebutton
    *

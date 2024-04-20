@@ -6,7 +6,9 @@ import javascript.swing.plaf.LookAndFeel;
 import simulation.dom.$HTMLElement;
 
 /**
- * The javax.swing.JToggleButton clone
+ * The javax.swing.JToggleButton clone; the visual appearance depends on the
+ * used Look&amp;Feel, with the DefaultLookAndFeel it will be rendered as a
+ * checkbox
  *
  * @author gianpiero.diblasi
  */
@@ -59,7 +61,7 @@ public class JSToggleButton extends AbstractButton {
   public boolean isSelected() {
     return this.togglebutton.checked;
   }
-  
+
   /**
    * Clone of javax.swing.JToggleButton.setEnabled
    *

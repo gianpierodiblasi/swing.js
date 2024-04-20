@@ -91,8 +91,10 @@ class LookAndFeel {
    * Applies the style to a tabbedpane
    *
    * @param tabbedpane The tabbedpane
+   * @param tab The added tab
+   * @param component The added component
    */
-   styleJSTabbedPane(tabbedpane) {
+   styleJSTabbedPane(tabbedpane, tab, component) {
   }
 
   /**

@@ -4,6 +4,7 @@ import static def.dom.Globals.document;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
+import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
 import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
@@ -19,9 +20,6 @@ import javascript.swing.JSToggleButton;
  */
 public class DefaultLookAndFeel extends LookAndFeel {
 
-  /**
-   * Creates the object
-   */
   public DefaultLookAndFeel() {
     super();
     document.body.classList.add("defaultlaf");
@@ -38,7 +36,6 @@ public class DefaultLookAndFeel extends LookAndFeel {
   }
 
   @Override
-  @SuppressWarnings("StringEquality")
   public void styleJSCheckBox(JSCheckBox checkbox) {
   }
 
@@ -55,7 +52,6 @@ public class DefaultLookAndFeel extends LookAndFeel {
   }
 
   @Override
-  @SuppressWarnings("StringEquality")
   public void styleJSRadioButton(JSRadioButton radiobutton) {
   }
 
@@ -68,7 +64,7 @@ public class DefaultLookAndFeel extends LookAndFeel {
   }
 
   @Override
-  public void styleJSTabbedPane(JSTabbedPane tabbedpane) {
+  public void styleJSTabbedPane(JSTabbedPane tabbedpane, JSRadioButton tab, JSComponent component) {
   }
 
   @Override

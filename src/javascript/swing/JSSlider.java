@@ -199,7 +199,7 @@ public class JSSlider extends JSComponent {
       this.slider.setAttribute("disabled", "disabled");
     }
   }
-  
+
   /**
    * Clone of javax.swing.JSlider.setMajorTickSpacing
    *

@@ -33,7 +33,8 @@ public class JSRadioButton extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a switch
+   * Set this radiobutton as a switch; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
   public void setSwitch() {
     this.radiobutton.setAttribute("role", "switch");
@@ -41,7 +42,8 @@ public class JSRadioButton extends AbstractButton {
   }
 
   /**
-   * Set this radiobutton as a toggle
+   * Set this radiobutton as a toggle; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
    */
   public void setToggle() {
     this.radiobutton.setAttribute("role", "toggle");
@@ -83,7 +85,7 @@ public class JSRadioButton extends AbstractButton {
   public boolean isSelected() {
     return this.radiobutton.checked;
   }
-  
+
   /**
    * Clone of javax.swing.JRadioButton.setEnabled
    *

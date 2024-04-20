@@ -15,9 +15,6 @@ import simulation.dom.$Image;
  */
 public class HTMLImageSliderModelAndRenderer<T extends AbstractHTMLImageProducer<S>, S> extends AbstractSliderModelAndRenderer<T> {
 
-  /**
-   * Creates the object
-   */
   public HTMLImageSliderModelAndRenderer() {
     super(false);
   }
