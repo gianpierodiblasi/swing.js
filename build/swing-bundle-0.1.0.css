@@ -190,7 +190,7 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs 
 .jlabel {
 }
 
-.jprogressbar {
+.jprogressbar progress {
   font-size: 34px;
 }
 .jprogressbar-vertical {

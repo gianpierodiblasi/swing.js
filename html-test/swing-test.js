@@ -644,7 +644,11 @@ class TestJSFrame3 extends JSFrame {
     this.jPanel4 = new JSPanel();let jPanel4 = this.jPanel4;
     this.jProgressBar2 = new JSProgressBar();let jProgressBar2 = this.jProgressBar2;
     this.jProgressBar1 = new JSProgressBar();let jProgressBar1 = this.jProgressBar1;
+    this.jProgressBar4 = new JSProgressBar();let jProgressBar4 = this.jProgressBar4;
+    this.jProgressBar6 = new JSProgressBar();let jProgressBar6 = this.jProgressBar6;
+    this.jPanel5 = new JSPanel();let jPanel5 = this.jPanel5;
     this.jProgressBar3 = new JSProgressBar();let jProgressBar3 = this.jProgressBar3;
+    this.jProgressBar5 = new JSProgressBar();let jProgressBar5 = this.jProgressBar5;
     jCheckBox1.setText("jCheckBox1");
     jCheckBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox1);
@@ -680,17 +684,32 @@ class TestJSFrame3 extends JSFrame {
     jLabel1.setText("jLabel1");
     jPanel3.add(jLabel1);
     this.getContentPane().add(jPanel3, BorderLayout.LINE_START);
-    jPanel4.setLayout(new GridLayout(2, 1));
+    jPanel4.setLayout(new GridLayout(4, 1));
     jProgressBar2.setIndeterminate(true);
     jPanel4.add(jProgressBar2);
     jProgressBar1.setMaximum(1000);
     jProgressBar1.setMinimum(30);
     jProgressBar1.setValue(570);
     jPanel4.add(jProgressBar1);
+    jProgressBar4.setMaximum(1000);
+    jProgressBar4.setMinimum(30);
+    jProgressBar4.setValue(570);
+    jProgressBar4.setStringPainted(true);
+    jPanel4.add(jProgressBar4);
+    jProgressBar6.setValue(49);
+    jProgressBar6.setString("Frase di Test");
+    jProgressBar6.setStringPainted(true);
+    jPanel4.add(jProgressBar6);
     this.getContentPane().add(jPanel4, BorderLayout.PAGE_END);
+    jPanel5.setLayout(new GridLayout(1, 2));
     jProgressBar3.setOrientation(1);
     jProgressBar3.setValue(30);
-    this.getContentPane().add(jProgressBar3, BorderLayout.LINE_END);
+    jPanel5.add(jProgressBar3);
+    jProgressBar5.setOrientation(1);
+    jProgressBar5.setValue(30);
+    jProgressBar5.setStringPainted(true);
+    jPanel5.add(jProgressBar5);
+    this.getContentPane().add(jPanel5, BorderLayout.LINE_END);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -741,11 +760,19 @@ class TestJSFrame3 extends JSFrame {
 
    jPanel4 = null;
 
+   jPanel5 = null;
+
    jProgressBar1 = null;
 
    jProgressBar2 = null;
 
    jProgressBar3 = null;
+
+   jProgressBar4 = null;
+
+   jProgressBar5 = null;
+
+   jProgressBar6 = null;
 
    jRadioButton1 = null;
 

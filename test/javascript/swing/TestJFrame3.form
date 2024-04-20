@@ -145,7 +145,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
         <Property name="columns" type="int" value="1"/>
-        <Property name="rows" type="int" value="2"/>
+        <Property name="rows" type="int" value="4"/>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JProgressBar" name="jProgressBar2">
@@ -160,18 +160,49 @@
             <Property name="value" type="int" value="570"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JProgressBar" name="jProgressBar4">
+          <Properties>
+            <Property name="maximum" type="int" value="1000"/>
+            <Property name="minimum" type="int" value="30"/>
+            <Property name="value" type="int" value="570"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="jProgressBar6">
+          <Properties>
+            <Property name="value" type="int" value="49"/>
+            <Property name="string" type="java.lang.String" value="Frase di Test"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JProgressBar" name="jProgressBar3">
-      <Properties>
-        <Property name="orientation" type="int" value="1"/>
-        <Property name="value" type="int" value="30"/>
-      </Properties>
+    <Container class="javax.swing.JPanel" name="jPanel5">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="After"/>
         </Constraint>
       </Constraints>
-    </Component>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="2"/>
+        <Property name="rows" type="int" value="1"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JProgressBar" name="jProgressBar3">
+          <Properties>
+            <Property name="orientation" type="int" value="1"/>
+            <Property name="value" type="int" value="30"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="jProgressBar5">
+          <Properties>
+            <Property name="orientation" type="int" value="1"/>
+            <Property name="value" type="int" value="30"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

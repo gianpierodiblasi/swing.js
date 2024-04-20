@@ -3,7 +3,6 @@ package javascript.swing.plaf;
 import def.dom.Element;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
-import def.dom.NodeList;
 import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
@@ -25,7 +24,7 @@ import static simulation.js.$Globals.$typeof;
  * @author gianpiero.diblasi
  */
 public class BootstrapLookAndFeel extends LookAndFeel {
-
+  
   private final boolean dark;
   private final String size;
 
@@ -64,13 +63,13 @@ public class BootstrapLookAndFeel extends LookAndFeel {
   public static LookAndFeel createLarge(boolean dark, boolean referenceFile) {
     return new BootstrapLookAndFeel(dark, "lg", referenceFile);
   }
-
+  
   private BootstrapLookAndFeel(boolean dark, String size, boolean referenceFile) {
     super();
     document.body.classList.add("bootstraplaf");
     this.dark = $typeof(dark, "undefined") ? false : dark;
     this.size = size;
-
+    
     if ($typeof(referenceFile, "undefined") || referenceFile) {
       HTMLElement link = document.createElement("link");
       link.setAttribute("href", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
@@ -84,85 +83,87 @@ public class BootstrapLookAndFeel extends LookAndFeel {
       script.setAttribute("src", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js");
       document.head.appendChild(script);
     }
-
+    
     if (this.dark) {
       document.documentElement.setAttribute("data-bs-theme", "dark");
     }
   }
-
+  
   @Override
   @SuppressWarnings("StringEquality")
   public String getDescription() {
     return "Bootstrap LookAndFeel " + (this.dark ? "Dark " : "Light ") + (this.size == "sm" ? "Small" : this.size == "lg" ? "Large" : "");
   }
-
+  
   @Override
   public void styleJSButton(JSButton button) {
     button.cssAddClass("btn");
     button.cssAddClass("btn-primary");
-
+    
     if ($exists(this.size)) {
       button.cssAddClass("btn-" + this.size);
     }
   }
-
+  
   @Override
   @SuppressWarnings("StringEquality")
   public void styleJSCheckBox(JSCheckBox checkbox) {
     this.setCheckAndRadio(checkbox);
   }
-
+  
   @Override
   public void styleJSComboBox(JSComboBox<?> combobox) {
     combobox.element.style.width = "auto";
     combobox.cssAddClass("form-select");
-
+    
     if ($exists(this.size)) {
       combobox.cssAddClass("form-select-" + this.size);
     }
   }
-
+  
   @Override
   public void styleJSLabel(JSLabel label) {
     this.setSize(label.element);
   }
-
+  
   @Override
   public void styleJSProgressBar(JSProgressBar progressbar) {
     switch (this.size) {
       case "sm":
-        progressbar.element.style.fontSize = "31px";
+        ((HTMLElement) progressbar.element.querySelector("progress")).style.fontSize = "31px";
         break;
       case "lg":
-        progressbar.element.style.fontSize = "40px";
+        ((HTMLElement) progressbar.element.querySelector("progress")).style.fontSize = "40px";
         break;
       default:
-        progressbar.element.style.fontSize = "34px";
+        ((HTMLElement) progressbar.element.querySelector("progress")).style.fontSize = "34px";
         break;
     }
+    
+    this.setSize((HTMLElement) progressbar.element.querySelector("label"));
   }
-
+  
   @Override
   @SuppressWarnings("StringEquality")
   public void styleJSRadioButton(JSRadioButton radiobutton) {
     this.setCheckAndRadio(radiobutton);
   }
-
+  
   @Override
   public void styleJSSlider(JSSlider slider) {
     this.setSize((HTMLElement) slider.element.querySelector("datalist"));
   }
-
+  
   @Override
   public void styleJSSpinner(JSSpinner spinner) {
     spinner.element.style.width = "auto";
     spinner.cssAddClass("form-control");
-
+    
     if ($exists(this.size)) {
       spinner.cssAddClass("form-control-" + this.size);
     }
   }
-
+  
   @Override
   public void styleJSTabbedPane(JSTabbedPane tabbedpane, JSRadioButton tab, JSComponent component) {
     String selector = null;
@@ -180,35 +181,35 @@ public class BootstrapLookAndFeel extends LookAndFeel {
         selector = ".borderlayout-east";
         break;
     }
-
+    
     Element tabs = tabbedpane.element.querySelector(selector);
     tabs.classList.add("nav");
     tabs.classList.add("nav-tabs");
-
+    
     tab.element.classList.add("nav-link");
     tab.element.style.cursor = "pointer";
-
+    
     $HTMLElement input = ($HTMLElement) tab.element.querySelector("input");
     input.style.display = "none";
     if (input.checked) {
       tab.cssAddClass("active");
     }
-
+    
     input.addEventListener("change", (event) -> {
       tabs.querySelector(".jradiobutton.active").classList.remove("active");
       tab.cssAddClass("active");
     });
   }
-
+  
   @Override
   public void styleJSToggleButton(JSToggleButton togglebutton) {
     this.setCheckAndRadio(togglebutton);
   }
-
+  
   private void setCheckAndRadio(JSComponent component) {
     HTMLElement input = (HTMLElement) component.element.querySelector("input");
     input.classList.add("form-check-input");
-
+    
     switch (input.getAttribute("role")) {
       case "switch":
         input.style.marginRight = "0.5em";
@@ -229,7 +230,7 @@ public class BootstrapLookAndFeel extends LookAndFeel {
         break;
     }
   }
-
+  
   private void setSize(HTMLElement element) {
     switch (this.size) {
       case "sm":

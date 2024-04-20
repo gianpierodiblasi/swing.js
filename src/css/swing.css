@@ -88,7 +88,7 @@ html, body {
 .jlabel {
 }
 
-.jprogressbar {
+.jprogressbar progress {
   font-size: 34px;
 }
 .jprogressbar-vertical {
