@@ -29,8 +29,8 @@ PLAF has to be set before the creation of the first component (this is mandatory
 LookAndFeel.CURRENT = ...;
 ```
 Two PLAF are available in swing.js (but others can be easily added):
-- DefaulLookAndFeel: it is a very basic PLAF without any customization
-- BootstapLookAndFeel: it is a PLAF based on [Bootstrap](https://getbootstrap.com/)
+- DefaultLookAndFeel: it is a very basic PLAF without any customization
+- BootstrapLookAndFeel: it is a PLAF based on [Bootstrap](https://getbootstrap.com/)
 
 Some components provide special methods to customize the UI (switch, toggle, etc.) but the result is highly related to the used PLAF.
 
