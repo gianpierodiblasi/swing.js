@@ -29,6 +29,9 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
   border-top: 1px solid rgb(222, 226, 230);
   border-bottom: none;
 }
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs {
+  border-top: 1px solid #495057;
+}
 .bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -39,9 +42,15 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
 .bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link.active {
   border-bottom: 1px solid rgb(222, 226, 230);
 }
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link.active {
+  border-bottom: 1px solid #495057;
+}
 .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs {
   border-right: 1px solid rgb(222, 226, 230);
   border-bottom: none;
+}
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs {
+  border-right: 1px solid #495057;
 }
 .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link {
   border-top-right-radius: 0px;
@@ -51,9 +60,15 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
 .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link.active {
   border-bottom: 1px solid rgb(222, 226, 230);
 }
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link.active {
+  border-bottom: 1px solid #495057;
+}
 .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs {
   border-left: 1px solid rgb(222, 226, 230);
   border-bottom: none;
+}
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs {
+  border-left: 1px solid #495057;
 }
 .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link {
   border-top-left-radius: 0px;
@@ -62,6 +77,9 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
 }
 .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link.active {
   border-bottom: 1px solid rgb(222, 226, 230);
+}
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link.active {
+  border-bottom: 1px solid #495057;
 }
 
 .bootstraplaf .jtogglebutton:has(.btn-check:checked) {
