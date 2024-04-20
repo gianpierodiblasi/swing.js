@@ -1,0 +1,207 @@
+.bootstraplaf .jcheckbox:has(.btn-check:checked) {
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}
+
+.bootstraplaf .jprogressbar {
+  accent-color: #0d6efd;
+}
+
+.bootstraplaf .jradiobutton:has(.btn-check:checked) {
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}
+
+.bootstraplaf .jslider > input {
+  accent-color: #0d6efd;
+}
+html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: var(--bs-body-bg);
+}
+html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-ms-track {
+  background-color: var(--bs-body-bg);
+}
+html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-range-track {
+  background-color: var(--bs-body-bg);
+}
+
+.bootstraplaf .jtogglebutton:has(.btn-check:checked) {
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}
+.defaultlaf * {
+  font-family: arial;
+}
+
+.defaultlaf .jcheckbox {
+  align-items: baseline;
+}
+
+.defaultlaf .jradiobutton {
+  align-items: flex-start;
+}
+
+.defaultlaf .jtogglebutton {
+  align-items: baseline;
+}html, body {
+  height: 100%;
+  margin: 0px;
+}
+
+.jframe {
+  width: 100%;
+  height: 100%;
+}
+
+.jpanel {
+}
+
+.jframe.borderlayout, .jpanel.borderlayout {
+  display: flex;
+  flex-direction: column;
+}
+.jframe.borderlayout > borderlayout-north, .jpanel.borderlayout > borderlayout-north {
+  width: 100%;
+  order: 1;
+}
+.jframe.borderlayout > .borderlayout-middle, .jpanel.borderlayout .borderlayout-middle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-grow: 1;
+  order: 2;
+}
+.jframe.borderlayout > .borderlayout-middle > .borderlayout-west, .jpanel.borderlayout > .borderlayout-middle > .borderlayout-west {
+  order: 1;
+}
+.jframe.borderlayout > .borderlayout-middle > .borderlayout-center, .jpanel.borderlayout > .borderlayout-middle > .borderlayout-center {
+  flex-grow: 1;
+  order: 2;
+}
+.jframe.borderlayout > .borderlayout-middle > .borderlayout-east, .jpanel.borderlayout .borderlayout-middle > .borderlayout-east {
+  order: 3;
+}
+.jframe.borderlayout .borderlayout-south, .jpanel.borderlayout .borderlayout-south {
+  width: 100%;
+  order: 3;
+}
+
+.jframe.flowlayout, .jpanel.flowlayout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.jframe.gridlayout, .jpanel.gridlayout {
+  display: grid;
+}
+
+.jframe.boxlayout, .jpanel.boxlayout {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.jframe.cardlayout, .jpanel.cardlayout {
+  display: flex;
+}
+
+.jframe.gridbaglayout, .jpanel.gridbaglayout {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.jbutton {
+}
+
+.jcomponent-box-filler {
+}
+
+.jcheckbox {
+  display: flex;
+}
+.jcheckbox:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.jcombobox {
+}
+
+.jlabel {
+}
+
+.jprogressbar {
+  font-size: 34px;
+}
+.jprogressbar-vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+.jradiobutton {
+  display: flex;
+}
+.jradiobutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.jslider {
+  display: flex;
+}
+.jslider > input:disabled+datalist {
+  opacity: 0.65;
+}
+.jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: rgb(255,255,255);
+}
+.jslider > input.no-paint-track::-ms-track {
+  background-color: rgb(255,255,255);
+}
+.jslider > input.no-paint-track::-moz-range-track {
+  background-color: rgb(255,255,255);
+}
+.jslider > datalist, .jslider > div {
+  justify-content: space-between;
+}
+.jslider-horizontal {
+  flex-direction: column;
+}
+.jslider-horizontal.jslider-inverted > input {
+  direction: rtl;
+}
+.jslider-horizontal.jslider-inverted > datalist, .jslider-horizontal.jslider-inverted > div {
+  flex-direction: row-reverse;
+}
+.jslider-vertical {
+  flex-direction: row;
+}
+.jslider-vertical > input {
+  writing-mode: vertical-lr;
+}
+.jslider-vertical > datalist, .jslider-vertical > div {
+  flex-direction: column-reverse;
+}
+.jslider-vertical.jslider-inverted > input {
+  transform: rotate(180deg) scale(-1, 1);
+}
+.jslider-vertical.jslider-inverted > datalist, .jslider-vertical.jslider-inverted > div {
+  flex-direction: column;
+}
+
+.jspinner {
+  text-align: right;
+}
+
+.jtogglebutton {
+  display: flex;
+}
+.jtogglebutton:has(input:disabled) {
+  pointer-events: none;
+  filter: none;
+  opacity: .65;
+}

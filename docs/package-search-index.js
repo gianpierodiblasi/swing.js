@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"javascript"},{"l":"javascript.awt"},{"l":"javascript.awt.event"},{"l":"javascript.swing"},{"l":"javascript.swing.event"},{"l":"javascript.swing.MnR"},{"l":"javascript.swing.plaf"},{"l":"javascript.util"}]
