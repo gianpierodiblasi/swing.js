@@ -21,6 +21,15 @@ On the other hand it is very difficult for an old style Java Swing developer to 
 So, I decided to rewrite Java Swing in JavaScript (to be more precise in ES6).
 Only a very limited portion of the Java Swing API has been rewritten (the portion I need for...) and for some objects new methods have
 been introduced to power up them (see the [documentation]() for major details).
+To distinguish "native" methods and new methods see the [documentation](), if a method is a clone of a corresponding native method then it is documented as follows
+```java
+/**
+ * Clone of javax.swing.<class>.<method>
+ *
+ */
+```
+
+If a method is not available in the original class then a complete documentation is available.
 
 swing.js follows the same philosophy introduced in Java Swing about the so called pluggable Look and Feel (PLAF); a Look and Feel completely changes the
 visual aspect of all components and can be use used to highly customize the UI.

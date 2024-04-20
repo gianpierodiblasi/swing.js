@@ -21,6 +21,7 @@ public class SpinnerNumberModel {
 
   /**
    * Sets the spinner managed by this model
+   *
    * @param spinner The spinner
    */
   public void setJSSpinner(JSSpinner spinner) {
