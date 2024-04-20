@@ -25,6 +25,45 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
   background-color: var(--bs-body-bg);
 }
 
+.bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs {
+  border-top: 1px solid rgb(222, 226, 230);
+  border-bottom: none;
+}
+.bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top: none;
+  border-bottom-left-radius: var(--bs-nav-tabs-border-radius);
+  border-bottom-right-radius: var(--bs-nav-tabs-border-radius);
+}
+.bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link.active {
+  border-bottom: 1px solid rgb(222, 226, 230);
+}
+.bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs {
+  border-right: 1px solid rgb(222, 226, 230);
+  border-bottom: none;
+}
+.bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link {
+  border-top-right-radius: 0px;
+  border-right: none;
+  border-bottom-left-radius: var(--bs-nav-tabs-border-radius);
+}
+.bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link.active {
+  border-bottom: 1px solid rgb(222, 226, 230);
+}
+.bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs {
+  border-left: 1px solid rgb(222, 226, 230);
+  border-bottom: none;
+}
+.bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link {
+  border-top-left-radius: 0px;
+  border-left: none;
+  border-bottom-right-radius: var(--bs-nav-tabs-border-radius);
+}
+.bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link.active {
+  border-bottom: 1px solid rgb(222, 226, 230);
+}
+
 .bootstraplaf .jtogglebutton:has(.btn-check:checked) {
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);

@@ -11,8 +11,18 @@
     <script src="../../swing-test.js"></script>
     <script>
       window.onload = (event) => {
-        LookAndFeel.CURRENT = BootstrapLookAndFeel.createLarge(true);
-        var testJFrame1 = new TestJSFrame1();
+        const urlParams = new URLSearchParams(window.location.search);
+        var plaf = urlParams.get("plaf");
+        switch (plaf) {
+          case "default":
+            LookAndFeel.CURRENT = new DefaultLookAndFeel();
+            break;
+          case "bootstrap":
+            LookAndFeel.CURRENT = BootstrapLookAndFeel["create" + urlParams.get("size")](urlParams.get("style") === "true");
+            break;
+        }
+
+        eval("new TestJSFrame" + urlParams.get("num") + "();");
       };
     </script>
   </head>

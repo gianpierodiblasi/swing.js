@@ -1,6 +1,7 @@
 package javascript.swing;
 
 import javascript.awt.BorderLayout;
+import javascript.awt.BoxLayout;
 import javascript.awt.CardLayout;
 import javascript.awt.FlowLayout;
 import javascript.swing.plaf.LookAndFeel;
@@ -18,7 +19,15 @@ public class JSTabbedPane extends JSPanel {
   public static final int BOTTOM = 3;
   public static final int RIGHT = 4;
 
-  private final JSPanel tabs = new JSPanel();
+  public static final int START = 0;
+  public static final int CENTER = 1;
+  public static final int END = 2;
+
+  private JSPanel tabs;
+  private final JSPanel tabsN = new JSPanel();
+  private final JSPanel tabsS = new JSPanel();
+  private final JSPanel tabsE = new JSPanel();
+  private final JSPanel tabsW = new JSPanel();
   private final JSPanel content = new JSPanel();
   private final CardLayout contentLayout = new CardLayout(0, 0);
   private final ButtonGroup tabsGroup = new ButtonGroup();
@@ -27,10 +36,19 @@ public class JSTabbedPane extends JSPanel {
 
   public JSTabbedPane() {
     super();
+    this.cssAddClass("jtabbedpane");
     this.setLayout(new BorderLayout(0, 0));
 
-    this.tabs.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-    this.add(this.tabs, BorderLayout.NORTH);
+    this.tabsN.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.add(this.tabsN, BorderLayout.NORTH);
+    this.tabsS.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.add(this.tabsS, BorderLayout.SOUTH);
+    this.tabsE.setLayout(new BoxLayout(this.tabsE, BoxLayout.Y_AXIS));
+    this.add(this.tabsE, BorderLayout.EAST);
+    this.tabsW.setLayout(new BoxLayout(this.tabsW, BoxLayout.Y_AXIS));
+    this.add(this.tabsW, BorderLayout.WEST);
+
+    this.tabs = this.tabsN;
     this.content.setLayout(this.contentLayout);
     this.add(this.content, BorderLayout.CENTER);
   }
@@ -42,6 +60,20 @@ public class JSTabbedPane extends JSPanel {
    */
   public void setTabPlacement(int tabPlacement) {
     this.tabPlacement = tabPlacement;
+    switch (this.tabPlacement) {
+      case JSTabbedPane.TOP:
+        this.tabs = this.tabsN;
+        break;
+      case JSTabbedPane.BOTTOM:
+        this.tabs = this.tabsS;
+        break;
+      case JSTabbedPane.LEFT:
+        this.tabs = this.tabsW;
+        break;
+      case JSTabbedPane.RIGHT:
+        this.tabs = this.tabsE;
+        break;
+    }
   }
 
   /**

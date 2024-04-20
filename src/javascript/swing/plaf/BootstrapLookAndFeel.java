@@ -165,7 +165,23 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
   @Override
   public void styleJSTabbedPane(JSTabbedPane tabbedpane, JSRadioButton tab, JSComponent component) {
-    Element tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    String selector = null;
+    switch (tabbedpane.getTabPlacement()) {
+      case JSTabbedPane.TOP:
+        selector = ".borderlayout-north";
+        break;
+      case JSTabbedPane.BOTTOM:
+        selector = ".borderlayout-south";
+        break;
+      case JSTabbedPane.LEFT:
+        selector = ".borderlayout-west";
+        break;
+      case JSTabbedPane.RIGHT:
+        selector = ".borderlayout-east";
+        break;
+    }
+
+    Element tabs = tabbedpane.element.querySelector(selector);
     tabs.classList.add("nav");
     tabs.classList.add("nav-tabs");
 

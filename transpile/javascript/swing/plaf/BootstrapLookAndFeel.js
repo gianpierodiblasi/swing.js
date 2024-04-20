@@ -127,7 +127,22 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSTabbedPane(tabbedpane, tab, component) {
-    let tabs = tabbedpane.element.querySelector(".borderlayout-north");
+    let selector = null;
+    switch(tabbedpane.getTabPlacement()) {
+      case JSTabbedPane.TOP:
+        selector = ".borderlayout-north";
+        break;
+      case JSTabbedPane.BOTTOM:
+        selector = ".borderlayout-south";
+        break;
+      case JSTabbedPane.LEFT:
+        selector = ".borderlayout-west";
+        break;
+      case JSTabbedPane.RIGHT:
+        selector = ".borderlayout-east";
+        break;
+    }
+    let tabs = tabbedpane.element.querySelector(selector);
     tabs.classList.add("nav");
     tabs.classList.add("nav-tabs");
     tab.element.classList.add("nav-link");
