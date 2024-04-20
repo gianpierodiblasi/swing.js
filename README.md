@@ -36,11 +36,6 @@ Some components provide special methods to customize the UI (switch, toggle, etc
 
 ## How To Use
 
-NOTE:
-- spiegare come funziona il PLAF e come impostarlo
-- spiegare come sapere quali metodi esistono
-- spiegare la presenza di metodi speciali
-
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)
 - jsweet-core - [link](https://repository.jsweet.org/artifactory/libs-release-local/org/jsweet/jsweet-core/)
