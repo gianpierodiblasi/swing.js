@@ -108,7 +108,7 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
   align-items: flex-start;
 }
 
-.defaultlaf .jtabbedpane .borderlayout-north nav ul li, .defaultlaf .jtabbedpane .borderlayout-south nav ul li {
+.defaultlaf .jtabbedpane .borderlayout-north ul li, .defaultlaf .jtabbedpane .borderlayout-south ul li {
   display: inline-block;
 }
 
@@ -274,6 +274,11 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
   list-style-type: none;
   padding-left: 0px;
   margin: 0px;
+  display: flex;
+}
+.jtabbedpane .borderlayout-west ul, .jtabbedpane .borderlayout-east ul {
+  flex-direction: column;
+  height: 100%;
 }
 
 .jtogglebutton {

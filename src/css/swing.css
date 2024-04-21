@@ -158,6 +158,11 @@ html, body {
   list-style-type: none;
   padding-left: 0px;
   margin: 0px;
+  display: flex;
+}
+.jtabbedpane .borderlayout-west ul, .jtabbedpane .borderlayout-east ul {
+  flex-direction: column;
+  height: 100%;
 }
 
 .jtogglebutton {

@@ -2,6 +2,7 @@ package javascript.swing;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import javascript.SwingJS;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -20,9 +21,10 @@ public class TestJFrame4 extends javax.swing.JFrame {
     this.initComponents();
     this.postInitComponents();
   }
-
+  
   @SuppressWarnings("unchecked")
   private void postInitComponents() {
+    ((JSTabbedPane) SwingJS.convert(this.jTabbedPane2)).setAlign(JSTabbedPane.CENTER);
   }
 
   /**

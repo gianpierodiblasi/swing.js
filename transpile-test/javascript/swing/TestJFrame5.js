@@ -13,6 +13,7 @@ class TestJFrame5 extends JFrame {
   }
 
    postInitComponents() {
+    (SwingJS.convert(this.jTabbedPane2)).setAlign(JSTabbedPane.CENTER);
   }
 
   /**

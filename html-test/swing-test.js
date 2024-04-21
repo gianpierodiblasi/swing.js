@@ -800,6 +800,7 @@ class TestJSFrame4 extends JSFrame {
   }
 
    postInitComponents() {
+    (SwingJS.convert(this.jTabbedPane2)).setAlign(JSTabbedPane.CENTER);
   }
 
   /**
@@ -858,6 +859,7 @@ class TestJSFrame5 extends JSFrame {
   }
 
    postInitComponents() {
+    (SwingJS.convert(this.jTabbedPane2)).setAlign(JSTabbedPane.CENTER);
   }
 
   /**

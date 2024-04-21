@@ -1430,8 +1430,18 @@ class JSTabbedPane extends JSPanel {
   }
 
    createTab(tab) {
+    let ul = document.createElement("ul");
+    ul.appendChild(this.createLI());
+    ul.appendChild(this.createLI());
     tab.element = document.createElement("nav");
-    tab.element.appendChild(document.createElement("ul"));
+    tab.element.appendChild(ul);
+  }
+
+   createLI() {
+    let li = document.createElement("li");
+    li.style.flexGrow = "1";
+    li.style.display = "none";
+    return li;
   }
 
   /**
@@ -1467,6 +1477,29 @@ class JSTabbedPane extends JSPanel {
   }
 
   /**
+   * Sets the tab alignment
+   *
+   * @param align The alignment (START, CENTER, END)
+   */
+   setAlign(align) {
+    let first = this.tabs.element.querySelector("nav ul li:first-child");
+    let last = this.tabs.element.querySelector("nav ul li:last-child");
+    first.style.display = "none";
+    last.style.display = "none";
+    switch(align) {
+      case JSTabbedPane.START:
+        break;
+      case JSTabbedPane.CENTER:
+        first.style.removeProperty("display");
+        last.style.removeProperty("display");
+        break;
+      case JSTabbedPane.END:
+        first.style.removeProperty("display");
+        break;
+    }
+  }
+
+  /**
    * Clone of javax.swing.JTabbedPane.addTab
    *
    * @param title The tab title
@@ -1479,7 +1512,7 @@ class JSTabbedPane extends JSPanel {
     button.addActionListener((event) => this.contentLayout.show(this.content, title));
     let li = document.createElement("li");
     li.appendChild(button.element);
-    this.tabs.element.querySelector("nav ul").appendChild(li);
+    this.tabs.element.querySelector("nav ul").insertBefore(li, this.tabs.element.querySelector("nav ul li:last-child"));
     this.tabsGroup.add(button);
     this.content.add(component, title);
     LookAndFeel.CURRENT.styleJSTabbedPane(this, button, component);

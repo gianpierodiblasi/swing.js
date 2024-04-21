@@ -10,7 +10,7 @@
   align-items: flex-start;
 }
 
-.defaultlaf .jtabbedpane .borderlayout-north nav ul li, .defaultlaf .jtabbedpane .borderlayout-south nav ul li {
+.defaultlaf .jtabbedpane .borderlayout-north ul li, .defaultlaf .jtabbedpane .borderlayout-south ul li {
   display: inline-block;
 }
 
