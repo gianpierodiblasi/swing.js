@@ -2397,7 +2397,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
 
    styleJSButton(button) {
     button.cssAddClass("btn");
-    button.cssAddClass("btn-primary");
+    button.cssAddClass("btn-outline-primary");
     if (this.size) {
       button.cssAddClass("btn-" + this.size);
     }
@@ -2498,7 +2498,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
       case "toggle":
         input.classList.add("btn-check");
         component.cssAddClass("btn");
-        component.cssAddClass("btn-primary");
+        component.cssAddClass("btn-outline-primary");
         if (this.size) {
           component.cssAddClass("btn-" + this.size);
         }
