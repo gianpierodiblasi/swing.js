@@ -1,9 +1,9 @@
 package javascript.swing;
 
+import static def.dom.Globals.document;
+import def.dom.HTMLElement;
 import javascript.awt.BorderLayout;
-import javascript.awt.BoxLayout;
 import javascript.awt.CardLayout;
-import javascript.awt.FlowLayout;
 import javascript.swing.plaf.LookAndFeel;
 
 /**
@@ -23,11 +23,11 @@ public class JSTabbedPane extends JSPanel {
   public static final int CENTER = 1;
   public static final int END = 2;
 
-  private JSPanel tabs;
-  private final JSPanel tabsN = new JSPanel();
-  private final JSPanel tabsS = new JSPanel();
-  private final JSPanel tabsE = new JSPanel();
-  private final JSPanel tabsW = new JSPanel();
+  private JSComponent tabs;
+  private final JSComponent tabsN = new JSComponent();
+  private final JSComponent tabsS = new JSComponent();
+  private final JSComponent tabsE = new JSComponent();
+  private final JSComponent tabsW = new JSComponent();
   private final JSPanel content = new JSPanel();
   private final CardLayout contentLayout = new CardLayout(0, 0);
   private final ButtonGroup tabsGroup = new ButtonGroup();
@@ -39,18 +39,23 @@ public class JSTabbedPane extends JSPanel {
     this.cssAddClass("jtabbedpane");
     this.setLayout(new BorderLayout(0, 0));
 
-    this.tabsN.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.createTab(this.tabsN);
     this.add(this.tabsN, BorderLayout.NORTH);
-    this.tabsS.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.createTab(this.tabsS);
     this.add(this.tabsS, BorderLayout.SOUTH);
-    this.tabsE.setLayout(new BoxLayout(this.tabsE, BoxLayout.Y_AXIS));
+    this.createTab(this.tabsE);
     this.add(this.tabsE, BorderLayout.EAST);
-    this.tabsW.setLayout(new BoxLayout(this.tabsW, BoxLayout.Y_AXIS));
+    this.createTab(this.tabsW);
     this.add(this.tabsW, BorderLayout.WEST);
 
     this.tabs = this.tabsN;
     this.content.setLayout(this.contentLayout);
     this.add(this.content, BorderLayout.CENTER);
+  }
+
+  private void createTab(JSComponent tab) {
+    tab.element = document.createElement("nav");
+    tab.element.appendChild(document.createElement("ul"));
   }
 
   /**
@@ -96,7 +101,11 @@ public class JSTabbedPane extends JSPanel {
     button.setText(title);
     button.setSelected(this.tabsGroup.getButtonCount() == 0);
     button.addActionListener((event) -> this.contentLayout.show(this.content, title));
-    this.tabs.add(button, null);
+
+    HTMLElement li = document.createElement("li");
+    li.appendChild(button.element);
+    this.tabs.element.querySelector("nav ul").appendChild(li);
+
     this.tabsGroup.add(button);
 
     this.content.add(component, title);

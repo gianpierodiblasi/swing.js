@@ -10,6 +10,10 @@
   align-items: flex-start;
 }
 
+.defaultlaf .jtabbedpane .borderlayout-north nav ul li, .defaultlaf .jtabbedpane .borderlayout-south nav ul li {
+  display: inline-block;
+}
+
 .defaultlaf .jtogglebutton {
   align-items: baseline;
 }

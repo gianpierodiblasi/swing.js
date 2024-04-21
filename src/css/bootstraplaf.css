@@ -27,60 +27,67 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
   background-color: var(--bs-body-bg);
 }
 
-.bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs {
+.bootstraplaf .jtabbedpane .nav-link {
+  cursor: pointer;
+}
+.bootstraplaf .jtabbedpane .borderlayout-south {
   border-top: 1px solid rgb(222, 226, 230);
   border-bottom: none;
 }
-html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs {
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-south {
   border-top: 1px solid #495057;
 }
-.bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link {
+.bootstraplaf .jtabbedpane .borderlayout-south .nav-link {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-top: none;
   border-bottom-left-radius: var(--bs-nav-tabs-border-radius);
   border-bottom-right-radius: var(--bs-nav-tabs-border-radius);
 }
-.bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link.active {
+.bootstraplaf .jtabbedpane .borderlayout-south .nav-link.active {
   border-bottom: 1px solid rgb(222, 226, 230);
 }
-html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-south.nav-tabs .nav-link.active {
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-south .nav-link.active {
   border-bottom: 1px solid #495057;
 }
-.bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs {
+.bootstraplaf .jtabbedpane .borderlayout-west ul {
   border-right: 1px solid rgb(222, 226, 230);
   border-bottom: none;
+  flex-direction: column;
+  height: 100%;
 }
-html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs {
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-west ul {
   border-right: 1px solid #495057;
 }
-.bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link {
+.bootstraplaf .jtabbedpane .borderlayout-west .nav-link {
   border-top-right-radius: 0px;
   border-right: none;
   border-bottom-left-radius: var(--bs-nav-tabs-border-radius);
 }
-.bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link.active {
+.bootstraplaf .jtabbedpane .borderlayout-west .nav-link.active {
   border-bottom: 1px solid rgb(222, 226, 230);
 }
-html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-west.nav-tabs .nav-link.active {
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-west .nav-link.active {
   border-bottom: 1px solid #495057;
 }
-.bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs {
+.bootstraplaf .jtabbedpane .borderlayout-east ul {
   border-left: 1px solid rgb(222, 226, 230);
   border-bottom: none;
+  flex-direction: column;
+  height: 100%;
 }
-html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs {
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east ul {
   border-left: 1px solid #495057;
 }
-.bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link {
+.bootstraplaf .jtabbedpane .borderlayout-east .nav-link {
   border-top-left-radius: 0px;
   border-left: none;
   border-bottom-right-radius: var(--bs-nav-tabs-border-radius);
 }
-.bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link.active {
+.bootstraplaf .jtabbedpane .borderlayout-east .nav-link.active {
   border-bottom: 1px solid rgb(222, 226, 230);
 }
-html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east.nav-tabs .nav-link.active {
+html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link.active {
   border-bottom: 1px solid #495057;
 }
 

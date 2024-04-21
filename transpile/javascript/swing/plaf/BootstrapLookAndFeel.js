@@ -143,11 +143,11 @@ class BootstrapLookAndFeel extends LookAndFeel {
         selector = ".borderlayout-east";
         break;
     }
-    let tabs = tabbedpane.element.querySelector(selector);
+    let tabs = tabbedpane.element.querySelector(selector + " ul");
     tabs.classList.add("nav");
     tabs.classList.add("nav-tabs");
+    tab.element.parentElement.classList.add("nav-item");
     tab.element.classList.add("nav-link");
-    tab.element.style.cursor = "pointer";
     let input = tab.element.querySelector("input");
     input.style.display = "none";
     if (input.checked) {

@@ -1396,13 +1396,13 @@ class JSTabbedPane extends JSPanel {
 
    tabs = null;
 
-   tabsN = new JSPanel();
+   tabsN = new JSComponent();
 
-   tabsS = new JSPanel();
+   tabsS = new JSComponent();
 
-   tabsE = new JSPanel();
+   tabsE = new JSComponent();
 
-   tabsW = new JSPanel();
+   tabsW = new JSComponent();
 
    content = new JSPanel();
 
@@ -1416,17 +1416,22 @@ class JSTabbedPane extends JSPanel {
     super();
     this.cssAddClass("jtabbedpane");
     this.setLayout(new BorderLayout(0, 0));
-    this.tabsN.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.createTab(this.tabsN);
     this.add(this.tabsN, BorderLayout.NORTH);
-    this.tabsS.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    this.createTab(this.tabsS);
     this.add(this.tabsS, BorderLayout.SOUTH);
-    this.tabsE.setLayout(new BoxLayout(this.tabsE, BoxLayout.Y_AXIS));
+    this.createTab(this.tabsE);
     this.add(this.tabsE, BorderLayout.EAST);
-    this.tabsW.setLayout(new BoxLayout(this.tabsW, BoxLayout.Y_AXIS));
+    this.createTab(this.tabsW);
     this.add(this.tabsW, BorderLayout.WEST);
     this.tabs = this.tabsN;
     this.content.setLayout(this.contentLayout);
     this.add(this.content, BorderLayout.CENTER);
+  }
+
+   createTab(tab) {
+    tab.element = document.createElement("nav");
+    tab.element.appendChild(document.createElement("ul"));
   }
 
   /**
@@ -1472,7 +1477,9 @@ class JSTabbedPane extends JSPanel {
     button.setText(title);
     button.setSelected(this.tabsGroup.getButtonCount() === 0);
     button.addActionListener((event) => this.contentLayout.show(this.content, title));
-    this.tabs.add(button, null);
+    let li = document.createElement("li");
+    li.appendChild(button.element);
+    this.tabs.element.querySelector("nav ul").appendChild(li);
     this.tabsGroup.add(button);
     this.content.add(component, title);
     LookAndFeel.CURRENT.styleJSTabbedPane(this, button, component);
@@ -2466,11 +2473,11 @@ class BootstrapLookAndFeel extends LookAndFeel {
         selector = ".borderlayout-east";
         break;
     }
-    let tabs = tabbedpane.element.querySelector(selector);
+    let tabs = tabbedpane.element.querySelector(selector + " ul");
     tabs.classList.add("nav");
     tabs.classList.add("nav-tabs");
+    tab.element.parentElement.classList.add("nav-item");
     tab.element.classList.add("nav-link");
-    tab.element.style.cursor = "pointer";
     let input = tab.element.querySelector("input");
     input.style.display = "none";
     if (input.checked) {
