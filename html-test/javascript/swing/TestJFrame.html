@@ -27,11 +27,62 @@
       }
 
       thead tr:nth-child(2) td:nth-child(3),
-      tbody tr td:nth-last-child(-n+3), tbody tr td:nth-last-child(-n+3) * {
+      tbody tr td:nth-child(n + 5):nth-child(-n + 7), tbody tr td:nth-child(n + 5):nth-child(-n + 7) * {
         color: #dee2e6;
         background: #212529;
       }
+      tbody tr td:nth-child(8), tbody tr td:nth-child(11), tbody tr td:nth-child(8) *,tbody tr td:nth-child(11) * {
+        color: white;
+        background: #D93526;
+      }
+      tbody tr td:nth-child(9), tbody tr td:nth-child(12), tbody tr td:nth-child(9) *,tbody tr td:nth-child(12) * {
+        color: white;
+        background: #017FC0;
+      }
+      tbody tr td:nth-child(10), tbody tr td:nth-child(13), tbody tr td:nth-child(10) *,tbody tr td:nth-child(13) * {
+        color: white;
+        background: #525F7A;
+      }
     </style>
+
+    <script>
+      window.onload = (event) => {
+        var tests = ["Test Layouts", "Test Components 1", "Test Components 2", "Test Tabs"];
+        var params = [
+          "plaf=default",
+          "plaf=bootstrap&size=", "plaf=bootstrap&size=Large", "plaf=bootstrap&size=Small",
+          "plaf=bootstrap&size=&style=true", "plaf=bootstrap&size=Large&style=true", "plaf=bootstrap&size=Small&style=true",
+          "plaf=pico&theme=red&style=false", "plaf=pico&theme=&style=false", "plaf=pico&theme=slate&style=false",
+          "plaf=pico&theme=red&style=tre", "plaf=pico&theme=&style=tre", "plaf=pico&theme=slate&style=tre"
+        ];
+
+        var titles = [
+          "",
+          "Normal", "Large", "Small",
+          "Normal", "Large", "Small",
+          "Red", "Azure", "Slate",
+          "Red", "Azure", "Slate"
+        ];
+
+        var tbody = document.querySelector("tbody");
+        for (var i = 0; i < tests.length; i++) {
+          var tr = document.createElement("tr");
+
+          for (var j = 0; j < params.length; j++) {
+            var a = document.createElement("a");
+            a.href = "TestJFrame_.html?" + params[j] + "&num=" + (i + 1);
+            a.textContent = titles[j] ? titles[j] : tests[i];
+
+            var td = document.createElement("td");
+            td.appendChild(a);
+
+            tr.appendChild(td);
+          }
+
+          tbody.appendChild(tr);
+        }
+      }
+    </script>
   </head>
   <body>
     <table>
@@ -39,50 +90,17 @@
         <tr>
           <td>Default</td>
           <td colspan="6">Bootstrap</td>
+          <td colspan="6">Pico</td>
         </tr>
         <tr>
           <td></td>
           <td colspan="3">Light</td>
           <td colspan="3">Dark</td>
+          <td colspan="3">Light</td>
+          <td colspan="3">Dark</td>
         </tr>
       </thead>    
       <tbody>
-        <tr>
-          <td><a href="TestJFrame_.html?plaf=default&num=1">Test Layouts</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=false&num=1">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=false&num=1">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=false&num=1">Small</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=true&num=1">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=true&num=1">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=true&num=1">Small</a></td>
-        </tr>
-        <tr>
-          <td><a href="TestJFrame_.html?plaf=default&num=2">Test Components 1</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=false&num=2">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=false&num=2">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=false&num=2">Small</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=true&num=2">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=true&num=2">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=true&num=2">Small</a></td>
-        </tr>
-        <tr>
-          <td><a href="TestJFrame_.html?plaf=default&num=3">Test Components 2</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=false&num=3">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=false&num=3">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=false&num=3">Small</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=true&num=3">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=true&num=3">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=true&num=3">Small</a></td>
-        </tr>
-        <tr>
-          <td><a href="TestJFrame_.html?plaf=default&num=4">Test Tabs</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=false&num=4">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=false&num=4">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=false&num=4">Small</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=&style=true&num=4">Normal</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Large&style=true&num=4">Large</a></td>
-          <td><a href="TestJFrame_.html?plaf=bootstrap&size=Small&style=true&num=4">Small</a></td>
-        </tr>
       </tbody>
     </table>
   </body>

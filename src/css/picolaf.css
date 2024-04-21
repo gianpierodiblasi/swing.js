@@ -1,0 +1,19 @@
+.picolaf * {
+  /*font-family: arial;*/
+}
+
+.picolaf .jcheckbox {
+  /*align-items: baseline;*/
+}
+
+.picolaf .jradiobutton {
+  /*align-items: flex-start;*/
+}
+
+.picolaf .jtabbedpane .borderlayout-north ul li, .picolaf .jtabbedpane .borderlayout-south ul li {
+  /*display: inline-block;*/
+}
+
+.picolaf .jtogglebutton {
+  /*align-items: baseline;*/
+}

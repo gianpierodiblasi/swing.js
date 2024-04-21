@@ -20,6 +20,8 @@
           case "bootstrap":
             LookAndFeel.CURRENT = BootstrapLookAndFeel["create" + urlParams.get("size")](urlParams.get("style") === "true");
             break;
+          case "pico":
+            LookAndFeel.CURRENT = new PicoLookAndFeel(urlParams.get("theme"), urlParams.get("style") === "true");
         }
 
         eval("new TestJSFrame" + urlParams.get("num") + "();");

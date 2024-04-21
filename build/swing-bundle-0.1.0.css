@@ -114,6 +114,24 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
 
 .defaultlaf .jtogglebutton {
   align-items: baseline;
+}.picolaf * {
+  /*font-family: arial;*/
+}
+
+.picolaf .jcheckbox {
+  /*align-items: baseline;*/
+}
+
+.picolaf .jradiobutton {
+  /*align-items: flex-start;*/
+}
+
+.picolaf .jtabbedpane .borderlayout-north ul li, .picolaf .jtabbedpane .borderlayout-south ul li {
+  /*display: inline-block;*/
+}
+
+.picolaf .jtogglebutton {
+  /*align-items: baseline;*/
 }html, body {
   height: 100%;
   margin: 0px;
