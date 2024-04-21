@@ -43,7 +43,9 @@ Two PLAF are available in swing.js (but others can be easily added):
 - DefaultLookAndFeel: it is a very basic PLAF without any customization
 - BootstrapLookAndFeel: it is a PLAF based on [Bootstrap](https://getbootstrap.com/)
 
-Some components provide special methods to customize the UI (switch, toggle, etc.) but the result is highly related to the used PLAF.
+Some components provide special methods to customize the UI (switch, toggle, etc.) but the result is highly related to the used PLAF
+(see the [documentation](https://gianpierodiblasi.github.io/swing.js/docs/index.html) and
+[test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html)) for major details).
 
 ## How To Use
 swing.js can be used in two different ways: as a JavaScript library or as a Java library.
