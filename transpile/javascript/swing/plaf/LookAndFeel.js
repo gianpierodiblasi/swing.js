@@ -50,6 +50,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a dialog
+   *
+   * @param dialog The dialog
+   */
+   styleJSDialog(dialog) {
+  }
+
+  /**
    * Applies the style to a label
    *
    * @param label The label

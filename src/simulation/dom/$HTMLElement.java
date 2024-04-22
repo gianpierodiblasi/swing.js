@@ -22,4 +22,10 @@ public class $HTMLElement extends HTMLElement {
 //  }
   public void prepend(Node node) {
   }
+ 
+  public void showModal() {
+  }
+  
+  public void close() {
+  }
 }

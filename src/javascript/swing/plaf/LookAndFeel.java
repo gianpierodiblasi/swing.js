@@ -4,6 +4,7 @@ import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
+import javascript.swing.JSDialog;
 import javascript.swing.JSLabel;
 import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
@@ -58,6 +59,13 @@ public abstract class LookAndFeel {
    * @param combobox The combobox
    */
   public abstract void styleJSComboBox(JSComboBox<?> combobox);
+
+  /**
+   * Applies the style to a dialog
+   *
+   * @param dialog The dialog
+   */
+  public abstract void styleJSDialog(JSDialog dialog);
 
   /**
    * Applies the style to a label

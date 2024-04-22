@@ -83,6 +83,9 @@ class PicoLookAndFeel extends LookAndFeel {
    styleJSComboBox(combobox) {
   }
 
+   styleJSDialog(dialog) {
+  }
+
    styleJSLabel(label) {
   }
 

@@ -23,6 +23,9 @@ class DefaultLookAndFeel extends LookAndFeel {
    styleJSComboBox(combobox) {
   }
 
+   styleJSDialog(dialog) {
+  }
+
    styleJSLabel(label) {
   }
 

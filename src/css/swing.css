@@ -67,6 +67,11 @@ html, body {
   align-content: center;
 }
 
+.jdialog:not(:modal) {
+  inset-block-start: 0px;
+  inset-block-end: 0px;
+}
+
 .jbutton {
 }
 

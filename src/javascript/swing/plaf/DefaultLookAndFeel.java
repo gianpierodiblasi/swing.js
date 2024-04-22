@@ -5,6 +5,7 @@ import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
+import javascript.swing.JSDialog;
 import javascript.swing.JSLabel;
 import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
@@ -41,6 +42,10 @@ public class DefaultLookAndFeel extends LookAndFeel {
 
   @Override
   public void styleJSComboBox(JSComboBox<?> combobox) {
+  }
+
+  @Override
+  public void styleJSDialog(JSDialog dialog) {
   }
 
   @Override

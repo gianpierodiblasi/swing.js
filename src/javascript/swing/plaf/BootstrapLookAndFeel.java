@@ -7,6 +7,7 @@ import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
+import javascript.swing.JSDialog;
 import javascript.swing.JSLabel;
 import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
@@ -117,6 +118,21 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
     if ($exists(this.size)) {
       combobox.cssAddClass("form-select-" + this.size);
+    }
+  }
+
+  @Override
+  public void styleJSDialog(JSDialog dialog) {
+    switch (this.size) {
+      case "sm":
+        ((HTMLElement) dialog.element.querySelector(".jdialog-header label")).style.fontSize = "18px";
+        break;
+      case "lg":
+        ((HTMLElement) dialog.element.querySelector(".jdialog-header label")).style.fontSize = "24px";
+        break;
+      default:
+        ((HTMLElement) dialog.element.querySelector(".jdialog-header label")).style.fontSize = "20px";
+        break;
     }
   }
 

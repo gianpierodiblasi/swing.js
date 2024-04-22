@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class BuildJS {
 
-  private final static List<String> toRename = List.of("Button", "CheckBox", "ComboBox", "Component", "Frame", "Label", "Panel", "ProgressBar", "RadioButton", "Slider", "Spinner", "TabbedPane", "ToggleButton");
+  private final static List<String> toRename = List.of("Button", "CheckBox", "ComboBox", "Component", "Dialog", "Frame", "Label", "Panel", "ProgressBar", "RadioButton", "Slider", "Spinner", "TabbedPane", "ToggleButton");
 
   @SuppressWarnings({"UseOfSystemOutOrSystemErr", "CallToPrintStackTrace", "MismatchedQueryAndUpdateOfCollection"})
   private static void watch(File swingjs, File in, File out, boolean findParent, boolean rename) throws Exception {

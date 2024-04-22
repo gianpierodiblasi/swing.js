@@ -2,6 +2,13 @@
   margin-bottom: 0px;
 }
 
+.picolaf .jdialog header button {
+  background-image: var(--pico-icon-close);
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
 .picolaf .jcheckbox {
   align-items: center;
 }

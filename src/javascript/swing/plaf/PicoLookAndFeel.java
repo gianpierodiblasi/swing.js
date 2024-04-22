@@ -7,6 +7,7 @@ import javascript.swing.JSButton;
 import javascript.swing.JSCheckBox;
 import javascript.swing.JSComboBox;
 import javascript.swing.JSComponent;
+import javascript.swing.JSDialog;
 import javascript.swing.JSLabel;
 import javascript.swing.JSProgressBar;
 import javascript.swing.JSRadioButton;
@@ -90,6 +91,10 @@ public class PicoLookAndFeel extends LookAndFeel {
   }
 
   @Override
+  public void styleJSDialog(JSDialog dialog) {
+  }
+
+  @Override
   public void styleJSLabel(JSLabel label) {
   }
 
@@ -128,7 +133,7 @@ public class PicoLookAndFeel extends LookAndFeel {
     }
 
     Element tabs = tabbedpane.element.querySelector(selector + " ul");
-    
+
     $HTMLElement input = ($HTMLElement) tab.element.querySelector("input");
     input.style.display = "none";
     if (input.checked) {

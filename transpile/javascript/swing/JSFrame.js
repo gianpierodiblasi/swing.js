@@ -9,8 +9,8 @@ class JSFrame extends JSComponent {
 
   constructor() {
     super();
-    this.contentPane.element.classList.remove("jpanel");
-    this.contentPane.element.classList.add("jframe");
+    this.contentPane.cssRemoveClass("jpanel");
+    this.contentPane.cssAddClass("jframe");
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.element = document.querySelector("body");
     this.element.textContent = "";

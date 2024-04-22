@@ -91,6 +91,20 @@ class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
+   styleJSDialog(dialog) {
+    switch(this.size) {
+      case "sm":
+        (dialog.element.querySelector(".jdialog-header label")).style.fontSize = "18px";
+        break;
+      case "lg":
+        (dialog.element.querySelector(".jdialog-header label")).style.fontSize = "24px";
+        break;
+      default:
+        (dialog.element.querySelector(".jdialog-header label")).style.fontSize = "20px";
+        break;
+    }
+  }
+
    styleJSLabel(label) {
     this.setSize(label.element);
   }

@@ -1259,6 +1259,72 @@ class Filler extends JSComponent {
   }
 }
 /**
+ * The javax.swing.JDialog clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSDialog extends JSComponent {
+
+   title = new JSLabel();
+
+   close = new JSButton();
+
+   contentPane = new JSPanel();
+
+  constructor() {
+    super();
+    this.close.addActionListener((event) => this.setVisible(false));
+    let panel = new JSPanel();
+    panel.setLayout(new BorderLayout(0, 0));
+    panel.add(this.title, BorderLayout.CENTER);
+    panel.add(this.close, BorderLayout.EAST);
+    let header = document.createElement("header");
+    header.classList.add("jdialog-header");
+    header.appendChild(panel.element);
+    this.contentPane.setLayout(new BorderLayout(0, 0));
+    this.contentPane.cssAddClass("jdialog-content");
+    this.element = document.createElement("dialog");
+    this.element.classList.add("jdialog");
+    let article = document.createElement("article");
+    article.appendChild(header);
+    article.appendChild(this.contentPane.element);
+    this.element.appendChild(article);
+    document.querySelector("body").appendChild(this.element);
+    LookAndFeel.CURRENT.styleJSDialog(this);
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.setTitle
+   *
+   * @param title The title
+   */
+   setTitle(title) {
+    this.title.setText(title);
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.getContentPane
+   *
+   * @return The content pane
+   */
+   getContentPane() {
+    return this.contentPane;
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.setVisible
+   *
+   * @param b true to show the dialog, false otherwise
+   */
+   setVisible(b) {
+    if (!b) {
+      (this.element).close();
+    } else {
+      (this.element).showModal();
+    }
+  }
+}
+/**
  * The javax.swing.JFrame clone
  *
  * @author gianpiero.diblasi
@@ -1269,8 +1335,8 @@ class JSFrame extends JSComponent {
 
   constructor() {
     super();
-    this.contentPane.element.classList.remove("jpanel");
-    this.contentPane.element.classList.add("jframe");
+    this.contentPane.cssRemoveClass("jpanel");
+    this.contentPane.cssAddClass("jframe");
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.element = document.querySelector("body");
     this.element.textContent = "";
@@ -2307,6 +2373,14 @@ class LookAndFeel {
   }
 
   /**
+   * Applies the style to a dialog
+   *
+   * @param dialog The dialog
+   */
+   styleJSDialog(dialog) {
+  }
+
+  /**
    * Applies the style to a label
    *
    * @param label The label
@@ -2457,6 +2531,20 @@ class BootstrapLookAndFeel extends LookAndFeel {
     }
   }
 
+   styleJSDialog(dialog) {
+    switch(this.size) {
+      case "sm":
+        (dialog.element.querySelector(".jdialog-header label")).style.fontSize = "18px";
+        break;
+      case "lg":
+        (dialog.element.querySelector(".jdialog-header label")).style.fontSize = "24px";
+        break;
+      default:
+        (dialog.element.querySelector(".jdialog-header label")).style.fontSize = "20px";
+        break;
+    }
+  }
+
    styleJSLabel(label) {
     this.setSize(label.element);
   }
@@ -2587,6 +2675,9 @@ class DefaultLookAndFeel extends LookAndFeel {
    styleJSComboBox(combobox) {
   }
 
+   styleJSDialog(dialog) {
+  }
+
    styleJSLabel(label) {
   }
 
@@ -2691,6 +2782,9 @@ class PicoLookAndFeel extends LookAndFeel {
   }
 
    styleJSComboBox(combobox) {
+  }
+
+   styleJSDialog(dialog) {
   }
 
    styleJSLabel(label) {
