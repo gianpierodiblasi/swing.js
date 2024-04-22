@@ -155,6 +155,36 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
   font-family: arial;
 }
 
+.defaultlaf .jdialog {
+  border: 1px solid gray;
+  border-radius: 5px;
+  min-width: 500px;
+}
+.defaultlaf .jdialog article {
+  margin: 0 -1em;
+}
+.defaultlaf .jdialog  header {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid gray;
+}
+.defaultlaf .jdialog header label {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.defaultlaf .jdialog header button {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  margin-top: -.2rem;
+  cursor: pointer;
+}
+.defaultlaf .jdialog header button:after {
+  content: "\2716";
+}
+.defaultlaf .jdialog .jdialog-content {
+  padding: 1rem;
+}
+
 .defaultlaf .jcheckbox {
   align-items: baseline;
 }
@@ -355,11 +385,6 @@ html, body {
   display: grid;
   justify-content: center;
   align-content: center;
-}
-
-.jdialog:not(:modal) {
-  inset-block-start: 0px;
-  inset-block-end: 0px;
 }
 
 .jbutton {
