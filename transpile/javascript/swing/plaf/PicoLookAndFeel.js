@@ -99,6 +99,31 @@ class PicoLookAndFeel extends LookAndFeel {
   }
 
    styleJSTabbedPane(tabbedpane, tab, component) {
+    let selector = null;
+    switch(tabbedpane.getTabPlacement()) {
+      case JSTabbedPane.TOP:
+        selector = ".borderlayout-north";
+        break;
+      case JSTabbedPane.BOTTOM:
+        selector = ".borderlayout-south";
+        break;
+      case JSTabbedPane.LEFT:
+        selector = ".borderlayout-west";
+        break;
+      case JSTabbedPane.RIGHT:
+        selector = ".borderlayout-east";
+        break;
+    }
+    let tabs = tabbedpane.element.querySelector(selector + " ul");
+    let input = tab.element.querySelector("input");
+    input.style.display = "none";
+    if (input.checked) {
+      tab.cssAddClass("active");
+    }
+    input.addEventListener("change", (event) => {
+      tabs.querySelector(".jradiobutton.active").classList.remove("active");
+      tab.cssAddClass("active");
+    });
   }
 
    styleJSToggleButton(togglebutton) {
