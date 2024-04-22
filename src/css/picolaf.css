@@ -1,7 +1,17 @@
+:root .picolaf {
+  --pico-form-element-spacing-vertical: 0.15rem;
+  --pico-form-element-spacing-horizontal: 0.5rem;
+}
+.picolaf * {
+  font-size: 0.9em;
+}
 .picolaf input:not([type=checkbox],[type=radio]), .picolaf select, .picolaf textarea, .picolaf fieldset legend, .picolaf label, .picolaf progress {
   margin-bottom: 0px;
 }
 
+.picolaf .jdialog header label {
+  font-size: 2em;
+}
 .picolaf .jdialog header button {
   background-image: var(--pico-icon-close);
   background-color: transparent;
@@ -104,6 +114,9 @@ html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-moz-range-track
 }
 .picolaf .jtabbedpane .borderlayout-west ul li:has(.jradiobutton.active) {
   border-right: 2px solid var(--pico-primary-background);
+}
+.picolaf .jtabbedpane ul li .jradiobutton {
+  font-size: 1.3em;
 }
 .picolaf .jtabbedpane ul li:has(.jradiobutton.active) .jradiobutton {
   color: var(--pico-primary-background);

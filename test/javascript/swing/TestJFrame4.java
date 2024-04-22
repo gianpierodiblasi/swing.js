@@ -52,6 +52,7 @@ public class TestJFrame4 extends javax.swing.JFrame {
     jPanel7 = new JPanel();
     jPanel8 = new JPanel();
 
+    setTitle("TestJFrame4");
     getContentPane().setLayout(new GridBagLayout());
 
     jTabbedPane1.setTabPlacement(JTabbedPane.LEFT);

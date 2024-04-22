@@ -649,6 +649,7 @@ class TestJSFrame3 extends JSFrame {
     this.jPanel5 = new JSPanel();let jPanel5 = this.jPanel5;
     this.jProgressBar3 = new JSProgressBar();let jProgressBar3 = this.jProgressBar3;
     this.jProgressBar5 = new JSProgressBar();let jProgressBar5 = this.jProgressBar5;
+    this.setTitle("TestJSFrame3");
     jCheckBox1.setText("jCheckBox1");
     jCheckBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox1);
@@ -823,6 +824,7 @@ class TestJSFrame4 extends JSFrame {
     this.jTabbedPane4 = new JSTabbedPane();let jTabbedPane4 = this.jTabbedPane4;
     this.jPanel7 = new JSPanel();let jPanel7 = this.jPanel7;
     this.jPanel8 = new JSPanel();let jPanel8 = this.jPanel8;
+    this.setTitle("TestJSFrame4");
     this.getContentPane().setLayout(new GridBagLayout());
     jTabbedPane1.setTabPlacement(JSTabbedPane.LEFT);
     jPanel1.setBackground(new Color(0, 255, 255));
@@ -937,6 +939,7 @@ class TestJSFrame5 extends JSFrame {
     jButton4.setText("close");
     jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jDialog1.getContentPane().add(jButton4);
+    this.setTitle("TestJSFrame5");
     jButton1.setText("modal");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel9.add(jButton1);

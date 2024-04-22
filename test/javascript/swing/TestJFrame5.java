@@ -51,6 +51,8 @@ public class TestJFrame5 extends javax.swing.JFrame {
     jButton4.addActionListener(this::jButton4ActionPerformed);
     jDialog1.getContentPane().add(jButton4);
 
+    setTitle("TestJFrame5");
+
     jButton1.setText("modal");
     jButton1.addActionListener(this::jButton1ActionPerformed);
     jPanel9.add(jButton1);

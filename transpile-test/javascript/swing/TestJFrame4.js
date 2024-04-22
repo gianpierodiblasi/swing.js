@@ -36,6 +36,7 @@ class TestJFrame4 extends JFrame {
     this.jTabbedPane4 = new JTabbedPane();let jTabbedPane4 = this.jTabbedPane4;
     this.jPanel7 = new JPanel();let jPanel7 = this.jPanel7;
     this.jPanel8 = new JPanel();let jPanel8 = this.jPanel8;
+    this.setTitle("TestJFrame4");
     this.getContentPane().setLayout(new GridBagLayout());
     jTabbedPane1.setTabPlacement(JTabbedPane.LEFT);
     jPanel1.setBackground(new Color(0, 255, 255));

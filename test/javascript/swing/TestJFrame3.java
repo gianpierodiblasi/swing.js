@@ -78,6 +78,8 @@ public class TestJFrame3 extends javax.swing.JFrame {
     jProgressBar3 = new JProgressBar();
     jProgressBar5 = new JProgressBar();
 
+    setTitle("TestJFrame3");
+
     jCheckBox1.setText("jCheckBox1");
     jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
     jPanel1.add(jCheckBox1);

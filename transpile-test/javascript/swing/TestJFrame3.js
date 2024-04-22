@@ -53,6 +53,7 @@ class TestJFrame3 extends JFrame {
     this.jPanel5 = new JPanel();let jPanel5 = this.jPanel5;
     this.jProgressBar3 = new JProgressBar();let jProgressBar3 = this.jProgressBar3;
     this.jProgressBar5 = new JProgressBar();let jProgressBar5 = this.jProgressBar5;
+    this.setTitle("TestJFrame3");
     jCheckBox1.setText("jCheckBox1");
     jCheckBox1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jCheckBox1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jCheckBox1);

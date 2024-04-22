@@ -33,6 +33,7 @@ class TestJFrame5 extends JFrame {
     jButton4.setText("close");
     jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jDialog1.getContentPane().add(jButton4);
+    this.setTitle("TestJFrame5");
     jButton1.setText("modal");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel9.add(jButton1);
