@@ -4,6 +4,10 @@
   border-color: var(--bs-btn-active-border-color);
 }
 
+.bootstraplaf .jcombobox {
+  width: auto;
+}
+
 .bootstraplaf .jprogressbar {
   accent-color: #0d6efd;
 }
@@ -25,6 +29,10 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-ms-trac
 }
 html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-range-track {
   background-color: var(--bs-body-bg);
+}
+
+.bootstraplaf .jspinner {
+  width: auto;
 }
 
 .bootstraplaf .jtabbedpane .nav-link {
@@ -104,6 +112,10 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
   align-items: baseline;
 }
 
+.defaultlaf .jprogressbar progress {
+  font-size: 34px;
+}
+
 .defaultlaf .jradiobutton {
   align-items: flex-start;
 }
@@ -114,16 +126,74 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
 
 .defaultlaf .jtogglebutton {
   align-items: baseline;
-}.picolaf * {
-  /*font-family: arial;*/
+}
+.picolaf input:not([type=checkbox],[type=radio]), .picolaf select, .picolaf textarea, .picolaf fieldset legend, .picolaf label, .picolaf progress {
+  margin-bottom: 0px;
 }
 
 .picolaf .jcheckbox {
-  /*align-items: baseline;*/
+  align-items: center;
+}
+
+.picolaf .jcombobox {
+  width: auto;
+}
+
+.picolaf .jprogressbar label {
+  -webkit-text-fill-color: initial !important;
+}
+.picolaf .jprogressbar progress {
+  font-size: var(--pico-font-size);
+  border-radius: calc(var(--pico-border-radius) + 1rem);
+}
+.picolaf .jprogressbar.jprogressbar-horizontal progress {
+  height: calc(var(--pico-font-size) - .5rem);
+}
+.picolaf .jprogressbar.jprogressbar-vertical progress {
+  width: calc(var(--pico-font-size) - .5rem);
 }
 
 .picolaf .jradiobutton {
-  /*align-items: flex-start;*/
+  align-items: end;
+}
+
+.picolaf .jslider input {
+  width: auto;
+  height: auto;
+}
+html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: transparent;
+}
+html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-ms-track {
+  background-color: transparent;
+}
+html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-moz-range-track {
+  background-color: transparent;
+}
+.picolaf .jslider-vertical [type=range]::-webkit-slider-runnable-track {
+  width: .375rem;
+}
+.picolaf .jslider-vertical [type=range]::-moz-range-track {
+  width: .375rem;
+}
+.picolaf .jslider-vertical [type=range]::-ms-track {
+  width: .375rem;
+}
+.picolaf .jslider-vertical [type=range]::-webkit-slider-thumb {
+  margin-top: 0px;
+  margin-left: -.4375rem;
+}
+.picolaf .jslider-vertical [type=range]::-moz-range-thumb {
+  margin-top: 0px;
+  margin-left: -.4375rem;
+}
+.picolaf .jslider-vertical [type=range]::-ms-thumb {
+  margin-top: 0px;
+  margin-left: -.4375rem;
+}
+
+.picolaf .jspinner {
+  width: auto;
 }
 
 .picolaf .jtabbedpane .borderlayout-north ul li, .picolaf .jtabbedpane .borderlayout-south ul li {
@@ -131,8 +201,9 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
 }
 
 .picolaf .jtogglebutton {
-  /*align-items: baseline;*/
-}html, body {
+  align-items: center;
+}
+html, body {
   height: 100%;
   margin: 0px;
 }
@@ -222,9 +293,6 @@ html[data-bs-theme=dark] .bootstraplaf .jtabbedpane .borderlayout-east .nav-link
 .jlabel {
 }
 
-.jprogressbar progress {
-  font-size: 34px;
-}
 .jprogressbar-vertical {
   writing-mode: vertical-lr;
   transform: rotate(180deg);

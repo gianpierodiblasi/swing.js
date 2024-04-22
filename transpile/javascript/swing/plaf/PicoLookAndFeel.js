@@ -75,52 +75,32 @@ class PicoLookAndFeel extends LookAndFeel {
   }
 
    styleJSButton(button) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSCheckBox(checkbox) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSComboBox(combobox) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSLabel(label) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSProgressBar(progressbar) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSRadioButton(radiobutton) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSSlider(slider) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSSpinner(spinner) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSTabbedPane(tabbedpane, tab, component) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSToggleButton(togglebutton) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 }

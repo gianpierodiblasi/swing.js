@@ -32,6 +32,7 @@ public class JSProgressBar extends JSComponent {
 
     this.element = document.createElement("div");
     this.element.classList.add("jprogressbar");
+    this.element.classList.add("jprogressbar-horizontal");
     this.element.style.display = "grid";
     this.element.style.setProperty("justify-items", "left");
     this.element.style.alignItems = "center";

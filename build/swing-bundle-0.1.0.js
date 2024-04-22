@@ -1551,6 +1551,7 @@ class JSProgressBar extends JSComponent {
     super();
     this.element = document.createElement("div");
     this.element.classList.add("jprogressbar");
+    this.element.classList.add("jprogressbar-horizontal");
     this.element.style.display = "grid";
     this.element.style.setProperty("justify-items", "left");
     this.element.style.alignItems = "center";
@@ -2437,7 +2438,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
 
    styleJSButton(button) {
     button.cssAddClass("btn");
-    button.cssAddClass("btn-outline-primary");
+    button.cssAddClass("btn-primary");
     if (this.size) {
       button.cssAddClass("btn-" + this.size);
     }
@@ -2448,7 +2449,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSComboBox(combobox) {
-    combobox.element.style.width = "auto";
     combobox.cssAddClass("form-select");
     if (this.size) {
       combobox.cssAddClass("form-select-" + this.size);
@@ -2483,7 +2483,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSSpinner(spinner) {
-    spinner.element.style.width = "auto";
     spinner.cssAddClass("form-control");
     if (this.size) {
       spinner.cssAddClass("form-control-" + this.size);
@@ -2538,7 +2537,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
       case "toggle":
         input.classList.add("btn-check");
         component.cssAddClass("btn");
-        component.cssAddClass("btn-outline-primary");
+        component.cssAddClass("btn-primary");
         if (this.size) {
           component.cssAddClass("btn-" + this.size);
         }
@@ -2684,53 +2683,33 @@ class PicoLookAndFeel extends LookAndFeel {
   }
 
    styleJSButton(button) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSCheckBox(checkbox) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSComboBox(combobox) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSLabel(label) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSProgressBar(progressbar) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSRadioButton(radiobutton) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSSlider(slider) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSSpinner(spinner) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSTabbedPane(tabbedpane, tab, component) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 
    styleJSToggleButton(togglebutton) {
-    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 }
 /**

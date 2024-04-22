@@ -98,7 +98,7 @@ public class BootstrapLookAndFeel extends LookAndFeel {
   @Override
   public void styleJSButton(JSButton button) {
     button.cssAddClass("btn");
-    button.cssAddClass("btn-outline-primary");
+    button.cssAddClass("btn-primary");
 
     if ($exists(this.size)) {
       button.cssAddClass("btn-" + this.size);
@@ -113,7 +113,6 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
   @Override
   public void styleJSComboBox(JSComboBox<?> combobox) {
-    combobox.element.style.width = "auto";
     combobox.cssAddClass("form-select");
 
     if ($exists(this.size)) {
@@ -156,7 +155,6 @@ public class BootstrapLookAndFeel extends LookAndFeel {
 
   @Override
   public void styleJSSpinner(JSSpinner spinner) {
-    spinner.element.style.width = "auto";
     spinner.cssAddClass("form-control");
 
     if ($exists(this.size)) {
@@ -219,7 +217,7 @@ public class BootstrapLookAndFeel extends LookAndFeel {
       case "toggle":
         input.classList.add("btn-check");
         component.cssAddClass("btn");
-        component.cssAddClass("btn-outline-primary");
+        component.cssAddClass("btn-primary");
         if ($exists(this.size)) {
           component.cssAddClass("btn-" + this.size);
         }

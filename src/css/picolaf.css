@@ -1,13 +1,70 @@
-.picolaf * {
-  /*font-family: arial;*/
+.picolaf input:not([type=checkbox],[type=radio]), .picolaf select, .picolaf textarea, .picolaf fieldset legend, .picolaf label, .picolaf progress {
+  margin-bottom: 0px;
 }
 
 .picolaf .jcheckbox {
-  /*align-items: baseline;*/
+  align-items: center;
+}
+
+.picolaf .jcombobox {
+  width: auto;
+}
+
+.picolaf .jprogressbar label {
+  -webkit-text-fill-color: initial !important;
+}
+.picolaf .jprogressbar progress {
+  font-size: var(--pico-font-size);
+  border-radius: calc(var(--pico-border-radius) + 1rem);
+}
+.picolaf .jprogressbar.jprogressbar-horizontal progress {
+  height: calc(var(--pico-font-size) - .5rem);
+}
+.picolaf .jprogressbar.jprogressbar-vertical progress {
+  width: calc(var(--pico-font-size) - .5rem);
 }
 
 .picolaf .jradiobutton {
-  /*align-items: flex-start;*/
+  align-items: end;
+}
+
+.picolaf .jslider input {
+  width: auto;
+  height: auto;
+}
+html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: transparent;
+}
+html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-ms-track {
+  background-color: transparent;
+}
+html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-moz-range-track {
+  background-color: transparent;
+}
+.picolaf .jslider-vertical [type=range]::-webkit-slider-runnable-track {
+  width: .375rem;
+}
+.picolaf .jslider-vertical [type=range]::-moz-range-track {
+  width: .375rem;
+}
+.picolaf .jslider-vertical [type=range]::-ms-track {
+  width: .375rem;
+}
+.picolaf .jslider-vertical [type=range]::-webkit-slider-thumb {
+  margin-top: 0px;
+  margin-left: -.4375rem;
+}
+.picolaf .jslider-vertical [type=range]::-moz-range-thumb {
+  margin-top: 0px;
+  margin-left: -.4375rem;
+}
+.picolaf .jslider-vertical [type=range]::-ms-thumb {
+  margin-top: 0px;
+  margin-left: -.4375rem;
+}
+
+.picolaf .jspinner {
+  width: auto;
 }
 
 .picolaf .jtabbedpane .borderlayout-north ul li, .picolaf .jtabbedpane .borderlayout-south ul li {
@@ -15,5 +72,5 @@
 }
 
 .picolaf .jtogglebutton {
-  /*align-items: baseline;*/
+  align-items: center;
 }

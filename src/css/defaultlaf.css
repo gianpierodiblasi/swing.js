@@ -6,6 +6,10 @@
   align-items: baseline;
 }
 
+.defaultlaf .jprogressbar progress {
+  font-size: 34px;
+}
+
 .defaultlaf .jradiobutton {
   align-items: flex-start;
 }

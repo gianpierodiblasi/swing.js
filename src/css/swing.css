@@ -88,9 +88,6 @@ html, body {
 .jlabel {
 }
 
-.jprogressbar progress {
-  font-size: 34px;
-}
 .jprogressbar-vertical {
   writing-mode: vertical-lr;
   transform: rotate(180deg);

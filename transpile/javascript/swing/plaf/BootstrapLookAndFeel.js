@@ -74,7 +74,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
 
    styleJSButton(button) {
     button.cssAddClass("btn");
-    button.cssAddClass("btn-outline-primary");
+    button.cssAddClass("btn-primary");
     if (this.size) {
       button.cssAddClass("btn-" + this.size);
     }
@@ -85,7 +85,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSComboBox(combobox) {
-    combobox.element.style.width = "auto";
     combobox.cssAddClass("form-select");
     if (this.size) {
       combobox.cssAddClass("form-select-" + this.size);
@@ -120,7 +119,6 @@ class BootstrapLookAndFeel extends LookAndFeel {
   }
 
    styleJSSpinner(spinner) {
-    spinner.element.style.width = "auto";
     spinner.cssAddClass("form-control");
     if (this.size) {
       spinner.cssAddClass("form-control-" + this.size);
@@ -175,7 +173,7 @@ class BootstrapLookAndFeel extends LookAndFeel {
       case "toggle":
         input.classList.add("btn-check");
         component.cssAddClass("btn");
-        component.cssAddClass("btn-outline-primary");
+        component.cssAddClass("btn-primary");
         if (this.size) {
           component.cssAddClass("btn-" + this.size);
         }

@@ -243,16 +243,16 @@ class TestJSFrame2 extends JSFrame {
     this.modelAndRendererS.addElement("C");
     (SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
     this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer();
-    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("A", "../../swing.png"));
-    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("B", "../../swing.png"));
-    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("C", "../../swing.png"));
-    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("D", "../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("D", "../../../swing.png"));
     (SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
     this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer();
-    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("A", "../../swing.png"));
-    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("B", "../../swing.png"));
-    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("C", "../../swing.png"));
-    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("D", "../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("D", "../../../swing.png"));
     (SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
     this.jLabel3.setText(LookAndFeel.CURRENT.getDescription());
   }
