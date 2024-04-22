@@ -18,9 +18,11 @@ import javascript.swing.JSToggleButton;
  * of the first component; the default Look&amp;Feel is the DefaultLookAndFeel
  * which can be set in this way
  * <code>LookAndFeel.CURRENT = new DefaultLookAndFeel()</code>; the API provides
- * a second Look&amp;Feel called BootstrapLookAndFeel (and using the Bootstrap
- * library) which can be set (for example) in this way
- * <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code>
+ * other Look&amp;Feels called BootstrapLookAndFeel (using the Bootstrap
+ * library) and PicoLookAndFeel (using the Pico library) which can be set (for
+ * example) in this way
+ * <code>LookAndFeel.CURRENT = BootstrapLookAndFeel.create()</code> and
+ * <code>LookAndFeel.CURRENT = new PicoLookAndFeel()</code>
  *
  * @author gianpiero.diblasi
  * @see javascript.swing.plaf.BootstrapLookAndFeel
