@@ -23,6 +23,7 @@
   min-height: 2.4ex;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .jscombobox summary::-webkit-details-marker {
   display: none;

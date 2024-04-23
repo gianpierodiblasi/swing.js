@@ -1,7 +1,7 @@
 .jstogglebutton {
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);
-
+  
   display: flex;
   align-items: center;
   cursor: pointer;

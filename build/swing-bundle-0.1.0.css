@@ -72,6 +72,7 @@
   min-height: 2.4ex;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .jscombobox summary::-webkit-details-marker {
   display: none;
@@ -221,7 +222,7 @@
 }.jstogglebutton {
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);
-
+  
   display: flex;
   align-items: center;
   cursor: pointer;
