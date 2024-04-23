@@ -24,7 +24,7 @@ class JSRadioButton extends AbstractButton {
    * Set this radiobutton as a toggle
    */
    setToggle() {
-    // this.radiobutton.setAttribute("role", "toggle");
+    this.setAttribute("role", "toggle");
   }
 
   /**

@@ -36,7 +36,3 @@
 .defaultlaf .jtabbedpane .borderlayout-north ul li, .defaultlaf .jtabbedpane .borderlayout-south ul li {
   display: inline-block;
 }
-
-.defaultlaf .jtogglebutton {
-  align-items: baseline;
-}

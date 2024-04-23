@@ -26,10 +26,6 @@
   width: calc(var(--pico-font-size) - .5rem);
 }
 
-.picolaf .jradiobutton {
-  align-items: end;
-}
-
 .picolaf .jslider input {
   width: auto;
   height: auto;
@@ -105,8 +101,4 @@ html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-moz-range-track
 }
 .picolaf .jtabbedpane ul li:has(.jradiobutton.active) .jradiobutton {
   color: var(--pico-primary-background);
-}
-
-.picolaf .jtogglebutton {
-  align-items: center;
 }

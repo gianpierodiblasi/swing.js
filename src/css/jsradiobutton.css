@@ -8,7 +8,7 @@
   font-family: var(--font-family);
   font-size: 2rem;
   color: var(--main-action-bgcolor);
-  
+
   cursor: pointer;
   appearance: none;
   margin: 0 0.2rem 0 0;
@@ -26,4 +26,35 @@
 .jsradiobutton:has(input:disabled), .jsradiobutton input:disabled {
   filter: opacity(0.5);
   cursor: default;
+}
+
+.jsradiobutton[role=toggle] {
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
+
+  padding: .5rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  justify-content: center;
+}
+.jsradiobutton[role=toggle]:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsradiobutton[role=toggle]:has(input:checked) {
+  filter: saturate(0.5);
+}
+.jsradiobutton[role=toggle]:hover:has(input:checked) {
+  filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsradiobutton[role=toggle]:has(input:disabled) {
+  filter: opacity(0.5);
+}
+.jsradiobutton[role=toggle]:has(input:disabled):has(input:checked) {
+  filter: opacity(0.5) saturate(0.5);
+}
+.jsradiobutton[role=toggle] input::after {
+  content: "";
+}
+.jsradiobutton[role=toggle] input:checked::after {
+  content: "";
 }

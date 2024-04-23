@@ -27,12 +27,6 @@ import static simulation.js.$Globals.$typeof;
 public class BootstrapLookAndFeel  {
 
   @Override
-  @SuppressWarnings("StringEquality")
-  public void styleJSCheckBox(JSCheckBox checkbox) {
-    this.setCheckAndRadio(checkbox);
-  }
-
-  @Override
   public void styleJSComboBox(JSComboBox<?> combobox) {
     combobox.cssAddClass("form-select");
 
@@ -76,12 +70,6 @@ public class BootstrapLookAndFeel  {
     }
 
     this.setSize((HTMLElement) progressbar.element.querySelector("label"));
-  }
-
-  @Override
-  @SuppressWarnings("StringEquality")
-  public void styleJSRadioButton(JSRadioButton radiobutton) {
-    this.setCheckAndRadio(radiobutton);
   }
 
   @Override
@@ -133,46 +121,5 @@ public class BootstrapLookAndFeel  {
       tabs.querySelector(".jradiobutton.active").classList.remove("active");
       tab.cssAddClass("active");
     });
-  }
-
-  @Override
-  public void styleJSToggleButton(JSToggleButton togglebutton) {
-    this.setCheckAndRadio(togglebutton);
-  }
-
-  private void setCheckAndRadio(JSComponent component) {
-    HTMLElement input = (HTMLElement) component.element.querySelector("input");
-    input.classList.add("form-check-input");
-
-    switch (input.getAttribute("role")) {
-      case "switch":
-        input.style.marginRight = "0.5em";
-        component.cssAddClass("form-switch");
-        this.setSize(component.element);
-        break;
-      case "toggle":
-        input.classList.add("btn-check");
-        component.cssAddClass("btn");
-        component.cssAddClass("btn-primary");
-        if ($exists(this.size)) {
-          component.cssAddClass("btn-" + this.size);
-        }
-        break;
-      default:
-        input.style.marginRight = "0.5em";
-        this.setSize(component.element);
-        break;
-    }
-  }
-
-  private void setSize(HTMLElement element) {
-    switch (this.size) {
-      case "sm":
-        element.style.fontSize = "14px";
-        break;
-      case "lg":
-        element.style.fontSize = "20px";
-        break;
-    }
   }
 }

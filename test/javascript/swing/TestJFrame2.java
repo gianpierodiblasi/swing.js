@@ -4,6 +4,7 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javascript.SwingJS;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -27,6 +28,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
   @SuppressWarnings("StringEquality")
   private void postInitComponents() {
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton5)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton6)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton7)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton8)).setToggle();
   }
 
   /**
@@ -39,17 +44,18 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private void initComponents() {
 
     buttonGroup1 = new ButtonGroup();
+    buttonGroup2 = new ButtonGroup();
     jPanel1 = new JPanel();
     jButton1 = new JButton();
     jButton2 = new JButton();
     jButton3 = new JButton();
     jPanel2 = new JPanel();
-    jButton4 = new JButton();
-    jButton6 = new JButton();
-    jButton7 = new JButton();
-    jButton9 = new JButton();
     jButton5 = new JButton();
+    jRadioButton5 = new JRadioButton();
+    jRadioButton7 = new JRadioButton();
     jButton8 = new JButton();
+    jRadioButton6 = new JRadioButton();
+    jRadioButton8 = new JRadioButton();
     jPanel3 = new JPanel();
     jButton10 = new JButton();
     filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
@@ -85,23 +91,30 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
     jPanel2.setLayout(new GridLayout(2, 3, 10, 20));
 
-    jButton4.setText("jButton4");
-    jPanel2.add(jButton4);
-
-    jButton6.setText("jButton6");
-    jPanel2.add(jButton6);
-
-    jButton7.setText("jButton7");
-    jPanel2.add(jButton7);
-
-    jButton9.setText("jButton9");
-    jPanel2.add(jButton9);
-
     jButton5.setText("jButton5");
     jPanel2.add(jButton5);
 
+    buttonGroup2.add(jRadioButton5);
+    jRadioButton5.setText("jRadioButton5");
+    jPanel2.add(jRadioButton5);
+
+    buttonGroup2.add(jRadioButton7);
+    jRadioButton7.setSelected(true);
+    jRadioButton7.setText("jRadioButton7");
+    jRadioButton7.setEnabled(false);
+    jPanel2.add(jRadioButton7);
+
     jButton8.setText("jButton8");
     jPanel2.add(jButton8);
+
+    buttonGroup2.add(jRadioButton6);
+    jRadioButton6.setText("jRadioButton6");
+    jPanel2.add(jRadioButton6);
+
+    buttonGroup2.add(jRadioButton8);
+    jRadioButton8.setText("jRadioButton8");
+    jRadioButton8.setEnabled(false);
+    jPanel2.add(jRadioButton8);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
@@ -167,6 +180,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
+  private ButtonGroup buttonGroup2;
   private Box.Filler filler1;
   private Box.Filler filler2;
   private Box.Filler filler3;
@@ -176,12 +190,8 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JButton jButton12;
   private JButton jButton2;
   private JButton jButton3;
-  private JButton jButton4;
   private JButton jButton5;
-  private JButton jButton6;
-  private JButton jButton7;
   private JButton jButton8;
-  private JButton jButton9;
   private JCheckBox jCheckBox1;
   private JCheckBox jCheckBox2;
   private JCheckBox jCheckBox3;
@@ -194,5 +204,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton2;
   private JRadioButton jRadioButton3;
   private JRadioButton jRadioButton4;
+  private JRadioButton jRadioButton5;
+  private JRadioButton jRadioButton6;
+  private JRadioButton jRadioButton7;
+  private JRadioButton jRadioButton8;
   // End of variables declaration//GEN-END:variables
 }

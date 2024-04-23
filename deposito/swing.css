@@ -6,15 +6,6 @@
   transform: rotate(180deg);
 }
 
-.jradiobutton {
-  display: flex;
-}
-.jradiobutton:has(input:disabled) {
-  pointer-events: none;
-  filter: none;
-  opacity: 0.65;
-}
-
 .jslider {
   display: flex;
 }
@@ -73,13 +64,4 @@
 .jtabbedpane .borderlayout-west ul, .jtabbedpane .borderlayout-east ul {
   flex-direction: column;
   height: 100%;
-}
-
-.jtogglebutton {
-  display: flex;
-}
-.jtogglebutton:has(input:disabled) {
-  pointer-events: none;
-  filter: none;
-  opacity: .65;
 }

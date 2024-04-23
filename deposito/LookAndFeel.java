@@ -71,11 +71,4 @@ public abstract class LookAndFeel {
    * @param component The added component
    */
   public abstract void styleJSTabbedPane(JSTabbedPane tabbedpane, JSRadioButton tab, JSComponent component);
-
-  /**
-   * Applies the style to a togglebutton
-   *
-   * @param togglebutton The togglebutton
-   */
-  public abstract void styleJSToggleButton(JSToggleButton togglebutton);
 }
