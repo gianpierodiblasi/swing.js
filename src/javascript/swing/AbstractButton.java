@@ -38,7 +38,7 @@ public abstract class AbstractButton extends JSComponent {
    *
    * @return null
    */
-  protected Object onclick() {
+  public Object onclick() {
     ActionEvent event = new ActionEvent();
 
     this.listeners.forEach(listener -> {

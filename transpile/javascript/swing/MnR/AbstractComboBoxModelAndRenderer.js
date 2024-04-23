@@ -8,16 +8,17 @@ class AbstractComboBoxModelAndRenderer {
 
    combobox = null;
 
+   selected = null;
+
    elements = new Array();
 
   /**
-   * Returns the element at an index
+   * Returns the selected element
    *
-   * @param index The index
-   * @return The element
+   * @return The selected element
    */
-   getElementAt(index) {
-    return this.elements[index];
+   getSelectedElement() {
+    return this.selected;
   }
 
   /**
@@ -46,6 +47,14 @@ class AbstractComboBoxModelAndRenderer {
    addOption(element) {
     let li = document.createElement("li");
     li.appendChild(this.render(element));
+    li.onclick = (event) => {
+      this.selected = element;
+      this.combobox.clearChildContentByQuery("summary");
+      this.combobox.appendNodeChildInTree("summary", this.render(element));
+      this.combobox.removeAttribute("open");
+      this.combobox.onclick();
+      return null;
+    };
     this.combobox.appendNodeChildInTree("ul", li);
   }
 

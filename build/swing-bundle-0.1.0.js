@@ -844,6 +844,15 @@ class JSComponent {
   }
 
   /**
+   * Removes an attribute of the HTML element
+   *
+   * @param key The attribute key
+   */
+   removeAttribute(key) {
+    this.element.removeAttribute(key);
+  }
+
+  /**
    * Clears the text content of the HTML element
    */
    clearContent() {
@@ -969,6 +978,15 @@ class JSComponent {
    */
    getChildAttributeByQuery(query, key) {
     return this.element.querySelector(query).getAttribute(key);
+  }
+
+  /**
+   * Clears the text content of a child of the HTML element
+   *
+   * @param query The query selector
+   */
+   clearChildContentByQuery(query) {
+    this.element.querySelector(query).textContent = "";
   }
 
   /**
@@ -1135,10 +1153,10 @@ class JSComboBox extends AbstractButton {
    *
    * @return The selected item
    */
-  // public Object getSelectedItem() {
-  // return null;
-  // //    return this.modelAndRenderer.getElementAt((($HTMLElement) this.element).selectedIndex);
-  // }
+   getSelectedItem() {
+    return this.modelAndRenderer.getSelectedElement();
+  }
+
   /**
    * Sets the model
    *
@@ -1439,16 +1457,17 @@ class AbstractComboBoxModelAndRenderer {
 
    combobox = null;
 
+   selected = null;
+
    elements = new Array();
 
   /**
-   * Returns the element at an index
+   * Returns the selected element
    *
-   * @param index The index
-   * @return The element
+   * @return The selected element
    */
-   getElementAt(index) {
-    return this.elements[index];
+   getSelectedElement() {
+    return this.selected;
   }
 
   /**
@@ -1477,6 +1496,14 @@ class AbstractComboBoxModelAndRenderer {
    addOption(element) {
     let li = document.createElement("li");
     li.appendChild(this.render(element));
+    li.onclick = (event) => {
+      this.selected = element;
+      this.combobox.clearChildContentByQuery("summary");
+      this.combobox.appendNodeChildInTree("summary", this.render(element));
+      this.combobox.removeAttribute("open");
+      this.combobox.onclick();
+      return null;
+    };
     this.combobox.appendNodeChildInTree("ul", li);
   }
 

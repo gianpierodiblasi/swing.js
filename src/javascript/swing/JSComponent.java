@@ -133,6 +133,15 @@ public class JSComponent {
   }
 
   /**
+   * Removes an attribute of the HTML element
+   *
+   * @param key The attribute key
+   */
+  public void removeAttribute(String key) {
+    this.element.removeAttribute(key);
+  }
+
+  /**
    * Clears the text content of the HTML element
    */
   public void clearContent() {
@@ -258,6 +267,15 @@ public class JSComponent {
    */
   public String getChildAttributeByQuery(String query, String key) {
     return this.element.querySelector(query).getAttribute(key);
+  }
+
+  /**
+   * Clears the text content of a child of the HTML element
+   *
+   * @param query The query selector
+   */
+  public void clearChildContentByQuery(String query) {
+    this.element.querySelector(query).textContent = "";
   }
 
   /**

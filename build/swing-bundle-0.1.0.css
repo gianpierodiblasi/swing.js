@@ -64,10 +64,16 @@
   list-style: none;
   cursor: pointer;
   padding: .5rem;
-  min-height: 2ex;
+  min-height: 2.4ex;
+  display: flex;
+  justify-content: space-between;
 }
 .jscombobox summary::-webkit-details-marker {
   display: none;
+}
+.jscombobox summary::after {
+  content: "\25BC";
+  color: var(--main-action-bgcolor);
 }
 .jscombobox summary * {
   cursor: pointer;
@@ -80,18 +86,23 @@
   list-style: none;
   width: fit-content;
   min-width: 10rem;
-
   display: flex;
   flex-direction: column;
   margin: .5rem 0 0 0;
   padding: 0;
-  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+  box-shadow: 0 0 .5rem var(--main-action-bgcolor);
   border-radius: .5rem;
 }
 .jscombobox li {
   padding: .5rem;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
-.jscombobox li, .jscombobox li * {
+.jscombobox li:hover {
+  border: 1px solid var(--main-action-bgcolor);
+  border-radius: .5rem;
+}
+.jscombobox li * {
   cursor: pointer;
 }
 .jscomponent-box-filler {

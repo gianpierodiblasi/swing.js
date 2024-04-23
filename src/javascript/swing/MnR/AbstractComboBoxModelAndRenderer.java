@@ -16,16 +16,16 @@ import static simulation.js.$Globals.$exists;
 public abstract class AbstractComboBoxModelAndRenderer<T> {
 
   private JSComboBox<T> combobox;
+  private T selected;
   private final Array<T> elements = new Array<>();
 
   /**
-   * Returns the element at an index
+   * Returns the selected element
    *
-   * @param index The index
-   * @return The element
+   * @return The selected element
    */
-  public T getElementAt(int index) {
-    return this.elements.$get(index);
+  public T getSelectedElement() {
+    return this.selected;
   }
 
   /**
@@ -55,6 +55,15 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
   private void addOption(T element) {
     HTMLElement li = document.createElement("li");
     li.appendChild(this.render(element));
+    li.onclick = (event) -> {
+      this.selected = element;
+      this.combobox.clearChildContentByQuery("summary");
+      this.combobox.appendNodeChildInTree("summary", this.render(element));
+      this.combobox.removeAttribute("open");
+      this.combobox.onclick();
+      return null;
+    };
+
     this.combobox.appendNodeChildInTree("ul", li);
   }
 

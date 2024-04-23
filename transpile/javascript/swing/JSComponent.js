@@ -123,6 +123,15 @@ class JSComponent {
   }
 
   /**
+   * Removes an attribute of the HTML element
+   *
+   * @param key The attribute key
+   */
+   removeAttribute(key) {
+    this.element.removeAttribute(key);
+  }
+
+  /**
    * Clears the text content of the HTML element
    */
    clearContent() {
@@ -248,6 +257,15 @@ class JSComponent {
    */
    getChildAttributeByQuery(query, key) {
     return this.element.querySelector(query).getAttribute(key);
+  }
+
+  /**
+   * Clears the text content of a child of the HTML element
+   *
+   * @param query The query selector
+   */
+   clearChildContentByQuery(query) {
+    this.element.querySelector(query).textContent = "";
   }
 
   /**

@@ -27,10 +27,10 @@ public class JSComboBox<T> extends AbstractButton {
    *
    * @return The selected item
    */
-//  public Object getSelectedItem() {
-//    return null;
-////    return this.modelAndRenderer.getElementAt((($HTMLElement) this.element).selectedIndex);
-//  }
+  public Object getSelectedItem() {
+    return this.modelAndRenderer.getSelectedElement();
+  }
+
   /**
    * Sets the model
    *
