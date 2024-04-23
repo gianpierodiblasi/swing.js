@@ -13,6 +13,9 @@
   cursor: pointer;
   appearance: none;
 }
+.jscheckbox input:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
 .jscheckbox input::after {
   content: "\2610";
 }

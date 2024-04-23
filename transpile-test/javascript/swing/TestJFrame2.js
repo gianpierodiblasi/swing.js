@@ -41,6 +41,10 @@ class TestJFrame2 extends JFrame {
     this.jCheckBox2 = new JCheckBox();let jCheckBox2 = this.jCheckBox2;
     this.jCheckBox3 = new JCheckBox();let jCheckBox3 = this.jCheckBox3;
     this.jCheckBox4 = new JCheckBox();let jCheckBox4 = this.jCheckBox4;
+    this.jCheckBox5 = new JCheckBox();let jCheckBox5 = this.jCheckBox5;
+    this.jCheckBox6 = new JCheckBox();let jCheckBox6 = this.jCheckBox6;
+    this.jCheckBox7 = new JCheckBox();let jCheckBox7 = this.jCheckBox7;
+    this.jCheckBox8 = new JCheckBox();let jCheckBox8 = this.jCheckBox8;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jButton1.setText("jButton1");
@@ -90,6 +94,18 @@ class TestJFrame2 extends JFrame {
     jCheckBox4.setText("jCheckBox4");
     jCheckBox4.setEnabled(false);
     jPanel4.add(jCheckBox4);
+    jCheckBox5.setText("jCheckBox5");
+    jPanel4.add(jCheckBox5);
+    jCheckBox6.setText("jCheckBox6");
+    jCheckBox6.setEnabled(false);
+    jPanel4.add(jCheckBox6);
+    jCheckBox7.setSelected(true);
+    jCheckBox7.setText("jCheckBox7");
+    jPanel4.add(jCheckBox7);
+    jCheckBox8.setSelected(true);
+    jCheckBox8.setText("jCheckBox8");
+    jCheckBox8.setEnabled(false);
+    jPanel4.add(jCheckBox8);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }
 
@@ -138,6 +154,14 @@ class TestJFrame2 extends JFrame {
    jCheckBox3 = null;
 
    jCheckBox4 = null;
+
+   jCheckBox5 = null;
+
+   jCheckBox6 = null;
+
+   jCheckBox7 = null;
+
+   jCheckBox8 = null;
 
    jPanel1 = null;
 

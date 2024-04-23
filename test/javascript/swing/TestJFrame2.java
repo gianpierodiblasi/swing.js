@@ -4,6 +4,7 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javascript.SwingJS;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -59,6 +60,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox2 = new JCheckBox();
     jCheckBox3 = new JCheckBox();
     jCheckBox4 = new JCheckBox();
+    jCheckBox5 = new JCheckBox();
+    jCheckBox6 = new JCheckBox();
+    jCheckBox7 = new JCheckBox();
+    jCheckBox8 = new JCheckBox();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -132,6 +137,22 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox4.setEnabled(false);
     jPanel4.add(jCheckBox4);
 
+    jCheckBox5.setText("jCheckBox5");
+    jPanel4.add(jCheckBox5);
+
+    jCheckBox6.setText("jCheckBox6");
+    jCheckBox6.setEnabled(false);
+    jPanel4.add(jCheckBox6);
+
+    jCheckBox7.setSelected(true);
+    jCheckBox7.setText("jCheckBox7");
+    jPanel4.add(jCheckBox7);
+
+    jCheckBox8.setSelected(true);
+    jCheckBox8.setText("jCheckBox8");
+    jCheckBox8.setEnabled(false);
+    jPanel4.add(jCheckBox8);
+
     getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }// </editor-fold>//GEN-END:initComponents
 
@@ -159,6 +180,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JCheckBox jCheckBox2;
   private JCheckBox jCheckBox3;
   private JCheckBox jCheckBox4;
+  private JCheckBox jCheckBox5;
+  private JCheckBox jCheckBox6;
+  private JCheckBox jCheckBox7;
+  private JCheckBox jCheckBox8;
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;

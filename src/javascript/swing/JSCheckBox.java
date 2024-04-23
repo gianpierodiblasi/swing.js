@@ -29,22 +29,6 @@ public class JSCheckBox extends AbstractButton {
   }
 
   /**
-   * Set this checkbox as a switch; the result depends on the used
-   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
-   */
-  public void setSwitch() {
-//    this.checkbox.setAttribute("role", "switch");
-  }
-
-  /**
-   * Set this checkbox as a toggle; the result depends on the used
-   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
-   */
-  public void setToggle() {
-//    this.checkbox.setAttribute("role", "toggle");
-  }
-
-  /**
    * Clone of javax.swing.JCheckBox.setText
    *
    * @param text The text
