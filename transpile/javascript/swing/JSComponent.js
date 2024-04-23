@@ -26,6 +26,19 @@ class JSComponent {
   }
 
   /**
+   * Clone of javax.swing.JComponent.setEnabled
+   *
+   * @param b true to enable the button, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
+  }
+
+  /**
    * Sets the ID of the HTML element
    *
    * @param id The ID of the HTML element
@@ -126,12 +139,31 @@ class JSComponent {
   }
 
   /**
+   * Adds an event listener
+   *
+   * @param event The event
+   * @param listener The listener
+   */
+   addEventListener(event, listener) {
+    this.element.addEventListener(event, listener);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param component The child component
    */
    appendChild(component) {
     this.element.appendChild(component.element);
+  }
+
+  /**
+   * Adds a child to the HTML element
+   *
+   * @param node The node
+   */
+   appendNodeChild(node) {
+    this.element.appendChild(node);
   }
 
   /**

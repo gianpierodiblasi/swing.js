@@ -1,14 +1,3 @@
-:root .picolaf {
-  --pico-form-element-spacing-vertical: 0.15rem;
-  --pico-form-element-spacing-horizontal: 0.5rem;
-}
-.picolaf * {
-  font-size: 0.9em;
-}
-.picolaf input:not([type=checkbox],[type=radio]), .picolaf select, .picolaf textarea, .picolaf fieldset legend, .picolaf label, .picolaf progress {
-  margin-bottom: 0px;
-}
-
 .picolaf .jdialog header label {
   font-size: 2em;
 }
@@ -17,10 +6,6 @@
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
-}
-
-.picolaf .jcheckbox {
-  align-items: center;
 }
 
 .picolaf .jcombobox {

@@ -1,4 +1,50 @@
-.jscomponent-box-filler {
+.jsbutton {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
+
+  border: none;
+  padding: .5rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.jsbutton:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsbutton:active {
+  filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsbutton:disabled {
+  filter: opacity(0.5);
+  cursor: default;
+}.jscheckbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.jscheckbox input {
+  font-family: var(--font-family);
+  font-size: 2rem;
+  color: var(--main-action-bgcolor);
+}
+.jscheckbox input {
+  cursor: pointer;
+  appearance: none;
+}
+.jscheckbox input::after {
+  content: "\2610";
+}
+.jscheckbox input:checked::after {
+  content: "\2611";
+}
+
+.jscheckbox:has(input:disabled), .jscheckbox input:disabled {
+  filter: opacity(0.5);
+  cursor: default;
+}.jscomponent-box-filler {
 }
 .jsframe {
 }
@@ -6,6 +52,9 @@
 .jsframe > .jspanel {
   height: 100%;
 }.jslabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
 }.jspanel {
 }
 
@@ -46,12 +95,12 @@
 :root {
   --font-family: arial;
   --font-size: 14px;
-  /*--main-color: #0d6efd;*/
   --main-color: black;
   --main-bgcolor: white;
+  --main-action-color: white;
+  --main-action-bgcolor: #0d6efd;
 }
 :root.dark-mode {
-  /*--main-color: #0d6efd;*/
   --main-color: #dee2e6;
   --main-bgcolor: #212529;
 }
@@ -64,4 +113,10 @@ html, body {
   font-size: var(--font-size);
   color: var(--main-color);
   background: var(--main-bgcolor);
+}
+
+label {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
 }

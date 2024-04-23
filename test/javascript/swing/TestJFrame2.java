@@ -1,15 +1,14 @@
 package javascript.swing;
 
+import static def.dom.Globals.console;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
-import static simulation.js.$Globals.setInterval;
 
 /**
  *
@@ -17,8 +16,6 @@ import static simulation.js.$Globals.setInterval;
  */
 @SuppressWarnings("serial")
 public class TestJFrame2 extends javax.swing.JFrame {
-
-  private String card = "card2";
 
   public TestJFrame2() {
     super();
@@ -28,10 +25,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
   @SuppressWarnings("StringEquality")
   private void postInitComponents() {
-    setInterval(() -> {
-      this.card = this.card == "card2" ? "card3" : "card2";
-      ((CardLayout) this.jPanel4.getLayout()).show(this.jPanel4, this.card);
-    }, 2000);
   }
 
   /**
@@ -44,110 +37,128 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private void initComponents() {
 
     jPanel1 = new JPanel();
-    jLabel1 = new JLabel();
-    jLabel2 = new JLabel();
-    jLabel3 = new JLabel();
+    jButton1 = new JButton();
+    jButton2 = new JButton();
+    jButton3 = new JButton();
     jPanel2 = new JPanel();
-    jLabel4 = new JLabel();
-    jLabel6 = new JLabel();
-    jLabel8 = new JLabel();
-    jLabel7 = new JLabel();
-    jLabel5 = new JLabel();
-    jLabel9 = new JLabel();
+    jButton4 = new JButton();
+    jButton6 = new JButton();
+    jButton7 = new JButton();
+    jButton9 = new JButton();
+    jButton5 = new JButton();
+    jButton8 = new JButton();
     jPanel3 = new JPanel();
-    jLabel10 = new JLabel();
+    jButton10 = new JButton();
     filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
-    jLabel11 = new JLabel();
+    jButton11 = new JButton();
     filler1 = new Box.Filler(new Dimension(0, 30), new Dimension(0, 30), new Dimension(32767, 30));
-    jLabel12 = new JLabel();
+    jButton12 = new JButton();
     filler3 = new Box.Filler(new Dimension(0, 50), new Dimension(0, 50), new Dimension(32767, 50));
     jPanel4 = new JPanel();
-    jLabel13 = new JLabel();
-    jLabel14 = new JLabel();
+    jCheckBox1 = new JCheckBox();
+    jCheckBox2 = new JCheckBox();
+    jCheckBox3 = new JCheckBox();
+    jCheckBox4 = new JCheckBox();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
 
-    jLabel1.setText("jLabel1");
-    jPanel1.add(jLabel1);
+    jButton1.setText("jButton1");
+    jButton1.addActionListener(this::jButton1ActionPerformed);
+    jPanel1.add(jButton1);
 
-    jLabel2.setText("jLabel2");
-    jPanel1.add(jLabel2);
+    jButton2.setText("jButton2");
+    jPanel1.add(jButton2);
 
-    jLabel3.setText("jLabel3");
-    jPanel1.add(jLabel3);
+    jButton3.setText("jButton3");
+    jButton3.setEnabled(false);
+    jPanel1.add(jButton3);
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
 
     jPanel2.setLayout(new GridLayout(2, 3, 10, 20));
 
-    jLabel4.setText("jLabel4");
-    jPanel2.add(jLabel4);
+    jButton4.setText("jButton4");
+    jPanel2.add(jButton4);
 
-    jLabel6.setText("jLabel6");
-    jPanel2.add(jLabel6);
+    jButton6.setText("jButton6");
+    jPanel2.add(jButton6);
 
-    jLabel8.setText("jLabel8");
-    jPanel2.add(jLabel8);
+    jButton7.setText("jButton7");
+    jPanel2.add(jButton7);
 
-    jLabel7.setText("jLabel7");
-    jPanel2.add(jLabel7);
+    jButton9.setText("jButton9");
+    jPanel2.add(jButton9);
 
-    jLabel5.setText("jLabel5");
-    jPanel2.add(jLabel5);
+    jButton5.setText("jButton5");
+    jPanel2.add(jButton5);
 
-    jLabel9.setText("jLabel9");
-    jPanel2.add(jLabel9);
+    jButton8.setText("jButton8");
+    jPanel2.add(jButton8);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
     jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
 
-    jLabel10.setText("jLabel10");
-    jPanel3.add(jLabel10);
+    jButton10.setText("jButton10");
+    jPanel3.add(jButton10);
     jPanel3.add(filler2);
 
-    jLabel11.setText("jLabel11");
-    jPanel3.add(jLabel11);
+    jButton11.setText("jButton11");
+    jPanel3.add(jButton11);
     jPanel3.add(filler1);
 
-    jLabel12.setText("jLabel12");
-    jPanel3.add(jLabel12);
+    jButton12.setText("jButton12");
+    jPanel3.add(jButton12);
     jPanel3.add(filler3);
 
     getContentPane().add(jPanel3, BorderLayout.LINE_START);
 
-    jPanel4.setLayout(new CardLayout());
+    jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.Y_AXIS));
 
-    jLabel13.setBackground(new Color(204, 255, 0));
-    jLabel13.setText("jLabel13");
-    jPanel4.add(jLabel13, "card2");
+    jCheckBox1.setText("jCheckBox1");
+    jPanel4.add(jCheckBox1);
 
-    jLabel14.setBackground(new Color(255, 102, 153));
-    jLabel14.setText("jLabel14");
-    jPanel4.add(jLabel14, "card3");
+    jCheckBox2.setText("jCheckBox2");
+    jCheckBox2.setEnabled(false);
+    jPanel4.add(jCheckBox2);
+
+    jCheckBox3.setSelected(true);
+    jCheckBox3.setText("jCheckBox3");
+    jPanel4.add(jCheckBox3);
+
+    jCheckBox4.setSelected(true);
+    jCheckBox4.setText("jCheckBox4");
+    jCheckBox4.setEnabled(false);
+    jPanel4.add(jCheckBox4);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }// </editor-fold>//GEN-END:initComponents
+
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    console.log("OK!!!");
+  }//GEN-LAST:event_jButton1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private Box.Filler filler1;
   private Box.Filler filler2;
   private Box.Filler filler3;
-  private JLabel jLabel1;
-  private JLabel jLabel10;
-  private JLabel jLabel11;
-  private JLabel jLabel12;
-  private JLabel jLabel13;
-  private JLabel jLabel14;
-  private JLabel jLabel2;
-  private JLabel jLabel3;
-  private JLabel jLabel4;
-  private JLabel jLabel5;
-  private JLabel jLabel6;
-  private JLabel jLabel7;
-  private JLabel jLabel8;
-  private JLabel jLabel9;
+  private JButton jButton1;
+  private JButton jButton10;
+  private JButton jButton11;
+  private JButton jButton12;
+  private JButton jButton2;
+  private JButton jButton3;
+  private JButton jButton4;
+  private JButton jButton5;
+  private JButton jButton6;
+  private JButton jButton7;
+  private JButton jButton8;
+  private JButton jButton9;
+  private JCheckBox jCheckBox1;
+  private JCheckBox jCheckBox2;
+  private JCheckBox jCheckBox3;
+  private JCheckBox jCheckBox4;
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;

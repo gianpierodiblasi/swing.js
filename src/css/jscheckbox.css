@@ -1,0 +1,26 @@
+.jscheckbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.jscheckbox input {
+  font-family: var(--font-family);
+  font-size: 2rem;
+  color: var(--main-action-bgcolor);
+}
+.jscheckbox input {
+  cursor: pointer;
+  appearance: none;
+}
+.jscheckbox input::after {
+  content: "\2610";
+}
+.jscheckbox input:checked::after {
+  content: "\2611";
+}
+
+.jscheckbox:has(input:disabled), .jscheckbox input:disabled {
+  filter: opacity(0.5);
+  cursor: default;
+}

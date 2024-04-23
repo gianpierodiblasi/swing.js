@@ -1,0 +1,22 @@
+.jsbutton {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
+
+  border: none;
+  padding: .5rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.jsbutton:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsbutton:active {
+  filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsbutton:disabled {
+  filter: opacity(0.5);
+  cursor: default;
+}

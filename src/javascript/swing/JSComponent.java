@@ -3,7 +3,9 @@ package javascript.swing;
 import def.dom.CSSStyleDeclaration;
 import def.dom.DOMTokenList;
 import def.dom.Element;
+import def.dom.EventListener;
 import def.dom.HTMLElement;
+import def.dom.Node;
 import javascript.awt.Color;
 
 /**
@@ -31,6 +33,19 @@ public class JSComponent {
    */
   public void setBackground(Color color) {
     this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
+  }
+
+  /**
+   * Clone of javax.swing.JComponent.setEnabled
+   *
+   * @param b true to enable the button, false otherwise
+   */
+  public void setEnabled(boolean b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
   }
 
   /**
@@ -134,12 +149,31 @@ public class JSComponent {
   }
 
   /**
+   * Adds an event listener
+   *
+   * @param event The event
+   * @param listener The listener
+   */
+  public void addEventListener(String event, EventListener listener) {
+    this.element.addEventListener(event, listener);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param component The child component
    */
   public void appendChild(JSComponent component) {
     this.element.appendChild(component.element);
+  }
+
+  /**
+   * Adds a child to the HTML element
+   *
+   * @param node The node
+   */
+  public void appendNodeChild(Node node) {
+    this.element.appendChild(node);
   }
 
   /**

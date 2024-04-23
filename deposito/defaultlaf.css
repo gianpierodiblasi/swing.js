@@ -28,10 +28,6 @@
   padding: 1rem;
 }
 
-.defaultlaf .jcheckbox {
-  align-items: baseline;
-}
-
 .defaultlaf .jprogressbar progress {
   font-size: 34px;
 }

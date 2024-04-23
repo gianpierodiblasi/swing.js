@@ -34,6 +34,28 @@ class Dimension {
   }
 }
 /**
+ * The java.awt.event.ActionEvent clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionEvent {
+}
+/**
+ * The java.awt.event.ActionListener clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ActionListener {
+
+  /**
+   * Clone of java.awt.event.ActionListener.actionPerformed
+   *
+   * @param event The event
+   */
+   actionPerformed(event) {
+  }
+}
+/**
  * The java.awt.GridBagConstraints clone
  *
  * @author gianpiero.diblasi
@@ -694,6 +716,19 @@ class JSComponent {
   }
 
   /**
+   * Clone of javax.swing.JComponent.setEnabled
+   *
+   * @param b true to enable the button, false otherwise
+   */
+   setEnabled(b) {
+    if (b) {
+      this.element.removeAttribute("disabled");
+    } else {
+      this.element.setAttribute("disabled", "disabled");
+    }
+  }
+
+  /**
    * Sets the ID of the HTML element
    *
    * @param id The ID of the HTML element
@@ -794,12 +829,31 @@ class JSComponent {
   }
 
   /**
+   * Adds an event listener
+   *
+   * @param event The event
+   * @param listener The listener
+   */
+   addEventListener(event, listener) {
+    this.element.addEventListener(event, listener);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param component The child component
    */
    appendChild(component) {
     this.element.appendChild(component.element);
+  }
+
+  /**
+   * Adds a child to the HTML element
+   *
+   * @param node The node
+   */
+   appendNodeChild(node) {
+    this.element.appendChild(node);
   }
 
   /**
@@ -862,6 +916,146 @@ class JSComponent {
    */
    getChildCount() {
     return this.element.childElementCount;
+  }
+}
+/**
+ * The javax.swing.AbstractButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class AbstractButton extends JSComponent {
+
+   listeners = new Array();
+
+  /**
+   * Creates the object
+   *
+   * @param element The HTML element representing this component
+   */
+  constructor(element) {
+    super(element);
+  }
+
+  /**
+   * Clone of javax.swing.AbstractButton.addActionListener
+   *
+   * @param listener The listener
+   */
+   addActionListener(listener) {
+    this.listeners.push(listener);
+  }
+
+  /**
+   * The method for click events
+   *
+   * @return null
+   */
+   onclick() {
+    let event = new ActionEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
+  }
+}
+/**
+ * The javax.swing.JButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSButton extends AbstractButton {
+
+  constructor() {
+    super(document.createElement("button"));
+    this.cssAddClass("jsbutton");
+    this.addEventListener("click", (event) => this.onclick());
+  }
+
+  /**
+   * Clone of javax.swing.JButton.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.setContent(text);
+  }
+}
+/**
+ * The javax.swing.JCheckBox clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSCheckBox extends AbstractButton {
+
+   checkbox = null;
+
+   text = null;
+
+  constructor() {
+    super(document.createElement("label"));
+    this.cssAddClass("jscheckbox");
+    this.checkbox = document.createElement("input");
+    this.checkbox.setAttribute("type", "checkbox");
+    this.checkbox.onchange = (event) => this.onclick();
+    this.appendNodeChild(this.checkbox);
+    this.text = document.createTextNode("");
+    this.appendNodeChild(this.text);
+  }
+
+  /**
+   * Set this checkbox as a switch; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
+   */
+   setSwitch() {
+    // this.checkbox.setAttribute("role", "switch");
+  }
+
+  /**
+   * Set this checkbox as a toggle; the result depends on the used
+   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
+   */
+   setToggle() {
+    // this.checkbox.setAttribute("role", "toggle");
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.setSelected
+   *
+   * @param selected true to select, false otherwise
+   */
+   setSelected(selected) {
+    this.checkbox.checked = selected;
+  }
+
+  /**
+   * Clone of javax.swing.JCheckBox.isSelected
+   *
+   * @return true if selected, false otherwise
+   */
+   isSelected() {
+    return this.checkbox.checked;
+  }
+
+   setEnabled(b) {
+    super.setEnabled(b);
+    if (b) {
+      this.checkbox.removeAttribute("disabled");
+    } else {
+      this.checkbox.setAttribute("disabled", "disabled");
+    }
   }
 }
 /**

@@ -1,12 +1,12 @@
 :root {
   --font-family: arial;
   --font-size: 14px;
-  /*--main-color: #0d6efd;*/
   --main-color: black;
   --main-bgcolor: white;
+  --main-action-color: white;
+  --main-action-bgcolor: #0d6efd;
 }
 :root.dark-mode {
-  /*--main-color: #0d6efd;*/
   --main-color: #dee2e6;
   --main-bgcolor: #212529;
 }
@@ -19,4 +19,10 @@ html, body {
   font-size: var(--font-size);
   color: var(--main-color);
   background: var(--main-bgcolor);
+}
+
+label {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
 }
