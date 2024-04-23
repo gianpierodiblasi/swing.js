@@ -25,32 +25,32 @@ public class BoxLayout implements LayoutManager {
 
   @Override
   public void setPanel(JSPanel panel) {
-    panel.element.classList.add("boxlayout");
+    panel.cssAddClass("boxlayout");
 
     switch (this.axis) {
       case BoxLayout.LINE_AXIS:
       case BoxLayout.X_AXIS:
-        panel.element.style.flexDirection = "row";
-        panel.element.style.alignItems = "center";
+        panel.getStyle().flexDirection = "row";
+        panel.getStyle().alignItems = "center";
         break;
       case BoxLayout.PAGE_AXIS:
       case BoxLayout.Y_AXIS:
-        panel.element.style.flexDirection = "column";
-        panel.element.style.alignItems = "flex-start";
+        panel.getStyle().flexDirection = "column";
+        panel.getStyle().alignItems = "flex-start";
         break;
     }
   }
 
   @Override
   public void resetPanel(JSPanel panel) {
-    panel.element.textContent = "";
-    panel.element.classList.remove("boxlayout");
-    panel.element.style.flexDirection = "";
-    panel.element.style.alignItems = "";
+    panel.clearContent();
+    panel.cssRemoveClass("boxlayout");
+    panel.getStyle().flexDirection = "";
+    panel.getStyle().alignItems = "";
   }
 
   @Override
   public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
-    panel.element.appendChild(component.element);
+    panel.appendChild(component);
   }
 }

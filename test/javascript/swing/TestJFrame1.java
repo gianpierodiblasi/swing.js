@@ -2,6 +2,7 @@ package javascript.swing;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -41,6 +42,10 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jLabel7 = new JLabel();
     jLabel5 = new JLabel();
     jLabel9 = new JLabel();
+    jPanel3 = new JPanel();
+    jLabel10 = new JLabel();
+    jLabel11 = new JLabel();
+    jLabel12 = new JLabel();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -77,10 +82,26 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel2.add(jLabel9);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
+
+    jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+
+    jLabel10.setText("jLabel10");
+    jPanel3.add(jLabel10);
+
+    jLabel11.setText("jLabel11");
+    jPanel3.add(jLabel11);
+
+    jLabel12.setText("jLabel12");
+    jPanel3.add(jLabel12);
+
+    getContentPane().add(jPanel3, BorderLayout.LINE_START);
   }// </editor-fold>//GEN-END:initComponents
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JLabel jLabel1;
+  private JLabel jLabel10;
+  private JLabel jLabel11;
+  private JLabel jLabel12;
   private JLabel jLabel2;
   private JLabel jLabel3;
   private JLabel jLabel4;
@@ -91,5 +112,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private JLabel jLabel9;
   private JPanel jPanel1;
   private JPanel jPanel2;
+  private JPanel jPanel3;
   // End of variables declaration//GEN-END:variables
 }

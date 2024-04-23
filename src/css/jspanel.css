@@ -20,3 +20,8 @@
 .jspanel.gridlayout {
   display: grid;
 }
+
+.jspanel.boxlayout {
+  display: flex;
+  flex-wrap: nowrap;
+}

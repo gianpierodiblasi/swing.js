@@ -29,6 +29,10 @@ class TestJFrame1 extends JFrame {
     this.jLabel7 = new JLabel();let jLabel7 = this.jLabel7;
     this.jLabel5 = new JLabel();let jLabel5 = this.jLabel5;
     this.jLabel9 = new JLabel();let jLabel9 = this.jLabel9;
+    this.jPanel3 = new JPanel();let jPanel3 = this.jPanel3;
+    this.jLabel10 = new JLabel();let jLabel10 = this.jLabel10;
+    this.jLabel11 = new JLabel();let jLabel11 = this.jLabel11;
+    this.jLabel12 = new JLabel();let jLabel12 = this.jLabel12;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jLabel1.setText("jLabel1");
@@ -52,11 +56,25 @@ class TestJFrame1 extends JFrame {
     jLabel9.setText("jLabel9");
     jPanel2.add(jLabel9);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
+    jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+    jLabel10.setText("jLabel10");
+    jPanel3.add(jLabel10);
+    jLabel11.setText("jLabel11");
+    jPanel3.add(jLabel11);
+    jLabel12.setText("jLabel12");
+    jPanel3.add(jLabel12);
+    this.getContentPane().add(jPanel3, BorderLayout.LINE_START);
   }
 
   // </editor-fold>//GEN-END:initComponents
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jLabel1 = null;
+
+   jLabel10 = null;
+
+   jLabel11 = null;
+
+   jLabel12 = null;
 
    jLabel2 = null;
 
@@ -77,5 +95,7 @@ class TestJFrame1 extends JFrame {
    jPanel1 = null;
 
    jPanel2 = null;
+
+   jPanel3 = null;
   // End of variables declaration//GEN-END:variables
 }
