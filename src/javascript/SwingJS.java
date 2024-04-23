@@ -18,6 +18,8 @@ public class SwingJS {
   private int _fontSize;
   private String _mainColor;
   private String _mainBGColor;
+  private String _mainActionColor;
+  private String _mainActionBGColor;
 
   /**
    * Converts "any" javax.swing.JComponent in the corresponding
@@ -85,7 +87,7 @@ public class SwingJS {
    * @return The SwingJS instance (for chaining)
    */
   public SwingJS mainColor(String color) {
-    this._mainBGColor = color;
+    this._mainColor = color;
     return this;
   }
 
@@ -98,6 +100,30 @@ public class SwingJS {
    */
   public SwingJS mainBGColor(String color) {
     this._mainBGColor = color;
+    return this;
+  }
+
+  /**
+   * Sets the global main action Action color, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param color The color
+   * @return The SwingJS instance (for chaining)
+   */
+  public SwingJS mainActionColor(String color) {
+    this._mainActionColor = color;
+    return this;
+  }
+
+  /**
+   * Sets the global main action background color, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param color The color
+   * @return The SwingJS instance (for chaining)
+   */
+  public SwingJS mainActionBGColor(String color) {
+    this._mainActionBGColor = color;
     return this;
   }
 
@@ -116,6 +142,8 @@ public class SwingJS {
             + ($exists(this._fontSize) ? "  --font-size: " + this._fontSize + "px !important;\n" : "")
             + ($exists(this._mainColor) ? "  --main-color: " + this._mainColor + " !important;\n" : "")
             + ($exists(this._mainBGColor) ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "")
+            + ($exists(this._mainActionColor) ? "  --main-action-color: " + this._mainActionColor + " !important;\n" : "")
+            + ($exists(this._mainActionBGColor) ? "  --main-action-bgcolor: " + this._mainActionBGColor + " !important;\n" : "")
             + "}";
 
     document.head.appendChild(style);

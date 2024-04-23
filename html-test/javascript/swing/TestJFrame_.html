@@ -17,6 +17,8 @@
                 fontSize(urlParams.get("font")).
                 mainColor(urlParams.get("color")).
                 mainBGColor(urlParams.get("bgcolor")).
+                mainActionColor(urlParams.get("actioncolor")).
+                mainActionBGColor(urlParams.get("actionbgcolor")).
                 build();
 
         eval("new TestJSFrame" + urlParams.get("num") + "();");

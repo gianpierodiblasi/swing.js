@@ -17,6 +17,10 @@ class SwingJS {
 
    _mainBGColor = null;
 
+   _mainActionColor = null;
+
+   _mainActionBGColor = null;
+
   /**
    * Converts "any" javax.swing.JComponent in the corresponding
    * javascript.swing.JSComponent. This method is useful when developing in
@@ -82,7 +86,7 @@ class SwingJS {
    * @return The SwingJS instance (for chaining)
    */
    mainColor(color) {
-    this._mainBGColor = color;
+    this._mainColor = color;
     return this;
   }
 
@@ -99,6 +103,30 @@ class SwingJS {
   }
 
   /**
+   * Sets the global main action Action color, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param color The color
+   * @return The SwingJS instance (for chaining)
+   */
+   mainActionColor(color) {
+    this._mainActionColor = color;
+    return this;
+  }
+
+  /**
+   * Sets the global main action background color, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param color The color
+   * @return The SwingJS instance (for chaining)
+   */
+   mainActionBGColor(color) {
+    this._mainActionBGColor = color;
+    return this;
+  }
+
+  /**
    * Builds the new global style
    */
    build() {
@@ -106,7 +134,7 @@ class SwingJS {
       document.documentElement.classList.add("dark-mode");
     }
     let style = document.createElement("style");
-    style.textContent = ":root {\n" + (this._fontFamily ? "  --font-family: " + this._fontFamily + " !important;\n" : "") + (this._fontSize ? "  --font-size: " + this._fontSize + "px !important;\n" : "") + (this._mainColor ? "  --main-color: " + this._mainColor + " !important;\n" : "") + (this._mainBGColor ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "") + "}";
+    style.textContent = ":root {\n" + (this._fontFamily ? "  --font-family: " + this._fontFamily + " !important;\n" : "") + (this._fontSize ? "  --font-size: " + this._fontSize + "px !important;\n" : "") + (this._mainColor ? "  --main-color: " + this._mainColor + " !important;\n" : "") + (this._mainBGColor ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "") + (this._mainActionColor ? "  --main-action-color: " + this._mainActionColor + " !important;\n" : "") + (this._mainActionBGColor ? "  --main-action-bgcolor: " + this._mainActionBGColor + " !important;\n" : "") + "}";
     document.head.appendChild(style);
   }
 
