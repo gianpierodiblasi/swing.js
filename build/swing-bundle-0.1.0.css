@@ -1,0 +1,43 @@
+.jsframe {
+}
+
+.jsframe > .jspanel {
+  height: 100%;
+}.jslabel {
+}.jspanel {
+}
+
+.jspanel.flowlayout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.jspanel.borderlayout {
+  display: grid;
+  grid-template:
+    "north north north" auto
+    "west center east" 1fr
+    "south south south" auto /
+    auto 1fr auto
+}
+
+.jspanel.gridlayout {
+  display: grid;
+}:root {
+  --font-family: arial;
+  --font-size: 14px;
+  /*--main-color: #0d6efd;*/
+  --main-color: black;
+  --main-bgcolor: white;
+}
+html, body {
+  height: 100%;
+  margin: 0px;
+
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}

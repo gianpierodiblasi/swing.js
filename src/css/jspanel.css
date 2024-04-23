@@ -1,0 +1,22 @@
+.jspanel {
+}
+
+.jspanel.flowlayout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.jspanel.borderlayout {
+  display: grid;
+  grid-template:
+    "north north north" auto
+    "west center east" 1fr
+    "south south south" auto /
+    auto 1fr auto
+}
+
+.jspanel.gridlayout {
+  display: grid;
+}

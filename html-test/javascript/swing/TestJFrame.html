@@ -49,56 +49,47 @@
       window.onload = (event) => {
         var tests = ["Test Layouts", "Test Components 1", "Test Components 2", "Test Tabs", "Test Dialog"];
         var params = [
-          "plaf=default",
-          "plaf=bootstrap&size=", "plaf=bootstrap&size=Large", "plaf=bootstrap&size=Small",
-          "plaf=bootstrap&size=&style=true", "plaf=bootstrap&size=Large&style=true", "plaf=bootstrap&size=Small&style=true",
-          "plaf=pico&theme=red&style=false", "plaf=pico&theme=&style=false", "plaf=pico&theme=slate&style=false",
-          "plaf=pico&theme=red&style=true", "plaf=pico&theme=&style=true", "plaf=pico&theme=slate&style=true"
-        ];
-
-        var titles = [
           "",
-          "Normal", "Large", "Small",
-          "Normal", "Large", "Small",
-          "Red", "Azure", "Slate",
-          "Red", "Azure", "Slate"
+//          "",
+//          "",
+//          "",
+//          ""
+        ];
+//
+        var titles = [
+          "Default",
+//          "", "Large", "Small",
+//          "Normal", "Large", "Small",
+//          "Red", "Azure", "Slate",
+//          "Red", "Azure", "Slate"
         ];
 
         var tbody = document.querySelector("tbody");
         for (var i = 0; i < tests.length; i++) {
           var tr = document.createElement("tr");
 
+          var td = document.createElement("td");
+          td.textContent = tests[i];
+          tr.appendChild(td);
+
           for (var j = 0; j < params.length; j++) {
             var a = document.createElement("a");
-            a.href = "TestJFrame_.html?" + params[j] + "&num=" + (i + 1);
-            a.textContent = titles[j] ? titles[j] : tests[i];
+            a.href = "TestJFrame_.html?" + params[j] + "num=" + (i + 1);
+            a.textContent = titles[j];
 
-            var td = document.createElement("td");
+            td = document.createElement("td");
             td.appendChild(a);
-
             tr.appendChild(td);
           }
 
           tbody.appendChild(tr);
         }
-      }
+      };
     </script>
   </head>
   <body>
     <table>
       <thead>
-        <tr>
-          <td>Default</td>
-          <td colspan="6">Bootstrap</td>
-          <td colspan="6">Pico</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td colspan="3">Light</td>
-          <td colspan="3">Dark</td>
-          <td colspan="3">Light</td>
-          <td colspan="3">Dark</td>
-        </tr>
       </thead>    
       <tbody>
       </tbody>

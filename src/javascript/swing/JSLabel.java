@@ -1,7 +1,6 @@
 package javascript.swing;
 
 import static def.dom.Globals.document;
-import javascript.swing.plaf.LookAndFeel;
 
 /**
  * The javax.swing.JLabel clone
@@ -11,12 +10,8 @@ import javascript.swing.plaf.LookAndFeel;
 public class JSLabel extends JSComponent {
 
   public JSLabel() {
-    super();
-
-    this.element = document.createElement("label");
-    this.element.classList.add("jlabel");
-
-    LookAndFeel.CURRENT.styleJSLabel(this);
+    super(document.createElement("label"));
+    this.cssAddClass("jslabel");
   }
 
   /**
@@ -25,6 +20,6 @@ public class JSLabel extends JSComponent {
    * @param text The text
    */
   public void setText(String text) {
-    this.element.textContent = text;
+    this.setContent(text);
   }
 }

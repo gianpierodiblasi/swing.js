@@ -1,0 +1,16 @@
+:root {
+  --font-family: arial;
+  --font-size: 14px;
+  /*--main-color: #0d6efd;*/
+  --main-color: black;
+  --main-bgcolor: white;
+}
+html, body {
+  height: 100%;
+  margin: 0px;
+
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}

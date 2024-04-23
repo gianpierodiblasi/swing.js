@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>TITLE</title>
     <link rel="icon" href="../../../swing.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,17 +12,17 @@
     <script>
       window.onload = (event) => {
         const urlParams = new URLSearchParams(window.location.search);
-        var plaf = urlParams.get("plaf");
-        switch (plaf) {
-          case "default":
-            LookAndFeel.CURRENT = new DefaultLookAndFeel();
-            break;
-          case "bootstrap":
-            LookAndFeel.CURRENT = BootstrapLookAndFeel["create" + urlParams.get("size")](urlParams.get("style") === "true");
-            break;
-          case "pico":
-            LookAndFeel.CURRENT = new PicoLookAndFeel(urlParams.get("theme"), urlParams.get("style") === "true");
-        }
+//        var plaf = urlParams.get("plaf");
+//        switch (plaf) {
+//          case "default":
+//            LookAndFeel.CURRENT = new DefaultLookAndFeel();
+//            break;
+//          case "bootstrap":
+//            LookAndFeel.CURRENT = BootstrapLookAndFeel["create" + urlParams.get("size")](urlParams.get("style") === "true");
+//            break;
+//          case "pico":
+//            LookAndFeel.CURRENT = new PicoLookAndFeel(urlParams.get("theme"), urlParams.get("style") === "true");
+//        }
 
         eval("new TestJSFrame" + urlParams.get("num") + "();");
       };

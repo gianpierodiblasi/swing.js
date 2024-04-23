@@ -27,7 +27,7 @@ public class GridLayout implements LayoutManager {
 
   @Override
   public void setPanel(JSPanel panel) {
-    panel.element.classList.add("gridlayout");
+    panel.cssAddClass("gridlayout");
 
     String gridTemplate = "";
     for (int row = 1; row <= this.rows; row++) {
@@ -42,24 +42,21 @@ public class GridLayout implements LayoutManager {
       gridTemplate += " 1fr";
     }
 
-    panel.element.style.setProperty("grid-template", gridTemplate);
-    panel.element.style.setProperty("row-gap", this.vGap + "px");
-    panel.element.style.setProperty("column-gap", this.hGap + "px");
+    panel.getStyle().setProperty("grid-template", gridTemplate);
+    panel.getStyle().setProperty("gap", this.vGap + "px " + this.hGap + "px");
   }
 
   @Override
   public void resetPanel(JSPanel panel) {
-    panel.element.textContent = "";
-    panel.element.classList.remove("gridlayout");
-    panel.element.style.removeProperty("grid-template");
-    panel.element.style.removeProperty("grid-template-areas");
-    panel.element.style.removeProperty("row-gap");
-    panel.element.style.removeProperty("column-gap");
+    panel.clearContent();
+    panel.cssRemoveClass("gridlayout");
+    panel.getStyle().removeProperty("grid-template");
+    panel.getStyle().removeProperty("gap");
   }
 
   @Override
   public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
-    panel.element.appendChild(component.element);
-    component.element.style.setProperty("grid-area", "p" + panel.element.childElementCount);
+    panel.appendChild(component);
+    component.getStyle().setProperty("grid-area", "p" + panel.getChildCount());
   }
 }

@@ -1,24 +1,27 @@
-package javascript.swing;
-
-import def.dom.DOMTokenList;
-import def.dom.HTMLElement;
-import javascript.awt.Color;
-
 /**
  * The javax.swing.JComponent clone
  *
  * @author gianpiero.diblasi
  */
-public class JSComponent {
+class JSComponent {
 
-  public HTMLElement element;
+   element = null;
+
+  /**
+   * Creates the object
+   *
+   * @param element The HTML element representing this component
+   */
+  constructor(element) {
+    this.element = element;
+  }
 
   /**
    * Clone of javax.swing.JComponent.setBackground
    *
    * @param color The color
    */
-  public void setBackground(Color color) {
+   setBackground(color) {
     this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
   }
 
@@ -27,7 +30,7 @@ public class JSComponent {
    *
    * @param id The ID of the HTML element
    */
-  public void setID(String id) {
+   setID(id) {
     this.element.id = id;
   }
 
@@ -36,7 +39,7 @@ public class JSComponent {
    *
    * @return The ID of the HTML element
    */
-  public String getID() {
+   getID() {
     return this.element.id;
   }
 
@@ -45,7 +48,7 @@ public class JSComponent {
    *
    * @param cl The class to add
    */
-  public void cssAddClass(String cl) {
+   cssAddClass(cl) {
     this.element.classList.add(cl);
   }
 
@@ -54,7 +57,7 @@ public class JSComponent {
    *
    * @param cl The class to remove
    */
-  public void cssRemoveClass(String cl) {
+   cssRemoveClass(cl) {
     this.element.classList.remove(cl);
   }
 
@@ -64,7 +67,7 @@ public class JSComponent {
    *
    * @param cl The class to toggle
    */
-  public void cssToggleClass(String cl) {
+   cssToggleClass(cl) {
     this.element.classList.toggle(cl);
   }
 
@@ -73,7 +76,50 @@ public class JSComponent {
    *
    * @return The class list of the HTML element
    */
-  public DOMTokenList cssClassList() {
+   cssClassList() {
     return this.element.classList;
+  }
+
+  /**
+   * Adds a child to this component
+   *
+   * @param component The child component
+   */
+   appendChild(component) {
+    this.element.appendChild(component.element);
+  }
+
+  /**
+   * Returns the child count
+   *
+   * @return The child count
+   */
+   getChildCount() {
+    return this.element.childElementCount;
+  }
+
+  /**
+   * Returns the style of this component
+   *
+   * @return The style of this component
+   */
+   getStyle() {
+    return this.element.style;
+  }
+
+  /**
+   * Clears the text content of this component
+   */
+   clearContent() {
+    this.element.textContent = "";
+  }
+
+  /**
+   * Sets the text content of this component
+   *
+   * @param content The text content of this component
+   */
+   setContent(content) {
+    this.element.textContent = content;
   }
 }

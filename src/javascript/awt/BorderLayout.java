@@ -1,7 +1,5 @@
 package javascript.awt;
 
-import static def.dom.Globals.document;
-import def.dom.HTMLElement;
 import javascript.swing.JSComponent;
 import javascript.swing.JSPanel;
 import static simulation.js.$Globals.$typeof;
@@ -40,43 +38,20 @@ public class BorderLayout implements LayoutManager {
 
   @Override
   public void setPanel(JSPanel panel) {
-    HTMLElement middle = document.createElement("div");
-    middle.classList.add("borderlayout-middle");
-
-    panel.element.appendChild(middle);
-    panel.element.classList.add("borderlayout");
+    panel.cssAddClass("borderlayout");
+    panel.getStyle().setProperty("gap", this.vGap + "px " + this.hGap + "px");
   }
 
   @Override
   public void resetPanel(JSPanel panel) {
-    panel.element.textContent = "";
-    panel.element.classList.remove("borderlayout");
+    panel.clearContent();
+    panel.cssRemoveClass("borderlayout");
   }
 
   @Override
   public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
-    component.element.classList.add("borderlayout-" + ((String) constraints).toLowerCase());
-
-    switch (((String) constraints)) {
-      case BorderLayout.NORTH:
-        panel.element.appendChild(component.element);
-        component.element.style.marginBottom = this.vGap + "px";
-        break;
-      case BorderLayout.SOUTH:
-        panel.element.appendChild(component.element);
-        component.element.style.marginTop = this.vGap + "px";
-        break;
-      case BorderLayout.WEST:
-        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
-        component.element.style.marginRight = this.hGap + "px";
-        break;
-      case BorderLayout.CENTER:
-        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
-        break;
-      case BorderLayout.EAST:
-        panel.element.querySelector(".borderlayout-middle").appendChild(component.element);
-        component.element.style.marginLeft = this.hGap + "px";
-        break;
-    }
+    panel.appendChild(component);
+    component.cssAddClass(((String) constraints).toLowerCase());
+    component.getStyle().setProperty("grid-area", ((String) constraints).toLowerCase());
   }
 }

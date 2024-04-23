@@ -1,20 +1,9 @@
 package javascript.swing;
 
-import static def.dom.Globals.console;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import javascript.swing.plaf.LookAndFeel;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -30,36 +19,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
-    JPanel jPanel22 = new JPanel();
-    JButton jButton22 = new JButton();
-
-    jButton22.setText("jButton2");
-    jButton22.addActionListener(new TestJFrame1ActionListener());
-    jPanel22.add(jButton22);
-    jPanel22.setBackground(new Color(200, 100, 200));
-
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-    jPanel22.add(new JButton());
-
-    this.getContentPane().add(jPanel22, BorderLayout.CENTER);
-
-    this.jPanel2.add(new JButton());
-
-    this.jLabel1.setText(LookAndFeel.CURRENT.getDescription());
   }
 
   /**
@@ -72,154 +31,65 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private void initComponents() {
 
     jPanel1 = new JPanel();
-    jButton1 = new JButton();
-    jButton5 = new JButton();
-    jButton6 = new JButton();
-    jButton7 = new JButton();
-    jSpinner1 = new JSpinner();
     jLabel1 = new JLabel();
+    jLabel2 = new JLabel();
+    jLabel3 = new JLabel();
     jPanel2 = new JPanel();
-    jButton2 = new JButton();
-    filler1 = new Box.Filler(new Dimension(10, 0), new Dimension(10, 0), new Dimension(10, 32767));
-    jButton9 = new JButton();
-    filler4 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
-    jSpinner2 = new JSpinner();
-    jButton11 = new JButton();
-    jPanel3 = new JPanel();
-    jButton3 = new JButton();
-    jButton10 = new JButton();
-    jPanel4 = new JPanel();
-    jButton4 = new JButton();
-    filler2 = new Box.Filler(new Dimension(0, 20), new Dimension(0, 20), new Dimension(32767, 20));
-    jButton12 = new JButton();
-    filler3 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
-    jButton13 = new JButton();
-    filler5 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 32767));
+    jLabel4 = new JLabel();
+    jLabel6 = new JLabel();
+    jLabel8 = new JLabel();
+    jLabel7 = new JLabel();
+    jLabel5 = new JLabel();
+    jLabel9 = new JLabel();
 
-    setTitle("Test JFrame1");
+    setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
-
-    jPanel1.setBackground(new Color(255, 255, 0));
-    jPanel1.setLayout(new GridLayout(2, 3, 20, 5));
-
-    jButton1.setText("jButton1");
-    jButton1.addActionListener(this::jButton1ActionPerformed);
-    jPanel1.add(jButton1);
-
-    jButton5.setText("jButton5");
-    jButton5.setEnabled(false);
-    jButton5.addActionListener(this::jButton5ActionPerformed);
-    jPanel1.add(jButton5);
-
-    jButton6.setText("jButton6");
-    jPanel1.add(jButton6);
-
-    jButton7.setText("jButton7");
-    jPanel1.add(jButton7);
-
-    jSpinner1.setModel(new SpinnerNumberModel(6, 2, 10, 2));
-    jSpinner1.addChangeListener(this::jSpinner1StateChanged);
-    jPanel1.add(jSpinner1);
 
     jLabel1.setText("jLabel1");
     jPanel1.add(jLabel1);
 
-    getContentPane().add(jPanel1, BorderLayout.NORTH);
+    jLabel2.setText("jLabel2");
+    jPanel1.add(jLabel2);
 
-    jPanel2.setBackground(new Color(0, 102, 102));
-    jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.LINE_AXIS));
+    jLabel3.setText("jLabel3");
+    jPanel1.add(jLabel3);
 
-    jButton2.setText("jButton2");
-    jPanel2.add(jButton2);
-    jPanel2.add(filler1);
+    getContentPane().add(jPanel1, BorderLayout.PAGE_START);
 
-    jButton9.setText("jButton9");
-    jPanel2.add(jButton9);
-    jPanel2.add(filler4);
+    jPanel2.setLayout(new GridLayout(2, 3, 10, 20));
 
-    jSpinner2.setEnabled(false);
-    jPanel2.add(jSpinner2);
+    jLabel4.setText("jLabel4");
+    jPanel2.add(jLabel4);
 
-    jButton11.setText("jButton11");
-    jPanel2.add(jButton11);
+    jLabel6.setText("jLabel6");
+    jPanel2.add(jLabel6);
+
+    jLabel8.setText("jLabel8");
+    jPanel2.add(jLabel8);
+
+    jLabel7.setText("jLabel7");
+    jPanel2.add(jLabel7);
+
+    jLabel5.setText("jLabel5");
+    jPanel2.add(jLabel5);
+
+    jLabel9.setText("jLabel9");
+    jPanel2.add(jLabel9);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
-
-    jPanel3.setBackground(new Color(153, 255, 153));
-    jPanel3.setLayout(new CardLayout(5, 5));
-
-    jButton3.setText("jButton3");
-    jButton3.addActionListener(this::jButton3ActionPerformed);
-    jPanel3.add(jButton3, "card2");
-
-    jButton10.setText("jButton10");
-    jButton10.addActionListener(this::jButton10ActionPerformed);
-    jPanel3.add(jButton10, "card3");
-
-    getContentPane().add(jPanel3, BorderLayout.LINE_END);
-
-    jPanel4.setBackground(new Color(0, 51, 0));
-    jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.PAGE_AXIS));
-
-    jButton4.setText("jButton4");
-    jPanel4.add(jButton4);
-    jPanel4.add(filler2);
-
-    jButton12.setText("jButton12");
-    jPanel4.add(jButton12);
-    jPanel4.add(filler3);
-
-    jButton13.setText("jButton13");
-    jPanel4.add(jButton13);
-    jPanel4.add(filler5);
-
-    getContentPane().add(jPanel4, BorderLayout.LINE_START);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    console.log("FROM LAMBDA");
-  }//GEN-LAST:event_jButton1ActionPerformed
-
-  private void jButton3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    ((CardLayout) this.jPanel3.getLayout()).show(this.jPanel3, "card3");
-  }//GEN-LAST:event_jButton3ActionPerformed
-
-  private void jButton10ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-    ((CardLayout) this.jPanel3.getLayout()).show(this.jPanel3, "card2");
-  }//GEN-LAST:event_jButton10ActionPerformed
-
-  private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-    this.jButton1.setText("" + this.jSpinner1.getValue());
-  }//GEN-LAST:event_jSpinner1StateChanged
-
-  private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    console.log("FROM LAMBDA 2");
-  }//GEN-LAST:event_jButton5ActionPerformed
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private Box.Filler filler1;
-  private Box.Filler filler2;
-  private Box.Filler filler3;
-  private Box.Filler filler4;
-  private Box.Filler filler5;
-  private JButton jButton1;
-  private JButton jButton10;
-  private JButton jButton11;
-  private JButton jButton12;
-  private JButton jButton13;
-  private JButton jButton2;
-  private JButton jButton3;
-  private JButton jButton4;
-  private JButton jButton5;
-  private JButton jButton6;
-  private JButton jButton7;
-  private JButton jButton9;
   private JLabel jLabel1;
+  private JLabel jLabel2;
+  private JLabel jLabel3;
+  private JLabel jLabel4;
+  private JLabel jLabel5;
+  private JLabel jLabel6;
+  private JLabel jLabel7;
+  private JLabel jLabel8;
+  private JLabel jLabel9;
   private JPanel jPanel1;
   private JPanel jPanel2;
-  private JPanel jPanel3;
-  private JPanel jPanel4;
-  private JSpinner jSpinner1;
-  private JSpinner jSpinner2;
   // End of variables declaration//GEN-END:variables
 }

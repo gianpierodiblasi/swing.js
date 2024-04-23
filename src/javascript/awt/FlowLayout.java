@@ -31,37 +31,33 @@ public class FlowLayout implements LayoutManager {
 
   @Override
   public void setPanel(JSPanel panel) {
-    panel.element.classList.add("flowlayout");
+    panel.cssAddClass("flowlayout");
 
     switch (this.align) {
       case FlowLayout.LEFT:
       case FlowLayout.LEADING:
-        panel.element.style.justifyContent = "flex-start";
+        panel.getStyle().justifyContent = "flex-start";
         break;
       case FlowLayout.CENTER:
-        panel.element.style.justifyContent = "center";
+        panel.getStyle().justifyContent = "center";
         break;
       case FlowLayout.RIGHT:
       case FlowLayout.TRAILING:
-        panel.element.style.justifyContent = "flex-end";
+        panel.getStyle().justifyContent = "flex-end";
         break;
     }
   }
 
   @Override
   public void resetPanel(JSPanel panel) {
-    panel.element.textContent = "";
-    panel.element.classList.remove("flowlayout");
-    panel.element.style.justifyContent = "";
+    panel.clearContent();
+    panel.cssRemoveClass("flowlayout");
+    panel.getStyle().justifyContent = "";
   }
 
   @Override
   public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
-    panel.element.appendChild(component.element);
-
-    component.element.style.marginLeft = this.hGap + "px";
-    component.element.style.marginRight = this.hGap + "px";
-    component.element.style.marginTop = this.vGap + "px";
-    component.element.style.marginBottom = this.vGap + "px";
+    panel.appendChild(component);
+    component.getStyle().margin = this.vGap + "px " + this.hGap + "px";
   }
 }

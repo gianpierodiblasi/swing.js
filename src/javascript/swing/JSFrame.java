@@ -16,15 +16,11 @@ public class JSFrame extends JSComponent {
   private final JSPanel contentPane = new JSPanel();
 
   public JSFrame() {
-    super();
+    super((HTMLElement) document.querySelector("body"));
 
-    this.contentPane.cssRemoveClass("jpanel");
-    this.contentPane.cssAddClass("jframe");
+    this.cssAddClass("jsframe");
+    this.appendChild(this.contentPane);
     this.contentPane.setLayout(new BorderLayout(0, 0));
-
-    this.element = (HTMLElement) document.querySelector("body");
-    this.element.textContent = "";
-    this.element.appendChild(this.contentPane.element);
   }
 
   /**

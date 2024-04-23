@@ -1,25 +1,15 @@
-package javascript.swing;
-
-import static def.dom.Globals.document;
-import javascript.awt.FlowLayout;
-import javascript.awt.LayoutManager;
-import static simulation.js.$Globals.$exists;
-
 /**
  * The javax.swing.JPanel clone
  *
  * @author gianpiero.diblasi
  */
-public class JSPanel extends JSComponent {
+class JSPanel extends JSComponent {
 
-  private LayoutManager layoutManager;
+   layoutManager = null;
 
-  public JSPanel() {
-    super();
-
-    this.element = document.createElement("div");
-    this.element.classList.add("jpanel");
-
+  constructor() {
+    super(document.createElement("div"));
+    this.cssAddClass("jspanel");
     this.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
   }
 
@@ -28,8 +18,8 @@ public class JSPanel extends JSComponent {
    *
    * @param layoutManager The layout manager
    */
-  public void setLayout(LayoutManager layoutManager) {
-    if ($exists(this.layoutManager)) {
+   setLayout(layoutManager) {
+    if (this.layoutManager) {
       this.layoutManager.resetPanel(this);
     }
     this.layoutManager = layoutManager;
@@ -41,7 +31,7 @@ public class JSPanel extends JSComponent {
    *
    * @return The layout manager
    */
-  public LayoutManager getLayout() {
+   getLayout() {
     return this.layoutManager;
   }
 
@@ -51,7 +41,7 @@ public class JSPanel extends JSComponent {
    * @param component The component
    * @param constraints The constraints
    */
-  public void add(JSComponent component, Object constraints) {
+   add(component, constraints) {
     this.layoutManager.addInPanel(this, component, constraints);
   }
 }
