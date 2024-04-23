@@ -31,7 +31,10 @@
   display: flex;
   flex-wrap: nowrap;
 }
-:root {
+
+.jspanel.cardlayout {
+  display: flex;
+}:root {
   --font-family: arial;
   --font-size: 14px;
   /*--main-color: #0d6efd;*/

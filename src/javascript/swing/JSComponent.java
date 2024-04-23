@@ -2,6 +2,7 @@ package javascript.swing;
 
 import def.dom.CSSStyleDeclaration;
 import def.dom.DOMTokenList;
+import def.dom.Element;
 import def.dom.HTMLElement;
 import javascript.awt.Color;
 
@@ -88,7 +89,52 @@ public class JSComponent {
   }
 
   /**
-   * Adds a child to this component
+   * Returns the style of the HTML element
+   *
+   * @return The style of the HTML element
+   */
+  public CSSStyleDeclaration getStyle() {
+    return this.element.style;
+  }
+
+  /**
+   * Sets an attribute of the HTML element
+   *
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+  public void setAttribute(String key, String value) {
+    this.element.setAttribute(key, value);
+  }
+
+  /**
+   * Returns an attribute of the HTML element
+   *
+   * @param key The attribute key
+   * @return The attribute value
+   */
+  public String getAttribute(String key) {
+    return this.element.getAttribute(key);
+  }
+
+  /**
+   * Clears the text content of the HTML element
+   */
+  public void clearContent() {
+    this.element.textContent = "";
+  }
+
+  /**
+   * Sets the text content of the HTML element
+   *
+   * @param content The text content of this component
+   */
+  public void setContent(String content) {
+    this.element.textContent = content;
+  }
+
+  /**
+   * Adds a child to the HTML element
    *
    * @param component The child component
    */
@@ -97,36 +143,64 @@ public class JSComponent {
   }
 
   /**
-   * Returns the child count
+   * Returns the style of a child of the HTML element
    *
-   * @return The child count
+   * @param index The child index
+   * @return The style of a child of the HTML element
+   */
+  public CSSStyleDeclaration getChilStyle(int index) {
+    return ((HTMLElement) this.element.childNodes.item(index)).style;
+  }
+
+  /**
+   * Returns the style of a child of the HTML element
+   *
+   * @param query The query selector
+   * @return The style of a child of the HTML element
+   */
+  public CSSStyleDeclaration queryChilStyle(String query) {
+    return ((HTMLElement) this.element.querySelector(query)).style;
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element
+   *
+   * @param index The child index
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+  public void setChildAttribute(int index, String key, String value) {
+    ((Element) this.element.childNodes.item(index)).setAttribute(key, value);
+  }
+
+  /**
+   * Returns an attribute a child of the HTML element
+   *
+   * @param index The child index
+   * @param key The attribute key
+   * @return The attribute value
+   */
+  public String getChildAttribute(int index, String key) {
+    return ((Element) this.element.childNodes.item(index)).getAttribute(key);
+  }
+
+  /**
+   * Returns an attribute a child of the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   * @return The attribute value
+   */
+  public String queryChildAttribute(String query, String key) {
+    return this.element.querySelector(query).getAttribute(key);
+  }
+
+  /**
+   * Returns the child count of the HTML element
+   *
+   * @return The child count of the HTML element
    */
   public double getChildCount() {
     return this.element.childElementCount;
-  }
-
-  /**
-   * Returns the style of this component
-   *
-   * @return The style of this component
-   */
-  public CSSStyleDeclaration getStyle() {
-    return this.element.style;
-  }
-
-  /**
-   * Clears the text content of this component
-   */
-  public void clearContent() {
-    this.element.textContent = "";
-  }
-
-  /**
-   * Sets the text content of this component
-   *
-   * @param content The text content of this component
-   */
-  public void setContent(String content) {
-    this.element.textContent = content;
   }
 }

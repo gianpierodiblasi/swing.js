@@ -3,6 +3,8 @@
  */
 class TestJFrame1 extends JFrame {
 
+   card = "card2";
+
   constructor() {
     super();
     this.initComponents();
@@ -10,6 +12,10 @@ class TestJFrame1 extends JFrame {
   }
 
    postInitComponents() {
+    setInterval(() => {
+      this.card = this.card === "card2" ? "card3" : "card2";
+      (this.jPanel4.getLayout()).show(this.jPanel4, this.card);
+    }, 2000);
   }
 
   /**
@@ -33,6 +39,9 @@ class TestJFrame1 extends JFrame {
     this.jLabel10 = new JLabel();let jLabel10 = this.jLabel10;
     this.jLabel11 = new JLabel();let jLabel11 = this.jLabel11;
     this.jLabel12 = new JLabel();let jLabel12 = this.jLabel12;
+    this.jPanel4 = new JPanel();let jPanel4 = this.jPanel4;
+    this.jLabel13 = new JLabel();let jLabel13 = this.jLabel13;
+    this.jLabel14 = new JLabel();let jLabel14 = this.jLabel14;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jLabel1.setText("jLabel1");
@@ -64,6 +73,14 @@ class TestJFrame1 extends JFrame {
     jLabel12.setText("jLabel12");
     jPanel3.add(jLabel12);
     this.getContentPane().add(jPanel3, BorderLayout.LINE_START);
+    jPanel4.setLayout(new CardLayout());
+    jLabel13.setBackground(new Color(204, 255, 0));
+    jLabel13.setText("jLabel13");
+    jPanel4.add(jLabel13, "card2");
+    jLabel14.setBackground(new Color(255, 102, 153));
+    jLabel14.setText("jLabel14");
+    jPanel4.add(jLabel14, "card3");
+    this.getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -75,6 +92,10 @@ class TestJFrame1 extends JFrame {
    jLabel11 = null;
 
    jLabel12 = null;
+
+   jLabel13 = null;
+
+   jLabel14 = null;
 
    jLabel2 = null;
 
@@ -97,5 +118,7 @@ class TestJFrame1 extends JFrame {
    jPanel2 = null;
 
    jPanel3 = null;
+
+   jPanel4 = null;
   // End of variables declaration//GEN-END:variables
 }

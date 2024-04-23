@@ -1,10 +1,13 @@
 package javascript.swing;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import static simulation.js.$Globals.setInterval;
 
 /**
  *
@@ -13,13 +16,20 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class TestJFrame1 extends javax.swing.JFrame {
 
+  private String card = "card2";
+
   public TestJFrame1() {
     super();
     this.initComponents();
     this.postInitComponents();
   }
 
+  @SuppressWarnings("StringEquality")
   private void postInitComponents() {
+    setInterval(() -> {
+      this.card = this.card == "card2" ? "card3" : "card2";
+      ((CardLayout) this.jPanel4.getLayout()).show(this.jPanel4, this.card);
+    }, 2000);
   }
 
   /**
@@ -46,6 +56,9 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jLabel10 = new JLabel();
     jLabel11 = new JLabel();
     jLabel12 = new JLabel();
+    jPanel4 = new JPanel();
+    jLabel13 = new JLabel();
+    jLabel14 = new JLabel();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -95,6 +108,18 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jPanel3.add(jLabel12);
 
     getContentPane().add(jPanel3, BorderLayout.LINE_START);
+
+    jPanel4.setLayout(new CardLayout());
+
+    jLabel13.setBackground(new Color(204, 255, 0));
+    jLabel13.setText("jLabel13");
+    jPanel4.add(jLabel13, "card2");
+
+    jLabel14.setBackground(new Color(255, 102, 153));
+    jLabel14.setText("jLabel14");
+    jPanel4.add(jLabel14, "card3");
+
+    getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }// </editor-fold>//GEN-END:initComponents
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -102,6 +127,8 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private JLabel jLabel10;
   private JLabel jLabel11;
   private JLabel jLabel12;
+  private JLabel jLabel13;
+  private JLabel jLabel14;
   private JLabel jLabel2;
   private JLabel jLabel3;
   private JLabel jLabel4;
@@ -113,5 +140,6 @@ public class TestJFrame1 extends javax.swing.JFrame {
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;
+  private JPanel jPanel4;
   // End of variables declaration//GEN-END:variables
 }

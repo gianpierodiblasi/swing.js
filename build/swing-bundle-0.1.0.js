@@ -160,6 +160,56 @@ class BoxLayout extends LayoutManager {
   }
 }
 /**
+ * The java.awt.CardLayout clone
+ *
+ * @author gianpiero.diblasi
+ */
+class CardLayout extends LayoutManager {
+
+   hGap = 0;
+
+   vGap = 0;
+
+  constructor(hGap, vGap) {
+    super();
+    this.hGap = typeof hGap === "undefined" ? 0 : hGap;
+    this.vGap = typeof vGap === "undefined" ? 0 : vGap;
+  }
+
+   setPanel(panel) {
+    panel.cssAddClass("cardlayout");
+  }
+
+   resetPanel(panel) {
+    panel.clearContent();
+    panel.cssRemoveClass("cardlayout");
+  }
+
+   addInPanel(panel, component, constraints) {
+    panel.appendChild(component);
+    component.setAttribute("card", constraints);
+    component.setAttribute("old-display", component.getStyle().display);
+    if (panel.getChildCount() > 1) {
+      component.getStyle().display = "none";
+    }
+    component.getStyle().flexGrow = "1";
+    component.getStyle().margin = this.vGap + "px " + this.hGap + "px";
+  }
+
+  /**
+   * The java.awt.CardLayout.show clone
+   *
+   * @param parent The parent component
+   * @param name The name of the card to show
+   */
+   show(parent, name) {
+    for (let index = 0; index < parent.getChildCount(); index++) {
+      parent.getChilStyle(index).display = "none";
+    }
+    parent.queryChilStyle("[card=" + name + "]").display = parent.queryChildAttribute("[card=" + name + "]", "old-display");
+  }
+}
+/**
  * The java.awt.FlowLayout clone
  *
  * @author gianpiero.diblasi
@@ -353,7 +403,52 @@ class JSComponent {
   }
 
   /**
-   * Adds a child to this component
+   * Returns the style of the HTML element
+   *
+   * @return The style of the HTML element
+   */
+   getStyle() {
+    return this.element.style;
+  }
+
+  /**
+   * Sets an attribute of the HTML element
+   *
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+   setAttribute(key, value) {
+    this.element.setAttribute(key, value);
+  }
+
+  /**
+   * Returns an attribute of the HTML element
+   *
+   * @param key The attribute key
+   * @return The attribute value
+   */
+   getAttribute(key) {
+    return this.element.getAttribute(key);
+  }
+
+  /**
+   * Clears the text content of the HTML element
+   */
+   clearContent() {
+    this.element.textContent = "";
+  }
+
+  /**
+   * Sets the text content of the HTML element
+   *
+   * @param content The text content of this component
+   */
+   setContent(content) {
+    this.element.textContent = content;
+  }
+
+  /**
+   * Adds a child to the HTML element
    *
    * @param component The child component
    */
@@ -362,37 +457,65 @@ class JSComponent {
   }
 
   /**
-   * Returns the child count
+   * Returns the style of a child of the HTML element
    *
-   * @return The child count
+   * @param index The child index
+   * @return The style of a child of the HTML element
+   */
+   getChilStyle(index) {
+    return (this.element.childNodes.item(index)).style;
+  }
+
+  /**
+   * Returns the style of a child of the HTML element
+   *
+   * @param query The query selector
+   * @return The style of a child of the HTML element
+   */
+   queryChilStyle(query) {
+    return (this.element.querySelector(query)).style;
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element
+   *
+   * @param index The child index
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+   setChildAttribute(index, key, value) {
+    (this.element.childNodes.item(index)).setAttribute(key, value);
+  }
+
+  /**
+   * Returns an attribute a child of the HTML element
+   *
+   * @param index The child index
+   * @param key The attribute key
+   * @return The attribute value
+   */
+   getChildAttribute(index, key) {
+    return (this.element.childNodes.item(index)).getAttribute(key);
+  }
+
+  /**
+   * Returns an attribute a child of the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   * @return The attribute value
+   */
+   queryChildAttribute(query, key) {
+    return this.element.querySelector(query).getAttribute(key);
+  }
+
+  /**
+   * Returns the child count of the HTML element
+   *
+   * @return The child count of the HTML element
    */
    getChildCount() {
     return this.element.childElementCount;
-  }
-
-  /**
-   * Returns the style of this component
-   *
-   * @return The style of this component
-   */
-   getStyle() {
-    return this.element.style;
-  }
-
-  /**
-   * Clears the text content of this component
-   */
-   clearContent() {
-    this.element.textContent = "";
-  }
-
-  /**
-   * Sets the text content of this component
-   *
-   * @param content The text content of this component
-   */
-   setContent(content) {
-    this.element.textContent = content;
   }
 }
 /**
