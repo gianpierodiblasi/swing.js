@@ -36,13 +36,26 @@
 
 .jspanel.cardlayout {
   display: flex;
-}:root {
+}
+
+.jspanel.gridbaglayout {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+:root {
   --font-family: arial;
   --font-size: 14px;
   /*--main-color: #0d6efd;*/
   --main-color: black;
   --main-bgcolor: white;
 }
+:root.dark-mode {
+  /*--main-color: #0d6efd;*/
+  --main-color: #dee2e6;
+  --main-bgcolor: #212529;
+}
+
 html, body {
   height: 100%;
   margin: 0px;

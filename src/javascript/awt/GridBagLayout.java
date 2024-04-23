@@ -26,27 +26,27 @@ public class GridBagLayout implements LayoutManager {
 
   @Override
   public void setPanel(JSPanel panel) {
-    panel.element.classList.add("gridbaglayout");
+    panel.cssAddClass("gridbaglayout");
   }
 
   @Override
   public void resetPanel(JSPanel panel) {
-    panel.element.textContent = "";
-    panel.element.classList.remove("gridbaglayout");
-    panel.element.style.removeProperty("grid-template");
-    panel.element.style.removeProperty("grid-template-areas");
-    panel.element.style.removeProperty("grid-template-rows");
-    panel.element.style.removeProperty("grid-template-columns");
+    panel.clearContent();
+    panel.cssRemoveClass("gridbaglayout");
+    panel.getStyle().removeProperty("grid-template");
+    panel.getStyle().removeProperty("grid-template-areas");
+    panel.getStyle().removeProperty("grid-template-rows");
+    panel.getStyle().removeProperty("grid-template-columns");
   }
 
   @Override
   public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     this.constraintsArray.push((GridBagConstraints) constraints);
 
-    panel.element.appendChild(component.element);
-    panel.element.style.setProperty("grid-template-areas", this.setGridTemplateAreas((GridBagConstraints) constraints));
-    panel.element.style.setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty", this.rowHeights));
-    panel.element.style.setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas.$get(0), "gridx", "gridwidth", "weightx", this.columnWidths) : "");
+    panel.appendChild(component);
+    panel.getStyle().setProperty("grid-template-areas", this.setGridTemplateAreas((GridBagConstraints) constraints));
+    panel.getStyle().setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty", this.rowHeights));
+    panel.getStyle().setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas.$get(0), "gridx", "gridwidth", "weightx", this.columnWidths) : "");
 
     this.setComponent(component, (GridBagConstraints) constraints);
   }
@@ -117,7 +117,7 @@ public class GridBagLayout implements LayoutManager {
   }
 
   private void setComponent(JSComponent component, GridBagConstraints constraints) {
-    component.element.style.setProperty("grid-area", "p" + this.position);
+    component.getStyle().setProperty("grid-area", "p" + this.position);
     this.position++;
 
     switch (constraints.anchor) {
@@ -125,54 +125,45 @@ public class GridBagLayout implements LayoutManager {
       case GridBagConstraints.BASELINE:
       case GridBagConstraints.ABOVE_BASELINE:
       case GridBagConstraints.BELOW_BASELINE:
-        component.element.style.setProperty("justify-self", "center");
-        component.element.style.setProperty("align-self", "center");
+        component.getStyle().setProperty("place-self", "center center");
         break;
       case GridBagConstraints.NORTH:
       case GridBagConstraints.PAGE_START:
-        component.element.style.setProperty("justify-self", "center");
-        component.element.style.setProperty("align-self", "start");
+        component.getStyle().setProperty("place-self", "start center");
         break;
       case GridBagConstraints.NORTHEAST:
       case GridBagConstraints.FIRST_LINE_END:
-        component.element.style.setProperty("justify-self", "end");
-        component.element.style.setProperty("align-self", "start");
+        component.getStyle().setProperty("place-self", "start end");
         break;
       case GridBagConstraints.EAST:
       case GridBagConstraints.LINE_END:
       case GridBagConstraints.BASELINE_TRAILING:
       case GridBagConstraints.ABOVE_BASELINE_TRAILING:
       case GridBagConstraints.BELOW_BASELINE_TRAILING:
-        component.element.style.setProperty("justify-self", "end");
-        component.element.style.setProperty("align-self", "center");
+        component.getStyle().setProperty("place-self", "center end");
         break;
       case GridBagConstraints.SOUTHEAST:
       case GridBagConstraints.LAST_LINE_END:
-        component.element.style.setProperty("justify-self", "end");
-        component.element.style.setProperty("align-self", "end");
+        component.getStyle().setProperty("place-self", "end end");
         break;
       case GridBagConstraints.SOUTH:
       case GridBagConstraints.PAGE_END:
-        component.element.style.setProperty("justify-self", "center");
-        component.element.style.setProperty("align-self", "end");
+        component.getStyle().setProperty("place-self", "end center");
         break;
       case GridBagConstraints.SOUTHWEST:
       case GridBagConstraints.LAST_LINE_START:
-        component.element.style.setProperty("justify-self", "start");
-        component.element.style.setProperty("align-self", "end");
+        component.getStyle().setProperty("place-self", "end start");
         break;
       case GridBagConstraints.WEST:
       case GridBagConstraints.LINE_START:
       case GridBagConstraints.BASELINE_LEADING:
       case GridBagConstraints.ABOVE_BASELINE_LEADING:
       case GridBagConstraints.BELOW_BASELINE_LEADING:
-        component.element.style.setProperty("justify-self", "start");
-        component.element.style.setProperty("align-self", "center");
+        component.getStyle().setProperty("place-self", "center start");
         break;
       case GridBagConstraints.NORTHWEST:
       case GridBagConstraints.FIRST_LINE_START:
-        component.element.style.setProperty("justify-self", "start");
-        component.element.style.setProperty("align-self", "start");
+        component.getStyle().setProperty("place-self", "start start");
         break;
     }
 
@@ -180,24 +171,17 @@ public class GridBagLayout implements LayoutManager {
       case GridBagConstraints.NONE:
         break;
       case GridBagConstraints.BOTH:
-        component.element.style.setProperty("justify-self", "stretch");
-        component.element.style.setProperty("align-self", "stretch");
+        component.getStyle().setProperty("place-self", "stretch stretch");
         break;
       case GridBagConstraints.HORIZONTAL:
-        component.element.style.setProperty("justify-self", "stretch");
+        component.getStyle().setProperty("justify-self", "stretch");
         break;
       case GridBagConstraints.VERTICAL:
-        component.element.style.setProperty("align-self", "stretch");
+        component.getStyle().setProperty("place-self", "stretch");
         break;
     }
 
-//    component.element.style.marginTop = constraints.insets.top + "px";
-//    component.element.style.marginBottom = constraints.insets.bottom + "px";
-//    component.element.style.marginLeft = constraints.insets.left + "px";
-//    component.element.style.marginRight = constraints.insets.right + "px";
-//    component.element.style.paddingTop = constraints.ipady + "px";
-//    component.element.style.paddingBottom = constraints.ipady + "px";
-//    component.element.style.paddingLeft = constraints.ipadx + "px";
-//    component.element.style.paddingRight = constraints.ipadx + "px";
+    component.getStyle().margin = constraints.insets.top + "px " + constraints.insets.right + "px " + constraints.insets.bottom + "px " + constraints.insets.left + " px";
+    component.getStyle().padding = constraints.ipady + "px " + constraints.ipadx + "px";
   }
 }

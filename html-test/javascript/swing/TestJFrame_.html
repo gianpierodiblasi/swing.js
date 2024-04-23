@@ -12,17 +12,12 @@
     <script>
       window.onload = (event) => {
         const urlParams = new URLSearchParams(window.location.search);
-//        var plaf = urlParams.get("plaf");
-//        switch (plaf) {
-//          case "default":
-//            LookAndFeel.CURRENT = new DefaultLookAndFeel();
-//            break;
-//          case "bootstrap":
-//            LookAndFeel.CURRENT = BootstrapLookAndFeel["create" + urlParams.get("size")](urlParams.get("style") === "true");
-//            break;
-//          case "pico":
-//            LookAndFeel.CURRENT = new PicoLookAndFeel(urlParams.get("theme"), urlParams.get("style") === "true");
-//        }
+        SwingJS.instance().
+                darkMode(urlParams.get("dark") === "true").
+                fontSize(urlParams.get("font")).
+                mainColor(urlParams.get("color")).
+                mainBGColor(urlParams.get("bgcolor")).
+                build();
 
         eval("new TestJSFrame" + urlParams.get("num") + "();");
       };

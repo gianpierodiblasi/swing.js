@@ -20,12 +20,12 @@ import javax.swing.JToggleButton;
  * @author gianpiero.diblasi
  */
 @SuppressWarnings("serial")
-public class TestJFrame3 extends javax.swing.JFrame {
+public class TestJFrame3__ extends javax.swing.JFrame {
 
   /**
    * Creates new form TestFrame3
    */
-  public TestJFrame3() {
+  public TestJFrame3__() {
     super();
     this.initComponents();
     this.postInitComponents();

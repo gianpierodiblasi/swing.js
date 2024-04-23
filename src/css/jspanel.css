@@ -29,3 +29,9 @@
 .jspanel.cardlayout {
   display: flex;
 }
+
+.jspanel.gridbaglayout {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}

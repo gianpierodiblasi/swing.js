@@ -5,6 +5,12 @@
   --main-color: black;
   --main-bgcolor: white;
 }
+:root.dark-mode {
+  /*--main-color: #0d6efd;*/
+  --main-color: #dee2e6;
+  --main-bgcolor: #212529;
+}
+
 html, body {
   height: 100%;
   margin: 0px;

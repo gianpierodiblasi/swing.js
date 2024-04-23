@@ -34,6 +34,169 @@ class Dimension {
   }
 }
 /**
+ * The java.awt.GridBagConstraints clone
+ *
+ * @author gianpiero.diblasi
+ */
+class GridBagConstraints {
+
+  static  RELATIVE = -1;
+
+  static  REMAINDER = 0;
+
+  static  NONE = 0;
+
+  static  BOTH = 1;
+
+  static  HORIZONTAL = 2;
+
+  static  VERTICAL = 3;
+
+  static  CENTER = 10;
+
+  static  NORTH = 11;
+
+  static  NORTHEAST = 12;
+
+  static  EAST = 13;
+
+  static  SOUTHEAST = 14;
+
+  static  SOUTH = 15;
+
+  static  SOUTHWEST = 16;
+
+  static  WEST = 17;
+
+  static  NORTHWEST = 18;
+
+  static  PAGE_START = 19;
+
+  static  PAGE_END = 20;
+
+  static  LINE_START = 21;
+
+  static  LINE_END = 22;
+
+  static  FIRST_LINE_START = 23;
+
+  static  FIRST_LINE_END = 24;
+
+  static  LAST_LINE_START = 25;
+
+  static  LAST_LINE_END = 26;
+
+  static  BASELINE = 0x100;
+
+  static  BASELINE_LEADING = 0x200;
+
+  static  BASELINE_TRAILING = 0x300;
+
+  static  ABOVE_BASELINE = 0x400;
+
+  static  ABOVE_BASELINE_LEADING = 0x500;
+
+  static  ABOVE_BASELINE_TRAILING = 0x600;
+
+  static  BELOW_BASELINE = 0x700;
+
+  static  BELOW_BASELINE_LEADING = 0x800;
+
+  static  BELOW_BASELINE_TRAILING = 0x900;
+
+   gridx = 0;
+
+   gridy = 0;
+
+   gridwidth = 0;
+
+   gridheight = 0;
+
+   weightx = 0.0;
+
+   weighty = 0.0;
+
+   anchor = 0;
+
+   fill = 0;
+
+   insets = null;
+
+   ipadx = 0;
+
+   ipady = 0;
+
+  constructor() {
+    this.gridx = GridBagConstraints.RELATIVE;
+    this.gridy = GridBagConstraints.RELATIVE;
+    this.gridwidth = 1;
+    this.gridheight = 1;
+    this.weightx = 0;
+    this.weighty = 0;
+    this.anchor = GridBagConstraints.CENTER;
+    this.fill = GridBagConstraints.NONE;
+    this.insets = new Insets(0, 0, 0, 0);
+    this.ipadx = 0;
+    this.ipady = 0;
+  }
+
+  /**
+   * Returns a constraint value by key
+   *
+   * @param key The key (options are: "gridx", "gridy", "gridwidth",
+   * "gridheight", "weightx", "weighty", "anchor", "fill", "ipadx" and "ipady")
+   * @return The value
+   */
+   get(key) {
+    switch(key) {
+      case "gridx":
+        return this.gridx;
+      case "gridy":
+        return this.gridy;
+      case "gridwidth":
+        return this.gridwidth;
+      case "gridheight":
+        return this.gridheight;
+      case "weightx":
+        return this.weightx;
+      case "weighty":
+        return this.weighty;
+      case "anchor":
+        return this.anchor;
+      case "fill":
+        return this.fill;
+      case "ipadx":
+        return this.ipadx;
+      case "ipady":
+        return this.ipady;
+      default:
+        return 0;
+    }
+  }
+}
+/**
+ * The java.awt.Insets clone
+ *
+ * @author gianpiero.diblasi
+ */
+class Insets {
+
+   top = 0;
+
+   left = 0;
+
+   bottom = 0;
+
+   right = 0;
+
+  constructor(top, left, bottom, right) {
+    this.top = top;
+    this.left = left;
+    this.bottom = bottom;
+    this.right = right;
+  }
+}
+/**
  * The java.awt.LayoutManager clone
  *
  * @author gianpiero.diblasi
@@ -281,6 +444,173 @@ class FlowLayout extends LayoutManager {
    addInPanel(panel, component, constraints) {
     panel.appendChild(component);
     component.getStyle().margin = this.vGap + "px " + this.hGap + "px";
+  }
+}
+/**
+ * The java.awt.GridBagLayout clone
+ *
+ * @author gianpiero.diblasi
+ */
+class GridBagLayout extends LayoutManager {
+
+   columnWidths = null;
+
+   rowHeights = null;
+
+   gridTemplateAreas = new Array();
+
+   constraintsArray = new Array();
+
+   position = 1;
+
+  constructor() {
+    super();
+  }
+
+   setPanel(panel) {
+    panel.cssAddClass("gridbaglayout");
+  }
+
+   resetPanel(panel) {
+    panel.clearContent();
+    panel.cssRemoveClass("gridbaglayout");
+    panel.getStyle().removeProperty("grid-template");
+    panel.getStyle().removeProperty("grid-template-areas");
+    panel.getStyle().removeProperty("grid-template-rows");
+    panel.getStyle().removeProperty("grid-template-columns");
+  }
+
+   addInPanel(panel, component, constraints) {
+    this.constraintsArray.push(constraints);
+    panel.appendChild(component);
+    panel.getStyle().setProperty("grid-template-areas", this.setGridTemplateAreas(constraints));
+    panel.getStyle().setProperty("grid-template-rows", this.getWeight(this.gridTemplateAreas, "gridy", "gridheight", "weighty", this.rowHeights));
+    panel.getStyle().setProperty("grid-template-columns", this.gridTemplateAreas.length > 0 ? this.getWeight(this.gridTemplateAreas[0], "gridx", "gridwidth", "weightx", this.columnWidths) : "");
+    this.setComponent(component, constraints);
+  }
+
+   setGridTemplateAreas(constraint) {
+    for (let y = this.gridTemplateAreas.length; y < constraint.gridy + constraint.gridheight; y++) {
+      this.gridTemplateAreas.push(new Array());
+    }
+    let maxX = 0;
+    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
+      maxX = Math.max(maxX, this.gridTemplateAreas[y].length);
+    }
+    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
+      for (let x = this.gridTemplateAreas[y].length; x < Math.max(maxX, constraint.gridx + constraint.gridwidth); x++) {
+        this.gridTemplateAreas[y].push(".");
+      }
+    }
+    for (let y = constraint.gridy; y < constraint.gridy + constraint.gridheight; y++) {
+      let array = this.gridTemplateAreas[y];
+      for (let x = constraint.gridx; x < constraint.gridx + constraint.gridwidth; x++) {
+        array[x] = "p" + this.position;
+      }
+    }
+    let gta = "";
+    for (let y = 0; y < this.gridTemplateAreas.length; y++) {
+      let row = "";
+      for (let x = 0; x < this.gridTemplateAreas[y].length; x++) {
+        row += this.gridTemplateAreas[y][x] + " ";
+      }
+      gta += "\"" + row + "\"\n";
+    }
+    return gta;
+  }
+
+   getWeight(array, keyAxis, keySize, keyWeight, fixedSize) {
+    let gridTemplate = new Array();
+    for (let index = 0; index < array.length; index++) {
+      gridTemplate.push(0.0);
+    }
+    for (let index = 1; index <= array.length; index++) {
+      let gridsize = index;
+      this.constraintsArray.filter(constraint => constraint.get(keySize) === gridsize).forEach(constraint => {
+        let ok = false;
+        for (let index2 = constraint.get(keyAxis); index2 < constraint.get(keyAxis) + constraint.get(keySize); index2++) {
+          ok |= gridTemplate[index2] >= constraint.get(keyWeight);
+        }
+        if (!ok) {
+          gridTemplate[constraint.get(keyAxis) + constraint.get(keySize) - 1] = constraint.get(keyWeight);
+        }
+      });
+    }
+    let gt = "";
+    for (let index = 0; index < gridTemplate.length; index++) {
+      if (fixedSize && fixedSize[index]) {
+        gt += fixedSize[index] + "px ";
+      } else {
+        gt += gridTemplate[index] === 0.0 ? "auto " : gridTemplate[index] + "fr ";
+      }
+    }
+    return gt;
+  }
+
+   setComponent(component, constraints) {
+    component.getStyle().setProperty("grid-area", "p" + this.position);
+    this.position++;
+    switch(constraints.anchor) {
+      case GridBagConstraints.CENTER:
+      case GridBagConstraints.BASELINE:
+      case GridBagConstraints.ABOVE_BASELINE:
+      case GridBagConstraints.BELOW_BASELINE:
+        component.getStyle().setProperty("place-self", "center center");
+        break;
+      case GridBagConstraints.NORTH:
+      case GridBagConstraints.PAGE_START:
+        component.getStyle().setProperty("place-self", "start center");
+        break;
+      case GridBagConstraints.NORTHEAST:
+      case GridBagConstraints.FIRST_LINE_END:
+        component.getStyle().setProperty("place-self", "start end");
+        break;
+      case GridBagConstraints.EAST:
+      case GridBagConstraints.LINE_END:
+      case GridBagConstraints.BASELINE_TRAILING:
+      case GridBagConstraints.ABOVE_BASELINE_TRAILING:
+      case GridBagConstraints.BELOW_BASELINE_TRAILING:
+        component.getStyle().setProperty("place-self", "center end");
+        break;
+      case GridBagConstraints.SOUTHEAST:
+      case GridBagConstraints.LAST_LINE_END:
+        component.getStyle().setProperty("place-self", "end end");
+        break;
+      case GridBagConstraints.SOUTH:
+      case GridBagConstraints.PAGE_END:
+        component.getStyle().setProperty("place-self", "end center");
+        break;
+      case GridBagConstraints.SOUTHWEST:
+      case GridBagConstraints.LAST_LINE_START:
+        component.getStyle().setProperty("place-self", "end start");
+        break;
+      case GridBagConstraints.WEST:
+      case GridBagConstraints.LINE_START:
+      case GridBagConstraints.BASELINE_LEADING:
+      case GridBagConstraints.ABOVE_BASELINE_LEADING:
+      case GridBagConstraints.BELOW_BASELINE_LEADING:
+        component.getStyle().setProperty("place-self", "center start");
+        break;
+      case GridBagConstraints.NORTHWEST:
+      case GridBagConstraints.FIRST_LINE_START:
+        component.getStyle().setProperty("place-self", "start start");
+        break;
+    }
+    switch(constraints.fill) {
+      case GridBagConstraints.NONE:
+        break;
+      case GridBagConstraints.BOTH:
+        component.getStyle().setProperty("place-self", "stretch stretch");
+        break;
+      case GridBagConstraints.HORIZONTAL:
+        component.getStyle().setProperty("justify-self", "stretch");
+        break;
+      case GridBagConstraints.VERTICAL:
+        component.getStyle().setProperty("place-self", "stretch");
+        break;
+    }
+    component.getStyle().margin = constraints.insets.top + "px " + constraints.insets.right + "px " + constraints.insets.bottom + "px " + constraints.insets.left + " px";
+    component.getStyle().padding = constraints.ipady + "px " + constraints.ipadx + "px";
   }
 }
 /**
@@ -671,13 +1001,17 @@ class JSPanel extends JSComponent {
  */
 class SwingJS {
 
-  static  fontFamily = null;
+  static  CURRENT = new SwingJS();
 
-  static  fontSize = 0;
+   _darkMode = false;
 
-  static  mainColor = null;
+   _fontFamily = null;
 
-  static  mainBGColor = null;
+   _fontSize = 0;
+
+   _mainColor = null;
+
+   _mainBGColor = null;
 
   /**
    * Converts "any" javax.swing.JComponent in the corresponding
@@ -690,6 +1024,86 @@ class SwingJS {
    */
   static  convert(component) {
     return component;
+  }
+
+  /**
+   * Returns the singleton instance of SwingJS
+   *
+   * @return The singleton instance of SwingJS
+   */
+  static  instance() {
+    return SwingJS.CURRENT;
+  }
+
+  /**
+   * Sets the dark mode
+   *
+   * @param b true to set the dark mode, false otherwise
+   * @return The SwingJS instance (for chaining)
+   */
+   darkMode(b) {
+    this._darkMode = b;
+    return this;
+  }
+
+  /**
+   * Sets the global font family, to complete the setting the <i>build</i>
+   * method has to be called
+   *
+   * @param fontFamily The font family
+   * @return The SwingJS instance (for chaining)
+   */
+   fontFamily(fontFamily) {
+    this._fontFamily = fontFamily;
+    return this;
+  }
+
+  /**
+   * Sets the global font size, to complete the setting the <i>build</i> method
+   * has to be called
+   *
+   * @param fontSize The font size
+   * @return The SwingJS instance (for chaining)
+   */
+   fontSize(fontSize) {
+    this._fontSize = fontSize;
+    return this;
+  }
+
+  /**
+   * Sets the global main color, to complete the setting the <i>build</i> method
+   * has to be called
+   *
+   * @param color The color
+   * @return The SwingJS instance (for chaining)
+   */
+   mainColor(color) {
+    this._mainBGColor = color;
+    return this;
+  }
+
+  /**
+   * Sets the global main background color, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param color The color
+   * @return The SwingJS instance (for chaining)
+   */
+   mainBGColor(color) {
+    this._mainBGColor = color;
+    return this;
+  }
+
+  /**
+   * Builds the new global style
+   */
+   build() {
+    if (this._darkMode) {
+      document.documentElement.classList.add("dark-mode");
+    }
+    let style = document.createElement("style");
+    style.textContent = ":root {\n" + (this._fontFamily ? "  --font-family: " + this._fontFamily + " !important;\n" : "") + (this._fontSize ? "  --font-size: " + this._fontSize + "px !important;\n" : "") + (this._mainColor ? "  --main-color: " + this._mainColor + " !important;\n" : "") + (this._mainBGColor ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "") + "}";
+    document.head.appendChild(style);
   }
 
   constructor() {

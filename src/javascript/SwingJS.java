@@ -13,10 +13,11 @@ import static simulation.js.$Globals.$exists;
 public class SwingJS {
 
   private final static SwingJS CURRENT = new SwingJS();
-  private String fontFamily;
-  private int fontSize;
-  private String mainColor;
-  private String mainBGColor;
+  private boolean _darkMode;
+  private String _fontFamily;
+  private int _fontSize;
+  private String _mainColor;
+  private String _mainBGColor;
 
   /**
    * Converts "any" javax.swing.JComponent in the corresponding
@@ -33,15 +34,35 @@ public class SwingJS {
   }
 
   /**
+   * Returns the singleton instance of SwingJS
+   *
+   * @return The singleton instance of SwingJS
+   */
+  public static SwingJS instance() {
+    return SwingJS.CURRENT;
+  }
+
+  /**
+   * Sets the dark mode
+   *
+   * @param b true to set the dark mode, false otherwise
+   * @return The SwingJS instance (for chaining)
+   */
+  public SwingJS darkMode(boolean b) {
+    this._darkMode = b;
+    return this;
+  }
+
+  /**
    * Sets the global font family, to complete the setting the <i>build</i>
    * method has to be called
    *
    * @param fontFamily The font family
-   * @return The SwingJS static instance (for chaining)
+   * @return The SwingJS instance (for chaining)
    */
-  public static SwingJS fontFamily(String fontFamily) {
-    SwingJS.CURRENT.fontFamily = fontFamily;
-    return SwingJS.CURRENT;
+  public SwingJS fontFamily(String fontFamily) {
+    this._fontFamily = fontFamily;
+    return this;
   }
 
   /**
@@ -49,11 +70,11 @@ public class SwingJS {
    * has to be called
    *
    * @param fontSize The font size
-   * @return The SwingJS static instance (for chaining)
+   * @return The SwingJS instance (for chaining)
    */
-  public static SwingJS fontSize(int fontSize) {
-    SwingJS.CURRENT.fontSize = fontSize;
-    return SwingJS.CURRENT;
+  public SwingJS fontSize(int fontSize) {
+    this._fontSize = fontSize;
+    return this;
   }
 
   /**
@@ -61,11 +82,11 @@ public class SwingJS {
    * has to be called
    *
    * @param color The color
-   * @return The SwingJS static instance (for chaining)
+   * @return The SwingJS instance (for chaining)
    */
-  public static SwingJS mainColor(String color) {
-    SwingJS.CURRENT.mainBGColor = color;
-    return SwingJS.CURRENT;
+  public SwingJS mainColor(String color) {
+    this._mainBGColor = color;
+    return this;
   }
 
   /**
@@ -73,24 +94,28 @@ public class SwingJS {
    * <i>build</i> method has to be called
    *
    * @param color The color
-   * @return The SwingJS static instance (for chaining)
+   * @return The SwingJS instance (for chaining)
    */
-  public static SwingJS mainBGColor(String color) {
-    SwingJS.CURRENT.mainBGColor = color;
-    return SwingJS.CURRENT;
+  public SwingJS mainBGColor(String color) {
+    this._mainBGColor = color;
+    return this;
   }
 
   /**
    * Builds the new global style
    */
-  public static void build() {
+  public void build() {
+    if (this._darkMode) {
+      document.documentElement.classList.add("dark-mode");
+    }
+
     HTMLElement style = document.createElement("style");
     style.textContent
             = ":root {\n"
-            + ($exists(SwingJS.CURRENT.fontFamily) ? "  --font-family: " + SwingJS.CURRENT.fontFamily + " !important;\n" : "")
-            + ($exists(SwingJS.CURRENT.fontSize) ? "  --font-size: " + SwingJS.CURRENT.fontSize + "px !important;\n" : "")
-            + ($exists(SwingJS.CURRENT.mainColor) ? "  --main-color: " + SwingJS.CURRENT.mainColor + " !important;\n" : "")
-            + ($exists(SwingJS.CURRENT.mainBGColor) ? "  --main-bgcolor: " + SwingJS.CURRENT.mainBGColor + " !important;\n" : "")
+            + ($exists(this._fontFamily) ? "  --font-family: " + this._fontFamily + " !important;\n" : "")
+            + ($exists(this._fontSize) ? "  --font-size: " + this._fontSize + "px !important;\n" : "")
+            + ($exists(this._mainColor) ? "  --main-color: " + this._mainColor + " !important;\n" : "")
+            + ($exists(this._mainBGColor) ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "")
             + "}";
 
     document.head.appendChild(style);

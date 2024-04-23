@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  * @author gianpiero.diblasi
  */
 @SuppressWarnings("serial")
-public class TestJFrame5 extends javax.swing.JFrame {
+public class TestJFrame5__ extends javax.swing.JFrame {
 
   /**
    * Creates new form TestFrame3
    */
-  public TestJFrame5() {
+  public TestJFrame5__() {
     super();
     this.initComponents();
     this.postInitComponents();
