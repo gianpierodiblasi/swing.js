@@ -2,6 +2,7 @@
   font-family: var(--font-family);
   font-size: var(--font-size);
   color: var(--main-color);
+  background: var(--main-bgcolor);
 
   min-width: 10rem;
   min-height: 2.4ex;
@@ -16,4 +17,10 @@
 }
 .jsspinner[disabled] {
   filter: opacity(0.5);
+}
+.jsspinner::-webkit-inner-spin-button,
+.jsspinner::-webkit-outer-spin-button {
+  opacity: 1;
+  margin-left: 0.3rem;
+  cursor: pointer;
 }
