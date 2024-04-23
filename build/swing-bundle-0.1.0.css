@@ -47,7 +47,54 @@
 .jscheckbox:has(input:disabled), .jscheckbox input:disabled {
   filter: opacity(0.5);
   cursor: default;
-}.jscomponent-box-filler {
+}.jscombobox {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+
+  min-width: 10rem;
+  border: 2px solid var(--main-action-bgcolor);
+  border-radius: .5rem;
+}
+.jscombobox:hover {
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+
+.jscombobox summary {
+  list-style: none;
+  cursor: pointer;
+  padding: .5rem;
+  min-height: 2ex;
+}
+.jscombobox summary::-webkit-details-marker {
+  display: none;
+}
+.jscombobox summary * {
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.jscombobox ul {
+  z-index: 100;
+  position: absolute;
+  list-style: none;
+  width: fit-content;
+  min-width: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  margin: .5rem 0 0 0;
+  padding: 0;
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+  border-radius: .5rem;
+}
+.jscombobox li {
+  padding: .5rem;
+}
+.jscombobox li, .jscombobox li * {
+  cursor: pointer;
+}
+.jscomponent-box-filler {
 }
 .jsframe {
 }

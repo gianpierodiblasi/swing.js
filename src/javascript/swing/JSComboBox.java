@@ -2,8 +2,6 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
-import javascript.swing.plaf.LookAndFeel;
-import simulation.dom.$HTMLElement;
 
 /**
  * The javax.swing.JComboBox clone
@@ -13,18 +11,15 @@ import simulation.dom.$HTMLElement;
  */
 public class JSComboBox<T> extends AbstractButton {
 
-  public final static String MODEL_AND_RENDERER = "model-and-renderer";
-
   private AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
 
   public JSComboBox() {
-    super();
+    super(document.createElement("details"));
 
-    this.element = document.createElement("select");
-    this.element.classList.add("jcombobox");
-    this.element.onchange = (event) -> this.onclick();
+    this.cssAddClass("jscombobox");
 
-    LookAndFeel.CURRENT.styleJSComboBox(this);
+    this.appendNodeChild(document.createElement("summary"));
+    this.appendNodeChild(document.createElement("ul"));
   }
 
   /**
@@ -32,23 +27,10 @@ public class JSComboBox<T> extends AbstractButton {
    *
    * @return The selected item
    */
-  public Object getSelectedItem() {
-    return this.modelAndRenderer.getElementAt((($HTMLElement) this.element).selectedIndex);
-  }
-
-  /**
-   * Clone of javax.swing.JComboBox.setEnabled
-   *
-   * @param b true to enable the combobox, false otherwise
-   */
-  public void setEnabled(boolean b) {
-    if (b) {
-      this.element.removeAttribute("disabled");
-    } else {
-      this.element.setAttribute("disabled", "disabled");
-    }
-  }
-  
+//  public Object getSelectedItem() {
+//    return null;
+////    return this.modelAndRenderer.getElementAt((($HTMLElement) this.element).selectedIndex);
+//  }
   /**
    * Sets the model
    *

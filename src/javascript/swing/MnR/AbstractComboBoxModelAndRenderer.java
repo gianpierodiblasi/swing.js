@@ -1,7 +1,8 @@
 package javascript.swing.MnR;
 
-import def.dom.Element;
 import static def.dom.Globals.document;
+import def.dom.HTMLElement;
+import def.dom.Node;
 import def.js.Array;
 import javascript.swing.JSComboBox;
 import static simulation.js.$Globals.$exists;
@@ -34,6 +35,7 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
    */
   public void setComboBox(JSComboBox<T> combobox) {
     this.combobox = combobox;
+    this.combobox.appendNodeChildInTree("summary", this.render(null));
     this.elements.forEach(element -> this.addOption(element));
   }
 
@@ -51,9 +53,9 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
   }
 
   private void addOption(T element) {
-    Element option = document.createElement("option");
-    option.textContent = this.render(element);
-    this.combobox.element.appendChild(option);
+    HTMLElement li = document.createElement("li");
+    li.appendChild(this.render(element));
+    this.combobox.appendNodeChildInTree("ul", li);
   }
 
   /**
@@ -62,5 +64,5 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
    * @param element The element
    * @return The renderer element
    */
-  protected abstract String render(T element);
+  protected abstract Node render(T element);
 }

@@ -5,11 +5,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javascript.SwingJS;
+import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
+import javascript.swing.MnR.DefaultComboBoxModelAndRenderer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
@@ -33,6 +36,12 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((JSRadioButton) SwingJS.convert(this.jRadioButton6)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton7)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton8)).setToggle();
+    
+    AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox1)).setModelAndRenderer(modelAndRendererCB);
   }
 
   /**
@@ -77,6 +86,8 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jToggleButton2 = new JToggleButton();
     jToggleButton3 = new JToggleButton();
     jToggleButton4 = new JToggleButton();
+    jPanel5 = new JPanel();
+    jComboBox1 = new JComboBox<>();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -193,6 +204,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jPanel4.add(jToggleButton4);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_END);
+
+    jPanel5.add(jComboBox1);
+
+    getContentPane().add(jPanel5, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -217,10 +232,12 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JCheckBox jCheckBox2;
   private JCheckBox jCheckBox3;
   private JCheckBox jCheckBox4;
+  private JComboBox<Integer> jComboBox1;
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;
   private JPanel jPanel4;
+  private JPanel jPanel5;
   private JRadioButton jRadioButton1;
   private JRadioButton jRadioButton2;
   private JRadioButton jRadioButton3;

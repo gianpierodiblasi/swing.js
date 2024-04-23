@@ -167,6 +167,26 @@ class JSComponent {
   }
 
   /**
+   * Adds a child to the HTML element
+   *
+   * @param query The query selector
+   * @param component The child component
+   */
+   appendChildInTree(query, component) {
+    this.element.querySelector(query).appendChild(component.element);
+  }
+
+  /**
+   * Adds a child to the HTML element
+   *
+   * @param query The query selector
+   * @param node The node
+   */
+   appendNodeChildInTree(query, node) {
+    this.element.querySelector(query).appendChild(node);
+  }
+
+  /**
    * Returns the style of a child of the HTML element
    *
    * @param index The child index

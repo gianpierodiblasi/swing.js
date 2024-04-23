@@ -1,3 +1,4 @@
+document.addEventListener("click", (event) => document.querySelectorAll("details").forEach(detail => !detail.contains(event.target) ? detail.removeAttribute("open") : ""));
 /**
  * The java.awt.Color clone
  *
@@ -887,6 +888,26 @@ class JSComponent {
   }
 
   /**
+   * Adds a child to the HTML element
+   *
+   * @param query The query selector
+   * @param component The child component
+   */
+   appendChildInTree(query, component) {
+    this.element.querySelector(query).appendChild(component.element);
+  }
+
+  /**
+   * Adds a child to the HTML element
+   *
+   * @param query The query selector
+   * @param node The node
+   */
+   appendNodeChildInTree(query, node) {
+    this.element.querySelector(query).appendChild(node);
+  }
+
+  /**
    * Returns the style of a child of the HTML element
    *
    * @param index The child index
@@ -1090,6 +1111,51 @@ class JSCheckBox extends AbstractButton {
     } else {
       this.checkbox.setAttribute("disabled", "disabled");
     }
+  }
+}
+/**
+ * The javax.swing.JComboBox clone
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class JSComboBox extends AbstractButton {
+
+   modelAndRenderer = null;
+
+  constructor() {
+    super(document.createElement("details"));
+    this.cssAddClass("jscombobox");
+    this.appendNodeChild(document.createElement("summary"));
+    this.appendNodeChild(document.createElement("ul"));
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.getSelectedItem
+   *
+   * @return The selected item
+   */
+  // public Object getSelectedItem() {
+  // return null;
+  // //    return this.modelAndRenderer.getElementAt((($HTMLElement) this.element).selectedIndex);
+  // }
+  /**
+   * Sets the model
+   *
+   * @param modelAndRenderer The model
+   */
+   setModelAndRenderer(modelAndRenderer) {
+    this.modelAndRenderer = modelAndRenderer;
+    this.modelAndRenderer.setComboBox(this);
+  }
+
+  /**
+   * Returns the model
+   *
+   * @return The model
+   */
+   getModelAndRenderer() {
+    return this.modelAndRenderer;
   }
 }
 /**
@@ -1361,6 +1427,80 @@ class JSPanel extends JSComponent {
    */
    add(component, constraints) {
     this.layoutManager.addInPanel(this, component, constraints);
+  }
+}
+/**
+ * The abstract object to model and render a combobox
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class AbstractComboBoxModelAndRenderer {
+
+   combobox = null;
+
+   elements = new Array();
+
+  /**
+   * Returns the element at an index
+   *
+   * @param index The index
+   * @return The element
+   */
+   getElementAt(index) {
+    return this.elements[index];
+  }
+
+  /**
+   * Sets the combobox managed by this model
+   *
+   * @param combobox The combobox
+   */
+   setComboBox(combobox) {
+    this.combobox = combobox;
+    this.combobox.appendNodeChildInTree("summary", this.render(null));
+    this.elements.forEach(element => this.addOption(element));
+  }
+
+  /**
+   * Adds an element to this model
+   *
+   * @param element The element
+   */
+   addElement(element) {
+    this.elements.push(element);
+    if (this.combobox) {
+      this.addOption(element);
+    }
+  }
+
+   addOption(element) {
+    let li = document.createElement("li");
+    li.appendChild(this.render(element));
+    this.combobox.appendNodeChildInTree("ul", li);
+  }
+
+  /**
+   * Renders an element
+   *
+   * @param element The element
+   * @return The renderer element
+   */
+   render(element) {
+  }
+}
+/**
+ * The default implementation of the AbstractComboBoxModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
+
+   render(element) {
+    let label = document.createElement("label");
+    label.textContent = element ? element.toString() : "";
+    return label;
   }
 }
 /**

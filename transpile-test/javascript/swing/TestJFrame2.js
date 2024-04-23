@@ -14,6 +14,11 @@ class TestJFrame2 extends JFrame {
     (SwingJS.convert(this.jRadioButton6)).setToggle();
     (SwingJS.convert(this.jRadioButton7)).setToggle();
     (SwingJS.convert(this.jRadioButton8)).setToggle();
+    let modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    (SwingJS.convert(this.jComboBox1)).setModelAndRenderer(modelAndRendererCB);
   }
 
   /**
@@ -55,6 +60,8 @@ class TestJFrame2 extends JFrame {
     this.jToggleButton2 = new JToggleButton();let jToggleButton2 = this.jToggleButton2;
     this.jToggleButton3 = new JToggleButton();let jToggleButton3 = this.jToggleButton3;
     this.jToggleButton4 = new JToggleButton();let jToggleButton4 = this.jToggleButton4;
+    this.jPanel5 = new JPanel();let jPanel5 = this.jPanel5;
+    this.jComboBox1 = new JComboBox();let jComboBox1 = this.jComboBox1;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jButton1.setText("jButton1");
@@ -139,6 +146,8 @@ class TestJFrame2 extends JFrame {
     jToggleButton4.setEnabled(false);
     jPanel4.add(jToggleButton4);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_END);
+    jPanel5.add(jComboBox1);
+    this.getContentPane().add(jPanel5, BorderLayout.CENTER);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -183,6 +192,8 @@ class TestJFrame2 extends JFrame {
 
    jCheckBox4 = null;
 
+   jComboBox1 = null;
+
    jPanel1 = null;
 
    jPanel2 = null;
@@ -190,6 +201,8 @@ class TestJFrame2 extends JFrame {
    jPanel3 = null;
 
    jPanel4 = null;
+
+   jPanel5 = null;
 
    jRadioButton1 = null;
 
