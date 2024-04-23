@@ -3,7 +3,9 @@ package javascript.swing;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -54,8 +56,11 @@ public class TestJFrame1 extends javax.swing.JFrame {
     jLabel9 = new JLabel();
     jPanel3 = new JPanel();
     jLabel10 = new JLabel();
+    filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
     jLabel11 = new JLabel();
+    filler1 = new Box.Filler(new Dimension(0, 30), new Dimension(0, 30), new Dimension(32767, 30));
     jLabel12 = new JLabel();
+    filler3 = new Box.Filler(new Dimension(0, 50), new Dimension(0, 50), new Dimension(32767, 50));
     jPanel4 = new JPanel();
     jLabel13 = new JLabel();
     jLabel14 = new JLabel();
@@ -100,12 +105,15 @@ public class TestJFrame1 extends javax.swing.JFrame {
 
     jLabel10.setText("jLabel10");
     jPanel3.add(jLabel10);
+    jPanel3.add(filler2);
 
     jLabel11.setText("jLabel11");
     jPanel3.add(jLabel11);
+    jPanel3.add(filler1);
 
     jLabel12.setText("jLabel12");
     jPanel3.add(jLabel12);
+    jPanel3.add(filler3);
 
     getContentPane().add(jPanel3, BorderLayout.LINE_START);
 
@@ -123,6 +131,9 @@ public class TestJFrame1 extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private Box.Filler filler1;
+  private Box.Filler filler2;
+  private Box.Filler filler3;
   private JLabel jLabel1;
   private JLabel jLabel10;
   private JLabel jLabel11;

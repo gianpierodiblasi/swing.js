@@ -37,8 +37,11 @@ class TestJFrame1 extends JFrame {
     this.jLabel9 = new JLabel();let jLabel9 = this.jLabel9;
     this.jPanel3 = new JPanel();let jPanel3 = this.jPanel3;
     this.jLabel10 = new JLabel();let jLabel10 = this.jLabel10;
+    this.filler2 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));let filler2 = this.filler2;
     this.jLabel11 = new JLabel();let jLabel11 = this.jLabel11;
+    this.filler1 = new Filler(new Dimension(0, 30), new Dimension(0, 30), new Dimension(32767, 30));let filler1 = this.filler1;
     this.jLabel12 = new JLabel();let jLabel12 = this.jLabel12;
+    this.filler3 = new Filler(new Dimension(0, 50), new Dimension(0, 50), new Dimension(32767, 50));let filler3 = this.filler3;
     this.jPanel4 = new JPanel();let jPanel4 = this.jPanel4;
     this.jLabel13 = new JLabel();let jLabel13 = this.jLabel13;
     this.jLabel14 = new JLabel();let jLabel14 = this.jLabel14;
@@ -68,10 +71,13 @@ class TestJFrame1 extends JFrame {
     jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
     jLabel10.setText("jLabel10");
     jPanel3.add(jLabel10);
+    jPanel3.add(filler2);
     jLabel11.setText("jLabel11");
     jPanel3.add(jLabel11);
+    jPanel3.add(filler1);
     jLabel12.setText("jLabel12");
     jPanel3.add(jLabel12);
+    jPanel3.add(filler3);
     this.getContentPane().add(jPanel3, BorderLayout.LINE_START);
     jPanel4.setLayout(new CardLayout());
     jLabel13.setBackground(new Color(204, 255, 0));
@@ -85,6 +91,12 @@ class TestJFrame1 extends JFrame {
 
   // </editor-fold>//GEN-END:initComponents
   // Variables declaration - do not modify//GEN-BEGIN:variables
+   filler1 = null;
+
+   filler2 = null;
+
+   filler3 = null;
+
    jLabel1 = null;
 
    jLabel10 = null;
