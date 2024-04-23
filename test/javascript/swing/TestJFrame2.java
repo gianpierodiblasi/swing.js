@@ -15,6 +15,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
 
 /**
@@ -23,13 +24,13 @@ import javax.swing.JToggleButton;
  */
 @SuppressWarnings("serial")
 public class TestJFrame2 extends javax.swing.JFrame {
-
+  
   public TestJFrame2() {
     super();
     this.initComponents();
     this.postInitComponents();
   }
-
+  
   @SuppressWarnings({"StringEquality", "unchecked"})
   private void postInitComponents() {
     ((JSRadioButton) SwingJS.convert(this.jRadioButton5)).setToggle();
@@ -62,6 +63,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
     modelAndRendererCB.addElement(30);
     ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox4)).setModelAndRenderer(modelAndRendererCB);
     this.jComboBox4.setSelectedItem(20);
+    
+    ((JSSpinner) SwingJS.convert(this.jSpinner1)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
+    ((JSSpinner) SwingJS.convert(this.jSpinner2)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
   }
 
   /**
@@ -111,6 +115,8 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jComboBox2 = new JComboBox<>();
     jComboBox3 = new JComboBox<>();
     jComboBox4 = new JComboBox<>();
+    jSpinner1 = new JSpinner();
+    jSpinner2 = new JSpinner();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -237,6 +243,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
     jComboBox4.setEnabled(false);
     jPanel5.add(jComboBox4);
+    jPanel5.add(jSpinner1);
+
+    jSpinner2.setEnabled(false);
+    jPanel5.add(jSpinner2);
 
     getContentPane().add(jPanel5, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
@@ -280,6 +290,8 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton6;
   private JRadioButton jRadioButton7;
   private JRadioButton jRadioButton8;
+  private JSpinner jSpinner1;
+  private JSpinner jSpinner2;
   private JToggleButton jToggleButton1;
   private JToggleButton jToggleButton2;
   private JToggleButton jToggleButton3;

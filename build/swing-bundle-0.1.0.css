@@ -98,6 +98,7 @@
   padding: 0;
   box-shadow: 0 0 .5rem var(--main-action-bgcolor);
   border-radius: .5rem;
+  background: var(--main-bgcolor);
 }
 
 .jscombobox li {
@@ -219,6 +220,24 @@
 }
 .jsradiobutton[role=toggle] input:checked::after {
   content: "";
+}.jsspinner {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+
+  min-width: 10rem;
+  min-height: 2.4ex;
+  border: 2px solid var(--main-action-bgcolor);
+  border-radius: .5rem;
+  text-align: right;
+  padding: .5rem;
+  outline: none;
+}
+.jsspinner:hover:not([disabled]) {
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+.jsspinner[disabled] {
+  filter: opacity(0.5);
 }.jstogglebutton {
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);

@@ -57,10 +57,6 @@ html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-moz-range-track
   margin-left: -.4375rem;
 }
 
-.picolaf .jspinner {
-  width: auto;
-}
-
 .picolaf .jtabbedpane nav {
   display: block;
 }

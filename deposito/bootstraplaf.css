@@ -62,10 +62,6 @@ html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-ran
   background-color: var(--bs-body-bg);
 }
 
-.bootstraplaf .jspinner {
-  width: auto;
-}
-
 .bootstraplaf .jtabbedpane .nav-link {
   cursor: pointer;
 }

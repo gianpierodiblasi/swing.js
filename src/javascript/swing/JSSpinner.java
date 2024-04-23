@@ -2,10 +2,9 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.js.Array;
+import static def.js.Globals.parseFloat;
 import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
-import javascript.swing.plaf.LookAndFeel;
-import simulation.dom.$HTMLElement;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -18,15 +17,11 @@ public class JSSpinner extends JSComponent {
   private final Array<ChangeListener> listeners = new Array<>();
 
   public JSSpinner() {
-    super();
-
-    this.element = document.createElement("input");
-    this.element.setAttribute("type", "number");
-    this.element.classList.add("jspinner");
-    this.element.oninput = (event) -> this.onchange();
-    (($HTMLElement) this.element).valueAsNumber = 0;
-
-    LookAndFeel.CURRENT.styleJSSpinner(this);
+    super(document.createElement("input"));
+    this.setAttribute("type", "number");
+    this.setAttribute("value", "0");
+    this.cssAddClass("jsspinner");
+    this.addEventListener("input", (event) -> this.onchange());
   }
 
   /**
@@ -66,7 +61,7 @@ public class JSSpinner extends JSComponent {
    * @param value The value
    */
   public void setValue(double value) {
-    (($HTMLElement) this.element).valueAsNumber = value;
+    this.setAttribute("value", "" + value);
   }
 
   /**
@@ -75,19 +70,6 @@ public class JSSpinner extends JSComponent {
    * @return The value
    */
   public double getValue() {
-    return (($HTMLElement) this.element).valueAsNumber;
-  }
-
-  /**
-   * Clone of javax.swing.JSpinner.setEnabled
-   *
-   * @param b true to enable the spinner, false otherwise
-   */
-  public void setEnabled(boolean b) {
-    if (b) {
-      this.element.removeAttribute("disabled");
-    } else {
-      this.element.setAttribute("disabled", "disabled");
-    }
+    return parseFloat(this.getAttribute("value"));
   }
 }

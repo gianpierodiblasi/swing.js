@@ -36,6 +36,8 @@ class TestJFrame2 extends JFrame {
     modelAndRendererCB.addElement(30);
     (SwingJS.convert(this.jComboBox4)).setModelAndRenderer(modelAndRendererCB);
     this.jComboBox4.setSelectedItem(20);
+    (SwingJS.convert(this.jSpinner1)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
+    (SwingJS.convert(this.jSpinner2)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
   }
 
   /**
@@ -82,6 +84,8 @@ class TestJFrame2 extends JFrame {
     this.jComboBox2 = new JComboBox();let jComboBox2 = this.jComboBox2;
     this.jComboBox3 = new JComboBox();let jComboBox3 = this.jComboBox3;
     this.jComboBox4 = new JComboBox();let jComboBox4 = this.jComboBox4;
+    this.jSpinner1 = new JSpinner();let jSpinner1 = this.jSpinner1;
+    this.jSpinner2 = new JSpinner();let jSpinner2 = this.jSpinner2;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jButton1.setText("jButton1");
@@ -172,6 +176,9 @@ class TestJFrame2 extends JFrame {
     jPanel5.add(jComboBox3);
     jComboBox4.setEnabled(false);
     jPanel5.add(jComboBox4);
+    jPanel5.add(jSpinner1);
+    jSpinner2.setEnabled(false);
+    jPanel5.add(jSpinner2);
     this.getContentPane().add(jPanel5, BorderLayout.CENTER);
   }
 
@@ -250,6 +257,10 @@ class TestJFrame2 extends JFrame {
    jRadioButton7 = null;
 
    jRadioButton8 = null;
+
+   jSpinner1 = null;
+
+   jSpinner2 = null;
 
    jToggleButton1 = null;
 
