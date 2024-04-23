@@ -1,0 +1,37 @@
+.jstogglebutton {
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  justify-content: center;
+}
+.jstogglebutton input {
+  font-family: var(--font-family);
+  font-size: 2rem;
+  color: var(--main-action-bgcolor);
+
+  cursor: pointer;
+  appearance: none;
+  margin: 0 0.2rem 0 0;
+}
+.jstogglebutton:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jstogglebutton:has(input:checked) {
+  filter: saturate(0.5);
+}
+.jstogglebutton:hover:has(input:checked) {
+  filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jstogglebutton:has(input:disabled) {
+  filter: opacity(0.5);
+  cursor: default;
+}
+.jstogglebutton:has(input:disabled):has(input:checked) {
+  filter: opacity(0.5) saturate(0.5);
+}

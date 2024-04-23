@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -72,6 +73,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton2 = new JRadioButton();
     jRadioButton3 = new JRadioButton();
     jRadioButton4 = new JRadioButton();
+    jToggleButton1 = new JToggleButton();
+    jToggleButton2 = new JToggleButton();
+    jToggleButton3 = new JToggleButton();
+    jToggleButton4 = new JToggleButton();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -171,6 +176,22 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton4.setEnabled(false);
     jPanel4.add(jRadioButton4);
 
+    jToggleButton1.setText("jToggleButton1");
+    jPanel4.add(jToggleButton1);
+
+    jToggleButton2.setText("jToggleButton2");
+    jToggleButton2.setEnabled(false);
+    jPanel4.add(jToggleButton2);
+
+    jToggleButton3.setSelected(true);
+    jToggleButton3.setText("jToggleButton3");
+    jPanel4.add(jToggleButton3);
+
+    jToggleButton4.setSelected(true);
+    jToggleButton4.setText("jToggleButton4");
+    jToggleButton4.setEnabled(false);
+    jPanel4.add(jToggleButton4);
+
     getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }// </editor-fold>//GEN-END:initComponents
 
@@ -208,5 +229,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton6;
   private JRadioButton jRadioButton7;
   private JRadioButton jRadioButton8;
+  private JToggleButton jToggleButton1;
+  private JToggleButton jToggleButton2;
+  private JToggleButton jToggleButton3;
+  private JToggleButton jToggleButton4;
   // End of variables declaration//GEN-END:variables
 }

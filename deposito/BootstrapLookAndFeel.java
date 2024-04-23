@@ -51,11 +51,6 @@ public class BootstrapLookAndFeel  {
   }
 
   @Override
-  public void styleJSLabel(JSLabel label) {
-    this.setSize(label.element);
-  }
-
-  @Override
   public void styleJSProgressBar(JSProgressBar progressbar) {
     switch (this.size) {
       case "sm":

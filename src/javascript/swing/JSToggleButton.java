@@ -2,13 +2,10 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.Text;
-import javascript.swing.plaf.LookAndFeel;
 import simulation.dom.$HTMLElement;
 
 /**
- * The javax.swing.JToggleButton clone; the visual appearance depends on the
- * used Look&amp;Feel, with the DefaultLookAndFeel it will be rendered as a
- * checkbox
+ * The javax.swing.JToggleButton clone
  *
  * @author gianpiero.diblasi
  */
@@ -18,21 +15,17 @@ public class JSToggleButton extends AbstractButton {
   private final Text text;
 
   public JSToggleButton() {
-    super();
+    super(document.createElement("label"));
 
-    this.element = document.createElement("label");
-    this.element.classList.add("jtogglebutton");
+    this.cssAddClass("jstogglebutton");
 
     this.togglebutton = ($HTMLElement) document.createElement("input");
     this.togglebutton.setAttribute("type", "checkbox");
     this.togglebutton.onchange = (event) -> this.onclick();
-    this.togglebutton.setAttribute("role", "toggle");
-    this.element.appendChild(this.togglebutton);
+    this.appendNodeChild(this.togglebutton);
 
     this.text = document.createTextNode("");
-    this.element.appendChild(this.text);
-
-    LookAndFeel.CURRENT.styleJSToggleButton(this);
+    this.appendNodeChild(this.text);
   }
 
   /**
@@ -42,6 +35,15 @@ public class JSToggleButton extends AbstractButton {
    */
   public void setText(String text) {
     this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JToggleButton.getText
+   *
+   * @return The text
+   */
+  public String getText() {
+    return this.text.textContent;
   }
 
   /**
@@ -62,12 +64,10 @@ public class JSToggleButton extends AbstractButton {
     return this.togglebutton.checked;
   }
 
-  /**
-   * Clone of javax.swing.JToggleButton.setEnabled
-   *
-   * @param b true to enable the togglebutton, false otherwise
-   */
+  @Override
   public void setEnabled(boolean b) {
+    super.setEnabled(b);
+    
     if (b) {
       this.togglebutton.removeAttribute("disabled");
     } else {

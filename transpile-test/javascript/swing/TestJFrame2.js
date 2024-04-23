@@ -51,6 +51,10 @@ class TestJFrame2 extends JFrame {
     this.jRadioButton2 = new JRadioButton();let jRadioButton2 = this.jRadioButton2;
     this.jRadioButton3 = new JRadioButton();let jRadioButton3 = this.jRadioButton3;
     this.jRadioButton4 = new JRadioButton();let jRadioButton4 = this.jRadioButton4;
+    this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
+    this.jToggleButton2 = new JToggleButton();let jToggleButton2 = this.jToggleButton2;
+    this.jToggleButton3 = new JToggleButton();let jToggleButton3 = this.jToggleButton3;
+    this.jToggleButton4 = new JToggleButton();let jToggleButton4 = this.jToggleButton4;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jButton1.setText("jButton1");
@@ -122,6 +126,18 @@ class TestJFrame2 extends JFrame {
     jRadioButton4.setText("jRadioButton4");
     jRadioButton4.setEnabled(false);
     jPanel4.add(jRadioButton4);
+    jToggleButton1.setText("jToggleButton1");
+    jPanel4.add(jToggleButton1);
+    jToggleButton2.setText("jToggleButton2");
+    jToggleButton2.setEnabled(false);
+    jPanel4.add(jToggleButton2);
+    jToggleButton3.setSelected(true);
+    jToggleButton3.setText("jToggleButton3");
+    jPanel4.add(jToggleButton3);
+    jToggleButton4.setSelected(true);
+    jToggleButton4.setText("jToggleButton4");
+    jToggleButton4.setEnabled(false);
+    jPanel4.add(jToggleButton4);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }
 
@@ -190,5 +206,13 @@ class TestJFrame2 extends JFrame {
    jRadioButton7 = null;
 
    jRadioButton8 = null;
+
+   jToggleButton1 = null;
+
+   jToggleButton2 = null;
+
+   jToggleButton3 = null;
+
+   jToggleButton4 = null;
   // End of variables declaration//GEN-END:variables
 }
