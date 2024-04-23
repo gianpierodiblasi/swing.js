@@ -45,10 +45,6 @@ html[data-bs-theme=dark] .bootstraplaf .jdialog header button {
   border-color: transparent;
 }
 
-.bootstraplaf .jcombobox {
-  width: auto;
-}
-
 .bootstraplaf .jprogressbar {
   accent-color: #0d6efd;
 }

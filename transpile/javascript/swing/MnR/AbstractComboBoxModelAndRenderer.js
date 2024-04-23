@@ -13,15 +13,6 @@ class AbstractComboBoxModelAndRenderer {
    elements = new Array();
 
   /**
-   * Returns the selected element
-   *
-   * @return The selected element
-   */
-   getSelectedElement() {
-    return this.selected;
-  }
-
-  /**
    * Sets the combobox managed by this model
    *
    * @param combobox The combobox
@@ -30,6 +21,32 @@ class AbstractComboBoxModelAndRenderer {
     this.combobox = combobox;
     this.combobox.appendNodeChildInTree("summary", this.render(null));
     this.elements.forEach(element => this.addOption(element));
+    this.combobox.clearChildContentByQuery("summary");
+    this.combobox.appendNodeChildInTree("summary", this.render(this.selected));
+  }
+
+  /**
+   * Returns the selected element
+   *
+   * @return The selected element
+   */
+   getSelectedElement() {
+    return this.selected;
+  }
+
+   setSelectedElement(element) {
+    this.selected = null;
+    this.elements.forEach(el => {
+      try {
+        this.selected = el.compareTo(element) ? this.selected : el;
+      } catch (ex) {
+        this.selected = el === element ? el : this.selected;
+      }
+    });
+    if (this.combobox) {
+      this.combobox.clearChildContentByQuery("summary");
+      this.combobox.appendNodeChildInTree("summary", this.render(this.selected));
+    }
   }
 
   /**

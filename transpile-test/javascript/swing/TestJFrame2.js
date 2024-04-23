@@ -19,6 +19,23 @@ class TestJFrame2 extends JFrame {
     modelAndRendererCB.addElement(20);
     modelAndRendererCB.addElement(30);
     (SwingJS.convert(this.jComboBox1)).setModelAndRenderer(modelAndRendererCB);
+    modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    (SwingJS.convert(this.jComboBox2)).setModelAndRenderer(modelAndRendererCB);
+    modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    (SwingJS.convert(this.jComboBox3)).setModelAndRenderer(modelAndRendererCB);
+    this.jComboBox3.setSelectedItem(30);
+    modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    (SwingJS.convert(this.jComboBox4)).setModelAndRenderer(modelAndRendererCB);
+    this.jComboBox4.setSelectedItem(20);
   }
 
   /**
@@ -62,6 +79,9 @@ class TestJFrame2 extends JFrame {
     this.jToggleButton4 = new JToggleButton();let jToggleButton4 = this.jToggleButton4;
     this.jPanel5 = new JPanel();let jPanel5 = this.jPanel5;
     this.jComboBox1 = new JComboBox();let jComboBox1 = this.jComboBox1;
+    this.jComboBox2 = new JComboBox();let jComboBox2 = this.jComboBox2;
+    this.jComboBox3 = new JComboBox();let jComboBox3 = this.jComboBox3;
+    this.jComboBox4 = new JComboBox();let jComboBox4 = this.jComboBox4;
     this.setTitle("Test Layouts");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jButton1.setText("jButton1");
@@ -147,6 +167,11 @@ class TestJFrame2 extends JFrame {
     jPanel4.add(jToggleButton4);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_END);
     jPanel5.add(jComboBox1);
+    jComboBox2.setEnabled(false);
+    jPanel5.add(jComboBox2);
+    jPanel5.add(jComboBox3);
+    jComboBox4.setEnabled(false);
+    jPanel5.add(jComboBox4);
     this.getContentPane().add(jPanel5, BorderLayout.CENTER);
   }
 
@@ -193,6 +218,12 @@ class TestJFrame2 extends JFrame {
    jCheckBox4 = null;
 
    jComboBox1 = null;
+
+   jComboBox2 = null;
+
+   jComboBox3 = null;
+
+   jComboBox4 = null;
 
    jPanel1 = null;
 

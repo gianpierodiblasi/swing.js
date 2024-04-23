@@ -30,7 +30,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     this.postInitComponents();
   }
 
-  @SuppressWarnings("StringEquality")
+  @SuppressWarnings({"StringEquality", "unchecked"})
   private void postInitComponents() {
     ((JSRadioButton) SwingJS.convert(this.jRadioButton5)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton6)).setToggle();
@@ -42,6 +42,26 @@ public class TestJFrame2 extends javax.swing.JFrame {
     modelAndRendererCB.addElement(20);
     modelAndRendererCB.addElement(30);
     ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox1)).setModelAndRenderer(modelAndRendererCB);
+    
+    modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox2)).setModelAndRenderer(modelAndRendererCB);
+    
+    modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox3)).setModelAndRenderer(modelAndRendererCB);
+    this.jComboBox3.setSelectedItem(30);
+    
+    modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
+    modelAndRendererCB.addElement(10);
+    modelAndRendererCB.addElement(20);
+    modelAndRendererCB.addElement(30);
+    ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox4)).setModelAndRenderer(modelAndRendererCB);
+    this.jComboBox4.setSelectedItem(20);
   }
 
   /**
@@ -88,6 +108,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jToggleButton4 = new JToggleButton();
     jPanel5 = new JPanel();
     jComboBox1 = new JComboBox<>();
+    jComboBox2 = new JComboBox<>();
+    jComboBox3 = new JComboBox<>();
+    jComboBox4 = new JComboBox<>();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -207,6 +230,14 @@ public class TestJFrame2 extends javax.swing.JFrame {
 
     jPanel5.add(jComboBox1);
 
+    jComboBox2.setEnabled(false);
+    jPanel5.add(jComboBox2);
+
+    jPanel5.add(jComboBox3);
+
+    jComboBox4.setEnabled(false);
+    jPanel5.add(jComboBox4);
+
     getContentPane().add(jPanel5, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
@@ -233,6 +264,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JCheckBox jCheckBox3;
   private JCheckBox jCheckBox4;
   private JComboBox<Integer> jComboBox1;
+  private JComboBox<Integer> jComboBox2;
+  private JComboBox<Integer> jComboBox3;
+  private JComboBox<Integer> jComboBox4;
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;

@@ -25,6 +25,15 @@ class JSComboBox extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JComboBox.getSelectedItem
+   *
+   * @param object The selected item
+   */
+   setSelectedItem(object) {
+    this.modelAndRenderer.setSelectedElement(object);
+  }
+
+  /**
    * Sets the model
    *
    * @param modelAndRenderer The model

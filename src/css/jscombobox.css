@@ -7,8 +7,13 @@
   border: 2px solid var(--main-action-bgcolor);
   border-radius: .5rem;
 }
-.jscombobox:hover {
+.jscombobox:hover:not([disabled]) {
   box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+.jscombobox[disabled] {
+  filter: opacity(0.5);
+  cursor: default;
+  pointer-events: none;
 }
 
 .jscombobox summary {
@@ -44,6 +49,7 @@
   box-shadow: 0 0 .5rem var(--main-action-bgcolor);
   border-radius: .5rem;
 }
+
 .jscombobox li {
   padding: .5rem;
   cursor: pointer;

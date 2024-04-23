@@ -8,10 +8,6 @@
   box-shadow: none;
 }
 
-.picolaf .jcombobox {
-  width: auto;
-}
-
 .picolaf .jprogressbar label {
   -webkit-text-fill-color: initial !important;
 }

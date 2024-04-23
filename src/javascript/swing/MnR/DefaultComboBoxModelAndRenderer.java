@@ -11,7 +11,7 @@ import static simulation.js.$Globals.$exists;
  * @author gianpiero.diblasi
  * @param <T> The type
  */
-public class DefaultComboBoxModelAndRenderer<T> extends AbstractComboBoxModelAndRenderer<T> {
+public class DefaultComboBoxModelAndRenderer<T extends Comparable<T>> extends AbstractComboBoxModelAndRenderer<T> {
 
   @Override
   protected Node render(T element) {

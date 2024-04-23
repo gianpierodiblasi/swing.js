@@ -13,20 +13,11 @@ import static simulation.js.$Globals.$exists;
  * @author gianpiero.diblasi
  * @param <T> The type
  */
-public abstract class AbstractComboBoxModelAndRenderer<T> {
+public abstract class AbstractComboBoxModelAndRenderer<T extends Comparable<T>> {
 
   private JSComboBox<T> combobox;
   private T selected;
   private final Array<T> elements = new Array<>();
-
-  /**
-   * Returns the selected element
-   *
-   * @return The selected element
-   */
-  public T getSelectedElement() {
-    return this.selected;
-  }
 
   /**
    * Sets the combobox managed by this model
@@ -37,6 +28,34 @@ public abstract class AbstractComboBoxModelAndRenderer<T> {
     this.combobox = combobox;
     this.combobox.appendNodeChildInTree("summary", this.render(null));
     this.elements.forEach(element -> this.addOption(element));
+
+    this.combobox.clearChildContentByQuery("summary");
+    this.combobox.appendNodeChildInTree("summary", this.render(this.selected));
+  }
+
+  /**
+   * Returns the selected element
+   *
+   * @return The selected element
+   */
+  public T getSelectedElement() {
+    return this.selected;
+  }
+
+  public void setSelectedElement(T element) {
+    this.selected = null;
+    this.elements.forEach(el -> {
+      try {
+        this.selected = $exists(el.compareTo(element)) ? this.selected : el;
+      } catch (Exception ex) {
+        this.selected = el == element ? el : this.selected;
+      }
+    });
+
+    if ($exists(this.combobox)) {
+      this.combobox.clearChildContentByQuery("summary");
+      this.combobox.appendNodeChildInTree("summary", this.render(this.selected));
+    }
   }
 
   /**

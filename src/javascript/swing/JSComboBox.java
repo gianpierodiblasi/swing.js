@@ -9,7 +9,7 @@ import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
  * @author gianpiero.diblasi
  * @param <T> The type
  */
-public class JSComboBox<T> extends AbstractButton {
+public class JSComboBox<T extends Comparable<T>> extends AbstractButton {
 
   private AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
 
@@ -29,6 +29,16 @@ public class JSComboBox<T> extends AbstractButton {
    */
   public Object getSelectedItem() {
     return this.modelAndRenderer.getSelectedElement();
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.getSelectedItem
+   *
+   * @param object The selected item
+   */
+  @SuppressWarnings("unchecked")
+  public void setSelectedItem(Object object) {
+    this.modelAndRenderer.setSelectedElement((T)object);
   }
 
   /**
