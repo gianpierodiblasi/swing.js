@@ -172,7 +172,7 @@ class JSComponent {
    * @param index The child index
    * @return The style of a child of the HTML element
    */
-   getChilStyle(index) {
+   getChilStyleByIndex(index) {
     return (this.element.childNodes.item(index)).style;
   }
 
@@ -182,7 +182,7 @@ class JSComponent {
    * @param query The query selector
    * @return The style of a child of the HTML element
    */
-   queryChilStyle(query) {
+   getChilStyleByQuery(query) {
     return (this.element.querySelector(query)).style;
   }
 
@@ -193,8 +193,19 @@ class JSComponent {
    * @param key The attribute key
    * @param value The attribute value
    */
-   setChildAttribute(index, key, value) {
+   setChildAttributeByIndex(index, key, value) {
     (this.element.childNodes.item(index)).setAttribute(key, value);
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+   setChildAttributeByQuery(query, key, value) {
+    this.element.querySelector(query).setAttribute(key, value);
   }
 
   /**
@@ -204,7 +215,7 @@ class JSComponent {
    * @param key The attribute key
    * @return The attribute value
    */
-   getChildAttribute(index, key) {
+   getChildAttributeByIndex(index, key) {
     return (this.element.childNodes.item(index)).getAttribute(key);
   }
 
@@ -215,7 +226,7 @@ class JSComponent {
    * @param key The attribute key
    * @return The attribute value
    */
-   queryChildAttribute(query, key) {
+   getChildAttributeByQuery(query, key) {
     return this.element.querySelector(query).getAttribute(key);
   }
 

@@ -2,7 +2,6 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.Text;
-import javascript.swing.plaf.LookAndFeel;
 import simulation.dom.$HTMLElement;
 
 /**
@@ -16,38 +15,24 @@ public class JSRadioButton extends AbstractButton {
   private final Text text;
 
   public JSRadioButton() {
-    super();
+    super(document.createElement("label"));
 
-    this.element = document.createElement("label");
-    this.element.classList.add("jradiobutton");
+    this.cssAddClass("jsradiobutton");
 
     this.radiobutton = ($HTMLElement) document.createElement("input");
     this.radiobutton.setAttribute("type", "radio");
     this.radiobutton.onchange = (event) -> this.onclick();
-    this.element.appendChild(this.radiobutton);
+    this.appendNodeChild(this.radiobutton);
 
     this.text = document.createTextNode("");
-    this.element.appendChild(this.text);
-
-    LookAndFeel.CURRENT.styleJSRadioButton(this);
+    this.appendNodeChild(this.text);
   }
 
   /**
-   * Set this radiobutton as a switch; the result depends on the used
-   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
-   */
-  public void setSwitch() {
-    this.radiobutton.setAttribute("role", "switch");
-    LookAndFeel.CURRENT.styleJSRadioButton(this);
-  }
-
-  /**
-   * Set this radiobutton as a toggle; the result depends on the used
-   * Look&amp;Feel, with the DefaultLookAndFeel it will be not change
+   * Set this radiobutton as a toggle
    */
   public void setToggle() {
-    this.radiobutton.setAttribute("role", "toggle");
-    LookAndFeel.CURRENT.styleJSRadioButton(this);
+//    this.radiobutton.setAttribute("role", "toggle");
   }
 
   /**
@@ -86,12 +71,10 @@ public class JSRadioButton extends AbstractButton {
     return this.radiobutton.checked;
   }
 
-  /**
-   * Clone of javax.swing.JRadioButton.setEnabled
-   *
-   * @param b true to enable the radiobutton, false otherwise
-   */
+  @Override
   public void setEnabled(boolean b) {
+    super.setEnabled(b);
+
     if (b) {
       this.radiobutton.removeAttribute("disabled");
     } else {

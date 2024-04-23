@@ -182,7 +182,7 @@ public class JSComponent {
    * @param index The child index
    * @return The style of a child of the HTML element
    */
-  public CSSStyleDeclaration getChilStyle(int index) {
+  public CSSStyleDeclaration getChilStyleByIndex(int index) {
     return ((HTMLElement) this.element.childNodes.item(index)).style;
   }
 
@@ -192,7 +192,7 @@ public class JSComponent {
    * @param query The query selector
    * @return The style of a child of the HTML element
    */
-  public CSSStyleDeclaration queryChilStyle(String query) {
+  public CSSStyleDeclaration getChilStyleByQuery(String query) {
     return ((HTMLElement) this.element.querySelector(query)).style;
   }
 
@@ -203,8 +203,19 @@ public class JSComponent {
    * @param key The attribute key
    * @param value The attribute value
    */
-  public void setChildAttribute(int index, String key, String value) {
+  public void setChildAttributeByIndex(int index, String key, String value) {
     ((Element) this.element.childNodes.item(index)).setAttribute(key, value);
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+  public void setChildAttributeByQuery(String query, String key, String value) {
+    this.element.querySelector(query).setAttribute(key, value);
   }
 
   /**
@@ -214,7 +225,7 @@ public class JSComponent {
    * @param key The attribute key
    * @return The attribute value
    */
-  public String getChildAttribute(int index, String key) {
+  public String getChildAttributeByIndex(int index, String key) {
     return ((Element) this.element.childNodes.item(index)).getAttribute(key);
   }
 
@@ -225,7 +236,7 @@ public class JSComponent {
    * @param key The attribute key
    * @return The attribute value
    */
-  public String queryChildAttribute(String query, String key) {
+  public String getChildAttributeByQuery(String query, String key) {
     return this.element.querySelector(query).getAttribute(key);
   }
 

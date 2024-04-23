@@ -19,7 +19,7 @@ public class ButtonGroup {
    * @param button The button
    */
   public void add(JSRadioButton button) {
-    button.element.querySelector("[type=radio]").setAttribute("name", this.name);
+    button.setChildAttributeByQuery("[type=radio]", "name", this.name);
     this.count++;
   }
 

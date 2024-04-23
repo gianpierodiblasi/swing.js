@@ -4,12 +4,13 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javascript.SwingJS;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -37,6 +38,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    buttonGroup1 = new ButtonGroup();
     jPanel1 = new JPanel();
     jButton1 = new JButton();
     jButton2 = new JButton();
@@ -60,10 +62,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox2 = new JCheckBox();
     jCheckBox3 = new JCheckBox();
     jCheckBox4 = new JCheckBox();
-    jCheckBox5 = new JCheckBox();
-    jCheckBox6 = new JCheckBox();
-    jCheckBox7 = new JCheckBox();
-    jCheckBox8 = new JCheckBox();
+    jRadioButton1 = new JRadioButton();
+    jRadioButton2 = new JRadioButton();
+    jRadioButton3 = new JRadioButton();
+    jRadioButton4 = new JRadioButton();
 
     setTitle("Test Layouts");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -137,21 +139,24 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jCheckBox4.setEnabled(false);
     jPanel4.add(jCheckBox4);
 
-    jCheckBox5.setText("jCheckBox5");
-    jPanel4.add(jCheckBox5);
+    buttonGroup1.add(jRadioButton1);
+    jRadioButton1.setText("jRadioButton1");
+    jPanel4.add(jRadioButton1);
 
-    jCheckBox6.setText("jCheckBox6");
-    jCheckBox6.setEnabled(false);
-    jPanel4.add(jCheckBox6);
+    buttonGroup1.add(jRadioButton2);
+    jRadioButton2.setText("jRadioButton2");
+    jRadioButton2.setEnabled(false);
+    jPanel4.add(jRadioButton2);
 
-    jCheckBox7.setSelected(true);
-    jCheckBox7.setText("jCheckBox7");
-    jPanel4.add(jCheckBox7);
+    buttonGroup1.add(jRadioButton3);
+    jRadioButton3.setText("jRadioButton3");
+    jPanel4.add(jRadioButton3);
 
-    jCheckBox8.setSelected(true);
-    jCheckBox8.setText("jCheckBox8");
-    jCheckBox8.setEnabled(false);
-    jPanel4.add(jCheckBox8);
+    buttonGroup1.add(jRadioButton4);
+    jRadioButton4.setSelected(true);
+    jRadioButton4.setText("jRadioButton4");
+    jRadioButton4.setEnabled(false);
+    jPanel4.add(jRadioButton4);
 
     getContentPane().add(jPanel4, BorderLayout.LINE_END);
   }// </editor-fold>//GEN-END:initComponents
@@ -161,6 +166,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private ButtonGroup buttonGroup1;
   private Box.Filler filler1;
   private Box.Filler filler2;
   private Box.Filler filler3;
@@ -180,13 +186,13 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JCheckBox jCheckBox2;
   private JCheckBox jCheckBox3;
   private JCheckBox jCheckBox4;
-  private JCheckBox jCheckBox5;
-  private JCheckBox jCheckBox6;
-  private JCheckBox jCheckBox7;
-  private JCheckBox jCheckBox8;
   private JPanel jPanel1;
   private JPanel jPanel2;
   private JPanel jPanel3;
   private JPanel jPanel4;
+  private JRadioButton jRadioButton1;
+  private JRadioButton jRadioButton2;
+  private JRadioButton jRadioButton3;
+  private JRadioButton jRadioButton4;
   // End of variables declaration//GEN-END:variables
 }

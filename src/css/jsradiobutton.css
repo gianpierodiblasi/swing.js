@@ -1,29 +1,29 @@
-.jscheckbox {
+.jsradiobutton {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.jscheckbox input {
+.jsradiobutton input {
   font-family: var(--font-family);
   font-size: 2rem;
   color: var(--main-action-bgcolor);
-
+  
   cursor: pointer;
   appearance: none;
   margin: 0 0.2rem 0 0;
 }
-.jscheckbox input:hover {
+.jsradiobutton input:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
-.jscheckbox input::after {
-  content: "\2610";
+.jsradiobutton input::after {
+  content: "\29BE";
 }
-.jscheckbox input:checked::after {
-  content: "\2611";
+.jsradiobutton input:checked::after {
+  content: "\29BF";
 }
 
-.jscheckbox:has(input:disabled), .jscheckbox input:disabled {
+.jsradiobutton:has(input:disabled), .jsradiobutton input:disabled {
   filter: opacity(0.5);
   cursor: default;
 }

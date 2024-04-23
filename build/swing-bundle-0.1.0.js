@@ -405,9 +405,9 @@ class CardLayout extends LayoutManager {
    */
    show(parent, name) {
     for (let index = 0; index < parent.getChildCount(); index++) {
-      parent.getChilStyle(index).display = "none";
+      parent.getChilStyleByIndex(index).display = "none";
     }
-    parent.queryChilStyle("[card=" + name + "]").display = parent.queryChildAttribute("[card=" + name + "]", "old-display");
+    parent.getChilStyleByQuery("[card=" + name + "]").display = parent.getChildAttributeByQuery("[card=" + name + "]", "old-display");
   }
 }
 /**
@@ -689,6 +689,36 @@ class GridLayout extends LayoutManager {
   }
 }
 /**
+ * The javax.swing.ButtonGroup clone
+ *
+ * @author gianpiero.diblasi
+ */
+class ButtonGroup {
+
+   name = "ButtonGroup_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
+
+   count = 0;
+
+  /**
+   * Clone of javax.swing.ButtonGroup.add
+   *
+   * @param button The button
+   */
+   add(button) {
+    button.setChildAttributeByQuery("[type=radio]", "name", this.name);
+    this.count++;
+  }
+
+  /**
+   * Clone of javax.swing.ButtonGroup.getButtonCount
+   *
+   * @return the button count
+   */
+   getButtonCount() {
+    return this.count;
+  }
+}
+/**
  * The javax.swing.JComponent clone
  *
  * @author gianpiero.diblasi
@@ -862,7 +892,7 @@ class JSComponent {
    * @param index The child index
    * @return The style of a child of the HTML element
    */
-   getChilStyle(index) {
+   getChilStyleByIndex(index) {
     return (this.element.childNodes.item(index)).style;
   }
 
@@ -872,7 +902,7 @@ class JSComponent {
    * @param query The query selector
    * @return The style of a child of the HTML element
    */
-   queryChilStyle(query) {
+   getChilStyleByQuery(query) {
     return (this.element.querySelector(query)).style;
   }
 
@@ -883,8 +913,19 @@ class JSComponent {
    * @param key The attribute key
    * @param value The attribute value
    */
-   setChildAttribute(index, key, value) {
+   setChildAttributeByIndex(index, key, value) {
     (this.element.childNodes.item(index)).setAttribute(key, value);
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   * @param value The attribute value
+   */
+   setChildAttributeByQuery(query, key, value) {
+    this.element.querySelector(query).setAttribute(key, value);
   }
 
   /**
@@ -894,7 +935,7 @@ class JSComponent {
    * @param key The attribute key
    * @return The attribute value
    */
-   getChildAttribute(index, key) {
+   getChildAttributeByIndex(index, key) {
     return (this.element.childNodes.item(index)).getAttribute(key);
   }
 
@@ -905,7 +946,7 @@ class JSComponent {
    * @param key The attribute key
    * @return The attribute value
    */
-   queryChildAttribute(query, key) {
+   getChildAttributeByQuery(query, key) {
     return this.element.querySelector(query).getAttribute(key);
   }
 
@@ -1016,6 +1057,15 @@ class JSCheckBox extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JCheckBox.getText
+   *
+   * @return The text
+   */
+   getText() {
+    return this.text.textContent;
+  }
+
+  /**
    * Clone of javax.swing.JCheckBox.setSelected
    *
    * @param selected true to select, false otherwise
@@ -1039,6 +1089,80 @@ class JSCheckBox extends AbstractButton {
       this.checkbox.removeAttribute("disabled");
     } else {
       this.checkbox.setAttribute("disabled", "disabled");
+    }
+  }
+}
+/**
+ * The javax.swing.JRadioButton clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSRadioButton extends AbstractButton {
+
+   radiobutton = null;
+
+   text = null;
+
+  constructor() {
+    super(document.createElement("label"));
+    this.cssAddClass("jsradiobutton");
+    this.radiobutton = document.createElement("input");
+    this.radiobutton.setAttribute("type", "radio");
+    this.radiobutton.onchange = (event) => this.onclick();
+    this.appendNodeChild(this.radiobutton);
+    this.text = document.createTextNode("");
+    this.appendNodeChild(this.text);
+  }
+
+  /**
+   * Set this radiobutton as a toggle
+   */
+   setToggle() {
+    // this.radiobutton.setAttribute("role", "toggle");
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.text.textContent = text;
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.getText
+   *
+   * @return The text
+   */
+   getText() {
+    return this.text.textContent;
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setSelected
+   *
+   * @param selected true to select, false otherwise
+   */
+   setSelected(selected) {
+    this.radiobutton.checked = selected;
+  }
+
+  /**
+   * Clone of javax.swing.JRadioButton.isSelected
+   *
+   * @return true if selected, false otherwise
+   */
+   isSelected() {
+    return this.radiobutton.checked;
+  }
+
+   setEnabled(b) {
+    super.setEnabled(b);
+    if (b) {
+      this.radiobutton.removeAttribute("disabled");
+    } else {
+      this.radiobutton.setAttribute("disabled", "disabled");
     }
   }
 }

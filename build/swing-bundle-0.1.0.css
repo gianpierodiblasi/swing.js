@@ -29,10 +29,10 @@
   font-family: var(--font-family);
   font-size: 2rem;
   color: var(--main-action-bgcolor);
-}
-.jscheckbox input {
+
   cursor: pointer;
   appearance: none;
+  margin: 0 0.2rem 0 0;
 }
 .jscheckbox input:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
@@ -95,7 +95,35 @@
   justify-content: center;
   align-content: center;
 }
-:root {
+.jsradiobutton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.jsradiobutton input {
+  font-family: var(--font-family);
+  font-size: 2rem;
+  color: var(--main-action-bgcolor);
+  
+  cursor: pointer;
+  appearance: none;
+  margin: 0 0.2rem 0 0;
+}
+.jsradiobutton input:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsradiobutton input::after {
+  content: "\29BE";
+}
+.jsradiobutton input:checked::after {
+  content: "\29BF";
+}
+
+.jsradiobutton:has(input:disabled), .jsradiobutton input:disabled {
+  filter: opacity(0.5);
+  cursor: default;
+}:root {
   --font-family: arial;
   --font-size: 14px;
   --main-color: black;

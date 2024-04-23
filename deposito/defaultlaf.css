@@ -32,9 +32,6 @@
   font-size: 34px;
 }
 
-.defaultlaf .jradiobutton {
-  align-items: flex-start;
-}
 
 .defaultlaf .jtabbedpane .borderlayout-north ul li, .defaultlaf .jtabbedpane .borderlayout-south ul li {
   display: inline-block;

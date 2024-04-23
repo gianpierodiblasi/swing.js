@@ -38,6 +38,15 @@ public class JSCheckBox extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JCheckBox.getText
+   *
+   * @return The text
+   */
+  public String getText() {
+    return this.text.textContent;
+  }
+  
+  /**
    * Clone of javax.swing.JCheckBox.setSelected
    *
    * @param selected true to select, false otherwise

@@ -53,8 +53,8 @@ public class CardLayout implements LayoutManager {
    */
   public void show(JSPanel parent, String name) {
     for (int index = 0; index < parent.getChildCount(); index++) {
-      parent.getChilStyle(index).display = "none";
+      parent.getChilStyleByIndex(index).display = "none";
     }
-    parent.queryChilStyle("[card=" + name + "]").display = parent.queryChildAttribute("[card=" + name + "]", "old-display");
+    parent.getChilStyleByQuery("[card=" + name + "]").display = parent.getChildAttributeByQuery("[card=" + name + "]", "old-display");
   }
 }

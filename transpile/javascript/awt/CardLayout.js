@@ -43,8 +43,8 @@ class CardLayout extends LayoutManager {
    */
    show(parent, name) {
     for (let index = 0; index < parent.getChildCount(); index++) {
-      parent.getChilStyle(index).display = "none";
+      parent.getChilStyleByIndex(index).display = "none";
     }
-    parent.queryChilStyle("[card=" + name + "]").display = parent.queryChildAttribute("[card=" + name + "]", "old-display");
+    parent.getChilStyleByQuery("[card=" + name + "]").display = parent.getChildAttributeByQuery("[card=" + name + "]", "old-display");
   }
 }
