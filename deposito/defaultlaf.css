@@ -27,7 +27,3 @@
 .defaultlaf .jdialog .jdialog-content {
   padding: 1rem;
 }
-
-.jstabbedpane .north ul li, .defaultlaf .jstabbedpane .south ul li {
-  display: inline-block;
-}

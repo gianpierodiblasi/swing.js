@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  * @author gianpiero.diblasi
  */
 @SuppressWarnings("serial")
-public class TestJFrame5__ extends javax.swing.JFrame {
+public class TestJFrame6 extends javax.swing.JFrame {
 
   /**
    * Creates new form TestFrame3
    */
-  public TestJFrame5__() {
+  public TestJFrame6() {
     super();
     this.initComponents();
     this.postInitComponents();
@@ -51,7 +51,7 @@ public class TestJFrame5__ extends javax.swing.JFrame {
     jButton4.addActionListener(this::jButton4ActionPerformed);
     jDialog1.getContentPane().add(jButton4);
 
-    setTitle("TestJFrame5");
+    setTitle("Test Dialog");
 
     jButton1.setText("modal");
     jButton1.addActionListener(this::jButton1ActionPerformed);

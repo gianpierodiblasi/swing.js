@@ -4,8 +4,10 @@ import def.dom.CSSStyleDeclaration;
 import def.dom.DOMTokenList;
 import def.dom.Element;
 import def.dom.EventListener;
+import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import def.dom.Node;
+import static def.js.Globals.eval;
 import javascript.awt.Color;
 import simulation.dom.$HTMLElement;
 
@@ -47,6 +49,15 @@ public class JSComponent {
     } else {
       this.element.setAttribute("disabled", "disabled");
     }
+  }
+
+  /**
+   * Invokes a method of the HTML element
+   *
+   * @param method The method name
+   */
+  public void invoke(String method) {
+    eval("this.element." + method + "();");
   }
 
   /**
@@ -166,6 +177,13 @@ public class JSComponent {
    */
   public void addEventListener(String event, EventListener listener) {
     this.element.addEventListener(event, listener);
+  }
+
+  /**
+   * Adds the HTML element to the BODY element
+   */
+  public void appendInBody() {
+    document.querySelector("body").appendChild(this.element);
   }
 
   /**

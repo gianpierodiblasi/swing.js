@@ -7,34 +7,3 @@
   border-color: transparent;
   box-shadow: none;
 }
-
-.picolaf .jtabbedpane .borderlayout-north ul li {
-  border-bottom: 2px solid transparent;
-}
-.picolaf .jtabbedpane .borderlayout-north ul li:has(.jradiobutton.active) {
-  border-bottom: 2px solid var(--pico-primary-background);
-}
-.picolaf .jtabbedpane .borderlayout-south ul li {
-  border-top: 2px solid transparent;
-}
-.picolaf .jtabbedpane .borderlayout-south ul li:has(.jradiobutton.active) {
-  border-top: 2px solid var(--pico-primary-background);
-}
-.picolaf .jtabbedpane .borderlayout-east ul li {
-  border-left: 2px solid transparent;
-}
-.picolaf .jtabbedpane .borderlayout-east ul li:has(.jradiobutton.active) {
-  border-left: 2px solid var(--pico-primary-background);
-}
-.picolaf .jtabbedpane .borderlayout-west ul li {
-  border-right: 2px solid transparent;
-}
-.picolaf .jtabbedpane .borderlayout-west ul li:has(.jradiobutton.active) {
-  border-right: 2px solid var(--pico-primary-background);
-}
-.picolaf .jtabbedpane ul li .jradiobutton {
-  font-size: 1.3em;
-}
-.picolaf .jtabbedpane ul li:has(.jradiobutton.active) .jradiobutton {
-  color: var(--pico-primary-background);
-}

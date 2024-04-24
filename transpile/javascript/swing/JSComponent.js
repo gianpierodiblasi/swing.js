@@ -39,6 +39,15 @@ class JSComponent {
   }
 
   /**
+   * Invokes a method of the HTML element
+   *
+   * @param method The method name
+   */
+   invoke(method) {
+    eval("this.element." + method + "();");
+  }
+
+  /**
    * Sets the ID of the HTML element
    *
    * @param id The ID of the HTML element
@@ -155,6 +164,13 @@ class JSComponent {
    */
    addEventListener(event, listener) {
     this.element.addEventListener(event, listener);
+  }
+
+  /**
+   * Adds the HTML element to the BODY element
+   */
+   appendInBody() {
+    document.querySelector("body").appendChild(this.element);
   }
 
   /**
