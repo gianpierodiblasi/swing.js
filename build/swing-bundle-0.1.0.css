@@ -213,8 +213,7 @@
   }
 }
 
-
-.jsprogressbar-vertical {
+.jsprogressbar.jsprogressbar-vertical {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
 }.jsradiobutton {
