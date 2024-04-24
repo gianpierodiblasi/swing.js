@@ -33,7 +33,7 @@ if a method is a clone of a corresponding native method then it is documented as
 
 If a method is not available in the original class then a complete documentation is available.
 
-swing.js allows to customize some some UI parameters such as fonts and colors and some components provide special methods to customize the UI
+swing.js allows to customize some UI parameters such as fonts and colors and some components provide special methods to customize the UI
 (see the [documentation](https://gianpierodiblasi.github.io/swing.js/docs/index.html) and [test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html)
 for major details).
 
