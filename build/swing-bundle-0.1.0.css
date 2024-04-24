@@ -165,7 +165,59 @@
   justify-content: center;
   align-content: center;
 }
-.jsradiobutton {
+.jsprogressbar {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+
+  display: grid;
+  justify-items: left;
+  align-items: center;
+  background-color: var(--main-bgcolor);
+  border: 2px solid var(--main-action-bgcolor);
+  border-radius: 2rem;
+}
+.jsprogressbar label {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+
+  color: var(--main-action-color);
+  background: transparent;
+  text-align: center;
+  visibility: hidden;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  z-index: 1;
+}
+.jsprogressbar div {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+
+  grid-column-start: 1;
+  grid-row-start: 1;
+  background-color: var(--main-action-bgcolor);
+  border-radius: 2rem;
+}
+
+.jsprogressbar.jsprogressbar-indeterminate div {
+  animation: jsprogressbar 3s infinite linear;
+  width: 25%;
+}
+@keyframes jsprogressbar {
+  0%, 100% {
+    margin-left: 0%;
+  }
+  50% {
+    margin-left: 75%;
+  }
+}
+
+
+.jsprogressbar-vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}.jsradiobutton {
   display: flex;
   align-items: center;
   cursor: pointer;

@@ -118,7 +118,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSpinner1 = new JSpinner();
     jSpinner2 = new JSpinner();
 
-    setTitle("Test Layouts");
+    setTitle("Test Components");
     getContentPane().setLayout(new BorderLayout(5, 5));
 
     jButton1.setText("jButton1");

@@ -28,11 +28,6 @@
   padding: 1rem;
 }
 
-.defaultlaf .jprogressbar progress {
-  font-size: 34px;
-}
-
-
 .defaultlaf .jtabbedpane .borderlayout-north ul li, .defaultlaf .jtabbedpane .borderlayout-south ul li {
   display: inline-block;
 }

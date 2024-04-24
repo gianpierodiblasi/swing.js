@@ -3,7 +3,6 @@ package javascript.swing;
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import def.js.Number;
-import javascript.swing.plaf.LookAndFeel;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -28,39 +27,23 @@ public class JSProgressBar extends JSComponent {
   private String string = "";
 
   public JSProgressBar() {
-    super();
+    super(document.createElement("div"));
 
-    this.element = document.createElement("div");
-    this.element.classList.add("jprogressbar");
-    this.element.classList.add("jprogressbar-horizontal");
-    this.element.style.display = "grid";
-    this.element.style.setProperty("justify-items", "left");
-    this.element.style.alignItems = "center";
+    this.cssAddClass("jsprogressbar");
+    this.cssAddClass("jsprogressbar-horizontal");
 
     this.label = document.createElement("label");
-    this.label.style.minWidth = "0%";
-    this.label.style.color = "white";
-    this.label.style.textAlign = "center";
-    this.label.style.visibility = "hidden";
-    this.label.style.setProperty("grid-column-start", "1");
-    this.label.style.setProperty("grid-row-start", "1");
     this.label.textContent = "0%";
-    this.element.appendChild(this.label);
+    this.label.style.minWidth = "0%";
+    this.appendNodeChild(this.label);
 
-    this.progress = document.createElement("progress");
-    this.progress.style.width = "100%";
-    this.progress.setAttribute("max", "" + this.max);
-    this.progress.setAttribute("value", "" + this.value);
-    this.progress.style.zIndex = "-1";
-    this.progress.style.setProperty("grid-column-start", "1");
-    this.progress.style.setProperty("grid-row-start", "1");
-    this.element.appendChild(this.progress);
-
-    LookAndFeel.CURRENT.styleJSProgressBar(this);
+    this.progress = document.createElement("div");
+    this.progress.style.height = "1.7rem";
+    this.appendNodeChild(this.progress);
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setMaximum
+   * Clone of javax.swing.JProgressBar.setMaximum
    *
    * @param value The value
    */
@@ -70,7 +53,7 @@ public class JSProgressBar extends JSComponent {
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setMinimum
+   * Clone of javax.swing.JProgressBar.setMinimum
    *
    * @param value The value
    */
@@ -80,7 +63,7 @@ public class JSProgressBar extends JSComponent {
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setValue
+   * Clone of javax.swing.JProgressBar.setValue
    *
    * @param value The value
    */
@@ -90,7 +73,7 @@ public class JSProgressBar extends JSComponent {
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setIndeterminate
+   * Clone of javax.swing.JProgressBar.setIndeterminate
    *
    * @param b true to set an indeterminate progressbar, false otherwise
    */
@@ -100,7 +83,7 @@ public class JSProgressBar extends JSComponent {
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setStringPainted
+   * Clone of javax.swing.JProgressBar.setStringPainted
    *
    * @param b true to paint the string, false otherwise
    */
@@ -110,7 +93,7 @@ public class JSProgressBar extends JSComponent {
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setString
+   * Clone of javax.swing.JProgressBar.setString
    *
    * @param string The string to paint
    */
@@ -120,14 +103,14 @@ public class JSProgressBar extends JSComponent {
   }
 
   /**
-   * Clone of javax.swing.JSProgressBar.setOrientation
+   * Clone of javax.swing.JProgressBar.setOrientation
    *
    * @param orientation The orientation
    */
   public void setOrientation(int orientation) {
     this.orientation = orientation;
-    this.element.classList.remove("jprogressbar-horizontal");
-    this.element.classList.remove("jprogressbar-vertical");
+    this.cssRemoveClass("jsprogressbar-horizontal");
+    this.cssRemoveClass("jsprogressbar-vertical");
     this.label.style.removeProperty("min-width");
     this.label.style.removeProperty("min-height");
     this.progress.style.removeProperty("width");
@@ -135,12 +118,12 @@ public class JSProgressBar extends JSComponent {
 
     switch (orientation) {
       case JSProgressBar.HORIZONTAL:
-        this.element.classList.add("jprogressbar-horizontal");
-        this.progress.style.width = "100%";
+        this.cssAddClass("jsprogressbar-horizontal");
+        this.progress.style.height = "1.7rem";
         break;
       case JSProgressBar.VERTICAL:
-        this.element.classList.add("jprogressbar-vertical");
-        this.progress.style.height = "100%";
+        this.cssAddClass("jsprogressbar-vertical");
+        this.progress.style.width = "1.7rem";
         break;
     }
 
@@ -160,7 +143,7 @@ public class JSProgressBar extends JSComponent {
     this.label.textContent = $exists(this.string) ? this.string : (valuePerc.toFixed() + "%");
     this.label.style.visibility = this.indeterminate || !this.stringPainted ? "hidden" : "visible";
     if (this.stringPainted && $exists(this.string)) {
-      this.label.style.background = "linear-gradient(to right, white " + valuePerc + "%, black " + valuePerc + "%)";
+      this.label.style.background = "linear-gradient(to right, var(--main-action-color) " + valuePerc + "%, var(--main-color) " + valuePerc + "%)";
       this.label.style.setProperty("background-clip", "text");
       this.label.style.setProperty("-webkit-text-fill-color", "transparent");
     } else {
@@ -169,10 +152,20 @@ public class JSProgressBar extends JSComponent {
       this.label.style.removeProperty("-webkit-text-fill-color");
     }
 
-    this.progress.setAttribute("max", "" + (this.max - this.min));
-    this.progress.setAttribute("value", "" + (this.value - this.min));
     if (this.indeterminate) {
-      this.progress.removeAttribute("value");
+      this.cssAddClass("jsprogressbar-indeterminate");
+      this.getStyle().animationName = "jsprogressbar";
+    } else {
+      this.cssRemoveClass("jsprogressbar-indeterminate");
+      this.getStyle().animationName = "none";
+      switch (this.orientation) {
+        case JSProgressBar.HORIZONTAL:
+          this.progress.style.width = valuePerc + "%";
+          break;
+        case JSProgressBar.VERTICAL:
+          this.progress.style.height = valuePerc + "%";
+          break;
+      }
     }
   }
 }

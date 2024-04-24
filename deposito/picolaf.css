@@ -8,20 +8,6 @@
   box-shadow: none;
 }
 
-.picolaf .jprogressbar label {
-  -webkit-text-fill-color: initial !important;
-}
-.picolaf .jprogressbar progress {
-  font-size: var(--pico-font-size);
-  border-radius: calc(var(--pico-border-radius) + 1rem);
-}
-.picolaf .jprogressbar.jprogressbar-horizontal progress {
-  height: calc(var(--pico-font-size) - .5rem);
-}
-.picolaf .jprogressbar.jprogressbar-vertical progress {
-  width: calc(var(--pico-font-size) - .5rem);
-}
-
 .picolaf .jtabbedpane nav {
   display: block;
 }

@@ -27,15 +27,6 @@ import static simulation.js.$Globals.$typeof;
 public class BootstrapLookAndFeel  {
 
   @Override
-  public void styleJSComboBox(JSComboBox<?> combobox) {
-    combobox.cssAddClass("form-select");
-
-    if ($exists(this.size)) {
-      combobox.cssAddClass("form-select-" + this.size);
-    }
-  }
-
-  @Override
   public void styleJSDialog(JSDialog dialog) {
     switch (this.size) {
       case "sm":
@@ -47,37 +38,6 @@ public class BootstrapLookAndFeel  {
       default:
         ((HTMLElement) dialog.element.querySelector(".jdialog-header label")).style.fontSize = "20px";
         break;
-    }
-  }
-
-  @Override
-  public void styleJSProgressBar(JSProgressBar progressbar) {
-    switch (this.size) {
-      case "sm":
-        ((HTMLElement) progressbar.element.querySelector("progress")).style.fontSize = "31px";
-        break;
-      case "lg":
-        ((HTMLElement) progressbar.element.querySelector("progress")).style.fontSize = "40px";
-        break;
-      default:
-        ((HTMLElement) progressbar.element.querySelector("progress")).style.fontSize = "34px";
-        break;
-    }
-
-    this.setSize((HTMLElement) progressbar.element.querySelector("label"));
-  }
-
-  @Override
-  public void styleJSSlider(JSSlider slider) {
-    this.setSize((HTMLElement) slider.element.querySelector("datalist"));
-  }
-
-  @Override
-  public void styleJSSpinner(JSSpinner spinner) {
-    spinner.cssAddClass("form-control");
-
-    if ($exists(this.size)) {
-      spinner.cssAddClass("form-control-" + this.size);
     }
   }
 

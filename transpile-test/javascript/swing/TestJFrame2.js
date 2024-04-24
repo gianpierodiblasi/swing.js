@@ -86,7 +86,7 @@ class TestJFrame2 extends JFrame {
     this.jComboBox4 = new JComboBox();let jComboBox4 = this.jComboBox4;
     this.jSpinner1 = new JSpinner();let jSpinner1 = this.jSpinner1;
     this.jSpinner2 = new JSpinner();let jSpinner2 = this.jSpinner2;
-    this.setTitle("Test Layouts");
+    this.setTitle("Test Components");
     this.getContentPane().setLayout(new BorderLayout(5, 5));
     jButton1.setText("jButton1");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
