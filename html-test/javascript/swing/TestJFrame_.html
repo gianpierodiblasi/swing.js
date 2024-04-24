@@ -14,7 +14,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         SwingJS.instance().
                 darkMode(urlParams.get("dark") === "true").
-                fontSize(urlParams.get("font")).
+                fontFamily(urlParams.get("family")).
+                fontSize(urlParams.get("size")).
                 mainColor(urlParams.get("color")).
                 mainBGColor(urlParams.get("bgcolor")).
                 mainActionColor(urlParams.get("actioncolor")).

@@ -7,7 +7,6 @@ import def.js.Date;
 import javascript.swing.MnR.AbstractSliderModelAndRenderer;
 import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
-import javascript.swing.plaf.LookAndFeel;
 import simulation.dom.$HTMLElement;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
@@ -38,28 +37,25 @@ public class JSSlider extends JSComponent {
   private final String dataListID = "DataList_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
 
   public JSSlider() {
-    super();
+    super(document.createElement("div"));
 
-    this.element = document.createElement("div");
-    this.element.classList.add("jslider");
-    this.element.classList.add("jslider-horizontal");
+    this.cssAddClass("jsslider");
+    this.cssAddClass("jsslider-horizontal");
 
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
     this.slider.oninput = (event) -> this.onchange(true);
     this.slider.onchange = (event) -> this.onchange(false);
-    this.element.appendChild(this.slider);
+    this.appendNodeChild(this.slider);
 
     this.dataList = ($HTMLElement) document.createElement("datalist");
     this.dataList.id = this.dataListID;
-    this.element.appendChild(this.dataList);
+    this.appendNodeChild(this.dataList);
 
     HTMLElement div = document.createElement("div");
     div.style.display = "none";
-    this.element.appendChild(div);
-
-    LookAndFeel.CURRENT.styleJSSlider(this);
+    this.appendNodeChild(div);
   }
 
   /**
@@ -121,15 +117,15 @@ public class JSSlider extends JSComponent {
    */
   public void setOrientation(int orientation) {
     this.orientation = orientation;
-    this.element.classList.remove("jslider-horizontal");
-    this.element.classList.remove("jslider-vertical");
+    this.cssRemoveClass("jsslider-horizontal");
+    this.cssRemoveClass("jsslider-vertical");
 
     switch (orientation) {
       case JSSlider.HORIZONTAL:
-        this.element.classList.add("jslider-horizontal");
+        this.cssAddClass("jsslider-horizontal");
         break;
       case JSSlider.VERTICAL:
-        this.element.classList.add("jslider-vertical");
+        this.cssAddClass("jsslider-vertical");
         break;
     }
   }
@@ -150,9 +146,9 @@ public class JSSlider extends JSComponent {
    */
   public void setInverted(boolean b) {
     if (b) {
-      this.element.classList.add("jslider-inverted");
+      this.cssAddClass("jsslider-inverted");
     } else {
-      this.element.classList.remove("jslider-inverted");
+      this.cssRemoveClass("jsslider-inverted");
     }
   }
 
@@ -187,12 +183,10 @@ public class JSSlider extends JSComponent {
     return (int) (($HTMLElement) this.slider).valueAsNumber;
   }
 
-  /**
-   * Clone of javax.swing.JSlider.setEnabled
-   *
-   * @param b true to enable the slider, false otherwise
-   */
+  @Override
   public void setEnabled(boolean b) {
+    super.setEnabled(b);
+
     if (b) {
       this.slider.removeAttribute("disabled");
     } else {

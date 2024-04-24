@@ -21,28 +21,6 @@
         border: 1px solid #A0A0A0;
         padding: 8px 10px;
       }
-
-      tbody tr td:nth-child(-n+4) * {
-        color: black;
-      }
-
-      thead tr:nth-child(2) td:nth-child(3),
-      tbody tr td:nth-child(n + 5):nth-child(-n + 7), tbody tr td:nth-child(n + 5):nth-child(-n + 7) * {
-        color: #dee2e6;
-        background: #212529;
-      }
-      tbody tr td:nth-child(8), tbody tr td:nth-child(11), tbody tr td:nth-child(8) *,tbody tr td:nth-child(11) * {
-        color: white;
-        background: #D93526;
-      }
-      tbody tr td:nth-child(9), tbody tr td:nth-child(12), tbody tr td:nth-child(9) *,tbody tr td:nth-child(12) * {
-        color: white;
-        background: #017FC0;
-      }
-      tbody tr td:nth-child(10), tbody tr td:nth-child(13), tbody tr td:nth-child(10) *,tbody tr td:nth-child(13) * {
-        color: white;
-        background: #525F7A;
-      }
     </style>
 
     <script>
@@ -50,16 +28,20 @@
         var tests = ["Test Layouts", "Test Components 1", "Test Components 2", "Test Tabs", "Test Dialog"];
         var params = [
           "",
-          "font=20&color=yellow&bgcolor=red&",
+          "size=20&color=yellow&bgcolor=red&",
           "actioncolor=yellow&actionbgcolor=red&",
-          "dark=true&"
+          "dark=true&",
+          "family=serif&",
+          "family=monospace&"
         ];
 
         var titles = [
           "Default",
           "20-yellow-red",
           "action-yellow-red",
-          "Dark"
+          "Dark",
+          "Serif",
+          "Monospace"
         ];
 
         var tbody = document.querySelector("tbody");

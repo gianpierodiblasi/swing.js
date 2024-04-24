@@ -67,29 +67,28 @@ public abstract class AbstractSliderModelAndRenderer<T> {
     this.slider.setMinimum(0);
     this.slider.setMaximum(this.elements.length - 1);
 
-    $HTMLElement dataList = ($HTMLElement) this.slider.element.querySelector("datalist");
-    dataList.textContent = "";
-    dataList.style.display = this.renderByDataList ? "flex" : "none";
-
-    HTMLElement noDataList = (HTMLElement) this.slider.element.querySelector("div");
-    noDataList.textContent = "";
-    noDataList.style.display = !this.renderByDataList ? "flex" : "none";
-
-    this.elements.forEach((element, index, array) -> {
-      HTMLElement option = document.createElement("option");
-      option.setAttribute("value", "" + index);
-      this.render(element, this.slider, dataList, noDataList, option);
-
-      switch (this.slider.getOrientation()) {
-        case JSSlider.HORIZONTAL:
-          dataList.appendChild(option);
-          break;
-        case JSSlider.VERTICAL:
-          dataList.prepend(option);
-          break;
-      }
-
-    });
+//    $HTMLElement dataList = ($HTMLElement) this.slider.element.querySelector("datalist");
+//    dataList.textContent = "";
+//    dataList.style.display = this.renderByDataList ? "flex" : "none";
+//
+//    HTMLElement noDataList = (HTMLElement) this.slider.element.querySelector("div");
+//    noDataList.textContent = "";
+//    noDataList.style.display = !this.renderByDataList ? "flex" : "none";
+//
+//    this.elements.forEach((element, index, array) -> {
+//      HTMLElement option = document.createElement("option");
+//      option.setAttribute("value", "" + index);
+//      this.render(element, this.slider, dataList, noDataList, option);
+//
+//      switch (this.slider.getOrientation()) {
+//        case JSSlider.HORIZONTAL:
+//          dataList.appendChild(option);
+//          break;
+//        case JSSlider.VERTICAL:
+//          dataList.prepend(option);
+//          break;
+//      }
+//    });
   }
 
   /**

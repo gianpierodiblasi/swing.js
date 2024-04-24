@@ -224,6 +224,89 @@
 }
 .jsradiobutton[role=toggle] input:checked::after {
   content: "";
+}.jsslider {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+
+  display: flex;
+}
+.jsslider:has(input:disabled) {
+  filter: opacity(0.5);
+  cursor: default;
+}
+
+.jsslider > datalist, .jsslider > div {
+  justify-content: space-between;
+}
+.jsslider > datalist option *, .jsslider > div * {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+
+.jsslider > input {
+  cursor: pointer;
+  accent-color: var(--main-action-bgcolor);
+}
+.jsslider > input:disabled {
+  cursor: default;
+}
+.jsslider > input::-webkit-slider-runnable-track {
+  background-color: var(--main-action-color);
+  border-radius: .5rem;
+  border: 2px solid var(--main-action-bgcolor);
+}
+.jsslider > input::-ms-track {
+  background-color: var(--main-action-color);
+  border-radius: .5rem;
+  border: 2px solid var(--main-action-bgcolor);
+}
+.jsslider > input::-moz-range-track {
+  background-color: var(--main-action-color);
+  border-radius: .5rem;
+  border: 2px solid var(--main-action-bgcolor);
+}
+.jsslider > input.no-paint-track::-webkit-slider-runnable-track {
+  background-color: var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
+}
+.jsslider > input.no-paint-track::-ms-track {
+  background-color: var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
+}
+.jsslider > input.no-paint-track::-moz-range-track {
+  background-color: var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
+}
+
+.jsslider-horizontal {
+  flex-direction: column;
+}
+.jsslider-horizontal.jsslider-inverted > input {
+  direction: rtl;
+}
+.jsslider-horizontal.jsslider-inverted > datalist, .jsslider-horizontal.jsslider-inverted > div {
+  flex-direction: row-reverse;
+}
+
+.jsslider-vertical {
+  flex-direction: row;
+}
+.jsslider-vertical > input {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg) scale(-1, 1);
+}
+.jsslider-vertical > datalist, .jsslider-vertical > div {
+  flex-direction: column;
+}
+.jsslider-vertical.jsslider-inverted > input {
+  transform: none;
+}
+.jsslider-vertical.jsslider-inverted > datalist, .jsslider-vertical.jsslider-inverted > div {
+  flex-direction: column-reverse;
 }.jsspinner {
   font-family: var(--font-family);
   font-size: var(--font-size);

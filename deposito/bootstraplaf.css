@@ -49,19 +49,6 @@ html[data-bs-theme=dark] .bootstraplaf .jdialog header button {
   accent-color: #0d6efd;
 }
 
-.bootstraplaf .jslider > input {
-  accent-color: #0d6efd;
-}
-html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-webkit-slider-runnable-track {
-  background-color: var(--bs-body-bg);
-}
-html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-ms-track {
-  background-color: var(--bs-body-bg);
-}
-html[data-bs-theme=dark] .bootstraplaf .jslider > input.no-paint-track::-moz-range-track {
-  background-color: var(--bs-body-bg);
-}
-
 .bootstraplaf .jtabbedpane .nav-link {
   cursor: pointer;
 }

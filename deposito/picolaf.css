@@ -22,41 +22,6 @@
   width: calc(var(--pico-font-size) - .5rem);
 }
 
-.picolaf .jslider input {
-  width: auto;
-  height: auto;
-}
-html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-webkit-slider-runnable-track {
-  background-color: transparent;
-}
-html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-ms-track {
-  background-color: transparent;
-}
-html[data-theme=dark] .picolaf .jslider > input.no-paint-track::-moz-range-track {
-  background-color: transparent;
-}
-.picolaf .jslider-vertical [type=range]::-webkit-slider-runnable-track {
-  width: .375rem;
-}
-.picolaf .jslider-vertical [type=range]::-moz-range-track {
-  width: .375rem;
-}
-.picolaf .jslider-vertical [type=range]::-ms-track {
-  width: .375rem;
-}
-.picolaf .jslider-vertical [type=range]::-webkit-slider-thumb {
-  margin-top: 0px;
-  margin-left: -.4375rem;
-}
-.picolaf .jslider-vertical [type=range]::-moz-range-thumb {
-  margin-top: 0px;
-  margin-left: -.4375rem;
-}
-.picolaf .jslider-vertical [type=range]::-ms-thumb {
-  margin-top: 0px;
-  margin-left: -.4375rem;
-}
-
 .picolaf .jtabbedpane nav {
   display: block;
 }
