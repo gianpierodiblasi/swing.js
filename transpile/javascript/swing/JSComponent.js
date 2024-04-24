@@ -176,6 +176,44 @@ class JSComponent {
   }
 
   /**
+   * insert a child to the HTML element before another child
+   *
+   * @param component The child component
+   * @param query The query selector
+   */
+   insertBefore(component, query) {
+    this.element.insertBefore(component.element, this.element.querySelector(query));
+  }
+
+  /**
+   * insert a child to the HTML element before another child
+   *
+   * @param node The node
+   * @param query The query selector
+   */
+   insertNodeBefore(node, query) {
+    this.element.insertBefore(node, this.element.querySelector(query));
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param component The child component
+   */
+   prependChild(component) {
+    (this.element).prepend(component.element);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param node The node
+   */
+   prependNodeChild(node) {
+    (this.element).prepend(node);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param query The query selector
@@ -196,21 +234,25 @@ class JSComponent {
   }
 
   /**
-   * Prepends a child to the HTML element
+   * insert a child to the HTML element before another child
    *
+   * @param queryInTree The query selector in tree
    * @param component The child component
+   * @param query The query selector
    */
-   prependChild(component) {
-    (this.element).prepend(component.element);
+   insertBeforeInTree(queryInTree, component, query) {
+    this.element.querySelector(queryInTree).insertBefore(component.element, this.element.querySelector(query));
   }
 
   /**
-   * Prepends a child to the HTML element
+   * insert a child to the HTML element before another child
    *
+   * @param queryInTree The query selector in tree
    * @param node The node
+   * @param query The query selector
    */
-   prependNodeChild(node) {
-    (this.element).prepend(node);
+   insertNodeBeforeInTree(queryInTree, node, query) {
+    this.element.querySelector(queryInTree).insertBefore(node, this.element.querySelector(query));
   }
 
   /**

@@ -28,6 +28,6 @@
   padding: 1rem;
 }
 
-.defaultlaf .jtabbedpane .borderlayout-north ul li, .defaultlaf .jtabbedpane .borderlayout-south ul li {
+.jstabbedpane .north ul li, .defaultlaf .jstabbedpane .south ul li {
   display: inline-block;
 }

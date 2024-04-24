@@ -12,12 +12,12 @@ import javax.swing.JTabbedPane;
  * @author gianpiero.diblasi
  */
 @SuppressWarnings("serial")
-public class TestJFrame4__ extends javax.swing.JFrame {
+public class TestJFrame5 extends javax.swing.JFrame {
 
   /**
    * Creates new form TestFrame3
    */
-  public TestJFrame4__() {
+  public TestJFrame5() {
     super();
     this.initComponents();
     this.postInitComponents();

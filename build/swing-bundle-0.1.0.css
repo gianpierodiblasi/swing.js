@@ -302,6 +302,9 @@
   cursor: pointer;
   accent-color: var(--main-action-bgcolor);
 }
+.jsslider > input:not([disabled=disabled]):hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
 .jsslider > input:disabled {
   cursor: default;
 }
@@ -324,10 +327,10 @@
   border: 2px solid var(--main-bgcolor);
 }
 .jsslider > input.no-paint-track::-ms-track {
-    border: 2px solid var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
 }
 .jsslider > input.no-paint-track::-moz-range-track {
-    border: 2px solid var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
 }
 
 .jsslider-horizontal {
@@ -410,7 +413,102 @@
 .jsspinner button:active {
   filter: saturate(0.5);
 }
-.jstogglebutton {
+.jstabbedpane {
+}
+.jstabbedpane nav ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin: 0px;
+  display: flex;
+}
+.jstabbedpane .west ul, .jstabbedpane .east ul {
+  flex-direction: column;
+  height: 100%;
+}
+.jstabbedpane nav input::after {
+  display: none;
+}
+
+.jstabbedpane .north:has(input) {
+  border-bottom: 2px solid var(--main-action-bgcolor);
+}
+.jstabbedpane .south:has(input) {
+  border-top: 2px solid var(--main-action-bgcolor);
+}
+.jstabbedpane .west:has(input) {
+  border-right: 2px solid var(--main-action-bgcolor);
+}
+.jstabbedpane .east:has(input) {
+  border-left: 2px solid var(--main-action-bgcolor);
+}
+
+.jstabbedpane .north li .jsradiobutton,
+.jstabbedpane .south li .jsradiobutton {
+  padding: 0.7rem 1rem;
+}
+.jstabbedpane .west li .jsradiobutton,
+.jstabbedpane .east li .jsradiobutton {
+  padding: 0.7rem 1rem;
+}
+
+.jstabbedpane li:has(input) {
+  border-radius: .5rem;
+  border: 2px solid transparent;
+}
+.jstabbedpane li:has(input:checked) {
+  border: 2px solid var(--main-action-bgcolor);
+}
+
+.jstabbedpane .north li:has(input) {
+  border-bottom: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.jstabbedpane .south li:has(input) {
+  border-top: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.jstabbedpane .west li:has(input) {
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.jstabbedpane .east li:has(input) {
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.jstabbedpane .north li:has(input:checked):hover {
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+.jstabbedpane .south li:has(input:checked):hover {
+  box-shadow: .15rem -.15rem .15rem var(--main-action-bgcolor);
+}
+.jstabbedpane .west li:has(input:checked):hover {
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+.jstabbedpane .east li:has(input:checked):hover {
+  box-shadow: -.15rem .15rem .15rem var(--main-action-bgcolor);
+}
+
+.jstabbedpane .north li:has(input:not(:checked)):hover {
+  border: 2px solid var(--main-action-bgcolor);
+  border-bottom: none;
+}
+.jstabbedpane .south li:has(input:not(:checked)):hover {
+  border: 2px solid var(--main-action-bgcolor);
+  border-top: none;
+}
+.jstabbedpane .west li:has(input:not(:checked)):hover {
+  border: 2px solid var(--main-action-bgcolor);
+  border-right: none;
+}
+.jstabbedpane .east li:has(input:not(:checked)):hover {
+  border: 2px solid var(--main-action-bgcolor);
+  border-left: none;
+}.jstogglebutton {
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);
   

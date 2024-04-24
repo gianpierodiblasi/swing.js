@@ -8,13 +8,6 @@
   box-shadow: none;
 }
 
-.picolaf .jtabbedpane nav {
-  display: block;
-}
-.picolaf .jtabbedpane ul {
-  margin-left: auto;
-  margin-right: auto;
-}
 .picolaf .jtabbedpane .borderlayout-north ul li {
   border-bottom: 2px solid transparent;
 }

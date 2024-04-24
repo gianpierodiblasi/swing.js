@@ -4,7 +4,6 @@ import static def.dom.Globals.document;
 import def.dom.HTMLElement;
 import javascript.awt.BorderLayout;
 import javascript.awt.CardLayout;
-import javascript.swing.plaf.LookAndFeel;
 
 /**
  * The javax.swing.JTabbedPane clone
@@ -24,10 +23,10 @@ public class JSTabbedPane extends JSPanel {
   public static final int END = 2;
 
   private JSComponent tabs;
-  private final JSComponent tabsN = new JSComponent();
-  private final JSComponent tabsS = new JSComponent();
-  private final JSComponent tabsE = new JSComponent();
-  private final JSComponent tabsW = new JSComponent();
+  private final JSComponent tabsN = new JSComponent(document.createElement("nav"));
+  private final JSComponent tabsS = new JSComponent(document.createElement("nav"));
+  private final JSComponent tabsE = new JSComponent(document.createElement("nav"));
+  private final JSComponent tabsW = new JSComponent(document.createElement("nav"));
   private final JSPanel content = new JSPanel();
   private final CardLayout contentLayout = new CardLayout(0, 0);
   private final ButtonGroup tabsGroup = new ButtonGroup();
@@ -36,7 +35,8 @@ public class JSTabbedPane extends JSPanel {
 
   public JSTabbedPane() {
     super();
-    this.cssAddClass("jtabbedpane");
+
+    this.cssAddClass("jstabbedpane");
     this.setLayout(new BorderLayout(0, 0));
 
     this.createTab(this.tabsN);
@@ -58,8 +58,7 @@ public class JSTabbedPane extends JSPanel {
     ul.appendChild(this.createLI());
     ul.appendChild(this.createLI());
 
-    tab.element = document.createElement("nav");
-    tab.element.appendChild(ul);
+    tab.appendNodeChild(ul);
   }
 
   private HTMLElement createLI() {
@@ -107,20 +106,18 @@ public class JSTabbedPane extends JSPanel {
    * @param align The alignment (START, CENTER, END)
    */
   public void setAlign(int align) {
-    HTMLElement first = (HTMLElement) this.tabs.element.querySelector("nav ul li:first-child");
-    HTMLElement last = (HTMLElement) this.tabs.element.querySelector("nav ul li:last-child");
-    first.style.display = "none";
-    last.style.display = "none";
+    this.tabs.getChilStyleByQuery("nav ul li:first-child").display = "none";
+    this.tabs.getChilStyleByQuery("nav ul li:last-child").display = "none";
 
     switch (align) {
       case JSTabbedPane.START:
         break;
       case JSTabbedPane.CENTER:
-        first.style.removeProperty("display");
-        last.style.removeProperty("display");
+        this.tabs.getChilStyleByQuery("nav ul li:first-child").removeProperty("display");
+        this.tabs.getChilStyleByQuery("nav ul li:last-child").removeProperty("display");
         break;
       case JSTabbedPane.END:
-        first.style.removeProperty("display");
+        this.tabs.getChilStyleByQuery("nav ul li:first-child").removeProperty("display");
         break;
     }
   }
@@ -137,14 +134,11 @@ public class JSTabbedPane extends JSPanel {
     button.setSelected(this.tabsGroup.getButtonCount() == 0);
     button.addActionListener((event) -> this.contentLayout.show(this.content, title));
 
-    HTMLElement li = document.createElement("li");
-    li.appendChild(button.element);
-    this.tabs.element.querySelector("nav ul").insertBefore(li, this.tabs.element.querySelector("nav ul li:last-child"));
+    this.tabs.insertNodeBeforeInTree("nav ul", document.createElement("li"), "nav ul li:last-child");
+    this.tabs.appendChildInTree("nav ul li:nth-last-child(2)", button);
 
     this.tabsGroup.add(button);
 
     this.content.add(component, title);
-
-    LookAndFeel.CURRENT.styleJSTabbedPane(this, button, component);
   }
 }

@@ -187,6 +187,44 @@ public class JSComponent {
   }
 
   /**
+   * insert a child to the HTML element before another child
+   *
+   * @param component The child component
+   * @param query The query selector
+   */
+  public void insertBefore(JSComponent component, String query) {
+    this.element.insertBefore(component.element, this.element.querySelector(query));
+  }
+
+  /**
+   * insert a child to the HTML element before another child
+   *
+   * @param node The node
+   * @param query The query selector
+   */
+  public void insertNodeBefore(Node node, String query) {
+    this.element.insertBefore(node, this.element.querySelector(query));
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param component The child component
+   */
+  public void prependChild(JSComponent component) {
+    (($HTMLElement) this.element).prepend(component.element);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param node The node
+   */
+  public void prependNodeChild(Node node) {
+    (($HTMLElement) this.element).prepend(node);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param query The query selector
@@ -207,21 +245,25 @@ public class JSComponent {
   }
 
   /**
-   * Prepends a child to the HTML element
+   * insert a child to the HTML element before another child
    *
+   * @param queryInTree The query selector in tree
    * @param component The child component
+   * @param query The query selector
    */
-  public void prependChild(JSComponent component) {
-    (($HTMLElement)this.element).prepend(component.element);
+  public void insertBeforeInTree(String queryInTree, JSComponent component, String query) {
+    this.element.querySelector(queryInTree).insertBefore(component.element, this.element.querySelector(query));
   }
 
   /**
-   * Prepends a child to the HTML element
+   * insert a child to the HTML element before another child
    *
+   * @param queryInTree The query selector in tree
    * @param node The node
+   * @param query The query selector
    */
-  public void prependNodeChild(Node node) {
-    (($HTMLElement)this.element).prepend(node);
+  public void insertNodeBeforeInTree(String queryInTree, Node node, String query) {
+    this.element.querySelector(queryInTree).insertBefore(node, this.element.querySelector(query));
   }
 
   /**
@@ -231,7 +273,7 @@ public class JSComponent {
    * @param component The child component
    */
   public void prependChildInTree(String query, JSComponent component) {
-    (($HTMLElement)this.element.querySelector(query)).prepend(component.element);
+    (($HTMLElement) this.element.querySelector(query)).prepend(component.element);
   }
 
   /**
@@ -241,9 +283,9 @@ public class JSComponent {
    * @param node The node
    */
   public void prependNodeChildInTree(String query, Node node) {
-    (($HTMLElement)this.element.querySelector(query)).prepend(node);
+    (($HTMLElement) this.element.querySelector(query)).prepend(node);
   }
-  
+
   /**
    * Returns the style of a child of the HTML element
    *

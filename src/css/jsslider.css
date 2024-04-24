@@ -25,6 +25,9 @@
   cursor: pointer;
   accent-color: var(--main-action-bgcolor);
 }
+.jsslider > input:not([disabled=disabled]):hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
 .jsslider > input:disabled {
   cursor: default;
 }
@@ -47,10 +50,10 @@
   border: 2px solid var(--main-bgcolor);
 }
 .jsslider > input.no-paint-track::-ms-track {
-    border: 2px solid var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
 }
 .jsslider > input.no-paint-track::-moz-range-track {
-    border: 2px solid var(--main-bgcolor);
+  border: 2px solid var(--main-bgcolor);
 }
 
 .jsslider-horizontal {
