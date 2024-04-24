@@ -1,9 +1,0 @@
-.picolaf .jdialog header label {
-  font-size: 2em;
-}
-.picolaf .jdialog header button {
-  background-image: var(--pico-icon-close);
-  background-color: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
