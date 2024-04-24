@@ -21,7 +21,7 @@ On the other hand it is very difficult for an old style Java Swing developer to 
 So, I decided to rewrite Java Swing in JavaScript (to be more precise in ES6).
 Only a very limited portion of the Java Swing API has been rewritten (the portion I need for...) and for some objects new methods have
 been introduced to power up them (see the [documentation](https://gianpierodiblasi.github.io/swing.js/docs/index.html) and
-[test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html)) for major details).
+[test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html) for major details).
 To distinguish "native" methods and new methods see the [documentation](https://gianpierodiblasi.github.io/swing.js/docs/index.html),
 if a method is a clone of a corresponding native method then it is documented as follows
 ```java
