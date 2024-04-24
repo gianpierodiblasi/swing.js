@@ -1,8 +1,5 @@
 package javascript.swing.MnR;
 
-import def.dom.HTMLElement;
-import javascript.swing.JSSlider;
-
 /**
  * The default implementation of the AbstractSliderModelAndRenderer
  *
@@ -16,7 +13,7 @@ public class DefaultSliderModelAndRenderer<T> extends AbstractSliderModelAndRend
   }
 
   @Override
-  protected void render(T element, JSSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option) {
-    option.setAttribute("label", element.toString());
+  protected Object render(T element) {
+    return element.toString();
   }
 }

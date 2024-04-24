@@ -3,7 +3,8 @@
  */
 class TestJFrame3 extends JFrame {
 
-  // private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
+   modelAndRendererS = null;
+
   // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
   // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
   constructor() {
@@ -13,18 +14,11 @@ class TestJFrame3 extends JFrame {
   }
 
    postInitComponents() {
-    // AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
-    // modelAndRendererCB.addElement(10);
-    // modelAndRendererCB.addElement(20);
-    // modelAndRendererCB.addElement(30);
-    // ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox2)).setModelAndRenderer(modelAndRendererCB);
-    // 
-    // this.modelAndRendererS = new DefaultSliderModelAndRenderer<>();
-    // this.modelAndRendererS.addElement("A");
-    // this.modelAndRendererS.addElement("B");
-    // this.modelAndRendererS.addElement("C");
-    // ((JSSlider) SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
-    // 
+    this.modelAndRendererS = new DefaultSliderModelAndRenderer();
+    this.modelAndRendererS.addElement("A");
+    this.modelAndRendererS.addElement("B");
+    this.modelAndRendererS.addElement("C");
+    (SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
     // this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
     // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
     // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
@@ -183,7 +177,7 @@ class TestJFrame3 extends JFrame {
   // GEN-LAST:event_jSlider4StateChanged
    jSlider5StateChanged(evt) {
     // GEN-FIRST:event_jSlider5StateChanged
-    // this.jLabel1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+    this.jLabel1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
   }
 
   // GEN-LAST:event_jSlider5StateChanged

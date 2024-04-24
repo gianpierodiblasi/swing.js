@@ -2,6 +2,9 @@ package javascript.swing;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javascript.SwingJS;
+import javascript.swing.MnR.AbstractSliderModelAndRenderer;
+import javascript.swing.MnR.DefaultSliderModelAndRenderer;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
@@ -14,7 +17,7 @@ import javax.swing.event.ChangeEvent;
 @SuppressWarnings("serial")
 public class TestJFrame3 extends javax.swing.JFrame {
 
-//  private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
+  private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
 //  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
 //  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
 
@@ -26,18 +29,12 @@ public class TestJFrame3 extends javax.swing.JFrame {
 
   @SuppressWarnings("unchecked")
   private void postInitComponents() {
-//    AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
-//    modelAndRendererCB.addElement(10);
-//    modelAndRendererCB.addElement(20);
-//    modelAndRendererCB.addElement(30);
-//    ((JSComboBox<Integer>) SwingJS.convert(this.jComboBox2)).setModelAndRenderer(modelAndRendererCB);
-//
-//    this.modelAndRendererS = new DefaultSliderModelAndRenderer<>();
-//    this.modelAndRendererS.addElement("A");
-//    this.modelAndRendererS.addElement("B");
-//    this.modelAndRendererS.addElement("C");
-//    ((JSSlider) SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
-//
+    this.modelAndRendererS = new DefaultSliderModelAndRenderer<>();
+    this.modelAndRendererS.addElement("A");
+    this.modelAndRendererS.addElement("B");
+    this.modelAndRendererS.addElement("C");
+    ((JSSlider) SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
+
 //    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
 //    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
 //    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
@@ -198,7 +195,7 @@ public class TestJFrame3 extends javax.swing.JFrame {
   }//GEN-LAST:event_jSlider4StateChanged
 
   private void jSlider5StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider5StateChanged
-//    this.jLabel1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
+    this.jLabel1.setText(this.jSlider5.getValueIsAdjusting() + " " + this.modelAndRendererS.getElementAt(this.jSlider5.getValue()));
   }//GEN-LAST:event_jSlider5StateChanged
 
   private void jSlider6StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider6StateChanged

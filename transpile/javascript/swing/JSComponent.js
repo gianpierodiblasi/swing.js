@@ -196,6 +196,44 @@ class JSComponent {
   }
 
   /**
+   * Prepends a child to the HTML element
+   *
+   * @param component The child component
+   */
+   prependChild(component) {
+    (this.element).prepend(component.element);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param node The node
+   */
+   prependNodeChild(node) {
+    (this.element).prepend(node);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param query The query selector
+   * @param component The child component
+   */
+   prependChildInTree(query, component) {
+    (this.element.querySelector(query)).prepend(component.element);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param query The query selector
+   * @param node The node
+   */
+   prependNodeChildInTree(query, node) {
+    (this.element.querySelector(query)).prepend(node);
+  }
+
+  /**
    * Returns the style of a child of the HTML element
    *
    * @param index The child index

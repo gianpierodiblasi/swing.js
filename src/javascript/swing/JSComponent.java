@@ -7,6 +7,7 @@ import def.dom.EventListener;
 import def.dom.HTMLElement;
 import def.dom.Node;
 import javascript.awt.Color;
+import simulation.dom.$HTMLElement;
 
 /**
  * The javax.swing.JComponent clone
@@ -205,6 +206,44 @@ public class JSComponent {
     this.element.querySelector(query).appendChild(node);
   }
 
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param component The child component
+   */
+  public void prependChild(JSComponent component) {
+    (($HTMLElement)this.element).prepend(component.element);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param node The node
+   */
+  public void prependNodeChild(Node node) {
+    (($HTMLElement)this.element).prepend(node);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param query The query selector
+   * @param component The child component
+   */
+  public void prependChildInTree(String query, JSComponent component) {
+    (($HTMLElement)this.element.querySelector(query)).prepend(component.element);
+  }
+
+  /**
+   * Prepends a child to the HTML element
+   *
+   * @param query The query selector
+   * @param node The node
+   */
+  public void prependNodeChildInTree(String query, Node node) {
+    (($HTMLElement)this.element.querySelector(query)).prepend(node);
+  }
+  
   /**
    * Returns the style of a child of the HTML element
    *

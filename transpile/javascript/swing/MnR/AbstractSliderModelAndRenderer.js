@@ -58,39 +58,43 @@ class AbstractSliderModelAndRenderer {
     this.slider.setValue(0);
     this.slider.setMinimum(0);
     this.slider.setMaximum(this.elements.length - 1);
-    // $HTMLElement dataList = ($HTMLElement) this.slider.element.querySelector("datalist");
-    // dataList.textContent = "";
-    // dataList.style.display = this.renderByDataList ? "flex" : "none";
-    // 
-    // HTMLElement noDataList = (HTMLElement) this.slider.element.querySelector("div");
-    // noDataList.textContent = "";
-    // noDataList.style.display = !this.renderByDataList ? "flex" : "none";
-    // 
-    // this.elements.forEach((element, index, array) -> {
-    // HTMLElement option = document.createElement("option");
-    // option.setAttribute("value", "" + index);
-    // this.render(element, this.slider, dataList, noDataList, option);
-    // 
-    // switch (this.slider.getOrientation()) {
-    // case JSSlider.HORIZONTAL:
-    // dataList.appendChild(option);
-    // break;
-    // case JSSlider.VERTICAL:
-    // dataList.prepend(option);
-    // break;
-    // }
-    // });
+    this.slider.clearChildContentByQuery("datalist");
+    this.slider.getChilStyleByQuery("datalist").display = this.renderByDataList ? "flex" : "none";
+    this.slider.clearChildContentByQuery("div");
+    this.slider.getChilStyleByQuery("div").display = !this.renderByDataList ? "flex" : "none";
+    this.elements.forEach((element, index, array) => {
+      let option = document.createElement("option");
+      option.setAttribute("value", "" + index);
+      let rendered = this.render(element);
+      if (this.renderByDataList) {
+        option.setAttribute("label", rendered);
+      } else {
+        switch(this.slider.getOrientation()) {
+          case JSSlider.HORIZONTAL:
+            this.slider.appendNodeChildInTree("div", rendered);
+            break;
+          case JSSlider.VERTICAL:
+            this.slider.prependNodeChildInTree("div", rendered);
+            break;
+        }
+      }
+      switch(this.slider.getOrientation()) {
+        case JSSlider.HORIZONTAL:
+          this.slider.appendNodeChildInTree("datalist", option);
+          break;
+        case JSSlider.VERTICAL:
+          this.slider.prependNodeChildInTree("datalist", option);
+          break;
+      }
+    });
   }
 
   /**
    * Renders an element
    *
    * @param element The element
-   * @param slider The slider
-   * @param dataList The datalist tag
-   * @param noDataList The div tag
-   * @param option The option tag
+   * @return The renderer element
    */
-   render(element, slider, dataList, noDataList, option) {
+   render(element) {
   }
 }

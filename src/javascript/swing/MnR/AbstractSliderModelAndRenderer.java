@@ -2,9 +2,9 @@ package javascript.swing.MnR;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
+import def.dom.Node;
 import def.js.Array;
 import javascript.swing.JSSlider;
-import simulation.dom.$HTMLElement;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -67,38 +67,46 @@ public abstract class AbstractSliderModelAndRenderer<T> {
     this.slider.setMinimum(0);
     this.slider.setMaximum(this.elements.length - 1);
 
-//    $HTMLElement dataList = ($HTMLElement) this.slider.element.querySelector("datalist");
-//    dataList.textContent = "";
-//    dataList.style.display = this.renderByDataList ? "flex" : "none";
-//
-//    HTMLElement noDataList = (HTMLElement) this.slider.element.querySelector("div");
-//    noDataList.textContent = "";
-//    noDataList.style.display = !this.renderByDataList ? "flex" : "none";
-//
-//    this.elements.forEach((element, index, array) -> {
-//      HTMLElement option = document.createElement("option");
-//      option.setAttribute("value", "" + index);
-//      this.render(element, this.slider, dataList, noDataList, option);
-//
-//      switch (this.slider.getOrientation()) {
-//        case JSSlider.HORIZONTAL:
-//          dataList.appendChild(option);
-//          break;
-//        case JSSlider.VERTICAL:
-//          dataList.prepend(option);
-//          break;
-//      }
-//    });
+    this.slider.clearChildContentByQuery("datalist");
+    this.slider.getChilStyleByQuery("datalist").display = this.renderByDataList ? "flex" : "none";
+
+    this.slider.clearChildContentByQuery("div");
+    this.slider.getChilStyleByQuery("div").display = !this.renderByDataList ? "flex" : "none";
+
+    this.elements.forEach((element, index, array) -> {
+      HTMLElement option = document.createElement("option");
+      option.setAttribute("value", "" + index);
+
+      Object rendered = this.render(element);
+      if (this.renderByDataList) {
+        option.setAttribute("label", (String) rendered);
+      } else {
+        switch (this.slider.getOrientation()) {
+          case JSSlider.HORIZONTAL:
+            this.slider.appendNodeChildInTree("div", (Node) rendered);
+            break;
+          case JSSlider.VERTICAL:
+            this.slider.prependNodeChildInTree("div", (Node) rendered);
+            break;
+        }
+      }
+
+      switch (this.slider.getOrientation()) {
+        case JSSlider.HORIZONTAL:
+          this.slider.appendNodeChildInTree("datalist", option);
+          break;
+        case JSSlider.VERTICAL:
+          this.slider.prependNodeChildInTree("datalist", option);
+          break;
+      }
+    });
   }
 
   /**
    * Renders an element
    *
    * @param element The element
-   * @param slider The slider
-   * @param dataList The datalist tag
-   * @param noDataList The div tag
-   * @param option The option tag
+   * @return The renderer element
    */
-  protected abstract void render(T element, JSSlider slider, HTMLElement dataList, HTMLElement noDataList, HTMLElement option);
+  protected abstract Object render(T element);
 }
