@@ -50,7 +50,7 @@ class TestJFrame3 extends JFrame {
     this.jSlider6 = new JSlider();let jSlider6 = this.jSlider6;
     this.jSlider7 = new JSlider();let jSlider7 = this.jSlider7;
     this.jLabel1 = new JLabel();let jLabel1 = this.jLabel1;
-    this.setTitle("Test JFrame2");
+    this.setTitle("Test Slider");
     let layout = new GridBagLayout();
     layout.columnWidths = [0, 30, 0, 30, 0, 30, 0, ];
     layout.rowHeights = [0, 5, 0, 5, 0, 5, 0, 5, 0, ];

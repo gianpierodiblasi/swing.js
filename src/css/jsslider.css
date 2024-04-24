@@ -29,31 +29,28 @@
   cursor: default;
 }
 .jsslider > input::-webkit-slider-runnable-track {
-  background-color: var(--main-action-color);
+  background-color: var(--main-bgcolor);
   border-radius: .5rem;
   border: 2px solid var(--main-action-bgcolor);
 }
 .jsslider > input::-ms-track {
-  background-color: var(--main-action-color);
+  background-color: var(--main-bgcolor);
   border-radius: .5rem;
   border: 2px solid var(--main-action-bgcolor);
 }
 .jsslider > input::-moz-range-track {
-  background-color: var(--main-action-color);
+  background-color: var(--main-bgcolor);
   border-radius: .5rem;
   border: 2px solid var(--main-action-bgcolor);
 }
 .jsslider > input.no-paint-track::-webkit-slider-runnable-track {
-  background-color: var(--main-bgcolor);
   border: 2px solid var(--main-bgcolor);
 }
 .jsslider > input.no-paint-track::-ms-track {
-  background-color: var(--main-bgcolor);
-  border: 2px solid var(--main-bgcolor);
+    border: 2px solid var(--main-bgcolor);
 }
 .jsslider > input.no-paint-track::-moz-range-track {
-  background-color: var(--main-bgcolor);
-  border: 2px solid var(--main-bgcolor);
+    border: 2px solid var(--main-bgcolor);
 }
 
 .jsslider-horizontal {

@@ -70,7 +70,7 @@ public class TestJFrame3 extends javax.swing.JFrame {
     jSlider7 = new JSlider();
     jLabel1 = new JLabel();
 
-    setTitle("Test JFrame2");
+    setTitle("Test Slider");
     GridBagLayout layout = new GridBagLayout();
     layout.columnWidths = new int[] {0, 30, 0, 30, 0, 30, 0};
     layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
