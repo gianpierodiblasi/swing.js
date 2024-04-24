@@ -33,20 +33,9 @@ if a method is a clone of a corresponding native method then it is documented as
 
 If a method is not available in the original class then a complete documentation is available.
 
-swing.js follows the same philosophy introduced in Java Swing about the so called pluggable Look and Feel (PLAF); a Look and Feel completely changes the
-visual aspect of all components and can be use used to highly customize the UI.
-PLAF has to be set before the creation of the first component (this is mandatory) by means of the following code snippet
-```java
-LookAndFeel.CURRENT = ...;
-```
-Three PLAF are available in swing.js (but others can be easily added):
-- DefaultLookAndFeel: it is a very basic PLAF without any customization
-- BootstrapLookAndFeel: it is a PLAF based on [Bootstrap](https://getbootstrap.com/)
-- PicoLookAndFeel: it is a PLAF based on [pico](https://picocss.com/)
-
-Some components provide special methods to customize the UI (switch, toggle, etc.) but the result is highly related to the used PLAF
-(see the [documentation](https://gianpierodiblasi.github.io/swing.js/docs/index.html) and
-[test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html)) for major details).
+swing.js allows to customize some some UI parameters such as fonts and colors and some components provide special methods to customize the UI
+(see the [documentation](https://gianpierodiblasi.github.io/swing.js/docs/index.html) and [test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html)
+for major details).
 
 ## How To Use
 swing.js can be used in two different ways: as a JavaScript library or as a Java library.
