@@ -1,5 +1,7 @@
 package javascript.swing.MnR;
 
+import javascript.swing.JSSlider;
+
 /**
  * The default implementation of the AbstractSliderModelAndRenderer
  *
@@ -13,7 +15,7 @@ public class DefaultSliderModelAndRenderer<T> extends AbstractSliderModelAndRend
   }
 
   @Override
-  protected Object render(T element) {
+  protected Object render(T element, JSSlider slider) {
     return element.toString();
   }
 }

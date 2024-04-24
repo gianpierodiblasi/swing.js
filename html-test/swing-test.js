@@ -410,12 +410,40 @@ class TestJSFrame2 extends JSFrame {
 /**
  * @author gianpiero.diblasi
  */
+class TestJSFrame2HTMLImageProducer extends DefaultHTMLImageProducer {
+
+  constructor(value, src) {
+    super(value, src);
+  }
+
+   produce() {
+    let img = super.produce();
+    switch(this.getValue()) {
+      case "A":
+        break;
+      case "B":
+        img.style.transform = "rotate(15deg) scale(0.8)";
+        break;
+      case "C":
+        img.style.filter = "drop-shadow(2px 4px 6px black)";
+        break;
+      case "D":
+        break;
+    }
+    return img;
+  }
+}
+/**
+ * @author gianpiero.diblasi
+ */
 class TestJSFrame3 extends JSFrame {
 
    modelAndRendererS = null;
 
-  // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
-  // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
+   modelAndRendererS2 = null;
+
+   modelAndRendererS3 = null;
+
   constructor() {
     super();
     this.initComponents();
@@ -428,19 +456,18 @@ class TestJSFrame3 extends JSFrame {
     this.modelAndRendererS.addElement("B");
     this.modelAndRendererS.addElement("C");
     (SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
-    // this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
-    // this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("A", "../../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("B", "../../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("C", "../../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("D", "../../../swing.png"));
-    // ((JSSlider) SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
-    // 
-    // this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
-    // this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("A", "../../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("B", "../../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("C", "../../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("D", "../../../swing.png"));
-    // ((JSSlider) SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
+    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJSFrame2HTMLImageProducer("D", "../../../swing.png"));
+    (SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
+    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJSFrame2HTMLImageProducer("D", "../../../swing.png"));
+    (SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
   }
 
   /**
@@ -450,7 +477,6 @@ class TestJSFrame3 extends JSFrame {
    */
    initComponents() {
     let gridBagConstraints = null;
-    this.buttonGroup1 = new ButtonGroup();let buttonGroup1 = this.buttonGroup1;
     this.jSlider1 = new JSSlider();let jSlider1 = this.jSlider1;
     this.jSlider2 = new JSSlider();let jSlider2 = this.jSlider2;
     this.jSlider3 = new JSSlider();let jSlider3 = this.jSlider3;
@@ -592,19 +618,17 @@ class TestJSFrame3 extends JSFrame {
   // GEN-LAST:event_jSlider5StateChanged
    jSlider6StateChanged(evt) {
     // GEN-FIRST:event_jSlider6StateChanged
-    // this.jLabel1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
+    this.jLabel1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider6StateChanged
    jSlider7StateChanged(evt) {
     // GEN-FIRST:event_jSlider7StateChanged
-    // this.jLabel1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
+    this.jLabel1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider7StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
-   buttonGroup1 = null;
-
    jLabel1 = null;
 
    jSlider1 = null;

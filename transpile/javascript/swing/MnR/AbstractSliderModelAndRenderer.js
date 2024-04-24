@@ -65,7 +65,7 @@ class AbstractSliderModelAndRenderer {
     this.elements.forEach((element, index, array) => {
       let option = document.createElement("option");
       option.setAttribute("value", "" + index);
-      let rendered = this.render(element);
+      let rendered = this.render(element, this.slider);
       if (this.renderByDataList) {
         option.setAttribute("label", rendered);
       } else {
@@ -93,8 +93,9 @@ class AbstractSliderModelAndRenderer {
    * Renders an element
    *
    * @param element The element
+   * @param slider The slider
    * @return The renderer element
    */
-   render(element) {
+   render(element, slider) {
   }
 }

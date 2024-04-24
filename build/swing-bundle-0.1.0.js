@@ -2073,7 +2073,7 @@ class AbstractSliderModelAndRenderer {
     this.elements.forEach((element, index, array) => {
       let option = document.createElement("option");
       option.setAttribute("value", "" + index);
-      let rendered = this.render(element);
+      let rendered = this.render(element, this.slider);
       if (this.renderByDataList) {
         option.setAttribute("label", rendered);
       } else {
@@ -2101,9 +2101,10 @@ class AbstractSliderModelAndRenderer {
    * Renders an element
    *
    * @param element The element
+   * @param slider The slider
    * @return The renderer element
    */
-   render(element) {
+   render(element, slider) {
   }
 }
 /**
@@ -2118,8 +2119,39 @@ class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
     super(true);
   }
 
-   render(element) {
+   render(element, slider) {
     return element.toString();
+  }
+}
+/**
+ * An AbstractSliderModelAndRenderer able to render an HTML image
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The image producer
+ * @param <S> The type
+ */
+class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
+
+  constructor() {
+    super(false);
+  }
+
+   render(element, slider) {
+    let img = element.produce();
+    img.onload = (event) => {
+      switch(slider.getOrientation()) {
+        case JSSlider.HORIZONTAL:
+          slider.getChilStyleByQuery("input").marginLeft = (img.width / 2) + "px";
+          slider.getChilStyleByQuery("input").marginRight = (img.width / 2) + "px";
+          break;
+        case JSSlider.VERTICAL:
+          slider.getChilStyleByQuery("input").marginTop = (img.height / 2) + "px";
+          slider.getChilStyleByQuery("input").marginBottom = (img.height / 2) + "px";
+          break;
+      }
+      return null;
+    };
+    return img;
   }
 }
 /**
@@ -2297,5 +2329,69 @@ class SwingJS {
   }
 
   constructor() {
+  }
+}
+/**
+ * The abstract object able to produce an HTML image element based on a value
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The value type
+ */
+class AbstractHTMLImageProducer {
+
+   value = null;
+
+  /**
+   * Creates the object
+   *
+   * @param value The value
+   */
+  constructor(value) {
+    this.value = value;
+  }
+
+  /**
+   * Produces an HTML image element
+   *
+   * @return An HTML image element
+   */
+   produce() {
+  }
+
+  /**
+   * Returns the value
+   *
+   * @return The value
+   */
+   getValue() {
+    return this.value;
+  }
+}
+/**
+ * The default implementation of the AbstractHTMLImageProducer based on an
+ * source (URL, base64, etc.)
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The value type
+ */
+class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
+
+   src = null;
+
+  /**
+   * Creates the object
+   *
+   * @param value The value
+   * @param src The source of the HTML image element (URL, base64, etc.)
+   */
+  constructor(value, src) {
+    super(value);
+    this.src = src;
+  }
+
+   produce() {
+    let img = document.createElement("img");
+    img.src = this.src;
+    return img;
   }
 }

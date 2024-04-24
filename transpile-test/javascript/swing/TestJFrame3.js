@@ -5,8 +5,10 @@ class TestJFrame3 extends JFrame {
 
    modelAndRendererS = null;
 
-  // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
-  // private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
+   modelAndRendererS2 = null;
+
+   modelAndRendererS3 = null;
+
   constructor() {
     super();
     this.initComponents();
@@ -19,19 +21,18 @@ class TestJFrame3 extends JFrame {
     this.modelAndRendererS.addElement("B");
     this.modelAndRendererS.addElement("C");
     (SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
-    // this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
-    // this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
-    // ((JSSlider) SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
-    // 
-    // this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
-    // this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
-    // ((JSSlider) SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
+    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
+    (SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
+    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer();
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
+    (SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
   }
 
   /**
@@ -41,7 +42,6 @@ class TestJFrame3 extends JFrame {
    */
    initComponents() {
     let gridBagConstraints = null;
-    this.buttonGroup1 = new ButtonGroup();let buttonGroup1 = this.buttonGroup1;
     this.jSlider1 = new JSlider();let jSlider1 = this.jSlider1;
     this.jSlider2 = new JSlider();let jSlider2 = this.jSlider2;
     this.jSlider3 = new JSlider();let jSlider3 = this.jSlider3;
@@ -183,19 +183,17 @@ class TestJFrame3 extends JFrame {
   // GEN-LAST:event_jSlider5StateChanged
    jSlider6StateChanged(evt) {
     // GEN-FIRST:event_jSlider6StateChanged
-    // this.jLabel1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
+    this.jLabel1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider6StateChanged
    jSlider7StateChanged(evt) {
     // GEN-FIRST:event_jSlider7StateChanged
-    // this.jLabel1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
+    this.jLabel1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
   }
 
   // GEN-LAST:event_jSlider7StateChanged
   // Variables declaration - do not modify//GEN-BEGIN:variables
-   buttonGroup1 = null;
-
    jLabel1 = null;
 
    jSlider1 = null;

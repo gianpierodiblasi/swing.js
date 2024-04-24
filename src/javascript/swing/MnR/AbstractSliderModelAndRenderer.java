@@ -77,7 +77,7 @@ public abstract class AbstractSliderModelAndRenderer<T> {
       HTMLElement option = document.createElement("option");
       option.setAttribute("value", "" + index);
 
-      Object rendered = this.render(element);
+      Object rendered = this.render(element, this.slider);
       if (this.renderByDataList) {
         option.setAttribute("label", (String) rendered);
       } else {
@@ -106,7 +106,8 @@ public abstract class AbstractSliderModelAndRenderer<T> {
    * Renders an element
    *
    * @param element The element
+   * @param slider The slider
    * @return The renderer element
    */
-  protected abstract Object render(T element);
+  protected abstract Object render(T element, JSSlider slider);
 }

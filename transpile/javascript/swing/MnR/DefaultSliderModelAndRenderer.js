@@ -10,7 +10,7 @@ class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
     super(true);
   }
 
-   render(element) {
+   render(element, slider) {
     return element.toString();
   }
 }

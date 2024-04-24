@@ -5,7 +5,8 @@ import java.awt.GridBagLayout;
 import javascript.SwingJS;
 import javascript.swing.MnR.AbstractSliderModelAndRenderer;
 import javascript.swing.MnR.DefaultSliderModelAndRenderer;
-import javax.swing.ButtonGroup;
+import javascript.swing.MnR.HTMLImageSliderModelAndRenderer;
+import javascript.util.AbstractHTMLImageProducer;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -18,8 +19,8 @@ import javax.swing.event.ChangeEvent;
 public class TestJFrame3 extends javax.swing.JFrame {
 
   private transient AbstractSliderModelAndRenderer<String> modelAndRendererS;
-//  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
-//  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
+  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS2;
+  private transient AbstractSliderModelAndRenderer<AbstractHTMLImageProducer<String>> modelAndRendererS3;
 
   public TestJFrame3() {
     super();
@@ -35,19 +36,19 @@ public class TestJFrame3 extends javax.swing.JFrame {
     this.modelAndRendererS.addElement("C");
     ((JSSlider) SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
 
-//    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
-//    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
-//    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
-//    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
-//    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
-//    ((JSSlider) SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
-//
-//    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
-//    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
-//    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
-//    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
-//    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
-//    ((JSSlider) SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
+    this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
+    ((JSSlider) SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
+
+    this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
+    ((JSSlider) SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
   }
 
   /**
@@ -60,7 +61,6 @@ public class TestJFrame3 extends javax.swing.JFrame {
   private void initComponents() {
     GridBagConstraints gridBagConstraints;
 
-    buttonGroup1 = new ButtonGroup();
     jSlider1 = new JSlider();
     jSlider2 = new JSlider();
     jSlider3 = new JSlider();
@@ -199,15 +199,14 @@ public class TestJFrame3 extends javax.swing.JFrame {
   }//GEN-LAST:event_jSlider5StateChanged
 
   private void jSlider6StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider6StateChanged
-//    this.jLabel1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
+    this.jLabel1.setText(this.jSlider6.getValueIsAdjusting() + " " + this.modelAndRendererS2.getElementAt(this.jSlider6.getValue()).getValue());
   }//GEN-LAST:event_jSlider6StateChanged
 
   private void jSlider7StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider7StateChanged
-//    this.jLabel1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
+    this.jLabel1.setText(this.jSlider7.getValueIsAdjusting() + " " + this.modelAndRendererS3.getElementAt(this.jSlider7.getValue()).getValue());
   }//GEN-LAST:event_jSlider7StateChanged
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private ButtonGroup buttonGroup1;
   private JLabel jLabel1;
   private JSlider jSlider1;
   private JSlider jSlider2;
