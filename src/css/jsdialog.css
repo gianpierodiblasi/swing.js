@@ -1,3 +1,38 @@
 .jsdialog {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background-color: var(--main-bgcolor);
 
+  border: 2px solid var(--main-action-bgcolor);
+  border-radius: 5px;
+  min-width: 500px;
+}
+.jsdialog:hover {
+  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
+}
+.jsdialog::backdrop {
+  background: var(--main-action-bgcolor);
+  opacity: .5;
+}
+.jsdialog article {
+  margin: 0 -1em;
+}
+.jsdialog  header {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid var(--main-action-bgcolor);
+}
+.jsdialog header label {
+  font-size: 1.5rem;
+}
+.jsdialog header button {
+  font-size: .6rem;
+  border: none;
+  cursor: pointer;
+}
+.jsdialog header button:after {
+  content: "\2716";
+}
+.jsdialog .jsdialog-content {
+  padding: 1rem;
 }

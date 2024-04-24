@@ -4,8 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -40,6 +47,22 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jButton4 = new JButton();
     jPanel9 = new JPanel();
     jButton1 = new JButton();
+    jPanel2 = new JPanel();
+    jButton2 = new JButton();
+    jToggleButton1 = new JToggleButton();
+    jCheckBox1 = new JCheckBox();
+    jSpinner1 = new JSpinner();
+    jRadioButton1 = new JRadioButton();
+    jSlider1 = new JSlider();
+    jRadioButton2 = new JRadioButton();
+    jButton5 = new JButton();
+    jToggleButton2 = new JToggleButton();
+    jProgressBar1 = new JProgressBar();
+    jLabel1 = new JLabel();
+    jRadioButton3 = new JRadioButton();
+    jLabel2 = new JLabel();
+    jRadioButton4 = new JRadioButton();
+    jButton6 = new JButton();
 
     jDialog1.setTitle("Dialogo");
     jDialog1.getContentPane().setLayout(new GridLayout(1, 2));
@@ -58,6 +81,49 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jPanel9.add(jButton1);
 
     getContentPane().add(jPanel9, BorderLayout.PAGE_START);
+
+    jPanel2.setLayout(new GridLayout(5, 5));
+
+    jButton2.setText("jButton2");
+    jPanel2.add(jButton2);
+
+    jToggleButton1.setText("jToggleButton1");
+    jPanel2.add(jToggleButton1);
+
+    jCheckBox1.setText("jCheckBox1");
+    jPanel2.add(jCheckBox1);
+    jPanel2.add(jSpinner1);
+
+    jRadioButton1.setText("jRadioButton1");
+    jPanel2.add(jRadioButton1);
+    jPanel2.add(jSlider1);
+
+    jRadioButton2.setText("jRadioButton2");
+    jPanel2.add(jRadioButton2);
+
+    jButton5.setText("jButton5");
+    jPanel2.add(jButton5);
+
+    jToggleButton2.setText("jToggleButton2");
+    jPanel2.add(jToggleButton2);
+    jPanel2.add(jProgressBar1);
+
+    jLabel1.setText("jLabel1");
+    jPanel2.add(jLabel1);
+
+    jRadioButton3.setText("jRadioButton3");
+    jPanel2.add(jRadioButton3);
+
+    jLabel2.setText("jLabel2");
+    jPanel2.add(jLabel2);
+
+    jRadioButton4.setText("jRadioButton4");
+    jPanel2.add(jRadioButton4);
+
+    jButton6.setText("jButton6");
+    jPanel2.add(jButton6);
+
+    getContentPane().add(jPanel2, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -70,9 +136,25 @@ public class TestJFrame6 extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
+  private JButton jButton2;
   private JButton jButton3;
   private JButton jButton4;
+  private JButton jButton5;
+  private JButton jButton6;
+  private JCheckBox jCheckBox1;
   private JDialog jDialog1;
+  private JLabel jLabel1;
+  private JLabel jLabel2;
+  private JPanel jPanel2;
   private JPanel jPanel9;
+  private JProgressBar jProgressBar1;
+  private JRadioButton jRadioButton1;
+  private JRadioButton jRadioButton2;
+  private JRadioButton jRadioButton3;
+  private JRadioButton jRadioButton4;
+  private JSlider jSlider1;
+  private JSpinner jSpinner1;
+  private JToggleButton jToggleButton1;
+  private JToggleButton jToggleButton2;
   // End of variables declaration//GEN-END:variables
 }
