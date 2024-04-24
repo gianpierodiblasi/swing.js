@@ -55,12 +55,16 @@
 .jscombobox li {
   padding: .5rem;
   cursor: pointer;
-  border: 1px solid transparent;
 }
 .jscombobox li:hover {
-  border: 1px solid var(--main-action-bgcolor);
   border-radius: .5rem;
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
 }
 .jscombobox li * {
   cursor: pointer;
+}
+.jscombobox li:hover * {
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
 }

@@ -104,14 +104,18 @@
 .jscombobox li {
   padding: .5rem;
   cursor: pointer;
-  border: 1px solid transparent;
 }
 .jscombobox li:hover {
-  border: 1px solid var(--main-action-bgcolor);
   border-radius: .5rem;
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
 }
 .jscombobox li * {
   cursor: pointer;
+}
+.jscombobox li:hover * {
+  color: var(--main-action-color);
+  background: var(--main-action-bgcolor);
 }
 .jscomponent-box-filler {
 }
@@ -226,13 +230,15 @@
   color: var(--main-color);
   background: var(--main-bgcolor);
 
+  display: grid;
+  grid-template:
+    "num up" 1fr
+    "num down" 1fr /
+    1fr auto;
+
   min-width: 10rem;
-  min-height: 2.4ex;
   border: 2px solid var(--main-action-bgcolor);
   border-radius: .5rem;
-  text-align: right;
-  padding: .5rem;
-  outline: none;
 }
 .jsspinner:hover:not([disabled]) {
   box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
@@ -240,12 +246,40 @@
 .jsspinner[disabled] {
   filter: opacity(0.5);
 }
-.jsspinner::-webkit-inner-spin-button,
-.jsspinner::-webkit-outer-spin-button {
-  opacity: 1;
-  margin-left: 0.3rem;
+.jsspinner input::-webkit-inner-spin-button,
+.jsspinner input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.jsspinner input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: transparent;
+
+  border: none;
+  outline: none;
+  text-align: right;
+}
+.jsspinner button {
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+
+  background: none;
+  border: none;
   cursor: pointer;
-}.jstogglebutton {
+  color: var(--main-action-bgcolor);
+}
+.jsspinner[disabled] button {
+  cursor: default;
+}
+.jsspinner button:active {
+  filter: saturate(0.5);
+}
+.jstogglebutton {
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);
   

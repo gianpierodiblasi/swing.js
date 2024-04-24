@@ -25,9 +25,9 @@ public class SpinnerNumberModel {
    * @param spinner The spinner
    */
   public void setJSSpinner(JSSpinner spinner) {
-    spinner.setAttribute("value", "" + this.value);
-    spinner.setAttribute("max", "" + this.maximum);
-    spinner.setAttribute("min", "" + this.minimum);
-    spinner.setAttribute("step", "" + this.stepSize);
+    spinner.setChildAttributeByQuery("input", "value", "" + this.value);
+    spinner.setChildAttributeByQuery("input", "max", "" + this.maximum);
+    spinner.setChildAttributeByQuery("input", "min", "" + this.minimum);
+    spinner.setChildAttributeByQuery("input", "step", "" + this.stepSize);
   }
 }
