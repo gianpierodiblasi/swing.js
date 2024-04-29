@@ -17,26 +17,6 @@ class JSComponent {
   }
 
   /**
-   * Sets a property
-   *
-   * @param key the key
-   * @param value The value
-   */
-   setProperty(key, value) {
-    this.element[key] = value;
-  }
-
-  /**
-   * Returns a property
-   *
-   * @param key The key
-   * @return The value
-   */
-   getProperty(key) {
-    return this.element[key];
-  }
-
-  /**
    * Clone of javax.swing.JComponent.setBackground
    *
    * @param color The color
@@ -129,6 +109,26 @@ class JSComponent {
    */
    getStyle() {
     return this.element.style;
+  }
+
+  /**
+   * Sets a property of the HTML element
+   *
+   * @param key the property key
+   * @param value The property value
+   */
+   setProperty(key, value) {
+    this.element[key] = value;
+  }
+
+  /**
+   * Returns a property of the HTML element
+   *
+   * @param key The property key
+   * @return The property value
+   */
+   getProperty(key) {
+    return this.element[key];
   }
 
   /**
