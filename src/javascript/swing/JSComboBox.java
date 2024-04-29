@@ -1,7 +1,9 @@
 package javascript.swing;
 
+import static def.dom.Globals.console;
 import static def.dom.Globals.document;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
+import javascript.util.AbstractHTMLImageProducer;
 
 /**
  * The javax.swing.JComboBox clone
@@ -38,7 +40,7 @@ public class JSComboBox<T extends Comparable<T>> extends AbstractButton {
    */
   @SuppressWarnings("unchecked")
   public void setSelectedItem(Object object) {
-    this.modelAndRenderer.setSelectedElement((T)object);
+    this.modelAndRenderer.setSelectedElement((T) object);
   }
 
   /**
@@ -58,5 +60,15 @@ public class JSComboBox<T extends Comparable<T>> extends AbstractButton {
    */
   public AbstractComboBoxModelAndRenderer<T> getModelAndRenderer() {
     return this.modelAndRenderer;
+  }
+
+  /**
+   * JSComboBox does not manage icons
+   *
+   * @param producer
+   */
+  @Override
+  public void setIcon(AbstractHTMLImageProducer<?> producer) {
+    console.error("JSComboBox does not manage icons");
   }
 }

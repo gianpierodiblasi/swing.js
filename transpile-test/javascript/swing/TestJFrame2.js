@@ -78,6 +78,7 @@ class TestJFrame2 extends JFrame {
     (SwingJS.convert(this.jRadioButton22)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     (SwingJS.convert(this.jRadioButton23)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     (SwingJS.convert(this.jRadioButton24)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jComboBox1)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
   }
 
   /**

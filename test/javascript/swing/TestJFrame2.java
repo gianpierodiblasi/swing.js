@@ -112,6 +112,8 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((AbstractButton) SwingJS.convert(this.jRadioButton22)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jRadioButton23)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jRadioButton24)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));    
+    
+    ((AbstractButton) SwingJS.convert(this.jComboBox1)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));    
   }
 
   /**

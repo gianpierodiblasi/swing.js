@@ -1324,6 +1324,15 @@ class JSComboBox extends AbstractButton {
    getModelAndRenderer() {
     return this.modelAndRenderer;
   }
+
+  /**
+   * JSComboBox does not manage icons
+   *
+   * @param producer
+   */
+   setIcon(producer) {
+    console.error("JSComboBox does not manage icons");
+  }
 }
 /**
  * The javax.swing.JRadioButton clone
