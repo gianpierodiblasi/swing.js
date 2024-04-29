@@ -23,9 +23,11 @@
 .jsspinner input::-webkit-inner-spin-button,
 .jsspinner input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+.jsspinner input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .jsspinner input {

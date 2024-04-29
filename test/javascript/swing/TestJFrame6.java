@@ -64,7 +64,7 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jRadioButton4 = new JRadioButton();
     jButton6 = new JButton();
 
-    jDialog1.setTitle("Dialogo");
+    jDialog1.setTitle("Dialog");
     jDialog1.getContentPane().setLayout(new GridLayout(1, 2));
 
     jButton3.setText("jButton3");

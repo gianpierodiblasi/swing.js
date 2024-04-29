@@ -975,7 +975,7 @@ class TestJSFrame6 extends JSFrame {
     this.jLabel2 = new JSLabel();let jLabel2 = this.jLabel2;
     this.jRadioButton4 = new JSRadioButton();let jRadioButton4 = this.jRadioButton4;
     this.jButton6 = new JSButton();let jButton6 = this.jButton6;
-    jDialog1.setTitle("Dialogo");
+    jDialog1.setTitle("Dialog");
     jDialog1.getContentPane().setLayout(new GridLayout(1, 2));
     jButton3.setText("jButton3");
     jDialog1.getContentPane().add(jButton3);

@@ -388,6 +388,13 @@
   background-color: var(--main-bgcolor);
   border-radius: .5rem;
   border: 2px solid var(--main-action-bgcolor);
+  height: 100%;
+  width: 100%;
+}
+.jsslider > input::-moz-range-thumb {
+  background: var(--main-action-bgcolor);
+  border-color: var(--main-action-bgcolor);
+  border-radius: 30rem;
 }
 .jsslider > input.no-paint-track::-webkit-slider-runnable-track {
   border: 2px solid var(--main-bgcolor);
@@ -449,9 +456,11 @@
 .jsspinner input::-webkit-inner-spin-button,
 .jsspinner input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+.jsspinner input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .jsspinner input {

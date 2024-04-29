@@ -45,6 +45,13 @@
   background-color: var(--main-bgcolor);
   border-radius: .5rem;
   border: 2px solid var(--main-action-bgcolor);
+  height: 100%;
+  width: 100%;
+}
+.jsslider > input::-moz-range-thumb {
+  background: var(--main-action-bgcolor);
+  border-color: var(--main-action-bgcolor);
+  border-radius: 30rem;
 }
 .jsslider > input.no-paint-track::-webkit-slider-runnable-track {
   border: 2px solid var(--main-bgcolor);

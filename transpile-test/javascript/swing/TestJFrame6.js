@@ -42,7 +42,7 @@ class TestJFrame6 extends JFrame {
     this.jLabel2 = new JLabel();let jLabel2 = this.jLabel2;
     this.jRadioButton4 = new JRadioButton();let jRadioButton4 = this.jRadioButton4;
     this.jButton6 = new JButton();let jButton6 = this.jButton6;
-    jDialog1.setTitle("Dialogo");
+    jDialog1.setTitle("Dialog");
     jDialog1.getContentPane().setLayout(new GridLayout(1, 2));
     jButton3.setText("jButton3");
     jDialog1.getContentPane().add(jButton3);
