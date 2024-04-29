@@ -2,8 +2,12 @@ package javascript.swing;
 
 import static def.dom.Globals.console;
 import static def.dom.Globals.document;
+import def.js.Array;
+import javascript.awt.event.ActionEvent;
+import javascript.awt.event.ActionListener;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
 import javascript.util.AbstractHTMLImageProducer;
+import static simulation.js.$Globals.$typeof;
 
 /**
  * The javax.swing.JComboBox clone
@@ -11,8 +15,9 @@ import javascript.util.AbstractHTMLImageProducer;
  * @author gianpiero.diblasi
  * @param <T> The type
  */
-public class JSComboBox<T extends Comparable<T>> extends AbstractButton {
+public class JSComboBox<T extends Comparable<T>> extends JSComponent {
 
+  private final Array<ActionListener> listeners = new Array<>();
   private AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
 
   public JSComboBox() {
@@ -63,12 +68,29 @@ public class JSComboBox<T extends Comparable<T>> extends AbstractButton {
   }
 
   /**
-   * JSComboBox does not manage icons
+   * Clone of javax.swing.JComboBox.addActionListener
    *
-   * @param producer
+   * @param listener The listener
    */
-  @Override
-  public void setIcon(AbstractHTMLImageProducer<?> producer) {
-    console.error("JSComboBox does not manage icons");
+  public void addActionListener(ActionListener listener) {
+    this.listeners.push(listener);
+  }
+
+  /**
+   * The method for click events
+   *
+   * @return null
+   */
+  public Object onclick() {
+    ActionEvent event = new ActionEvent();
+
+    this.listeners.forEach(listener -> {
+      if ($typeof(listener, "function")) {
+        listener.$apply(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
   }
 }

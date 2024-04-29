@@ -17,6 +17,26 @@ class JSComponent {
   }
 
   /**
+   * Sets a property
+   *
+   * @param key the key
+   * @param value The value
+   */
+   setProperty(key, value) {
+    this.element[key] = value;
+  }
+
+  /**
+   * Returns a property
+   *
+   * @param key The key
+   * @return The value
+   */
+   getProperty(key) {
+    return this.element[key];
+  }
+
+  /**
    * Clone of javax.swing.JComponent.setBackground
    *
    * @param color The color

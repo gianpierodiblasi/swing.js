@@ -1,0 +1,22 @@
+.jstextfield {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+
+  min-width: 10rem;
+  border: 2px solid var(--main-action-bgcolor);
+  border-radius: .5rem;
+  padding: .5rem;
+  min-height: 2.4ex;
+}
+
+.jstextfield:hover:not([disabled]) {
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+.jstextfield:focus {
+  outline: none;
+}
+.jstextfield[disabled] {
+  filter: opacity(0.5);
+}

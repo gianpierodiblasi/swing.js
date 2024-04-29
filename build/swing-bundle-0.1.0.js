@@ -760,6 +760,26 @@ class JSComponent {
   }
 
   /**
+   * Sets a property
+   *
+   * @param key the key
+   * @param value The value
+   */
+   setProperty(key, value) {
+    this.element[key] = value;
+  }
+
+  /**
+   * Returns a property
+   *
+   * @param key The key
+   * @return The value
+   */
+   getProperty(key) {
+    return this.element[key];
+  }
+
+  /**
    * Clone of javax.swing.JComponent.setBackground
    *
    * @param color The color
@@ -1272,69 +1292,6 @@ class JSCheckBox extends AbstractButton {
   }
 }
 /**
- * The javax.swing.JComboBox clone
- *
- * @author gianpiero.diblasi
- * @param <T> The type
- */
-class JSComboBox extends AbstractButton {
-
-   modelAndRenderer = null;
-
-  constructor() {
-    super(document.createElement("details"));
-    this.cssAddClass("jscombobox");
-    this.appendNodeChild(document.createElement("summary"));
-    this.appendNodeChild(document.createElement("ul"));
-  }
-
-  /**
-   * Clone of javax.swing.JComboBox.getSelectedItem
-   *
-   * @return The selected item
-   */
-   getSelectedItem() {
-    return this.modelAndRenderer.getSelectedElement();
-  }
-
-  /**
-   * Clone of javax.swing.JComboBox.getSelectedItem
-   *
-   * @param object The selected item
-   */
-   setSelectedItem(object) {
-    this.modelAndRenderer.setSelectedElement(object);
-  }
-
-  /**
-   * Sets the model
-   *
-   * @param modelAndRenderer The model
-   */
-   setModelAndRenderer(modelAndRenderer) {
-    this.modelAndRenderer = modelAndRenderer;
-    this.modelAndRenderer.setComboBox(this);
-  }
-
-  /**
-   * Returns the model
-   *
-   * @return The model
-   */
-   getModelAndRenderer() {
-    return this.modelAndRenderer;
-  }
-
-  /**
-   * JSComboBox does not manage icons
-   *
-   * @param producer
-   */
-   setIcon(producer) {
-    console.error("JSComboBox does not manage icons");
-  }
-}
-/**
  * The javax.swing.JRadioButton clone
  *
  * @author gianpiero.diblasi
@@ -1520,6 +1477,88 @@ class Filler extends JSComponent {
     if (min.width === 0 && min.height === 0 && pref.width === 0 && pref.height === 0) {
       this.getStyle().flexGrow = "1";
     }
+  }
+}
+/**
+ * The javax.swing.JComboBox clone
+ *
+ * @author gianpiero.diblasi
+ * @param <T> The type
+ */
+class JSComboBox extends JSComponent {
+
+   listeners = new Array();
+
+   modelAndRenderer = null;
+
+  constructor() {
+    super(document.createElement("details"));
+    this.cssAddClass("jscombobox");
+    this.appendNodeChild(document.createElement("summary"));
+    this.appendNodeChild(document.createElement("ul"));
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.getSelectedItem
+   *
+   * @return The selected item
+   */
+   getSelectedItem() {
+    return this.modelAndRenderer.getSelectedElement();
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.getSelectedItem
+   *
+   * @param object The selected item
+   */
+   setSelectedItem(object) {
+    this.modelAndRenderer.setSelectedElement(object);
+  }
+
+  /**
+   * Sets the model
+   *
+   * @param modelAndRenderer The model
+   */
+   setModelAndRenderer(modelAndRenderer) {
+    this.modelAndRenderer = modelAndRenderer;
+    this.modelAndRenderer.setComboBox(this);
+  }
+
+  /**
+   * Returns the model
+   *
+   * @return The model
+   */
+   getModelAndRenderer() {
+    return this.modelAndRenderer;
+  }
+
+  /**
+   * Clone of javax.swing.JComboBox.addActionListener
+   *
+   * @param listener The listener
+   */
+   addActionListener(listener) {
+    this.listeners.push(listener);
+  }
+
+  /**
+   * The method for click events
+   *
+   * @return null
+   */
+   onclick() {
+    let event = new ActionEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
   }
 }
 /**
@@ -2388,6 +2427,75 @@ class JSSpinner extends JSComponent {
       this.up.setAttribute("disabled", "disabled");
       this.down.setAttribute("disabled", "disabled");
     }
+  }
+}
+/**
+ * The javax.swing.JTextField clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSTextField extends JSComponent {
+
+   listeners = new Array();
+
+  constructor() {
+    super(document.createElement("input"));
+    this.cssAddClass("jstextfield");
+    this.setAttribute("type", "text");
+    this.addEventListener("input", (event) => this.onclick());
+  }
+
+  /**
+   * Clone of javax.swing.JTextField.setText
+   *
+   * @param text The text
+   */
+   setText(text) {
+    this.setProperty("value", text);
+  }
+
+  /**
+   * Clone of javax.swing.JSTextField.getText
+   *
+   * @return The text
+   */
+   getText() {
+    return this.getProperty("value");
+  }
+
+  /**
+   * Clone of javax.swing.JTextField.getText
+   *
+   * @param b true to make the textfield editable, false otherwise
+   */
+   setEditable(b) {
+    if (b) {
+      this.removeAttribute("readonly");
+    } else {
+      this.setAttribute("readonly", "readonly");
+    }
+  }
+
+  /**
+   * Clone of javax.swing.JTextField.addActionListener, this listener is
+   * triggered whenever the text changes
+   *
+   * @param listener The listener
+   */
+   addActionListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onclick() {
+    let event = new ActionEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
   }
 }
 /**

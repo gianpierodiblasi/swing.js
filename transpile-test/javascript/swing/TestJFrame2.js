@@ -78,7 +78,6 @@ class TestJFrame2 extends JFrame {
     (SwingJS.convert(this.jRadioButton22)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     (SwingJS.convert(this.jRadioButton23)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     (SwingJS.convert(this.jRadioButton24)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    (SwingJS.convert(this.jComboBox1)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
   }
 
   /**
@@ -133,6 +132,9 @@ class TestJFrame2 extends JFrame {
     this.jComboBox4 = new JComboBox();let jComboBox4 = this.jComboBox4;
     this.jSpinner1 = new JSpinner();let jSpinner1 = this.jSpinner1;
     this.jSpinner2 = new JSpinner();let jSpinner2 = this.jSpinner2;
+    this.jTextField1 = new JTextField();let jTextField1 = this.jTextField1;
+    this.jTextField2 = new JTextField();let jTextField2 = this.jTextField2;
+    this.jTextField3 = new JTextField();let jTextField3 = this.jTextField3;
     this.jPanel6 = new JPanel();let jPanel6 = this.jPanel6;
     this.jPanel4 = new JPanel();let jPanel4 = this.jPanel4;
     this.jCheckBox1 = new JCheckBox();let jCheckBox1 = this.jCheckBox1;
@@ -295,6 +297,15 @@ class TestJFrame2 extends JFrame {
     jPanel5.add(jSpinner1);
     jSpinner2.setEnabled(false);
     jPanel5.add(jSpinner2);
+    jTextField1.setText("jTextField1");
+    jTextField1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jTextField1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel5.add(jTextField1);
+    jTextField2.setText("jTextField2");
+    jTextField2.setEnabled(false);
+    jPanel5.add(jTextField2);
+    jTextField3.setEditable(false);
+    jTextField3.setText("jTextField3");
+    jPanel5.add(jTextField3);
     this.getContentPane().add(jPanel5, BorderLayout.CENTER);
     jPanel6.setLayout(new GridLayout(1, 2, 10, 0));
     jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.Y_AXIS));
@@ -438,6 +449,12 @@ class TestJFrame2 extends JFrame {
   }
 
   // GEN-LAST:event_jButton14ActionPerformed
+   jTextField1ActionPerformed(evt) {
+    // GEN-FIRST:event_jTextField1ActionPerformed
+    this.jTextField2.setText(this.jTextField1.getText());
+  }
+
+  // GEN-LAST:event_jTextField1ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -568,6 +585,12 @@ class TestJFrame2 extends JFrame {
    jSpinner1 = null;
 
    jSpinner2 = null;
+
+   jTextField1 = null;
+
+   jTextField2 = null;
+
+   jTextField3 = null;
 
    jToggleButton1 = null;
 

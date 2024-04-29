@@ -4,7 +4,9 @@
  * @author gianpiero.diblasi
  * @param <T> The type
  */
-class JSComboBox extends AbstractButton {
+class JSComboBox extends JSComponent {
+
+   listeners = new Array();
 
    modelAndRenderer = null;
 
@@ -53,11 +55,28 @@ class JSComboBox extends AbstractButton {
   }
 
   /**
-   * JSComboBox does not manage icons
+   * Clone of javax.swing.JComboBox.addActionListener
    *
-   * @param producer
+   * @param listener The listener
    */
-   setIcon(producer) {
-    console.error("JSComboBox does not manage icons");
+   addActionListener(listener) {
+    this.listeners.push(listener);
+  }
+
+  /**
+   * The method for click events
+   *
+   * @return null
+   */
+   onclick() {
+    let event = new ActionEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.actionPerformed(event);
+      }
+    });
+    return null;
   }
 }

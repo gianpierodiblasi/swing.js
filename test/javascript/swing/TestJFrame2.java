@@ -17,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 /**
@@ -93,7 +94,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((AbstractButton) SwingJS.convert(this.jToggleButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jToggleButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jToggleButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-   
+    
     ((AbstractButton) SwingJS.convert(this.jRadioButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jRadioButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jRadioButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
@@ -111,9 +112,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((AbstractButton) SwingJS.convert(this.jRadioButton21)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jRadioButton22)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     ((AbstractButton) SwingJS.convert(this.jRadioButton23)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((AbstractButton) SwingJS.convert(this.jRadioButton24)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));    
-    
-    ((AbstractButton) SwingJS.convert(this.jComboBox1)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));    
+    ((AbstractButton) SwingJS.convert(this.jRadioButton24)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
   }
 
   /**
@@ -171,6 +170,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jComboBox4 = new JComboBox<>();
     jSpinner1 = new JSpinner();
     jSpinner2 = new JSpinner();
+    jTextField1 = new JTextField();
+    jTextField2 = new JTextField();
+    jTextField3 = new JTextField();
     jPanel6 = new JPanel();
     jPanel4 = new JPanel();
     jCheckBox1 = new JCheckBox();
@@ -376,6 +378,18 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jSpinner2.setEnabled(false);
     jPanel5.add(jSpinner2);
 
+    jTextField1.setText("jTextField1");
+    jTextField1.addActionListener(this::jTextField1ActionPerformed);
+    jPanel5.add(jTextField1);
+
+    jTextField2.setText("jTextField2");
+    jTextField2.setEnabled(false);
+    jPanel5.add(jTextField2);
+
+    jTextField3.setEditable(false);
+    jTextField3.setText("jTextField3");
+    jPanel5.add(jTextField3);
+
     getContentPane().add(jPanel5, BorderLayout.CENTER);
 
     jPanel6.setLayout(new GridLayout(1, 2, 10, 0));
@@ -548,6 +562,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_jButton14ActionPerformed
 
+  private void jTextField1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    this.jTextField2.setText(this.jTextField1.getText());
+  }//GEN-LAST:event_jTextField1ActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
   private ButtonGroup buttonGroup2;
@@ -614,6 +632,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton9;
   private JSpinner jSpinner1;
   private JSpinner jSpinner2;
+  private JTextField jTextField1;
+  private JTextField jTextField2;
+  private JTextField jTextField3;
   private JToggleButton jToggleButton1;
   private JToggleButton jToggleButton10;
   private JToggleButton jToggleButton11;
