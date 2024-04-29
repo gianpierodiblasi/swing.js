@@ -1,6 +1,8 @@
 package javascript.swing;
 
 import static def.dom.Globals.document;
+import javascript.util.AbstractHTMLImageProducer;
+import simulation.dom.$Image;
 
 /**
  * The javax.swing.JButton clone
@@ -36,5 +38,13 @@ public class JSButton extends AbstractButton {
     } else {
       this.cssAddClass("jsbutton-outline");
     }
+  }
+
+  /**
+   * Sets the icon
+   * @param producer The icon producer
+   */
+  public void setIcon(AbstractHTMLImageProducer<?> producer) {
+    this.prependNodeChild(producer.produce());
   }
 }

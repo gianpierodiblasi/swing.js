@@ -10,6 +10,8 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
+  column-gap: .5rem;
+  align-items: center;
 }
 .jstogglebutton input {
   font-family: var(--font-family);
@@ -18,6 +20,7 @@
 
   cursor: pointer;
   appearance: none;
+  display: none;
   margin: 0 0.2rem 0 0;
 }
 .jstogglebutton:hover {

@@ -77,4 +77,13 @@ class JSToggleButton extends AbstractButton {
       this.cssAddClass("jstogglebutton-outline");
     }
   }
+
+  /**
+   * Sets the icon
+   *
+   * @param producer The icon producer
+   */
+   setIcon(producer) {
+    this.prependNodeChild(producer.produce());
+  }
 }

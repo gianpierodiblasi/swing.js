@@ -1194,6 +1194,14 @@ class JSButton extends AbstractButton {
       this.cssAddClass("jsbutton-outline");
     }
   }
+
+  /**
+   * Sets the icon
+   * @param producer The icon producer
+   */
+   setIcon(producer) {
+    this.prependNodeChild(producer.produce());
+  }
 }
 /**
  * The javax.swing.JCheckBox clone
@@ -1402,6 +1410,15 @@ class JSRadioButton extends AbstractButton {
       this.cssAddClass("jsradiobutton-outline");
     }
   }
+
+  /**
+   * Sets the icon, visible if and only if this radiobutton is a toggle
+   *
+   * @param producer The icon producer
+   */
+   setIcon(producer) {
+    this.prependNodeChild(producer.produce());
+  }
 }
 /**
  * The javax.swing.JToggleButton clone
@@ -1481,6 +1498,15 @@ class JSToggleButton extends AbstractButton {
     } else {
       this.cssAddClass("jstogglebutton-outline");
     }
+  }
+
+  /**
+   * Sets the icon
+   *
+   * @param producer The icon producer
+   */
+   setIcon(producer) {
+    this.prependNodeChild(producer.produce());
   }
 }
 /**

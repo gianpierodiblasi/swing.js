@@ -37,6 +37,7 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
+  column-gap: .5rem;
 }
 .jsradiobutton[role=toggle]:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
@@ -52,6 +53,9 @@
 }
 .jsradiobutton[role=toggle]:has(input:disabled):has(input:checked) {
   filter: opacity(0.5) saturate(0.5);
+}
+.jsradiobutton[role=toggle] input {
+  display: none;
 }
 .jsradiobutton[role=toggle] input::after {
   content: "";

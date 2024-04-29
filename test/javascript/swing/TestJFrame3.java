@@ -37,17 +37,17 @@ public class TestJFrame3 extends javax.swing.JFrame {
     ((JSSlider) SwingJS.convert(this.jSlider5)).setModelAndRenderer(this.modelAndRendererS);
 
     this.modelAndRendererS2 = new HTMLImageSliderModelAndRenderer<>();
-    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
-    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
-    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
-    this.modelAndRendererS2.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame3HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame3HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame3HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS2.addElement(new TestJFrame3HTMLImageProducer("D", "../../../swing.png"));
     ((JSSlider) SwingJS.convert(this.jSlider6)).setModelAndRenderer(this.modelAndRendererS2);
 
     this.modelAndRendererS3 = new HTMLImageSliderModelAndRenderer<>();
-    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("A", "../../../swing.png"));
-    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("B", "../../../swing.png"));
-    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("C", "../../../swing.png"));
-    this.modelAndRendererS3.addElement(new TestJFrame2HTMLImageProducer("D", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame3HTMLImageProducer("A", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame3HTMLImageProducer("B", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame3HTMLImageProducer("C", "../../../swing.png"));
+    this.modelAndRendererS3.addElement(new TestJFrame3HTMLImageProducer("D", "../../../swing.png"));
     ((JSSlider) SwingJS.convert(this.jSlider7)).setModelAndRenderer(this.modelAndRendererS3);
   }
 

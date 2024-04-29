@@ -8,6 +8,10 @@
   padding: .5rem;
   border-radius: .5rem;
   cursor: pointer;
+  display: flex;
+  column-gap: .5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .jsbutton:hover {

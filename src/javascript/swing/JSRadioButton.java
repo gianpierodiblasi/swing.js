@@ -2,6 +2,7 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.Text;
+import javascript.util.AbstractHTMLImageProducer;
 import simulation.dom.$HTMLElement;
 
 /**
@@ -81,7 +82,7 @@ public class JSRadioButton extends AbstractButton {
       this.radiobutton.setAttribute("disabled", "disabled");
     }
   }
-  
+
   /**
    * Clone of javax.swing.JRadioButton.setContentAreaFilled
    *
@@ -93,5 +94,14 @@ public class JSRadioButton extends AbstractButton {
     } else {
       this.cssAddClass("jsradiobutton-outline");
     }
+  }
+
+  /**
+   * Sets the icon, visible if and only if this radiobutton is a toggle
+   *
+   * @param producer The icon producer
+   */
+  public void setIcon(AbstractHTMLImageProducer<?> producer) {
+    this.prependNodeChild(producer.produce());
   }
 }

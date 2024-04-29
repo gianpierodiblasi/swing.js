@@ -11,7 +11,6 @@ import javascript.swing.MnR.DefaultComboBoxModelAndRenderer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -43,6 +42,14 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((JSRadioButton) SwingJS.convert(this.jRadioButton10)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton11)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton12)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton13)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton14)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton15)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton16)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton17)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton18)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton19)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton20)).setToggle();
     
     AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
     modelAndRendererCB.addElement(10);
@@ -72,6 +79,29 @@ public class TestJFrame2 extends javax.swing.JFrame {
     
     ((JSSpinner) SwingJS.convert(this.jSpinner1)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
     ((JSSpinner) SwingJS.convert(this.jSpinner2)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
+    
+    ((JSButton) SwingJS.convert(this.jButton9)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSButton) SwingJS.convert(this.jButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSButton) SwingJS.convert(this.jButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSButton) SwingJS.convert(this.jButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton9)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton10)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton11)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton12)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jToggleButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+   
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton17)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton18)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton19)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((JSToggleButton) SwingJS.convert(this.jRadioButton20)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
   }
 
   /**
@@ -92,17 +122,29 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton4 = new JButton();
     jButton6 = new JButton();
     jButton7 = new JButton();
+    jButton9 = new JButton();
+    jButton13 = new JButton();
+    jButton14 = new JButton();
+    jButton15 = new JButton();
     jPanel2 = new JPanel();
     jButton5 = new JButton();
     jRadioButton5 = new JRadioButton();
     jRadioButton7 = new JRadioButton();
     jRadioButton9 = new JRadioButton();
     jRadioButton10 = new JRadioButton();
+    jRadioButton13 = new JRadioButton();
+    jRadioButton14 = new JRadioButton();
+    jRadioButton15 = new JRadioButton();
+    jRadioButton16 = new JRadioButton();
     jButton8 = new JButton();
     jRadioButton6 = new JRadioButton();
     jRadioButton8 = new JRadioButton();
     jRadioButton11 = new JRadioButton();
     jRadioButton12 = new JRadioButton();
+    jRadioButton17 = new JRadioButton();
+    jRadioButton18 = new JRadioButton();
+    jRadioButton19 = new JRadioButton();
+    jRadioButton20 = new JRadioButton();
     jPanel3 = new JPanel();
     jButton10 = new JButton();
     filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
@@ -136,6 +178,14 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jToggleButton6 = new JToggleButton();
     jToggleButton7 = new JToggleButton();
     jToggleButton8 = new JToggleButton();
+    jToggleButton9 = new JToggleButton();
+    jToggleButton10 = new JToggleButton();
+    jToggleButton11 = new JToggleButton();
+    jToggleButton12 = new JToggleButton();
+    jToggleButton13 = new JToggleButton();
+    jToggleButton14 = new JToggleButton();
+    jToggleButton15 = new JToggleButton();
+    jToggleButton16 = new JToggleButton();
 
     setTitle("Test Components");
     getContentPane().setLayout(new BorderLayout(5, 5));
@@ -165,9 +215,27 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton7.setEnabled(false);
     jPanel1.add(jButton7);
 
+    jButton9.setText("jButton1");
+    jButton9.addActionListener(this::jButton9ActionPerformed);
+    jPanel1.add(jButton9);
+
+    jButton13.setText("jButton3");
+    jButton13.setEnabled(false);
+    jPanel1.add(jButton13);
+
+    jButton14.setText("jButton1");
+    jButton14.setContentAreaFilled(false);
+    jButton14.addActionListener(this::jButton14ActionPerformed);
+    jPanel1.add(jButton14);
+
+    jButton15.setText("jButton3");
+    jButton15.setContentAreaFilled(false);
+    jButton15.setEnabled(false);
+    jPanel1.add(jButton15);
+
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
 
-    jPanel2.setLayout(new GridLayout(2, 5, 10, 20));
+    jPanel2.setLayout(new GridLayout(2, 9, 10, 20));
 
     jButton5.setText("jButton5");
     jPanel2.add(jButton5);
@@ -187,11 +255,31 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jPanel2.add(jRadioButton9);
 
     buttonGroup2.add(jRadioButton10);
-    jRadioButton10.setSelected(true);
     jRadioButton10.setText("jRadioButton10");
     jRadioButton10.setContentAreaFilled(false);
     jRadioButton10.setEnabled(false);
     jPanel2.add(jRadioButton10);
+
+    buttonGroup2.add(jRadioButton13);
+    jRadioButton13.setText("jRadioButton5");
+    jPanel2.add(jRadioButton13);
+
+    buttonGroup2.add(jRadioButton14);
+    jRadioButton14.setText("jRadioButton7");
+    jRadioButton14.setEnabled(false);
+    jPanel2.add(jRadioButton14);
+
+    buttonGroup2.add(jRadioButton15);
+    jRadioButton15.setText("jRadioButton9");
+    jRadioButton15.setContentAreaFilled(false);
+    jPanel2.add(jRadioButton15);
+
+    buttonGroup2.add(jRadioButton16);
+    jRadioButton16.setSelected(true);
+    jRadioButton16.setText("jRadioButton10");
+    jRadioButton16.setContentAreaFilled(false);
+    jRadioButton16.setEnabled(false);
+    jPanel2.add(jRadioButton16);
 
     jButton8.setText("jButton8");
     jPanel2.add(jButton8);
@@ -215,6 +303,26 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton12.setContentAreaFilled(false);
     jRadioButton12.setEnabled(false);
     jPanel2.add(jRadioButton12);
+
+    buttonGroup2.add(jRadioButton17);
+    jRadioButton17.setText("jRadioButton6");
+    jPanel2.add(jRadioButton17);
+
+    buttonGroup2.add(jRadioButton18);
+    jRadioButton18.setText("jRadioButton8");
+    jRadioButton18.setEnabled(false);
+    jPanel2.add(jRadioButton18);
+
+    buttonGroup2.add(jRadioButton19);
+    jRadioButton19.setText("jRadioButton11");
+    jRadioButton19.setContentAreaFilled(false);
+    jPanel2.add(jRadioButton19);
+
+    buttonGroup2.add(jRadioButton20);
+    jRadioButton20.setText("jRadioButton12");
+    jRadioButton20.setContentAreaFilled(false);
+    jRadioButton20.setEnabled(false);
+    jPanel2.add(jRadioButton20);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
@@ -329,6 +437,42 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jToggleButton8.setEnabled(false);
     jPanel7.add(jToggleButton8);
 
+    jToggleButton9.setText("jToggleButton1");
+    jPanel7.add(jToggleButton9);
+
+    jToggleButton10.setText("jToggleButton2");
+    jToggleButton10.setEnabled(false);
+    jPanel7.add(jToggleButton10);
+
+    jToggleButton11.setSelected(true);
+    jToggleButton11.setText("jToggleButton3");
+    jPanel7.add(jToggleButton11);
+
+    jToggleButton12.setSelected(true);
+    jToggleButton12.setText("jToggleButton4");
+    jToggleButton12.setEnabled(false);
+    jPanel7.add(jToggleButton12);
+
+    jToggleButton13.setText("jToggleButton1");
+    jToggleButton13.setContentAreaFilled(false);
+    jPanel7.add(jToggleButton13);
+
+    jToggleButton14.setText("jToggleButton2");
+    jToggleButton14.setContentAreaFilled(false);
+    jToggleButton14.setEnabled(false);
+    jPanel7.add(jToggleButton14);
+
+    jToggleButton15.setSelected(true);
+    jToggleButton15.setText("jToggleButton3");
+    jToggleButton15.setContentAreaFilled(false);
+    jPanel7.add(jToggleButton15);
+
+    jToggleButton16.setSelected(true);
+    jToggleButton16.setText("jToggleButton4");
+    jToggleButton16.setContentAreaFilled(false);
+    jToggleButton16.setEnabled(false);
+    jPanel7.add(jToggleButton16);
+
     jPanel6.add(jPanel7);
 
     getContentPane().add(jPanel6, BorderLayout.LINE_END);
@@ -342,6 +486,14 @@ public class TestJFrame2 extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_jButton4ActionPerformed
 
+  private void jButton9ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jButton9ActionPerformed
+
+  private void jButton14ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jButton14ActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
   private ButtonGroup buttonGroup2;
@@ -352,6 +504,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JButton jButton10;
   private JButton jButton11;
   private JButton jButton12;
+  private JButton jButton13;
+  private JButton jButton14;
+  private JButton jButton15;
   private JButton jButton2;
   private JButton jButton3;
   private JButton jButton4;
@@ -359,6 +514,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JButton jButton6;
   private JButton jButton7;
   private JButton jButton8;
+  private JButton jButton9;
   private JCheckBox jCheckBox1;
   private JCheckBox jCheckBox2;
   private JCheckBox jCheckBox3;
@@ -378,7 +534,15 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton10;
   private JRadioButton jRadioButton11;
   private JRadioButton jRadioButton12;
+  private JRadioButton jRadioButton13;
+  private JRadioButton jRadioButton14;
+  private JRadioButton jRadioButton15;
+  private JRadioButton jRadioButton16;
+  private JRadioButton jRadioButton17;
+  private JRadioButton jRadioButton18;
+  private JRadioButton jRadioButton19;
   private JRadioButton jRadioButton2;
+  private JRadioButton jRadioButton20;
   private JRadioButton jRadioButton3;
   private JRadioButton jRadioButton4;
   private JRadioButton jRadioButton5;
@@ -389,6 +553,13 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JSpinner jSpinner1;
   private JSpinner jSpinner2;
   private JToggleButton jToggleButton1;
+  private JToggleButton jToggleButton10;
+  private JToggleButton jToggleButton11;
+  private JToggleButton jToggleButton12;
+  private JToggleButton jToggleButton13;
+  private JToggleButton jToggleButton14;
+  private JToggleButton jToggleButton15;
+  private JToggleButton jToggleButton16;
   private JToggleButton jToggleButton2;
   private JToggleButton jToggleButton3;
   private JToggleButton jToggleButton4;
@@ -396,5 +567,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JToggleButton jToggleButton6;
   private JToggleButton jToggleButton7;
   private JToggleButton jToggleButton8;
+  private JToggleButton jToggleButton9;
   // End of variables declaration//GEN-END:variables
 }

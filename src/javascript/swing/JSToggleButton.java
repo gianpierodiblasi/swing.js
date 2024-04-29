@@ -2,6 +2,7 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.Text;
+import javascript.util.AbstractHTMLImageProducer;
 import simulation.dom.$HTMLElement;
 
 /**
@@ -67,14 +68,14 @@ public class JSToggleButton extends AbstractButton {
   @Override
   public void setEnabled(boolean b) {
     super.setEnabled(b);
-    
+
     if (b) {
       this.togglebutton.removeAttribute("disabled");
     } else {
       this.togglebutton.setAttribute("disabled", "disabled");
     }
   }
-  
+
   /**
    * Clone of javax.swing.JToggleButton.setContentAreaFilled
    *
@@ -86,5 +87,14 @@ public class JSToggleButton extends AbstractButton {
     } else {
       this.cssAddClass("jstogglebutton-outline");
     }
+  }
+
+  /**
+   * Sets the icon
+   *
+   * @param producer The icon producer
+   */
+  public void setIcon(AbstractHTMLImageProducer<?> producer) {
+    this.prependNodeChild(producer.produce());
   }
 }

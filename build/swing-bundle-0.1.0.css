@@ -8,6 +8,10 @@
   padding: .5rem;
   border-radius: .5rem;
   cursor: pointer;
+  display: flex;
+  column-gap: .5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .jsbutton:hover {
@@ -306,6 +310,7 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
+  column-gap: .5rem;
 }
 .jsradiobutton[role=toggle]:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
@@ -321,6 +326,9 @@
 }
 .jsradiobutton[role=toggle]:has(input:disabled):has(input:checked) {
   filter: opacity(0.5) saturate(0.5);
+}
+.jsradiobutton[role=toggle] input {
+  display: none;
 }
 .jsradiobutton[role=toggle] input::after {
   content: "";
@@ -595,6 +603,8 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
+  column-gap: .5rem;
+  align-items: center;
 }
 .jstogglebutton input {
   font-family: var(--font-family);
@@ -603,6 +613,7 @@
 
   cursor: pointer;
   appearance: none;
+  display: none;
   margin: 0 0.2rem 0 0;
 }
 .jstogglebutton:hover {
