@@ -4,7 +4,7 @@
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);
 
-  border: none;
+  border: 2px solid var(--main-action-bgcolor);
   padding: .5rem;
   border-radius: .5rem;
   cursor: pointer;
@@ -19,4 +19,18 @@
 .jsbutton:disabled {
   filter: opacity(0.5);
   cursor: default;
+}
+
+.jsbutton-outline {
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+.jsbutton-outline:active {
+  background-image: linear-gradient(
+    90deg,
+    var(--main-action-bgcolor) 0,
+    var(--main-bgcolor) 15%,
+    var(--main-bgcolor) 85%,
+    var(--main-action-bgcolor) 100%
+    );
 }

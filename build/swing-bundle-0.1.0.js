@@ -1181,6 +1181,19 @@ class JSButton extends AbstractButton {
    setText(text) {
     this.setContent(text);
   }
+
+  /**
+   * Clone of javax.swing.JButton.setContentAreaFilled
+   *
+   * @param b true to fill the area, false otherwise
+   */
+   setContentAreaFilled(b) {
+    if (b) {
+      this.cssRemoveClass("jsbutton-outline");
+    } else {
+      this.cssAddClass("jsbutton-outline");
+    }
+  }
 }
 /**
  * The javax.swing.JCheckBox clone
@@ -1376,6 +1389,19 @@ class JSRadioButton extends AbstractButton {
       this.radiobutton.setAttribute("disabled", "disabled");
     }
   }
+
+  /**
+   * Clone of javax.swing.JRadioButton.setContentAreaFilled
+   *
+   * @param b true to fill the area, false otherwise
+   */
+   setContentAreaFilled(b) {
+    if (b) {
+      this.cssRemoveClass("jsradiobutton-outline");
+    } else {
+      this.cssAddClass("jsradiobutton-outline");
+    }
+  }
 }
 /**
  * The javax.swing.JToggleButton clone
@@ -1441,6 +1467,19 @@ class JSToggleButton extends AbstractButton {
       this.togglebutton.removeAttribute("disabled");
     } else {
       this.togglebutton.setAttribute("disabled", "disabled");
+    }
+  }
+
+  /**
+   * Clone of javax.swing.JToggleButton.setContentAreaFilled
+   *
+   * @param b true to fill the area, false otherwise
+   */
+   setContentAreaFilled(b) {
+    if (b) {
+      this.cssRemoveClass("jstogglebutton-outline");
+    } else {
+      this.cssAddClass("jstogglebutton-outline");
     }
   }
 }

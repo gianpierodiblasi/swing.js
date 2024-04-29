@@ -74,4 +74,17 @@ public class JSToggleButton extends AbstractButton {
       this.togglebutton.setAttribute("disabled", "disabled");
     }
   }
+  
+  /**
+   * Clone of javax.swing.JToggleButton.setContentAreaFilled
+   *
+   * @param b true to fill the area, false otherwise
+   */
+  public void setContentAreaFilled(boolean b) {
+    if (b) {
+      this.cssRemoveClass("jstogglebutton-outline");
+    } else {
+      this.cssAddClass("jstogglebutton-outline");
+    }
+  }
 }

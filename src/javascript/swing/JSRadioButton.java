@@ -81,4 +81,17 @@ public class JSRadioButton extends AbstractButton {
       this.radiobutton.setAttribute("disabled", "disabled");
     }
   }
+  
+  /**
+   * Clone of javax.swing.JRadioButton.setContentAreaFilled
+   *
+   * @param b true to fill the area, false otherwise
+   */
+  public void setContentAreaFilled(boolean b) {
+    if (b) {
+      this.cssRemoveClass("jsradiobutton-outline");
+    } else {
+      this.cssAddClass("jsradiobutton-outline");
+    }
+  }
 }

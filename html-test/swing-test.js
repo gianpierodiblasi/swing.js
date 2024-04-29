@@ -150,6 +150,10 @@ class TestJSFrame2 extends JSFrame {
     (SwingJS.convert(this.jRadioButton6)).setToggle();
     (SwingJS.convert(this.jRadioButton7)).setToggle();
     (SwingJS.convert(this.jRadioButton8)).setToggle();
+    (SwingJS.convert(this.jRadioButton9)).setToggle();
+    (SwingJS.convert(this.jRadioButton10)).setToggle();
+    (SwingJS.convert(this.jRadioButton11)).setToggle();
+    (SwingJS.convert(this.jRadioButton12)).setToggle();
     let modelAndRendererCB = new DefaultComboBoxModelAndRenderer();
     modelAndRendererCB.addElement(10);
     modelAndRendererCB.addElement(20);
@@ -188,13 +192,20 @@ class TestJSFrame2 extends JSFrame {
     this.jButton1 = new JSButton();let jButton1 = this.jButton1;
     this.jButton2 = new JSButton();let jButton2 = this.jButton2;
     this.jButton3 = new JSButton();let jButton3 = this.jButton3;
+    this.jButton4 = new JSButton();let jButton4 = this.jButton4;
+    this.jButton6 = new JSButton();let jButton6 = this.jButton6;
+    this.jButton7 = new JSButton();let jButton7 = this.jButton7;
     this.jPanel2 = new JSPanel();let jPanel2 = this.jPanel2;
     this.jButton5 = new JSButton();let jButton5 = this.jButton5;
     this.jRadioButton5 = new JSRadioButton();let jRadioButton5 = this.jRadioButton5;
     this.jRadioButton7 = new JSRadioButton();let jRadioButton7 = this.jRadioButton7;
+    this.jRadioButton9 = new JSRadioButton();let jRadioButton9 = this.jRadioButton9;
+    this.jRadioButton10 = new JSRadioButton();let jRadioButton10 = this.jRadioButton10;
     this.jButton8 = new JSButton();let jButton8 = this.jButton8;
     this.jRadioButton6 = new JSRadioButton();let jRadioButton6 = this.jRadioButton6;
     this.jRadioButton8 = new JSRadioButton();let jRadioButton8 = this.jRadioButton8;
+    this.jRadioButton11 = new JSRadioButton();let jRadioButton11 = this.jRadioButton11;
+    this.jRadioButton12 = new JSRadioButton();let jRadioButton12 = this.jRadioButton12;
     this.jPanel3 = new JSPanel();let jPanel3 = this.jPanel3;
     this.jButton10 = new JSButton();let jButton10 = this.jButton10;
     this.filler2 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));let filler2 = this.filler2;
@@ -215,6 +226,10 @@ class TestJSFrame2 extends JSFrame {
     this.jToggleButton2 = new JSToggleButton();let jToggleButton2 = this.jToggleButton2;
     this.jToggleButton3 = new JSToggleButton();let jToggleButton3 = this.jToggleButton3;
     this.jToggleButton4 = new JSToggleButton();let jToggleButton4 = this.jToggleButton4;
+    this.jToggleButton5 = new JSToggleButton();let jToggleButton5 = this.jToggleButton5;
+    this.jToggleButton6 = new JSToggleButton();let jToggleButton6 = this.jToggleButton6;
+    this.jToggleButton7 = new JSToggleButton();let jToggleButton7 = this.jToggleButton7;
+    this.jToggleButton8 = new JSToggleButton();let jToggleButton8 = this.jToggleButton8;
     this.jPanel5 = new JSPanel();let jPanel5 = this.jPanel5;
     this.jComboBox1 = new JSComboBox();let jComboBox1 = this.jComboBox1;
     this.jComboBox2 = new JSComboBox();let jComboBox2 = this.jComboBox2;
@@ -232,18 +247,38 @@ class TestJSFrame2 extends JSFrame {
     jButton3.setText("jButton3");
     jButton3.setEnabled(false);
     jPanel1.add(jButton3);
+    jButton4.setText("jButton1");
+    jButton4.setContentAreaFilled(false);
+    jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton4);
+    jButton6.setText("jButton2");
+    jButton6.setContentAreaFilled(false);
+    jPanel1.add(jButton6);
+    jButton7.setText("jButton3");
+    jButton7.setContentAreaFilled(false);
+    jButton7.setEnabled(false);
+    jPanel1.add(jButton7);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
-    jPanel2.setLayout(new GridLayout(2, 3, 10, 20));
+    jPanel2.setLayout(new GridLayout(2, 5, 10, 20));
     jButton5.setText("jButton5");
     jPanel2.add(jButton5);
     buttonGroup2.add(jRadioButton5);
     jRadioButton5.setText("jRadioButton5");
     jPanel2.add(jRadioButton5);
     buttonGroup2.add(jRadioButton7);
-    jRadioButton7.setSelected(true);
     jRadioButton7.setText("jRadioButton7");
     jRadioButton7.setEnabled(false);
     jPanel2.add(jRadioButton7);
+    buttonGroup2.add(jRadioButton9);
+    jRadioButton9.setText("jRadioButton9");
+    jRadioButton9.setContentAreaFilled(false);
+    jPanel2.add(jRadioButton9);
+    buttonGroup2.add(jRadioButton10);
+    jRadioButton10.setSelected(true);
+    jRadioButton10.setText("jRadioButton10");
+    jRadioButton10.setContentAreaFilled(false);
+    jRadioButton10.setEnabled(false);
+    jPanel2.add(jRadioButton10);
     jButton8.setText("jButton8");
     jPanel2.add(jButton8);
     buttonGroup2.add(jRadioButton6);
@@ -253,6 +288,15 @@ class TestJSFrame2 extends JSFrame {
     jRadioButton8.setText("jRadioButton8");
     jRadioButton8.setEnabled(false);
     jPanel2.add(jRadioButton8);
+    buttonGroup2.add(jRadioButton11);
+    jRadioButton11.setText("jRadioButton11");
+    jRadioButton11.setContentAreaFilled(false);
+    jPanel2.add(jRadioButton11);
+    buttonGroup2.add(jRadioButton12);
+    jRadioButton12.setText("jRadioButton12");
+    jRadioButton12.setContentAreaFilled(false);
+    jRadioButton12.setEnabled(false);
+    jPanel2.add(jRadioButton12);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
     jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
     jButton10.setText("jButton10");
@@ -305,6 +349,22 @@ class TestJSFrame2 extends JSFrame {
     jToggleButton4.setText("jToggleButton4");
     jToggleButton4.setEnabled(false);
     jPanel4.add(jToggleButton4);
+    jToggleButton5.setText("jToggleButton1");
+    jToggleButton5.setContentAreaFilled(false);
+    jPanel4.add(jToggleButton5);
+    jToggleButton6.setText("jToggleButton2");
+    jToggleButton6.setContentAreaFilled(false);
+    jToggleButton6.setEnabled(false);
+    jPanel4.add(jToggleButton6);
+    jToggleButton7.setSelected(true);
+    jToggleButton7.setText("jToggleButton3");
+    jToggleButton7.setContentAreaFilled(false);
+    jPanel4.add(jToggleButton7);
+    jToggleButton8.setSelected(true);
+    jToggleButton8.setText("jToggleButton4");
+    jToggleButton8.setContentAreaFilled(false);
+    jToggleButton8.setEnabled(false);
+    jPanel4.add(jToggleButton8);
     this.getContentPane().add(jPanel4, BorderLayout.LINE_END);
     jPanel5.add(jComboBox1);
     jComboBox2.setEnabled(false);
@@ -325,6 +385,12 @@ class TestJSFrame2 extends JSFrame {
   }
 
   // GEN-LAST:event_jButton1ActionPerformed
+   jButton4ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton4ActionPerformed
+    // TODO add your handling code here:
+  }
+
+  // GEN-LAST:event_jButton4ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    buttonGroup1 = null;
 
@@ -348,7 +414,13 @@ class TestJSFrame2 extends JSFrame {
 
    jButton3 = null;
 
+   jButton4 = null;
+
    jButton5 = null;
+
+   jButton6 = null;
+
+   jButton7 = null;
 
    jButton8 = null;
 
@@ -380,6 +452,12 @@ class TestJSFrame2 extends JSFrame {
 
    jRadioButton1 = null;
 
+   jRadioButton10 = null;
+
+   jRadioButton11 = null;
+
+   jRadioButton12 = null;
+
    jRadioButton2 = null;
 
    jRadioButton3 = null;
@@ -394,6 +472,8 @@ class TestJSFrame2 extends JSFrame {
 
    jRadioButton8 = null;
 
+   jRadioButton9 = null;
+
    jSpinner1 = null;
 
    jSpinner2 = null;
@@ -405,6 +485,14 @@ class TestJSFrame2 extends JSFrame {
    jToggleButton3 = null;
 
    jToggleButton4 = null;
+
+   jToggleButton5 = null;
+
+   jToggleButton6 = null;
+
+   jToggleButton7 = null;
+
+   jToggleButton8 = null;
   // End of variables declaration//GEN-END:variables
 }
 /**

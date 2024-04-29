@@ -4,6 +4,7 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
 import javascript.swing.MnR.DefaultComboBoxModelAndRenderer;
@@ -37,6 +38,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((JSRadioButton) SwingJS.convert(this.jRadioButton6)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton7)).setToggle();
     ((JSRadioButton) SwingJS.convert(this.jRadioButton8)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton9)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton10)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton11)).setToggle();
+    ((JSRadioButton) SwingJS.convert(this.jRadioButton12)).setToggle();
     
     AbstractComboBoxModelAndRenderer<Integer> modelAndRendererCB = new DefaultComboBoxModelAndRenderer<>();
     modelAndRendererCB.addElement(10);
@@ -83,13 +88,20 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton1 = new JButton();
     jButton2 = new JButton();
     jButton3 = new JButton();
+    jButton4 = new JButton();
+    jButton6 = new JButton();
+    jButton7 = new JButton();
     jPanel2 = new JPanel();
     jButton5 = new JButton();
     jRadioButton5 = new JRadioButton();
     jRadioButton7 = new JRadioButton();
+    jRadioButton9 = new JRadioButton();
+    jRadioButton10 = new JRadioButton();
     jButton8 = new JButton();
     jRadioButton6 = new JRadioButton();
     jRadioButton8 = new JRadioButton();
+    jRadioButton11 = new JRadioButton();
+    jRadioButton12 = new JRadioButton();
     jPanel3 = new JPanel();
     jButton10 = new JButton();
     filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
@@ -110,6 +122,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jToggleButton2 = new JToggleButton();
     jToggleButton3 = new JToggleButton();
     jToggleButton4 = new JToggleButton();
+    jToggleButton5 = new JToggleButton();
+    jToggleButton6 = new JToggleButton();
+    jToggleButton7 = new JToggleButton();
+    jToggleButton8 = new JToggleButton();
     jPanel5 = new JPanel();
     jComboBox1 = new JComboBox<>();
     jComboBox2 = new JComboBox<>();
@@ -132,9 +148,23 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton3.setEnabled(false);
     jPanel1.add(jButton3);
 
+    jButton4.setText("jButton1");
+    jButton4.setContentAreaFilled(false);
+    jButton4.addActionListener(this::jButton4ActionPerformed);
+    jPanel1.add(jButton4);
+
+    jButton6.setText("jButton2");
+    jButton6.setContentAreaFilled(false);
+    jPanel1.add(jButton6);
+
+    jButton7.setText("jButton3");
+    jButton7.setContentAreaFilled(false);
+    jButton7.setEnabled(false);
+    jPanel1.add(jButton7);
+
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
 
-    jPanel2.setLayout(new GridLayout(2, 3, 10, 20));
+    jPanel2.setLayout(new GridLayout(2, 5, 10, 20));
 
     jButton5.setText("jButton5");
     jPanel2.add(jButton5);
@@ -144,10 +174,21 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jPanel2.add(jRadioButton5);
 
     buttonGroup2.add(jRadioButton7);
-    jRadioButton7.setSelected(true);
     jRadioButton7.setText("jRadioButton7");
     jRadioButton7.setEnabled(false);
     jPanel2.add(jRadioButton7);
+
+    buttonGroup2.add(jRadioButton9);
+    jRadioButton9.setText("jRadioButton9");
+    jRadioButton9.setContentAreaFilled(false);
+    jPanel2.add(jRadioButton9);
+
+    buttonGroup2.add(jRadioButton10);
+    jRadioButton10.setSelected(true);
+    jRadioButton10.setText("jRadioButton10");
+    jRadioButton10.setContentAreaFilled(false);
+    jRadioButton10.setEnabled(false);
+    jPanel2.add(jRadioButton10);
 
     jButton8.setText("jButton8");
     jPanel2.add(jButton8);
@@ -160,6 +201,17 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton8.setText("jRadioButton8");
     jRadioButton8.setEnabled(false);
     jPanel2.add(jRadioButton8);
+
+    buttonGroup2.add(jRadioButton11);
+    jRadioButton11.setText("jRadioButton11");
+    jRadioButton11.setContentAreaFilled(false);
+    jPanel2.add(jRadioButton11);
+
+    buttonGroup2.add(jRadioButton12);
+    jRadioButton12.setText("jRadioButton12");
+    jRadioButton12.setContentAreaFilled(false);
+    jRadioButton12.setEnabled(false);
+    jPanel2.add(jRadioButton12);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
@@ -232,6 +284,26 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jToggleButton4.setEnabled(false);
     jPanel4.add(jToggleButton4);
 
+    jToggleButton5.setText("jToggleButton1");
+    jToggleButton5.setContentAreaFilled(false);
+    jPanel4.add(jToggleButton5);
+
+    jToggleButton6.setText("jToggleButton2");
+    jToggleButton6.setContentAreaFilled(false);
+    jToggleButton6.setEnabled(false);
+    jPanel4.add(jToggleButton6);
+
+    jToggleButton7.setSelected(true);
+    jToggleButton7.setText("jToggleButton3");
+    jToggleButton7.setContentAreaFilled(false);
+    jPanel4.add(jToggleButton7);
+
+    jToggleButton8.setSelected(true);
+    jToggleButton8.setText("jToggleButton4");
+    jToggleButton8.setContentAreaFilled(false);
+    jToggleButton8.setEnabled(false);
+    jPanel4.add(jToggleButton8);
+
     getContentPane().add(jPanel4, BorderLayout.LINE_END);
 
     jPanel5.add(jComboBox1);
@@ -255,6 +327,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
     console.log("OK!!!");
   }//GEN-LAST:event_jButton1ActionPerformed
 
+  private void jButton4ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_jButton4ActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private ButtonGroup buttonGroup1;
   private ButtonGroup buttonGroup2;
@@ -267,7 +343,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JButton jButton12;
   private JButton jButton2;
   private JButton jButton3;
+  private JButton jButton4;
   private JButton jButton5;
+  private JButton jButton6;
+  private JButton jButton7;
   private JButton jButton8;
   private JCheckBox jCheckBox1;
   private JCheckBox jCheckBox2;
@@ -283,6 +362,9 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JPanel jPanel4;
   private JPanel jPanel5;
   private JRadioButton jRadioButton1;
+  private JRadioButton jRadioButton10;
+  private JRadioButton jRadioButton11;
+  private JRadioButton jRadioButton12;
   private JRadioButton jRadioButton2;
   private JRadioButton jRadioButton3;
   private JRadioButton jRadioButton4;
@@ -290,11 +372,16 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton6;
   private JRadioButton jRadioButton7;
   private JRadioButton jRadioButton8;
+  private JRadioButton jRadioButton9;
   private JSpinner jSpinner1;
   private JSpinner jSpinner2;
   private JToggleButton jToggleButton1;
   private JToggleButton jToggleButton2;
   private JToggleButton jToggleButton3;
   private JToggleButton jToggleButton4;
+  private JToggleButton jToggleButton5;
+  private JToggleButton jToggleButton6;
+  private JToggleButton jToggleButton7;
+  private JToggleButton jToggleButton8;
   // End of variables declaration//GEN-END:variables
 }

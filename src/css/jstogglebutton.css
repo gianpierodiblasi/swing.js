@@ -9,6 +9,7 @@
   border-radius: .5rem;
   cursor: pointer;
   justify-content: center;
+  border: 2px solid var(--main-action-bgcolor);
 }
 .jstogglebutton input {
   font-family: var(--font-family);
@@ -34,4 +35,18 @@
 }
 .jstogglebutton:has(input:disabled):has(input:checked) {
   filter: opacity(0.5) saturate(0.5);
+}
+
+.jstogglebutton-outline {
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+.jstogglebutton-outline:has(input:checked) {
+  background-image: linear-gradient(
+    90deg,
+    var(--main-action-bgcolor) 0,
+    var(--main-bgcolor) 15%,
+    var(--main-bgcolor) 85%,
+    var(--main-action-bgcolor) 100%
+    );
 }

@@ -36,6 +36,7 @@
   border-radius: .5rem;
   cursor: pointer;
   justify-content: center;
+  border: 2px solid var(--main-action-bgcolor);
 }
 .jsradiobutton[role=toggle]:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
@@ -57,4 +58,18 @@
 }
 .jsradiobutton[role=toggle] input:checked::after {
   content: "";
+}
+
+.jsradiobutton[role=toggle].jsradiobutton-outline {
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+.jsradiobutton[role=toggle].jsradiobutton-outline:has(input:checked) {
+  background-image: linear-gradient(
+    90deg,
+    var(--main-action-bgcolor) 0,
+    var(--main-bgcolor) 15%,
+    var(--main-bgcolor) 85%,
+    var(--main-action-bgcolor) 100%
+    );
 }

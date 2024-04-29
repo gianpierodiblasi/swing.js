@@ -4,7 +4,7 @@
   color: var(--main-action-color);
   background: var(--main-action-bgcolor);
 
-  border: none;
+  border: 2px solid var(--main-action-bgcolor);
   padding: .5rem;
   border-radius: .5rem;
   cursor: pointer;
@@ -19,6 +19,20 @@
 .jsbutton:disabled {
   filter: opacity(0.5);
   cursor: default;
+}
+
+.jsbutton-outline {
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+.jsbutton-outline:active {
+  background-image: linear-gradient(
+    90deg,
+    var(--main-action-bgcolor) 0,
+    var(--main-bgcolor) 15%,
+    var(--main-bgcolor) 85%,
+    var(--main-action-bgcolor) 100%
+    );
 }.jscheckbox {
   display: flex;
   align-items: center;
@@ -291,6 +305,7 @@
   border-radius: .5rem;
   cursor: pointer;
   justify-content: center;
+  border: 2px solid var(--main-action-bgcolor);
 }
 .jsradiobutton[role=toggle]:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
@@ -312,6 +327,20 @@
 }
 .jsradiobutton[role=toggle] input:checked::after {
   content: "";
+}
+
+.jsradiobutton[role=toggle].jsradiobutton-outline {
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+.jsradiobutton[role=toggle].jsradiobutton-outline:has(input:checked) {
+  background-image: linear-gradient(
+    90deg,
+    var(--main-action-bgcolor) 0,
+    var(--main-bgcolor) 15%,
+    var(--main-bgcolor) 85%,
+    var(--main-action-bgcolor) 100%
+    );
 }.jsslider {
   font-family: var(--font-family);
   font-size: var(--font-size);
@@ -556,6 +585,7 @@
   border-radius: .5rem;
   cursor: pointer;
   justify-content: center;
+  border: 2px solid var(--main-action-bgcolor);
 }
 .jstogglebutton input {
   font-family: var(--font-family);
@@ -581,6 +611,20 @@
 }
 .jstogglebutton:has(input:disabled):has(input:checked) {
   filter: opacity(0.5) saturate(0.5);
+}
+
+.jstogglebutton-outline {
+  color: var(--main-color);
+  background: var(--main-bgcolor);
+}
+.jstogglebutton-outline:has(input:checked) {
+  background-image: linear-gradient(
+    90deg,
+    var(--main-action-bgcolor) 0,
+    var(--main-bgcolor) 15%,
+    var(--main-bgcolor) 85%,
+    var(--main-action-bgcolor) 100%
+    );
 }:root {
   --font-family: arial;
   --font-size: 14px;
