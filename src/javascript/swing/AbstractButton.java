@@ -4,6 +4,7 @@ import def.dom.HTMLElement;
 import def.js.Array;
 import javascript.awt.event.ActionEvent;
 import javascript.awt.event.ActionListener;
+import javascript.util.AbstractHTMLImageProducer;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -49,5 +50,14 @@ public abstract class AbstractButton extends JSComponent {
       }
     });
     return null;
+  }
+
+  /**
+   * Sets the icon
+   *
+   * @param producer The icon producer
+   */
+  public void setIcon(AbstractHTMLImageProducer<?> producer) {
+    this.prependNodeChild(producer.produce());
   }
 }

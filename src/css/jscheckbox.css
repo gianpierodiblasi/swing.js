@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.jscheckbox img {
+  margin-right: .5rem;
+}
+
 .jscheckbox input {
   font-family: var(--font-family);
   font-size: 2rem;

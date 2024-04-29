@@ -206,6 +206,14 @@ class TestJSFrame2 extends JSFrame {
     (SwingJS.convert(this.jRadioButton18)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
     (SwingJS.convert(this.jRadioButton19)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
     (SwingJS.convert(this.jRadioButton20)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jCheckBox5)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jCheckBox6)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jCheckBox7)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jCheckBox8)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jRadioButton21)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jRadioButton22)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jRadioButton23)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
+    (SwingJS.convert(this.jRadioButton24)).setIcon(new TestJSFrame2HTMLImageProducer("", "../../../swing.png"));
   }
 
   /**
@@ -270,6 +278,14 @@ class TestJSFrame2 extends JSFrame {
     this.jRadioButton2 = new JSRadioButton();let jRadioButton2 = this.jRadioButton2;
     this.jRadioButton3 = new JSRadioButton();let jRadioButton3 = this.jRadioButton3;
     this.jRadioButton4 = new JSRadioButton();let jRadioButton4 = this.jRadioButton4;
+    this.jCheckBox5 = new JSCheckBox();let jCheckBox5 = this.jCheckBox5;
+    this.jCheckBox6 = new JSCheckBox();let jCheckBox6 = this.jCheckBox6;
+    this.jCheckBox7 = new JSCheckBox();let jCheckBox7 = this.jCheckBox7;
+    this.jCheckBox8 = new JSCheckBox();let jCheckBox8 = this.jCheckBox8;
+    this.jRadioButton21 = new JSRadioButton();let jRadioButton21 = this.jRadioButton21;
+    this.jRadioButton22 = new JSRadioButton();let jRadioButton22 = this.jRadioButton22;
+    this.jRadioButton23 = new JSRadioButton();let jRadioButton23 = this.jRadioButton23;
+    this.jRadioButton24 = new JSRadioButton();let jRadioButton24 = this.jRadioButton24;
     this.jPanel7 = new JSPanel();let jPanel7 = this.jPanel7;
     this.jToggleButton1 = new JSToggleButton();let jToggleButton1 = this.jToggleButton1;
     this.jToggleButton2 = new JSToggleButton();let jToggleButton2 = this.jToggleButton2;
@@ -440,10 +456,36 @@ class TestJSFrame2 extends JSFrame {
     jRadioButton3.setText("jRadioButton3");
     jPanel4.add(jRadioButton3);
     buttonGroup1.add(jRadioButton4);
-    jRadioButton4.setSelected(true);
     jRadioButton4.setText("jRadioButton4");
     jRadioButton4.setEnabled(false);
     jPanel4.add(jRadioButton4);
+    jCheckBox5.setText("jCheckBox1");
+    jPanel4.add(jCheckBox5);
+    jCheckBox6.setText("jCheckBox2");
+    jCheckBox6.setEnabled(false);
+    jPanel4.add(jCheckBox6);
+    jCheckBox7.setSelected(true);
+    jCheckBox7.setText("jCheckBox3");
+    jPanel4.add(jCheckBox7);
+    jCheckBox8.setSelected(true);
+    jCheckBox8.setText("jCheckBox4");
+    jCheckBox8.setEnabled(false);
+    jPanel4.add(jCheckBox8);
+    buttonGroup1.add(jRadioButton21);
+    jRadioButton21.setText("jRadioButton1");
+    jPanel4.add(jRadioButton21);
+    buttonGroup1.add(jRadioButton22);
+    jRadioButton22.setText("jRadioButton2");
+    jRadioButton22.setEnabled(false);
+    jPanel4.add(jRadioButton22);
+    buttonGroup1.add(jRadioButton23);
+    jRadioButton23.setText("jRadioButton3");
+    jPanel4.add(jRadioButton23);
+    buttonGroup1.add(jRadioButton24);
+    jRadioButton24.setSelected(true);
+    jRadioButton24.setText("jRadioButton4");
+    jRadioButton24.setEnabled(false);
+    jPanel4.add(jRadioButton24);
     jPanel6.add(jPanel4);
     jPanel7.setLayout(new BoxLayout(jPanel7, BoxLayout.Y_AXIS));
     jToggleButton1.setText("jToggleButton1");
@@ -580,6 +622,14 @@ class TestJSFrame2 extends JSFrame {
 
    jCheckBox4 = null;
 
+   jCheckBox5 = null;
+
+   jCheckBox6 = null;
+
+   jCheckBox7 = null;
+
+   jCheckBox8 = null;
+
    jComboBox1 = null;
 
    jComboBox2 = null;
@@ -627,6 +677,14 @@ class TestJSFrame2 extends JSFrame {
    jRadioButton2 = null;
 
    jRadioButton20 = null;
+
+   jRadioButton21 = null;
+
+   jRadioButton22 = null;
+
+   jRadioButton23 = null;
+
+   jRadioButton24 = null;
 
    jRadioButton3 = null;
 

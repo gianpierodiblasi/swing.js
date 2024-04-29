@@ -80,28 +80,38 @@ public class TestJFrame2 extends javax.swing.JFrame {
     ((JSSpinner) SwingJS.convert(this.jSpinner1)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
     ((JSSpinner) SwingJS.convert(this.jSpinner2)).setModel(new SpinnerNumberModel(10, 5, 50, 1));
     
-    ((JSButton) SwingJS.convert(this.jButton9)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSButton) SwingJS.convert(this.jButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSButton) SwingJS.convert(this.jButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSButton) SwingJS.convert(this.jButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jButton9)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
     
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton9)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton10)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton11)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton12)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jToggleButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton9)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton10)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton11)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton12)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jToggleButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
    
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton17)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton18)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton19)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
-    ((JSToggleButton) SwingJS.convert(this.jRadioButton20)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton13)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton14)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton15)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton16)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton17)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton18)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton19)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton20)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    
+    ((AbstractButton) SwingJS.convert(this.jCheckBox5)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jCheckBox6)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jCheckBox7)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jCheckBox8)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    
+    ((AbstractButton) SwingJS.convert(this.jRadioButton21)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton22)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton23)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));
+    ((AbstractButton) SwingJS.convert(this.jRadioButton24)).setIcon(new TestJFrame2HTMLImageProducer("", "../../../swing.png"));    
   }
 
   /**
@@ -169,6 +179,14 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton2 = new JRadioButton();
     jRadioButton3 = new JRadioButton();
     jRadioButton4 = new JRadioButton();
+    jCheckBox5 = new JCheckBox();
+    jCheckBox6 = new JCheckBox();
+    jCheckBox7 = new JCheckBox();
+    jCheckBox8 = new JCheckBox();
+    jRadioButton21 = new JRadioButton();
+    jRadioButton22 = new JRadioButton();
+    jRadioButton23 = new JRadioButton();
+    jRadioButton24 = new JRadioButton();
     jPanel7 = new JPanel();
     jToggleButton1 = new JToggleButton();
     jToggleButton2 = new JToggleButton();
@@ -392,10 +410,44 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jPanel4.add(jRadioButton3);
 
     buttonGroup1.add(jRadioButton4);
-    jRadioButton4.setSelected(true);
     jRadioButton4.setText("jRadioButton4");
     jRadioButton4.setEnabled(false);
     jPanel4.add(jRadioButton4);
+
+    jCheckBox5.setText("jCheckBox1");
+    jPanel4.add(jCheckBox5);
+
+    jCheckBox6.setText("jCheckBox2");
+    jCheckBox6.setEnabled(false);
+    jPanel4.add(jCheckBox6);
+
+    jCheckBox7.setSelected(true);
+    jCheckBox7.setText("jCheckBox3");
+    jPanel4.add(jCheckBox7);
+
+    jCheckBox8.setSelected(true);
+    jCheckBox8.setText("jCheckBox4");
+    jCheckBox8.setEnabled(false);
+    jPanel4.add(jCheckBox8);
+
+    buttonGroup1.add(jRadioButton21);
+    jRadioButton21.setText("jRadioButton1");
+    jPanel4.add(jRadioButton21);
+
+    buttonGroup1.add(jRadioButton22);
+    jRadioButton22.setText("jRadioButton2");
+    jRadioButton22.setEnabled(false);
+    jPanel4.add(jRadioButton22);
+
+    buttonGroup1.add(jRadioButton23);
+    jRadioButton23.setText("jRadioButton3");
+    jPanel4.add(jRadioButton23);
+
+    buttonGroup1.add(jRadioButton24);
+    jRadioButton24.setSelected(true);
+    jRadioButton24.setText("jRadioButton4");
+    jRadioButton24.setEnabled(false);
+    jPanel4.add(jRadioButton24);
 
     jPanel6.add(jPanel4);
 
@@ -519,6 +571,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JCheckBox jCheckBox2;
   private JCheckBox jCheckBox3;
   private JCheckBox jCheckBox4;
+  private JCheckBox jCheckBox5;
+  private JCheckBox jCheckBox6;
+  private JCheckBox jCheckBox7;
+  private JCheckBox jCheckBox8;
   private JComboBox<Integer> jComboBox1;
   private JComboBox<Integer> jComboBox2;
   private JComboBox<Integer> jComboBox3;
@@ -543,6 +599,10 @@ public class TestJFrame2 extends javax.swing.JFrame {
   private JRadioButton jRadioButton19;
   private JRadioButton jRadioButton2;
   private JRadioButton jRadioButton20;
+  private JRadioButton jRadioButton21;
+  private JRadioButton jRadioButton22;
+  private JRadioButton jRadioButton23;
+  private JRadioButton jRadioButton24;
   private JRadioButton jRadioButton3;
   private JRadioButton jRadioButton4;
   private JRadioButton jRadioButton5;

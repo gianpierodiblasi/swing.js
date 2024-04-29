@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.jsradiobutton:not([role=toggle]) img {
+  margin-right: .5rem;
+}
+
 .jsradiobutton input {
   font-family: var(--font-family);
   font-size: 2rem;
