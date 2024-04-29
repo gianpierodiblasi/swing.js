@@ -122,7 +122,8 @@ class JSComponent {
   }
 
   /**
-   * Returns a property of the HTML element
+   * Returns a property of the HTML element (for example <i>value</i> is a
+   * property, <i>readonly</i> is an attribute)
    *
    * @param key The property key
    * @return The property value
@@ -132,7 +133,8 @@ class JSComponent {
   }
 
   /**
-   * Sets an attribute of the HTML element
+   * Sets an attribute of the HTML element (for example <i>value</i> is a
+   * property, <i>readonly</i> is an attribute)
    *
    * @param key The attribute key
    * @param value The attribute value
@@ -142,7 +144,8 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute of the HTML element
+   * Returns an attribute of the HTML element (for example <i>value</i> is a
+   * property, <i>readonly</i> is an attribute)
    *
    * @param key The attribute key
    * @return The attribute value
@@ -152,7 +155,8 @@ class JSComponent {
   }
 
   /**
-   * Removes an attribute of the HTML element
+   * Removes an attribute of the HTML element (for example <i>value</i> is a
+   * property, <i>readonly</i> is an attribute)
    *
    * @param key The attribute key
    */
