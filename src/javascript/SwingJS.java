@@ -2,7 +2,6 @@ package javascript;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
-import javax.swing.JComponent;
 import static simulation.js.$Globals.$exists;
 
 /**
@@ -22,17 +21,17 @@ public class SwingJS {
   private String _mainActionBGColor;
 
   /**
-   * Converts "any" javax.swing.JComponent in the corresponding
-   * javascript.swing.JSComponent. This method is useful when developing in
-   * Java, whene developing in JavaScript this method is useless
+   * Converts "any" Java object into a JavaScript object. This method is useful
+   * when developing in Java, whene developing in JavaScript this method is
+   * useless
    *
    * @param <T> The return type
-   * @param component The original java component
-   * @return The javascript component
+   * @param object The original java object
+   * @return The javascript object
    */
   @SuppressWarnings("unchecked")
-  public static <T> T convert(JComponent component) {
-    return (T) component;
+  public static <T> T convert(Object object) {
+    return (T) object;
   }
 
   /**

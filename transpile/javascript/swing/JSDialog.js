@@ -11,9 +11,12 @@ class JSDialog extends JSComponent {
 
    contentPane = new JSPanel();
 
+   listeners = new Array();
+
   constructor() {
     super(document.createElement("dialog"));
     this.cssAddClass("jsdialog");
+    this.addEventListener("cancel", event => this.onclose());
     this.appendNodeChild(document.createElement("article"));
     let header = document.createElement("header");
     header.classList.add("jsdialog-header");
@@ -23,6 +26,7 @@ class JSDialog extends JSComponent {
     panel.add(this.title, BorderLayout.CENTER);
     panel.add(this.close, BorderLayout.EAST);
     this.close.addActionListener(event => this.setVisible(false));
+    this.close.addEventListener("click", event => this.onclose());
     this.appendChildInTree("header", panel);
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.contentPane.cssAddClass("jsdialog-content");
@@ -59,5 +63,25 @@ class JSDialog extends JSComponent {
     } else {
       this.invoke("showModal");
     }
+  }
+
+  /**
+   * Adds a listener of window closed
+   *
+   * @param listener The listener
+   */
+   addWindowClosedListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onclose() {
+    let event = new WindowEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.windowClosed(event);
+      }
+    });
   }
 }

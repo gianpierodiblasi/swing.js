@@ -2,7 +2,11 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
+import def.js.Array;
 import javascript.awt.BorderLayout;
+import javascript.awt.event.WindowClosedListener;
+import javascript.awt.event.WindowEvent;
+import static simulation.js.$Globals.$typeof;
 
 /**
  * The javax.swing.JDialog clone
@@ -14,12 +18,14 @@ public class JSDialog extends JSComponent {
   private final JSLabel title = new JSLabel();
   private final JSButton close = new JSButton();
   private final JSPanel contentPane = new JSPanel();
+  
+  private final Array<WindowClosedListener> listeners = new Array<>();
 
   public JSDialog() {
     super(document.createElement("dialog"));
 
     this.cssAddClass("jsdialog");
-
+    this.addEventListener("cancel", event -> this.onclose());
     this.appendNodeChild(document.createElement("article"));
 
     HTMLElement header = document.createElement("header");
@@ -31,6 +37,7 @@ public class JSDialog extends JSComponent {
     panel.add(this.title, BorderLayout.CENTER);
     panel.add(this.close, BorderLayout.EAST);
     this.close.addActionListener(event -> this.setVisible(false));
+    this.close.addEventListener("click", event -> this.onclose());
     this.appendChildInTree("header", panel);
 
     this.contentPane.setLayout(new BorderLayout(0, 0));
@@ -69,5 +76,26 @@ public class JSDialog extends JSComponent {
     } else {
       this.invoke("showModal");
     }
+  }
+
+  /**
+   * Adds a listener of window closed
+   *
+   * @param listener The listener
+   */
+  public void addWindowClosedListener(WindowClosedListener listener) {
+    this.listeners.push(listener);
+  }
+
+  private void onclose() {
+    WindowEvent event = new WindowEvent();
+
+    this.listeners.forEach(listener -> {
+      if ($typeof(listener, "function")) {
+        listener.$apply(event);
+      } else {
+        listener.windowClosed(event);
+      }
+    });
   }
 }

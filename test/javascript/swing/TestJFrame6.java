@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import javascript.SwingJS;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -33,6 +34,7 @@ public class TestJFrame6 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
+    ((JSDialog)SwingJS.convert(this.jDialog1)).addWindowClosedListener(event -> console.log("WINDOW CLOSED!!!"));
   }
 
   /**

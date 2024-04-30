@@ -13,6 +13,7 @@ class TestJFrame6 extends JFrame {
   }
 
    postInitComponents() {
+    (SwingJS.convert(this.jDialog1)).addWindowClosedListener(event => console.log("WINDOW CLOSED!!!"));
   }
 
   /**

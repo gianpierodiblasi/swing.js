@@ -57,6 +57,28 @@ class ActionListener {
   }
 }
 /**
+ * The listener of window closed
+ *
+ * @author gianpiero.diblasi
+ */
+class WindowClosedListener {
+
+  /**
+   * Invoked when a window has been closed
+   *
+   * @param event The event
+   */
+   windowClosed(event) {
+  }
+}
+/**
+ * The java.awt.event.WindowEvent clone
+ *
+ * @author gianpiero.diblasi
+ */
+class WindowEvent {
+}
+/**
  * The java.awt.GridBagConstraints clone
  *
  * @author gianpiero.diblasi
@@ -1587,9 +1609,12 @@ class JSDialog extends JSComponent {
 
    contentPane = new JSPanel();
 
+   listeners = new Array();
+
   constructor() {
     super(document.createElement("dialog"));
     this.cssAddClass("jsdialog");
+    this.addEventListener("cancel", event => this.onclose());
     this.appendNodeChild(document.createElement("article"));
     let header = document.createElement("header");
     header.classList.add("jsdialog-header");
@@ -1599,6 +1624,7 @@ class JSDialog extends JSComponent {
     panel.add(this.title, BorderLayout.CENTER);
     panel.add(this.close, BorderLayout.EAST);
     this.close.addActionListener(event => this.setVisible(false));
+    this.close.addEventListener("click", event => this.onclose());
     this.appendChildInTree("header", panel);
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.contentPane.cssAddClass("jsdialog-content");
@@ -1635,6 +1661,26 @@ class JSDialog extends JSComponent {
     } else {
       this.invoke("showModal");
     }
+  }
+
+  /**
+   * Adds a listener of window closed
+   *
+   * @param listener The listener
+   */
+   addWindowClosedListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onclose() {
+    let event = new WindowEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.windowClosed(event);
+      }
+    });
   }
 }
 /**
@@ -2655,12 +2701,7 @@ class JSOptionPane {
         break;
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
-      if (response) {
-        response(JSOptionPane.CLOSED_OPTION);
-      }
-    });
-    dialog.addEventListener("cancel", event => {
+    dialog.addWindowClosedListener(event => {
       if (response) {
         response(JSOptionPane.CLOSED_OPTION);
       }
@@ -2983,16 +3024,16 @@ class SwingJS {
    _mainActionBGColor = null;
 
   /**
-   * Converts "any" javax.swing.JComponent in the corresponding
-   * javascript.swing.JSComponent. This method is useful when developing in
-   * Java, whene developing in JavaScript this method is useless
+   * Converts "any" Java object into a JavaScript object. This method is useful
+   * when developing in Java, whene developing in JavaScript this method is
+   * useless
    *
    * @param <T> The return type
-   * @param component The original java component
-   * @return The javascript component
+   * @param object The original java object
+   * @return The javascript object
    */
-  static  convert(component) {
-    return component;
+  static  convert(object) {
+    return object;
   }
 
   /**

@@ -144,12 +144,7 @@ class JSOptionPane {
         break;
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
-      if (response) {
-        response(JSOptionPane.CLOSED_OPTION);
-      }
-    });
-    dialog.addEventListener("cancel", event => {
+    dialog.addWindowClosedListener(event => {
       if (response) {
         response(JSOptionPane.CLOSED_OPTION);
       }
