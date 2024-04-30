@@ -3,7 +3,7 @@
  *
  * @author gianpiero.diblasi
  */
-class JSOptionPane extends JSDialog {
+class JSOptionPane {
 
   static  DEFAULT_OPTION = -1;
 
@@ -32,6 +32,9 @@ class JSOptionPane extends JSDialog {
   static  QUESTION_MESSAGE = 3;
 
   static  PLAIN_MESSAGE = -1;
+
+  constructor() {
+  }
 
   /**
    * Shows a message dialog, this method does not stop the code flow
@@ -142,6 +145,11 @@ class JSOptionPane extends JSDialog {
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
     dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
+      if (response) {
+        response(JSOptionPane.CLOSED_OPTION);
+      }
+    });
+    dialog.addEventListener("cancel", event => {
       if (response) {
         response(JSOptionPane.CLOSED_OPTION);
       }

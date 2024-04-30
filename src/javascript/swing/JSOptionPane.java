@@ -11,8 +11,7 @@ import static simulation.js.$Globals.$exists;
  *
  * @author gianpiero.diblasi
  */
-@SuppressWarnings("serial")
-public class JSOptionPane extends JSDialog {
+public class JSOptionPane {
 
   public static final int DEFAULT_OPTION = -1;
   public static final int YES_NO_OPTION = 0;
@@ -30,6 +29,9 @@ public class JSOptionPane extends JSDialog {
   public static final int WARNING_MESSAGE = 2;
   public static final int QUESTION_MESSAGE = 3;
   public static final int PLAIN_MESSAGE = -1;
+
+  private JSOptionPane() {
+  }
 
   /**
    * Shows a message dialog, this method does not stop the code flow
@@ -147,8 +149,13 @@ public class JSOptionPane extends JSDialog {
     }
 
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    
+
     dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event -> {
+      if ($exists(response)) {
+        response.$apply(JSOptionPane.CLOSED_OPTION);
+      }
+    });
+    dialog.addEventListener("cancel", event -> {
       if ($exists(response)) {
         response.$apply(JSOptionPane.CLOSED_OPTION);
       }

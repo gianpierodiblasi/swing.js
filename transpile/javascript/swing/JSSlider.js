@@ -36,8 +36,8 @@ class JSSlider extends JSComponent {
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
-    this.slider.oninput = event => this.onchange(true);
-    this.slider.onchange = event => this.onchange(false);
+    this.slider.addEventListener("input", event => this.onchange(true));
+    this.slider.addEventListener("change", event => this.onchange(false));
     this.appendNodeChild(this.slider);
     this.dataList = document.createElement("datalist");
     this.dataList.id = this.dataListID;
@@ -66,7 +66,6 @@ class JSSlider extends JSComponent {
         listener.stateChanged(event);
       }
     });
-    return null;
   }
 
   /**

@@ -74,14 +74,13 @@ public abstract class AbstractComboBoxModelAndRenderer<T extends Comparable<T>> 
   private void addOption(T element) {
     HTMLElement li = document.createElement("li");
     li.appendChild(this.render(element));
-    li.onclick = event -> {
+    li.addEventListener("click", event -> {
       this.selected = element;
       this.combobox.clearChildContentByQuery("summary");
       this.combobox.appendNodeChildInTree("summary", this.render(element));
       this.combobox.removeAttribute("open");
       this.combobox.onclick();
-      return null;
-    };
+    });
 
     this.combobox.appendNodeChildInTree("ul", li);
   }

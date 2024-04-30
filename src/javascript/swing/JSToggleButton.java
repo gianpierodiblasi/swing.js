@@ -21,7 +21,7 @@ public class JSToggleButton extends AbstractButton {
 
     this.togglebutton = ($HTMLElement) document.createElement("input");
     this.togglebutton.setAttribute("type", "checkbox");
-    this.togglebutton.onchange = event -> this.onclick();
+    this.togglebutton.addEventListener("change", event -> this.onclick());
     this.appendNodeChild(this.togglebutton);
 
     this.text = document.createTextNode("");

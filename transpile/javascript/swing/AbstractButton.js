@@ -27,8 +27,6 @@ class AbstractButton extends JSComponent {
 
   /**
    * The method for click events
-   *
-   * @return null
    */
    onclick() {
     let event = new ActionEvent();
@@ -39,7 +37,6 @@ class AbstractButton extends JSComponent {
         listener.actionPerformed(event);
       }
     });
-    return null;
   }
 
   /**

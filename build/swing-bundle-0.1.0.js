@@ -1181,8 +1181,6 @@ class AbstractButton extends JSComponent {
 
   /**
    * The method for click events
-   *
-   * @return null
    */
    onclick() {
     let event = new ActionEvent();
@@ -1193,7 +1191,6 @@ class AbstractButton extends JSComponent {
         listener.actionPerformed(event);
       }
     });
-    return null;
   }
 
   /**
@@ -1256,7 +1253,7 @@ class JSCheckBox extends AbstractButton {
     this.cssAddClass("jscheckbox");
     this.checkbox = document.createElement("input");
     this.checkbox.setAttribute("type", "checkbox");
-    this.checkbox.onchange = event => this.onclick();
+    this.checkbox.addEventListener("change", event => this.onclick());
     this.appendNodeChild(this.checkbox);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);
@@ -1323,7 +1320,7 @@ class JSRadioButton extends AbstractButton {
     this.cssAddClass("jsradiobutton");
     this.radiobutton = document.createElement("input");
     this.radiobutton.setAttribute("type", "radio");
-    this.radiobutton.onchange = event => this.onclick();
+    this.radiobutton.addEventListener("change", event => this.onclick());
     this.appendNodeChild(this.radiobutton);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);
@@ -1410,7 +1407,7 @@ class JSToggleButton extends AbstractButton {
     this.cssAddClass("jstogglebutton");
     this.togglebutton = document.createElement("input");
     this.togglebutton.setAttribute("type", "checkbox");
-    this.togglebutton.onchange = event => this.onclick();
+    this.togglebutton.addEventListener("change", event => this.onclick());
     this.appendNodeChild(this.togglebutton);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);
@@ -1638,168 +1635,6 @@ class JSDialog extends JSComponent {
     } else {
       this.invoke("showModal");
     }
-  }
-}
-/**
- * The javax.swing.JOptionPane clone
- *
- * @author gianpiero.diblasi
- */
-class JSOptionPane extends JSDialog {
-
-  static  DEFAULT_OPTION = -1;
-
-  static  YES_NO_OPTION = 0;
-
-  static  YES_NO_CANCEL_OPTION = 1;
-
-  static  OK_CANCEL_OPTION = 2;
-
-  static  YES_OPTION = 0;
-
-  static  NO_OPTION = 1;
-
-  static  CANCEL_OPTION = 2;
-
-  static  OK_OPTION = 0;
-
-  static  CLOSED_OPTION = -1;
-
-  static  ERROR_MESSAGE = 0;
-
-  static  INFORMATION_MESSAGE = 1;
-
-  static  WARNING_MESSAGE = 2;
-
-  static  QUESTION_MESSAGE = 3;
-
-  static  PLAIN_MESSAGE = -1;
-
-  /**
-   * Shows a message dialog, this method does not stop the code flow
-   *
-   * @param message The message
-   * @param title The title
-   * @param messageType The message type
-   * @param response The function to call on close
-   */
-  static  showMessageDialog(message, title, messageType, response) {
-    let dialog = JSOptionPane.createDialog(message, title);
-    JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, "OK", response ? value => response() : null);
-    dialog.setVisible(true);
-  }
-
-  /**
-   * Shows a confirm dialog, this method does not stop the code flow
-   *
-   * @param message The message
-   * @param title The title
-   * @param optionType The option type
-   * @param messageType The message type
-   * @param response The function to call on close
-   */
-  static  showConfirmDialog(message, title, optionType, messageType, response) {
-    let dialog = JSOptionPane.createDialog(message, title);
-    JSOptionPane.addIcon(messageType, dialog);
-    switch(optionType) {
-      case JSOptionPane.DEFAULT_OPTION:
-        break;
-      case JSOptionPane.OK_CANCEL_OPTION:
-        JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
-        break;
-      case JSOptionPane.YES_NO_OPTION:
-        JSOptionPane.addButtons(dialog, "YES_NO", response);
-        break;
-      case JSOptionPane.YES_NO_CANCEL_OPTION:
-        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL", response);
-        break;
-    }
-    dialog.setVisible(true);
-  }
-
-  static  createDialog(message, title) {
-    let dialog = new JSDialog();
-    dialog.getContentPane().setLayout(new BorderLayout(20, 20));
-    dialog.cssAddClass("jsoptionpane");
-    dialog.setTitle(title);
-    if (message instanceof JSComponent) {
-      dialog.getContentPane().add(message, BorderLayout.CENTER);
-    } else {
-      let label = new JSLabel();
-      label.cssAddClass("jsoptionpane-label");
-      label.setText(message.toString());
-      dialog.getContentPane().add(label, BorderLayout.CENTER);
-    }
-    return dialog;
-  }
-
-  static  addIcon(messageType, dialog) {
-    let label = new JSLabel();
-    switch(messageType) {
-      case JSOptionPane.ERROR_MESSAGE:
-        dialog.cssAddClass("jsoptionpane-error");
-        label.setText("!");
-        dialog.getContentPane().add(label, BorderLayout.WEST);
-        break;
-      case JSOptionPane.INFORMATION_MESSAGE:
-        dialog.cssAddClass("jsoptionpane-information");
-        label.setText("i");
-        dialog.getContentPane().add(label, BorderLayout.WEST);
-        break;
-      case JSOptionPane.WARNING_MESSAGE:
-        dialog.cssAddClass("jsoptionpane-warning");
-        label.setText("!");
-        dialog.getContentPane().add(label, BorderLayout.WEST);
-        break;
-      case JSOptionPane.QUESTION_MESSAGE:
-        dialog.cssAddClass("jsoptionpane-question");
-        label.setText("?");
-        dialog.getContentPane().add(label, BorderLayout.WEST);
-        break;
-      case JSOptionPane.PLAIN_MESSAGE:
-        break;
-    }
-  }
-
-  static  addButtons(dialog, optionType, response) {
-    let panel = new JSPanel();
-    switch(optionType) {
-      case "OK":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.DEFAULT_OPTION);
-        break;
-      case "OK_CANCEL":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.OK_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
-        break;
-      case "YES_NO":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
-        break;
-      case "YES_NO_CANCEL":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
-        break;
-    }
-    dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
-      if (response) {
-        response(JSOptionPane.CLOSED_OPTION);
-      }
-    });
-  }
-
-  static  addButton(dialog, panel, label, response, option) {
-    let button = new JSButton();
-    button.setText(label);
-    button.addActionListener(event => {
-      dialog.setVisible(false);
-      if (response) {
-        response(option);
-      }
-    });
-    panel.add(button, null);
   }
 }
 /**
@@ -2255,8 +2090,8 @@ class JSSlider extends JSComponent {
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
-    this.slider.oninput = event => this.onchange(true);
-    this.slider.onchange = event => this.onchange(false);
+    this.slider.addEventListener("input", event => this.onchange(true));
+    this.slider.addEventListener("change", event => this.onchange(false));
     this.appendNodeChild(this.slider);
     this.dataList = document.createElement("datalist");
     this.dataList.id = this.dataListID;
@@ -2285,7 +2120,6 @@ class JSSlider extends JSComponent {
         listener.stateChanged(event);
       }
     });
-    return null;
   }
 
   /**
@@ -2504,23 +2338,23 @@ class JSSpinner extends JSComponent {
     this.input.setAttribute("type", "number");
     this.input.setAttribute("value", "0");
     this.input.style.setProperty("grid-area", "num");
-    this.input.oninput = event => this.onchange();
+    this.input.addEventListener("input", event => this.onchange());
     this.appendNodeChild(this.input);
     this.up.textContent = "\u25B2";
     this.up.style.setProperty("grid-area", "up");
-    this.up.onmousedown = event => this.spin(true);
-    this.up.onmouseup = event => this.run = false;
+    this.up.addEventListener("mousedown", event => this.spin(true));
+    this.up.addEventListener("mouseup", event => this.run = false);
     this.appendNodeChild(this.up);
     this.down.textContent = "\u25BC";
     this.down.style.setProperty("grid-area", "down");
-    this.down.onmousedown = event => this.spin(false);
-    this.down.onmouseup = event => this.run = false;
+    this.down.addEventListener("mousedown", event => this.spin(false));
+    this.down.addEventListener("mouseup", event => this.run = false);
     this.appendNodeChild(this.down);
   }
 
    spin(isUp) {
     if (this.run) {
-      return null;
+      return;
     } else if (isUp) {
       this.input.stepUp();
     } else {
@@ -2528,7 +2362,6 @@ class JSSpinner extends JSComponent {
     }
     this.run = true;
     this.spinAgain(isUp, 250);
-    return null;
   }
 
    spinAgain(isUp, delay) {
@@ -2677,6 +2510,176 @@ class JSTextField extends JSComponent {
   }
 }
 /**
+ * The javax.swing.JOptionPane clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSOptionPane {
+
+  static  DEFAULT_OPTION = -1;
+
+  static  YES_NO_OPTION = 0;
+
+  static  YES_NO_CANCEL_OPTION = 1;
+
+  static  OK_CANCEL_OPTION = 2;
+
+  static  YES_OPTION = 0;
+
+  static  NO_OPTION = 1;
+
+  static  CANCEL_OPTION = 2;
+
+  static  OK_OPTION = 0;
+
+  static  CLOSED_OPTION = -1;
+
+  static  ERROR_MESSAGE = 0;
+
+  static  INFORMATION_MESSAGE = 1;
+
+  static  WARNING_MESSAGE = 2;
+
+  static  QUESTION_MESSAGE = 3;
+
+  static  PLAIN_MESSAGE = -1;
+
+  constructor() {
+  }
+
+  /**
+   * Shows a message dialog, this method does not stop the code flow
+   *
+   * @param message The message
+   * @param title The title
+   * @param messageType The message type
+   * @param response The function to call on close
+   */
+  static  showMessageDialog(message, title, messageType, response) {
+    let dialog = JSOptionPane.createDialog(message, title);
+    JSOptionPane.addIcon(messageType, dialog);
+    JSOptionPane.addButtons(dialog, "OK", response ? value => response() : null);
+    dialog.setVisible(true);
+  }
+
+  /**
+   * Shows a confirm dialog, this method does not stop the code flow
+   *
+   * @param message The message
+   * @param title The title
+   * @param optionType The option type
+   * @param messageType The message type
+   * @param response The function to call on close
+   */
+  static  showConfirmDialog(message, title, optionType, messageType, response) {
+    let dialog = JSOptionPane.createDialog(message, title);
+    JSOptionPane.addIcon(messageType, dialog);
+    switch(optionType) {
+      case JSOptionPane.DEFAULT_OPTION:
+        break;
+      case JSOptionPane.OK_CANCEL_OPTION:
+        JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
+        break;
+      case JSOptionPane.YES_NO_OPTION:
+        JSOptionPane.addButtons(dialog, "YES_NO", response);
+        break;
+      case JSOptionPane.YES_NO_CANCEL_OPTION:
+        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL", response);
+        break;
+    }
+    dialog.setVisible(true);
+  }
+
+  static  createDialog(message, title) {
+    let dialog = new JSDialog();
+    dialog.getContentPane().setLayout(new BorderLayout(20, 20));
+    dialog.cssAddClass("jsoptionpane");
+    dialog.setTitle(title);
+    if (message instanceof JSComponent) {
+      dialog.getContentPane().add(message, BorderLayout.CENTER);
+    } else {
+      let label = new JSLabel();
+      label.cssAddClass("jsoptionpane-label");
+      label.setText(message.toString());
+      dialog.getContentPane().add(label, BorderLayout.CENTER);
+    }
+    return dialog;
+  }
+
+  static  addIcon(messageType, dialog) {
+    let label = new JSLabel();
+    switch(messageType) {
+      case JSOptionPane.ERROR_MESSAGE:
+        dialog.cssAddClass("jsoptionpane-error");
+        label.setText("!");
+        dialog.getContentPane().add(label, BorderLayout.WEST);
+        break;
+      case JSOptionPane.INFORMATION_MESSAGE:
+        dialog.cssAddClass("jsoptionpane-information");
+        label.setText("i");
+        dialog.getContentPane().add(label, BorderLayout.WEST);
+        break;
+      case JSOptionPane.WARNING_MESSAGE:
+        dialog.cssAddClass("jsoptionpane-warning");
+        label.setText("!");
+        dialog.getContentPane().add(label, BorderLayout.WEST);
+        break;
+      case JSOptionPane.QUESTION_MESSAGE:
+        dialog.cssAddClass("jsoptionpane-question");
+        label.setText("?");
+        dialog.getContentPane().add(label, BorderLayout.WEST);
+        break;
+      case JSOptionPane.PLAIN_MESSAGE:
+        break;
+    }
+  }
+
+  static  addButtons(dialog, optionType, response) {
+    let panel = new JSPanel();
+    switch(optionType) {
+      case "OK":
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.DEFAULT_OPTION);
+        break;
+      case "OK_CANCEL":
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.OK_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
+        break;
+      case "YES_NO":
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
+        break;
+      case "YES_NO_CANCEL":
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
+        break;
+    }
+    dialog.getContentPane().add(panel, BorderLayout.SOUTH);
+    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
+      if (response) {
+        response(JSOptionPane.CLOSED_OPTION);
+      }
+    });
+    dialog.addEventListener("cancel", event => {
+      if (response) {
+        response(JSOptionPane.CLOSED_OPTION);
+      }
+    });
+  }
+
+  static  addButton(dialog, panel, label, response, option) {
+    let button = new JSButton();
+    button.setText(label);
+    button.addActionListener(event => {
+      dialog.setVisible(false);
+      if (response) {
+        response(option);
+      }
+    });
+    panel.add(button, null);
+  }
+}
+/**
  * The abstract object to model and render a combobox
  *
  * @author gianpiero.diblasi
@@ -2742,14 +2745,13 @@ class AbstractComboBoxModelAndRenderer {
    addOption(element) {
     let li = document.createElement("li");
     li.appendChild(this.render(element));
-    li.onclick = event => {
+    li.addEventListener("click", event => {
       this.selected = element;
       this.combobox.clearChildContentByQuery("summary");
       this.combobox.appendNodeChildInTree("summary", this.render(element));
       this.combobox.removeAttribute("open");
       this.combobox.onclick();
-      return null;
-    };
+    });
     this.combobox.appendNodeChildInTree("ul", li);
   }
 
@@ -2908,7 +2910,7 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
    render(element, slider) {
     let img = element.produce();
-    img.onload = event => {
+    img.addEventListener("load", event => {
       switch(slider.getOrientation()) {
         case JSSlider.HORIZONTAL:
           slider.getChilStyleByQuery("input").marginLeft = (img.width / 2) + "px";
@@ -2919,8 +2921,7 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
           slider.getChilStyleByQuery("input").marginBottom = (img.height / 2) + "px";
           break;
       }
-      return null;
-    };
+    });
     return img;
   }
 }

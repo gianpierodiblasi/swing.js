@@ -19,6 +19,7 @@ public class Translations {
   static {
     switch (navigator.language.substring(0, 2)) {
       case "en":
+      default:
         Translations.JSOptionPane_OK = "OK";
         Translations.JSOptionPane_YES = "Yes";
         Translations.JSOptionPane_NO = "No";

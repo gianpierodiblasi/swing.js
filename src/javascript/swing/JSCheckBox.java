@@ -21,7 +21,7 @@ public class JSCheckBox extends AbstractButton {
 
     this.checkbox = ($HTMLElement) document.createElement("input");
     this.checkbox.setAttribute("type", "checkbox");
-    this.checkbox.onchange = event -> this.onclick();
+    this.checkbox.addEventListener("change", event -> this.onclick());
     this.appendNodeChild(this.checkbox);
 
     this.text = document.createTextNode("");
@@ -45,7 +45,7 @@ public class JSCheckBox extends AbstractButton {
   public String getText() {
     return this.text.textContent;
   }
-  
+
   /**
    * Clone of javax.swing.JCheckBox.setSelected
    *

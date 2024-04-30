@@ -13,7 +13,7 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
    render(element, slider) {
     let img = element.produce();
-    img.onload = event => {
+    img.addEventListener("load", event => {
       switch(slider.getOrientation()) {
         case JSSlider.HORIZONTAL:
           slider.getChilStyleByQuery("input").marginLeft = (img.width / 2) + "px";
@@ -24,8 +24,7 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
           slider.getChilStyleByQuery("input").marginBottom = (img.height / 2) + "px";
           break;
       }
-      return null;
-    };
+    });
     return img;
   }
 }
