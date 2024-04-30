@@ -16,7 +16,7 @@ class JSDialog extends JSComponent {
   constructor() {
     super(document.createElement("dialog"));
     this.cssAddClass("jsdialog");
-    this.addEventListener("cancel", event => this.onclose());
+    this.addEventListener("close", event => this.onclose());
     this.appendNodeChild(document.createElement("article"));
     let header = document.createElement("header");
     header.classList.add("jsdialog-header");
@@ -26,7 +26,6 @@ class JSDialog extends JSComponent {
     panel.add(this.title, BorderLayout.CENTER);
     panel.add(this.close, BorderLayout.EAST);
     this.close.addActionListener(event => this.setVisible(false));
-    this.close.addEventListener("click", event => this.onclose());
     this.appendChildInTree("header", panel);
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.contentPane.cssAddClass("jsdialog-content");

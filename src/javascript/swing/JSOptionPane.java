@@ -30,6 +30,8 @@ public class JSOptionPane {
   public static final int QUESTION_MESSAGE = 3;
   public static final int PLAIN_MESSAGE = -1;
 
+  private static int RESPONSE = JSOptionPane.CLOSED_OPTION;
+
   private JSOptionPane() {
   }
 
@@ -131,40 +133,39 @@ public class JSOptionPane {
 
     switch (optionType) {
       case "OK":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.DEFAULT_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, JSOptionPane.DEFAULT_OPTION);
         break;
       case "OK_CANCEL":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.OK_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, JSOptionPane.OK_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, JSOptionPane.CANCEL_OPTION);
         break;
       case "YES_NO":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, JSOptionPane.NO_OPTION);
         break;
       case "YES_NO_CANCEL":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, JSOptionPane.CANCEL_OPTION);
         break;
     }
 
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
+    
+    JSOptionPane.RESPONSE = JSOptionPane.CLOSED_OPTION;
     dialog.addWindowClosedListener(event -> {
       if ($exists(response)) {
-        response.$apply(JSOptionPane.CLOSED_OPTION);
+        response.$apply(JSOptionPane.RESPONSE);
       }
     });
   }
 
-  private static void addButton(JSDialog dialog, JSPanel panel, String label, $Apply_1_Void<Integer> response, int option) {
+  private static void addButton(JSDialog dialog, JSPanel panel, String label, int option) {
     JSButton button = new JSButton();
     button.setText(label);
     button.addActionListener(event -> {
+      JSOptionPane.RESPONSE = option;
       dialog.setVisible(false);
-
-      if ($exists(response)) {
-        response.$apply(option);
-      }
     });
     panel.add(button, null);
   }
