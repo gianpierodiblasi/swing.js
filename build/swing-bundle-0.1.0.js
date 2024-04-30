@@ -3063,7 +3063,7 @@ class SwingJS {
   }
 
   /**
-   * Sets the global main action Action color, to complete the setting the
+   * Sets the global main action color, to complete the setting the
    * <i>build</i> method has to be called
    *
    * @param color The color

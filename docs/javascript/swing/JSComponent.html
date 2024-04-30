@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -136,7 +136,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="AbstractButton.html" title="class in javascript.swing">AbstractButton</a></code>, <code><a href="Filler.html" title="class in javascript.swing">Filler</a></code>, <code><a href="JSDialog.html" title="class in javascript.swing">JSDialog</a></code>, <code><a href="JSFrame.html" title="class in javascript.swing">JSFrame</a></code>, <code><a href="JSLabel.html" title="class in javascript.swing">JSLabel</a></code>, <code><a href="JSPanel.html" title="class in javascript.swing">JSPanel</a></code>, <code><a href="JSProgressBar.html" title="class in javascript.swing">JSProgressBar</a></code>, <code><a href="JSSlider.html" title="class in javascript.swing">JSSlider</a></code>, <code><a href="JSSpinner.html" title="class in javascript.swing">JSSpinner</a></code></dd>
+<dd><code><a href="AbstractButton.html" title="class in javascript.swing">AbstractButton</a></code>, <code><a href="Filler.html" title="class in javascript.swing">Filler</a></code>, <code><a href="JSComboBox.html" title="class in javascript.swing">JSComboBox</a></code>, <code><a href="JSDialog.html" title="class in javascript.swing">JSDialog</a></code>, <code><a href="JSFrame.html" title="class in javascript.swing">JSFrame</a></code>, <code><a href="JSLabel.html" title="class in javascript.swing">JSLabel</a></code>, <code><a href="JSPanel.html" title="class in javascript.swing">JSPanel</a></code>, <code><a href="JSProgressBar.html" title="class in javascript.swing">JSProgressBar</a></code>, <code><a href="JSSlider.html" title="class in javascript.swing">JSSlider</a></code>, <code><a href="JSSpinner.html" title="class in javascript.swing">JSSpinner</a></code>, <code><a href="JSTextField.html" title="class in javascript.swing">JSTextField</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">JSComponent</span>
@@ -191,20 +191,29 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addChildEventListenerByQuery(java.lang.String,java.lang.String,def.dom.EventListener)">addChildEventListenerByQuery</a></span>&#8203;(java.lang.String&nbsp;query,
+                            java.lang.String&nbsp;event,
+                            def.dom.EventListener&nbsp;listener)</code></th>
+<td class="colLast">
+<div class="block">Adds an event listener to a child of the HTML element</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEventListener(java.lang.String,def.dom.EventListener)">addEventListener</a></span>&#8203;(java.lang.String&nbsp;event,
                 def.dom.EventListener&nbsp;listener)</code></th>
 <td class="colLast">
 <div class="block">Adds an event listener</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#appendChild(javascript.swing.JSComponent)">appendChild</a></span>&#8203;(<a href="JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component)</code></th>
 <td class="colLast">
 <div class="block">Adds a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#appendChildInTree(java.lang.String,javascript.swing.JSComponent)">appendChildInTree</a></span>&#8203;(java.lang.String&nbsp;query,
                  <a href="JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component)</code></th>
@@ -212,21 +221,21 @@ extends java.lang.Object</pre>
 <div class="block">Adds a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#appendInBody()">appendInBody</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Adds the HTML element to the BODY element</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#appendNodeChild(def.dom.Node)">appendNodeChild</a></span>&#8203;(def.dom.Node&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Adds a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#appendNodeChildInTree(java.lang.String,def.dom.Node)">appendNodeChildInTree</a></span>&#8203;(java.lang.String&nbsp;query,
                      def.dom.Node&nbsp;node)</code></th>
@@ -234,42 +243,42 @@ extends java.lang.Object</pre>
 <div class="block">Adds a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clearChildContentByQuery(java.lang.String)">clearChildContentByQuery</a></span>&#8203;(java.lang.String&nbsp;query)</code></th>
 <td class="colLast">
 <div class="block">Clears the text content of a child of the HTML element</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clearContent()">clearContent</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Clears the text content of the HTML element</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cssAddClass(java.lang.String)">cssAddClass</a></span>&#8203;(java.lang.String&nbsp;cl)</code></th>
 <td class="colLast">
 <div class="block">Adds a CSS class to the class list of the HTML element</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>def.dom.DOMTokenList</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cssClassList()">cssClassList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the class list of the HTML element</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cssRemoveClass(java.lang.String)">cssRemoveClass</a></span>&#8203;(java.lang.String&nbsp;cl)</code></th>
 <td class="colLast">
 <div class="block">Removes a CSS class from the class list of the HTML element</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cssToggleClass(java.lang.String)">cssToggleClass</a></span>&#8203;(java.lang.String&nbsp;cl)</code></th>
 <td class="colLast">
@@ -277,65 +286,74 @@ extends java.lang.Object</pre>
  set removes it, otherwise adds it)</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAttribute(java.lang.String)">getAttribute</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
 <td class="colLast">
-<div class="block">Returns an attribute of the HTML element</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildAttributeByIndex(int,java.lang.String)">getChildAttributeByIndex</a></span>&#8203;(int&nbsp;index,
-                        java.lang.String&nbsp;key)</code></th>
-<td class="colLast">
-<div class="block">Returns an attribute a child of the HTML element</div>
+<div class="block">Returns an attribute of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 </td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildAttributeByQuery(java.lang.String,java.lang.String)">getChildAttributeByQuery</a></span>&#8203;(java.lang.String&nbsp;query,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildAttributeByIndex(int,java.lang.String)">getChildAttributeByIndex</a></span>&#8203;(int&nbsp;index,
                         java.lang.String&nbsp;key)</code></th>
 <td class="colLast">
-<div class="block">Returns an attribute a child of the HTML element</div>
+<div class="block">Returns an attribute of a child of the HTML element</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildAttributeByQuery(java.lang.String,java.lang.String)">getChildAttributeByQuery</a></span>&#8203;(java.lang.String&nbsp;query,
+                        java.lang.String&nbsp;key)</code></th>
+<td class="colLast">
+<div class="block">Returns an attribute of a child of the HTML element</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildCount()">getChildCount</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the child count of the HTML element</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>def.dom.CSSStyleDeclaration</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChilStyleByIndex(int)">getChilStyleByIndex</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Returns the style of a child of the HTML element</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>def.dom.CSSStyleDeclaration</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChilStyleByQuery(java.lang.String)">getChilStyleByQuery</a></span>&#8203;(java.lang.String&nbsp;query)</code></th>
 <td class="colLast">
 <div class="block">Returns the style of a child of the HTML element</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getID()">getID</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the ID of the HTML element</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProperty(java.lang.String)">getProperty</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<td class="colLast">
+<div class="block">Returns a property of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
+</td>
+</tr>
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>def.dom.CSSStyleDeclaration</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStyle()">getStyle</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the style of the HTML element</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#insertBefore(javascript.swing.JSComponent,java.lang.String)">insertBefore</a></span>&#8203;(<a href="JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component,
             java.lang.String&nbsp;query)</code></th>
@@ -343,7 +361,7 @@ extends java.lang.Object</pre>
 <div class="block">insert a child to the HTML element before another child</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#insertBeforeInTree(java.lang.String,javascript.swing.JSComponent,java.lang.String)">insertBeforeInTree</a></span>&#8203;(java.lang.String&nbsp;queryInTree,
                   <a href="JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component,
@@ -352,7 +370,7 @@ extends java.lang.Object</pre>
 <div class="block">insert a child to the HTML element before another child</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#insertNodeBefore(def.dom.Node,java.lang.String)">insertNodeBefore</a></span>&#8203;(def.dom.Node&nbsp;node,
                 java.lang.String&nbsp;query)</code></th>
@@ -360,7 +378,7 @@ extends java.lang.Object</pre>
 <div class="block">insert a child to the HTML element before another child</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#insertNodeBeforeInTree(java.lang.String,def.dom.Node,java.lang.String)">insertNodeBeforeInTree</a></span>&#8203;(java.lang.String&nbsp;queryInTree,
                       def.dom.Node&nbsp;node,
@@ -369,21 +387,21 @@ extends java.lang.Object</pre>
 <div class="block">insert a child to the HTML element before another child</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#invoke(java.lang.String)">invoke</a></span>&#8203;(java.lang.String&nbsp;method)</code></th>
 <td class="colLast">
 <div class="block">Invokes a method of the HTML element</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#prependChild(javascript.swing.JSComponent)">prependChild</a></span>&#8203;(<a href="JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component)</code></th>
 <td class="colLast">
 <div class="block">Prepends a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#prependChildInTree(java.lang.String,javascript.swing.JSComponent)">prependChildInTree</a></span>&#8203;(java.lang.String&nbsp;query,
                   <a href="JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component)</code></th>
@@ -391,14 +409,14 @@ extends java.lang.Object</pre>
 <div class="block">Prepends a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#prependNodeChild(def.dom.Node)">prependNodeChild</a></span>&#8203;(def.dom.Node&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Prepends a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#prependNodeChildInTree(java.lang.String,def.dom.Node)">prependNodeChildInTree</a></span>&#8203;(java.lang.String&nbsp;query,
                       def.dom.Node&nbsp;node)</code></th>
@@ -406,29 +424,31 @@ extends java.lang.Object</pre>
 <div class="block">Prepends a child to the HTML element</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAttribute(java.lang.String)">removeAttribute</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
 <td class="colLast">
-<div class="block">Removes an attribute of the HTML element</div>
+<div class="block">Removes an attribute of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAttribute(java.lang.String,java.lang.String)">setAttribute</a></span>&#8203;(java.lang.String&nbsp;key,
             java.lang.String&nbsp;value)</code></th>
 <td class="colLast">
-<div class="block">Sets an attribute of the HTML element</div>
+<div class="block">Sets an attribute of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackground(javascript.awt.Color)">setBackground</a></span>&#8203;(<a href="../awt/Color.html" title="class in javascript.awt">Color</a>&nbsp;color)</code></th>
 <td class="colLast">
 <div class="block">Clone of javax.swing.JComponent.setBackground</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setChildAttributeByIndex(int,java.lang.String,java.lang.String)">setChildAttributeByIndex</a></span>&#8203;(int&nbsp;index,
                         java.lang.String&nbsp;key,
@@ -437,7 +457,7 @@ extends java.lang.Object</pre>
 <div class="block">Sets an attribute of a child of the HTML element</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setChildAttributeByQuery(java.lang.String,java.lang.String,java.lang.String)">setChildAttributeByQuery</a></span>&#8203;(java.lang.String&nbsp;query,
                         java.lang.String&nbsp;key,
@@ -446,25 +466,34 @@ extends java.lang.Object</pre>
 <div class="block">Sets an attribute of a child of the HTML element</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContent(java.lang.String)">setContent</a></span>&#8203;(java.lang.String&nbsp;content)</code></th>
 <td class="colLast">
 <div class="block">Sets the text content of the HTML element</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEnabled(boolean)">setEnabled</a></span>&#8203;(boolean&nbsp;b)</code></th>
 <td class="colLast">
 <div class="block">Clone of javax.swing.JComponent.setEnabled</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setID(java.lang.String)">setID</a></span>&#8203;(java.lang.String&nbsp;id)</code></th>
 <td class="colLast">
 <div class="block">Sets the ID of the HTML element</div>
+</td>
+</tr>
+<tr id="i39" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProperty(java.lang.String,java.lang.String)">setProperty</a></span>&#8203;(java.lang.String&nbsp;key,
+           java.lang.String&nbsp;value)</code></th>
+<td class="colLast">
+<div class="block">Sets a property of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 </td>
 </tr>
 </table>
@@ -656,6 +685,40 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
+<a id="setProperty(java.lang.String,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setProperty</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setProperty&#8203;(java.lang.String&nbsp;key,
+                        java.lang.String&nbsp;value)</pre>
+<div class="block">Sets a property of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - the property key</dd>
+<dd><code>value</code> - The property value</dd>
+</dl>
+</li>
+</ul>
+<a id="getProperty(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getProperty</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getProperty&#8203;(java.lang.String&nbsp;key)</pre>
+<div class="block">Returns a property of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The property key</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The property value</dd>
+</dl>
+</li>
+</ul>
 <a id="setAttribute(java.lang.String,java.lang.String)">
 <!--   -->
 </a>
@@ -664,7 +727,8 @@ extends java.lang.Object</pre>
 <h4>setAttribute</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setAttribute&#8203;(java.lang.String&nbsp;key,
                          java.lang.String&nbsp;value)</pre>
-<div class="block">Sets an attribute of the HTML element</div>
+<div class="block">Sets an attribute of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The attribute key</dd>
@@ -679,7 +743,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAttribute</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getAttribute&#8203;(java.lang.String&nbsp;key)</pre>
-<div class="block">Returns an attribute of the HTML element</div>
+<div class="block">Returns an attribute of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The attribute key</dd>
@@ -695,7 +760,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>removeAttribute</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeAttribute&#8203;(java.lang.String&nbsp;key)</pre>
-<div class="block">Removes an attribute of the HTML element</div>
+<div class="block">Removes an attribute of the HTML element (for example <i>value</i> is a
+ property, <i>readonly</i> is an attribute)</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The attribute key</dd>
@@ -1016,7 +1082,7 @@ extends java.lang.Object</pre>
 <h4>getChildAttributeByIndex</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getChildAttributeByIndex&#8203;(int&nbsp;index,
                                                  java.lang.String&nbsp;key)</pre>
-<div class="block">Returns an attribute a child of the HTML element</div>
+<div class="block">Returns an attribute of a child of the HTML element</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - The child index</dd>
@@ -1034,7 +1100,7 @@ extends java.lang.Object</pre>
 <h4>getChildAttributeByQuery</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getChildAttributeByQuery&#8203;(java.lang.String&nbsp;query,
                                                  java.lang.String&nbsp;key)</pre>
-<div class="block">Returns an attribute a child of the HTML element</div>
+<div class="block">Returns an attribute of a child of the HTML element</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>query</code> - The query selector</dd>
@@ -1055,6 +1121,24 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>query</code> - The query selector</dd>
+</dl>
+</li>
+</ul>
+<a id="addChildEventListenerByQuery(java.lang.String,java.lang.String,def.dom.EventListener)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addChildEventListenerByQuery</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addChildEventListenerByQuery&#8203;(java.lang.String&nbsp;query,
+                                         java.lang.String&nbsp;event,
+                                         def.dom.EventListener&nbsp;listener)</pre>
+<div class="block">Adds an event listener to a child of the HTML element</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>query</code> - The query selector</dd>
+<dd><code>event</code> - The event</dd>
+<dd><code>listener</code> - The listener</dd>
 </dl>
 </li>
 </ul>
