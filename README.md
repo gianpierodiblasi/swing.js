@@ -50,6 +50,9 @@ If you want to use swing.js as a Java library then add the *swing-bundle-\<versi
 If you want you can also create your UIs by means of a visual IDE (for example the [NetBeans](https://netbeans.apache.org/) GUI Builder, codename Matisse).
 The code provided in the test folder shows some use examples (the resulting output can be tested in the [test](https://gianpierodiblasi.github.io/swing.js/html-test/javascript/swing/TestJFrame.html)).
 
+## Translations
+Currently only the English and Italian languages are managed.
+
 ## Test
 swing.js has been tested on:
 - desktop

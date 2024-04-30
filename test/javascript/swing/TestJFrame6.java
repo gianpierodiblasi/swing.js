@@ -1,12 +1,14 @@
 package javascript.swing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
@@ -29,7 +31,7 @@ public class TestJFrame6 extends javax.swing.JFrame {
     this.initComponents();
     this.postInitComponents();
   }
-  
+
   private void postInitComponents() {
   }
 
@@ -47,6 +49,10 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jButton4 = new JButton();
     jPanel9 = new JPanel();
     jButton1 = new JButton();
+    jButton7 = new JButton();
+    jButton8 = new JButton();
+    jButton9 = new JButton();
+    jButton10 = new JButton();
     jPanel2 = new JPanel();
     jButton2 = new JButton();
     jToggleButton1 = new JToggleButton();
@@ -76,9 +82,27 @@ public class TestJFrame6 extends javax.swing.JFrame {
 
     setTitle("Test Dialog");
 
+    jPanel9.setBackground(new Color(255, 255, 102));
+
     jButton1.setText("modal");
     jButton1.addActionListener(this::jButton1ActionPerformed);
     jPanel9.add(jButton1);
+
+    jButton7.setText("message error");
+    jButton7.addActionListener(this::jButton7ActionPerformed);
+    jPanel9.add(jButton7);
+
+    jButton8.setText("message question");
+    jButton8.addActionListener(this::jButton8ActionPerformed);
+    jPanel9.add(jButton8);
+
+    jButton9.setText("message info");
+    jButton9.addActionListener(this::jButton9ActionPerformed);
+    jPanel9.add(jButton9);
+
+    jButton10.setText("message warning");
+    jButton10.addActionListener(this::jButton10ActionPerformed);
+    jPanel9.add(jButton10);
 
     getContentPane().add(jPanel9, BorderLayout.PAGE_START);
 
@@ -134,13 +158,33 @@ public class TestJFrame6 extends javax.swing.JFrame {
     this.jDialog1.setVisible(false);
   }//GEN-LAST:event_jButton4ActionPerformed
 
+  private void jButton7ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.ERROR_MESSAGE);
+  }//GEN-LAST:event_jButton7ActionPerformed
+
+  private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.QUESTION_MESSAGE);
+  }//GEN-LAST:event_jButton8ActionPerformed
+
+  private void jButton9ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.INFORMATION_MESSAGE);
+  }//GEN-LAST:event_jButton9ActionPerformed
+
+  private void jButton10ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.WARNING_MESSAGE);
+  }//GEN-LAST:event_jButton10ActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
+  private JButton jButton10;
   private JButton jButton2;
   private JButton jButton3;
   private JButton jButton4;
   private JButton jButton5;
   private JButton jButton6;
+  private JButton jButton7;
+  private JButton jButton8;
+  private JButton jButton9;
   private JCheckBox jCheckBox1;
   private JDialog jDialog1;
   private JLabel jLabel1;

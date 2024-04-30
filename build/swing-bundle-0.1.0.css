@@ -187,7 +187,44 @@
   font-family: var(--font-family);
   font-size: var(--font-size);
   color: var(--main-color);
-}.jspanel {
+}.jsoptionpane {
+}
+
+.jsoptionpane .jsdialog-content > .jslabel.west {
+  font-size: 3rem;
+  border-radius: 30rem;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.jsoptionpane-error .jsdialog-content > .jslabel.west {
+  background: lightcoral;
+  color: white;
+  border: 2px solid red;
+}
+.jsoptionpane-information .jsdialog-content > .jslabel.west {
+  background: lightskyblue;
+  color: white;
+  border: 2px solid royalblue;
+}
+.jsoptionpane-warning .jsdialog-content > .jslabel.west {
+  background: yellow;
+  color: black;
+  border: 2px solid darkkhaki;
+}
+.jsoptionpane-question .jsdialog-content > .jslabel.west {
+  background: lightgray;
+  color: white;
+  border: 2px solid gray;
+}
+
+.jsoptionpane-label {
+  display: flex;
+  align-items: center;
+}
+.jspanel {
 }
 
 .jspanel.flowlayout {
