@@ -24,12 +24,6 @@ class TestJFrame6 extends JFrame {
     this.jDialog1 = new JDialog();let jDialog1 = this.jDialog1;
     this.jButton3 = new JButton();let jButton3 = this.jButton3;
     this.jButton4 = new JButton();let jButton4 = this.jButton4;
-    this.jPanel9 = new JPanel();let jPanel9 = this.jPanel9;
-    this.jButton1 = new JButton();let jButton1 = this.jButton1;
-    this.jButton7 = new JButton();let jButton7 = this.jButton7;
-    this.jButton8 = new JButton();let jButton8 = this.jButton8;
-    this.jButton9 = new JButton();let jButton9 = this.jButton9;
-    this.jButton10 = new JButton();let jButton10 = this.jButton10;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.jButton2 = new JButton();let jButton2 = this.jButton2;
     this.jToggleButton1 = new JToggleButton();let jToggleButton1 = this.jToggleButton1;
@@ -46,6 +40,20 @@ class TestJFrame6 extends JFrame {
     this.jLabel2 = new JLabel();let jLabel2 = this.jLabel2;
     this.jRadioButton4 = new JRadioButton();let jRadioButton4 = this.jRadioButton4;
     this.jButton6 = new JButton();let jButton6 = this.jButton6;
+    this.jPanel1 = new JPanel();let jPanel1 = this.jPanel1;
+    this.jPanel9 = new JPanel();let jPanel9 = this.jPanel9;
+    this.jButton1 = new JButton();let jButton1 = this.jButton1;
+    this.jButton7 = new JButton();let jButton7 = this.jButton7;
+    this.jButton8 = new JButton();let jButton8 = this.jButton8;
+    this.jButton9 = new JButton();let jButton9 = this.jButton9;
+    this.jButton10 = new JButton();let jButton10 = this.jButton10;
+    this.jButton11 = new JButton();let jButton11 = this.jButton11;
+    this.jPanel3 = new JPanel();let jPanel3 = this.jPanel3;
+    this.jButton12 = new JButton();let jButton12 = this.jButton12;
+    this.jButton13 = new JButton();let jButton13 = this.jButton13;
+    this.jButton14 = new JButton();let jButton14 = this.jButton14;
+    this.jButton15 = new JButton();let jButton15 = this.jButton15;
+    this.jButton16 = new JButton();let jButton16 = this.jButton16;
     jDialog1.setTitle("Dialog");
     jDialog1.getContentPane().setLayout(new GridLayout(1, 2));
     jButton3.setText("jButton3");
@@ -54,23 +62,6 @@ class TestJFrame6 extends JFrame {
     jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jDialog1.getContentPane().add(jButton4);
     this.setTitle("Test Dialog");
-    jPanel9.setBackground(new Color(255, 255, 102));
-    jButton1.setText("modal");
-    jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel9.add(jButton1);
-    jButton7.setText("message error");
-    jButton7.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton7ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel9.add(jButton7);
-    jButton8.setText("message question");
-    jButton8.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton8ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel9.add(jButton8);
-    jButton9.setText("message info");
-    jButton9.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton9ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel9.add(jButton9);
-    jButton10.setText("message warning");
-    jButton10.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton10ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel9.add(jButton10);
-    this.getContentPane().add(jPanel9, BorderLayout.PAGE_START);
     jPanel2.setLayout(new GridLayout(5, 5));
     jButton2.setText("jButton2");
     jPanel2.add(jButton2);
@@ -100,6 +91,45 @@ class TestJFrame6 extends JFrame {
     jButton6.setText("jButton6");
     jPanel2.add(jButton6);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
+    jPanel1.setLayout(new GridLayout(2, 1));
+    jPanel9.setBackground(new Color(255, 255, 102));
+    jButton1.setText("modal");
+    jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel9.add(jButton1);
+    jButton7.setText("message error");
+    jButton7.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton7ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel9.add(jButton7);
+    jButton8.setText("message question");
+    jButton8.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton8ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel9.add(jButton8);
+    jButton9.setText("message info");
+    jButton9.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton9ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel9.add(jButton9);
+    jButton10.setText("message warning");
+    jButton10.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton10ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel9.add(jButton10);
+    jButton11.setText("message info with component");
+    jButton11.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton11ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel9.add(jButton11);
+    jPanel1.add(jPanel9);
+    jPanel3.setBackground(new Color(102, 255, 102));
+    jButton12.setText("confirm error");
+    jButton12.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton12ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel3.add(jButton12);
+    jButton13.setText("confirm question");
+    jButton13.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton13ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel3.add(jButton13);
+    jButton14.setText("confirm info");
+    jButton14.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton14ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel3.add(jButton14);
+    jButton15.setText("confirm warning");
+    jButton15.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton15ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel3.add(jButton15);
+    jButton16.setText("confirm info with component");
+    jButton16.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton16ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel3.add(jButton16);
+    jPanel1.add(jPanel3);
+    this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -139,10 +169,76 @@ class TestJFrame6 extends JFrame {
   }
 
   // GEN-LAST:event_jButton10ActionPerformed
+   jButton11ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton11ActionPerformed
+    let panel = new JPanel();
+    let label = new JLabel();
+    label.setText("Hello");
+    label.setBackground(new Color(255, 0, 0));
+    panel.add(label);
+    label = new JLabel();
+    label.setText("World");
+    label.setBackground(new Color(255, 255, 0));
+    panel.add(label);
+    JOptionPane.showMessageDialog(null, panel, "Title", JOptionPane.INFORMATION_MESSAGE);
+  }
+
+  // GEN-LAST:event_jButton11ActionPerformed
+   jButton12ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton12ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE));
+  }
+
+  // GEN-LAST:event_jButton12ActionPerformed
+   jButton13ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton13ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE));
+  }
+
+  // GEN-LAST:event_jButton13ActionPerformed
+   jButton14ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton14ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE));
+  }
+
+  // GEN-LAST:event_jButton14ActionPerformed
+   jButton15ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton15ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE));
+  }
+
+  // GEN-LAST:event_jButton15ActionPerformed
+   jButton16ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton16ActionPerformed
+    let panel = new JPanel();
+    let label = new JLabel();
+    label.setText("Hello");
+    label.setBackground(new Color(255, 0, 0));
+    panel.add(label);
+    label = new JLabel();
+    label.setText("World");
+    label.setBackground(new Color(255, 255, 0));
+    panel.add(label);
+    console.log(JOptionPane.showConfirmDialog(null, panel, "Title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE));
+  }
+
+  // GEN-LAST:event_jButton16ActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton1 = null;
 
    jButton10 = null;
+
+   jButton11 = null;
+
+   jButton12 = null;
+
+   jButton13 = null;
+
+   jButton14 = null;
+
+   jButton15 = null;
+
+   jButton16 = null;
 
    jButton2 = null;
 
@@ -168,7 +264,11 @@ class TestJFrame6 extends JFrame {
 
    jLabel2 = null;
 
+   jPanel1 = null;
+
    jPanel2 = null;
+
+   jPanel3 = null;
 
    jPanel9 = null;
 

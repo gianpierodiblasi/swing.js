@@ -1,5 +1,6 @@
 package javascript.swing;
 
+import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -47,12 +48,6 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jDialog1 = new JDialog();
     jButton3 = new JButton();
     jButton4 = new JButton();
-    jPanel9 = new JPanel();
-    jButton1 = new JButton();
-    jButton7 = new JButton();
-    jButton8 = new JButton();
-    jButton9 = new JButton();
-    jButton10 = new JButton();
     jPanel2 = new JPanel();
     jButton2 = new JButton();
     jToggleButton1 = new JToggleButton();
@@ -69,6 +64,20 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jLabel2 = new JLabel();
     jRadioButton4 = new JRadioButton();
     jButton6 = new JButton();
+    jPanel1 = new JPanel();
+    jPanel9 = new JPanel();
+    jButton1 = new JButton();
+    jButton7 = new JButton();
+    jButton8 = new JButton();
+    jButton9 = new JButton();
+    jButton10 = new JButton();
+    jButton11 = new JButton();
+    jPanel3 = new JPanel();
+    jButton12 = new JButton();
+    jButton13 = new JButton();
+    jButton14 = new JButton();
+    jButton15 = new JButton();
+    jButton16 = new JButton();
 
     jDialog1.setTitle("Dialog");
     jDialog1.getContentPane().setLayout(new GridLayout(1, 2));
@@ -81,30 +90,6 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jDialog1.getContentPane().add(jButton4);
 
     setTitle("Test Dialog");
-
-    jPanel9.setBackground(new Color(255, 255, 102));
-
-    jButton1.setText("modal");
-    jButton1.addActionListener(this::jButton1ActionPerformed);
-    jPanel9.add(jButton1);
-
-    jButton7.setText("message error");
-    jButton7.addActionListener(this::jButton7ActionPerformed);
-    jPanel9.add(jButton7);
-
-    jButton8.setText("message question");
-    jButton8.addActionListener(this::jButton8ActionPerformed);
-    jPanel9.add(jButton8);
-
-    jButton9.setText("message info");
-    jButton9.addActionListener(this::jButton9ActionPerformed);
-    jPanel9.add(jButton9);
-
-    jButton10.setText("message warning");
-    jButton10.addActionListener(this::jButton10ActionPerformed);
-    jPanel9.add(jButton10);
-
-    getContentPane().add(jPanel9, BorderLayout.PAGE_START);
 
     jPanel2.setLayout(new GridLayout(5, 5));
 
@@ -148,6 +133,62 @@ public class TestJFrame6 extends javax.swing.JFrame {
     jPanel2.add(jButton6);
 
     getContentPane().add(jPanel2, BorderLayout.CENTER);
+
+    jPanel1.setLayout(new GridLayout(2, 1));
+
+    jPanel9.setBackground(new Color(255, 255, 102));
+
+    jButton1.setText("modal");
+    jButton1.addActionListener(this::jButton1ActionPerformed);
+    jPanel9.add(jButton1);
+
+    jButton7.setText("message error");
+    jButton7.addActionListener(this::jButton7ActionPerformed);
+    jPanel9.add(jButton7);
+
+    jButton8.setText("message question");
+    jButton8.addActionListener(this::jButton8ActionPerformed);
+    jPanel9.add(jButton8);
+
+    jButton9.setText("message info");
+    jButton9.addActionListener(this::jButton9ActionPerformed);
+    jPanel9.add(jButton9);
+
+    jButton10.setText("message warning");
+    jButton10.addActionListener(this::jButton10ActionPerformed);
+    jPanel9.add(jButton10);
+
+    jButton11.setText("message info with component");
+    jButton11.addActionListener(this::jButton11ActionPerformed);
+    jPanel9.add(jButton11);
+
+    jPanel1.add(jPanel9);
+
+    jPanel3.setBackground(new Color(102, 255, 102));
+
+    jButton12.setText("confirm error");
+    jButton12.addActionListener(this::jButton12ActionPerformed);
+    jPanel3.add(jButton12);
+
+    jButton13.setText("confirm question");
+    jButton13.addActionListener(this::jButton13ActionPerformed);
+    jPanel3.add(jButton13);
+
+    jButton14.setText("confirm info");
+    jButton14.addActionListener(this::jButton14ActionPerformed);
+    jPanel3.add(jButton14);
+
+    jButton15.setText("confirm warning");
+    jButton15.addActionListener(this::jButton15ActionPerformed);
+    jPanel3.add(jButton15);
+
+    jButton16.setText("confirm info with component");
+    jButton16.addActionListener(this::jButton16ActionPerformed);
+    jPanel3.add(jButton16);
+
+    jPanel1.add(jPanel3);
+
+    getContentPane().add(jPanel1, BorderLayout.PAGE_START);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -174,9 +215,63 @@ public class TestJFrame6 extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.WARNING_MESSAGE);
   }//GEN-LAST:event_jButton10ActionPerformed
 
+  private void jButton11ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    JPanel panel = new JPanel();
+
+    JLabel label = new JLabel();
+    label.setText("Hello");
+    label.setBackground(new Color(255, 0, 0));
+    panel.add(label);
+
+    label = new JLabel();
+    label.setText("World");
+    label.setBackground(new Color(255, 255, 0));
+    panel.add(label);
+
+    JOptionPane.showMessageDialog(null, panel, "Title", JOptionPane.INFORMATION_MESSAGE);
+  }//GEN-LAST:event_jButton11ActionPerformed
+
+  private void jButton12ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE));
+  }//GEN-LAST:event_jButton12ActionPerformed
+
+  private void jButton13ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE));
+  }//GEN-LAST:event_jButton13ActionPerformed
+
+  private void jButton14ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE));
+  }//GEN-LAST:event_jButton14ActionPerformed
+
+  private void jButton15ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE));
+  }//GEN-LAST:event_jButton15ActionPerformed
+
+  private void jButton16ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    JPanel panel = new JPanel();
+
+    JLabel label = new JLabel();
+    label.setText("Hello");
+    label.setBackground(new Color(255, 0, 0));
+    panel.add(label);
+
+    label = new JLabel();
+    label.setText("World");
+    label.setBackground(new Color(255, 255, 0));
+    panel.add(label);
+    
+    console.log(JOptionPane.showConfirmDialog(null, panel, "Title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE));
+  }//GEN-LAST:event_jButton16ActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
   private JButton jButton10;
+  private JButton jButton11;
+  private JButton jButton12;
+  private JButton jButton13;
+  private JButton jButton14;
+  private JButton jButton15;
+  private JButton jButton16;
   private JButton jButton2;
   private JButton jButton3;
   private JButton jButton4;
@@ -189,7 +284,9 @@ public class TestJFrame6 extends javax.swing.JFrame {
   private JDialog jDialog1;
   private JLabel jLabel1;
   private JLabel jLabel2;
+  private JPanel jPanel1;
   private JPanel jPanel2;
+  private JPanel jPanel3;
   private JPanel jPanel9;
   private JProgressBar jProgressBar1;
   private JRadioButton jRadioButton1;

@@ -1664,12 +1664,35 @@ class JSOptionPane extends JSDialog {
   static  PLAIN_MESSAGE = -1;
 
   static  showMessageDialog(component, message, title, messageType) {
+    let dialog = JSOptionPane.createDialog(message, title);
+    JSOptionPane.addIcon(messageType, dialog);
+    JSOptionPane.addButtons(dialog, "OK");
+    dialog.setVisible(true);
+  }
+
+  static  showConfirmDialog(component, message, title, optionType, messageType) {
+    let dialog = JSOptionPane.createDialog(message, title);
+    JSOptionPane.addIcon(messageType, dialog);
+    switch(optionType) {
+      case JSOptionPane.OK_CANCEL_OPTION:
+        JSOptionPane.addButtons(dialog, "OK_CANCEL");
+        break;
+      case JSOptionPane.YES_NO_OPTION:
+        JSOptionPane.addButtons(dialog, "YES_NO");
+        break;
+      case JSOptionPane.YES_NO_CANCEL_OPTION:
+        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL");
+        break;
+    }
+    dialog.setVisible(true);
+    return 0;
+  }
+
+  static  createDialog(message, title) {
     let dialog = new JSDialog();
     dialog.getContentPane().setLayout(new BorderLayout(20, 20));
     dialog.cssAddClass("jsoptionpane");
     dialog.setTitle(title);
-    JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, Translations.JSOptionPane_OK, (event) => dialog.setVisible(false));
     if (message instanceof JSComponent) {
       dialog.getContentPane().add(message, BorderLayout.CENTER);
     } else {
@@ -1678,7 +1701,7 @@ class JSOptionPane extends JSDialog {
       label.setText(message.toString());
       dialog.getContentPane().add(label, BorderLayout.CENTER);
     }
-    dialog.setVisible(true);
+    return dialog;
   }
 
   static  addIcon(messageType, dialog) {
@@ -1709,13 +1732,34 @@ class JSOptionPane extends JSDialog {
     }
   }
 
-  static  addButtons(dialog, label1, listener1) {
+  static  addButtons(dialog, optionType) {
     let panel = new JSPanel();
-    let button = new JSButton();
-    button.setText(label1);
-    button.addActionListener(listener1);
-    panel.add(button, null);
+    switch(optionType) {
+      case "OK":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) => dialog.setVisible(false));
+        break;
+      case "OK_CANCEL":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) => dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) => dialog.setVisible(false));
+        break;
+      case "YES_NO":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) => dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) => dialog.setVisible(false));
+        break;
+      case "YES_NO_CANCEL":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) => dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) => dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) => dialog.setVisible(false));
+        break;
+    }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
+  }
+
+  static  addButton(panel, label, listener) {
+    let button = new JSButton();
+    button.setText(label);
+    button.addActionListener(listener);
+    panel.add(button, null);
   }
 }
 /**

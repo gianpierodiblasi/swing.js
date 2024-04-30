@@ -29,15 +29,40 @@ public class JSOptionPane extends JSDialog {
   public static final int QUESTION_MESSAGE = 3;
   public static final int PLAIN_MESSAGE = -1;
 
-  @SuppressWarnings("null")
   public static void showMessageDialog(JSComponent component, Object message, String title, int messageType) {
+    JSDialog dialog = JSOptionPane.createDialog(message, title);
+    JSOptionPane.addIcon(messageType, dialog);
+    JSOptionPane.addButtons(dialog, "OK");
+    dialog.setVisible(true);
+  }
+
+  public static int showConfirmDialog(JSComponent component, Object message, String title, int optionType, int messageType) {
+    JSDialog dialog = JSOptionPane.createDialog(message, title);
+    JSOptionPane.addIcon(messageType, dialog);
+
+    switch (optionType) {
+      case JSOptionPane.OK_CANCEL_OPTION:
+        JSOptionPane.addButtons(dialog, "OK_CANCEL");
+        break;
+      case JSOptionPane.YES_NO_OPTION:
+        JSOptionPane.addButtons(dialog, "YES_NO");
+        break;
+      case JSOptionPane.YES_NO_CANCEL_OPTION:
+        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL");
+        break;
+    }
+
+    dialog.setVisible(true);
+
+    return 0;
+  }
+
+  @SuppressWarnings("null")
+  private static JSDialog createDialog(Object message, String title) {
     JSDialog dialog = new JSDialog();
     dialog.getContentPane().setLayout(new BorderLayout(20, 20));
     dialog.cssAddClass("jsoptionpane");
     dialog.setTitle(title);
-
-    JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, Translations.JSOptionPane_OK, (event) -> dialog.setVisible(false));
 
     if (message instanceof JSComponent) {
       dialog.getContentPane().add((JSComponent) message, BorderLayout.CENTER);
@@ -48,7 +73,7 @@ public class JSOptionPane extends JSDialog {
       dialog.getContentPane().add(label, BorderLayout.CENTER);
     }
 
-    dialog.setVisible(true);
+    return dialog;
   }
 
   private static void addIcon(int messageType, JSDialog dialog) {
@@ -80,14 +105,35 @@ public class JSOptionPane extends JSDialog {
     }
   }
 
-  private static void addButtons(JSDialog dialog, String label1, ActionListener listener1) {
+  private static void addButtons(JSDialog dialog, String optionType) {
     JSPanel panel = new JSPanel();
 
-    JSButton button = new JSButton();
-    button.setText(label1);
-    button.addActionListener(listener1);
-    panel.add(button, null);
+    switch (optionType) {
+      case "OK":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) -> dialog.setVisible(false));
+        break;
+      case "OK_CANCEL":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) -> dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) -> dialog.setVisible(false));
+        break;
+      case "YES_NO":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) -> dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) -> dialog.setVisible(false));
+        break;
+      case "YES_NO_CANCEL":
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) -> dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) -> dialog.setVisible(false));
+        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) -> dialog.setVisible(false));
+        break;
+    }
 
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
+  }
+
+  private static void addButton(JSPanel panel, String label, ActionListener listener) {
+    JSButton button = new JSButton();
+    button.setText(label);
+    button.addActionListener(listener);
+    panel.add(button, null);
   }
 }
