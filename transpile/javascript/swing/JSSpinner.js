@@ -23,17 +23,17 @@ class JSSpinner extends JSComponent {
     this.input.setAttribute("type", "number");
     this.input.setAttribute("value", "0");
     this.input.style.setProperty("grid-area", "num");
-    this.input.oninput = (event) => this.onchange();
+    this.input.oninput = event => this.onchange();
     this.appendNodeChild(this.input);
     this.up.textContent = "\u25B2";
     this.up.style.setProperty("grid-area", "up");
-    this.up.onmousedown = (event) => this.spin(true);
-    this.up.onmouseup = (event) => this.run = false;
+    this.up.onmousedown = event => this.spin(true);
+    this.up.onmouseup = event => this.run = false;
     this.appendNodeChild(this.up);
     this.down.textContent = "\u25BC";
     this.down.style.setProperty("grid-area", "down");
-    this.down.onmousedown = (event) => this.spin(false);
-    this.down.onmouseup = (event) => this.run = false;
+    this.down.onmousedown = event => this.spin(false);
+    this.down.onmouseup = event => this.run = false;
     this.appendNodeChild(this.down);
   }
 

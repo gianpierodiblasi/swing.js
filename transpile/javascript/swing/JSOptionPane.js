@@ -44,7 +44,7 @@ class JSOptionPane extends JSDialog {
   static  showMessageDialog(message, title, messageType, response) {
     let dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, "OK", response ? (value) => response() : null);
+    JSOptionPane.addButtons(dialog, "OK", response ? value => response() : null);
     dialog.setVisible(true);
   }
 
@@ -141,7 +141,7 @@ class JSOptionPane extends JSDialog {
         break;
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", (event) => {
+    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
       if (response) {
         response(JSOptionPane.CLOSED_OPTION);
       }

@@ -11,7 +11,7 @@ class JSTextField extends JSComponent {
     super(document.createElement("input"));
     this.cssAddClass("jstextfield");
     this.setAttribute("type", "text");
-    this.addEventListener("input", (event) => this.onclick());
+    this.addEventListener("input", event => this.onclick());
   }
 
   /**

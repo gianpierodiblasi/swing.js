@@ -45,8 +45,8 @@ public class JSSlider extends JSComponent {
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
-    this.slider.oninput = (event) -> this.onchange(true);
-    this.slider.onchange = (event) -> this.onchange(false);
+    this.slider.oninput = event -> this.onchange(true);
+    this.slider.onchange = event -> this.onchange(false);
     this.appendNodeChild(this.slider);
 
     this.dataList = ($HTMLElement) document.createElement("datalist");

@@ -1215,7 +1215,7 @@ class JSButton extends AbstractButton {
   constructor() {
     super(document.createElement("button"));
     this.cssAddClass("jsbutton");
-    this.addEventListener("click", (event) => this.onclick());
+    this.addEventListener("click", event => this.onclick());
   }
 
   /**
@@ -1256,7 +1256,7 @@ class JSCheckBox extends AbstractButton {
     this.cssAddClass("jscheckbox");
     this.checkbox = document.createElement("input");
     this.checkbox.setAttribute("type", "checkbox");
-    this.checkbox.onchange = (event) => this.onclick();
+    this.checkbox.onchange = event => this.onclick();
     this.appendNodeChild(this.checkbox);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);
@@ -1323,7 +1323,7 @@ class JSRadioButton extends AbstractButton {
     this.cssAddClass("jsradiobutton");
     this.radiobutton = document.createElement("input");
     this.radiobutton.setAttribute("type", "radio");
-    this.radiobutton.onchange = (event) => this.onclick();
+    this.radiobutton.onchange = event => this.onclick();
     this.appendNodeChild(this.radiobutton);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);
@@ -1410,7 +1410,7 @@ class JSToggleButton extends AbstractButton {
     this.cssAddClass("jstogglebutton");
     this.togglebutton = document.createElement("input");
     this.togglebutton.setAttribute("type", "checkbox");
-    this.togglebutton.onchange = (event) => this.onclick();
+    this.togglebutton.onchange = event => this.onclick();
     this.appendNodeChild(this.togglebutton);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);
@@ -1601,7 +1601,7 @@ class JSDialog extends JSComponent {
     panel.setLayout(new BorderLayout(0, 0));
     panel.add(this.title, BorderLayout.CENTER);
     panel.add(this.close, BorderLayout.EAST);
-    this.close.addActionListener((event) => this.setVisible(false));
+    this.close.addActionListener(event => this.setVisible(false));
     this.appendChildInTree("header", panel);
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.contentPane.cssAddClass("jsdialog-content");
@@ -1686,7 +1686,7 @@ class JSOptionPane extends JSDialog {
   static  showMessageDialog(message, title, messageType, response) {
     let dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, "OK", response ? (value) => response() : null);
+    JSOptionPane.addButtons(dialog, "OK", response ? value => response() : null);
     dialog.setVisible(true);
   }
 
@@ -1783,7 +1783,7 @@ class JSOptionPane extends JSDialog {
         break;
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", (event) => {
+    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event => {
       if (response) {
         response(JSOptionPane.CLOSED_OPTION);
       }
@@ -2044,7 +2044,7 @@ class JSTabbedPane extends JSPanel {
     let button = new JSRadioButton();
     button.setText(title);
     button.setSelected(this.tabsGroup.getButtonCount() === 0);
-    button.addActionListener((event) => this.contentLayout.show(this.content, title));
+    button.addActionListener(event => this.contentLayout.show(this.content, title));
     this.tabs.insertNodeBeforeInTree("nav ul", document.createElement("li"), "nav ul li:last-child");
     this.tabs.appendChildInTree("nav ul li:nth-last-child(2)", button);
     this.tabsGroup.add(button);
@@ -2255,8 +2255,8 @@ class JSSlider extends JSComponent {
     this.slider = document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
-    this.slider.oninput = (event) => this.onchange(true);
-    this.slider.onchange = (event) => this.onchange(false);
+    this.slider.oninput = event => this.onchange(true);
+    this.slider.onchange = event => this.onchange(false);
     this.appendNodeChild(this.slider);
     this.dataList = document.createElement("datalist");
     this.dataList.id = this.dataListID;
@@ -2504,17 +2504,17 @@ class JSSpinner extends JSComponent {
     this.input.setAttribute("type", "number");
     this.input.setAttribute("value", "0");
     this.input.style.setProperty("grid-area", "num");
-    this.input.oninput = (event) => this.onchange();
+    this.input.oninput = event => this.onchange();
     this.appendNodeChild(this.input);
     this.up.textContent = "\u25B2";
     this.up.style.setProperty("grid-area", "up");
-    this.up.onmousedown = (event) => this.spin(true);
-    this.up.onmouseup = (event) => this.run = false;
+    this.up.onmousedown = event => this.spin(true);
+    this.up.onmouseup = event => this.run = false;
     this.appendNodeChild(this.up);
     this.down.textContent = "\u25BC";
     this.down.style.setProperty("grid-area", "down");
-    this.down.onmousedown = (event) => this.spin(false);
-    this.down.onmouseup = (event) => this.run = false;
+    this.down.onmousedown = event => this.spin(false);
+    this.down.onmouseup = event => this.run = false;
     this.appendNodeChild(this.down);
   }
 
@@ -2620,7 +2620,7 @@ class JSTextField extends JSComponent {
     super(document.createElement("input"));
     this.cssAddClass("jstextfield");
     this.setAttribute("type", "text");
-    this.addEventListener("input", (event) => this.onclick());
+    this.addEventListener("input", event => this.onclick());
   }
 
   /**
@@ -2742,7 +2742,7 @@ class AbstractComboBoxModelAndRenderer {
    addOption(element) {
     let li = document.createElement("li");
     li.appendChild(this.render(element));
-    li.onclick = (event) => {
+    li.onclick = event => {
       this.selected = element;
       this.combobox.clearChildContentByQuery("summary");
       this.combobox.appendNodeChildInTree("summary", this.render(element));
@@ -2908,7 +2908,7 @@ class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
    render(element, slider) {
     let img = element.produce();
-    img.onload = (event) => {
+    img.onload = event => {
       switch(slider.getOrientation()) {
         case JSSlider.HORIZONTAL:
           slider.getChilStyleByQuery("input").marginLeft = (img.width / 2) + "px";

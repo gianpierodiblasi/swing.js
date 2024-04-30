@@ -131,7 +131,7 @@ class JSTabbedPane extends JSPanel {
     let button = new JSRadioButton();
     button.setText(title);
     button.setSelected(this.tabsGroup.getButtonCount() === 0);
-    button.addActionListener((event) => this.contentLayout.show(this.content, title));
+    button.addActionListener(event => this.contentLayout.show(this.content, title));
     this.tabs.insertNodeBeforeInTree("nav ul", document.createElement("li"), "nav ul li:last-child");
     this.tabs.appendChildInTree("nav ul li:nth-last-child(2)", button);
     this.tabsGroup.add(button);

@@ -21,7 +21,7 @@ public class JSCheckBox extends AbstractButton {
 
     this.checkbox = ($HTMLElement) document.createElement("input");
     this.checkbox.setAttribute("type", "checkbox");
-    this.checkbox.onchange = (event) -> this.onclick();
+    this.checkbox.onchange = event -> this.onclick();
     this.appendNodeChild(this.checkbox);
 
     this.text = document.createTextNode("");

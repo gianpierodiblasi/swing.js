@@ -20,7 +20,7 @@ public class JSTextField extends JSComponent {
 
     this.cssAddClass("jstextfield");
     this.setAttribute("type", "text");
-    this.addEventListener("input", (event) -> this.onclick());
+    this.addEventListener("input", event -> this.onclick());
   }
 
   /**

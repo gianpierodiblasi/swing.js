@@ -14,7 +14,7 @@ class JSRadioButton extends AbstractButton {
     this.cssAddClass("jsradiobutton");
     this.radiobutton = document.createElement("input");
     this.radiobutton.setAttribute("type", "radio");
-    this.radiobutton.onchange = (event) => this.onclick();
+    this.radiobutton.onchange = event => this.onclick();
     this.appendNodeChild(this.radiobutton);
     this.text = document.createTextNode("");
     this.appendNodeChild(this.text);

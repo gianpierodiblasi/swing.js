@@ -20,7 +20,7 @@ public class HTMLImageSliderModelAndRenderer<T extends AbstractHTMLImageProducer
   @Override
   protected Object render(T element, JSSlider slider) {
     $Image img = element.produce();
-    img.onload = (event) -> {
+    img.onload = event -> {
       switch (slider.getOrientation()) {
         case JSSlider.HORIZONTAL:
           slider.getChilStyleByQuery("input").marginLeft = (img.width / 2) + "px";

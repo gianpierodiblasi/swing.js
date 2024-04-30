@@ -22,7 +22,7 @@ class JSDialog extends JSComponent {
     panel.setLayout(new BorderLayout(0, 0));
     panel.add(this.title, BorderLayout.CENTER);
     panel.add(this.close, BorderLayout.EAST);
-    this.close.addActionListener((event) => this.setVisible(false));
+    this.close.addActionListener(event => this.setVisible(false));
     this.appendChildInTree("header", panel);
     this.contentPane.setLayout(new BorderLayout(0, 0));
     this.contentPane.cssAddClass("jsdialog-content");

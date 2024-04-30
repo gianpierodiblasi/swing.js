@@ -42,7 +42,7 @@ public class JSOptionPane extends JSDialog {
   public static void showMessageDialog(Object message, String title, int messageType, $Apply_0_Void response) {
     JSDialog dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, "OK", $exists(response) ? (value) -> response.$apply() : null);
+    JSOptionPane.addButtons(dialog, "OK", $exists(response) ? value -> response.$apply() : null);
     dialog.setVisible(true);
   }
 
@@ -147,7 +147,8 @@ public class JSOptionPane extends JSDialog {
     }
 
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", (event) -> {
+    
+    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", event -> {
       if ($exists(response)) {
         response.$apply(JSOptionPane.CLOSED_OPTION);
       }

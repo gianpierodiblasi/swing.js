@@ -8,7 +8,7 @@ class JSButton extends AbstractButton {
   constructor() {
     super(document.createElement("button"));
     this.cssAddClass("jsbutton");
-    this.addEventListener("click", (event) => this.onclick());
+    this.addEventListener("click", event => this.onclick());
   }
 
   /**
