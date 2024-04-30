@@ -855,7 +855,8 @@ class JSComponent {
   }
 
   /**
-   * Sets a property of the HTML element
+   * Sets a property of the HTML element (for example <i>value</i> is a
+   * property, <i>readonly</i> is an attribute)
    *
    * @param key the property key
    * @param value The property value
@@ -1101,7 +1102,7 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute a child of the HTML element
+   * Returns an attribute of a child of the HTML element
    *
    * @param index The child index
    * @param key The attribute key
@@ -1112,7 +1113,7 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute a child of the HTML element
+   * Returns an attribute of a child of the HTML element
    *
    * @param query The query selector
    * @param key The attribute key
@@ -1129,6 +1130,17 @@ class JSComponent {
    */
    clearChildContentByQuery(query) {
     this.element.querySelector(query).textContent = "";
+  }
+
+  /**
+   * Adds an event listener to a child of the HTML element
+   *
+   * @param query The query selector
+   * @param event The event
+   * @param listener The listener
+   */
+   addChildEventListenerByQuery(query, event, listener) {
+    this.element.querySelector(query).addEventListener(event, listener);
   }
 
   /**
@@ -1663,34 +1675,47 @@ class JSOptionPane extends JSDialog {
 
   static  PLAIN_MESSAGE = -1;
 
-  static  OUTPUT = 0;
-
-  static  showMessageDialog(component, message, title, messageType) {
+  /**
+   * Shows a message dialog, this method does not stop the code flow
+   *
+   * @param message The message
+   * @param title The title
+   * @param messageType The message type
+   * @param response The function to call on close
+   */
+  static  showMessageDialog(message, title, messageType, response) {
     let dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, "OK");
+    JSOptionPane.addButtons(dialog, "OK", response ? (value) => response() : null);
     dialog.setVisible(true);
   }
 
-  static  showConfirmDialog(component, message, title, optionType, messageType) {
+  /**
+   * Shows a confirm dialog, this method does not stop the code flow
+   *
+   * @param message The message
+   * @param title The title
+   * @param optionType The option type
+   * @param messageType The message type
+   * @param response The function to call on close
+   */
+  static  showConfirmDialog(message, title, optionType, messageType, response) {
     let dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
     switch(optionType) {
       case JSOptionPane.DEFAULT_OPTION:
         break;
       case JSOptionPane.OK_CANCEL_OPTION:
-        JSOptionPane.addButtons(dialog, "OK_CANCEL");
+        JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
         break;
       case JSOptionPane.YES_NO_OPTION:
-        JSOptionPane.addButtons(dialog, "YES_NO");
+        JSOptionPane.addButtons(dialog, "YES_NO", response);
         break;
       case JSOptionPane.YES_NO_CANCEL_OPTION:
-        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL");
+        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL", response);
         break;
     }
-    JSOptionPane.OUTPUT = JSOptionPane.CLOSED_OPTION;
     dialog.setVisible(true);
-    return JSOptionPane.OUTPUT;
   }
 
   static  createDialog(message, title) {
@@ -1737,38 +1762,43 @@ class JSOptionPane extends JSDialog {
     }
   }
 
-  static  addButtons(dialog, optionType) {
+  static  addButtons(dialog, optionType, response) {
     let panel = new JSPanel();
     switch(optionType) {
       case "OK":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) => dialog.setVisible(false));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.DEFAULT_OPTION);
         break;
       case "OK_CANCEL":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) => JSOptionPane.close(dialog, JSOptionPane.OK_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) => JSOptionPane.close(dialog, JSOptionPane.CANCEL_OPTION));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.OK_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
         break;
       case "YES_NO":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) => JSOptionPane.close(dialog, JSOptionPane.YES_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) => JSOptionPane.close(dialog, JSOptionPane.NO_OPTION));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
         break;
       case "YES_NO_CANCEL":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) => JSOptionPane.close(dialog, JSOptionPane.YES_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) => JSOptionPane.close(dialog, JSOptionPane.NO_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) => JSOptionPane.close(dialog, JSOptionPane.CANCEL_OPTION));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
         break;
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
+    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", (event) => {
+      if (response) {
+        response(JSOptionPane.CLOSED_OPTION);
+      }
+    });
   }
 
-  static  close(dialog, option) {
-    JSOptionPane.OUTPUT = option;
-    dialog.setVisible(false);
-  }
-
-  static  addButton(panel, label, listener) {
+  static  addButton(dialog, panel, label, response, option) {
     let button = new JSButton();
     button.setText(label);
-    button.addActionListener(listener);
+    button.addActionListener(event => {
+      dialog.setVisible(false);
+      if (response) {
+        response(option);
+      }
+    });
     panel.add(button, null);
   }
 }

@@ -1,8 +1,10 @@
 package javascript.swing;
 
 import javascript.awt.BorderLayout;
-import javascript.awt.event.ActionListener;
 import javascript.util.Translations;
+import simulation.js.$Apply_0_Void;
+import simulation.js.$Apply_1_Void;
+import static simulation.js.$Globals.$exists;
 
 /**
  * The javax.swing.JOptionPane clone
@@ -29,16 +31,31 @@ public class JSOptionPane extends JSDialog {
   public static final int QUESTION_MESSAGE = 3;
   public static final int PLAIN_MESSAGE = -1;
 
-  private static int OUTPUT;
-
-  public static void showMessageDialog(JSComponent component, Object message, String title, int messageType) {
+  /**
+   * Shows a message dialog, this method does not stop the code flow
+   *
+   * @param message The message
+   * @param title The title
+   * @param messageType The message type
+   * @param response The function to call on close
+   */
+  public static void showMessageDialog(Object message, String title, int messageType, $Apply_0_Void response) {
     JSDialog dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
-    JSOptionPane.addButtons(dialog, "OK");
+    JSOptionPane.addButtons(dialog, "OK", $exists(response) ? (value) -> response.$apply() : null);
     dialog.setVisible(true);
   }
 
-  public static int showConfirmDialog(JSComponent component, Object message, String title, int optionType, int messageType) {
+  /**
+   * Shows a confirm dialog, this method does not stop the code flow
+   *
+   * @param message The message
+   * @param title The title
+   * @param optionType The option type
+   * @param messageType The message type
+   * @param response The function to call on close
+   */
+  public static void showConfirmDialog(Object message, String title, int optionType, int messageType, $Apply_1_Void<Integer> response) {
     JSDialog dialog = JSOptionPane.createDialog(message, title);
     JSOptionPane.addIcon(messageType, dialog);
 
@@ -46,19 +63,17 @@ public class JSOptionPane extends JSDialog {
       case JSOptionPane.DEFAULT_OPTION:
         break;
       case JSOptionPane.OK_CANCEL_OPTION:
-        JSOptionPane.addButtons(dialog, "OK_CANCEL");
+        JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
         break;
       case JSOptionPane.YES_NO_OPTION:
-        JSOptionPane.addButtons(dialog, "YES_NO");
+        JSOptionPane.addButtons(dialog, "YES_NO", response);
         break;
       case JSOptionPane.YES_NO_CANCEL_OPTION:
-        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL");
+        JSOptionPane.addButtons(dialog, "YES_NO_CANCEL", response);
         break;
     }
 
-    JSOptionPane.OUTPUT = JSOptionPane.CLOSED_OPTION;
     dialog.setVisible(true);
-    return JSOptionPane.OUTPUT;
   }
 
   @SuppressWarnings("null")
@@ -109,40 +124,46 @@ public class JSOptionPane extends JSDialog {
     }
   }
 
-  private static void addButtons(JSDialog dialog, String optionType) {
+  private static void addButtons(JSDialog dialog, String optionType, $Apply_1_Void<Integer> response) {
     JSPanel panel = new JSPanel();
 
     switch (optionType) {
       case "OK":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) -> dialog.setVisible(false));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.DEFAULT_OPTION);
         break;
       case "OK_CANCEL":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_OK, (event) -> JSOptionPane.close(dialog, JSOptionPane.OK_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) -> JSOptionPane.close(dialog, JSOptionPane.CANCEL_OPTION));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, response, JSOptionPane.OK_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
         break;
       case "YES_NO":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) -> JSOptionPane.close(dialog, JSOptionPane.YES_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) -> JSOptionPane.close(dialog, JSOptionPane.NO_OPTION));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
         break;
       case "YES_NO_CANCEL":
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_YES, (event) -> JSOptionPane.close(dialog, JSOptionPane.YES_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_NO, (event) -> JSOptionPane.close(dialog, JSOptionPane.NO_OPTION));
-        JSOptionPane.addButton(panel, Translations.JSOptionPane_CANCEL, (event) -> JSOptionPane.close(dialog, JSOptionPane.CANCEL_OPTION));
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, response, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, response, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, response, JSOptionPane.CANCEL_OPTION);
         break;
     }
 
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
+    dialog.addChildEventListenerByQuery(".jsdialog-header .jsbutton", "click", (event) -> {
+      if ($exists(response)) {
+        response.$apply(JSOptionPane.CLOSED_OPTION);
+      }
+    });
   }
 
-  private static void close(JSDialog dialog, int option) {
-    JSOptionPane.OUTPUT = option;
-    dialog.setVisible(false);
-  }
-
-  private static void addButton(JSPanel panel, String label, ActionListener listener) {
+  private static void addButton(JSDialog dialog, JSPanel panel, String label, $Apply_1_Void<Integer> response, int option) {
     JSButton button = new JSButton();
     button.setText(label);
-    button.addActionListener(listener);
+    button.addActionListener(event -> {
+      dialog.setVisible(false);
+
+      if ($exists(response)) {
+        response.$apply(option);
+      }
+    });
     panel.add(button, null);
   }
 }

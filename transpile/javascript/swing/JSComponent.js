@@ -112,7 +112,8 @@ class JSComponent {
   }
 
   /**
-   * Sets a property of the HTML element
+   * Sets a property of the HTML element (for example <i>value</i> is a
+   * property, <i>readonly</i> is an attribute)
    *
    * @param key the property key
    * @param value The property value
@@ -358,7 +359,7 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute a child of the HTML element
+   * Returns an attribute of a child of the HTML element
    *
    * @param index The child index
    * @param key The attribute key
@@ -369,7 +370,7 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute a child of the HTML element
+   * Returns an attribute of a child of the HTML element
    *
    * @param query The query selector
    * @param key The attribute key
@@ -386,6 +387,17 @@ class JSComponent {
    */
    clearChildContentByQuery(query) {
     this.element.querySelector(query).textContent = "";
+  }
+
+  /**
+   * Adds an event listener to a child of the HTML element
+   *
+   * @param query The query selector
+   * @param event The event
+   * @param listener The listener
+   */
+   addChildEventListenerByQuery(query, event, listener) {
+    this.element.querySelector(query).addEventListener(event, listener);
   }
 
   /**

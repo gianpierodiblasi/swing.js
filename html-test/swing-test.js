@@ -1362,25 +1362,25 @@ class TestJSFrame6 extends JSFrame {
   // GEN-LAST:event_jButton4ActionPerformed
    jButton7ActionPerformed(evt) {
     // GEN-FIRST:event_jButton7ActionPerformed
-    JSOptionPane.showMessageDialog(null, "Hello World", "Title", JSOptionPane.ERROR_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.ERROR_MESSAGE, null);
   }
 
   // GEN-LAST:event_jButton7ActionPerformed
    jButton8ActionPerformed(evt) {
     // GEN-FIRST:event_jButton8ActionPerformed
-    JSOptionPane.showMessageDialog(null, "Hello World", "Title", JSOptionPane.QUESTION_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.QUESTION_MESSAGE, null);
   }
 
   // GEN-LAST:event_jButton8ActionPerformed
    jButton9ActionPerformed(evt) {
     // GEN-FIRST:event_jButton9ActionPerformed
-    JSOptionPane.showMessageDialog(null, "Hello World", "Title", JSOptionPane.INFORMATION_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.INFORMATION_MESSAGE, () => console.log("closed"));
   }
 
   // GEN-LAST:event_jButton9ActionPerformed
    jButton10ActionPerformed(evt) {
     // GEN-FIRST:event_jButton10ActionPerformed
-    JSOptionPane.showMessageDialog(null, "Hello World", "Title", JSOptionPane.WARNING_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.WARNING_MESSAGE, () => console.log("closed"));
   }
 
   // GEN-LAST:event_jButton10ActionPerformed
@@ -1395,31 +1395,31 @@ class TestJSFrame6 extends JSFrame {
     label.setText("World");
     label.setBackground(new Color(255, 255, 0));
     panel.add(label);
-    JSOptionPane.showMessageDialog(null, panel, "Title", JSOptionPane.INFORMATION_MESSAGE);
+    JSOptionPane.showMessageDialog(panel, "Title", JSOptionPane.INFORMATION_MESSAGE, () => console.log("closed"));
   }
 
   // GEN-LAST:event_jButton11ActionPerformed
    jButton12ActionPerformed(evt) {
     // GEN-FIRST:event_jButton12ActionPerformed
-    console.log(JSOptionPane.showConfirmDialog(null, "Hello World", "Title", JSOptionPane.YES_NO_OPTION, JSOptionPane.ERROR_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.YES_NO_OPTION, JSOptionPane.ERROR_MESSAGE, value => console.log(value));
   }
 
   // GEN-LAST:event_jButton12ActionPerformed
    jButton13ActionPerformed(evt) {
     // GEN-FIRST:event_jButton13ActionPerformed
-    console.log(JSOptionPane.showConfirmDialog(null, "Hello World", "Title", JSOptionPane.YES_NO_OPTION, JSOptionPane.QUESTION_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.YES_NO_OPTION, JSOptionPane.QUESTION_MESSAGE, value => console.log(value));
   }
 
   // GEN-LAST:event_jButton13ActionPerformed
    jButton14ActionPerformed(evt) {
     // GEN-FIRST:event_jButton14ActionPerformed
-    console.log(JSOptionPane.showConfirmDialog(null, "Hello World", "Title", JSOptionPane.YES_NO_CANCEL_OPTION, JSOptionPane.INFORMATION_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.YES_NO_CANCEL_OPTION, JSOptionPane.INFORMATION_MESSAGE, value => console.log(value));
   }
 
   // GEN-LAST:event_jButton14ActionPerformed
    jButton15ActionPerformed(evt) {
     // GEN-FIRST:event_jButton15ActionPerformed
-    console.log(JSOptionPane.showConfirmDialog(null, "Hello World", "Title", JSOptionPane.OK_CANCEL_OPTION, JSOptionPane.WARNING_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.OK_CANCEL_OPTION, JSOptionPane.WARNING_MESSAGE, value => console.log(value));
   }
 
   // GEN-LAST:event_jButton15ActionPerformed
@@ -1434,7 +1434,7 @@ class TestJSFrame6 extends JSFrame {
     label.setText("World");
     label.setBackground(new Color(255, 255, 0));
     panel.add(label);
-    console.log(JSOptionPane.showConfirmDialog(null, panel, "Title", JSOptionPane.OK_CANCEL_OPTION, JSOptionPane.WARNING_MESSAGE));
+    JSOptionPane.showConfirmDialog(panel, "Title", JSOptionPane.OK_CANCEL_OPTION, JSOptionPane.WARNING_MESSAGE, value => console.log(value));
   }
 
   // GEN-LAST:event_jButton16ActionPerformed

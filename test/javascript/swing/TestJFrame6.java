@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
@@ -200,19 +199,19 @@ public class TestJFrame6 extends javax.swing.JFrame {
   }//GEN-LAST:event_jButton4ActionPerformed
 
   private void jButton7ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.ERROR_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.ERROR_MESSAGE, null);
   }//GEN-LAST:event_jButton7ActionPerformed
 
   private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.QUESTION_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.QUESTION_MESSAGE, null);
   }//GEN-LAST:event_jButton8ActionPerformed
 
   private void jButton9ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.INFORMATION_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.INFORMATION_MESSAGE, () -> console.log("closed"));
   }//GEN-LAST:event_jButton9ActionPerformed
 
   private void jButton10ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-    JOptionPane.showMessageDialog(null, "Hello World", "Title", JOptionPane.WARNING_MESSAGE);
+    JSOptionPane.showMessageDialog("Hello World", "Title", JSOptionPane.WARNING_MESSAGE, () -> console.log("closed"));
   }//GEN-LAST:event_jButton10ActionPerformed
 
   private void jButton11ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -228,23 +227,23 @@ public class TestJFrame6 extends javax.swing.JFrame {
     label.setBackground(new Color(255, 255, 0));
     panel.add(label);
 
-    JOptionPane.showMessageDialog(null, panel, "Title", JOptionPane.INFORMATION_MESSAGE);
+    JSOptionPane.showMessageDialog(panel, "Title", JSOptionPane.INFORMATION_MESSAGE, () -> console.log("closed"));
   }//GEN-LAST:event_jButton11ActionPerformed
 
   private void jButton12ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.YES_NO_OPTION, JSOptionPane.ERROR_MESSAGE, value -> console.log(value));
   }//GEN-LAST:event_jButton12ActionPerformed
 
   private void jButton13ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.YES_NO_OPTION, JSOptionPane.QUESTION_MESSAGE, value -> console.log(value));
   }//GEN-LAST:event_jButton13ActionPerformed
 
   private void jButton14ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.YES_NO_CANCEL_OPTION, JSOptionPane.INFORMATION_MESSAGE, value -> console.log(value));
   }//GEN-LAST:event_jButton14ActionPerformed
 
   private void jButton15ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-    console.log(JOptionPane.showConfirmDialog(null, "Hello World", "Title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE));
+    JSOptionPane.showConfirmDialog("Hello World", "Title", JSOptionPane.OK_CANCEL_OPTION, JSOptionPane.WARNING_MESSAGE, value -> console.log(value));
   }//GEN-LAST:event_jButton15ActionPerformed
 
   private void jButton16ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -259,8 +258,8 @@ public class TestJFrame6 extends javax.swing.JFrame {
     label.setText("World");
     label.setBackground(new Color(255, 255, 0));
     panel.add(label);
-    
-    console.log(JOptionPane.showConfirmDialog(null, panel, "Title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE));
+
+    JSOptionPane.showConfirmDialog(panel, "Title", JSOptionPane.OK_CANCEL_OPTION, JSOptionPane.WARNING_MESSAGE, value -> console.log(value));
   }//GEN-LAST:event_jButton16ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
