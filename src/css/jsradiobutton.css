@@ -16,6 +16,7 @@
   cursor: pointer;
   appearance: none;
   margin: 0 0.2rem 0 0;
+  outline: none;
 }
 .jsradiobutton input:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));

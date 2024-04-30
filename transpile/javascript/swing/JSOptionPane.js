@@ -148,6 +148,7 @@ class JSOptionPane {
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
     JSOptionPane.RESPONSE = JSOptionPane.CLOSED_OPTION;
     dialog.addWindowClosedListener(event => {
+      dialog.dispose();
       if (response) {
         response(JSOptionPane.RESPONSE);
       }

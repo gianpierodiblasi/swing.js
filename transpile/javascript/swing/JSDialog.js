@@ -34,6 +34,13 @@ class JSDialog extends JSComponent {
   }
 
   /**
+   * Clone of javax.swing.JDialog.dispose
+   */
+   dispose() {
+    this.removeFromBody();
+  }
+
+  /**
    * Clone of javax.swing.JDialog.setTitle
    *
    * @param title The title

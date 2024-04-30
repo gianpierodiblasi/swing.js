@@ -48,6 +48,7 @@
   border: none;
   cursor: pointer;
   color: var(--main-action-bgcolor);
+  outline: none;
 }
 .jsspinner[disabled] button {
   cursor: default;

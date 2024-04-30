@@ -964,6 +964,13 @@ class JSComponent {
   }
 
   /**
+   * Removes the HTML element from the BODY element
+   */
+   removeFromBody() {
+    document.querySelector("body").removeChild(this.element);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param component The child component
@@ -1629,6 +1636,13 @@ class JSDialog extends JSComponent {
     this.contentPane.cssAddClass("jsdialog-content");
     this.appendChildInTree("article", this.contentPane);
     this.appendInBody();
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.dispose
+   */
+   dispose() {
+    this.removeFromBody();
   }
 
   /**
@@ -2704,6 +2718,7 @@ class JSOptionPane {
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
     JSOptionPane.RESPONSE = JSOptionPane.CLOSED_OPTION;
     dialog.addWindowClosedListener(event => {
+      dialog.dispose();
       if (response) {
         response(JSOptionPane.RESPONSE);
       }

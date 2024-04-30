@@ -151,9 +151,11 @@ public class JSOptionPane {
     }
 
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    
+
     JSOptionPane.RESPONSE = JSOptionPane.CLOSED_OPTION;
     dialog.addWindowClosedListener(event -> {
+      dialog.dispose();
+      
       if ($exists(response)) {
         response.$apply(JSOptionPane.RESPONSE);
       }

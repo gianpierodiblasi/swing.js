@@ -212,6 +212,13 @@ public class JSComponent {
   }
 
   /**
+   * Removes the HTML element from the BODY element
+   */
+  public void removeFromBody() {
+    document.querySelector("body").removeChild(this.element);
+  }
+
+  /**
    * Adds a child to the HTML element
    *
    * @param component The child component

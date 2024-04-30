@@ -22,6 +22,7 @@
   appearance: none;
   display: none;
   margin: 0 0.2rem 0 0;
+  outline: none;
 }
 .jstogglebutton:hover {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
