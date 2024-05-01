@@ -79,6 +79,7 @@ public abstract class AbstractComboBoxModelAndRenderer<T extends Comparable<T>> 
       this.combobox.clearChildContentByQuery("summary");
       this.combobox.appendNodeChildInTree("summary", this.render(element));
       this.combobox.removeAttribute("open");
+      this.combobox.invoke("querySelector('summary').focus");
       this.combobox.onclick();
     });
 
