@@ -592,7 +592,7 @@
 }
 
 .jstabbedpane li:has(input) {
-  border-radius:  var(--roundness);
+  border-radius:  0.5rem;
   border: 2px solid transparent;
 }
 .jstabbedpane li:has(input:checked) {

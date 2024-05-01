@@ -136,7 +136,7 @@ class SwingJS {
    * @return The SwingJS instance (for chaining)
    */
    roundness(roundness) {
-    this._roundness = (roundness * 30) + "rem";
+    this._roundness = roundness + "rem";
     return this;
   }
 
