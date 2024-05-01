@@ -7,7 +7,7 @@
   border: 2px solid var(--main-action-bgcolor);
   border-radius: .5rem;
 }
-.jscombobox:hover:not([disabled]) {
+.jscombobox:hover:not([disabled]), .jscombobox:has(summary:focus) {
   box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
 }
 .jscombobox[disabled] {

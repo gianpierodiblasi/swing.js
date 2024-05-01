@@ -1602,6 +1602,15 @@ class JSComboBox extends JSComponent {
     });
     return null;
   }
+
+   setEnabled(b) {
+    super.setEnabled(b);
+    if (b) {
+      this.removeAttribute("tabIndex");
+    } else {
+      this.setAttribute("tabIndex", "-1");
+    }
+  }
 }
 /**
  * The javax.swing.JDialog clone
@@ -2401,11 +2410,13 @@ class JSSpinner extends JSComponent {
     this.appendNodeChild(this.input);
     this.up.textContent = "\u25B2";
     this.up.style.setProperty("grid-area", "up");
+    this.up.tabIndex = -1;
     this.up.addEventListener("mousedown", event => this.spin(true));
     this.up.addEventListener("mouseup", event => this.run = false);
     this.appendNodeChild(this.up);
     this.down.textContent = "\u25BC";
     this.down.style.setProperty("grid-area", "down");
+    this.down.tabIndex = -1;
     this.down.addEventListener("mousedown", event => this.spin(false));
     this.down.addEventListener("mouseup", event => this.run = false);
     this.appendNodeChild(this.down);

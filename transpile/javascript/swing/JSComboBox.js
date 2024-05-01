@@ -79,4 +79,13 @@ class JSComboBox extends JSComponent {
     });
     return null;
   }
+
+   setEnabled(b) {
+    super.setEnabled(b);
+    if (b) {
+      this.removeAttribute("tabIndex");
+    } else {
+      this.setAttribute("tabIndex", "-1");
+    }
+  }
 }

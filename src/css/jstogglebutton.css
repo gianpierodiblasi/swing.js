@@ -10,7 +10,6 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
-  column-gap: .5rem;
   align-items: center;
 }
 .jstogglebutton input {
@@ -20,17 +19,17 @@
 
   cursor: pointer;
   appearance: none;
-  display: none;
   margin: 0 0.2rem 0 0;
   outline: none;
+  width: 0px;
 }
-.jstogglebutton:hover {
+.jstogglebutton:hover, .jstogglebutton:has(input:focus) {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jstogglebutton:has(input:checked) {
   filter: saturate(0.5);
 }
-.jstogglebutton:hover:has(input:checked) {
+.jstogglebutton:hover:has(input:checked), .jstogglebutton:has(input:checked:focus) {
   filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jstogglebutton:has(input:disabled) {

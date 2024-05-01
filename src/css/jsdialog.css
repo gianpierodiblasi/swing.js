@@ -13,7 +13,7 @@
 }
 .jsdialog::backdrop {
   background: var(--main-action-bgcolor);
-  opacity: .5;
+  opacity: .25;
 }
 .jsdialog article {
   margin: 0 -1em;

@@ -15,7 +15,7 @@
   outline: none;
 }
 
-.jsbutton:hover {
+.jsbutton:hover, .jsbutton:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsbutton:active {

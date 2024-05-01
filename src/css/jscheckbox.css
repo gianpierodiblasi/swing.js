@@ -18,7 +18,7 @@
   margin: 0 0.2rem 0 0;
   outline: none;
 }
-.jscheckbox input:hover {
+.jscheckbox input:hover, .jscheckbox input:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jscheckbox input::after {

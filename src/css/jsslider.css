@@ -26,7 +26,7 @@
   accent-color: var(--main-action-bgcolor);
   outline: none;
 }
-.jsslider > input:not([disabled=disabled]):hover {
+.jsslider > input:not([disabled=disabled]):hover, .jsslider > input:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsslider > input:disabled {

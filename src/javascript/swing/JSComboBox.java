@@ -1,12 +1,10 @@
 package javascript.swing;
 
-import static def.dom.Globals.console;
 import static def.dom.Globals.document;
 import def.js.Array;
 import javascript.awt.event.ActionEvent;
 import javascript.awt.event.ActionListener;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
-import javascript.util.AbstractHTMLImageProducer;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -16,15 +14,15 @@ import static simulation.js.$Globals.$typeof;
  * @param <T> The type
  */
 public class JSComboBox<T extends Comparable<T>> extends JSComponent {
-
+  
   private final Array<ActionListener> listeners = new Array<>();
   private AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
-
+  
   public JSComboBox() {
     super(document.createElement("details"));
-
+    
     this.cssAddClass("jscombobox");
-
+    
     this.appendNodeChild(document.createElement("summary"));
     this.appendNodeChild(document.createElement("ul"));
   }
@@ -83,7 +81,7 @@ public class JSComboBox<T extends Comparable<T>> extends JSComponent {
    */
   public Object onclick() {
     ActionEvent event = new ActionEvent();
-
+    
     this.listeners.forEach(listener -> {
       if ($typeof(listener, "function")) {
         listener.$apply(event);
@@ -92,5 +90,16 @@ public class JSComboBox<T extends Comparable<T>> extends JSComponent {
       }
     });
     return null;
+  }
+  
+  @Override
+  public void setEnabled(boolean b) {
+    super.setEnabled(b);
+    
+    if (b) {
+      this.removeAttribute("tabIndex");
+    } else {
+      this.setAttribute("tabIndex", "-1");
+    }
   }
 }

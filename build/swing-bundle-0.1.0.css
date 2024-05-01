@@ -15,7 +15,7 @@
   outline: none;
 }
 
-.jsbutton:hover {
+.jsbutton:hover, .jsbutton:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsbutton:active {
@@ -58,7 +58,7 @@
   margin: 0 0.2rem 0 0;
   outline: none;
 }
-.jscheckbox input:hover {
+.jscheckbox input:hover, .jscheckbox input:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jscheckbox input::after {
@@ -80,7 +80,7 @@
   border: 2px solid var(--main-action-bgcolor);
   border-radius: .5rem;
 }
-.jscombobox:hover:not([disabled]) {
+.jscombobox:hover:not([disabled]), .jscombobox:has(summary:focus) {
   box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
 }
 .jscombobox[disabled] {
@@ -159,7 +159,7 @@
 }
 .jsdialog::backdrop {
   background: var(--main-action-bgcolor);
-  opacity: .5;
+  opacity: .25;
 }
 .jsdialog article {
   margin: 0 -1em;
@@ -339,7 +339,7 @@
   margin: 0 0.2rem 0 0;
   outline: none;
 }
-.jsradiobutton input:hover {
+.jsradiobutton input:hover, .jsradiobutton input:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsradiobutton input::after {
@@ -363,15 +363,14 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
-  column-gap: .5rem;
 }
-.jsradiobutton[role=toggle]:hover {
+.jsradiobutton[role=toggle]:hover, .jsradiobutton[role=toggle]:has(input:focus) {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsradiobutton[role=toggle]:has(input:checked) {
   filter: saturate(0.5);
 }
-.jsradiobutton[role=toggle]:hover:has(input:checked) {
+.jsradiobutton[role=toggle]:hover:has(input:checked), .jsradiobutton[role=toggle]:has(input:checked:focus) {
   filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsradiobutton[role=toggle]:has(input:disabled) {
@@ -381,7 +380,7 @@
   filter: opacity(0.5) saturate(0.5);
 }
 .jsradiobutton[role=toggle] input {
-  display: none;
+  width: 0px;
 }
 .jsradiobutton[role=toggle] input::after {
   content: "";
@@ -430,7 +429,7 @@
   accent-color: var(--main-action-bgcolor);
   outline: none;
 }
-.jsslider > input:not([disabled=disabled]):hover {
+.jsslider > input:not([disabled=disabled]):hover, .jsslider > input:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsslider > input:disabled {
@@ -509,7 +508,7 @@
   border: 2px solid var(--main-action-bgcolor);
   border-radius: .5rem;
 }
-.jsspinner:hover:not([disabled]) {
+.jsspinner:hover:not([disabled]), .jsspinner:has(input:focus) {
   box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
 }
 .jsspinner[disabled] {
@@ -660,7 +659,7 @@
   outline: none;
 }
 
-.jstextfield:hover:not([disabled]) {
+.jstextfield:hover:not([disabled]), .jstextfield:focus {
   box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
 }
 .jstextfield[disabled] {
@@ -677,7 +676,6 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
-  column-gap: .5rem;
   align-items: center;
 }
 .jstogglebutton input {
@@ -687,17 +685,17 @@
 
   cursor: pointer;
   appearance: none;
-  display: none;
   margin: 0 0.2rem 0 0;
   outline: none;
+  width: 0px;
 }
-.jstogglebutton:hover {
+.jstogglebutton:hover, .jstogglebutton:has(input:focus) {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jstogglebutton:has(input:checked) {
   filter: saturate(0.5);
 }
-.jstogglebutton:hover:has(input:checked) {
+.jstogglebutton:hover:has(input:checked), .jstogglebutton:has(input:checked:focus) {
   filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jstogglebutton:has(input:disabled) {

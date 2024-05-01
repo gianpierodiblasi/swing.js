@@ -18,7 +18,7 @@
   margin: 0 0.2rem 0 0;
   outline: none;
 }
-.jsradiobutton input:hover {
+.jsradiobutton input:hover, .jsradiobutton input:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsradiobutton input::after {
@@ -42,15 +42,14 @@
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);
-  column-gap: .5rem;
 }
-.jsradiobutton[role=toggle]:hover {
+.jsradiobutton[role=toggle]:hover, .jsradiobutton[role=toggle]:has(input:focus) {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsradiobutton[role=toggle]:has(input:checked) {
   filter: saturate(0.5);
 }
-.jsradiobutton[role=toggle]:hover:has(input:checked) {
+.jsradiobutton[role=toggle]:hover:has(input:checked), .jsradiobutton[role=toggle]:has(input:checked:focus) {
   filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
 }
 .jsradiobutton[role=toggle]:has(input:disabled) {
@@ -60,7 +59,7 @@
   filter: opacity(0.5) saturate(0.5);
 }
 .jsradiobutton[role=toggle] input {
-  display: none;
+  width: 0px;
 }
 .jsradiobutton[role=toggle] input::after {
   content: "";
