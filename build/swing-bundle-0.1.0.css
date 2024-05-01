@@ -202,6 +202,10 @@
   align-items: center;
   justify-content: center;
 }
+.jsoptionpane .jsdialog-content > .south .jsbutton {
+  min-width: 6rem;
+}
+
 .jsoptionpane-error .jsdialog-content > .jslabel.west {
   background: lightcoral;
   color: white;
