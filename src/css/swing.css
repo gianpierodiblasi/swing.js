@@ -5,6 +5,7 @@
   --main-bgcolor: white;
   --main-action-color: white;
   --main-action-bgcolor: #0d6efd;
+  --roundness: .5rem;
 }
 :root.dark-mode {
   --main-color: #dee2e6;

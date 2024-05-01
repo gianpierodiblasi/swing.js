@@ -38,7 +38,7 @@
   background: var(--main-action-bgcolor);
 
   padding: .5rem;
-  border-radius: .5rem;
+  border-radius: var(--roundness);
   cursor: pointer;
   justify-content: center;
   border: 2px solid var(--main-action-bgcolor);

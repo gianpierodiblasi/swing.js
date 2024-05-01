@@ -20,6 +20,7 @@
                 mainBGColor(urlParams.get("bgcolor")).
                 mainActionColor(urlParams.get("actioncolor")).
                 mainActionBGColor(urlParams.get("actionbgcolor")).
+                roundness(urlParams.get("roundness")).
                 build();
 
         eval("new TestJSFrame" + urlParams.get("num") + "();");

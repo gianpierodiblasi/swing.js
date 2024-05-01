@@ -21,6 +21,8 @@ class SwingJS {
 
    _mainActionBGColor = null;
 
+   _roundness = null;
+
   /**
    * Converts "any" Java object into a JavaScript object. This method is useful
    * when developing in Java, whene developing in JavaScript this method is
@@ -127,6 +129,18 @@ class SwingJS {
   }
 
   /**
+   * Sets the roundness, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param roundness The roundness, a value in the range [0,1]
+   * @return The SwingJS instance (for chaining)
+   */
+   roundness(roundness) {
+    this._roundness = (roundness * 30) + "rem";
+    return this;
+  }
+
+  /**
    * Builds the new global style
    */
    build() {
@@ -134,7 +148,7 @@ class SwingJS {
       document.documentElement.classList.add("dark-mode");
     }
     let style = document.createElement("style");
-    style.textContent = ":root {\n" + (this._fontFamily ? "  --font-family: " + this._fontFamily + " !important;\n" : "") + (this._fontSize ? "  --font-size: " + this._fontSize + "px !important;\n" : "") + (this._mainColor ? "  --main-color: " + this._mainColor + " !important;\n" : "") + (this._mainBGColor ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "") + (this._mainActionColor ? "  --main-action-color: " + this._mainActionColor + " !important;\n" : "") + (this._mainActionBGColor ? "  --main-action-bgcolor: " + this._mainActionBGColor + " !important;\n" : "") + "}";
+    style.textContent = ":root {\n" + (this._fontFamily ? "  --font-family: " + this._fontFamily + " !important;\n" : "") + (this._fontSize ? "  --font-size: " + this._fontSize + "px !important;\n" : "") + (this._mainColor ? "  --main-color: " + this._mainColor + " !important;\n" : "") + (this._mainBGColor ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "") + (this._mainActionColor ? "  --main-action-color: " + this._mainActionColor + " !important;\n" : "") + (this._mainActionBGColor ? "  --main-action-bgcolor: " + this._mainActionBGColor + " !important;\n" : "") + (this._roundness ? "  --roundness: " + this._roundness + " !important;\n" : "") + "}";
     document.head.appendChild(style);
   }
 

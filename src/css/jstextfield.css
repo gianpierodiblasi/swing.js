@@ -6,7 +6,7 @@
 
   min-width: 10rem;
   border: 2px solid var(--main-action-bgcolor);
-  border-radius: .5rem;
+  border-radius: var(--roundness);
   padding: .5rem;
   min-height: 2.4ex;
   outline: none;

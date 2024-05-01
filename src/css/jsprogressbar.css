@@ -9,7 +9,7 @@
   align-items: center;
   background-color: var(--main-bgcolor);
   border: 2px solid var(--main-action-bgcolor);
-  border-radius: 2rem;
+  border-radius: var(--roundness);
 }
 .jsprogressbar label {
   font-family: var(--font-family);
@@ -30,7 +30,7 @@
   grid-column-start: 1;
   grid-row-start: 1;
   background-color: var(--main-action-bgcolor);
-  border-radius: 2rem;
+  border-radius: var(--roundness);
 }
 
 .jsprogressbar.jsprogressbar-indeterminate div {

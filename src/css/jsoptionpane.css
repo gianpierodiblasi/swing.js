@@ -3,7 +3,7 @@
 
 .jsoptionpane .jsdialog-content > .jslabel.west {
   font-size: 3rem;
-  border-radius: 30rem;
+  border-radius: var(--roundness);
   width: 4rem;
   height: 4rem;
   display: flex;

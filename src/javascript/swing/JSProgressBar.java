@@ -160,9 +160,11 @@ public class JSProgressBar extends JSComponent {
       this.getStyle().animationName = "none";
       switch (this.orientation) {
         case JSProgressBar.HORIZONTAL:
+          this.getStyle().background = "linear-gradient(to right, var(--main-action-bgcolor) " + valuePerc + "%, var(--main-bgcolor) " + valuePerc + "%)";
           this.progress.style.width = valuePerc + "%";
           break;
         case JSProgressBar.VERTICAL:
+          this.getStyle().background = "linear-gradient(to bottom, var(--main-action-bgcolor) " + valuePerc + "%, var(--main-bgcolor) " + valuePerc + "%)";
           this.progress.style.height = valuePerc + "%";
           break;
       }

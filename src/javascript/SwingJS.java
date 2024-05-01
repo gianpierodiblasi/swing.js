@@ -19,6 +19,7 @@ public class SwingJS {
   private String _mainBGColor;
   private String _mainActionColor;
   private String _mainActionBGColor;
+  private String _roundness;
 
   /**
    * Converts "any" Java object into a JavaScript object. This method is useful
@@ -127,6 +128,18 @@ public class SwingJS {
   }
 
   /**
+   * Sets the roundness, to complete the setting the
+   * <i>build</i> method has to be called
+   *
+   * @param roundness The roundness, a value in the range [0,1]
+   * @return The SwingJS instance (for chaining)
+   */
+  public SwingJS roundness(double roundness) {
+    this._roundness = (roundness * 30) + "rem";
+    return this;
+  }
+
+  /**
    * Builds the new global style
    */
   public void build() {
@@ -143,6 +156,7 @@ public class SwingJS {
             + ($exists(this._mainBGColor) ? "  --main-bgcolor: " + this._mainBGColor + " !important;\n" : "")
             + ($exists(this._mainActionColor) ? "  --main-action-color: " + this._mainActionColor + " !important;\n" : "")
             + ($exists(this._mainActionBGColor) ? "  --main-action-bgcolor: " + this._mainActionBGColor + " !important;\n" : "")
+            + ($exists(this._roundness) ? "  --roundness: " + this._roundness + " !important;\n" : "")
             + "}";
 
     document.head.appendChild(style);
