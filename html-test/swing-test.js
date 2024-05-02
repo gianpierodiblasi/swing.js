@@ -1689,8 +1689,10 @@ class TestJSFrame8 extends JSFrame {
     this.jButton1 = new JSButton();let jButton1 = this.jButton1;
     this.jButton2 = new JSButton();let jButton2 = this.jButton2;
     this.jButton3 = new JSButton();let jButton3 = this.jButton3;
+    this.jButton4 = new JSButton();let jButton4 = this.jButton4;
+    this.jButton5 = new JSButton();let jButton5 = this.jButton5;
     this.jPanel2 = new JSPanel();let jPanel2 = this.jPanel2;
-    this.setTitle("Test FileChooser");
+    this.setTitle("Test Chooser");
     jButton1.setText("Open Single File");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);
@@ -1700,6 +1702,12 @@ class TestJSFrame8 extends JSFrame {
     jButton3.setText("Open Files in Folder");
     jButton3.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton3ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton3);
+    jButton4.setText("Choose Color");
+    jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton4);
+    jButton5.setText("Choose Color With Default");
+    jButton5.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton5ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton5);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
@@ -1723,6 +1731,18 @@ class TestJSFrame8 extends JSFrame {
   }
 
   // GEN-LAST:event_jButton3ActionPerformed
+   jButton4ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton4ActionPerformed
+    this.choose(null);
+  }
+
+  // GEN-LAST:event_jButton4ActionPerformed
+   jButton5ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton5ActionPerformed
+    this.choose(new Color(255, 0, 0));
+  }
+
+  // GEN-LAST:event_jButton5ActionPerformed
    open(selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files => {
       document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
@@ -1739,12 +1759,27 @@ class TestJSFrame8 extends JSFrame {
     });
   }
 
+   choose(color) {
+    JSColorChooser.showDialog(color, c => {
+      document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
+      let img = document.createElement("img");
+      img.width = 100;
+      img.height = 100;
+      img.style.background = c.getHEX();
+      document.querySelector(".center").appendChild(img);
+    });
+  }
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton1 = null;
 
    jButton2 = null;
 
    jButton3 = null;
+
+   jButton4 = null;
+
+   jButton5 = null;
 
    jPanel1 = null;
 

@@ -13,7 +13,7 @@ import def.js.Array;
 public class $HTMLElement extends HTMLElement {
 
   public double valueAsNumber;
-//  public String value;
+  public String value;
   public boolean checked;
   public int selectedIndex;
   public Array<File> files;

@@ -17,6 +17,36 @@ class Color {
     this.green = green;
     this.blue = blue;
   }
+
+  /**
+   * Returns the RGB hex string representing this Color
+   *
+   * @return The RGB hex string representing this Color
+   */
+   getHEX() {
+    return "#" + new Number(this.red).toString(16).padStart(2, "0") + new Number(this.green).toString(16).padStart(2, "0") + new Number(this.blue).toString(16).padStart(2, "0");
+  }
+
+  /**
+   * Creates a Color from an RGB hex string
+   *
+   * @param color The color
+   * @return The Color
+   */
+  static  fromHEX(color) {
+    let result = new RegExp("^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$", "i").exec(color);
+    return new Color(parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16));
+  }
+
+  /**
+   * Creates a Color from a RGB integer color
+   *
+   * @param color The color
+   * @return The Color
+   */
+  static  fromARGB(color) {
+    return new Color(color >>> 16 & 0xff, color >>> 8 & 0xff, color & 0xff);
+  }
 }
 /**
  * The java.awt.Dimension clone
@@ -761,6 +791,47 @@ class ChangeListener {
    * @param event The event
    */
    stateChanged(event) {
+  }
+}
+/**
+ * The javax.swing.JColorChooser clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSColorChooser {
+
+  static  input = null;
+
+  constructor() {
+  }
+
+  /**
+   * Shows a dialog to select the color
+   *
+   * @param color The initial color
+   * @param response The function to call on close
+   */
+  static  showDialog(color, response) {
+    document.querySelectorAll("input[type=color]").forEach(element => element.parentElement.removeChild(element));
+    JSColorChooser.input = document.createElement("input");
+    JSColorChooser.input.setAttribute("type", "color");
+    JSColorChooser.input.style.display = "none";
+    if (color) {
+      JSColorChooser.input["value"] = color.getHEX();
+    }
+    JSColorChooser.input.onchange = (event) => JSColorChooser.onchange(JSColorChooser.input.value, response);
+    document.body.appendChild(JSColorChooser.input);
+    let event = document.createEvent("MouseEvents");
+    event.initEvent("click", false, false);
+    JSColorChooser.input.dispatchEvent(event);
+  }
+
+  static  onchange(value, response) {
+    document.body.removeChild(JSColorChooser.input);
+    if (response) {
+      response(Color.fromHEX(value));
+    }
+    return null;
   }
 }
 /**

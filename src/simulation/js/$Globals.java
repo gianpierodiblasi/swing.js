@@ -29,18 +29,18 @@ public class $Globals {
     return 0;
   }
 
-//  public static int parseInt(java.lang.String str, double v) {
-//    return 0;
-//  }
-//
-//  public static int parseInt($String str, double v) {
-//    return 0;
-//  }
-//
-//  public static int parseInt(def.js.String str, double v) {
-//    return 0;
-//  }
-//
+  public static int parseInt(java.lang.String str, double v) {
+    return 0;
+  }
+
+  public static int parseInt($String str, double v) {
+    return 0;
+  }
+
+  public static int parseInt(def.js.String str, double v) {
+    return 0;
+  }
+
   public static int setTimeout($Apply_0_Void function, double milliseconds) {
     return 0;
   }
