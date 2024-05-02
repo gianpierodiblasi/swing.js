@@ -13,6 +13,28 @@ class TestJFrame8 extends JFrame {
   }
 
    postInitComponents() {
+    let chooser1 = new JSColorChooser();
+    chooser1.setText("Chooser Color Button");
+    chooser1.addActionListener(event => {
+      document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
+      let img = document.createElement("img");
+      img.width = 100;
+      img.height = 100;
+      img.style.background = chooser1.getColor().getHEX();
+      document.querySelector(".center").appendChild(img);
+    });
+    (SwingJS.convert(this.jPanel1)).add(chooser1, null);
+    let chooser2 = new JSColorChooser();
+    chooser2.setText("Chooser Color Button 2");
+    chooser2.addActionListener(event => {
+      document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
+      let img = document.createElement("img");
+      img.width = 100;
+      img.height = 100;
+      img.style.background = chooser2.getColor().getHEX();
+      document.querySelector(".center").appendChild(img);
+    });
+    (SwingJS.convert(this.jPanel1)).add(chooser2, null);
   }
 
   /**

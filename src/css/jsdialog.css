@@ -30,7 +30,7 @@
   border: none;
   cursor: pointer;
 }
-.jsdialog header button:after {
+.jsdialog header button::after {
   content: "\2716";
 }
 .jsdialog .jsdialog-content {

@@ -4,6 +4,7 @@ import def.dom.FileReader;
 import static def.dom.Globals.document;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import javascript.SwingJS;
 import javascript.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,6 +27,29 @@ public class TestJFrame8 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
+    JSColorChooser chooser1 = new JSColorChooser();
+    chooser1.setText("Chooser Color Button");
+    chooser1.addActionListener(event -> {
+      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
+      $Image img = ($Image) document.createElement("img");
+      img.width = 100;
+      img.height = 100;
+      img.style.background = chooser1.getColor().getHEX();
+      document.querySelector(".center").appendChild(img);
+    });
+    ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser1, null);
+    
+    JSColorChooser chooser2 = new JSColorChooser();
+    chooser2.setText("Chooser Color Button 2");
+    chooser2.addActionListener(event -> {
+      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
+      $Image img = ($Image) document.createElement("img");
+      img.width = 100;
+      img.height = 100;
+      img.style.background = chooser2.getColor().getHEX();
+      document.querySelector(".center").appendChild(img);
+    });
+    ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser2, null);
   }
 
   /**
