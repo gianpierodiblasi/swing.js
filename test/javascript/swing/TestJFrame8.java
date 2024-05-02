@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import simulation.dom.$HTMLElement;
 import simulation.dom.$Image;
 
 /**
@@ -62,19 +61,19 @@ public class TestJFrame8 extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.open(false, false);
+    this.open(JSFileChooser.SINGLE_SELECTION);
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void jButton2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    this.open(true, false);
+    this.open(JSFileChooser.MULTIPLE_SELECTION);
   }//GEN-LAST:event_jButton2ActionPerformed
 
   private void jButton3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    this.open(false, true);
+    this.open(JSFileChooser.FOLDER_SELECTION);
   }//GEN-LAST:event_jButton3ActionPerformed
 
-  private void open(boolean multiple, boolean folder) {
-    JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", multiple, folder, 0, files -> {
+  private void open(int selectionType) {
+    JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
       document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
 
       files.forEach(file -> {

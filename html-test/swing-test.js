@@ -1707,24 +1707,24 @@ class TestJSFrame8 extends JSFrame {
   // </editor-fold>//GEN-END:initComponents
    jButton1ActionPerformed(evt) {
     // GEN-FIRST:event_jButton1ActionPerformed
-    this.open(false, false);
+    this.open(JSFileChooser.SINGLE_SELECTION);
   }
 
   // GEN-LAST:event_jButton1ActionPerformed
    jButton2ActionPerformed(evt) {
     // GEN-FIRST:event_jButton2ActionPerformed
-    this.open(true, false);
+    this.open(JSFileChooser.MULTIPLE_SELECTION);
   }
 
   // GEN-LAST:event_jButton2ActionPerformed
    jButton3ActionPerformed(evt) {
     // GEN-FIRST:event_jButton3ActionPerformed
-    this.open(false, true);
+    this.open(JSFileChooser.FOLDER_SELECTION);
   }
 
   // GEN-LAST:event_jButton3ActionPerformed
-   open(multiple, folder) {
-    JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", multiple, folder, 0, files => {
+   open(selectionType) {
+    JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files => {
       document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
       files.forEach(file => {
         let fileReader = new FileReader();
