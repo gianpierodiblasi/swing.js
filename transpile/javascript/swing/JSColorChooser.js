@@ -3,58 +3,11 @@
  *
  * @author gianpiero.diblasi
  */
-class JSColorChooser extends AbstractButton {
+class JSColorChooser {
 
   static  input = null;
 
-  /**
-   * Creates a button-like color chooser
-   */
   constructor() {
-    super(document.createElement("input"));
-    this.setAttribute("type", "color");
-    this.cssAddClass("jscolorchooser");
-    this.addEventListener("change", event => this.onclick());
-  }
-
-  /**
-   * Sets the text
-   *
-   * @param text The text
-   */
-   setText(text) {
-    this.setAttribute("text-value", text);
-  }
-
-  /**
-   * Set the content area filled
-   *
-   * @param b true to fill the area, false otherwise
-   */
-   setContentAreaFilled(b) {
-    if (b) {
-      this.cssRemoveClass("jscolorchooser-outline");
-    } else {
-      this.cssAddClass("jscolorchooser-outline");
-    }
-  }
-
-  /**
-   * Sets the color
-   *
-   * @param color The color
-   */
-   setColor(color) {
-    this.setProperty("value", color ? color.getHEX() : "");
-  }
-
-  /**
-   * Returns the color
-   *
-   * @return The color
-   */
-   getColor() {
-    return Color.fromHEX(this.getProperty("value"));
   }
 
   /**

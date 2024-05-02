@@ -12,59 +12,11 @@ import static simulation.js.$Globals.$exists;
  *
  * @author gianpiero.diblasi
  */
-public class JSColorChooser extends AbstractButton {
+public class JSColorChooser {
 
   private static $HTMLElement input;
 
-  /**
-   * Creates a button-like color chooser
-   */
-  public JSColorChooser() {
-    super(document.createElement("input"));
-    this.setAttribute("type", "color");
-
-    this.cssAddClass("jscolorchooser");
-    this.addEventListener("change", event -> this.onclick());
-  }
-
-  /**
-   * Sets the text
-   *
-   * @param text The text
-   */
-  public void setText(String text) {
-    this.setAttribute("text-value", text);
-  }
-
-  /**
-   * Set the content area filled
-   *
-   * @param b true to fill the area, false otherwise
-   */
-  public void setContentAreaFilled(boolean b) {
-    if (b) {
-      this.cssRemoveClass("jscolorchooser-outline");
-    } else {
-      this.cssAddClass("jscolorchooser-outline");
-    }
-  }
-
-  /**
-   * Sets the color
-   *
-   * @param color The color
-   */
-  public void setColor(Color color) {
-    this.setProperty("value", $exists(color) ? color.getHEX() : "");
-  }
-
-  /**
-   * Returns the color
-   *
-   * @return The color
-   */
-  public Color getColor() {
-    return Color.fromHEX(this.getProperty("value"));
+  private JSColorChooser() {
   }
 
   /**

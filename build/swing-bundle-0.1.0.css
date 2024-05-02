@@ -71,54 +71,6 @@
 .jscheckbox:has(input:disabled), .jscheckbox input:disabled {
   filter: opacity(0.5);
   cursor: default;
-}.jscolorchooser {
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  color: var(--main-action-color);
-  background: var(--main-action-bgcolor);
-
-  border: 2px solid var(--main-action-bgcolor);
-  padding: .5rem;
-  border-radius: var(--roundness);
-  cursor: pointer;
-  display: flex;
-  column-gap: .5rem;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  width: auto;
-  height: auto;
-}
-.jscolorchooser::after {
-  content: attr(text-value);
-}
-.jscolorchooser::-webkit-color-swatch-wrapper {
-  display: none;
-}
-
-.jscolorchooser:hover, .jscolorchooser:focus {
-  filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
-}
-.jscolorchooser:active {
-  filter: saturate(0.5) drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
-}
-.jscolorchooser:disabled {
-  filter: opacity(0.5);
-  cursor: default;
-}
-
-.jscolorchooser-outline {
-  color: var(--main-color);
-  background: var(--main-bgcolor);
-}
-.jscolorchooser-outline:active {
-  background-image: linear-gradient(
-    90deg,
-    var(--main-action-bgcolor) 0,
-    var(--main-bgcolor) 15%,
-    var(--main-bgcolor) 85%,
-    var(--main-action-bgcolor) 100%
-    );
 }.jscombobox {
   font-family: var(--font-family);
   font-size: var(--font-size);
