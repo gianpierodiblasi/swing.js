@@ -4,7 +4,6 @@ import def.dom.FileReader;
 import static def.dom.Globals.document;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import javascript.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import simulation.dom.$Image;
@@ -41,11 +40,9 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton1 = new JButton();
     jButton2 = new JButton();
     jButton3 = new JButton();
-    jButton4 = new JButton();
-    jButton5 = new JButton();
     jPanel2 = new JPanel();
 
-    setTitle("Test Chooser");
+    setTitle("Test File Chooser");
 
     jButton1.setText("Open Single File");
     jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -58,14 +55,6 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton3.setText("Open Files in Folder");
     jButton3.addActionListener(this::jButton3ActionPerformed);
     jPanel1.add(jButton3);
-
-    jButton4.setText("Choose Color");
-    jButton4.addActionListener(this::jButton4ActionPerformed);
-    jPanel1.add(jButton4);
-
-    jButton5.setText("Choose Color With Default");
-    jButton5.addActionListener(this::jButton5ActionPerformed);
-    jPanel1.add(jButton5);
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     getContentPane().add(jPanel2, BorderLayout.CENTER);
@@ -82,14 +71,6 @@ public class TestJFrame8 extends javax.swing.JFrame {
   private void jButton3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     this.open(JSFileChooser.FOLDER_SELECTION);
   }//GEN-LAST:event_jButton3ActionPerformed
-
-  private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    this.choose(null);
-  }//GEN-LAST:event_jButton4ActionPerformed
-
-  private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    this.choose(new Color(255, 0, 0,255));
-  }//GEN-LAST:event_jButton5ActionPerformed
 
   private void open(int selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
@@ -109,23 +90,10 @@ public class TestJFrame8 extends javax.swing.JFrame {
     });
   }
 
-  private void choose(Color color) {
-    JSColorChooser.showDialog(color, c -> {
-      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-      $Image img = ($Image) document.createElement("img");
-      img.width = 100;
-      img.height = 100;
-      img.style.background = c.getRGB_HEX();
-      document.querySelector(".center").appendChild(img);
-    });
-  }
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
   private JButton jButton2;
   private JButton jButton3;
-  private JButton jButton4;
-  private JButton jButton5;
   private JPanel jPanel1;
   private JPanel jPanel2;
   // End of variables declaration//GEN-END:variables
