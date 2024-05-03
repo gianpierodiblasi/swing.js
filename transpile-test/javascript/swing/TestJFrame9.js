@@ -24,8 +24,16 @@ class TestJFrame9 extends JFrame {
     hslPanel.addChangeListener(event => console.log(hslPanel.getSelectedColor().getRGB_HEX()));
     swatchesPanel.addActionListener(event => hslPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
     (SwingJS.convert(this.jPanel2)).add(hslPanel, null);
+    let rgbanel = new JSColorRGBPanel();
+    rgbanel.addChangeListener(event => console.log(rgbanel.getSelectedColor().getRGB_HEX()));
+    swatchesPanel.addActionListener(event => rgbanel.setSelectedColor(swatchesPanel.getSelectedColor()));
+    (SwingJS.convert(this.jPanel2)).add(rgbanel, null);
     hsvPanel.addChangeListener(event => hslPanel.setSelectedColor(hsvPanel.getSelectedColor()));
+    hsvPanel.addChangeListener(event => rgbanel.setSelectedColor(hsvPanel.getSelectedColor()));
     hslPanel.addChangeListener(event => hsvPanel.setSelectedColor(hslPanel.getSelectedColor()));
+    hslPanel.addChangeListener(event => rgbanel.setSelectedColor(hslPanel.getSelectedColor()));
+    rgbanel.addChangeListener(event => hsvPanel.setSelectedColor(rgbanel.getSelectedColor()));
+    rgbanel.addChangeListener(event => hslPanel.setSelectedColor(rgbanel.getSelectedColor()));
   }
 
   /**
