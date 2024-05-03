@@ -17,6 +17,8 @@ class TestJFrame9 extends JFrame {
     swatchesPanel.addActionListener(event => console.log(swatchesPanel.getSelectedColor().getRGB_HEX()));
     (SwingJS.convert(this.jPanel2)).add(swatchesPanel, null);
     let hsvPanel = new JSColorHSVPanel();
+    hsvPanel.addChangeListener(event => console.log(hsvPanel.getSelectedColor().getRGB_HEX()));
+    swatchesPanel.addActionListener(event => hsvPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
     (SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
   }
 

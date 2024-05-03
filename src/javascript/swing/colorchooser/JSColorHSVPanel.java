@@ -4,6 +4,7 @@ import def.dom.CanvasGradient;
 import def.dom.CanvasPattern;
 import static def.dom.Globals.document;
 import def.dom.ImageData;
+import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
 import javascript.awt.GridBagConstraints;
@@ -16,9 +17,13 @@ import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
 import javascript.swing.SpinnerNumberModel;
+import javascript.swing.event.ChangeEvent;
+import javascript.swing.event.ChangeListener;
 import javascript.util.Translations;
 import jsweet.util.union.Union4;
 import simulation.dom.$CanvasRenderingContext2D;
+import static simulation.js.$Globals.$typeof;
+import static simulation.js.$Globals.parseInt;
 import simulation.js.$Uint8Array;
 
 /**
@@ -44,6 +49,11 @@ public class JSColorHSVPanel extends JSPanel {
 
   private final JSComponent rect = new JSComponent(document.createElement("canvas"));
   private final $CanvasRenderingContext2D ctxRect = this.rect.invoke("getContext('2d')");
+
+  private final Array<ChangeListener> listeners = new Array<>();
+
+  private boolean squareDown;
+  private boolean rectDown;
 
   private static final int SQUARE_SIZE = 180;
   private static final int RECT_WIDTH = 25;
@@ -147,6 +157,10 @@ public class JSColorHSVPanel extends JSPanel {
 
     this.square.setProperty("width", "" + JSColorHSVPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSColorHSVPanel.SQUARE_SIZE);
+    this.square.getStyle().cursor = "pointer";
+    this.square.addEventListener("mousedown", event -> this.squareEvent((MouseEvent) event, "down"));
+    this.square.addEventListener("mousemove", event -> this.squareEvent((MouseEvent) event, "move"));
+    this.square.addEventListener("mouseup", event -> this.squareEvent((MouseEvent) event, "up"));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
@@ -156,6 +170,10 @@ public class JSColorHSVPanel extends JSPanel {
 
     this.rect.setProperty("width", "" + JSColorHSVPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSColorHSVPanel.RECT_HEIGHT);
+    this.rect.getStyle().cursor = "pointer";
+    this.rect.addEventListener("mousedown", event -> this.rectEvent((MouseEvent) event, "down"));
+    this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
+    this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 0;
@@ -166,14 +184,71 @@ public class JSColorHSVPanel extends JSPanel {
     this.drawAll();
   }
 
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+  public Color getSelectedColor() {
+    Array<Double> hsv = new Array<>();
+    Array<Integer> rgb = new Array<>();
+
+    hsv.$set(0, this.hueSpinner.getValue() / 360);
+    hsv.$set(1, this.saturationSpinner.getValue() / 100);
+    hsv.$set(2, this.valueSpinner.getValue() / 100);
+    Color.HSVtoRGB(hsv, rgb);
+
+    return new Color(rgb.$get(0), rgb.$get(1), rgb.$get(2), 255);
+  }
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+  public void setSelectedColor(Color color) {
+    Array<Integer> rgb = new Array<>();
+    Array<Double> hsv = new Array<>();
+
+    rgb.$set(0, color.red);
+    rgb.$set(1, color.green);
+    rgb.$set(2, color.blue);
+    Color.RGBtoHSV(rgb, hsv);
+
+    this.setColor(360 * hsv.$get(0), 100 * hsv.$get(1), 100 * hsv.$get(2));
+  }
+
+  /**
+   * Adds a change listener
+   *
+   * @param listener The listener
+   */
+  public void addChangeListener(ChangeListener listener) {
+    this.listeners.push(listener);
+  }
+
+  private void onchange() {
+    ChangeEvent event = new ChangeEvent();
+
+    this.listeners.forEach(listener -> {
+      if ($typeof(listener, "function")) {
+        listener.$apply(event);
+      } else {
+        listener.stateChanged(event);
+      }
+    });
+  }
+
   private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
     spinner.setValue(slider.getValue());
     this.drawAll();
+    this.onchange();
   }
 
   private void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
     slider.setValue((int) spinner.getValue());
     this.drawAll();
+    this.onchange();
   }
 
   private void drawAll() {
@@ -314,6 +389,72 @@ public class JSColorHSVPanel extends JSPanel {
     this.ctxRect.strokeStyle = this.$getStrokeStyle("white");
     this.ctxRect.setLineDash(dash);
     this.ctxRect.stroke();
+  }
+
+  private void squareEvent(MouseEvent event, String type) {
+    boolean doit = false;
+    switch (type) {
+      case "down":
+        this.squareDown = true;
+        doit = true;
+        break;
+      case "move":
+        doit = this.squareDown;
+        break;
+      case "up":
+        this.squareDown = false;
+        doit = true;
+        break;
+    }
+
+    if (!doit) {
+    } else if (this.hue.isSelected()) {
+      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE);
+    } else if (this.saturation.isSelected()) {
+      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE);
+    } else if (this.value.isSelected()) {
+      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue());
+    }
+  }
+
+  private void rectEvent(MouseEvent event, String type) {
+    boolean doit = false;
+    switch (type) {
+      case "down":
+        this.rectDown = true;
+        doit = true;
+        break;
+      case "move":
+        doit = this.rectDown;
+        break;
+      case "up":
+        this.rectDown = false;
+        doit = true;
+        break;
+    }
+
+    if (!doit) {
+    } else if (this.hue.isSelected()) {
+      this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue());
+    } else if (this.saturation.isSelected()) {
+      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue());
+    } else if (this.value.isSelected()) {
+      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE);
+    }
+  }
+
+  private void setColor(double h, double s, double v) {
+    this.hueSlider.setValue(parseInt(h));
+    this.hueSpinner.setValue(parseInt(h));
+
+    this.satutationSlider.setValue(parseInt(s));
+    this.saturationSpinner.setValue(parseInt(s));
+
+    this.valueSlider.setValue(parseInt(v));
+    this.valueSpinner.setValue(parseInt(v));
+
+    this.drawAll();
+    this.onchange();
   }
 
   private String getStrokeStyle(String style) {
