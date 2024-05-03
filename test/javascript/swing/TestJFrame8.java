@@ -88,7 +88,7 @@ public class TestJFrame8 extends javax.swing.JFrame {
   }//GEN-LAST:event_jButton4ActionPerformed
 
   private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    this.choose(new Color(255, 0, 0));
+    this.choose(new Color(255, 0, 0,255));
   }//GEN-LAST:event_jButton5ActionPerformed
 
   private void open(int selectionType) {
@@ -115,7 +115,7 @@ public class TestJFrame8 extends javax.swing.JFrame {
       $Image img = ($Image) document.createElement("img");
       img.width = 100;
       img.height = 100;
-      img.style.background = c.getHEX();
+      img.style.background = c.getRGB_HEX();
       document.querySelector(".center").appendChild(img);
     });
   }

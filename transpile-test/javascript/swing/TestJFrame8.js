@@ -75,7 +75,7 @@ class TestJFrame8 extends JFrame {
   // GEN-LAST:event_jButton4ActionPerformed
    jButton5ActionPerformed(evt) {
     // GEN-FIRST:event_jButton5ActionPerformed
-    this.choose(new Color(255, 0, 0));
+    this.choose(new Color(255, 0, 0, 255));
   }
 
   // GEN-LAST:event_jButton5ActionPerformed
@@ -101,7 +101,7 @@ class TestJFrame8 extends JFrame {
       let img = document.createElement("img");
       img.width = 100;
       img.height = 100;
-      img.style.background = c.getHEX();
+      img.style.background = c.getRGB_HEX();
       document.querySelector(".center").appendChild(img);
     });
   }

@@ -22,7 +22,7 @@ class JSColorChooser {
     JSColorChooser.input.classList.add("jscolorchooser-static");
     JSColorChooser.input.setAttribute("type", "color");
     JSColorChooser.input.style.display = "none";
-    JSColorChooser.input["value"] = color ? color.getHEX() : "";
+    JSColorChooser.input["value"] = color ? color.getRGB_HEX() : "";
     JSColorChooser.input.onchange = (event) => JSColorChooser.onchange(JSColorChooser.input.value, response);
     document.body.appendChild(JSColorChooser.input);
     let event = document.createEvent("MouseEvents");
@@ -33,7 +33,7 @@ class JSColorChooser {
   static  onchange(value, response) {
     document.body.removeChild(JSColorChooser.input);
     if (response) {
-      response(Color.fromHEX(value));
+      response(Color.fromRGB_HEX(value));
     }
     return null;
   }

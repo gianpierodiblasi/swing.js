@@ -32,7 +32,7 @@ public class JSColorChooser {
     JSColorChooser.input.classList.add("jscolorchooser-static");
     JSColorChooser.input.setAttribute("type", "color");
     JSColorChooser.input.style.display = "none";
-    JSColorChooser.input.$set("value", $exists(color) ? color.getHEX() : "");
+    JSColorChooser.input.$set("value", $exists(color) ? color.getRGB_HEX(): "");
     JSColorChooser.input.onchange = (event) -> JSColorChooser.onchange(JSColorChooser.input.value, response);
 
     document.body.appendChild(JSColorChooser.input);
@@ -46,7 +46,7 @@ public class JSColorChooser {
     document.body.removeChild(JSColorChooser.input);
 
     if ($exists(response)) {
-      response.$apply(Color.fromHEX(value));
+      response.$apply(Color.fromRGB_HEX(value));
     }
     return null;
   }
