@@ -1,7 +1,10 @@
 package javascript.swing;
 
+import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import javascript.SwingJS;
+import javascript.swing.colorchooser.JSColorSwatchesPanel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,6 +25,9 @@ public class TestJFrame9 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
+    JSColorSwatchesPanel jsColorSwatchesPanel = new JSColorSwatchesPanel();
+    jsColorSwatchesPanel.addActionListener(event -> console.log(jsColorSwatchesPanel.getSelectedColor().getRGB_HEX()));
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(jsColorSwatchesPanel, null);
   }
 
   /**
@@ -77,7 +83,6 @@ public class TestJFrame9 extends javax.swing.JFrame {
 //      });
 //    });
 //  }
-
 //  private void choose(Color color) {
 //    JSColorChooser.showDialog(color, c -> {
 //      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));

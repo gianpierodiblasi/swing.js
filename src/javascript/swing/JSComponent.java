@@ -35,7 +35,7 @@ public class JSComponent {
    * @param color The color
    */
   public void setBackground(Color color) {
-    this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
+    this.element.style.backgroundColor = color.getRGB_HEX();
   }
 
   /**

@@ -22,7 +22,7 @@ class JSComponent {
    * @param color The color
    */
    setBackground(color) {
-    this.element.style.backgroundColor = "rgb(" + color.red + ", " + color.green + ", " + color.blue + ")";
+    this.element.style.backgroundColor = color.getRGB_HEX();
   }
 
   /**
