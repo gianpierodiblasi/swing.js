@@ -388,7 +388,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i26" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#invoke(java.lang.String)">invoke</a></span>&#8203;(java.lang.String&nbsp;method)</code></th>
 <td class="colLast">
 <div class="block">Invokes a method of the HTML element</div>
@@ -585,11 +585,15 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>invoke</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;invoke&#8203;(java.lang.String&nbsp;method)</pre>
+<pre class="methodSignature">public&nbsp;&lt;T&gt;&nbsp;T&nbsp;invoke&#8203;(java.lang.String&nbsp;method)</pre>
 <div class="block">Invokes a method of the HTML element</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the return value</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>method</code> - The method name</dd>
+<dd><code>method</code> - The method name (with parenthesis)</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The return value of the method</dd>
 </dl>
 </li>
 </ul>

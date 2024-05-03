@@ -2,6 +2,7 @@ javascript
 javascript.awt
 javascript.awt.event
 javascript.swing
+javascript.swing.colorchooser
 javascript.swing.event
 javascript.swing.MnR
 javascript.util
