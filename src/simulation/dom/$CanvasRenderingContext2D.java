@@ -1,6 +1,7 @@
 package simulation.dom;
 
 import def.dom.CanvasRenderingContext2D;
+import def.js.Array;
 
 /**
  * The simulation of the CanvasRenderingContext2D object
@@ -11,13 +12,14 @@ public class $CanvasRenderingContext2D extends CanvasRenderingContext2D {
 
 //  public void stroke($Path2D path) {
 //  }
-
 //  public void fill($Path2D path) {
 //  }
-  
   public void drawImage($OffscreenCanvas canvas, double x, double y) {
   }
 
+  public void setLineDash(Array<Double> array) {
+  }
+  
 //  public CanvasGradient createConicGradient(double angle, double x, double y) {
 //    return null;
 //  }
