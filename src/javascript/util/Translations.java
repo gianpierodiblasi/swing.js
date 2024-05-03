@@ -22,6 +22,10 @@ public class Translations {
   public static String JSColorChooser_RED = "";
   public static String JSColorChooser_GREEN = "";
   public static String JSColorChooser_BLUE = "";
+  public static String JSColorChooser_CYAN = "";
+  public static String JSColorChooser_MAGENTA = "";
+  public static String JSColorChooser_YELLOW = "";
+  public static String JSColorChooser_BLACK = "";
 
   static {
     switch (navigator.language.substring(0, 2)) {
@@ -38,6 +42,10 @@ public class Translations {
         Translations.JSColorChooser_RED = "Red";
         Translations.JSColorChooser_GREEN = "Green";
         Translations.JSColorChooser_BLUE = "Blue";
+        Translations.JSColorChooser_CYAN = "Cyan";
+        Translations.JSColorChooser_MAGENTA = "Magenta";
+        Translations.JSColorChooser_YELLOW = "Yellow";
+        Translations.JSColorChooser_BLACK = "Black";
         break;
       case "it":
         Translations.JSOptionPane_OK = "OK";
@@ -51,6 +59,10 @@ public class Translations {
         Translations.JSColorChooser_RED = "Rosso";
         Translations.JSColorChooser_GREEN = "Verde";
         Translations.JSColorChooser_BLUE = "Blu";
+        Translations.JSColorChooser_CYAN = "Ciano";
+        Translations.JSColorChooser_MAGENTA = "Magenta";
+        Translations.JSColorChooser_YELLOW = "Giallo";
+        Translations.JSColorChooser_BLACK = "Nero";
         break;
     }
   }
