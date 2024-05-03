@@ -69,7 +69,7 @@ class AbstractComboBoxModelAndRenderer {
       this.combobox.clearChildContentByQuery("summary");
       this.combobox.appendNodeChildInTree("summary", this.render(element));
       this.combobox.removeAttribute("open");
-      this.combobox.invoke("querySelector('summary').focus");
+      this.combobox.invoke("querySelector('summary').focus()");
       this.combobox.onclick();
     });
     this.combobox.appendNodeChildInTree("ul", li);

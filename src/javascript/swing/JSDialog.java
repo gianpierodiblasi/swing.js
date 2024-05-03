@@ -79,9 +79,9 @@ public class JSDialog extends JSComponent {
    */
   public void setVisible(boolean b) {
     if (!b) {
-      this.invoke("close");
+      this.invoke("close()");
     } else {
-      this.invoke("showModal");
+      this.invoke("showModal()");
     }
   }
 

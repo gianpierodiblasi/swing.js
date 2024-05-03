@@ -54,10 +54,14 @@ public class JSComponent {
   /**
    * Invokes a method of the HTML element
    *
-   * @param method The method name
+   * @param <T> The type of the return value
+   * @param method The method name (with parenthesis)
+   * @return The return value of the method
    */
-  public void invoke(String method) {
-    eval("this.element." + method + "();");
+  public <T> T invoke(String method) {
+    T result = null;
+    eval("result = this.element." + method + ";");
+    return result;
   }
 
   /**
