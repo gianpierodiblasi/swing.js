@@ -31,7 +31,7 @@ public class Color {
    *
    * @return The RGB integer representing this Color
    */
-  public Integer getRGB() {
+  public int getRGB() {
     return this.red << 16 | this.green << 8 | this.blue;
   }
 
@@ -40,7 +40,7 @@ public class Color {
    *
    * @return The RGBA integer representing this Color
    */
-  public Integer getRGBA() {
+  public int getRGBA() {
     return this.red << 24 | this.green << 16 | this.blue << 8 | this.alpha;
   }
 
@@ -49,7 +49,7 @@ public class Color {
    *
    * @return The ARGB integer representing this Color
    */
-  public Integer getARGB() {
+  public int getARGB() {
     return this.alpha << 24 | this.red << 16 | this.green << 8 | this.blue;
   }
 
