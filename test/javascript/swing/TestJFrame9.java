@@ -4,6 +4,7 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
+import javascript.swing.colorchooser.JSColorHSVPanel;
 import javascript.swing.colorchooser.JSColorSwatchesPanel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -25,9 +26,12 @@ public class TestJFrame9 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
-    JSColorSwatchesPanel jsColorSwatchesPanel = new JSColorSwatchesPanel();
-    jsColorSwatchesPanel.addActionListener(event -> console.log(jsColorSwatchesPanel.getSelectedColor().getRGB_HEX()));
-    ((JSPanel) SwingJS.convert(this.jPanel2)).add(jsColorSwatchesPanel, null);
+    JSColorSwatchesPanel swatchesPanel = new JSColorSwatchesPanel();
+    swatchesPanel.addActionListener(event -> console.log(swatchesPanel.getSelectedColor().getRGB_HEX()));
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(swatchesPanel, null);
+
+    JSColorHSVPanel hsvPanel = new JSColorHSVPanel();
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
   }
 
   /**

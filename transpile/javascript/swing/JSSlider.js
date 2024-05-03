@@ -157,7 +157,7 @@ class JSSlider extends JSComponent {
    * @param value The value
    */
    setValue(value) {
-    this.slider.setAttribute("value", "" + value);
+    this.slider.value = "" + value;
   }
 
   /**
@@ -166,7 +166,7 @@ class JSSlider extends JSComponent {
    * @return The value
    */
    getValue() {
-    return (this.slider).valueAsNumber;
+    return this.slider.valueAsNumber;
   }
 
    setEnabled(b) {

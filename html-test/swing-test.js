@@ -1766,9 +1766,11 @@ class TestJSFrame9 extends JSFrame {
   }
 
    postInitComponents() {
-    let jsColorSwatchesPanel = new JSColorSwatchesPanel();
-    jsColorSwatchesPanel.addActionListener(event => console.log(jsColorSwatchesPanel.getSelectedColor().getRGB_HEX()));
-    (SwingJS.convert(this.jPanel2)).add(jsColorSwatchesPanel, null);
+    let swatchesPanel = new JSColorSwatchesPanel();
+    swatchesPanel.addActionListener(event => console.log(swatchesPanel.getSelectedColor().getRGB_HEX()));
+    (SwingJS.convert(this.jPanel2)).add(swatchesPanel, null);
+    let hsvPanel = new JSColorHSVPanel();
+    (SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
   }
 
   /**

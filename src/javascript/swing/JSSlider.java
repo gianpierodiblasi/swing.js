@@ -32,7 +32,7 @@ public class JSSlider extends JSComponent {
 
   private final Array<ChangeListener> listeners = new Array<>();
 
-  private final HTMLElement slider;
+  private final $HTMLElement slider;
   private final $HTMLElement dataList;
   private final String dataListID = "DataList_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
 
@@ -42,7 +42,7 @@ public class JSSlider extends JSComponent {
     this.cssAddClass("jsslider");
     this.cssAddClass("jsslider-horizontal");
 
-    this.slider = document.createElement("input");
+    this.slider = ($HTMLElement) document.createElement("input");
     this.slider.setAttribute("type", "range");
     this.slider.setAttribute("list", this.dataListID);
     this.slider.addEventListener("input", event -> this.onchange(true));
@@ -170,7 +170,7 @@ public class JSSlider extends JSComponent {
    * @param value The value
    */
   public void setValue(int value) {
-    this.slider.setAttribute("value", "" + value);
+    this.slider.value = "" + value;
   }
 
   /**
@@ -179,7 +179,7 @@ public class JSSlider extends JSComponent {
    * @return The value
    */
   public int getValue() {
-    return (int) (($HTMLElement) this.slider).valueAsNumber;
+    return (int) this.slider.valueAsNumber;
   }
 
   @Override

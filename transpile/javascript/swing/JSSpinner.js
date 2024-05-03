@@ -15,6 +15,8 @@ class JSSpinner extends JSComponent {
 
    rand = 0.0;
 
+   valueIsAdjusting = false;
+
    listeners = new Array();
 
   constructor() {
@@ -23,7 +25,8 @@ class JSSpinner extends JSComponent {
     this.input.setAttribute("type", "number");
     this.input.setAttribute("value", "0");
     this.input.style.setProperty("grid-area", "num");
-    this.input.addEventListener("input", event => this.onchange());
+    this.input.addEventListener("input", event => this.onchange(true));
+    this.input.addEventListener("change", event => this.onchange(false));
     this.appendNodeChild(this.input);
     this.up.textContent = "\u25B2";
     this.up.style.setProperty("grid-area", "up");
@@ -56,11 +59,14 @@ class JSSpinner extends JSComponent {
     let rnd = this.rand;
     setTimeout(() => {
       if (!this.run || rnd !== this.rand) {
+        this.onchange(false);
       } else if (isUp) {
         this.input.stepUp();
+        this.onchange(true);
         this.spinAgain(isUp, 25);
       } else {
         this.input.stepDown();
+        this.onchange(true);
         this.spinAgain(isUp, 25);
       }
     }, delay);
@@ -84,7 +90,8 @@ class JSSpinner extends JSComponent {
     this.listeners.push(listener);
   }
 
-   onchange() {
+   onchange(b) {
+    this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {
       if (typeof listener === "function") {
@@ -93,7 +100,6 @@ class JSSpinner extends JSComponent {
         listener.stateChanged(event);
       }
     });
-    return null;
   }
 
   /**
@@ -112,6 +118,15 @@ class JSSpinner extends JSComponent {
    */
    getValue() {
     return this.input.valueAsNumber;
+  }
+
+  /**
+   * Clone of javax.swing.JSpinner.getValueIsAdjusting
+   *
+   * @return true if value is adjusting, false otherwise
+   */
+   getValueIsAdjusting() {
+    return this.valueIsAdjusting;
   }
 
    setEnabled(b) {
