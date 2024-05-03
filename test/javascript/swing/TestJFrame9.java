@@ -4,6 +4,7 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
+import javascript.swing.colorchooser.JSColorHSLPanel;
 import javascript.swing.colorchooser.JSColorHSVPanel;
 import javascript.swing.colorchooser.JSColorSwatchesPanel;
 import javax.swing.JButton;
@@ -24,16 +25,24 @@ public class TestJFrame9 extends javax.swing.JFrame {
     this.initComponents();
     this.postInitComponents();
   }
-  
+
   private void postInitComponents() {
     JSColorSwatchesPanel swatchesPanel = new JSColorSwatchesPanel();
     swatchesPanel.addActionListener(event -> console.log(swatchesPanel.getSelectedColor().getRGB_HEX()));
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(swatchesPanel, null);
-    
+
     JSColorHSVPanel hsvPanel = new JSColorHSVPanel();
     hsvPanel.addChangeListener(event -> console.log(hsvPanel.getSelectedColor().getRGB_HEX()));
     swatchesPanel.addActionListener(event -> hsvPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
+
+    JSColorHSLPanel hslPanel = new JSColorHSLPanel();
+    hslPanel.addChangeListener(event -> console.log(hslPanel.getSelectedColor().getRGB_HEX()));
+    swatchesPanel.addActionListener(event -> hslPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(hslPanel, null);
+
+    hsvPanel.addChangeListener(event -> hslPanel.setSelectedColor(hsvPanel.getSelectedColor()));
+    hslPanel.addChangeListener(event -> hsvPanel.setSelectedColor(hslPanel.getSelectedColor()));
   }
 
   /**

@@ -1773,6 +1773,12 @@ class TestJSFrame9 extends JSFrame {
     hsvPanel.addChangeListener(event => console.log(hsvPanel.getSelectedColor().getRGB_HEX()));
     swatchesPanel.addActionListener(event => hsvPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
     (SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
+    let hslPanel = new JSColorHSLPanel();
+    hslPanel.addChangeListener(event => console.log(hslPanel.getSelectedColor().getRGB_HEX()));
+    swatchesPanel.addActionListener(event => hslPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
+    (SwingJS.convert(this.jPanel2)).add(hslPanel, null);
+    hsvPanel.addChangeListener(event => hslPanel.setSelectedColor(hsvPanel.getSelectedColor()));
+    hslPanel.addChangeListener(event => hsvPanel.setSelectedColor(hslPanel.getSelectedColor()));
   }
 
   /**

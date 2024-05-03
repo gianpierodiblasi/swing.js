@@ -18,6 +18,7 @@ public class Translations {
   public static String JSColorChooser_HUE = "";
   public static String JSColorChooser_SATURATION = "";
   public static String JSColorChooser_VALUE = "";
+  public static String JSColorChooser_LIGHTNESS = "";
 
   static {
     switch (navigator.language.substring(0, 2)) {
@@ -30,6 +31,7 @@ public class Translations {
         Translations.JSColorChooser_HUE = "Hue";
         Translations.JSColorChooser_SATURATION = "Saturation";
         Translations.JSColorChooser_VALUE = "Value";
+        Translations.JSColorChooser_LIGHTNESS = "Lightness";
         break;
       case "it":
         Translations.JSOptionPane_OK = "OK";
@@ -39,6 +41,7 @@ public class Translations {
         Translations.JSColorChooser_HUE = "Tonalit\u00E0";
         Translations.JSColorChooser_SATURATION = "Saturazione";
         Translations.JSColorChooser_VALUE = "Valore";
+        Translations.JSColorChooser_LIGHTNESS = "Luminosit\u00E0";
         break;
     }
   }
