@@ -21,7 +21,6 @@ import simulation.js.$Uint8Array;
  */
 public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
 
-  private final ButtonGroup buttonGroup = new ButtonGroup();
   private final JSRadioButton red = new JSRadioButton();
   private final JSSlider redSlider = new JSSlider();
   private final JSSpinner redSpinner = new JSSpinner();
@@ -41,24 +40,9 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   public JSColorRGBPanel() {
     super();
 
-    this.setLayout(new GridBagLayout());
-    this.buttonGroup.add(this.red);
-    this.buttonGroup.add(this.green);
-    this.buttonGroup.add(this.blue);
-
-    this.red.setText(Translations.JSColorChooser_RED);
-    this.red.setSelected(true);
-    this.red.addActionListener(event -> this.drawAll());
-    this.addComponent(this.red, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-
-    this.green.setText(Translations.JSColorChooser_GREEN);
-    this.green.addActionListener(event -> this.drawAll());
-    this.addComponent(this.green, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-
-    this.blue.setText(Translations.JSColorChooser_BLUE);
-    this.blue.addActionListener(event -> this.drawAll());
-    this.addComponent(this.blue, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-
+    this.addRadio(this.red, Translations.JSColorChooser_RED, true, 2, 0);
+    this.addRadio(this.green, Translations.JSColorChooser_GREEN, false, 2, 2);
+    this.addRadio(this.blue, Translations.JSColorChooser_BLUE, false, 2, 4);
     this.addSlider(this.redSlider, this.redSpinner, 0, 255, 2, 1);
     this.addSlider(this.greenSlider, this.greenSpinner, 0, 255, 2, 1);
     this.addSlider(this.blueSlider, this.blueSpinner, 0, 255, 2, 1);

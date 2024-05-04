@@ -4,9 +4,6 @@ import def.dom.ImageData;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
-import javascript.awt.GridBagConstraints;
-import javascript.awt.GridBagLayout;
-import javascript.swing.ButtonGroup;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
@@ -21,7 +18,6 @@ import simulation.js.$Uint8Array;
  */
 public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
-  private final ButtonGroup buttonGroup = new ButtonGroup();
   private final JSRadioButton hue = new JSRadioButton();
   private final JSSlider hueSlider = new JSSlider();
   private final JSSpinner hueSpinner = new JSSpinner();
@@ -41,24 +37,9 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   public JSColorHSVPanel() {
     super();
 
-    this.setLayout(new GridBagLayout());
-    this.buttonGroup.add(this.hue);
-    this.buttonGroup.add(this.saturation);
-    this.buttonGroup.add(this.value);
-
-    this.hue.setText(Translations.JSColorChooser_HUE);
-    this.hue.setSelected(true);
-    this.hue.addActionListener(event -> this.drawAll());
-    this.addComponent(this.hue, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-
-    this.saturation.setText(Translations.JSColorChooser_SATURATION);
-    this.saturation.addActionListener(event -> this.drawAll());
-    this.addComponent(this.saturation, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-
-    this.value.setText(Translations.JSColorChooser_VALUE);
-    this.value.addActionListener(event -> this.drawAll());
-    this.addComponent(this.value, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-
+    this.addRadio(this.hue, Translations.JSColorChooser_HUE, true, 2, 0);
+    this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
+    this.addRadio(this.value, Translations.JSColorChooser_VALUE, false, 2, 4);
     this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
     this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 1);
     this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 1);

@@ -6,9 +6,12 @@ import static def.dom.Globals.document;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.GridBagConstraints;
+import javascript.awt.GridBagLayout;
 import javascript.awt.Insets;
+import javascript.swing.ButtonGroup;
 import javascript.swing.JSComponent;
 import javascript.swing.JSPanel;
+import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
 import javascript.swing.SpinnerNumberModel;
@@ -26,6 +29,7 @@ import static simulation.js.$Globals.$typeof;
  */
 public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
+  private final ButtonGroup buttonGroup = new ButtonGroup();
   protected final JSComponent square = new JSComponent(document.createElement("canvas"));
   protected final $CanvasRenderingContext2D ctxSquare = this.square.invoke("getContext('2d')");
 
@@ -40,7 +44,8 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   protected JSAbstractColorFormatPanel() {
     super();
-
+    this.setLayout(new GridBagLayout());
+    
     this.square.setProperty("width", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
@@ -56,6 +61,15 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
     this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
     this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+  }
+
+  protected void addRadio(JSRadioButton radio, String text, boolean selected, int gridx, int gridy) {
+    this.buttonGroup.add(radio);
+    
+    radio.setText(text);
+    radio.setSelected(true);
+    radio.addActionListener(event -> this.drawAll());
+    this.addComponent(radio, gridx, gridy, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
   }
 
   protected void addSlider(JSSlider slider, JSSpinner spinner, int value, int max, int gridx, int gridy) {
@@ -74,7 +88,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
   }
 
-  protected void addComponent(JSComponent component, int gridx, int gridy, int gridwidth, int gridheight, int anchor, int fill, double weightx, double weighty, Insets insets) {
+  private void addComponent(JSComponent component, int gridx, int gridy, int gridwidth, int gridheight, int anchor, int fill, double weightx, double weighty, Insets insets) {
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = gridx;
     gridBagConstraints.gridy = gridy;
