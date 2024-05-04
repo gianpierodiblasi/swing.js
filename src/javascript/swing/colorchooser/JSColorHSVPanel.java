@@ -28,9 +28,6 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   private final JSSlider valueSlider = new JSSlider();
   private final JSSpinner valueSpinner = new JSSpinner();
 
-  private boolean squareDown;
-  private boolean rectDown;
-
   /**
    * Creates the object
    */
@@ -134,23 +131,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
       y = this.saturationSpinner.getValue() / 100;
     }
 
-    Array<Double> dash = new Array<>();
-
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorHSVPanel.SQUARE_SIZE, (1 - y) * JSColorHSVPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.$getStrokeStyle("black");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
-
-    dash.push(2.5, 2.5);
-
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorHSVPanel.SQUARE_SIZE, (1 - y) * JSColorHSVPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.$getStrokeStyle("white");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
+    this.drawCircle(x, y);
   }
 
   @Override
@@ -200,45 +181,12 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
       y = this.valueSpinner.getValue() / 100;
     }
 
-    Array<Double> dash = new Array<>();
-
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorHSVPanel.RECT_WIDTH, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.$getStrokeStyle("black");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
-
-    dash.push(2.5, 2.5);
-
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorHSVPanel.RECT_WIDTH, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.$getStrokeStyle("white");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
+    this.drawLine(y);
   }
 
   @Override
   protected void squareEvent(MouseEvent event, String type) {
-    boolean doit = false;
-    switch (type) {
-      case "down":
-        this.squareDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.squareDown;
-        break;
-      case "up":
-        this.squareDown = false;
-        doit = true;
-        break;
-    }
-
-    if (!doit) {
+    if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
     } else if (this.saturation.isSelected()) {
@@ -250,22 +198,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
   @Override
   protected void rectEvent(MouseEvent event, String type) {
-    boolean doit = false;
-    switch (type) {
-      case "down":
-        this.rectDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.rectDown;
-        break;
-      case "up":
-        this.rectDown = false;
-        doit = true;
-        break;
-    }
-
-    if (!doit) {
+    if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true);
     } else if (this.saturation.isSelected()) {

@@ -38,6 +38,9 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   private final Array<ChangeListener> listeners = new Array<>();
 
+  private boolean squareDown;
+  private boolean rectDown;
+
   protected static final int SQUARE_SIZE = 180;
   protected static final int RECT_WIDTH = 25;
   protected static final int RECT_HEIGHT = 180;
@@ -45,7 +48,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
   protected JSAbstractColorFormatPanel() {
     super();
     this.setLayout(new GridBagLayout());
-    
+
     this.square.setProperty("width", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
@@ -65,7 +68,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   protected void addRadio(JSRadioButton radio, String text, boolean selected, int gridx, int gridy) {
     this.buttonGroup.add(radio);
-    
+
     radio.setText(text);
     radio.setSelected(true);
     radio.addActionListener(event -> this.drawAll());
@@ -129,14 +132,86 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   protected abstract void drawSquareSelector();
 
+  protected void drawCircle(double x, double y) {
+    Array<Double> dash = new Array<>();
+
+    this.ctxSquare.beginPath();
+    this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
+    this.ctxSquare.closePath();
+    this.ctxSquare.strokeStyle = this.$getStrokeStyle("black");
+    this.ctxSquare.setLineDash(dash);
+    this.ctxSquare.stroke();
+
+    dash.push(2.5, 2.5);
+
+    this.ctxSquare.beginPath();
+    this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
+    this.ctxSquare.closePath();
+    this.ctxSquare.strokeStyle = this.$getStrokeStyle("white");
+    this.ctxSquare.setLineDash(dash);
+    this.ctxSquare.stroke();
+  }
+
   protected abstract void drawRect();
 
   protected abstract void drawRectSelector();
 
+  protected void drawLine(double y) {
+    Array<Double> dash = new Array<>();
+
+    this.ctxRect.beginPath();
+    this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.closePath();
+    this.ctxRect.strokeStyle = this.$getStrokeStyle("black");
+    this.ctxRect.setLineDash(dash);
+    this.ctxRect.stroke();
+
+    dash.push(2.5, 2.5);
+
+    this.ctxRect.beginPath();
+    this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.closePath();
+    this.ctxRect.strokeStyle = this.$getStrokeStyle("white");
+    this.ctxRect.setLineDash(dash);
+    this.ctxRect.stroke();
+  }
+
   protected abstract void squareEvent(MouseEvent event, String type);
+
+  protected boolean canDoItSquare(String type) {
+    switch (type) {
+      case "down":
+        this.squareDown = true;
+        return true;
+      case "move":
+        return this.squareDown;
+      case "up":
+        this.squareDown = false;
+        return true;
+      default:
+        return false;
+    }
+  }
 
   protected abstract void rectEvent(MouseEvent event, String type);
 
+  protected boolean canDoItRect(String type) {
+    switch (type) {
+      case "down":
+        this.rectDown = true;
+        return true;
+      case "move":
+        return this.rectDown;
+      case "up":
+        this.rectDown = false;
+        return true;
+      default:
+        return false;
+    }
+  }
+  
   /**
    * Adds a change listener
    *
