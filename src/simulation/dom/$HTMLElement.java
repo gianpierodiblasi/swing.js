@@ -18,11 +18,6 @@ public class $HTMLElement extends HTMLElement {
   public int selectedIndex;
   public Array<File> files;
 
-//  public void addEventListener(String event, EventListener listener, $Object options) {
-//  }
-//
-//  public void select() {
-//  }
   public void prepend(Node node) {
   }
 
