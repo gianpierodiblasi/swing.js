@@ -1,28 +1,17 @@
 package javascript.swing.colorchooser;
 
-import def.dom.CanvasGradient;
-import def.dom.CanvasPattern;
-import static def.dom.Globals.document;
 import def.dom.ImageData;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
 import javascript.awt.GridBagConstraints;
 import javascript.awt.GridBagLayout;
-import javascript.awt.Insets;
 import javascript.swing.ButtonGroup;
-import javascript.swing.JSComponent;
-import javascript.swing.JSPanel;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
 import javascript.swing.SpinnerNumberModel;
-import javascript.swing.event.ChangeEvent;
-import javascript.swing.event.ChangeListener;
 import javascript.util.Translations;
-import jsweet.util.union.Union4;
-import simulation.dom.$CanvasRenderingContext2D;
-import static simulation.js.$Globals.$typeof;
 import static simulation.js.$Globals.parseInt;
 import simulation.js.$Uint8Array;
 
@@ -31,7 +20,7 @@ import simulation.js.$Uint8Array;
  *
  * @author gianpiero.diblasi
  */
-public class JSColorHSVPanel extends JSPanel {
+public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
   private final ButtonGroup buttonGroup = new ButtonGroup();
   private final JSRadioButton hue = new JSRadioButton();
@@ -44,25 +33,14 @@ public class JSColorHSVPanel extends JSPanel {
   private final JSSlider valueSlider = new JSSlider();
   private final JSSpinner valueSpinner = new JSSpinner();
 
-  private final JSComponent square = new JSComponent(document.createElement("canvas"));
-  private final $CanvasRenderingContext2D ctxSquare = this.square.invoke("getContext('2d')");
-
-  private final JSComponent rect = new JSComponent(document.createElement("canvas"));
-  private final $CanvasRenderingContext2D ctxRect = this.rect.invoke("getContext('2d')");
-
-  private final Array<ChangeListener> listeners = new Array<>();
-
   private boolean squareDown;
   private boolean rectDown;
 
-  private static final int SQUARE_SIZE = 180;
-  private static final int RECT_WIDTH = 25;
-  private static final int RECT_HEIGHT = 180;
-
+  /**
+   * Creates the object
+   */
   public JSColorHSVPanel() {
     super();
-
-    GridBagConstraints gridBagConstraints;
 
     this.setLayout(new GridBagLayout());
     this.buttonGroup.add(this.hue);
@@ -72,114 +50,46 @@ public class JSColorHSVPanel extends JSPanel {
     this.hue.setText(Translations.JSColorChooser_HUE);
     this.hue.setSelected(true);
     this.hue.addActionListener(event -> this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.hue, gridBagConstraints);
+    this.addComponent(this.hue, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
     this.saturation.setText(Translations.JSColorChooser_SATURATION);
     this.saturation.addActionListener(event -> this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.saturation, gridBagConstraints);
+    this.addComponent(this.saturation, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
     this.value.setText(Translations.JSColorChooser_VALUE);
     this.value.addActionListener(event -> this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.value, gridBagConstraints);
+    this.addComponent(this.value, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
     this.hueSlider.setMaximum(360);
     this.hueSlider.setValue(0);
     this.hueSlider.getStyle().minWidth = "20rem";
     this.hueSlider.addChangeListener(event -> this.sliderToSpinner(this.hueSlider, this.hueSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.hueSlider, gridBagConstraints);
+    this.addComponent(this.hueSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
 
     this.satutationSlider.setValue(0);
     this.satutationSlider.getStyle().minWidth = "20rem";
     this.satutationSlider.addChangeListener(event -> this.sliderToSpinner(this.satutationSlider, this.saturationSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.satutationSlider, gridBagConstraints);
+    this.addComponent(this.satutationSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
 
     this.valueSlider.setValue(100);
     this.valueSlider.getStyle().minWidth = "20rem";
     this.valueSlider.addChangeListener(event -> this.sliderToSpinner(this.valueSlider, this.valueSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.valueSlider, gridBagConstraints);
+    this.addComponent(this.valueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
 
     this.hueSpinner.setModel(new SpinnerNumberModel(0, 0, 360, 1));
     this.hueSpinner.getStyle().minWidth = "3rem";
     this.hueSpinner.addChangeListener(event -> this.spinnerToSlider(this.hueSpinner, this.hueSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.hueSpinner, gridBagConstraints);
+    this.addComponent(this.hueSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
 
     this.saturationSpinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
     this.saturationSpinner.getStyle().minWidth = "3rem";
     this.saturationSpinner.addChangeListener(event -> this.spinnerToSlider(this.saturationSpinner, this.satutationSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.saturationSpinner, gridBagConstraints);
+    this.addComponent(this.saturationSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
 
     this.valueSpinner.setModel(new SpinnerNumberModel(100, 0, 100, 1));
     this.valueSpinner.getStyle().minWidth = "3rem";
     this.valueSpinner.addChangeListener(event -> this.spinnerToSlider(this.valueSpinner, this.valueSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.valueSpinner, gridBagConstraints);
-
-    this.square.setProperty("width", "" + JSColorHSVPanel.SQUARE_SIZE);
-    this.square.setProperty("height", "" + JSColorHSVPanel.SQUARE_SIZE);
-    this.square.getStyle().cursor = "pointer";
-    this.square.addEventListener("mousedown", event -> this.squareEvent((MouseEvent) event, "down"));
-    this.square.addEventListener("mousemove", event -> this.squareEvent((MouseEvent) event, "move"));
-    this.square.addEventListener("mouseup", event -> this.squareEvent((MouseEvent) event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.square, gridBagConstraints);
-
-    this.rect.setProperty("width", "" + JSColorHSVPanel.RECT_WIDTH);
-    this.rect.setProperty("height", "" + JSColorHSVPanel.RECT_HEIGHT);
-    this.rect.getStyle().cursor = "pointer";
-    this.rect.addEventListener("mousedown", event -> this.rectEvent((MouseEvent) event, "down"));
-    this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
-    this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.rect, gridBagConstraints);
+    this.addComponent(this.valueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
 
     this.drawAll();
   }
@@ -218,47 +128,8 @@ public class JSColorHSVPanel extends JSPanel {
     this.setColor(360 * hsv.$get(0), 100 * hsv.$get(1), 100 * hsv.$get(2), false);
   }
 
-  /**
-   * Adds a change listener
-   *
-   * @param listener The listener
-   */
-  public void addChangeListener(ChangeListener listener) {
-    this.listeners.push(listener);
-  }
-
-  private void onchange() {
-    ChangeEvent event = new ChangeEvent();
-
-    this.listeners.forEach(listener -> {
-      if ($typeof(listener, "function")) {
-        listener.$apply(event);
-      } else {
-        listener.stateChanged(event);
-      }
-    });
-  }
-
-  private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
-    spinner.setValue(slider.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-  private void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
-    slider.setValue((int) spinner.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-  private void drawAll() {
-    this.drawSquare();
-    this.drawSquareSelector();
-    this.drawRect();
-    this.drawRectSelector();
-  }
-
-  private void drawSquare() {
+  @Override
+  protected void drawSquare() {
     ImageData imageData = this.ctxSquare.createImageData(JSColorHSVPanel.SQUARE_SIZE, JSColorHSVPanel.SQUARE_SIZE);
     $Uint8Array data = ($Uint8Array) imageData.data;
 
@@ -293,7 +164,8 @@ public class JSColorHSVPanel extends JSPanel {
     this.ctxSquare.putImageData(imageData, 0, 0);
   }
 
-  private void drawSquareSelector() {
+  @Override
+  protected void drawSquareSelector() {
     double x = 0, y = 0;
     if (this.hue.isSelected()) {
       x = this.saturationSpinner.getValue() / 100;
@@ -325,7 +197,8 @@ public class JSColorHSVPanel extends JSPanel {
     this.ctxSquare.stroke();
   }
 
-  private void drawRect() {
+  @Override
+  protected void drawRect() {
     ImageData imageData = this.ctxRect.createImageData(JSColorHSVPanel.RECT_WIDTH, JSColorHSVPanel.RECT_HEIGHT);
     $Uint8Array data = ($Uint8Array) imageData.data;
 
@@ -360,7 +233,8 @@ public class JSColorHSVPanel extends JSPanel {
     this.ctxRect.putImageData(imageData, 0, 0);
   }
 
-  private void drawRectSelector() {
+  @Override
+  protected void drawRectSelector() {
     double y = 0;
     if (this.hue.isSelected()) {
       y = this.hueSpinner.getValue() / 360;
@@ -391,7 +265,8 @@ public class JSColorHSVPanel extends JSPanel {
     this.ctxRect.stroke();
   }
 
-  private void squareEvent(MouseEvent event, String type) {
+  @Override
+  protected void squareEvent(MouseEvent event, String type) {
     boolean doit = false;
     switch (type) {
       case "down":
@@ -417,7 +292,8 @@ public class JSColorHSVPanel extends JSPanel {
     }
   }
 
-  private void rectEvent(MouseEvent event, String type) {
+  @Override
+  protected void rectEvent(MouseEvent event, String type) {
     boolean doit = false;
     switch (type) {
       case "down":
@@ -458,13 +334,5 @@ public class JSColorHSVPanel extends JSPanel {
     if (call) {
       this.onchange();
     }
-  }
-
-  private String getStrokeStyle(String style) {
-    return style;
-  }
-
-  private Union4<String, CanvasGradient, CanvasPattern, java.lang.Object> $getStrokeStyle(String style) {
-    return null;
   }
 }

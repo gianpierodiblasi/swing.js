@@ -3,7 +3,7 @@
  *
  * @author gianpiero.diblasi
  */
-class JSColorRGBPanel extends JSPanel {
+class JSColorRGBPanel extends JSAbstractColorFormatPanel {
 
    buttonGroup = new ButtonGroup();
 
@@ -25,16 +25,6 @@ class JSColorRGBPanel extends JSPanel {
 
    blueSpinner = new JSSpinner();
 
-   square = new JSComponent(document.createElement("canvas"));
-
-   ctxSquare = this.square.invoke("getContext('2d')");
-
-   rect = new JSComponent(document.createElement("canvas"));
-
-   ctxRect = this.rect.invoke("getContext('2d')");
-
-   listeners = new Array();
-
    squareDown = false;
 
    rectDown = false;
@@ -45,9 +35,11 @@ class JSColorRGBPanel extends JSPanel {
 
   static  RECT_HEIGHT = 180;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
-    let gridBagConstraints = null;
     this.setLayout(new GridBagLayout());
     this.buttonGroup.add(this.red);
     this.buttonGroup.add(this.green);
@@ -55,106 +47,54 @@ class JSColorRGBPanel extends JSPanel {
     this.red.setText(Translations.JSColorChooser_RED);
     this.red.setSelected(true);
     this.red.addActionListener(event => this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.red, gridBagConstraints);
+    this.addComponent(this.red, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.green.setText(Translations.JSColorChooser_GREEN);
     this.green.addActionListener(event => this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.green, gridBagConstraints);
+    this.addComponent(this.green, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.blue.setText(Translations.JSColorChooser_BLUE);
     this.blue.addActionListener(event => this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.blue, gridBagConstraints);
+    this.addComponent(this.blue, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.redSlider.setMaximum(255);
     this.redSlider.setValue(0);
     this.redSlider.getStyle().minWidth = "20rem";
     this.redSlider.addChangeListener(event => this.sliderToSpinner(this.redSlider, this.redSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.redSlider, gridBagConstraints);
+    this.addComponent(this.redSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
     this.greenSlider.setMaximum(255);
     this.greenSlider.setValue(0);
     this.greenSlider.getStyle().minWidth = "20rem";
     this.greenSlider.addChangeListener(event => this.sliderToSpinner(this.greenSlider, this.greenSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.greenSlider, gridBagConstraints);
+    this.addComponent(this.greenSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
     this.blueSlider.setMaximum(255);
     this.blueSlider.setValue(0);
     this.blueSlider.getStyle().minWidth = "20rem";
     this.blueSlider.addChangeListener(event => this.sliderToSpinner(this.blueSlider, this.blueSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.blueSlider, gridBagConstraints);
+    this.addComponent(this.blueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
     this.redSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
     this.redSpinner.getStyle().minWidth = "3rem";
     this.redSpinner.addChangeListener(event => this.spinnerToSlider(this.redSpinner, this.redSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.redSpinner, gridBagConstraints);
+    this.addComponent(this.redSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
     this.greenSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
     this.greenSpinner.getStyle().minWidth = "3rem";
     this.greenSpinner.addChangeListener(event => this.spinnerToSlider(this.greenSpinner, this.greenSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.greenSpinner, gridBagConstraints);
+    this.addComponent(this.greenSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
     this.blueSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
     this.blueSpinner.getStyle().minWidth = "3rem";
     this.blueSpinner.addChangeListener(event => this.spinnerToSlider(this.blueSpinner, this.blueSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.blueSpinner, gridBagConstraints);
+    this.addComponent(this.blueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
     this.square.setProperty("width", "" + JSColorRGBPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSColorRGBPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
     this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
     this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
     this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.square, gridBagConstraints);
+    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
     this.rect.setProperty("width", "" + JSColorRGBPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSColorRGBPanel.RECT_HEIGHT);
     this.rect.getStyle().cursor = "pointer";
     this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
     this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
     this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.rect, gridBagConstraints);
+    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
     this.drawAll();
   }
 
@@ -174,45 +114,6 @@ class JSColorRGBPanel extends JSPanel {
    */
    setSelectedColor(color) {
     this.setColor(color.red, color.green, color.blue, false);
-  }
-
-  /**
-   * Adds a change listener
-   *
-   * @param listener The listener
-   */
-   addChangeListener(listener) {
-    this.listeners.push(listener);
-  }
-
-   onchange() {
-    let event = new ChangeEvent();
-    this.listeners.forEach(listener => {
-      if (typeof listener === "function") {
-        listener(event);
-      } else {
-        listener.stateChanged(event);
-      }
-    });
-  }
-
-   sliderToSpinner(slider, spinner) {
-    spinner.setValue(slider.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-   spinnerToSlider(spinner, slider) {
-    slider.setValue(spinner.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-   drawAll() {
-    this.drawSquare();
-    this.drawSquareSelector();
-    this.drawRect();
-    this.drawRectSelector();
   }
 
    drawSquare() {
@@ -385,9 +286,5 @@ class JSColorRGBPanel extends JSPanel {
     if (call) {
       this.onchange();
     }
-  }
-
-   getStrokeStyle(style) {
-    return style;
   }
 }

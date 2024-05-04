@@ -1,28 +1,17 @@
 package javascript.swing.colorchooser;
 
-import def.dom.CanvasGradient;
-import def.dom.CanvasPattern;
-import static def.dom.Globals.document;
 import def.dom.ImageData;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
 import javascript.awt.GridBagConstraints;
 import javascript.awt.GridBagLayout;
-import javascript.awt.Insets;
 import javascript.swing.ButtonGroup;
-import javascript.swing.JSComponent;
-import javascript.swing.JSPanel;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
 import javascript.swing.SpinnerNumberModel;
-import javascript.swing.event.ChangeEvent;
-import javascript.swing.event.ChangeListener;
 import javascript.util.Translations;
-import jsweet.util.union.Union4;
-import simulation.dom.$CanvasRenderingContext2D;
-import static simulation.js.$Globals.$typeof;
 import static simulation.js.$Globals.parseInt;
 import simulation.js.$Uint8Array;
 
@@ -31,7 +20,7 @@ import simulation.js.$Uint8Array;
  *
  * @author gianpiero.diblasi
  */
-public class JSColorRGBPanel extends JSPanel {
+public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
 
   private final ButtonGroup buttonGroup = new ButtonGroup();
   private final JSRadioButton red = new JSRadioButton();
@@ -44,25 +33,14 @@ public class JSColorRGBPanel extends JSPanel {
   private final JSSlider blueSlider = new JSSlider();
   private final JSSpinner blueSpinner = new JSSpinner();
 
-  private final JSComponent square = new JSComponent(document.createElement("canvas"));
-  private final $CanvasRenderingContext2D ctxSquare = this.square.invoke("getContext('2d')");
-
-  private final JSComponent rect = new JSComponent(document.createElement("canvas"));
-  private final $CanvasRenderingContext2D ctxRect = this.rect.invoke("getContext('2d')");
-
-  private final Array<ChangeListener> listeners = new Array<>();
-
   private boolean squareDown;
   private boolean rectDown;
 
-  private static final int SQUARE_SIZE = 180;
-  private static final int RECT_WIDTH = 25;
-  private static final int RECT_HEIGHT = 180;
-
+  /**
+   * Creates the object
+   */
   public JSColorRGBPanel() {
     super();
-
-    GridBagConstraints gridBagConstraints;
 
     this.setLayout(new GridBagLayout());
     this.buttonGroup.add(this.red);
@@ -72,116 +50,48 @@ public class JSColorRGBPanel extends JSPanel {
     this.red.setText(Translations.JSColorChooser_RED);
     this.red.setSelected(true);
     this.red.addActionListener(event -> this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.red, gridBagConstraints);
+    this.addComponent(this.red, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
     this.green.setText(Translations.JSColorChooser_GREEN);
     this.green.addActionListener(event -> this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.green, gridBagConstraints);
+    this.addComponent(this.green, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
     this.blue.setText(Translations.JSColorChooser_BLUE);
     this.blue.addActionListener(event -> this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.blue, gridBagConstraints);
+    this.addComponent(this.blue, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
     this.redSlider.setMaximum(255);
     this.redSlider.setValue(0);
     this.redSlider.getStyle().minWidth = "20rem";
     this.redSlider.addChangeListener(event -> this.sliderToSpinner(this.redSlider, this.redSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.redSlider, gridBagConstraints);
+    this.addComponent(this.redSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
 
     this.greenSlider.setMaximum(255);
     this.greenSlider.setValue(0);
     this.greenSlider.getStyle().minWidth = "20rem";
     this.greenSlider.addChangeListener(event -> this.sliderToSpinner(this.greenSlider, this.greenSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.greenSlider, gridBagConstraints);
+    this.addComponent(this.greenSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
 
     this.blueSlider.setMaximum(255);
     this.blueSlider.setValue(0);
     this.blueSlider.getStyle().minWidth = "20rem";
     this.blueSlider.addChangeListener(event -> this.sliderToSpinner(this.blueSlider, this.blueSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.blueSlider, gridBagConstraints);
+    this.addComponent(this.blueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
 
     this.redSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
     this.redSpinner.getStyle().minWidth = "3rem";
     this.redSpinner.addChangeListener(event -> this.spinnerToSlider(this.redSpinner, this.redSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.redSpinner, gridBagConstraints);
+    this.addComponent(this.redSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
 
     this.greenSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
     this.greenSpinner.getStyle().minWidth = "3rem";
     this.greenSpinner.addChangeListener(event -> this.spinnerToSlider(this.greenSpinner, this.greenSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.greenSpinner, gridBagConstraints);
+    this.addComponent(this.greenSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
 
     this.blueSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
     this.blueSpinner.getStyle().minWidth = "3rem";
     this.blueSpinner.addChangeListener(event -> this.spinnerToSlider(this.blueSpinner, this.blueSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.blueSpinner, gridBagConstraints);
-
-    this.square.setProperty("width", "" + JSColorRGBPanel.SQUARE_SIZE);
-    this.square.setProperty("height", "" + JSColorRGBPanel.SQUARE_SIZE);
-    this.square.getStyle().cursor = "pointer";
-    this.square.addEventListener("mousedown", event -> this.squareEvent((MouseEvent) event, "down"));
-    this.square.addEventListener("mousemove", event -> this.squareEvent((MouseEvent) event, "move"));
-    this.square.addEventListener("mouseup", event -> this.squareEvent((MouseEvent) event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.square, gridBagConstraints);
-
-    this.rect.setProperty("width", "" + JSColorRGBPanel.RECT_WIDTH);
-    this.rect.setProperty("height", "" + JSColorRGBPanel.RECT_HEIGHT);
-    this.rect.getStyle().cursor = "pointer";
-    this.rect.addEventListener("mousedown", event -> this.rectEvent((MouseEvent) event, "down"));
-    this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
-    this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.rect, gridBagConstraints);
+    this.addComponent(this.blueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
 
     this.drawAll();
   }
@@ -204,47 +114,8 @@ public class JSColorRGBPanel extends JSPanel {
     this.setColor(color.red, color.green, color.blue, false);
   }
 
-  /**
-   * Adds a change listener
-   *
-   * @param listener The listener
-   */
-  public void addChangeListener(ChangeListener listener) {
-    this.listeners.push(listener);
-  }
-
-  private void onchange() {
-    ChangeEvent event = new ChangeEvent();
-
-    this.listeners.forEach(listener -> {
-      if ($typeof(listener, "function")) {
-        listener.$apply(event);
-      } else {
-        listener.stateChanged(event);
-      }
-    });
-  }
-
-  private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
-    spinner.setValue(slider.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-  private void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
-    slider.setValue((int) spinner.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-  private void drawAll() {
-    this.drawSquare();
-    this.drawSquareSelector();
-    this.drawRect();
-    this.drawRectSelector();
-  }
-
-  private void drawSquare() {
+  @Override
+  protected void drawSquare() {
     ImageData imageData = this.ctxSquare.createImageData(JSColorRGBPanel.SQUARE_SIZE, JSColorRGBPanel.SQUARE_SIZE);
     $Uint8Array data = ($Uint8Array) imageData.data;
 
@@ -273,7 +144,8 @@ public class JSColorRGBPanel extends JSPanel {
     this.ctxSquare.putImageData(imageData, 0, 0);
   }
 
-  private void drawSquareSelector() {
+  @Override
+  protected void drawSquareSelector() {
     double x = 0, y = 0;
     if (this.red.isSelected()) {
       x = this.greenSpinner.getValue() / 255;
@@ -305,7 +177,8 @@ public class JSColorRGBPanel extends JSPanel {
     this.ctxSquare.stroke();
   }
 
-  private void drawRect() {
+  @Override
+  protected void drawRect() {
     ImageData imageData = this.ctxRect.createImageData(JSColorRGBPanel.RECT_WIDTH, JSColorRGBPanel.RECT_HEIGHT);
     $Uint8Array data = ($Uint8Array) imageData.data;
 
@@ -338,7 +211,8 @@ public class JSColorRGBPanel extends JSPanel {
     this.ctxRect.putImageData(imageData, 0, 0);
   }
 
-  private void drawRectSelector() {
+  @Override
+  protected void drawRectSelector() {
     double y = 0;
     if (this.red.isSelected()) {
       y = this.redSpinner.getValue() / 255;
@@ -369,7 +243,8 @@ public class JSColorRGBPanel extends JSPanel {
     this.ctxRect.stroke();
   }
 
-  private void squareEvent(MouseEvent event, String type) {
+  @Override
+  protected void squareEvent(MouseEvent event, String type) {
     boolean doit = false;
     switch (type) {
       case "down":
@@ -395,7 +270,8 @@ public class JSColorRGBPanel extends JSPanel {
     }
   }
 
-  private void rectEvent(MouseEvent event, String type) {
+  @Override
+  protected void rectEvent(MouseEvent event, String type) {
     boolean doit = false;
     switch (type) {
       case "down":
@@ -436,13 +312,5 @@ public class JSColorRGBPanel extends JSPanel {
     if (call) {
       this.onchange();
     }
-  }
-
-  private String getStrokeStyle(String style) {
-    return style;
-  }
-
-  private Union4<String, CanvasGradient, CanvasPattern, java.lang.Object> $getStrokeStyle(String style) {
-    return null;
   }
 }

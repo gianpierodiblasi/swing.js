@@ -3,7 +3,7 @@
  *
  * @author gianpiero.diblasi
  */
-class JSColorHSVPanel extends JSPanel {
+class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
    buttonGroup = new ButtonGroup();
 
@@ -25,16 +25,6 @@ class JSColorHSVPanel extends JSPanel {
 
    valueSpinner = new JSSpinner();
 
-   square = new JSComponent(document.createElement("canvas"));
-
-   ctxSquare = this.square.invoke("getContext('2d')");
-
-   rect = new JSComponent(document.createElement("canvas"));
-
-   ctxRect = this.rect.invoke("getContext('2d')");
-
-   listeners = new Array();
-
    squareDown = false;
 
    rectDown = false;
@@ -45,9 +35,11 @@ class JSColorHSVPanel extends JSPanel {
 
   static  RECT_HEIGHT = 180;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
-    let gridBagConstraints = null;
     this.setLayout(new GridBagLayout());
     this.buttonGroup.add(this.hue);
     this.buttonGroup.add(this.saturation);
@@ -55,104 +47,52 @@ class JSColorHSVPanel extends JSPanel {
     this.hue.setText(Translations.JSColorChooser_HUE);
     this.hue.setSelected(true);
     this.hue.addActionListener(event => this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.hue, gridBagConstraints);
+    this.addComponent(this.hue, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.saturation.setText(Translations.JSColorChooser_SATURATION);
     this.saturation.addActionListener(event => this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.saturation, gridBagConstraints);
+    this.addComponent(this.saturation, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.value.setText(Translations.JSColorChooser_VALUE);
     this.value.addActionListener(event => this.drawAll());
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.value, gridBagConstraints);
+    this.addComponent(this.value, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.hueSlider.setMaximum(360);
     this.hueSlider.setValue(0);
     this.hueSlider.getStyle().minWidth = "20rem";
     this.hueSlider.addChangeListener(event => this.sliderToSpinner(this.hueSlider, this.hueSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.hueSlider, gridBagConstraints);
+    this.addComponent(this.hueSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
     this.satutationSlider.setValue(0);
     this.satutationSlider.getStyle().minWidth = "20rem";
     this.satutationSlider.addChangeListener(event => this.sliderToSpinner(this.satutationSlider, this.saturationSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.satutationSlider, gridBagConstraints);
+    this.addComponent(this.satutationSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
     this.valueSlider.setValue(100);
     this.valueSlider.getStyle().minWidth = "20rem";
     this.valueSlider.addChangeListener(event => this.sliderToSpinner(this.valueSlider, this.valueSpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1;
-    this.add(this.valueSlider, gridBagConstraints);
+    this.addComponent(this.valueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
     this.hueSpinner.setModel(new SpinnerNumberModel(0, 0, 360, 1));
     this.hueSpinner.getStyle().minWidth = "3rem";
     this.hueSpinner.addChangeListener(event => this.spinnerToSlider(this.hueSpinner, this.hueSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.hueSpinner, gridBagConstraints);
+    this.addComponent(this.hueSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
     this.saturationSpinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
     this.saturationSpinner.getStyle().minWidth = "3rem";
     this.saturationSpinner.addChangeListener(event => this.spinnerToSlider(this.saturationSpinner, this.satutationSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.saturationSpinner, gridBagConstraints);
+    this.addComponent(this.saturationSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
     this.valueSpinner.setModel(new SpinnerNumberModel(100, 0, 100, 1));
     this.valueSpinner.getStyle().minWidth = "3rem";
     this.valueSpinner.addChangeListener(event => this.spinnerToSlider(this.valueSpinner, this.valueSlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.valueSpinner, gridBagConstraints);
+    this.addComponent(this.valueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
     this.square.setProperty("width", "" + JSColorHSVPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSColorHSVPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
     this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
     this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
     this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.square, gridBagConstraints);
+    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
     this.rect.setProperty("width", "" + JSColorHSVPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSColorHSVPanel.RECT_HEIGHT);
     this.rect.getStyle().cursor = "pointer";
     this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
     this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
     this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new Insets(0, 0, 0, 5);
-    this.add(this.rect, gridBagConstraints);
+    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
     this.drawAll();
   }
 
@@ -184,45 +124,6 @@ class JSColorHSVPanel extends JSPanel {
     rgb[2] = color.blue;
     Color.RGBtoHSV(rgb, hsv);
     this.setColor(360 * hsv[0], 100 * hsv[1], 100 * hsv[2], false);
-  }
-
-  /**
-   * Adds a change listener
-   *
-   * @param listener The listener
-   */
-   addChangeListener(listener) {
-    this.listeners.push(listener);
-  }
-
-   onchange() {
-    let event = new ChangeEvent();
-    this.listeners.forEach(listener => {
-      if (typeof listener === "function") {
-        listener(event);
-      } else {
-        listener.stateChanged(event);
-      }
-    });
-  }
-
-   sliderToSpinner(slider, spinner) {
-    spinner.setValue(slider.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-   spinnerToSlider(spinner, slider) {
-    slider.setValue(spinner.getValue());
-    this.drawAll();
-    this.onchange();
-  }
-
-   drawAll() {
-    this.drawSquare();
-    this.drawSquareSelector();
-    this.drawRect();
-    this.drawRectSelector();
   }
 
    drawSquare() {
@@ -403,9 +304,5 @@ class JSColorHSVPanel extends JSPanel {
     if (call) {
       this.onchange();
     }
-  }
-
-   getStrokeStyle(style) {
-    return style;
   }
 }
