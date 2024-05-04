@@ -2183,6 +2183,8 @@ class JSPanel extends JSComponent {
  */
 class JSAbstractColorFormatPanel extends JSPanel {
 
+   buttonGroup = new ButtonGroup();
+
    square = new JSComponent(document.createElement("canvas"));
 
    ctxSquare = this.square.invoke("getContext('2d')");
@@ -2193,6 +2195,10 @@ class JSAbstractColorFormatPanel extends JSPanel {
 
    listeners = new Array();
 
+   squareDown = false;
+
+   rectDown = false;
+
   static  SQUARE_SIZE = 180;
 
   static  RECT_WIDTH = 25;
@@ -2201,6 +2207,44 @@ class JSAbstractColorFormatPanel extends JSPanel {
 
   constructor() {
     super();
+    this.setLayout(new GridBagLayout());
+    this.square.setProperty("width", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
+    this.square.setProperty("height", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
+    this.square.getStyle().cursor = "pointer";
+    this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
+    this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
+    this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
+    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
+    this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
+    this.rect.getStyle().cursor = "pointer";
+    this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
+    this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
+    this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
+    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+  }
+
+   addRadio(radio, text, selected, gridx, gridy) {
+    this.buttonGroup.add(radio);
+    radio.setText(text);
+    radio.setSelected(selected);
+    radio.addActionListener(event => this.drawAll());
+    this.addComponent(radio, gridx, gridy, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+  }
+
+   addSlider(slider, spinner, value, max, gridx, gridy) {
+    slider.setValue(value);
+    slider.setMaximum(max);
+    slider.getStyle().minWidth = "20rem";
+    slider.addChangeListener(event => this.sliderToSpinner(slider, spinner));
+    this.addComponent(slider, gridx, gridy, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
+  }
+
+   addSpinner(spinner, slider, value, max, gridx, gridy) {
+    spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
+    spinner.getStyle().minWidth = "3rem";
+    spinner.addChangeListener(event => this.spinnerToSlider(spinner, slider));
+    this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
   }
 
    addComponent(component, gridx, gridy, gridwidth, gridheight, anchor, fill, weightx, weighty, insets) {
@@ -2244,10 +2288,82 @@ class JSAbstractColorFormatPanel extends JSPanel {
    drawSquareSelector() {
   }
 
+   drawCircle(x, y) {
+    let dash = new Array();
+    this.ctxSquare.beginPath();
+    this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
+    this.ctxSquare.closePath();
+    this.ctxSquare.strokeStyle = this.getStrokeStyle("black");
+    this.ctxSquare.setLineDash(dash);
+    this.ctxSquare.stroke();
+    dash.push(2.5, 2.5);
+    this.ctxSquare.beginPath();
+    this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
+    this.ctxSquare.closePath();
+    this.ctxSquare.strokeStyle = this.getStrokeStyle("white");
+    this.ctxSquare.setLineDash(dash);
+    this.ctxSquare.stroke();
+  }
+
    drawRect() {
   }
 
    drawRectSelector() {
+  }
+
+   drawLine(y) {
+    let dash = new Array();
+    this.ctxRect.beginPath();
+    this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.closePath();
+    this.ctxRect.strokeStyle = this.getStrokeStyle("black");
+    this.ctxRect.setLineDash(dash);
+    this.ctxRect.stroke();
+    dash.push(2.5, 2.5);
+    this.ctxRect.beginPath();
+    this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
+    this.ctxRect.closePath();
+    this.ctxRect.strokeStyle = this.getStrokeStyle("white");
+    this.ctxRect.setLineDash(dash);
+    this.ctxRect.stroke();
+  }
+
+   squareEvent(event, type) {
+  }
+
+   canDoItSquare(type) {
+    switch(type) {
+      case "down":
+        this.squareDown = true;
+        return true;
+      case "move":
+        return this.squareDown;
+      case "up":
+        this.squareDown = false;
+        return true;
+      default:
+        return false;
+    }
+  }
+
+   rectEvent(event, type) {
+  }
+
+   canDoItRect(type) {
+    switch(type) {
+      case "down":
+        this.rectDown = true;
+        return true;
+      case "move":
+        return this.rectDown;
+      case "up":
+        this.rectDown = false;
+        return true;
+      default:
+        return false;
+    }
   }
 
   /**
@@ -2281,8 +2397,6 @@ class JSAbstractColorFormatPanel extends JSPanel {
  */
 class JSColorHSLPanel extends JSAbstractColorFormatPanel {
 
-   buttonGroup = new ButtonGroup();
-
    hue = new JSRadioButton();
 
    hueSlider = new JSSlider();
@@ -2301,74 +2415,20 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
 
    lightnessSpinner = new JSSpinner();
 
-   squareDown = false;
-
-   rectDown = false;
-
-  static  SQUARE_SIZE = 180;
-
-  static  RECT_WIDTH = 25;
-
-  static  RECT_HEIGHT = 180;
-
   /**
    * Creates the object
    */
   constructor() {
     super();
-    this.setLayout(new GridBagLayout());
-    this.buttonGroup.add(this.hue);
-    this.buttonGroup.add(this.saturation);
-    this.buttonGroup.add(this.lightness);
-    this.hue.setText(Translations.JSColorChooser_HUE);
-    this.hue.setSelected(true);
-    this.hue.addActionListener(event => this.drawAll());
-    this.addComponent(this.hue, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.saturation.setText(Translations.JSColorChooser_SATURATION);
-    this.saturation.addActionListener(event => this.drawAll());
-    this.addComponent(this.saturation, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.lightness.setText(Translations.JSColorChooser_LIGHTNESS);
-    this.lightness.addActionListener(event => this.drawAll());
-    this.addComponent(this.lightness, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.hueSlider.setMaximum(360);
-    this.hueSlider.setValue(0);
-    this.hueSlider.getStyle().minWidth = "20rem";
-    this.hueSlider.addChangeListener(event => this.sliderToSpinner(this.hueSlider, this.hueSpinner));
-    this.addComponent(this.hueSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.satutationSlider.setValue(0);
-    this.satutationSlider.getStyle().minWidth = "20rem";
-    this.satutationSlider.addChangeListener(event => this.sliderToSpinner(this.satutationSlider, this.saturationSpinner));
-    this.addComponent(this.satutationSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.lightnessSlider.setValue(100);
-    this.lightnessSlider.getStyle().minWidth = "20rem";
-    this.lightnessSlider.addChangeListener(event => this.sliderToSpinner(this.lightnessSlider, this.lightnessSpinner));
-    this.addComponent(this.lightnessSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.hueSpinner.setModel(new SpinnerNumberModel(0, 0, 360, 1));
-    this.hueSpinner.getStyle().minWidth = "3rem";
-    this.hueSpinner.addChangeListener(event => this.spinnerToSlider(this.hueSpinner, this.hueSlider));
-    this.addComponent(this.hueSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.saturationSpinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-    this.saturationSpinner.getStyle().minWidth = "3rem";
-    this.saturationSpinner.addChangeListener(event => this.spinnerToSlider(this.saturationSpinner, this.satutationSlider));
-    this.addComponent(this.saturationSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.lightnessSpinner.setModel(new SpinnerNumberModel(100, 0, 100, 1));
-    this.lightnessSpinner.getStyle().minWidth = "3rem";
-    this.lightnessSpinner.addChangeListener(event => this.spinnerToSlider(this.lightnessSpinner, this.lightnessSlider));
-    this.addComponent(this.lightnessSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.square.setProperty("width", "" + JSColorHSLPanel.SQUARE_SIZE);
-    this.square.setProperty("height", "" + JSColorHSLPanel.SQUARE_SIZE);
-    this.square.getStyle().cursor = "pointer";
-    this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
-    this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
-    this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
-    this.rect.setProperty("width", "" + JSColorHSLPanel.RECT_WIDTH);
-    this.rect.setProperty("height", "" + JSColorHSLPanel.RECT_HEIGHT);
-    this.rect.getStyle().cursor = "pointer";
-    this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
-    this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
-    this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.addRadio(this.hue, Translations.JSColorChooser_HUE, true, 2, 0);
+    this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
+    this.addRadio(this.lightness, Translations.JSColorChooser_LIGHTNESS, false, 2, 4);
+    this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
+    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.lightnessSlider, this.lightnessSpinner, 0, 100, 2, 5);
+    this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
+    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.lightnessSpinner, this.lightnessSlider, 100, 100, 3, 4);
     this.drawAll();
   }
 
@@ -2445,20 +2505,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
       x = this.hueSpinner.getValue() / 360;
       y = this.saturationSpinner.getValue() / 100;
     }
-    let dash = new Array();
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorHSLPanel.SQUARE_SIZE, (1 - y) * JSColorHSLPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.getStrokeStyle("black");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
-    dash.push(2.5, 2.5);
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorHSLPanel.SQUARE_SIZE, (1 - y) * JSColorHSLPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.getStrokeStyle("white");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
+    this.drawCircle(x, y);
   }
 
    drawRect() {
@@ -2501,40 +2548,11 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     } else if (this.lightness.isSelected()) {
       y = this.lightnessSpinner.getValue() / 100;
     }
-    let dash = new Array();
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorHSLPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorHSLPanel.RECT_WIDTH, (1 - y) * JSColorHSLPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.getStrokeStyle("black");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
-    dash.push(2.5, 2.5);
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorHSLPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorHSLPanel.RECT_WIDTH, (1 - y) * JSColorHSLPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.getStrokeStyle("white");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
+    this.drawLine(y);
   }
 
    squareEvent(event, type) {
-    let doit = false;
-    switch(type) {
-      case "down":
-        this.squareDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.squareDown;
-        break;
-      case "up":
-        this.squareDown = false;
-        doit = true;
-        break;
-    }
-    if (!doit) {
+    if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
     } else if (this.saturation.isSelected()) {
@@ -2545,21 +2563,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    let doit = false;
-    switch(type) {
-      case "down":
-        this.rectDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.rectDown;
-        break;
-      case "up":
-        this.rectDown = false;
-        doit = true;
-        break;
-    }
-    if (!doit) {
+    if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(360 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.lightnessSpinner.getValue(), true);
     } else if (this.saturation.isSelected()) {
@@ -2589,8 +2593,6 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
  */
 class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
-   buttonGroup = new ButtonGroup();
-
    hue = new JSRadioButton();
 
    hueSlider = new JSSlider();
@@ -2609,74 +2611,20 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
    valueSpinner = new JSSpinner();
 
-   squareDown = false;
-
-   rectDown = false;
-
-  static  SQUARE_SIZE = 180;
-
-  static  RECT_WIDTH = 25;
-
-  static  RECT_HEIGHT = 180;
-
   /**
    * Creates the object
    */
   constructor() {
     super();
-    this.setLayout(new GridBagLayout());
-    this.buttonGroup.add(this.hue);
-    this.buttonGroup.add(this.saturation);
-    this.buttonGroup.add(this.value);
-    this.hue.setText(Translations.JSColorChooser_HUE);
-    this.hue.setSelected(true);
-    this.hue.addActionListener(event => this.drawAll());
-    this.addComponent(this.hue, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.saturation.setText(Translations.JSColorChooser_SATURATION);
-    this.saturation.addActionListener(event => this.drawAll());
-    this.addComponent(this.saturation, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.value.setText(Translations.JSColorChooser_VALUE);
-    this.value.addActionListener(event => this.drawAll());
-    this.addComponent(this.value, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.hueSlider.setMaximum(360);
-    this.hueSlider.setValue(0);
-    this.hueSlider.getStyle().minWidth = "20rem";
-    this.hueSlider.addChangeListener(event => this.sliderToSpinner(this.hueSlider, this.hueSpinner));
-    this.addComponent(this.hueSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.satutationSlider.setValue(0);
-    this.satutationSlider.getStyle().minWidth = "20rem";
-    this.satutationSlider.addChangeListener(event => this.sliderToSpinner(this.satutationSlider, this.saturationSpinner));
-    this.addComponent(this.satutationSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.valueSlider.setValue(100);
-    this.valueSlider.getStyle().minWidth = "20rem";
-    this.valueSlider.addChangeListener(event => this.sliderToSpinner(this.valueSlider, this.valueSpinner));
-    this.addComponent(this.valueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.hueSpinner.setModel(new SpinnerNumberModel(0, 0, 360, 1));
-    this.hueSpinner.getStyle().minWidth = "3rem";
-    this.hueSpinner.addChangeListener(event => this.spinnerToSlider(this.hueSpinner, this.hueSlider));
-    this.addComponent(this.hueSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.saturationSpinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-    this.saturationSpinner.getStyle().minWidth = "3rem";
-    this.saturationSpinner.addChangeListener(event => this.spinnerToSlider(this.saturationSpinner, this.satutationSlider));
-    this.addComponent(this.saturationSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.valueSpinner.setModel(new SpinnerNumberModel(100, 0, 100, 1));
-    this.valueSpinner.getStyle().minWidth = "3rem";
-    this.valueSpinner.addChangeListener(event => this.spinnerToSlider(this.valueSpinner, this.valueSlider));
-    this.addComponent(this.valueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.square.setProperty("width", "" + JSColorHSVPanel.SQUARE_SIZE);
-    this.square.setProperty("height", "" + JSColorHSVPanel.SQUARE_SIZE);
-    this.square.getStyle().cursor = "pointer";
-    this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
-    this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
-    this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
-    this.rect.setProperty("width", "" + JSColorHSVPanel.RECT_WIDTH);
-    this.rect.setProperty("height", "" + JSColorHSVPanel.RECT_HEIGHT);
-    this.rect.getStyle().cursor = "pointer";
-    this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
-    this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
-    this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.addRadio(this.hue, Translations.JSColorChooser_HUE, true, 2, 0);
+    this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
+    this.addRadio(this.value, Translations.JSColorChooser_VALUE, false, 2, 4);
+    this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
+    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 5);
+    this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
+    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.valueSpinner, this.valueSlider, 100, 100, 3, 4);
     this.drawAll();
   }
 
@@ -2753,20 +2701,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
       x = this.hueSpinner.getValue() / 360;
       y = this.saturationSpinner.getValue() / 100;
     }
-    let dash = new Array();
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorHSVPanel.SQUARE_SIZE, (1 - y) * JSColorHSVPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.getStrokeStyle("black");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
-    dash.push(2.5, 2.5);
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorHSVPanel.SQUARE_SIZE, (1 - y) * JSColorHSVPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.getStrokeStyle("white");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
+    this.drawCircle(x, y);
   }
 
    drawRect() {
@@ -2809,40 +2744,11 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     } else if (this.value.isSelected()) {
       y = this.valueSpinner.getValue() / 100;
     }
-    let dash = new Array();
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorHSVPanel.RECT_WIDTH, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.getStrokeStyle("black");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
-    dash.push(2.5, 2.5);
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorHSVPanel.RECT_WIDTH, (1 - y) * JSColorHSVPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.getStrokeStyle("white");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
+    this.drawLine(y);
   }
 
    squareEvent(event, type) {
-    let doit = false;
-    switch(type) {
-      case "down":
-        this.squareDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.squareDown;
-        break;
-      case "up":
-        this.squareDown = false;
-        doit = true;
-        break;
-    }
-    if (!doit) {
+    if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
     } else if (this.saturation.isSelected()) {
@@ -2853,21 +2759,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    let doit = false;
-    switch(type) {
-      case "down":
-        this.rectDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.rectDown;
-        break;
-      case "up":
-        this.rectDown = false;
-        doit = true;
-        break;
-    }
-    if (!doit) {
+    if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true);
     } else if (this.saturation.isSelected()) {
@@ -2897,8 +2789,6 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
  */
 class JSColorRGBPanel extends JSAbstractColorFormatPanel {
 
-   buttonGroup = new ButtonGroup();
-
    red = new JSRadioButton();
 
    redSlider = new JSSlider();
@@ -2917,76 +2807,20 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
 
    blueSpinner = new JSSpinner();
 
-   squareDown = false;
-
-   rectDown = false;
-
-  static  SQUARE_SIZE = 180;
-
-  static  RECT_WIDTH = 25;
-
-  static  RECT_HEIGHT = 180;
-
   /**
    * Creates the object
    */
   constructor() {
     super();
-    this.setLayout(new GridBagLayout());
-    this.buttonGroup.add(this.red);
-    this.buttonGroup.add(this.green);
-    this.buttonGroup.add(this.blue);
-    this.red.setText(Translations.JSColorChooser_RED);
-    this.red.setSelected(true);
-    this.red.addActionListener(event => this.drawAll());
-    this.addComponent(this.red, 2, 0, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.green.setText(Translations.JSColorChooser_GREEN);
-    this.green.addActionListener(event => this.drawAll());
-    this.addComponent(this.green, 2, 2, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.blue.setText(Translations.JSColorChooser_BLUE);
-    this.blue.addActionListener(event => this.drawAll());
-    this.addComponent(this.blue, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
-    this.redSlider.setMaximum(255);
-    this.redSlider.setValue(0);
-    this.redSlider.getStyle().minWidth = "20rem";
-    this.redSlider.addChangeListener(event => this.sliderToSpinner(this.redSlider, this.redSpinner));
-    this.addComponent(this.redSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.greenSlider.setMaximum(255);
-    this.greenSlider.setValue(0);
-    this.greenSlider.getStyle().minWidth = "20rem";
-    this.greenSlider.addChangeListener(event => this.sliderToSpinner(this.greenSlider, this.greenSpinner));
-    this.addComponent(this.greenSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.blueSlider.setMaximum(255);
-    this.blueSlider.setValue(0);
-    this.blueSlider.getStyle().minWidth = "20rem";
-    this.blueSlider.addChangeListener(event => this.sliderToSpinner(this.blueSlider, this.blueSpinner));
-    this.addComponent(this.blueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-    this.redSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
-    this.redSpinner.getStyle().minWidth = "3rem";
-    this.redSpinner.addChangeListener(event => this.spinnerToSlider(this.redSpinner, this.redSlider));
-    this.addComponent(this.redSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.greenSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
-    this.greenSpinner.getStyle().minWidth = "3rem";
-    this.greenSpinner.addChangeListener(event => this.spinnerToSlider(this.greenSpinner, this.greenSlider));
-    this.addComponent(this.greenSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.blueSpinner.setModel(new SpinnerNumberModel(0, 0, 255, 1));
-    this.blueSpinner.getStyle().minWidth = "3rem";
-    this.blueSpinner.addChangeListener(event => this.spinnerToSlider(this.blueSpinner, this.blueSlider));
-    this.addComponent(this.blueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-    this.square.setProperty("width", "" + JSColorRGBPanel.SQUARE_SIZE);
-    this.square.setProperty("height", "" + JSColorRGBPanel.SQUARE_SIZE);
-    this.square.getStyle().cursor = "pointer";
-    this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
-    this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
-    this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
-    this.rect.setProperty("width", "" + JSColorRGBPanel.RECT_WIDTH);
-    this.rect.setProperty("height", "" + JSColorRGBPanel.RECT_HEIGHT);
-    this.rect.getStyle().cursor = "pointer";
-    this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
-    this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
-    this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.addRadio(this.red, Translations.JSColorChooser_RED, true, 2, 0);
+    this.addRadio(this.green, Translations.JSColorChooser_GREEN, false, 2, 2);
+    this.addRadio(this.blue, Translations.JSColorChooser_BLUE, false, 2, 4);
+    this.addSlider(this.redSlider, this.redSpinner, 0, 255, 2, 1);
+    this.addSlider(this.greenSlider, this.greenSpinner, 0, 255, 2, 3);
+    this.addSlider(this.blueSlider, this.blueSpinner, 0, 255, 2, 5);
+    this.addSpinner(this.redSpinner, this.redSlider, 0, 255, 3, 0);
+    this.addSpinner(this.greenSpinner, this.greenSlider, 0, 255, 3, 2);
+    this.addSpinner(this.blueSpinner, this.blueSlider, 0, 255, 3, 4);
     this.drawAll();
   }
 
@@ -3045,20 +2879,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
       x = this.redSpinner.getValue() / 255;
       y = this.greenSpinner.getValue() / 255;
     }
-    let dash = new Array();
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.getStrokeStyle("black");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
-    dash.push(2.5, 2.5);
-    this.ctxSquare.beginPath();
-    this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
-    this.ctxSquare.strokeStyle = this.getStrokeStyle("white");
-    this.ctxSquare.setLineDash(dash);
-    this.ctxSquare.stroke();
+    this.drawCircle(x, y);
   }
 
    drawRect() {
@@ -3099,40 +2920,11 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     } else if (this.blue.isSelected()) {
       y = this.blueSpinner.getValue() / 255;
     }
-    let dash = new Array();
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.getStrokeStyle("black");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
-    dash.push(2.5, 2.5);
-    this.ctxRect.beginPath();
-    this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
-    this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
-    this.ctxRect.strokeStyle = this.getStrokeStyle("white");
-    this.ctxRect.setLineDash(dash);
-    this.ctxRect.stroke();
+    this.drawLine(y);
   }
 
    squareEvent(event, type) {
-    let doit = false;
-    switch(type) {
-      case "down":
-        this.squareDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.squareDown;
-        break;
-      case "up":
-        this.squareDown = false;
-        doit = true;
-        break;
-    }
-    if (!doit) {
+    if (!this.canDoItSquare(type)) {
     } else if (this.red.isSelected()) {
       this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
     } else if (this.green.isSelected()) {
@@ -3143,21 +2935,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    let doit = false;
-    switch(type) {
-      case "down":
-        this.rectDown = true;
-        doit = true;
-        break;
-      case "move":
-        doit = this.rectDown;
-        break;
-      case "up":
-        this.rectDown = false;
-        doit = true;
-        break;
-    }
-    if (!doit) {
+    if (!this.canDoItRect(type)) {
     } else if (this.red.isSelected()) {
       this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true);
     } else if (this.green.isSelected()) {

@@ -70,7 +70,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.buttonGroup.add(radio);
 
     radio.setText(text);
-    radio.setSelected(true);
+    radio.setSelected(selected);
     radio.addActionListener(event -> this.drawAll());
     this.addComponent(radio, gridx, gridy, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
   }

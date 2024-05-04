@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -93,7 +93,7 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -133,7 +133,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="../JSPanel.html" title="class in javascript.swing">javascript.swing.JSPanel</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">javascript.swing.colorchooser.JSAbstractColorFormatPanel</a></li>
+<li>
+<ul class="inheritance">
 <li>javascript.swing.colorchooser.JSColorRGBPanel</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -146,7 +151,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public class <span class="typeNameLabel">JSColorRGBPanel</span>
-extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a></pre>
+extends <a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></pre>
 <div class="block">The panel to show colors in RGB format</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -158,6 +163,23 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.javascript.swing.colorchooser.JSAbstractColorFormatPanel">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;javascript.swing.colorchooser.<a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></h3>
+<code><a href="JSAbstractColorFormatPanel.html#ctxRect">ctxRect</a>, <a href="JSAbstractColorFormatPanel.html#ctxSquare">ctxSquare</a>, <a href="JSAbstractColorFormatPanel.html#rect">rect</a>, <a href="JSAbstractColorFormatPanel.html#RECT_HEIGHT">RECT_HEIGHT</a>, <a href="JSAbstractColorFormatPanel.html#RECT_WIDTH">RECT_WIDTH</a>, <a href="JSAbstractColorFormatPanel.html#square">square</a>, <a href="JSAbstractColorFormatPanel.html#SQUARE_SIZE">SQUARE_SIZE</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -173,7 +195,9 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">JSColorRGBPanel</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates the object</div>
+</td>
 </tr>
 </table>
 </li>
@@ -194,27 +218,59 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addChangeListener(javascript.swing.event.ChangeListener)">addChangeListener</a></span>&#8203;(<a href="../event/ChangeListener.html" title="interface in javascript.swing.event">ChangeListener</a>&nbsp;listener)</code></th>
-<td class="colLast">
-<div class="block">Adds a change listener</div>
-</td>
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawRect()">drawRect</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawRectSelector()">drawRectSelector</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawSquare()">drawSquare</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawSquareSelector()">drawSquareSelector</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../awt/Color.html" title="class in javascript.awt">Color</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSelectedColor()">getSelectedColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the selected color</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rectEvent(def.dom.MouseEvent,java.lang.String)">rectEvent</a></span>&#8203;(def.dom.MouseEvent&nbsp;event,
+         java.lang.String&nbsp;type)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSelectedColor(javascript.awt.Color)">setSelectedColor</a></span>&#8203;(<a href="../../awt/Color.html" title="class in javascript.awt">Color</a>&nbsp;color)</code></th>
 <td class="colLast">
 <div class="block">Sets the selected color</div>
 </td>
 </tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#squareEvent(def.dom.MouseEvent,java.lang.String)">squareEvent</a></span>&#8203;(def.dom.MouseEvent&nbsp;event,
+           java.lang.String&nbsp;type)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.javascript.swing.colorchooser.JSAbstractColorFormatPanel">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;javascript.swing.colorchooser.<a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></h3>
+<code><a href="JSAbstractColorFormatPanel.html#$getStrokeStyle(java.lang.String)">$getStrokeStyle</a>, <a href="JSAbstractColorFormatPanel.html#addChangeListener(javascript.swing.event.ChangeListener)">addChangeListener</a>, <a href="JSAbstractColorFormatPanel.html#addRadio(javascript.swing.JSRadioButton,java.lang.String,boolean,int,int)">addRadio</a>, <a href="JSAbstractColorFormatPanel.html#addSlider(javascript.swing.JSSlider,javascript.swing.JSSpinner,int,int,int,int)">addSlider</a>, <a href="JSAbstractColorFormatPanel.html#addSpinner(javascript.swing.JSSpinner,javascript.swing.JSSlider,int,int,int,int)">addSpinner</a>, <a href="JSAbstractColorFormatPanel.html#canDoItRect(java.lang.String)">canDoItRect</a>, <a href="JSAbstractColorFormatPanel.html#canDoItSquare(java.lang.String)">canDoItSquare</a>, <a href="JSAbstractColorFormatPanel.html#drawAll()">drawAll</a>, <a href="JSAbstractColorFormatPanel.html#drawCircle(double,double)">drawCircle</a>, <a href="JSAbstractColorFormatPanel.html#drawLine(double)">drawLine</a>, <a href="JSAbstractColorFormatPanel.html#getStrokeStyle(java.lang.String)">getStrokeStyle</a>, <a href="JSAbstractColorFormatPanel.html#onchange()">onchange</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.javascript.swing.JSPanel">
 <!--   -->
@@ -259,6 +315,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>JSColorRGBPanel</h4>
 <pre>public&nbsp;JSColorRGBPanel()</pre>
+<div class="block">Creates the object</div>
 </li>
 </ul>
 </li>
@@ -299,17 +356,83 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 </dl>
 </li>
 </ul>
-<a id="addChangeListener(javascript.swing.event.ChangeListener)">
+<a id="drawSquare()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawSquare</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;drawSquare()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="JSAbstractColorFormatPanel.html#drawSquare()">drawSquare</a></code>&nbsp;in class&nbsp;<code><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="drawSquareSelector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawSquareSelector</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;drawSquareSelector()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="JSAbstractColorFormatPanel.html#drawSquareSelector()">drawSquareSelector</a></code>&nbsp;in class&nbsp;<code><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="drawRect()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawRect</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;drawRect()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="JSAbstractColorFormatPanel.html#drawRect()">drawRect</a></code>&nbsp;in class&nbsp;<code><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="drawRectSelector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawRectSelector</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;drawRectSelector()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="JSAbstractColorFormatPanel.html#drawRectSelector()">drawRectSelector</a></code>&nbsp;in class&nbsp;<code><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="squareEvent(def.dom.MouseEvent,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>squareEvent</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;squareEvent&#8203;(def.dom.MouseEvent&nbsp;event,
+                           java.lang.String&nbsp;type)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="JSAbstractColorFormatPanel.html#squareEvent(def.dom.MouseEvent,java.lang.String)">squareEvent</a></code>&nbsp;in class&nbsp;<code><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="rectEvent(def.dom.MouseEvent,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>addChangeListener</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addChangeListener&#8203;(<a href="../event/ChangeListener.html" title="interface in javascript.swing.event">ChangeListener</a>&nbsp;listener)</pre>
-<div class="block">Adds a change listener</div>
+<h4>rectEvent</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;rectEvent&#8203;(def.dom.MouseEvent&nbsp;event,
+                         java.lang.String&nbsp;type)</pre>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - The listener</dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="JSAbstractColorFormatPanel.html#rectEvent(def.dom.MouseEvent,java.lang.String)">rectEvent</a></code>&nbsp;in class&nbsp;<code><a href="JSAbstractColorFormatPanel.html" title="class in javascript.swing.colorchooser">JSAbstractColorFormatPanel</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -369,7 +492,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>

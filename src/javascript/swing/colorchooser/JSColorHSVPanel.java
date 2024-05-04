@@ -38,8 +38,8 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
     this.addRadio(this.value, Translations.JSColorChooser_VALUE, false, 2, 4);
     this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
-    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 1);
-    this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 1);
+    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 5);
     this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
     this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
     this.addSpinner(this.valueSpinner, this.valueSlider, 100, 100, 3, 4);

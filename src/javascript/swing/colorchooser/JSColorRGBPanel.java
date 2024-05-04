@@ -38,8 +38,8 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.green, Translations.JSColorChooser_GREEN, false, 2, 2);
     this.addRadio(this.blue, Translations.JSColorChooser_BLUE, false, 2, 4);
     this.addSlider(this.redSlider, this.redSpinner, 0, 255, 2, 1);
-    this.addSlider(this.greenSlider, this.greenSpinner, 0, 255, 2, 1);
-    this.addSlider(this.blueSlider, this.blueSpinner, 0, 255, 2, 1);
+    this.addSlider(this.greenSlider, this.greenSpinner, 0, 255, 2, 3);
+    this.addSlider(this.blueSlider, this.blueSpinner, 0, 255, 2, 5);
     this.addSpinner(this.redSpinner, this.redSlider, 0, 255, 3, 0);
     this.addSpinner(this.greenSpinner, this.greenSlider, 0, 255, 3, 2);
     this.addSpinner(this.blueSpinner, this.blueSlider, 0, 255, 3, 4);
