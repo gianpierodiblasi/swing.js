@@ -30,10 +30,10 @@ import static simulation.js.$Globals.$typeof;
 public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   private final ButtonGroup buttonGroup = new ButtonGroup();
-  protected final JSComponent square = new JSComponent(document.createElement("canvas"));
+  private final JSComponent square = new JSComponent(document.createElement("canvas"));
   protected final $CanvasRenderingContext2D ctxSquare = this.square.invoke("getContext('2d')");
 
-  protected final JSComponent rect = new JSComponent(document.createElement("canvas"));
+  private final JSComponent rect = new JSComponent(document.createElement("canvas"));
   protected final $CanvasRenderingContext2D ctxRect = this.rect.invoke("getContext('2d')");
 
   private final Array<ChangeListener> listeners = new Array<>();
@@ -233,11 +233,11 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     });
   }
 
-  protected String getStrokeStyle(String style) {
+  private String getStrokeStyle(String style) {
     return style;
   }
 
-  protected Union4<String, CanvasGradient, CanvasPattern, java.lang.Object> $getStrokeStyle(String style) {
+  private Union4<String, CanvasGradient, CanvasPattern, java.lang.Object> $getStrokeStyle(String style) {
     return null;
   }
 }
