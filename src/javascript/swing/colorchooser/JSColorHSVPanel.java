@@ -10,7 +10,6 @@ import javascript.swing.ButtonGroup;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
-import javascript.swing.SpinnerNumberModel;
 import javascript.util.Translations;
 import static simulation.js.$Globals.parseInt;
 import simulation.js.$Uint8Array;
@@ -60,36 +59,12 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.value.addActionListener(event -> this.drawAll());
     this.addComponent(this.value, 2, 4, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
 
-    this.hueSlider.setMaximum(360);
-    this.hueSlider.setValue(0);
-    this.hueSlider.getStyle().minWidth = "20rem";
-    this.hueSlider.addChangeListener(event -> this.sliderToSpinner(this.hueSlider, this.hueSpinner));
-    this.addComponent(this.hueSlider, 2, 1, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-
-    this.satutationSlider.setValue(0);
-    this.satutationSlider.getStyle().minWidth = "20rem";
-    this.satutationSlider.addChangeListener(event -> this.sliderToSpinner(this.satutationSlider, this.saturationSpinner));
-    this.addComponent(this.satutationSlider, 2, 3, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-
-    this.valueSlider.setValue(100);
-    this.valueSlider.getStyle().minWidth = "20rem";
-    this.valueSlider.addChangeListener(event -> this.sliderToSpinner(this.valueSlider, this.valueSpinner));
-    this.addComponent(this.valueSlider, 2, 5, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
-
-    this.hueSpinner.setModel(new SpinnerNumberModel(0, 0, 360, 1));
-    this.hueSpinner.getStyle().minWidth = "3rem";
-    this.hueSpinner.addChangeListener(event -> this.spinnerToSlider(this.hueSpinner, this.hueSlider));
-    this.addComponent(this.hueSpinner, 3, 0, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-
-    this.saturationSpinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-    this.saturationSpinner.getStyle().minWidth = "3rem";
-    this.saturationSpinner.addChangeListener(event -> this.spinnerToSlider(this.saturationSpinner, this.satutationSlider));
-    this.addComponent(this.saturationSpinner, 3, 2, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-
-    this.valueSpinner.setModel(new SpinnerNumberModel(100, 0, 100, 1));
-    this.valueSpinner.getStyle().minWidth = "3rem";
-    this.valueSpinner.addChangeListener(event -> this.spinnerToSlider(this.valueSpinner, this.valueSlider));
-    this.addComponent(this.valueSpinner, 3, 4, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
+    this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
+    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 1);
+    this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 1);
+    this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
+    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.valueSpinner, this.valueSlider, 100, 100, 3, 4);
 
     this.drawAll();
   }

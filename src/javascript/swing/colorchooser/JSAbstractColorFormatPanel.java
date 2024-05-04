@@ -11,6 +11,7 @@ import javascript.swing.JSComponent;
 import javascript.swing.JSPanel;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
+import javascript.swing.SpinnerNumberModel;
 import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
 import jsweet.util.union.Union4;
@@ -39,7 +40,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   protected JSAbstractColorFormatPanel() {
     super();
-        
+
     this.square.setProperty("width", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
@@ -57,6 +58,22 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
   }
 
+  protected void addSlider(JSSlider slider, JSSpinner spinner, int value, int max, int gridx, int gridy) {
+    slider.setValue(value);
+    slider.setMaximum(max);
+    slider.getStyle().minWidth = "20rem";
+    slider.addChangeListener(event -> this.sliderToSpinner(slider, spinner));
+    this.addComponent(slider, gridx, gridy, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
+  }
+
+  protected void addSpinner(JSSpinner spinner, JSSlider slider, int value, int max, int gridx, int gridy) {
+    spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
+    spinner.getStyle().minWidth = "3rem";
+    spinner.addChangeListener(event -> this.spinnerToSlider(spinner, slider));
+
+    this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
+  }
+
   protected void addComponent(JSComponent component, int gridx, int gridy, int gridwidth, int gridheight, int anchor, int fill, double weightx, double weighty, Insets insets) {
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = gridx;
@@ -71,17 +88,17 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     if ($exists(insets)) {
       gridBagConstraints.insets = insets;
     }
-    
+
     this.add(component, gridBagConstraints);
   }
 
-  protected void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
+  private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
     spinner.setValue(slider.getValue());
     this.drawAll();
     this.onchange();
   }
 
-  protected void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
+  private void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
     slider.setValue((int) spinner.getValue());
     this.drawAll();
     this.onchange();
@@ -103,9 +120,9 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
   protected abstract void drawRectSelector();
 
   protected abstract void squareEvent(MouseEvent event, String type);
-  
+
   protected abstract void rectEvent(MouseEvent event, String type);
-  
+
   /**
    * Adds a change listener
    *
