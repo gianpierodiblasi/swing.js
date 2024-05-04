@@ -15,7 +15,7 @@ import static simulation.js.$Globals.$typeof;
  * @author gianpiero.diblasi
  */
 public class JSColorSwatchesPanel extends JSPanel {
-
+  
   private Color color;
   private final Array<ActionListener> listeners = new Array<>();
 
@@ -25,15 +25,16 @@ public class JSColorSwatchesPanel extends JSPanel {
   public JSColorSwatchesPanel() {
     super();
     this.setLayout(new GridLayout(9, 31, 1, 1));
-
+    
     for (int index = 0; index < JSColorSwatchesPanel.rawValues.length; index += 3) {
       this.addButton(new Color(JSColorSwatchesPanel.rawValues.$get(index), JSColorSwatchesPanel.rawValues.$get(index + 1), JSColorSwatchesPanel.rawValues.$get(index + 2), 255));
     }
   }
-
+  
   private void addButton(Color c) {
     JSButton button = new JSButton();
     button.setBackground(c);
+    button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
     button.getStyle().borderColor = c.getRGB_HEX();
     button.addActionListener(event -> {
       this.color = c;
@@ -59,10 +60,10 @@ public class JSColorSwatchesPanel extends JSPanel {
   public void addActionListener(ActionListener listener) {
     this.listeners.push(listener);
   }
-
+  
   private void onclick() {
     ActionEvent event = new ActionEvent();
-
+    
     this.listeners.forEach(listener -> {
       if ($typeof(listener, "function")) {
         listener.$apply(event);
@@ -71,7 +72,7 @@ public class JSColorSwatchesPanel extends JSPanel {
       }
     });
   }
-
+  
   private final static Array<Integer> rawValues = new Array<>(
           255, 255, 255, // first row.
           204, 255, 255,

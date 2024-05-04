@@ -23,6 +23,7 @@ class JSColorSwatchesPanel extends JSPanel {
    addButton(c) {
     let button = new JSButton();
     button.setBackground(c);
+    button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
     button.getStyle().borderColor = c.getRGB_HEX();
     button.addActionListener(event => {
       this.color = c;

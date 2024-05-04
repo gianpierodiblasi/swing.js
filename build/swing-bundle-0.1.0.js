@@ -1616,6 +1616,15 @@ class JSButton extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JButton.setTooltip
+   *
+   * @param text The text
+   */
+   setTooltip(text) {
+    this.setAttribute("title", text);
+  }
+
+  /**
    * Clone of javax.swing.JButton.setContentAreaFilled
    *
    * @param b true to fill the area, false otherwise
@@ -2983,6 +2992,7 @@ class JSColorSwatchesPanel extends JSPanel {
    addButton(c) {
     let button = new JSButton();
     button.setBackground(c);
+    button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
     button.getStyle().borderColor = c.getRGB_HEX();
     button.addActionListener(event => {
       this.color = c;

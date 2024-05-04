@@ -26,6 +26,15 @@ public class JSButton extends AbstractButton {
   }
 
   /**
+   * Clone of javax.swing.JButton.setTooltip
+   *
+   * @param text The text
+   */
+  public void setTooltip(String text) {
+    this.setAttribute("title", text);
+  }
+
+  /**
    * Clone of javax.swing.JButton.setContentAreaFilled
    *
    * @param b true to fill the area, false otherwise
