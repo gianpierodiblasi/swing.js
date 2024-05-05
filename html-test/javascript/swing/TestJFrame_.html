@@ -23,6 +23,15 @@
                 roundness(urlParams.get("roundness")).
                 build();
 
+        switch (urlParams.get("lang")) {
+          case "en":
+            Translations.setEnglish();
+            break;
+          case "it":
+            Translations.setItalian();
+            break;
+        }
+
         eval("new TestJSFrame" + urlParams.get("num") + "();");
       };
     </script>
