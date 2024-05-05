@@ -39,7 +39,15 @@ public abstract class JSAbstractColorSwatchesPanel extends JSPanel {
     JSButton button = new JSButton();
     button.setBackground(c);
     button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
-    button.getStyle().borderColor = c.getRGB_HEX();
+
+    Array<Integer> rgb = new Array<>();
+    Array<Integer> hsl = new Array<>();
+    rgb.$set(0, c.red);
+    rgb.$set(1, c.green);
+    rgb.$set(2, c.blue);
+    Color.RGBtoHSL(rgb, hsl);
+    button.getStyle().borderColor = hsl.$get(2) > 0.5 ? c.darkened(0.1).getRGB_HEX() : c.lighted(0.1).getRGB_HEX();
+    
     button.addActionListener(event -> {
       this.color = c;
       this.onclick();

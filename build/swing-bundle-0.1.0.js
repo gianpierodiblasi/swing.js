@@ -22,6 +22,27 @@ class Color {
   }
 
   /**
+   * In place lights up this Z4Color, the transparency is not changed
+   *
+   * @param lightingFactor The lighting factor (in the range [0,1])
+   * @return This lighted Z4Color
+   */
+   lighted(lightingFactor) {
+    return new Color(parseInt((255 - this.red) * lightingFactor + this.red), parseInt((255 - this.green) * lightingFactor + this.green), parseInt((255 - this.blue) * lightingFactor + this.blue), this.alpha);
+  }
+
+  /**
+   * In place darkens this Z4Color, the transparency is not changed
+   *
+   * @param darkeningFactor The darkening factor (in the range [0,1])
+   * @return This darkened Z4Color
+   */
+   darkened(darkeningFactor) {
+    darkeningFactor = 1 - darkeningFactor;
+    return new Color(parseInt(darkeningFactor * this.red), parseInt(darkeningFactor * this.green), parseInt(darkeningFactor * this.blue), this.alpha);
+  }
+
+  /**
    * Returns the RGB integer representing this Color
    *
    * @return The RGB integer representing this Color
@@ -3207,7 +3228,13 @@ class JSAbstractColorSwatchesPanel extends JSPanel {
     let button = new JSButton();
     button.setBackground(c);
     button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
-    button.getStyle().borderColor = c.getRGB_HEX();
+    let rgb = new Array();
+    let hsl = new Array();
+    rgb[0] = c.red;
+    rgb[1] = c.green;
+    rgb[2] = c.blue;
+    Color.RGBtoHSL(rgb, hsl);
+    button.getStyle().borderColor = hsl[2] > 0.5 ? c.darkened(0.1).getRGB_HEX() : c.lighted(0.1).getRGB_HEX();
     button.addActionListener(event => {
       this.color = c;
       this.onclick();

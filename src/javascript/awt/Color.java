@@ -28,6 +28,27 @@ public class Color {
   }
 
   /**
+   * In place lights up this Z4Color, the transparency is not changed
+   *
+   * @param lightingFactor The lighting factor (in the range [0,1])
+   * @return This lighted Z4Color
+   */
+  public Color lighted(double lightingFactor) {
+    return new Color(parseInt((255 - this.red) * lightingFactor + this.red), parseInt((255 - this.green) * lightingFactor + this.green), parseInt((255 - this.blue) * lightingFactor + this.blue), this.alpha);
+  }
+
+  /**
+   * In place darkens this Z4Color, the transparency is not changed
+   *
+   * @param darkeningFactor The darkening factor (in the range [0,1])
+   * @return This darkened Z4Color
+   */
+  public Color darkened(double darkeningFactor) {
+    darkeningFactor = 1 - darkeningFactor;
+    return new Color(parseInt(darkeningFactor * this.red), parseInt(darkeningFactor * this.green), parseInt(darkeningFactor * this.blue), this.alpha);
+  }
+
+  /**
    * Returns the RGB integer representing this Color
    *
    * @return The RGB integer representing this Color
