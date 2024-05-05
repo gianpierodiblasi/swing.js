@@ -4,6 +4,7 @@ import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
+import javascript.swing.colorchooser.JSColorCMYKPanel;
 import javascript.swing.colorchooser.JSColorHSLPanel;
 import javascript.swing.colorchooser.JSColorHSVPanel;
 import javascript.swing.colorchooser.JSColorRGBPanel;
@@ -42,19 +43,31 @@ public class TestJFrame9 extends javax.swing.JFrame {
     swatchesPanel.addActionListener(event -> hslPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(hslPanel, null);
 
-    JSColorRGBPanel rgbanel = new JSColorRGBPanel();
-    rgbanel.addChangeListener(event -> console.log(rgbanel.getSelectedColor().getRGB_HEX()));
-    swatchesPanel.addActionListener(event -> rgbanel.setSelectedColor(swatchesPanel.getSelectedColor()));
-    ((JSPanel) SwingJS.convert(this.jPanel2)).add(rgbanel, null);
+    JSColorRGBPanel rgbPanel = new JSColorRGBPanel();
+    rgbPanel.addChangeListener(event -> console.log(rgbPanel.getSelectedColor().getRGB_HEX()));
+    swatchesPanel.addActionListener(event -> rgbPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(rgbPanel, null);
+    
+    JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
+    cmykPanel.addChangeListener(event -> console.log(cmykPanel.getSelectedColor().getRGB_HEX()));
+    swatchesPanel.addActionListener(event -> cmykPanel.setSelectedColor(swatchesPanel.getSelectedColor()));
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(cmykPanel, null);
 
     hsvPanel.addChangeListener(event -> hslPanel.setSelectedColor(hsvPanel.getSelectedColor()));
-    hsvPanel.addChangeListener(event -> rgbanel.setSelectedColor(hsvPanel.getSelectedColor()));
+    hsvPanel.addChangeListener(event -> rgbPanel.setSelectedColor(hsvPanel.getSelectedColor()));
+    hsvPanel.addChangeListener(event -> cmykPanel.setSelectedColor(hsvPanel.getSelectedColor()));
 
     hslPanel.addChangeListener(event -> hsvPanel.setSelectedColor(hslPanel.getSelectedColor()));
-    hslPanel.addChangeListener(event -> rgbanel.setSelectedColor(hslPanel.getSelectedColor()));
+    hslPanel.addChangeListener(event -> rgbPanel.setSelectedColor(hslPanel.getSelectedColor()));
+    hslPanel.addChangeListener(event -> cmykPanel.setSelectedColor(hslPanel.getSelectedColor()));
 
-    rgbanel.addChangeListener(event -> hsvPanel.setSelectedColor(rgbanel.getSelectedColor()));
-    rgbanel.addChangeListener(event -> hslPanel.setSelectedColor(rgbanel.getSelectedColor()));
+    rgbPanel.addChangeListener(event -> hsvPanel.setSelectedColor(rgbPanel.getSelectedColor()));
+    rgbPanel.addChangeListener(event -> hslPanel.setSelectedColor(rgbPanel.getSelectedColor()));
+    rgbPanel.addChangeListener(event -> cmykPanel.setSelectedColor(rgbPanel.getSelectedColor()));
+    
+    cmykPanel.addChangeListener(event -> hsvPanel.setSelectedColor(cmykPanel.getSelectedColor()));
+    cmykPanel.addChangeListener(event -> hslPanel.setSelectedColor(cmykPanel.getSelectedColor()));
+    cmykPanel.addChangeListener(event -> rgbPanel.setSelectedColor(cmykPanel.getSelectedColor()));
   }
 
   /**
