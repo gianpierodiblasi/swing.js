@@ -34,12 +34,10 @@ class JSColorPanel extends JSPanel {
    */
   constructor() {
     super();
-    this.swatchesPanel.setID("AAAAA");
+    this.cssAddClass("jscolorpanel");
     this.setLayout(new GridBagLayout());
     let gridBagConstraints = null;
     let pane = new JSTabbedPane();
-    pane.getStyle().width = "45rem";
-    pane.getStyle().height = "22rem";
     this.addPanel(pane, Translations.JSColorChooser_PALETTE, this.swatchesPanel);
     this.addPanel(pane, "HSV", this.hsvPanel);
     this.addPanel(pane, "HSL", this.hslPanel);
@@ -86,28 +84,13 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.anchor = GridBagConstraints.LINE_START;
     gridBagConstraints.insets = new Insets(5, 0, 2, 0);
     this.add(label, gridBagConstraints);
-    this.component.getStyle().setProperty("grid-area", "c1");
-    this.component.getStyle().borderTopLeftRadius = "var(--roundness)";
-    this.component.getStyle().borderBottomLeftRadius = "var(--roundness)";
+    this.component.cssAddClass("jscolorpanel-preview-opaque");
     this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
-    this.componentOpacity.getStyle().setProperty("grid-area", "c2");
-    this.componentOpacity.getStyle().borderTopRightRadius = "var(--roundness)";
-    this.componentOpacity.getStyle().borderBottomRightRadius = "var(--roundness)";
+    this.componentOpacity.cssAddClass("jscolorpanel-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
-    let chess = new JSComponent(document.createElement("div"));
-    chess.getStyle().setProperty("grid-area", "c2");
-    chess.getStyle().borderTopRightRadius = "var(--roundness)";
-    chess.getStyle().borderBottomRightRadius = "var(--roundness)";
-    chess.getStyle().backgroundPosition = "0 0, 0 1rem";
-    chess.getStyle().backgroundRepeat = "repeat-x";
-    chess.getStyle().backgroundSize = "2rem 1rem, 2rem 1rem";
-    chess.getStyle().backgroundImage = "linear-gradient(90deg, #DDD 1rem, white 1rem), linear-gradient(90deg, white 1rem, #DDD 1rem)";
     let container = new JSComponent(document.createElement("div"));
-    container.getStyle().height = "2rem";
-    container.getStyle().display = "grid";
-    container.getStyle().setProperty("grid-template", "'c1 c2'");
+    container.cssAddClass("jscolorpanel-preview");
     container.appendChild(this.component);
-    container.appendChild(chess);
     container.appendChild(this.componentOpacity);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
