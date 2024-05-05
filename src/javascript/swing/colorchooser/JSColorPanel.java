@@ -31,6 +31,7 @@ public class JSColorPanel extends JSPanel {
   private final JSColorRGBPanel rgbPanel = new JSColorRGBPanel();
   private final JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
 
+  private final JSLabel opacity = new JSLabel();
   private final JSSlider opacitySlider = new JSSlider();
   private final JSSpinner opacitySpinner = new JSSpinner();
   private final JSComponent component = new JSComponent(document.createElement("div"));
@@ -40,6 +41,7 @@ public class JSColorPanel extends JSPanel {
 
   private String currentTab;
   private boolean valueIsAdjusting;
+  private boolean opacityVisible = true;
 
   /**
    * Creates the object
@@ -65,13 +67,12 @@ public class JSColorPanel extends JSPanel {
     gridBagConstraints.fill = GridBagConstraints.BOTH;
     this.add(pane, gridBagConstraints);
 
-    JSLabel label = new JSLabel();
-    label.setText(Translations.JSColorChooser_OPACITY);
+    this.opacity.setText(Translations.JSColorChooser_OPACITY);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(label, gridBagConstraints);
+    this.add(this.opacity, gridBagConstraints);
 
     this.opacitySlider.setMaximum(255);
     this.opacitySlider.setValue(255);
@@ -95,7 +96,7 @@ public class JSColorPanel extends JSPanel {
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
 
-    label = new JSLabel();
+    JSLabel label = new JSLabel();
     label.setText(Translations.JSColorChooser_PREVIEW);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -215,7 +216,7 @@ public class JSColorPanel extends JSPanel {
         break;
     }
 
-    return new Color(color.red, color.green, color.blue, this.opacitySlider.getValue());
+    return new Color(color.red, color.green, color.blue, this.opacityVisible ? this.opacitySlider.getValue() : 255);
   }
 
   /**
@@ -228,6 +229,29 @@ public class JSColorPanel extends JSPanel {
     this.hslPanel.setSelectedColor(color);
     this.rgbPanel.setSelectedColor(color);
     this.cmykPanel.setSelectedColor(color);
+
+    if (this.opacityVisible) {
+      this.opacitySlider.setValue(color.alpha);
+      this.opacitySpinner.setValue(color.alpha);
+    }
+  }
+
+  /**
+   * Sets the visibility of the opacity selectors
+   *
+   * @param b true to make the opacity selectors visible, false otherwise
+   */
+  public void setOpacityVisible(boolean b) {
+    this.opacityVisible = b;
+    if (this.opacityVisible) {
+      this.opacity.getStyle().display = "block";
+      this.opacitySpinner.getStyle().display = "grid";
+      this.opacitySlider.getStyle().display = "flex";
+    } else {
+      this.opacity.getStyle().display = "none";
+      this.opacitySpinner.getStyle().display = "none";
+      this.opacitySlider.getStyle().display = "none";
+    }
   }
 
   /**

@@ -15,9 +15,17 @@ class TestJFrame10 extends JFrame {
    postInitComponents() {
     let colorPanel = new JSColorPanel();
     (SwingJS.convert(this.jPanel2)).add(colorPanel, null);
+    let colorPanelNoOpacity = new JSColorPanel();
+    colorPanelNoOpacity.setOpacityVisible(false);
+    (SwingJS.convert(this.jPanel2)).add(colorPanelNoOpacity, null);
     colorPanel.addChangeListener(event => {
       if (this.jCheckBox1.isSelected() || !colorPanel.getValueIsAdjusting()) {
         console.log(colorPanel.getSelectedColor().getARGB_HEX());
+      }
+    });
+    colorPanelNoOpacity.addChangeListener(event => {
+      if (this.jCheckBox1.isSelected() || !colorPanelNoOpacity.getValueIsAdjusting()) {
+        console.log(colorPanelNoOpacity.getSelectedColor().getARGB_HEX());
       }
     });
   }

@@ -3418,6 +3418,8 @@ class JSColorPanel extends JSPanel {
 
    cmykPanel = new JSColorCMYKPanel();
 
+   opacity = new JSLabel();
+
    opacitySlider = new JSSlider();
 
    opacitySpinner = new JSSpinner();
@@ -3431,6 +3433,8 @@ class JSColorPanel extends JSPanel {
    currentTab = null;
 
    valueIsAdjusting = false;
+
+   opacityVisible = true;
 
   /**
    * Creates the object
@@ -3452,13 +3456,12 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
     this.add(pane, gridBagConstraints);
-    let label = new JSLabel();
-    label.setText(Translations.JSColorChooser_OPACITY);
+    this.opacity.setText(Translations.JSColorChooser_OPACITY);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(label, gridBagConstraints);
+    this.add(this.opacity, gridBagConstraints);
     this.opacitySlider.setMaximum(255);
     this.opacitySlider.setValue(255);
     this.opacitySlider.getStyle().minWidth = "20rem";
@@ -3479,7 +3482,7 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
-    label = new JSLabel();
+    let label = new JSLabel();
     label.setText(Translations.JSColorChooser_PREVIEW);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -3584,7 +3587,7 @@ class JSColorPanel extends JSPanel {
         color = this.cmykPanel.getSelectedColor();
         break;
     }
-    return new Color(color.red, color.green, color.blue, this.opacitySlider.getValue());
+    return new Color(color.red, color.green, color.blue, this.opacityVisible ? this.opacitySlider.getValue() : 255);
   }
 
   /**
@@ -3597,6 +3600,28 @@ class JSColorPanel extends JSPanel {
     this.hslPanel.setSelectedColor(color);
     this.rgbPanel.setSelectedColor(color);
     this.cmykPanel.setSelectedColor(color);
+    if (this.opacityVisible) {
+      this.opacitySlider.setValue(color.alpha);
+      this.opacitySpinner.setValue(color.alpha);
+    }
+  }
+
+  /**
+   * Sets the visibility of the opacity selectors
+   *
+   * @param b true to make the opacity selectors visible, false otherwise
+   */
+   setOpacityVisible(b) {
+    this.opacityVisible = b;
+    if (this.opacityVisible) {
+      this.opacity.getStyle().display = "block";
+      this.opacitySpinner.getStyle().display = "grid";
+      this.opacitySlider.getStyle().display = "flex";
+    } else {
+      this.opacity.getStyle().display = "none";
+      this.opacitySpinner.getStyle().display = "none";
+      this.opacitySlider.getStyle().display = "none";
+    }
   }
 
   /**
