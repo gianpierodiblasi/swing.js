@@ -2229,6 +2229,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
 
    rectDown = false;
 
+   valueIsAdjusting = false;
+
   static  SQUARE_SIZE = 180;
 
   static  RECT_WIDTH = 25;
@@ -2273,6 +2275,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
    addSpinner(spinner, slider, value, max, gridx, gridy) {
     spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
     spinner.getStyle().minWidth = "3rem";
+    spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event => this.spinnerToSlider(spinner, slider));
     this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
   }
@@ -2296,13 +2299,13 @@ class JSAbstractColorFormatPanel extends JSPanel {
    sliderToSpinner(slider, spinner) {
     spinner.setValue(slider.getValue());
     this.drawAll();
-    this.onchange();
+    this.onchange(slider.getValueIsAdjusting());
   }
 
    spinnerToSlider(spinner, slider) {
     slider.setValue(spinner.getValue());
     this.drawAll();
-    this.onchange();
+    this.onchange(spinner.getValueIsAdjusting());
   }
 
    drawAll() {
@@ -2397,6 +2400,15 @@ class JSAbstractColorFormatPanel extends JSPanel {
   }
 
   /**
+   * Returns if the selected color is "adjusting"
+   *
+   * @return true if the selected color is adjusting, false otherwise
+   */
+   getValueIsAdjusting() {
+    return this.valueIsAdjusting;
+  }
+
+  /**
    * Adds a change listener
    *
    * @param listener The listener
@@ -2405,7 +2417,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.listeners.push(listener);
   }
 
-   onchange() {
+   onchange(b) {
+    this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {
       if (typeof listener === "function") {
@@ -2499,7 +2512,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     rgb[1] = color.green;
     rgb[2] = color.blue;
     Color.RGBtoCMYK(rgb, cmyk);
-    this.setColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], false);
+    this.setColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], false, false);
   }
 
    drawSquare() {
@@ -2596,26 +2609,26 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
    squareEvent(event, type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.cyan.isSelected()) {
-      this.setColor(this.cyanSlider.getValue(), parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true);
+      this.setColor(this.cyanSlider.getValue(), parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.magenta.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.yellow.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     }
   }
 
    rectEvent(event, type) {
     if (!this.canDoItRect(type)) {
     } else if (this.cyan.isSelected()) {
-      this.setColor(parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), this.yellowSlider.getValue(), this.blackSlider.getValue(), true);
+      this.setColor(parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.magenta.isSelected()) {
-      this.setColor(this.cyanSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true);
+      this.setColor(this.cyanSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.yellow.isSelected()) {
-      this.setColor(this.cyanSlider.getValue(), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true);
+      this.setColor(this.cyanSlider.getValue(), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     }
   }
 
-   setColor(c, m, y, k, call) {
+   setColor(c, m, y, k, call, adjusting) {
     this.cyanSlider.setValue(c);
     this.cyanSpinner.setValue(c);
     this.magentaSlider.setValue(m);
@@ -2626,7 +2639,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.blackSpinner.setValue(k);
     this.drawAll();
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }
@@ -2699,7 +2712,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     rgb[1] = color.green;
     rgb[2] = color.blue;
     Color.RGBtoHSL(rgb, hsl);
-    this.setColor(360 * hsl[0], 100 * hsl[1], 100 * hsl[2], false);
+    this.setColor(360 * hsl[0], 100 * hsl[1], 100 * hsl[2], false, false);
   }
 
    drawSquare() {
@@ -2794,26 +2807,26 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
    squareEvent(event, type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
+      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.lightness.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true);
+      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true, type !== "up");
     }
   }
 
    rectEvent(event, type) {
     if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(360 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.lightnessSpinner.getValue(), true);
+      this.setColor(360 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.lightnessSpinner.getValue(), true, type !== "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true);
+      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true, type !== "up");
     } else if (this.lightness.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     }
   }
 
-   setColor(h, s, l, call) {
+   setColor(h, s, l, call, adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
     this.satutationSlider.setValue(parseInt(s));
@@ -2822,7 +2835,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     this.lightnessSpinner.setValue(parseInt(l));
     this.drawAll();
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }
@@ -2895,7 +2908,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     rgb[1] = color.green;
     rgb[2] = color.blue;
     Color.RGBtoHSV(rgb, hsv);
-    this.setColor(360 * hsv[0], 100 * hsv[1], 100 * hsv[2], false);
+    this.setColor(360 * hsv[0], 100 * hsv[1], 100 * hsv[2], false, false);
   }
 
    drawSquare() {
@@ -2990,26 +3003,26 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
    squareEvent(event, type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
+      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.value.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true);
+      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true, type !== "up");
     }
   }
 
    rectEvent(event, type) {
     if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true);
+      this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true, type !== "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true);
+      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true, type !== "up");
     } else if (this.value.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type !== "up");
     }
   }
 
-   setColor(h, s, v, call) {
+   setColor(h, s, v, call, adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
     this.satutationSlider.setValue(parseInt(s));
@@ -3018,7 +3031,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.valueSpinner.setValue(parseInt(v));
     this.drawAll();
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }
@@ -3079,7 +3092,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
    * @param color The selected color
    */
    setSelectedColor(color) {
-    this.setColor(color.red, color.green, color.blue, false);
+    this.setColor(color.red, color.green, color.blue, false, false);
   }
 
    drawSquare() {
@@ -3166,26 +3179,26 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
    squareEvent(event, type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.red.isSelected()) {
-      this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
+      this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type !== "up");
     } else if (this.green.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type !== "up");
     } else if (this.blue.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true, type !== "up");
     }
   }
 
    rectEvent(event, type) {
     if (!this.canDoItRect(type)) {
     } else if (this.red.isSelected()) {
-      this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true);
+      this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true, type !== "up");
     } else if (this.green.isSelected()) {
-      this.setColor(this.redSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true);
+      this.setColor(this.redSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true, type !== "up");
     } else if (this.blue.isSelected()) {
-      this.setColor(this.redSlider.getValue(), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
+      this.setColor(this.redSlider.getValue(), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type !== "up");
     }
   }
 
-   setColor(r, g, b, call) {
+   setColor(r, g, b, call, adjusting) {
     this.redSlider.setValue(r);
     this.redSpinner.setValue(r);
     this.greenSlider.setValue(g);
@@ -3194,7 +3207,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     this.blueSpinner.setValue(b);
     this.drawAll();
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }

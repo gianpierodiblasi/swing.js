@@ -40,6 +40,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
 
   private boolean squareDown;
   private boolean rectDown;
+  private boolean valueIsAdjusting;
 
   protected static final int SQUARE_SIZE = 180;
   protected static final int RECT_WIDTH = 25;
@@ -86,6 +87,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
   protected void addSpinner(JSSpinner spinner, JSSlider slider, int value, int max, int gridx, int gridy) {
     spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
     spinner.getStyle().minWidth = "3rem";
+    spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event -> this.spinnerToSlider(spinner, slider));
 
     this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
@@ -112,13 +114,13 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
   private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
     spinner.setValue(slider.getValue());
     this.drawAll();
-    this.onchange();
+    this.onchange(slider.getValueIsAdjusting());
   }
 
   private void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
     slider.setValue((int) spinner.getValue());
     this.drawAll();
-    this.onchange();
+    this.onchange(spinner.getValueIsAdjusting());
   }
 
   protected void drawAll() {
@@ -211,7 +213,16 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
         return false;
     }
   }
-  
+
+  /**
+   * Returns if the selected color is "adjusting"
+   *
+   * @return true if the selected color is adjusting, false otherwise
+   */
+  public boolean getValueIsAdjusting() {
+    return this.valueIsAdjusting;
+  }
+
   /**
    * Adds a change listener
    *
@@ -221,7 +232,8 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.listeners.push(listener);
   }
 
-  protected void onchange() {
+  protected void onchange(boolean b) {
+    this.valueIsAdjusting = b;
     ChangeEvent event = new ChangeEvent();
 
     this.listeners.forEach(listener -> {

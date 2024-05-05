@@ -62,7 +62,7 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
    * @param color The selected color
    */
   public void setSelectedColor(Color color) {
-    this.setColor(color.red, color.green, color.blue, false);
+    this.setColor(color.red, color.green, color.blue, false, false);
   }
 
   @Override
@@ -161,30 +161,32 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 
   @Override
+  @SuppressWarnings("StringEquality")
   protected void squareEvent(MouseEvent event, String type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.red.isSelected()) {
-      this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
+      this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type != "up");
     } else if (this.green.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type != "up");
     } else if (this.blue.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true, type != "up");
     }
   }
 
   @Override
+  @SuppressWarnings("StringEquality")
   protected void rectEvent(MouseEvent event, String type) {
     if (!this.canDoItRect(type)) {
     } else if (this.red.isSelected()) {
-      this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true);
+      this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true, type != "up");
     } else if (this.green.isSelected()) {
-      this.setColor(this.redSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true);
+      this.setColor(this.redSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.blueSlider.getValue(), true, type != "up");
     } else if (this.blue.isSelected()) {
-      this.setColor(this.redSlider.getValue(), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true);
+      this.setColor(this.redSlider.getValue(), this.greenSlider.getValue(), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type != "up");
     }
   }
 
-  private void setColor(int r, int g, int b, boolean call) {
+  private void setColor(int r, int g, int b, boolean call, boolean adjusting) {
     this.redSlider.setValue(r);
     this.redSpinner.setValue(r);
 
@@ -197,7 +199,7 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
 
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }

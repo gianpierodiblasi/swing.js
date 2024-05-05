@@ -67,7 +67,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     rgb[1] = color.green;
     rgb[2] = color.blue;
     Color.RGBtoHSL(rgb, hsl);
-    this.setColor(360 * hsl[0], 100 * hsl[1], 100 * hsl[2], false);
+    this.setColor(360 * hsl[0], 100 * hsl[1], 100 * hsl[2], false, false);
   }
 
    drawSquare() {
@@ -162,26 +162,26 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
    squareEvent(event, type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
+      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.lightness.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true);
+      this.setColor(360 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true, type !== "up");
     }
   }
 
    rectEvent(event, type) {
     if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(360 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.lightnessSpinner.getValue(), true);
+      this.setColor(360 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.lightnessSpinner.getValue(), true, type !== "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true);
+      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.lightnessSpinner.getValue(), true, type !== "up");
     } else if (this.lightness.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     }
   }
 
-   setColor(h, s, l, call) {
+   setColor(h, s, l, call, adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
     this.satutationSlider.setValue(parseInt(s));
@@ -190,7 +190,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     this.lightnessSpinner.setValue(parseInt(l));
     this.drawAll();
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }

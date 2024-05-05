@@ -77,7 +77,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     rgb[1] = color.green;
     rgb[2] = color.blue;
     Color.RGBtoCMYK(rgb, cmyk);
-    this.setColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], false);
+    this.setColor(cmyk[0], cmyk[1], cmyk[2], cmyk[3], false, false);
   }
 
    drawSquare() {
@@ -174,26 +174,26 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
    squareEvent(event, type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.cyan.isSelected()) {
-      this.setColor(this.cyanSlider.getValue(), parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true);
+      this.setColor(this.cyanSlider.getValue(), parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.magenta.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.yellow.isSelected()) {
-      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true);
+      this.setColor(parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     }
   }
 
    rectEvent(event, type) {
     if (!this.canDoItRect(type)) {
     } else if (this.cyan.isSelected()) {
-      this.setColor(parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), this.yellowSlider.getValue(), this.blackSlider.getValue(), true);
+      this.setColor(parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.magenta.isSelected()) {
-      this.setColor(this.cyanSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true);
+      this.setColor(this.cyanSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.yellow.isSelected()) {
-      this.setColor(this.cyanSlider.getValue(), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true);
+      this.setColor(this.cyanSlider.getValue(), this.magentaSlider.getValue(), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     }
   }
 
-   setColor(c, m, y, k, call) {
+   setColor(c, m, y, k, call, adjusting) {
     this.cyanSlider.setValue(c);
     this.cyanSpinner.setValue(c);
     this.magentaSlider.setValue(m);
@@ -204,7 +204,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.blackSpinner.setValue(k);
     this.drawAll();
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }

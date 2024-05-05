@@ -21,6 +21,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
 
    rectDown = false;
 
+   valueIsAdjusting = false;
+
   static  SQUARE_SIZE = 180;
 
   static  RECT_WIDTH = 25;
@@ -65,6 +67,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
    addSpinner(spinner, slider, value, max, gridx, gridy) {
     spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
     spinner.getStyle().minWidth = "3rem";
+    spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event => this.spinnerToSlider(spinner, slider));
     this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
   }
@@ -88,13 +91,13 @@ class JSAbstractColorFormatPanel extends JSPanel {
    sliderToSpinner(slider, spinner) {
     spinner.setValue(slider.getValue());
     this.drawAll();
-    this.onchange();
+    this.onchange(slider.getValueIsAdjusting());
   }
 
    spinnerToSlider(spinner, slider) {
     slider.setValue(spinner.getValue());
     this.drawAll();
-    this.onchange();
+    this.onchange(spinner.getValueIsAdjusting());
   }
 
    drawAll() {
@@ -189,6 +192,15 @@ class JSAbstractColorFormatPanel extends JSPanel {
   }
 
   /**
+   * Returns if the selected color is "adjusting"
+   *
+   * @return true if the selected color is adjusting, false otherwise
+   */
+   getValueIsAdjusting() {
+    return this.valueIsAdjusting;
+  }
+
+  /**
    * Adds a change listener
    *
    * @param listener The listener
@@ -197,7 +209,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.listeners.push(listener);
   }
 
-   onchange() {
+   onchange(b) {
+    this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {
       if (typeof listener === "function") {

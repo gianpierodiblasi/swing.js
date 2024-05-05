@@ -78,7 +78,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     rgb.$set(2, color.blue);
     Color.RGBtoHSV(rgb, hsv);
 
-    this.setColor(360 * hsv.$get(0), 100 * hsv.$get(1), 100 * hsv.$get(2), false);
+    this.setColor(360 * hsv.$get(0), 100 * hsv.$get(1), 100 * hsv.$get(2), false, false);
   }
 
   @Override
@@ -185,30 +185,32 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   }
 
   @Override
+  @SuppressWarnings("StringEquality")
   protected void squareEvent(MouseEvent event, String type) {
     if (!this.canDoItSquare(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type != "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
+      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type != "up");
     } else if (this.value.isSelected()) {
-      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true);
+      this.setColor(360 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true, type != "up");
     }
   }
 
   @Override
+  @SuppressWarnings("StringEquality")
   protected void rectEvent(MouseEvent event, String type) {
     if (!this.canDoItRect(type)) {
     } else if (this.hue.isSelected()) {
-      this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true);
+      this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true, type != "up");
     } else if (this.saturation.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true);
+      this.setColor(this.hueSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.valueSpinner.getValue(), true, type != "up");
     } else if (this.value.isSelected()) {
-      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true);
+      this.setColor(this.hueSpinner.getValue(), this.saturationSpinner.getValue(), 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type != "up");
     }
   }
 
-  private void setColor(double h, double s, double v, boolean call) {
+  private void setColor(double h, double s, double v, boolean call, boolean adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
 
@@ -221,7 +223,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
 
     if (call) {
-      this.onchange();
+      this.onchange(adjusting);
     }
   }
 }

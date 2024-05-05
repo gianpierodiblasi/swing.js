@@ -41,7 +41,7 @@ public abstract class JSAbstractColorSwatchesPanel extends JSPanel {
     button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
 
     Array<Integer> rgb = new Array<>();
-    Array<Integer> hsl = new Array<>();
+    Array<Double> hsl = new Array<>();
     rgb.$set(0, c.red);
     rgb.$set(1, c.green);
     rgb.$set(2, c.blue);
