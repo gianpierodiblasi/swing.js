@@ -150,9 +150,9 @@ class JSColorPanel extends JSPanel {
   }
 
    addPanel(pane, title, component) {
-    let container = new JSPanel();
-    container.add(component, null);
-    pane.addTab(title, container);
+    let panel = new JSPanel();
+    panel.add(component, null);
+    pane.addTab(title, panel);
   }
 
    sliderToSpinner(slider, spinner) {

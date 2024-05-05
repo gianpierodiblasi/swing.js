@@ -180,9 +180,9 @@ public class JSColorPanel extends JSPanel {
   }
 
   private void addPanel(JSTabbedPane pane, String title, JSComponent component) {
-    JSPanel container = new JSPanel();
-    container.add(component, null);
-    pane.addTab(title, container);
+    JSPanel panel = new JSPanel();
+    panel.add(component, null);
+    pane.addTab(title, panel);
   }
 
   private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {
