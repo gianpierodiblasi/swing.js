@@ -2,6 +2,7 @@ package javascript.swing;
 
 import static def.dom.Globals.console;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.swing.colorchooser.JSColorCMYKPanel;

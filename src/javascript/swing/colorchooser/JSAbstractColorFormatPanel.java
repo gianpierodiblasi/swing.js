@@ -91,7 +91,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
   }
 
-  private void addComponent(JSComponent component, int gridx, int gridy, int gridwidth, int gridheight, int anchor, int fill, double weightx, double weighty, Insets insets) {
+  protected void addComponent(JSComponent component, int gridx, int gridy, int gridwidth, int gridheight, int anchor, int fill, double weightx, double weighty, Insets insets) {
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = gridx;
     gridBagConstraints.gridy = gridy;

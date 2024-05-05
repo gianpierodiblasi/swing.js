@@ -1,64 +1,15 @@
 /**
- * The panel to show swatch colors
+ * The panel to show a large set of swatch colors
  *
  * @author gianpiero.diblasi
  */
-class JSColorSwatchesPanel extends JSPanel {
-
-   color = null;
-
-   listeners = new Array();
+class JSColorSwatchesPanel extends JSAbstractColorSwatchesPanel {
 
   /**
    * Creates the object
    */
   constructor() {
-    super();
-    this.setLayout(new GridLayout(9, 31, 1, 1));
-    for (let index = 0; index < JSColorSwatchesPanel.rawValues.length; index += 3) {
-      this.addButton(new Color(JSColorSwatchesPanel.rawValues[index], JSColorSwatchesPanel.rawValues[index + 1], JSColorSwatchesPanel.rawValues[index + 2], 255));
-    }
-  }
-
-   addButton(c) {
-    let button = new JSButton();
-    button.setBackground(c);
-    button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
-    button.getStyle().borderColor = c.getRGB_HEX();
-    button.addActionListener(event => {
-      this.color = c;
-      this.onclick();
-    });
-    this.add(button, null);
-  }
-
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
-   getSelectedColor() {
-    return this.color;
-  }
-
-  /**
-   * Adds an action listener
-   *
-   * @param listener The listener
-   */
-   addActionListener(listener) {
-    this.listeners.push(listener);
-  }
-
-   onclick() {
-    let event = new ActionEvent();
-    this.listeners.forEach(listener => {
-      if (typeof listener === "function") {
-        listener(event);
-      } else {
-        listener.actionPerformed(event);
-      }
-    });
+    super(9, 31, JSColorSwatchesPanel.rawValues);
   }
 
   static  rawValues = new Array(// first row.

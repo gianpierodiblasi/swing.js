@@ -1,78 +1,21 @@
 package javascript.swing.colorchooser;
 
 import def.js.Array;
-import javascript.awt.Color;
-import javascript.awt.GridLayout;
-import javascript.awt.event.ActionEvent;
-import javascript.awt.event.ActionListener;
-import javascript.swing.JSButton;
-import javascript.swing.JSPanel;
-import static simulation.js.$Globals.$typeof;
 
 /**
- * The panel to show swatch colors
+ * The panel to show a large set of swatch colors
  *
  * @author gianpiero.diblasi
  */
-public class JSColorSwatchesPanel extends JSPanel {
-  
-  private Color color;
-  private final Array<ActionListener> listeners = new Array<>();
+public class JSColorSwatchesPanel extends JSAbstractColorSwatchesPanel {
 
   /**
    * Creates the object
    */
   public JSColorSwatchesPanel() {
-    super();
-    this.setLayout(new GridLayout(9, 31, 1, 1));
-    
-    for (int index = 0; index < JSColorSwatchesPanel.rawValues.length; index += 3) {
-      this.addButton(new Color(JSColorSwatchesPanel.rawValues.$get(index), JSColorSwatchesPanel.rawValues.$get(index + 1), JSColorSwatchesPanel.rawValues.$get(index + 2), 255));
-    }
-  }
-  
-  private void addButton(Color c) {
-    JSButton button = new JSButton();
-    button.setBackground(c);
-    button.setTooltip(c.red + ", " + c.green + ", " + c.blue);
-    button.getStyle().borderColor = c.getRGB_HEX();
-    button.addActionListener(event -> {
-      this.color = c;
-      this.onclick();
-    });
-    this.add(button, null);
+    super(9, 31, JSColorSwatchesPanel.rawValues);
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
-  public Color getSelectedColor() {
-    return this.color;
-  }
-
-  /**
-   * Adds an action listener
-   *
-   * @param listener The listener
-   */
-  public void addActionListener(ActionListener listener) {
-    this.listeners.push(listener);
-  }
-  
-  private void onclick() {
-    ActionEvent event = new ActionEvent();
-    
-    this.listeners.forEach(listener -> {
-      if ($typeof(listener, "function")) {
-        listener.$apply(event);
-      } else {
-        listener.actionPerformed(event);
-      }
-    });
-  }
-  
   private final static Array<Integer> rawValues = new Array<>(
           255, 255, 255, // first row.
           204, 255, 255,

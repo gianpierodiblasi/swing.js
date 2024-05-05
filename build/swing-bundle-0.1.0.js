@@ -2436,12 +2436,17 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.cyan, Translations.JSColorChooser_CYAN, true, 2, 0);
     this.addRadio(this.magenta, Translations.JSColorChooser_MAGENTA, false, 2, 2);
     this.addRadio(this.yellow, Translations.JSColorChooser_YELLOW, false, 2, 4);
+    let label = new JSLabel();
+    label.setText(Translations.JSColorChooser_BLACK);
+    this.addComponent(label, 2, 6, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
     this.addSlider(this.cyanSlider, this.cyanSpinner, 0, 255, 2, 1);
     this.addSlider(this.magentaSlider, this.magentaSpinner, 0, 255, 2, 3);
     this.addSlider(this.yellowSlider, this.yellowSpinner, 0, 255, 2, 5);
+    this.addSlider(this.blackSlider, this.blackSpinner, 0, 255, 2, 7);
     this.addSpinner(this.cyanSpinner, this.cyanSlider, 0, 255, 3, 0);
     this.addSpinner(this.magentaSpinner, this.magentaSlider, 0, 255, 3, 2);
     this.addSpinner(this.yellowSpinner, this.yellowSlider, 0, 255, 3, 4);
+    this.addSpinner(this.blackSpinner, this.blackSlider, 0, 255, 3, 6);
     this.drawAll();
   }
 
@@ -2485,15 +2490,15 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
       for (let x = 0; x < JSColorCMYKPanel.SQUARE_SIZE; x++) {
         if (this.cyan.isSelected()) {
           cmyk[0] = this.cyanSlider.getValue();
-          cmyk[1] = x / JSColorCMYKPanel.SQUARE_SIZE;
-          cmyk[2] = y / JSColorCMYKPanel.SQUARE_SIZE;
+          cmyk[1] = 255 * x / JSColorCMYKPanel.SQUARE_SIZE;
+          cmyk[2] = 255 * y / JSColorCMYKPanel.SQUARE_SIZE;
         } else if (this.magenta.isSelected()) {
-          cmyk[0] = x / JSColorCMYKPanel.SQUARE_SIZE;
+          cmyk[0] = 255 * x / JSColorCMYKPanel.SQUARE_SIZE;
           cmyk[1] = this.magentaSlider.getValue();
-          cmyk[2] = y / JSColorCMYKPanel.SQUARE_SIZE;
+          cmyk[2] = 255 * y / JSColorCMYKPanel.SQUARE_SIZE;
         } else if (this.yellow.isSelected()) {
-          cmyk[0] = x / JSColorCMYKPanel.SQUARE_SIZE;
-          cmyk[1] = y / JSColorCMYKPanel.SQUARE_SIZE;
+          cmyk[0] = 255 * x / JSColorCMYKPanel.SQUARE_SIZE;
+          cmyk[1] = 255 * y / JSColorCMYKPanel.SQUARE_SIZE;
           cmyk[2] = this.yellowSlider.getValue();
         }
         cmyk[3] = this.blackSlider.getValue();
@@ -3173,11 +3178,11 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 }
 /**
- * The panel to show swatch colors
+ * The abstract panel to show swatch colors
  *
  * @author gianpiero.diblasi
  */
-class JSColorSwatchesPanel extends JSPanel {
+class JSAbstractColorSwatchesPanel extends JSPanel {
 
    color = null;
 
@@ -3185,12 +3190,16 @@ class JSColorSwatchesPanel extends JSPanel {
 
   /**
    * Creates the object
+   *
+   * @param rows The row count
+   * @param columns The column count
+   * @param rawValues The raw color values
    */
-  constructor() {
+  constructor(rows, columns, rawValues) {
     super();
-    this.setLayout(new GridLayout(9, 31, 1, 1));
-    for (let index = 0; index < JSColorSwatchesPanel.rawValues.length; index += 3) {
-      this.addButton(new Color(JSColorSwatchesPanel.rawValues[index], JSColorSwatchesPanel.rawValues[index + 1], JSColorSwatchesPanel.rawValues[index + 2], 255));
+    this.setLayout(new GridLayout(rows, columns, 1, 1));
+    for (let index = 0; index < rawValues.length; index += 3) {
+      this.addButton(new Color(rawValues[index], rawValues[index + 1], rawValues[index + 2], 255));
     }
   }
 
@@ -3233,6 +3242,75 @@ class JSColorSwatchesPanel extends JSPanel {
         listener.actionPerformed(event);
       }
     });
+  }
+}
+/**
+ * The panel to show a limited set of swatch colors
+ *
+ * @author gianpiero.diblasi
+ */
+class JSColorMiniSwatchesPanel extends JSAbstractColorSwatchesPanel {
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super(1, 13, JSColorMiniSwatchesPanel.rawValues);
+  }
+
+  static  rawValues = new Array(// white
+  255, // white
+  255, // white
+  255, // light gray
+  204, // light gray
+  204, // light gray
+  204, // gray
+  136, // gray
+  136, // gray
+  136, // dark gray
+  68, // dark gray
+  68, // dark gray
+  68, // black
+  0, // black
+  0, // black
+  0, // red
+  255, // red
+  0, // red
+  0, // green
+  0, // green
+  255, // green
+  0, // blue
+  0, // blue
+  0, // blue
+  255, // cyan
+  0, // cyan
+  255, // cyan
+  255, // magenta
+  255, // magenta
+  0, // magenta
+  255, // yellow
+  255, // yellow
+  255, // yellow
+  0, // pink
+  255, // pink
+  175, // pink
+  175, // orange
+  255, // orange
+  102, // orange
+  0);
+}
+/**
+ * The panel to show a large set of swatch colors
+ *
+ * @author gianpiero.diblasi
+ */
+class JSColorSwatchesPanel extends JSAbstractColorSwatchesPanel {
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super(9, 31, JSColorSwatchesPanel.rawValues);
   }
 
   static  rawValues = new Array(// first row.

@@ -4,6 +4,8 @@ import def.dom.ImageData;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
+import javascript.awt.GridBagConstraints;
+import javascript.swing.JSLabel;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
 import javascript.swing.JSSpinner;
@@ -39,12 +41,19 @@ public class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.cyan, Translations.JSColorChooser_CYAN, true, 2, 0);
     this.addRadio(this.magenta, Translations.JSColorChooser_MAGENTA, false, 2, 2);
     this.addRadio(this.yellow, Translations.JSColorChooser_YELLOW, false, 2, 4);
+    
+    JSLabel label = new JSLabel();
+    label.setText(Translations.JSColorChooser_BLACK);
+    this.addComponent(label, 2, 6, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    
     this.addSlider(this.cyanSlider, this.cyanSpinner, 0, 255, 2, 1);
     this.addSlider(this.magentaSlider, this.magentaSpinner, 0, 255, 2, 3);
     this.addSlider(this.yellowSlider, this.yellowSpinner, 0, 255, 2, 5);
+    this.addSlider(this.blackSlider, this.blackSpinner, 0, 255, 2, 7);
     this.addSpinner(this.cyanSpinner, this.cyanSlider, 0, 255, 3, 0);
     this.addSpinner(this.magentaSpinner, this.magentaSlider, 0, 255, 3, 2);
     this.addSpinner(this.yellowSpinner, this.yellowSlider, 0, 255, 3, 4);
+    this.addSpinner(this.blackSpinner, this.blackSlider, 0, 255, 3, 6);
 
     this.drawAll();
   }
@@ -96,15 +105,15 @@ public class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
       for (int x = 0; x < JSColorCMYKPanel.SQUARE_SIZE; x++) {
         if (this.cyan.isSelected()) {
           cmyk.$set(0, this.cyanSlider.getValue());
-          cmyk.$set(1, x / JSColorCMYKPanel.SQUARE_SIZE);
-          cmyk.$set(2, y / JSColorCMYKPanel.SQUARE_SIZE);
+          cmyk.$set(1, 255 * x / JSColorCMYKPanel.SQUARE_SIZE);
+          cmyk.$set(2, 255 * y / JSColorCMYKPanel.SQUARE_SIZE);
         } else if (this.magenta.isSelected()) {
-          cmyk.$set(0, x / JSColorCMYKPanel.SQUARE_SIZE);
+          cmyk.$set(0, 255 * x / JSColorCMYKPanel.SQUARE_SIZE);
           cmyk.$set(1, this.magentaSlider.getValue());
-          cmyk.$set(2, y / JSColorCMYKPanel.SQUARE_SIZE);
+          cmyk.$set(2, 255 * y / JSColorCMYKPanel.SQUARE_SIZE);
         } else if (this.yellow.isSelected()) {
-          cmyk.$set(0, x / JSColorCMYKPanel.SQUARE_SIZE);
-          cmyk.$set(1, y / JSColorCMYKPanel.SQUARE_SIZE);
+          cmyk.$set(0, 255 * x / JSColorCMYKPanel.SQUARE_SIZE);
+          cmyk.$set(1, 255 * y / JSColorCMYKPanel.SQUARE_SIZE);
           cmyk.$set(2, this.yellowSlider.getValue());
         }
         cmyk.$set(3, this.blackSlider.getValue());
