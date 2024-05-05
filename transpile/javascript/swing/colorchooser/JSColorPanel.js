@@ -21,7 +21,11 @@ class JSColorPanel extends JSPanel {
 
    component = new JSComponent(document.createElement("div"));
 
+   componentOpacity = new JSComponent(document.createElement("div"));
+
    listeners = new Array();
+
+   currentTab = null;
 
    valueIsAdjusting = false;
 
@@ -80,15 +84,37 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 3;
     gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+    gridBagConstraints.insets = new Insets(5, 0, 2, 0);
     this.add(label, gridBagConstraints);
-    this.component.getStyle().height = "2rem";
-    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    this.component.getStyle().setProperty("grid-area", "c1");
+    this.component.getStyle().borderTopLeftRadius = "var(--roundness)";
+    this.component.getStyle().borderBottomLeftRadius = "var(--roundness)";
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
+    this.componentOpacity.getStyle().setProperty("grid-area", "c2");
+    this.componentOpacity.getStyle().borderTopRightRadius = "var(--roundness)";
+    this.componentOpacity.getStyle().borderBottomRightRadius = "var(--roundness)";
+    this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    let chess = new JSComponent(document.createElement("div"));
+    chess.getStyle().setProperty("grid-area", "c2");
+    chess.getStyle().borderTopRightRadius = "var(--roundness)";
+    chess.getStyle().borderBottomRightRadius = "var(--roundness)";
+    chess.getStyle().backgroundPosition = "0 0, 0 1rem";
+    chess.getStyle().backgroundRepeat = "repeat-x";
+    chess.getStyle().backgroundSize = "2rem 1rem, 2rem 1rem";
+    chess.getStyle().backgroundImage = "linear-gradient(90deg, #DDD 1rem, white 1rem), linear-gradient(90deg, white 1rem, #DDD 1rem)";
+    let container = new JSComponent(document.createElement("div"));
+    container.getStyle().height = "2rem";
+    container.getStyle().display = "grid";
+    container.getStyle().setProperty("grid-template", "'c1 c2'");
+    container.appendChild(this.component);
+    container.appendChild(chess);
+    container.appendChild(this.componentOpacity);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 4;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.add(this.component, gridBagConstraints);
+    this.add(container, gridBagConstraints);
     this.swatchesPanel.addActionListener(event => {
       this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
       this.hslPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
@@ -102,6 +128,7 @@ class JSColorPanel extends JSPanel {
         this.rgbPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
         this.cmykPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
       }
+      this.currentTab = "hsv";
       this.onchange(this.hsvPanel.getValueIsAdjusting());
     });
     this.hslPanel.addChangeListener(event => {
@@ -110,6 +137,7 @@ class JSColorPanel extends JSPanel {
         this.rgbPanel.setSelectedColor(this.hslPanel.getSelectedColor());
         this.cmykPanel.setSelectedColor(this.hslPanel.getSelectedColor());
       }
+      this.currentTab = "hsl";
       this.onchange(this.hslPanel.getValueIsAdjusting());
     });
     this.rgbPanel.addChangeListener(event => {
@@ -118,6 +146,7 @@ class JSColorPanel extends JSPanel {
         this.hslPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
         this.cmykPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
       }
+      this.currentTab = "rgb";
       this.onchange(this.rgbPanel.getValueIsAdjusting());
     });
     this.cmykPanel.addChangeListener(event => {
@@ -126,6 +155,7 @@ class JSColorPanel extends JSPanel {
         this.hslPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
         this.rgbPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
       }
+      this.currentTab = "cmyk";
       this.onchange(this.cmykPanel.getValueIsAdjusting());
     });
   }
@@ -152,7 +182,22 @@ class JSColorPanel extends JSPanel {
    * @return The selected color
    */
    getSelectedColor() {
-    let color = this.rgbPanel.getSelectedColor();
+    let color = null;
+    switch(this.currentTab) {
+      case "hsv":
+        color = this.hsvPanel.getSelectedColor();
+        break;
+      case "hsl":
+        color = this.hslPanel.getSelectedColor();
+        break;
+      case "rgb":
+      default:
+        color = this.rgbPanel.getSelectedColor();
+        break;
+      case "cmyk":
+        color = this.cmykPanel.getSelectedColor();
+        break;
+    }
     return new Color(color.red, color.green, color.blue, this.opacitySlider.getValue());
   }
 
@@ -187,7 +232,8 @@ class JSColorPanel extends JSPanel {
   }
 
    onchange(b) {
-    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
+    this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
     this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {

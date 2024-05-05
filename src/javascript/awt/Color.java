@@ -24,7 +24,7 @@ public class Color {
     this.red = red;
     this.green = green;
     this.blue = blue;
-    this.alpha = $exists(alpha) ? alpha : 255;
+    this.alpha = alpha;
   }
 
   /**

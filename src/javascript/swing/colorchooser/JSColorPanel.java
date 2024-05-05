@@ -5,6 +5,7 @@ import def.js.Array;
 import javascript.awt.Color;
 import javascript.awt.GridBagConstraints;
 import javascript.awt.GridBagLayout;
+import javascript.awt.Insets;
 import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
 import javascript.swing.JSPanel;
@@ -33,9 +34,11 @@ public class JSColorPanel extends JSPanel {
   private final JSSlider opacitySlider = new JSSlider();
   private final JSSpinner opacitySpinner = new JSSpinner();
   private final JSComponent component = new JSComponent(document.createElement("div"));
+  private final JSComponent componentOpacity = new JSComponent(document.createElement("div"));
 
   private final Array<ChangeListener> listeners = new Array<>();
 
+  private String currentTab;
   private boolean valueIsAdjusting;
 
   /**
@@ -102,16 +105,42 @@ public class JSColorPanel extends JSPanel {
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 3;
     gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+    gridBagConstraints.insets = new Insets(5, 0, 2, 0);
     this.add(label, gridBagConstraints);
 
-    this.component.getStyle().height = "2rem";
-    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    this.component.getStyle().setProperty("grid-area", "c1");
+    this.component.getStyle().borderTopLeftRadius = "var(--roundness)";
+    this.component.getStyle().borderBottomLeftRadius = "var(--roundness)";
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
+
+    this.componentOpacity.getStyle().setProperty("grid-area", "c2");
+    this.componentOpacity.getStyle().borderTopRightRadius = "var(--roundness)";
+    this.componentOpacity.getStyle().borderBottomRightRadius = "var(--roundness)";
+    this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+
+    JSComponent chess = new JSComponent(document.createElement("div"));
+    chess.getStyle().setProperty("grid-area", "c2");
+    chess.getStyle().borderTopRightRadius = "var(--roundness)";
+    chess.getStyle().borderBottomRightRadius = "var(--roundness)";
+    chess.getStyle().backgroundPosition = "0 0, 0 1rem";
+    chess.getStyle().backgroundRepeat = "repeat-x";
+    chess.getStyle().backgroundSize = "2rem 1rem, 2rem 1rem";
+    chess.getStyle().backgroundImage = "linear-gradient(90deg, #DDD 1rem, white 1rem), linear-gradient(90deg, white 1rem, #DDD 1rem)";
+
+    JSComponent container = new JSComponent(document.createElement("div"));
+    container.getStyle().height = "2rem";
+    container.getStyle().display = "grid";
+    container.getStyle().setProperty("grid-template", "'c1 c2'");
+    container.appendChild(this.component);
+    container.appendChild(chess);
+    container.appendChild(this.componentOpacity);
+
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 4;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.add(this.component, gridBagConstraints);
+    this.add(container, gridBagConstraints);
 
     this.swatchesPanel.addActionListener(event -> {
       this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
@@ -129,6 +158,7 @@ public class JSColorPanel extends JSPanel {
         this.cmykPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
       }
 
+      this.currentTab = "hsv";
       this.onchange(this.hsvPanel.getValueIsAdjusting());
     });
 
@@ -139,6 +169,7 @@ public class JSColorPanel extends JSPanel {
         this.cmykPanel.setSelectedColor(this.hslPanel.getSelectedColor());
       }
 
+      this.currentTab = "hsl";
       this.onchange(this.hslPanel.getValueIsAdjusting());
     });
 
@@ -149,6 +180,7 @@ public class JSColorPanel extends JSPanel {
         this.cmykPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
       }
 
+      this.currentTab = "rgb";
       this.onchange(this.rgbPanel.getValueIsAdjusting());
     });
 
@@ -159,6 +191,7 @@ public class JSColorPanel extends JSPanel {
         this.rgbPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
       }
 
+      this.currentTab = "cmyk";
       this.onchange(this.cmykPanel.getValueIsAdjusting());
     });
   }
@@ -185,7 +218,23 @@ public class JSColorPanel extends JSPanel {
    * @return The selected color
    */
   public Color getSelectedColor() {
-    Color color = this.rgbPanel.getSelectedColor();
+    Color color;
+    switch (this.currentTab) {
+      case "hsv":
+        color = this.hsvPanel.getSelectedColor();
+        break;
+      case "hsl":
+        color = this.hslPanel.getSelectedColor();
+        break;
+      case "rgb":
+      default:
+        color = this.rgbPanel.getSelectedColor();
+        break;
+      case "cmyk":
+        color = this.cmykPanel.getSelectedColor();
+        break;
+    }
+
     return new Color(color.red, color.green, color.blue, this.opacitySlider.getValue());
   }
 
@@ -220,8 +269,9 @@ public class JSColorPanel extends JSPanel {
   }
 
   private void onchange(boolean b) {
-    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
-    
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
+    this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+
     this.valueIsAdjusting = b;
     ChangeEvent event = new ChangeEvent();
 
