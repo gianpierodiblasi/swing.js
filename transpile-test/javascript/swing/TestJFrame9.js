@@ -14,10 +14,8 @@ class TestJFrame9 extends JFrame {
 
    postInitComponents() {
     let miniSwatchesPanel = new JSColorMiniSwatchesPanel();
-    miniSwatchesPanel.addActionListener(event => console.log(miniSwatchesPanel.getSelectedColor().getRGB_HEX()));
     (SwingJS.convert(this.jPanel2)).add(miniSwatchesPanel, null);
     let swatchesPanel = new JSColorSwatchesPanel();
-    swatchesPanel.addActionListener(event => console.log(swatchesPanel.getSelectedColor().getRGB_HEX()));
     (SwingJS.convert(this.jPanel2)).add(swatchesPanel, null);
     let hsvPanel = new JSColorHSVPanel();
     (SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
@@ -28,12 +26,14 @@ class TestJFrame9 extends JFrame {
     let cmykPanel = new JSColorCMYKPanel();
     (SwingJS.convert(this.jPanel2)).add(cmykPanel, null);
     miniSwatchesPanel.addActionListener(event => {
+      console.log(miniSwatchesPanel.getSelectedColor().getRGB_HEX());
       hsvPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
       hslPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
       rgbPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
       cmykPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
     });
     swatchesPanel.addActionListener(event => {
+      console.log(swatchesPanel.getSelectedColor().getRGB_HEX());
       hsvPanel.setSelectedColor(swatchesPanel.getSelectedColor());
       hslPanel.setSelectedColor(swatchesPanel.getSelectedColor());
       rgbPanel.setSelectedColor(swatchesPanel.getSelectedColor());
