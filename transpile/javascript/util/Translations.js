@@ -40,6 +40,8 @@ class Translations {
 
   static  JSColorChooser_PALETTE = "";
 
+  static  JSColorChooser_PREVIEW = "";
+
   static {
     switch(navigator.language.substring(0, 2)) {
       case "en":
@@ -73,6 +75,7 @@ class Translations {
     Translations.JSColorChooser_BLACK = "Black";
     Translations.JSColorChooser_OPACITY = "Opacity";
     Translations.JSColorChooser_PALETTE = "Palette";
+    Translations.JSColorChooser_PREVIEW = "Preview";
   }
 
   static  setItalian() {
@@ -93,5 +96,6 @@ class Translations {
     Translations.JSColorChooser_BLACK = "Nero";
     Translations.JSColorChooser_OPACITY = "Opacit\u00E0";
     Translations.JSColorChooser_PALETTE = "Tavolozza";
+    Translations.JSColorChooser_PREVIEW = "Anteprima";
   }
 }

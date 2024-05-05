@@ -28,6 +28,7 @@ public class Translations {
   public static String JSColorChooser_BLACK = "";
   public static String JSColorChooser_OPACITY = "";
   public static String JSColorChooser_PALETTE = "";
+  public static String JSColorChooser_PREVIEW = "";
 
   static {
     switch (navigator.language.substring(0, 2)) {
@@ -62,6 +63,7 @@ public class Translations {
     Translations.JSColorChooser_BLACK = "Black";
     Translations.JSColorChooser_OPACITY = "Opacity";
     Translations.JSColorChooser_PALETTE = "Palette";
+    Translations.JSColorChooser_PREVIEW = "Preview";
   }
 
   public static void setItalian() {
@@ -82,5 +84,6 @@ public class Translations {
     Translations.JSColorChooser_BLACK = "Nero";
     Translations.JSColorChooser_OPACITY = "Opacit\u00E0";
     Translations.JSColorChooser_PALETTE = "Tavolozza";
+    Translations.JSColorChooser_PREVIEW = "Anteprima";
   }
 }

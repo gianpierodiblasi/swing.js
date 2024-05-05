@@ -151,55 +151,11 @@ class TestJSFrame10 extends JSFrame {
    postInitComponents() {
     let colorPanel = new JSColorPanel();
     (SwingJS.convert(this.jPanel2)).add(colorPanel, null);
-    // 
-    // swatchesPanel.addActionListener(event -> {
-    // console.log(swatchesPanel.getSelectedColor().getRGB_HEX());
-    // 
-    // hsvPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-    // hslPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-    // rgbPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-    // cmykPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-    // });
-    // 
-    // hsvPanel.addChangeListener(event -> {
-    // if (this.jCheckBox1.isSelected() || !hsvPanel.getValueIsAdjusting()) {
-    // console.log(hsvPanel.getSelectedColor().getRGB_HEX());
-    // 
-    // hslPanel.setSelectedColor(hsvPanel.getSelectedColor());
-    // rgbPanel.setSelectedColor(hsvPanel.getSelectedColor());
-    // cmykPanel.setSelectedColor(hsvPanel.getSelectedColor());
-    // }
-    // });
-    // 
-    // hslPanel.addChangeListener(event -> {
-    // if (this.jCheckBox1.isSelected() || !hslPanel.getValueIsAdjusting()) {
-    // console.log(hslPanel.getSelectedColor().getRGB_HEX());
-    // 
-    // hsvPanel.setSelectedColor(hslPanel.getSelectedColor());
-    // rgbPanel.setSelectedColor(hslPanel.getSelectedColor());
-    // cmykPanel.setSelectedColor(hslPanel.getSelectedColor());
-    // }
-    // });
-    // 
-    // rgbPanel.addChangeListener(event -> {
-    // if (this.jCheckBox1.isSelected() || !rgbPanel.getValueIsAdjusting()) {
-    // console.log(rgbPanel.getSelectedColor().getRGB_HEX());
-    // 
-    // hsvPanel.setSelectedColor(rgbPanel.getSelectedColor());
-    // hslPanel.setSelectedColor(rgbPanel.getSelectedColor());
-    // cmykPanel.setSelectedColor(rgbPanel.getSelectedColor());
-    // }
-    // });
-    // 
-    // cmykPanel.addChangeListener(event -> {
-    // if (this.jCheckBox1.isSelected() || !cmykPanel.getValueIsAdjusting()) {
-    // console.log(cmykPanel.getSelectedColor().getRGB_HEX());
-    // 
-    // hsvPanel.setSelectedColor(cmykPanel.getSelectedColor());
-    // hslPanel.setSelectedColor(cmykPanel.getSelectedColor());
-    // rgbPanel.setSelectedColor(cmykPanel.getSelectedColor());
-    // }
-    // });
+    colorPanel.addChangeListener(event => {
+      if (this.jCheckBox1.isSelected() || !colorPanel.getValueIsAdjusting()) {
+        console.log(colorPanel.getSelectedColor().getARGB_HEX());
+      }
+    });
   }
 
   /**
@@ -211,6 +167,7 @@ class TestJSFrame10 extends JSFrame {
     this.jPanel1 = new JSPanel();let jPanel1 = this.jPanel1;
     this.jButton4 = new JSButton();let jButton4 = this.jButton4;
     this.jButton5 = new JSButton();let jButton5 = this.jButton5;
+    this.jCheckBox1 = new JSCheckBox();let jCheckBox1 = this.jCheckBox1;
     this.jPanel2 = new JSPanel();let jPanel2 = this.jPanel2;
     this.setTitle("Test Color Chooser");
     jButton4.setText("Choose Color");
@@ -219,6 +176,9 @@ class TestJSFrame10 extends JSFrame {
     jButton5.setText("Choose Color With Default");
     jButton5.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton5ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton5);
+    jCheckBox1.setSelected(true);
+    jCheckBox1.setText("realtime");
+    jPanel1.add(jCheckBox1);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
@@ -267,6 +227,8 @@ class TestJSFrame10 extends JSFrame {
    jButton4 = null;
 
    jButton5 = null;
+
+   jCheckBox1 = null;
 
    jPanel1 = null;
 

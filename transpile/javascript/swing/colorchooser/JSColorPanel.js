@@ -19,6 +19,8 @@ class JSColorPanel extends JSPanel {
 
    opacitySpinner = new JSSpinner();
 
+   component = new JSComponent(document.createElement("div"));
+
    listeners = new Array();
 
    valueIsAdjusting = false;
@@ -72,13 +74,45 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
-    // 
-    // jPanel1.setBackground(new Color(255, 0, 0));
-    // gridBagConstraints = new GridBagConstraints();
-    // gridBagConstraints.gridx = 0;
-    // gridBagConstraints.gridy = 3;
-    // gridBagConstraints.gridwidth = 2;
-    // add(jPanel1, gridBagConstraints);
+    this.swatchesPanel.addActionListener(event => {
+      this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.hslPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.rgbPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.cmykPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.onchange(false);
+    });
+    this.hsvPanel.addChangeListener(event => {
+      if (!this.hsvPanel.getValueIsAdjusting()) {
+        this.hslPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
+        this.rgbPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
+        this.cmykPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
+      }
+      this.onchange(this.hsvPanel.getValueIsAdjusting());
+    });
+    this.hslPanel.addChangeListener(event => {
+      if (!this.hslPanel.getValueIsAdjusting()) {
+        this.hsvPanel.setSelectedColor(this.hslPanel.getSelectedColor());
+        this.rgbPanel.setSelectedColor(this.hslPanel.getSelectedColor());
+        this.cmykPanel.setSelectedColor(this.hslPanel.getSelectedColor());
+      }
+      this.onchange(this.hslPanel.getValueIsAdjusting());
+    });
+    this.rgbPanel.addChangeListener(event => {
+      if (!this.rgbPanel.getValueIsAdjusting()) {
+        this.hsvPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
+        this.hslPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
+        this.cmykPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
+      }
+      this.onchange(this.rgbPanel.getValueIsAdjusting());
+    });
+    this.cmykPanel.addChangeListener(event => {
+      if (!this.cmykPanel.getValueIsAdjusting()) {
+        this.hsvPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
+        this.hslPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
+        this.rgbPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
+      }
+      this.onchange(this.cmykPanel.getValueIsAdjusting());
+    });
   }
 
    addPanel(pane, title, component) {
@@ -95,6 +129,28 @@ class JSColorPanel extends JSPanel {
    spinnerToSlider(spinner, slider) {
     slider.setValue(spinner.getValue());
     this.onchange(spinner.getValueIsAdjusting());
+  }
+
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+   getSelectedColor() {
+    let color = this.rgbPanel.getSelectedColor();
+    return new Color(color.red, color.green, color.blue, this.opacitySlider.getValue());
+  }
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+   setSelectedColor(color) {
+    this.hsvPanel.setSelectedColor(color);
+    this.hslPanel.setSelectedColor(color);
+    this.rgbPanel.setSelectedColor(color);
+    this.cmykPanel.setSelectedColor(color);
   }
 
   /**

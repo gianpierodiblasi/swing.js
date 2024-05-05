@@ -1,10 +1,12 @@
 package javascript.swing;
 
+import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.swing.colorchooser.JSColorPanel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 /**
@@ -26,55 +28,12 @@ public class TestJFrame10 extends javax.swing.JFrame {
   private void postInitComponents() {
     JSColorPanel colorPanel = new JSColorPanel();
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(colorPanel, null);
-//
-//    swatchesPanel.addActionListener(event -> {
-//      console.log(swatchesPanel.getSelectedColor().getRGB_HEX());
-//
-//      hsvPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-//      hslPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-//      rgbPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-//      cmykPanel.setSelectedColor(swatchesPanel.getSelectedColor());
-//    });
-//
-//    hsvPanel.addChangeListener(event -> {
-//      if (this.jCheckBox1.isSelected() || !hsvPanel.getValueIsAdjusting()) {
-//        console.log(hsvPanel.getSelectedColor().getRGB_HEX());
-//
-//        hslPanel.setSelectedColor(hsvPanel.getSelectedColor());
-//        rgbPanel.setSelectedColor(hsvPanel.getSelectedColor());
-//        cmykPanel.setSelectedColor(hsvPanel.getSelectedColor());
-//      }
-//    });
-//
-//    hslPanel.addChangeListener(event -> {
-//      if (this.jCheckBox1.isSelected() || !hslPanel.getValueIsAdjusting()) {
-//        console.log(hslPanel.getSelectedColor().getRGB_HEX());
-//
-//        hsvPanel.setSelectedColor(hslPanel.getSelectedColor());
-//        rgbPanel.setSelectedColor(hslPanel.getSelectedColor());
-//        cmykPanel.setSelectedColor(hslPanel.getSelectedColor());
-//      }
-//    });
-//
-//    rgbPanel.addChangeListener(event -> {
-//      if (this.jCheckBox1.isSelected() || !rgbPanel.getValueIsAdjusting()) {
-//        console.log(rgbPanel.getSelectedColor().getRGB_HEX());
-//
-//        hsvPanel.setSelectedColor(rgbPanel.getSelectedColor());
-//        hslPanel.setSelectedColor(rgbPanel.getSelectedColor());
-//        cmykPanel.setSelectedColor(rgbPanel.getSelectedColor());
-//      }
-//    });
-//
-//    cmykPanel.addChangeListener(event -> {
-//      if (this.jCheckBox1.isSelected() || !cmykPanel.getValueIsAdjusting()) {
-//        console.log(cmykPanel.getSelectedColor().getRGB_HEX());
-//
-//        hsvPanel.setSelectedColor(cmykPanel.getSelectedColor());
-//        hslPanel.setSelectedColor(cmykPanel.getSelectedColor());
-//        rgbPanel.setSelectedColor(cmykPanel.getSelectedColor());
-//      }
-//    });
+
+    colorPanel.addChangeListener(event -> {
+      if (this.jCheckBox1.isSelected() || !colorPanel.getValueIsAdjusting()) {
+        console.log(colorPanel.getSelectedColor().getARGB_HEX());
+      }
+    });
   }
 
   /**
@@ -89,6 +48,7 @@ public class TestJFrame10 extends javax.swing.JFrame {
     jPanel1 = new JPanel();
     jButton4 = new JButton();
     jButton5 = new JButton();
+    jCheckBox1 = new JCheckBox();
     jPanel2 = new JPanel();
 
     setTitle("Test Color Chooser");
@@ -100,6 +60,10 @@ public class TestJFrame10 extends javax.swing.JFrame {
     jButton5.setText("Choose Color With Default");
     jButton5.addActionListener(this::jButton5ActionPerformed);
     jPanel1.add(jButton5);
+
+    jCheckBox1.setSelected(true);
+    jCheckBox1.setText("realtime");
+    jPanel1.add(jCheckBox1);
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     getContentPane().add(jPanel2, BorderLayout.CENTER);
@@ -144,6 +108,7 @@ public class TestJFrame10 extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton4;
   private JButton jButton5;
+  private JCheckBox jCheckBox1;
   private JPanel jPanel1;
   private JPanel jPanel2;
   // End of variables declaration//GEN-END:variables

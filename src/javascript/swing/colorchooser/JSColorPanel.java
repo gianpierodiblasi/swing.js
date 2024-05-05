@@ -1,6 +1,8 @@
 package javascript.swing.colorchooser;
 
+import static def.dom.Globals.document;
 import def.js.Array;
+import javascript.awt.Color;
 import javascript.awt.GridBagConstraints;
 import javascript.awt.GridBagLayout;
 import javascript.swing.JSComponent;
@@ -30,7 +32,8 @@ public class JSColorPanel extends JSPanel {
 
   private final JSSlider opacitySlider = new JSSlider();
   private final JSSpinner opacitySpinner = new JSSpinner();
-
+  private final JSComponent component = new JSComponent(document.createElement("div"));
+  
   private final Array<ChangeListener> listeners = new Array<>();
 
   private boolean valueIsAdjusting;
@@ -92,13 +95,55 @@ public class JSColorPanel extends JSPanel {
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
-//
-//    jPanel1.setBackground(new Color(255, 0, 0));
-//    gridBagConstraints = new GridBagConstraints();
-//    gridBagConstraints.gridx = 0;
-//    gridBagConstraints.gridy = 3;
-//    gridBagConstraints.gridwidth = 2;
-//    add(jPanel1, gridBagConstraints);
+
+    this.swatchesPanel.addActionListener(event -> {
+      this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.hslPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.rgbPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+      this.cmykPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
+
+      this.onchange(false);
+    });
+
+    this.hsvPanel.addChangeListener(event -> {
+      if (!this.hsvPanel.getValueIsAdjusting()) {
+        this.hslPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
+        this.rgbPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
+        this.cmykPanel.setSelectedColor(this.hsvPanel.getSelectedColor());
+      }
+
+      this.onchange(this.hsvPanel.getValueIsAdjusting());
+    });
+
+    this.hslPanel.addChangeListener(event -> {
+      if (!this.hslPanel.getValueIsAdjusting()) {
+        this.hsvPanel.setSelectedColor(this.hslPanel.getSelectedColor());
+        this.rgbPanel.setSelectedColor(this.hslPanel.getSelectedColor());
+        this.cmykPanel.setSelectedColor(this.hslPanel.getSelectedColor());
+      }
+
+      this.onchange(this.hslPanel.getValueIsAdjusting());
+    });
+
+    this.rgbPanel.addChangeListener(event -> {
+      if (!this.rgbPanel.getValueIsAdjusting()) {
+        this.hsvPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
+        this.hslPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
+        this.cmykPanel.setSelectedColor(this.rgbPanel.getSelectedColor());
+      }
+
+      this.onchange(this.rgbPanel.getValueIsAdjusting());
+    });
+
+    this.cmykPanel.addChangeListener(event -> {
+      if (!this.cmykPanel.getValueIsAdjusting()) {
+        this.hsvPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
+        this.hslPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
+        this.rgbPanel.setSelectedColor(this.cmykPanel.getSelectedColor());
+      }
+
+      this.onchange(this.cmykPanel.getValueIsAdjusting());
+    });
   }
 
   private void addPanel(JSTabbedPane pane, String title, JSComponent component) {
@@ -115,6 +160,28 @@ public class JSColorPanel extends JSPanel {
   private void spinnerToSlider(JSSpinner spinner, JSSlider slider) {
     slider.setValue((int) spinner.getValue());
     this.onchange(spinner.getValueIsAdjusting());
+  }
+
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+  public Color getSelectedColor() {
+    Color color = this.rgbPanel.getSelectedColor();
+    return new Color(color.red, color.green, color.blue, this.opacitySlider.getValue());
+  }
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+  public void setSelectedColor(Color color) {
+    this.hsvPanel.setSelectedColor(color);
+    this.hslPanel.setSelectedColor(color);
+    this.rgbPanel.setSelectedColor(color);
+    this.cmykPanel.setSelectedColor(color);
   }
 
   /**
