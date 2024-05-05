@@ -536,6 +536,7 @@
   border: none;
   outline: none;
   text-align: right;
+  min-width: 10rem;
 }
 .jsspinner button {
   font-family: var(--font-family);
