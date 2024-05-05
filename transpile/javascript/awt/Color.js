@@ -78,12 +78,30 @@ class Color {
   }
 
   /**
+   * Returns the RGB string representing this Color
+   *
+   * @return The RGB string representing this Color
+   */
+   getRGB_String() {
+    return "rgb(" + this.red + ", " + this.green + ", " + this.blue + ")";
+  }
+
+  /**
    * Returns the RGBA hex string representing this Color
    *
    * @return The RGBA hex string representing this Color
    */
    getRGBA_HEX() {
     return "#" + new Number(this.red).toString(16).padStart(2, "0") + new Number(this.green).toString(16).padStart(2, "0") + new Number(this.blue).toString(16).padStart(2, "0") + new Number(this.alpha).toString(16).padStart(2, "0");
+  }
+
+  /**
+   * Returns the RGBA string representing this Color
+   *
+   * @return The RGBA string representing this Color
+   */
+   getRGBA_String() {
+    return "rgba(" + this.red + ", " + this.green + ", " + this.blue + ", " + (this.alpha / 255) + ")";
   }
 
   /**

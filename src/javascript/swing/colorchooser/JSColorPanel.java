@@ -33,7 +33,7 @@ public class JSColorPanel extends JSPanel {
   private final JSSlider opacitySlider = new JSSlider();
   private final JSSpinner opacitySpinner = new JSSpinner();
   private final JSComponent component = new JSComponent(document.createElement("div"));
-  
+
   private final Array<ChangeListener> listeners = new Array<>();
 
   private boolean valueIsAdjusting;
@@ -95,6 +95,23 @@ public class JSColorPanel extends JSPanel {
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
+
+    label = new JSLabel();
+    label.setText(Translations.JSColorChooser_PREVIEW);
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+    this.add(label, gridBagConstraints);
+
+    this.component.getStyle().height = "2rem";
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.add(this.component, gridBagConstraints);
 
     this.swatchesPanel.addActionListener(event -> {
       this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
@@ -203,6 +220,8 @@ public class JSColorPanel extends JSPanel {
   }
 
   private void onchange(boolean b) {
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    
     this.valueIsAdjusting = b;
     ChangeEvent event = new ChangeEvent();
 

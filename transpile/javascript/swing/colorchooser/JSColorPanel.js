@@ -74,6 +74,21 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
+    label = new JSLabel();
+    label.setText(Translations.JSColorChooser_PREVIEW);
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+    this.add(label, gridBagConstraints);
+    this.component.getStyle().height = "2rem";
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.add(this.component, gridBagConstraints);
     this.swatchesPanel.addActionListener(event => {
       this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
       this.hslPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
@@ -172,6 +187,7 @@ class JSColorPanel extends JSPanel {
   }
 
    onchange(b) {
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
     this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {

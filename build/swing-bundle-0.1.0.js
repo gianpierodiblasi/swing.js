@@ -79,12 +79,30 @@ class Color {
   }
 
   /**
+   * Returns the RGB string representing this Color
+   *
+   * @return The RGB string representing this Color
+   */
+   getRGB_String() {
+    return "rgb(" + this.red + ", " + this.green + ", " + this.blue + ")";
+  }
+
+  /**
    * Returns the RGBA hex string representing this Color
    *
    * @return The RGBA hex string representing this Color
    */
    getRGBA_HEX() {
     return "#" + new Number(this.red).toString(16).padStart(2, "0") + new Number(this.green).toString(16).padStart(2, "0") + new Number(this.blue).toString(16).padStart(2, "0") + new Number(this.alpha).toString(16).padStart(2, "0");
+  }
+
+  /**
+   * Returns the RGBA string representing this Color
+   *
+   * @return The RGBA string representing this Color
+   */
+   getRGBA_String() {
+    return "rgba(" + this.red + ", " + this.green + ", " + this.blue + ", " + (this.alpha / 255) + ")";
   }
 
   /**
@@ -3459,6 +3477,21 @@ class JSColorPanel extends JSPanel {
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = GridBagConstraints.LINE_END;
     this.add(this.opacitySpinner, gridBagConstraints);
+    label = new JSLabel();
+    label.setText(Translations.JSColorChooser_PREVIEW);
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+    this.add(label, gridBagConstraints);
+    this.component.getStyle().height = "2rem";
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    gridBagConstraints = new GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+    this.add(this.component, gridBagConstraints);
     this.swatchesPanel.addActionListener(event => {
       this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
       this.hslPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
@@ -3557,6 +3590,7 @@ class JSColorPanel extends JSPanel {
   }
 
    onchange(b) {
+    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
     this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {
