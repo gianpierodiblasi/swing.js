@@ -67,6 +67,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
    addSpinner(spinner, slider, value, max, gridx, gridy) {
     spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
     spinner.getStyle().minWidth = "3rem";
+    spinner.getChilStyleByQuery("input[type=number]").minWidth = "2.5rem";
     spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event => this.spinnerToSlider(spinner, slider));
     this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);

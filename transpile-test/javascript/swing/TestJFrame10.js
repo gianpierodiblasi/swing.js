@@ -13,32 +13,8 @@ class TestJFrame10 extends JFrame {
   }
 
    postInitComponents() {
-    // JSColorMiniSwatchesPanel miniSwatchesPanel = new JSColorMiniSwatchesPanel();
-    // ((JSPanel) SwingJS.convert(this.jPanel2)).add(miniSwatchesPanel, null);
-    // 
-    // JSColorSwatchesPanel swatchesPanel = new JSColorSwatchesPanel();
-    // ((JSPanel) SwingJS.convert(this.jPanel2)).add(swatchesPanel, null);
-    // 
-    // JSColorHSVPanel hsvPanel = new JSColorHSVPanel();
-    // ((JSPanel) SwingJS.convert(this.jPanel2)).add(hsvPanel, null);
-    // 
-    // JSColorHSLPanel hslPanel = new JSColorHSLPanel();
-    // ((JSPanel) SwingJS.convert(this.jPanel2)).add(hslPanel, null);
-    // 
-    // JSColorRGBPanel rgbPanel = new JSColorRGBPanel();
-    // ((JSPanel) SwingJS.convert(this.jPanel2)).add(rgbPanel, null);
-    // 
-    // JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
-    // ((JSPanel) SwingJS.convert(this.jPanel2)).add(cmykPanel, null);
-    // 
-    // miniSwatchesPanel.addActionListener(event -> {
-    // console.log(miniSwatchesPanel.getSelectedColor().getRGB_HEX());
-    // 
-    // hsvPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
-    // hslPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
-    // rgbPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
-    // cmykPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
-    // });
+    let colorPanel = new JSColorPanel();
+    (SwingJS.convert(this.jPanel2)).add(colorPanel, null);
     // 
     // swatchesPanel.addActionListener(event -> {
     // console.log(swatchesPanel.getSelectedColor().getRGB_HEX());

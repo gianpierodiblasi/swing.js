@@ -39,144 +39,52 @@ public class NewJPanel extends javax.swing.JPanel {
   private void initComponents() {
     java.awt.GridBagConstraints gridBagConstraints;
 
-    buttonGroup1 = new javax.swing.ButtonGroup();
-    hue = new javax.swing.JRadioButton();
-    saturation = new javax.swing.JRadioButton();
-    value = new javax.swing.JRadioButton();
-    hueSlider = new javax.swing.JSlider();
-    satutationSlider = new javax.swing.JSlider();
-    valueSlider = new javax.swing.JSlider();
-    hueSpinner = new javax.swing.JSpinner();
-    saturationSpinner = new javax.swing.JSpinner();
-    valueSpinner = new javax.swing.JSpinner();
+    jTabbedPane1 = new javax.swing.JTabbedPane();
+    jLabel1 = new javax.swing.JLabel();
+    jSlider1 = new javax.swing.JSlider();
+    jSpinner1 = new javax.swing.JSpinner();
     jPanel1 = new javax.swing.JPanel();
-    jPanel2 = new javax.swing.JPanel();
 
     setLayout(new java.awt.GridBagLayout());
-
-    buttonGroup1.add(hue);
-    hue.setSelected(true);
-    hue.setText("hue");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    add(hue, gridBagConstraints);
-
-    buttonGroup1.add(saturation);
-    saturation.setText("saturation");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    add(saturation, gridBagConstraints);
-
-    buttonGroup1.add(value);
-    value.setText("value");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    add(value, gridBagConstraints);
-
-    hueSlider.setMaximum(360);
-    hueSlider.setValue(0);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1.0;
-    add(hueSlider, gridBagConstraints);
-
-    satutationSlider.setValue(0);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1.0;
-    add(satutationSlider, gridBagConstraints);
-
-    valueSlider.setValue(0);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.weightx = 1.0;
-    add(valueSlider, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-    add(hueSpinner, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-    add(saturationSpinner, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-    add(valueSpinner, gridBagConstraints);
-
-    jPanel1.setBackground(new java.awt.Color(255, 255, 0));
-    jPanel1.setPreferredSize(new java.awt.Dimension(50, 360));
-
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
-    );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
-    );
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    add(jPanel1, gridBagConstraints);
-
-    jPanel2.setBackground(new java.awt.Color(204, 0, 0));
-    jPanel2.setPreferredSize(new java.awt.Dimension(360, 360));
-
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
-    );
-    jPanel2Layout.setVerticalGroup(
-      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 0, Short.MAX_VALUE)
-    );
-
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 7;
-    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-    add(jPanel2, gridBagConstraints);
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+    add(jTabbedPane1, gridBagConstraints);
+
+    jLabel1.setText("jLabel1");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    add(jLabel1, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    add(jSlider1, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    add(jSpinner1, gridBagConstraints);
+
+    jPanel1.setBackground(new java.awt.Color(255, 0, 0));
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridwidth = 2;
+    add(jPanel1, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.ButtonGroup buttonGroup1;
-  private javax.swing.JRadioButton hue;
-  private javax.swing.JSlider hueSlider;
-  private javax.swing.JSpinner hueSpinner;
+  private javax.swing.JLabel jLabel1;
   private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
-  private javax.swing.JRadioButton saturation;
-  private javax.swing.JSpinner saturationSpinner;
-  private javax.swing.JSlider satutationSlider;
-  private javax.swing.JRadioButton value;
-  private javax.swing.JSlider valueSlider;
-  private javax.swing.JSpinner valueSpinner;
+  private javax.swing.JSlider jSlider1;
+  private javax.swing.JSpinner jSpinner1;
+  private javax.swing.JTabbedPane jTabbedPane1;
   // End of variables declaration//GEN-END:variables
 }
