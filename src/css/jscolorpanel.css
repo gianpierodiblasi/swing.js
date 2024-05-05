@@ -10,7 +10,7 @@
   height: 2rem;
   display: grid;
   grid-template: "c1 c2";
-  border-radius: var(--roundness);
+  border-radius: calc(var(--roundness) + 0.1rem);
   background-position: 0 0, 0 1rem;
   background-repeat: repeat-x;
   background-size: 2rem 1rem, 2rem 1rem;

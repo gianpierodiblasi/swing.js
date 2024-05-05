@@ -34,6 +34,7 @@ public class JSColorPanel extends JSPanel {
   private final JSLabel opacity = new JSLabel();
   private final JSSlider opacitySlider = new JSSlider();
   private final JSSpinner opacitySpinner = new JSSpinner();
+  private final JSComponent container = new JSComponent(document.createElement("div"));
   private final JSComponent component = new JSComponent(document.createElement("div"));
   private final JSComponent componentOpacity = new JSComponent(document.createElement("div"));
 
@@ -105,23 +106,24 @@ public class JSColorPanel extends JSPanel {
     gridBagConstraints.insets = new Insets(5, 0, 2, 0);
     this.add(label, gridBagConstraints);
 
+    Color color = this.getSelectedColor();
     this.component.cssAddClass("jscolorpanel-preview-opaque");
-    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
+    this.component.getStyle().backgroundColor = color.getRGB_String();
 
     this.componentOpacity.cssAddClass("jscolorpanel-preview-transparent");
-    this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
 
-    JSComponent container = new JSComponent(document.createElement("div"));
-    container.cssAddClass("jscolorpanel-preview");
-    container.appendChild(this.component);
-    container.appendChild(this.componentOpacity);
+    this.container.cssAddClass("jscolorpanel-preview");
+    this.container.appendChild(this.component);
+    this.container.appendChild(this.componentOpacity);
+    this.setContainerBorder(color);
 
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 4;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.add(container, gridBagConstraints);
+    this.add(this.container, gridBagConstraints);
 
     this.swatchesPanel.addActionListener(event -> {
       this.hsvPanel.setSelectedColor(this.swatchesPanel.getSelectedColor());
@@ -273,8 +275,10 @@ public class JSColorPanel extends JSPanel {
   }
 
   private void onchange(boolean b) {
-    this.component.getStyle().backgroundColor = this.getSelectedColor().getRGB_String();
-    this.componentOpacity.getStyle().backgroundColor = this.getSelectedColor().getRGBA_String();
+    Color color = this.getSelectedColor();
+    this.component.getStyle().backgroundColor = color.getRGB_String();
+    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
+    this.setContainerBorder(color);
 
     this.valueIsAdjusting = b;
     ChangeEvent event = new ChangeEvent();
@@ -286,5 +290,15 @@ public class JSColorPanel extends JSPanel {
         listener.stateChanged(event);
       }
     });
+  }
+
+  private void setContainerBorder(Color color) {
+    Array<Integer> rgb = new Array<>();
+    Array<Double> hsl = new Array<>();
+    rgb.$set(0, color.red);
+    rgb.$set(1, color.green);
+    rgb.$set(2, color.blue);
+    Color.RGBtoHSL(rgb, hsl);
+    this.container.getStyle().border = "1px solid " + (hsl.$get(2) > 0.5 ? color.darkened(0.1).getRGB_HEX() : color.lighted(0.1).getRGB_HEX());
   }
 }
