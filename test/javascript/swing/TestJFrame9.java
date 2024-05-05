@@ -2,7 +2,6 @@ package javascript.swing;
 
 import static def.dom.Globals.console;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.swing.colorchooser.JSColorCMYKPanel;
 import javascript.swing.colorchooser.JSColorHSLPanel;
@@ -10,7 +9,6 @@ import javascript.swing.colorchooser.JSColorHSVPanel;
 import javascript.swing.colorchooser.JSColorMiniSwatchesPanel;
 import javascript.swing.colorchooser.JSColorRGBPanel;
 import javascript.swing.colorchooser.JSColorSwatchesPanel;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
@@ -118,20 +116,10 @@ public class TestJFrame9 extends javax.swing.JFrame {
   private void initComponents() {
 
     jPanel1 = new JPanel();
-    jButton4 = new JButton();
-    jButton5 = new JButton();
     jCheckBox1 = new JCheckBox();
     jPanel2 = new JPanel();
 
     setTitle("Test Color Chooser");
-
-    jButton4.setText("Choose Color");
-    jButton4.addActionListener(this::jButton4ActionPerformed);
-    jPanel1.add(jButton4);
-
-    jButton5.setText("Choose Color With Default");
-    jButton5.addActionListener(this::jButton5ActionPerformed);
-    jPanel1.add(jButton5);
 
     jCheckBox1.setSelected(true);
     jCheckBox1.setText("realtime");
@@ -141,45 +129,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
     getContentPane().add(jPanel2, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-//    this.choose(null);
-  }//GEN-LAST:event_jButton4ActionPerformed
-
-  private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//    this.choose(new Color(255, 0, 0,255));
-  }//GEN-LAST:event_jButton5ActionPerformed
-
-//  private void open(int selectionType) {
-//    JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
-//      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-//
-//      files.forEach(file -> {
-//        FileReader fileReader = new FileReader();
-//        fileReader.onload = event -> {
-//          $Image img = ($Image) document.createElement("img");
-//          img.src = (String) fileReader.result;
-//
-//          document.querySelector(".center").appendChild(img);
-//          return null;
-//        };
-//        fileReader.readAsDataURL(file);
-//      });
-//    });
-//  }
-//  private void choose(Color color) {
-//    JSColorChooser.showDialog(color, c -> {
-//      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-//      $Image img = ($Image) document.createElement("img");
-//      img.width = 100;
-//      img.height = 100;
-//      img.style.background = c.getRGB_HEX();
-//      document.querySelector(".center").appendChild(img);
-//    });
-//  }
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private JButton jButton4;
-  private JButton jButton5;
   private JCheckBox jCheckBox1;
   private JPanel jPanel1;
   private JPanel jPanel2;

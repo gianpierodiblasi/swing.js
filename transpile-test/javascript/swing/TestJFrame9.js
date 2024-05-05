@@ -80,17 +80,9 @@ class TestJFrame9 extends JFrame {
    */
    initComponents() {
     this.jPanel1 = new JPanel();let jPanel1 = this.jPanel1;
-    this.jButton4 = new JButton();let jButton4 = this.jButton4;
-    this.jButton5 = new JButton();let jButton5 = this.jButton5;
     this.jCheckBox1 = new JCheckBox();let jCheckBox1 = this.jCheckBox1;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.setTitle("Test Color Chooser");
-    jButton4.setText("Choose Color");
-    jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel1.add(jButton4);
-    jButton5.setText("Choose Color With Default");
-    jButton5.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton5ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
-    jPanel1.add(jButton5);
     jCheckBox1.setSelected(true);
     jCheckBox1.setText("realtime");
     jPanel1.add(jCheckBox1);
@@ -99,50 +91,7 @@ class TestJFrame9 extends JFrame {
   }
 
   // </editor-fold>//GEN-END:initComponents
-   jButton4ActionPerformed(evt) {
-    // GEN-FIRST:event_jButton4ActionPerformed
-    // this.choose(null);
-  }
-
-  // GEN-LAST:event_jButton4ActionPerformed
-   jButton5ActionPerformed(evt) {
-    // GEN-FIRST:event_jButton5ActionPerformed
-    // this.choose(new Color(255, 0, 0,255));
-  }
-
-  // GEN-LAST:event_jButton5ActionPerformed
-  // private void open(int selectionType) {
-  // JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
-  // document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-  // 
-  // files.forEach(file -> {
-  // FileReader fileReader = new FileReader();
-  // fileReader.onload = event -> {
-  // $Image img = ($Image) document.createElement("img");
-  // img.src = (String) fileReader.result;
-  // 
-  // document.querySelector(".center").appendChild(img);
-  // return null;
-  // };
-  // fileReader.readAsDataURL(file);
-  // });
-  // });
-  // }
-  // private void choose(Color color) {
-  // JSColorChooser.showDialog(color, c -> {
-  // document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-  // $Image img = ($Image) document.createElement("img");
-  // img.width = 100;
-  // img.height = 100;
-  // img.style.background = c.getRGB_HEX();
-  // document.querySelector(".center").appendChild(img);
-  // });
-  // }
   // Variables declaration - do not modify//GEN-BEGIN:variables
-   jButton4 = null;
-
-   jButton5 = null;
-
    jCheckBox1 = null;
 
    jPanel1 = null;
