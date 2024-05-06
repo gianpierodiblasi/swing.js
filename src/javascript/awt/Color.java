@@ -4,7 +4,6 @@ import def.js.Array;
 import def.js.Math;
 import def.js.RegExp;
 import def.js.RegExpExecArray;
-import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.parseInt;
 import simulation.js.$Number;
 
@@ -28,20 +27,39 @@ public class Color {
   }
 
   /**
-   * In place lights up this Z4Color, the transparency is not changed
+   * Converts this Color to gray scaled, the transparency is not changed
+   *
+   * @return This gray scaled Color
+   */
+  public Color gray() {
+    int gray = parseInt(0.21 * this.red + 0.71 * this.green + 0.08 * this.blue);
+    return new Color(gray, gray, gray, this.alpha);
+  }
+
+  /**
+   * Converts this Color to negative, the transparency is not changed
+   *
+   * @return This negativized Color
+   */
+  public Color negative() {
+    return new Color(255 - this.red, 255 - this.green, 255 - this.blue, this.alpha);
+  }
+
+  /**
+   * Lights up this Color, the transparency is not changed
    *
    * @param lightingFactor The lighting factor (in the range [0,1])
-   * @return This lighted Z4Color
+   * @return This lighted Color
    */
   public Color lighted(double lightingFactor) {
     return new Color(parseInt((255 - this.red) * lightingFactor + this.red), parseInt((255 - this.green) * lightingFactor + this.green), parseInt((255 - this.blue) * lightingFactor + this.blue), this.alpha);
   }
 
   /**
-   * In place darkens this Z4Color, the transparency is not changed
+   * Darkens this Color, the transparency is not changed
    *
    * @param darkeningFactor The darkening factor (in the range [0,1])
-   * @return This darkened Z4Color
+   * @return This darkened Color
    */
   public Color darkened(double darkeningFactor) {
     darkeningFactor = 1 - darkeningFactor;

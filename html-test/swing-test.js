@@ -1,6 +1,36 @@
 /**
  * @author gianpiero.diblasi
  */
+class JSColorExtraTab1Panel extends JSAbstractColorExtraTabPanel {
+
+   color = new Color(0, 0, 0, 255);
+
+  constructor() {
+    super();
+    let button = new JSButton();
+    button.setText("GRAY");
+    button.addActionListener(event => {
+      this.color = this.color.gray();
+      this.onchange();
+    });
+    this.add(button, null);
+  }
+
+   getSelectedColor() {
+    return this.color;
+  }
+
+   setSelectedColor(color) {
+    this.color = color;
+  }
+
+   getValueIsAdjusting() {
+    return false;
+  }
+}
+/**
+ * @author gianpiero.diblasi
+ */
 class TestJSFrame1 extends JSFrame {
 
    card = "card2";
@@ -153,6 +183,7 @@ class TestJSFrame10 extends JSFrame {
     (SwingJS.convert(this.jPanel2)).add(colorPanel, null);
     let colorPanelNoOpacity = new JSColorPanel();
     colorPanelNoOpacity.setOpacityVisible(false);
+    colorPanelNoOpacity.addExtraTab("Extra", new JSColorExtraTab1Panel());
     (SwingJS.convert(this.jPanel2)).add(colorPanelNoOpacity, null);
     colorPanel.addChangeListener(event => {
       if (this.jCheckBox1.isSelected() || !colorPanel.getValueIsAdjusting()) {

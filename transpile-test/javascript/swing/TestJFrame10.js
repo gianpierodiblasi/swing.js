@@ -17,6 +17,7 @@ class TestJFrame10 extends JFrame {
     (SwingJS.convert(this.jPanel2)).add(colorPanel, null);
     let colorPanelNoOpacity = new JSColorPanel();
     colorPanelNoOpacity.setOpacityVisible(false);
+    colorPanelNoOpacity.addExtraTab("Extra", new JSColorExtraTab1Panel());
     (SwingJS.convert(this.jPanel2)).add(colorPanelNoOpacity, null);
     colorPanel.addChangeListener(event => {
       if (this.jCheckBox1.isSelected() || !colorPanel.getValueIsAdjusting()) {

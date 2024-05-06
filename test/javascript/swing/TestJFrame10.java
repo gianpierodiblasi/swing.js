@@ -31,6 +31,7 @@ public class TestJFrame10 extends javax.swing.JFrame {
 
     JSColorPanel colorPanelNoOpacity = new JSColorPanel();
     colorPanelNoOpacity.setOpacityVisible(false);
+    colorPanelNoOpacity.addExtraTab("Extra", new JSColorExtraTab1Panel());
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(colorPanelNoOpacity, null);
 
     colorPanel.addChangeListener(event -> {
@@ -38,7 +39,7 @@ public class TestJFrame10 extends javax.swing.JFrame {
         console.log(colorPanel.getSelectedColor().getARGB_HEX());
       }
     });
-    
+
     colorPanelNoOpacity.addChangeListener(event -> {
       if (this.jCheckBox1.isSelected() || !colorPanelNoOpacity.getValueIsAdjusting()) {
         console.log(colorPanelNoOpacity.getSelectedColor().getARGB_HEX());
