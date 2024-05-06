@@ -9,6 +9,7 @@ import javascript.swing.colorchooser.JSColorHSVPanel;
 import javascript.swing.colorchooser.JSColorMiniSwatchesPanel;
 import javascript.swing.colorchooser.JSColorRGBPanel;
 import javascript.swing.colorchooser.JSColorSwatchesPanel;
+import javascript.swing.colorchooser.JSColorYUVPanel;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
@@ -47,6 +48,9 @@ public class TestJFrame9 extends javax.swing.JFrame {
     JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(cmykPanel, null);
 
+    JSColorYUVPanel yuvPanel = new JSColorYUVPanel();
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(yuvPanel, null);
+
     miniSwatchesPanel.addActionListener(event -> {
       console.log(miniSwatchesPanel.getSelectedColor().getRGB_HEX());
 
@@ -54,6 +58,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
       hslPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
       rgbPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
       cmykPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
+      yuvPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
     });
 
     swatchesPanel.addActionListener(event -> {
@@ -63,6 +68,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
       hslPanel.setSelectedColor(swatchesPanel.getSelectedColor());
       rgbPanel.setSelectedColor(swatchesPanel.getSelectedColor());
       cmykPanel.setSelectedColor(swatchesPanel.getSelectedColor());
+      yuvPanel.setSelectedColor(swatchesPanel.getSelectedColor());
     });
 
     hsvPanel.addChangeListener(event -> {
@@ -72,6 +78,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
         hslPanel.setSelectedColor(hsvPanel.getSelectedColor());
         rgbPanel.setSelectedColor(hsvPanel.getSelectedColor());
         cmykPanel.setSelectedColor(hsvPanel.getSelectedColor());
+        yuvPanel.setSelectedColor(hsvPanel.getSelectedColor());
       }
     });
 
@@ -82,6 +89,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
         hsvPanel.setSelectedColor(hslPanel.getSelectedColor());
         rgbPanel.setSelectedColor(hslPanel.getSelectedColor());
         cmykPanel.setSelectedColor(hslPanel.getSelectedColor());
+        yuvPanel.setSelectedColor(hslPanel.getSelectedColor());
       }
     });
 
@@ -92,6 +100,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
         hsvPanel.setSelectedColor(rgbPanel.getSelectedColor());
         hslPanel.setSelectedColor(rgbPanel.getSelectedColor());
         cmykPanel.setSelectedColor(rgbPanel.getSelectedColor());
+        yuvPanel.setSelectedColor(rgbPanel.getSelectedColor());
       }
     });
 
@@ -102,6 +111,18 @@ public class TestJFrame9 extends javax.swing.JFrame {
         hsvPanel.setSelectedColor(cmykPanel.getSelectedColor());
         hslPanel.setSelectedColor(cmykPanel.getSelectedColor());
         rgbPanel.setSelectedColor(cmykPanel.getSelectedColor());
+        yuvPanel.setSelectedColor(cmykPanel.getSelectedColor());
+      }
+    });
+    
+    yuvPanel.addChangeListener(event -> {
+      if (this.jCheckBox1.isSelected() || !yuvPanel.getValueIsAdjusting()) {
+        console.log(yuvPanel.getSelectedColor().getRGB_HEX());
+
+        hsvPanel.setSelectedColor(yuvPanel.getSelectedColor());
+        hslPanel.setSelectedColor(yuvPanel.getSelectedColor());
+        rgbPanel.setSelectedColor(yuvPanel.getSelectedColor());
+        cmykPanel.setSelectedColor(yuvPanel.getSelectedColor());
       }
     });
   }

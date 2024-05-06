@@ -17,13 +17,13 @@ class Color {
 
   static  U_MAX = 0.50058997;
 
-  static  DIFF_U = U_MAX - U_MIN;
+  static  DIFF_U = Color.U_MAX - Color.U_MIN;
 
   static  V_MIN = -0.49981302;
 
   static  V_MAX = 0.499813;
 
-  static  DIFF_V = V_MAX - V_MIN;
+  static  DIFF_V = Color.V_MAX - Color.V_MIN;
 
   constructor(red, green, blue, alpha) {
     this.red = red;
@@ -418,8 +418,8 @@ class Color {
    * @param rgb the rgb array
    */
   static  YUVtoRGB(yuv, rgb) {
-    let R = parseInt(255 * (0.713 * yuv[0] + DIFF_V * yuv[2] + V_MIN) / 0.713);
-    let B = parseInt(255 * (0.565 * yuv[0] + DIFF_U * yuv[1] + U_MIN) / 0.565);
+    let R = parseInt(255 * (0.713 * yuv[0] + Color.DIFF_V * yuv[2] + Color.V_MIN) / 0.713);
+    let B = parseInt(255 * (0.565 * yuv[0] + Color.DIFF_U * yuv[1] + Color.U_MIN) / 0.565);
     let G = parseInt((255 * yuv[0] - 0.114 * B - 0.299 * R) / 0.587);
     if (R < 0) {
       R = 0;

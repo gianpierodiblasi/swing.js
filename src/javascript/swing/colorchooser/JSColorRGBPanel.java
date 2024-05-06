@@ -114,15 +114,15 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     for (int y = 0; y < JSColorRGBPanel.RECT_HEIGHT; y++) {
       if (this.red.isSelected()) {
         rgb.$set(0, 255 * y / JSColorRGBPanel.RECT_HEIGHT);
-        rgb.$set(1, 0);
-        rgb.$set(2, 0);
+        rgb.$set(1, this.greenSlider.getValue());
+        rgb.$set(2, this.blueSlider.getValue());
       } else if (this.green.isSelected()) {
-        rgb.$set(0, 0);
+        rgb.$set(0, this.redSlider.getValue());
         rgb.$set(1, 255 * y / JSColorRGBPanel.RECT_HEIGHT);
-        rgb.$set(2, 0);
+        rgb.$set(2, this.blueSlider.getValue());
       } else if (this.blue.isSelected()) {
-        rgb.$set(0, 0);
-        rgb.$set(1, 0);
+        rgb.$set(0, this.redSlider.getValue());
+        rgb.$set(1, this.greenSlider.getValue());
         rgb.$set(2, 255 * y / JSColorRGBPanel.RECT_HEIGHT);
       }
 

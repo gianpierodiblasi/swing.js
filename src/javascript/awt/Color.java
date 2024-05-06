@@ -21,10 +21,10 @@ public class Color {
 
   private final static double U_MIN = -0.50059;
   private final static double U_MAX = 0.50058997;
-  private final static double DIFF_U = U_MAX - U_MIN;
+  private final static double DIFF_U = Color.U_MAX - Color.U_MIN;
   private final static double V_MIN = -0.49981302;
   private final static double V_MAX = 0.499813;
-  private final static double DIFF_V = V_MAX - V_MIN;
+  private final static double DIFF_V = Color.V_MAX - Color.V_MIN;
 
   public Color(int red, int green, int blue, int alpha) {
     this.red = red;
@@ -438,8 +438,8 @@ public class Color {
    * @param rgb the rgb array
    */
   public static void YUVtoRGB(Array<Double> yuv, Array<Integer> rgb) {
-    int R = parseInt(255 * (0.713 * yuv.$get(0) + DIFF_V * yuv.$get(2) + V_MIN) / 0.713);
-    int B = parseInt(255 * (0.565 * yuv.$get(0) + DIFF_U * yuv.$get(1) + U_MIN) / 0.565);
+    int R = parseInt(255 * (0.713 * yuv.$get(0) + Color.DIFF_V * yuv.$get(2) + Color.V_MIN) / 0.713);
+    int B = parseInt(255 * (0.565 * yuv.$get(0) + Color.DIFF_U * yuv.$get(1) + Color.U_MIN) / 0.565);
     int G = parseInt((255 * yuv.$get(0) - 0.114 * B - 0.299 * R) / 0.587);
 
     if (R < 0) {

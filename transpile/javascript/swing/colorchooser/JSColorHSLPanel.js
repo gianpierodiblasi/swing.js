@@ -13,7 +13,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
 
    saturation = new JSRadioButton();
 
-   satutationSlider = new JSSlider();
+   saturationSlider = new JSSlider();
 
    saturationSpinner = new JSSpinner();
 
@@ -32,10 +32,10 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
     this.addRadio(this.lightness, Translations.JSColorChooser_LIGHTNESS, false, 2, 4);
     this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
-    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.saturationSlider, this.saturationSpinner, 0, 100, 2, 3);
     this.addSlider(this.lightnessSlider, this.lightnessSpinner, 0, 100, 2, 5);
     this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
-    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.saturationSpinner, this.saturationSlider, 0, 100, 3, 2);
     this.addSpinner(this.lightnessSpinner, this.lightnessSlider, 100, 100, 3, 4);
     this.drawAll();
   }
@@ -114,15 +114,15 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     for (let y = 0; y < JSColorHSLPanel.RECT_HEIGHT; y++) {
       if (this.hue.isSelected()) {
         hsl[0] = y / JSColorHSLPanel.RECT_HEIGHT;
-        hsl[1] = 1.0;
-        hsl[2] = 0.5;
+        hsl[1] = this.saturationSpinner.getValue() / 100;
+        hsl[2] = this.lightnessSpinner.getValue() / 100;
       } else if (this.saturation.isSelected()) {
         hsl[0] = this.hueSpinner.getValue() / 360;
         hsl[1] = y / JSColorHSLPanel.RECT_HEIGHT;
-        hsl[2] = 0.5;
+        hsl[2] = this.lightnessSpinner.getValue() / 100;
       } else if (this.lightness.isSelected()) {
         hsl[0] = this.hueSpinner.getValue() / 360;
-        hsl[1] = 1.0;
+        hsl[1] = this.saturationSpinner.getValue() / 100;
         hsl[2] = y / JSColorHSLPanel.RECT_HEIGHT;
       }
       Color.HSLtoRGB(hsl, rgb);
@@ -174,7 +174,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
    setColor(h, s, l, call, adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
-    this.satutationSlider.setValue(parseInt(s));
+    this.saturationSlider.setValue(parseInt(s));
     this.saturationSpinner.setValue(parseInt(s));
     this.lightnessSlider.setValue(parseInt(l));
     this.lightnessSpinner.setValue(parseInt(l));

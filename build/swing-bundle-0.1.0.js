@@ -18,13 +18,13 @@ class Color {
 
   static  U_MAX = 0.50058997;
 
-  static  DIFF_U = U_MAX - U_MIN;
+  static  DIFF_U = Color.U_MAX - Color.U_MIN;
 
   static  V_MIN = -0.49981302;
 
   static  V_MAX = 0.499813;
 
-  static  DIFF_V = V_MAX - V_MIN;
+  static  DIFF_V = Color.V_MAX - Color.V_MIN;
 
   constructor(red, green, blue, alpha) {
     this.red = red;
@@ -419,8 +419,8 @@ class Color {
    * @param rgb the rgb array
    */
   static  YUVtoRGB(yuv, rgb) {
-    let R = parseInt(255 * (0.713 * yuv[0] + DIFF_V * yuv[2] + V_MIN) / 0.713);
-    let B = parseInt(255 * (0.565 * yuv[0] + DIFF_U * yuv[1] + U_MIN) / 0.565);
+    let R = parseInt(255 * (0.713 * yuv[0] + Color.DIFF_V * yuv[2] + Color.V_MIN) / 0.713);
+    let B = parseInt(255 * (0.565 * yuv[0] + Color.DIFF_U * yuv[1] + Color.U_MIN) / 0.565);
     let G = parseInt((255 * yuv[0] - 0.114 * B - 0.299 * R) / 0.587);
     if (R < 0) {
       R = 0;
@@ -2906,15 +2906,15 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     for (let y = 0; y < JSColorCMYKPanel.RECT_HEIGHT; y++) {
       if (this.cyan.isSelected()) {
         cmyk[0] = 255 * y / JSColorCMYKPanel.RECT_HEIGHT;
-        cmyk[1] = 0;
-        cmyk[2] = 0;
+        cmyk[1] = this.magentaSlider.getValue();
+        cmyk[2] = this.yellowSlider.getValue();
       } else if (this.magenta.isSelected()) {
-        cmyk[0] = 0;
+        cmyk[0] = this.cyanSlider.getValue();
         cmyk[1] = 255 * y / JSColorCMYKPanel.RECT_HEIGHT;
-        cmyk[2] = 0;
+        cmyk[2] = this.yellowSlider.getValue();
       } else if (this.yellow.isSelected()) {
-        cmyk[0] = 0;
-        cmyk[1] = 0;
+        cmyk[0] = this.cyanSlider.getValue();
+        cmyk[1] = this.magentaSlider.getValue();
         cmyk[2] = 255 * y / JSColorCMYKPanel.RECT_HEIGHT;
       }
       cmyk[3] = this.blackSlider.getValue();
@@ -2994,7 +2994,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
 
    saturation = new JSRadioButton();
 
-   satutationSlider = new JSSlider();
+   saturationSlider = new JSSlider();
 
    saturationSpinner = new JSSpinner();
 
@@ -3013,10 +3013,10 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
     this.addRadio(this.lightness, Translations.JSColorChooser_LIGHTNESS, false, 2, 4);
     this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
-    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.saturationSlider, this.saturationSpinner, 0, 100, 2, 3);
     this.addSlider(this.lightnessSlider, this.lightnessSpinner, 0, 100, 2, 5);
     this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
-    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.saturationSpinner, this.saturationSlider, 0, 100, 3, 2);
     this.addSpinner(this.lightnessSpinner, this.lightnessSlider, 100, 100, 3, 4);
     this.drawAll();
   }
@@ -3095,15 +3095,15 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     for (let y = 0; y < JSColorHSLPanel.RECT_HEIGHT; y++) {
       if (this.hue.isSelected()) {
         hsl[0] = y / JSColorHSLPanel.RECT_HEIGHT;
-        hsl[1] = 1.0;
-        hsl[2] = 0.5;
+        hsl[1] = this.saturationSpinner.getValue() / 100;
+        hsl[2] = this.lightnessSpinner.getValue() / 100;
       } else if (this.saturation.isSelected()) {
         hsl[0] = this.hueSpinner.getValue() / 360;
         hsl[1] = y / JSColorHSLPanel.RECT_HEIGHT;
-        hsl[2] = 0.5;
+        hsl[2] = this.lightnessSpinner.getValue() / 100;
       } else if (this.lightness.isSelected()) {
         hsl[0] = this.hueSpinner.getValue() / 360;
-        hsl[1] = 1.0;
+        hsl[1] = this.saturationSpinner.getValue() / 100;
         hsl[2] = y / JSColorHSLPanel.RECT_HEIGHT;
       }
       Color.HSLtoRGB(hsl, rgb);
@@ -3155,7 +3155,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
    setColor(h, s, l, call, adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
-    this.satutationSlider.setValue(parseInt(s));
+    this.saturationSlider.setValue(parseInt(s));
     this.saturationSpinner.setValue(parseInt(s));
     this.lightnessSlider.setValue(parseInt(l));
     this.lightnessSpinner.setValue(parseInt(l));
@@ -3180,7 +3180,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
 
    saturation = new JSRadioButton();
 
-   satutationSlider = new JSSlider();
+   saturationSlider = new JSSlider();
 
    saturationSpinner = new JSSpinner();
 
@@ -3199,10 +3199,10 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
     this.addRadio(this.value, Translations.JSColorChooser_VALUE, false, 2, 4);
     this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
-    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.saturationSlider, this.saturationSpinner, 0, 100, 2, 3);
     this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 5);
     this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
-    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.saturationSpinner, this.saturationSlider, 0, 100, 3, 2);
     this.addSpinner(this.valueSpinner, this.valueSlider, 100, 100, 3, 4);
     this.drawAll();
   }
@@ -3281,15 +3281,15 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     for (let y = 0; y < JSColorHSVPanel.RECT_HEIGHT; y++) {
       if (this.hue.isSelected()) {
         hsv[0] = y / JSColorHSVPanel.RECT_HEIGHT;
-        hsv[1] = 1.0;
-        hsv[2] = 1.0;
+        hsv[1] = this.saturationSpinner.getValue() / 100;
+        hsv[2] = this.valueSpinner.getValue() / 100;
       } else if (this.saturation.isSelected()) {
         hsv[0] = this.hueSpinner.getValue() / 360;
         hsv[1] = y / JSColorHSVPanel.RECT_HEIGHT;
-        hsv[2] = 1.0;
+        hsv[2] = this.valueSpinner.getValue() / 100;
       } else if (this.value.isSelected()) {
         hsv[0] = this.hueSpinner.getValue() / 360;
-        hsv[1] = 1.0;
+        hsv[1] = this.saturationSpinner.getValue() / 100;
         hsv[2] = y / JSColorHSVPanel.RECT_HEIGHT;
       }
       Color.HSVtoRGB(hsv, rgb);
@@ -3341,7 +3341,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
    setColor(h, s, v, call, adjusting) {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
-    this.satutationSlider.setValue(parseInt(s));
+    this.saturationSlider.setValue(parseInt(s));
     this.saturationSpinner.setValue(parseInt(s));
     this.valueSlider.setValue(parseInt(v));
     this.valueSpinner.setValue(parseInt(v));
@@ -3448,15 +3448,15 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     for (let y = 0; y < JSColorRGBPanel.RECT_HEIGHT; y++) {
       if (this.red.isSelected()) {
         rgb[0] = 255 * y / JSColorRGBPanel.RECT_HEIGHT;
-        rgb[1] = 0;
-        rgb[2] = 0;
+        rgb[1] = this.greenSlider.getValue();
+        rgb[2] = this.blueSlider.getValue();
       } else if (this.green.isSelected()) {
-        rgb[0] = 0;
+        rgb[0] = this.redSlider.getValue();
         rgb[1] = 255 * y / JSColorRGBPanel.RECT_HEIGHT;
-        rgb[2] = 0;
+        rgb[2] = this.blueSlider.getValue();
       } else if (this.blue.isSelected()) {
-        rgb[0] = 0;
-        rgb[1] = 0;
+        rgb[0] = this.redSlider.getValue();
+        rgb[1] = this.greenSlider.getValue();
         rgb[2] = 255 * y / JSColorRGBPanel.RECT_HEIGHT;
       }
       for (let x = 0; x < JSColorRGBPanel.RECT_WIDTH; x++) {
@@ -3511,6 +3511,192 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     this.greenSpinner.setValue(g);
     this.blueSlider.setValue(b);
     this.blueSpinner.setValue(b);
+    this.drawAll();
+    if (call) {
+      this.onchange(adjusting);
+    }
+  }
+}
+/**
+ * The panel to show colors in YUV format
+ *
+ * @author gianpiero.diblasi
+ */
+class JSColorYUVPanel extends JSAbstractColorFormatPanel {
+
+   y = new JSRadioButton();
+
+   ySlider = new JSSlider();
+
+   ySpinner = new JSSpinner();
+
+   u = new JSRadioButton();
+
+   uSlider = new JSSlider();
+
+   uSpinner = new JSSpinner();
+
+   v = new JSRadioButton();
+
+   vSlider = new JSSlider();
+
+   vSpinner = new JSSpinner();
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super();
+    this.addRadio(this.y, "Y", true, 2, 0);
+    this.addRadio(this.u, "U", false, 2, 2);
+    this.addRadio(this.v, "V", false, 2, 4);
+    this.addSlider(this.ySlider, this.ySpinner, 0, 100, 2, 1);
+    this.addSlider(this.uSlider, this.uSpinner, 0, 100, 2, 3);
+    this.addSlider(this.vSlider, this.vSpinner, 0, 100, 2, 5);
+    this.addSpinner(this.ySpinner, this.ySlider, 0, 100, 3, 0);
+    this.addSpinner(this.uSpinner, this.uSlider, 0, 100, 3, 2);
+    this.addSpinner(this.vSpinner, this.vSlider, 100, 100, 3, 4);
+    this.drawAll();
+  }
+
+   getSelectedColor() {
+    let yuv = new Array();
+    let rgb = new Array();
+    yuv[0] = this.ySpinner.getValue() / 100;
+    yuv[1] = this.uSpinner.getValue() / 100;
+    yuv[2] = this.vSpinner.getValue() / 100;
+    Color.YUVtoRGB(yuv, rgb);
+    return new Color(rgb[0], rgb[1], rgb[2], 255);
+  }
+
+   setSelectedColor(color) {
+    let rgb = new Array();
+    let yuv = new Array();
+    rgb[0] = color.red;
+    rgb[1] = color.green;
+    rgb[2] = color.blue;
+    Color.RGBtoYUV(rgb, yuv);
+    this.setColor(100 * yuv[0], 100 * yuv[1], 100 * yuv[2], false, false);
+  }
+
+   drawSquare() {
+    let imageData = this.ctxSquare.createImageData(JSColorYUVPanel.SQUARE_SIZE, JSColorYUVPanel.SQUARE_SIZE);
+    let data = imageData.data;
+    let yuv = new Array();
+    let rgb = new Array();
+    for (let yy = 0; yy < JSColorYUVPanel.SQUARE_SIZE; yy++) {
+      for (let xx = 0; xx < JSColorYUVPanel.SQUARE_SIZE; xx++) {
+        if (this.y.isSelected()) {
+          yuv[0] = this.ySpinner.getValue() / 100;
+          yuv[1] = xx / JSColorYUVPanel.SQUARE_SIZE;
+          yuv[2] = yy / JSColorYUVPanel.SQUARE_SIZE;
+        } else if (this.u.isSelected()) {
+          yuv[0] = xx / JSColorYUVPanel.SQUARE_SIZE;
+          yuv[1] = this.uSpinner.getValue() / 100;
+          yuv[2] = yy / JSColorYUVPanel.SQUARE_SIZE;
+        } else if (this.v.isSelected()) {
+          yuv[0] = xx / JSColorYUVPanel.SQUARE_SIZE;
+          yuv[1] = yy / JSColorYUVPanel.SQUARE_SIZE;
+          yuv[2] = this.vSpinner.getValue() / 100;
+        }
+        Color.YUVtoRGB(yuv, rgb);
+        let pos = ((JSColorYUVPanel.SQUARE_SIZE - yy) * JSColorYUVPanel.SQUARE_SIZE + xx) * 4;
+        data[pos] = rgb[0];
+        data[pos + 1] = rgb[1];
+        data[pos + 2] = rgb[2];
+        data[pos + 3] = 255;
+      }
+    }
+    this.ctxSquare.putImageData(imageData, 0, 0);
+  }
+
+   drawSquareSelector() {
+    let xx = 0, yy = 0;
+    if (this.y.isSelected()) {
+      xx = this.uSpinner.getValue() / 100;
+      yy = this.vSpinner.getValue() / 100;
+    } else if (this.u.isSelected()) {
+      xx = this.ySpinner.getValue() / 100;
+      yy = this.vSpinner.getValue() / 100;
+    } else if (this.v.isSelected()) {
+      xx = this.ySpinner.getValue() / 100;
+      yy = this.uSpinner.getValue() / 100;
+    }
+    this.drawCircle(xx, yy);
+  }
+
+   drawRect() {
+    let imageData = this.ctxRect.createImageData(JSColorYUVPanel.RECT_WIDTH, JSColorYUVPanel.RECT_HEIGHT);
+    let data = imageData.data;
+    let yuv = new Array();
+    let rgb = new Array();
+    for (let yy = 0; yy < JSColorYUVPanel.RECT_HEIGHT; yy++) {
+      if (this.y.isSelected()) {
+        yuv[0] = yy / JSColorYUVPanel.RECT_HEIGHT;
+        yuv[1] = this.uSpinner.getValue() / 100;
+        yuv[2] = this.vSpinner.getValue() / 100;
+      } else if (this.u.isSelected()) {
+        yuv[0] = this.ySpinner.getValue() / 100;
+        yuv[1] = yy / JSColorYUVPanel.RECT_HEIGHT;
+        yuv[2] = this.vSpinner.getValue() / 100;
+      } else if (this.v.isSelected()) {
+        yuv[0] = this.ySpinner.getValue() / 100;
+        yuv[1] = this.uSpinner.getValue() / 100;
+        yuv[2] = yy / JSColorYUVPanel.RECT_HEIGHT;
+      }
+      Color.YUVtoRGB(yuv, rgb);
+      for (let xx = 0; xx < JSColorYUVPanel.RECT_WIDTH; xx++) {
+        let pos = ((JSColorYUVPanel.RECT_HEIGHT - yy) * JSColorYUVPanel.RECT_WIDTH + xx) * 4;
+        data[pos] = rgb[0];
+        data[pos + 1] = rgb[1];
+        data[pos + 2] = rgb[2];
+        data[pos + 3] = 255;
+      }
+    }
+    this.ctxRect.putImageData(imageData, 0, 0);
+  }
+
+   drawRectSelector() {
+    let yy = 0;
+    if (this.y.isSelected()) {
+      yy = this.ySpinner.getValue() / 100;
+    } else if (this.u.isSelected()) {
+      yy = this.uSpinner.getValue() / 100;
+    } else if (this.v.isSelected()) {
+      yy = this.vSpinner.getValue() / 100;
+    }
+    this.drawLine(yy);
+  }
+
+   squareEvent(event, type) {
+    if (!this.canDoItSquare(type)) {
+    } else if (this.y.isSelected()) {
+      this.setColor(this.ySpinner.getValue(), 100 * event.offsetX / JSColorYUVPanel.SQUARE_SIZE, 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, true, type !== "up");
+    } else if (this.u.isSelected()) {
+      this.setColor(100 * event.offsetX / JSColorYUVPanel.SQUARE_SIZE, this.uSpinner.getValue(), 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, true, type !== "up");
+    } else if (this.v.isSelected()) {
+      this.setColor(100 * event.offsetX / JSColorYUVPanel.SQUARE_SIZE, 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, this.vSpinner.getValue(), true, type !== "up");
+    }
+  }
+
+   rectEvent(event, type) {
+    if (!this.canDoItRect(type)) {
+    } else if (this.y.isSelected()) {
+      this.setColor(100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, this.uSpinner.getValue(), this.vSpinner.getValue(), true, type !== "up");
+    } else if (this.u.isSelected()) {
+      this.setColor(this.ySpinner.getValue(), 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, this.vSpinner.getValue(), true, type !== "up");
+    } else if (this.v.isSelected()) {
+      this.setColor(this.ySpinner.getValue(), this.uSpinner.getValue(), 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, true, type !== "up");
+    }
+  }
+
+   setColor(y, u, v, call, adjusting) {
+    this.ySlider.setValue(parseInt(y));
+    this.ySpinner.setValue(parseInt(y));
+    this.uSlider.setValue(parseInt(u));
+    this.uSpinner.setValue(parseInt(u));
+    this.vSlider.setValue(parseInt(v));
+    this.vSpinner.setValue(parseInt(v));
     this.drawAll();
     if (call) {
       this.onchange(adjusting);

@@ -125,15 +125,15 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     for (let y = 0; y < JSColorCMYKPanel.RECT_HEIGHT; y++) {
       if (this.cyan.isSelected()) {
         cmyk[0] = 255 * y / JSColorCMYKPanel.RECT_HEIGHT;
-        cmyk[1] = 0;
-        cmyk[2] = 0;
+        cmyk[1] = this.magentaSlider.getValue();
+        cmyk[2] = this.yellowSlider.getValue();
       } else if (this.magenta.isSelected()) {
-        cmyk[0] = 0;
+        cmyk[0] = this.cyanSlider.getValue();
         cmyk[1] = 255 * y / JSColorCMYKPanel.RECT_HEIGHT;
-        cmyk[2] = 0;
+        cmyk[2] = this.yellowSlider.getValue();
       } else if (this.yellow.isSelected()) {
-        cmyk[0] = 0;
-        cmyk[1] = 0;
+        cmyk[0] = this.cyanSlider.getValue();
+        cmyk[1] = this.magentaSlider.getValue();
         cmyk[2] = 255 * y / JSColorCMYKPanel.RECT_HEIGHT;
       }
       cmyk[3] = this.blackSlider.getValue();

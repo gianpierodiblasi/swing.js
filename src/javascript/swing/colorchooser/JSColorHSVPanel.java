@@ -22,7 +22,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   private final JSSlider hueSlider = new JSSlider();
   private final JSSpinner hueSpinner = new JSSpinner();
   private final JSRadioButton saturation = new JSRadioButton();
-  private final JSSlider satutationSlider = new JSSlider();
+  private final JSSlider saturationSlider = new JSSlider();
   private final JSSpinner saturationSpinner = new JSSpinner();
   private final JSRadioButton value = new JSRadioButton();
   private final JSSlider valueSlider = new JSSlider();
@@ -38,10 +38,10 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.saturation, Translations.JSColorChooser_SATURATION, false, 2, 2);
     this.addRadio(this.value, Translations.JSColorChooser_VALUE, false, 2, 4);
     this.addSlider(this.hueSlider, this.hueSpinner, 0, 360, 2, 1);
-    this.addSlider(this.satutationSlider, this.saturationSpinner, 0, 100, 2, 3);
+    this.addSlider(this.saturationSlider, this.saturationSpinner, 0, 100, 2, 3);
     this.addSlider(this.valueSlider, this.valueSpinner, 0, 100, 2, 5);
     this.addSpinner(this.hueSpinner, this.hueSlider, 0, 360, 3, 0);
-    this.addSpinner(this.saturationSpinner, this.satutationSlider, 0, 100, 3, 2);
+    this.addSpinner(this.saturationSpinner, this.saturationSlider, 0, 100, 3, 2);
     this.addSpinner(this.valueSpinner, this.valueSlider, 100, 100, 3, 4);
 
     this.drawAll();
@@ -137,15 +137,15 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     for (double y = 0; y < JSColorHSVPanel.RECT_HEIGHT; y++) {
       if (this.hue.isSelected()) {
         hsv.$set(0, y / JSColorHSVPanel.RECT_HEIGHT);
-        hsv.$set(1, 1.0);
-        hsv.$set(2, 1.0);
+        hsv.$set(1, this.saturationSpinner.getValue() / 100);
+        hsv.$set(2, this.valueSpinner.getValue() / 100);
       } else if (this.saturation.isSelected()) {
         hsv.$set(0, this.hueSpinner.getValue() / 360);
         hsv.$set(1, y / JSColorHSVPanel.RECT_HEIGHT);
-        hsv.$set(2, 1.0);
+        hsv.$set(2, this.valueSpinner.getValue() / 100);
       } else if (this.value.isSelected()) {
         hsv.$set(0, this.hueSpinner.getValue() / 360);
-        hsv.$set(1, 1.0);
+        hsv.$set(1, this.saturationSpinner.getValue() / 100);
         hsv.$set(2, y / JSColorHSVPanel.RECT_HEIGHT);
       }
       Color.HSVtoRGB(hsv, rgb);
@@ -206,7 +206,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.hueSlider.setValue(parseInt(h));
     this.hueSpinner.setValue(parseInt(h));
 
-    this.satutationSlider.setValue(parseInt(s));
+    this.saturationSlider.setValue(parseInt(s));
     this.saturationSpinner.setValue(parseInt(s));
 
     this.valueSlider.setValue(parseInt(v));
