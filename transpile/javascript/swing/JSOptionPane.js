@@ -86,13 +86,14 @@ class JSOptionPane {
     JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
     JSOptionPane.setOkEnabled(dialog, isValid);
     addChangeListener(event => JSOptionPane.setOkEnabled(dialog, isValid));
+    dialog.setVisible(true);
   }
 
   static  setOkEnabled(dialog, isValid) {
     if (isValid()) {
-      dialog.removeChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
+      dialog.removeChildAttributeByQuery(".jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
     } else {
-      dialog.setChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
+      dialog.setChildAttributeByQuery(".jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
     }
   }
 

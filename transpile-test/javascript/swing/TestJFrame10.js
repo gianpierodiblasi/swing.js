@@ -59,43 +59,26 @@ class TestJFrame10 extends JFrame {
   // </editor-fold>//GEN-END:initComponents
    jButton4ActionPerformed(evt) {
     // GEN-FIRST:event_jButton4ActionPerformed
-    // this.choose(null);
+    this.choose(null);
   }
 
   // GEN-LAST:event_jButton4ActionPerformed
    jButton5ActionPerformed(evt) {
     // GEN-FIRST:event_jButton5ActionPerformed
-    // this.choose(new Color(255, 0, 0,255));
+    this.choose(new Color(255, 0, 0, 255));
   }
 
   // GEN-LAST:event_jButton5ActionPerformed
-  // private void open(int selectionType) {
-  // JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
-  // document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-  // 
-  // files.forEach(file -> {
-  // FileReader fileReader = new FileReader();
-  // fileReader.onload = event -> {
-  // $Image img = ($Image) document.createElement("img");
-  // img.src = (String) fileReader.result;
-  // 
-  // document.querySelector(".center").appendChild(img);
-  // return null;
-  // };
-  // fileReader.readAsDataURL(file);
-  // });
-  // });
-  // }
-  // private void choose(Color color) {
-  // JSColorChooser.showDialog(color, c -> {
-  // document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-  // $Image img = ($Image) document.createElement("img");
-  // img.width = 100;
-  // img.height = 100;
-  // img.style.background = c.getRGB_HEX();
-  // document.querySelector(".center").appendChild(img);
-  // });
-  // }
+   choose(color) {
+    let object = new Object();
+    object["EXTRA"] = new JSColorExtraTab1Panel();
+    JSColorChooser.showDialog("Select a color", color, true, object, c => {
+      if (c) {
+        console.log(c.getRGBA_HEX());
+      }
+    });
+  }
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton4 = null;
 

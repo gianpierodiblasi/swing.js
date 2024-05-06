@@ -368,9 +368,13 @@ class Color {
    * @param rgb the rgb array
    */
   static  CMYKtoRGB(cmyk, rgb) {
-    rgb[0] = parseInt(255 * (1 + cmyk[0] / 255 * cmyk[3] / 255 - cmyk[3] / 255 - cmyk[0] / 255));
-    rgb[1] = parseInt(255 * (1 + cmyk[1] / 255 * cmyk[3] / 255 - cmyk[3] / 255 - cmyk[1] / 255));
-    rgb[2] = parseInt(255 * (1 + cmyk[2] / 255 * cmyk[3] / 255 - cmyk[3] / 255 - cmyk[2] / 255));
+    let C = cmyk[0] / 255;
+    let M = cmyk[1] / 255;
+    let Y = cmyk[2] / 255;
+    let K = cmyk[3] / 255;
+    rgb[0] = parseInt(255 * (1 - C) * (1 - K));
+    rgb[1] = parseInt(255 * (1 - M) * (1 - K));
+    rgb[2] = parseInt(255 * (1 - Y) * (1 - K));
   }
 
   /**
@@ -380,17 +384,20 @@ class Color {
    * @param cmyk the cmyk array
    */
   static  RGBtoCMYK(rgb, cmyk) {
-    let max = Math.max(rgb[0], rgb[1], rgb[2]);
-    if (max > 0) {
-      cmyk[0] = parseInt(255 - rgb[0] / max);
-      cmyk[1] = parseInt(255 - rgb[1] / max);
-      cmyk[2] = parseInt(255 - rgb[2] / max);
-    } else {
+    let R = rgb[0] / 255;
+    let G = rgb[1] / 255;
+    let B = rgb[2] / 255;
+    let K = 1 - Math.max(R, G, B);
+    if (K === 1) {
       cmyk[0] = 0;
       cmyk[1] = 0;
       cmyk[2] = 0;
+    } else {
+      cmyk[0] = parseInt(255 * (1 - R - K) / (1 - K));
+      cmyk[1] = parseInt(255 * (1 - G - K) / (1 - K));
+      cmyk[2] = parseInt(255 * (1 - B - K) / (1 - K));
     }
-    cmyk[3] = parseInt(255 - max);
+    cmyk[3] = parseInt(255 * K);
   }
 }
 /**
@@ -1155,10 +1162,26 @@ class JSColorChooser {
    * @param color The initial color (it can be null)
    * @param opacityVisible true to make the opacity selectors visible, false
    * otherwise
-   * @param extraTabs An array of extra tabs (it can be null)
+   * @param extraTabs An key/value object of extra tabs (it can be null), key =
+   * title, value = an instance of JSAbstractColorExtraTabPanel
    * @param response The function to call on close
    */
   static  showDialog(title, color, opacityVisible, extraTabs, response) {
+    let panel = new JSColorPanel();
+    if (color) {
+      panel.setSelectedColor(color);
+    }
+    panel.setOpacityVisible(opacityVisible);
+    if (extraTabs) {
+      Object.keys(extraTabs).forEach(key => {
+        panel.addExtraTab("" + key, extraTabs[key]);
+      });
+    }
+    JSOptionPane.showInputDialog(panel, title, (changeListener) => panel.addChangeListener(changeListener), () => true, res => {
+      if (res === JSOptionPane.OK_OPTION) {
+        response(panel.getSelectedColor());
+      }
+    });
   }
 }
 /**
@@ -3566,6 +3589,7 @@ class JSColorPanel extends JSPanel {
 
   /**
    * Adds an extra tab
+   *
    * @param title The title
    * @param panel The extra tab
    */
@@ -3668,6 +3692,10 @@ class JSColorPanel extends JSPanel {
       this.opacitySlider.setValue(color.alpha);
       this.opacitySpinner.setValue(color.alpha);
     }
+    let c = this.getSelectedColor();
+    this.component.getStyle().backgroundColor = c.getRGB_String();
+    this.componentOpacity.getStyle().backgroundColor = c.getRGBA_String();
+    this.setContainerBorder(c);
   }
 
   /**
@@ -4677,13 +4705,14 @@ class JSOptionPane {
     JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
     JSOptionPane.setOkEnabled(dialog, isValid);
     addChangeListener(event => JSOptionPane.setOkEnabled(dialog, isValid));
+    dialog.setVisible(true);
   }
 
   static  setOkEnabled(dialog, isValid) {
     if (isValid()) {
-      dialog.removeChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
+      dialog.removeChildAttributeByQuery(".jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
     } else {
-      dialog.setChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
+      dialog.setChildAttributeByQuery(".jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
     }
   }
 

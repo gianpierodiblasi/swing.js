@@ -367,9 +367,13 @@ class Color {
    * @param rgb the rgb array
    */
   static  CMYKtoRGB(cmyk, rgb) {
-    rgb[0] = parseInt(255 * (1 + cmyk[0] / 255 * cmyk[3] / 255 - cmyk[3] / 255 - cmyk[0] / 255));
-    rgb[1] = parseInt(255 * (1 + cmyk[1] / 255 * cmyk[3] / 255 - cmyk[3] / 255 - cmyk[1] / 255));
-    rgb[2] = parseInt(255 * (1 + cmyk[2] / 255 * cmyk[3] / 255 - cmyk[3] / 255 - cmyk[2] / 255));
+    let C = cmyk[0] / 255;
+    let M = cmyk[1] / 255;
+    let Y = cmyk[2] / 255;
+    let K = cmyk[3] / 255;
+    rgb[0] = parseInt(255 * (1 - C) * (1 - K));
+    rgb[1] = parseInt(255 * (1 - M) * (1 - K));
+    rgb[2] = parseInt(255 * (1 - Y) * (1 - K));
   }
 
   /**
@@ -379,16 +383,19 @@ class Color {
    * @param cmyk the cmyk array
    */
   static  RGBtoCMYK(rgb, cmyk) {
-    let max = Math.max(rgb[0], rgb[1], rgb[2]);
-    if (max > 0) {
-      cmyk[0] = parseInt(255 - rgb[0] / max);
-      cmyk[1] = parseInt(255 - rgb[1] / max);
-      cmyk[2] = parseInt(255 - rgb[2] / max);
-    } else {
+    let R = rgb[0] / 255;
+    let G = rgb[1] / 255;
+    let B = rgb[2] / 255;
+    let K = 1 - Math.max(R, G, B);
+    if (K === 1) {
       cmyk[0] = 0;
       cmyk[1] = 0;
       cmyk[2] = 0;
+    } else {
+      cmyk[0] = parseInt(255 * (1 - R - K) / (1 - K));
+      cmyk[1] = parseInt(255 * (1 - G - K) / (1 - K));
+      cmyk[2] = parseInt(255 * (1 - B - K) / (1 - K));
     }
-    cmyk[3] = parseInt(255 - max);
+    cmyk[3] = parseInt(255 * K);
   }
 }

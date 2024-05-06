@@ -87,13 +87,15 @@ public class JSOptionPane {
     JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
     JSOptionPane.setOkEnabled(dialog, isValid);
     addChangeListener.$apply(event -> JSOptionPane.setOkEnabled(dialog, isValid));
+    
+    dialog.setVisible(true);
   }
 
   private static void setOkEnabled(JSDialog dialog, $Apply_0_T<Boolean> isValid) {
     if (isValid.$apply()) {
-      dialog.removeChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
+      dialog.removeChildAttributeByQuery(".jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
     } else {
-      dialog.setChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
+      dialog.setChildAttributeByQuery(".jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
     }
   }
 

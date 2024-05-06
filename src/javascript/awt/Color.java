@@ -389,9 +389,14 @@ public class Color {
    * @param rgb the rgb array
    */
   public static void CMYKtoRGB(Array<Integer> cmyk, Array<Integer> rgb) {
-    rgb.$set(0, parseInt(255 * (1 + cmyk.$get(0) / 255 * cmyk.$get(3) / 255 - cmyk.$get(3) / 255 - cmyk.$get(0) / 255)));
-    rgb.$set(1, parseInt(255 * (1 + cmyk.$get(1) / 255 * cmyk.$get(3) / 255 - cmyk.$get(3) / 255 - cmyk.$get(1) / 255)));
-    rgb.$set(2, parseInt(255 * (1 + cmyk.$get(2) / 255 * cmyk.$get(3) / 255 - cmyk.$get(3) / 255 - cmyk.$get(2) / 255)));
+    double C = cmyk.$get(0) / 255;
+    double M = cmyk.$get(1) / 255;
+    double Y = cmyk.$get(2) / 255;
+    double K = cmyk.$get(3) / 255;
+
+    rgb.$set(0, parseInt(255 * (1 - C) * (1 - K)));
+    rgb.$set(1, parseInt(255 * (1 - M) * (1 - K)));
+    rgb.$set(2, parseInt(255 * (1 - Y) * (1 - K)));
   }
 
   /**
@@ -401,16 +406,21 @@ public class Color {
    * @param cmyk the cmyk array
    */
   public static void RGBtoCMYK(Array<Integer> rgb, Array<Integer> cmyk) {
-    double max = Math.max(rgb.$get(0), rgb.$get(1), rgb.$get(2));
-    if (max > 0) {
-      cmyk.$set(0, parseInt(255 - rgb.$get(0) / max));
-      cmyk.$set(1, parseInt(255 - rgb.$get(1) / max));
-      cmyk.$set(2, parseInt(255 - rgb.$get(2) / max));
-    } else {
+    double R = rgb.$get(0) / 255;
+    double G = rgb.$get(1) / 255;
+    double B = rgb.$get(2) / 255;
+    double K = 1 - Math.max(R, G, B);
+
+    if (K == 1) {
       cmyk.$set(0, 0);
       cmyk.$set(1, 0);
       cmyk.$set(2, 0);
+    } else {
+      cmyk.$set(0, parseInt(255 * (1 - R - K) / (1 - K)));
+      cmyk.$set(1, parseInt(255 * (1 - G - K) / (1 - K)));
+      cmyk.$set(2, parseInt(255 * (1 - B - K) / (1 - K)));
     }
-    cmyk.$set(3, parseInt(255 - max));
+
+    cmyk.$set(3, parseInt(255 * K));
   }
 }

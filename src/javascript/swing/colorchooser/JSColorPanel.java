@@ -144,6 +144,7 @@ public class JSColorPanel extends JSPanel {
 
   /**
    * Adds an extra tab
+   *
    * @param title The title
    * @param panel The extra tab
    */
@@ -252,6 +253,11 @@ public class JSColorPanel extends JSPanel {
       this.opacitySlider.setValue(color.alpha);
       this.opacitySpinner.setValue(color.alpha);
     }
+
+    Color c = this.getSelectedColor();
+    this.component.getStyle().backgroundColor = c.getRGB_String();
+    this.componentOpacity.getStyle().backgroundColor = c.getRGBA_String();
+    this.setContainerBorder(c);
   }
 
   /**
