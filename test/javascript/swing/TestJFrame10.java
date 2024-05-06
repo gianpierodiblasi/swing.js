@@ -1,11 +1,12 @@
 package javascript.swing;
 
 import static def.dom.Globals.console;
-import def.js.Object;
+import def.js.Array;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.awt.Color;
+import javascript.swing.colorchooser.JSAbstractColorExtraTabPanel;
 import javascript.swing.colorchooser.JSColorPanel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -92,10 +93,10 @@ public class TestJFrame10 extends javax.swing.JFrame {
   }//GEN-LAST:event_jButton5ActionPerformed
 
   private void choose(Color color) {
-    Object object = new Object();
-    object.$set("EXTRA", new JSColorExtraTab1Panel());
+    Array<JSAbstractColorExtraTabPanel> array = new Array<>();
+    array.$set("EXTRA", new JSColorExtraTab1Panel());
 
-    JSColorChooser.showDialog("Select a color", color, true, object, c -> {
+    JSColorChooser.showDialog("Select a color", color, true, array, c -> {
       if ($exists(c)) {
         console.log(c.getRGBA_HEX());
       }

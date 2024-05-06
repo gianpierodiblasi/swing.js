@@ -70,9 +70,9 @@ class TestJFrame10 extends JFrame {
 
   // GEN-LAST:event_jButton5ActionPerformed
    choose(color) {
-    let object = new Object();
-    object["EXTRA"] = new JSColorExtraTab1Panel();
-    JSColorChooser.showDialog("Select a color", color, true, object, c => {
+    let array = new Array();
+    array["EXTRA"] = new JSColorExtraTab1Panel();
+    JSColorChooser.showDialog("Select a color", color, true, array, c => {
       if (c) {
         console.log(c.getRGBA_HEX());
       }
