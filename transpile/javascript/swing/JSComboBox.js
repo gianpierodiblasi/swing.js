@@ -13,6 +13,19 @@ class JSComboBox extends JSComponent {
   constructor() {
     super(document.createElement("details"));
     this.cssAddClass("jscombobox");
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.getChilStyleByQuery("ul").removeProperty("right");
+        this.getChilStyleByQuery("ul").removeProperty("bottom");
+        let rect = this.invokeInTree("ul", "getBoundingClientRect()");
+        if (rect.left + rect.width > document.body.scrollWidth) {
+          this.getChilStyleByQuery("ul").right = "5px";
+        }
+        if (rect.top + rect.height > document.body.scrollHeight) {
+          this.getChilStyleByQuery("ul").bottom = "5px";
+        }
+      }
+    });
     this.appendNodeChild(document.createElement("summary"));
     this.appendNodeChild(document.createElement("ul"));
   }

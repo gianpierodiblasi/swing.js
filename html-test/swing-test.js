@@ -213,6 +213,9 @@ class TestJSFrame10 extends JSFrame {
     chooser2.setEnabled(false);
     chooser2.setSelectedColor(new Color(255, 0, 0, 255));
     (SwingJS.convert(this.jPanel1)).add(chooser2, null);
+    chooser2 = new JSColorChooser();
+    chooser2.setSelectedColor(new Color(255, 0, 0, 255));
+    (SwingJS.convert(this.jPanel3)).add(chooser2, null);
   }
 
   /**
@@ -226,6 +229,7 @@ class TestJSFrame10 extends JSFrame {
     this.jButton5 = new JSButton();let jButton5 = this.jButton5;
     this.jCheckBox1 = new JSCheckBox();let jCheckBox1 = this.jCheckBox1;
     this.jPanel2 = new JSPanel();let jPanel2 = this.jPanel2;
+    this.jPanel3 = new JSPanel();let jPanel3 = this.jPanel3;
     this.setTitle("Test Color Chooser");
     jButton4.setText("Choose Color");
     jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
@@ -238,6 +242,8 @@ class TestJSFrame10 extends JSFrame {
     jPanel1.add(jCheckBox1);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
+    jPanel3.setLayout(new FlowLayout(FlowLayout.RIGHT));
+    this.getContentPane().add(jPanel3, BorderLayout.PAGE_END);
   }
 
   // </editor-fold>//GEN-END:initComponents
@@ -273,6 +279,8 @@ class TestJSFrame10 extends JSFrame {
    jPanel1 = null;
 
    jPanel2 = null;
+
+   jPanel3 = null;
   // End of variables declaration//GEN-END:variables
 }
 /**

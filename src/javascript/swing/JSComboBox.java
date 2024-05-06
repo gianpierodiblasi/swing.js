@@ -5,6 +5,7 @@ import def.js.Array;
 import javascript.awt.event.ActionEvent;
 import javascript.awt.event.ActionListener;
 import javascript.swing.MnR.AbstractComboBoxModelAndRenderer;
+import simulation.dom.$DOMRect;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -18,10 +19,25 @@ public class JSComboBox<T extends Comparable<T>> extends JSComponent {
   private final Array<ActionListener> listeners = new Array<>();
   private AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
   
+  @SuppressWarnings("StringEquality")
   public JSComboBox() {
     super(document.createElement("details"));
     
     this.cssAddClass("jscombobox");
+    this.addEventListener("toggle", event -> {
+      if ("" + this.getProperty("open") == "true") {
+        this.getChilStyleByQuery("ul").removeProperty("right");
+        this.getChilStyleByQuery("ul").removeProperty("bottom");
+
+        $DOMRect rect = this.invokeInTree("ul", "getBoundingClientRect()");
+        if (rect.left + rect.width > document.body.scrollWidth) {
+          this.getChilStyleByQuery("ul").right = "5px";
+        }
+        if (rect.top + rect.height > document.body.scrollHeight) {
+          this.getChilStyleByQuery("ul").bottom = "5px";
+        }
+      }
+    });
     
     this.appendNodeChild(document.createElement("summary"));
     this.appendNodeChild(document.createElement("ul"));

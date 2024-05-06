@@ -1199,6 +1199,20 @@ class JSComponent {
   }
 
   /**
+   * Invokes a method of an child of the HTML element
+   *
+   * @param <T> The type of the return value
+   * @param query The query selector
+   * @param method The method name (with parenthesis)
+   * @return The return value of the method
+   */
+   invokeInTree(query, method) {
+    let result = null;
+    eval("result = this.element.querySelector('" + query + "')." + method + ";");
+    return result;
+  }
+
+  /**
    * Sets the ID of the HTML element
    *
    * @param id The ID of the HTML element
@@ -1949,6 +1963,19 @@ class JSColorChooser extends JSComponent {
   constructor() {
     super(document.createElement("details"));
     this.cssAddClass("jscolorchooser");
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+        let rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
+        if (rect.left + rect.width > document.body.scrollWidth) {
+          this.getChilStyleByQuery(".jscolorpanel").right = "5px";
+        }
+        if (rect.top + rect.height > document.body.scrollHeight) {
+          this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
+        }
+      }
+    });
     let color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
@@ -2107,6 +2134,19 @@ class JSComboBox extends JSComponent {
   constructor() {
     super(document.createElement("details"));
     this.cssAddClass("jscombobox");
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.getChilStyleByQuery("ul").removeProperty("right");
+        this.getChilStyleByQuery("ul").removeProperty("bottom");
+        let rect = this.invokeInTree("ul", "getBoundingClientRect()");
+        if (rect.left + rect.width > document.body.scrollWidth) {
+          this.getChilStyleByQuery("ul").right = "5px";
+        }
+        if (rect.top + rect.height > document.body.scrollHeight) {
+          this.getChilStyleByQuery("ul").bottom = "5px";
+        }
+      }
+    });
     this.appendNodeChild(document.createElement("summary"));
     this.appendNodeChild(document.createElement("ul"));
   }
@@ -5542,3 +5582,8 @@ class Translations {
     Translations.JSColorChooser_PREVIEW = "Anteprima";
   }
 }
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+

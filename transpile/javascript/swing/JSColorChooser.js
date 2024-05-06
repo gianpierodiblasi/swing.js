@@ -21,6 +21,19 @@ class JSColorChooser extends JSComponent {
   constructor() {
     super(document.createElement("details"));
     this.cssAddClass("jscolorchooser");
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+        let rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
+        if (rect.left + rect.width > document.body.scrollWidth) {
+          this.getChilStyleByQuery(".jscolorpanel").right = "5px";
+        }
+        if (rect.top + rect.height > document.body.scrollHeight) {
+          this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
+        }
+      }
+    });
     let color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();

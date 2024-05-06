@@ -3,6 +3,7 @@ package javascript.swing;
 import static def.dom.Globals.console;
 import def.js.Array;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import javascript.SwingJS;
 import javascript.awt.Color;
@@ -71,6 +72,10 @@ public class TestJFrame10 extends javax.swing.JFrame {
     chooser2.setEnabled(false);
     chooser2.setSelectedColor(new Color(255, 0, 0, 255));
     ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser2, null);
+    
+    chooser2 = new JSColorChooser();
+    chooser2.setSelectedColor(new Color(255, 0, 0, 255));
+    ((JSPanel) SwingJS.convert(this.jPanel3)).add(chooser2, null);
   }
 
   /**
@@ -87,6 +92,7 @@ public class TestJFrame10 extends javax.swing.JFrame {
     jButton5 = new JButton();
     jCheckBox1 = new JCheckBox();
     jPanel2 = new JPanel();
+    jPanel3 = new JPanel();
 
     setTitle("Test Color Chooser");
 
@@ -104,6 +110,9 @@ public class TestJFrame10 extends javax.swing.JFrame {
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     getContentPane().add(jPanel2, BorderLayout.CENTER);
+
+    jPanel3.setLayout(new FlowLayout(FlowLayout.RIGHT));
+    getContentPane().add(jPanel3, BorderLayout.PAGE_END);
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -131,5 +140,6 @@ public class TestJFrame10 extends javax.swing.JFrame {
   private JCheckBox jCheckBox1;
   private JPanel jPanel1;
   private JPanel jPanel2;
+  private JPanel jPanel3;
   // End of variables declaration//GEN-END:variables
 }

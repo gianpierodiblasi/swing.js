@@ -8,6 +8,7 @@ import javascript.swing.colorchooser.JSAbstractColorExtraTabPanel;
 import javascript.swing.colorchooser.JSColorPanel;
 import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
+import simulation.dom.$DOMRect;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
@@ -29,10 +30,25 @@ public class JSColorChooser extends JSComponent {
   /**
    * Creates the object
    */
+  @SuppressWarnings("StringEquality")
   public JSColorChooser() {
     super(document.createElement("details"));
 
     this.cssAddClass("jscolorchooser");
+    this.addEventListener("toggle", event -> {
+      if ("" + this.getProperty("open") == "true") {
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+
+        $DOMRect rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
+        if (rect.left + rect.width > document.body.scrollWidth) {
+          this.getChilStyleByQuery(".jscolorpanel").right = "5px";
+        }
+        if (rect.top + rect.height > document.body.scrollHeight) {
+          this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
+        }
+      }
+    });
 
     Color color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");

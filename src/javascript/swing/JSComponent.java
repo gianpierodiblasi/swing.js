@@ -65,6 +65,20 @@ public class JSComponent {
   }
 
   /**
+   * Invokes a method of an child of the HTML element
+   *
+   * @param <T> The type of the return value
+   * @param query The query selector
+   * @param method The method name (with parenthesis)
+   * @return The return value of the method
+   */
+  public <T> T invokeInTree(String query, String method) {
+    T result = null;
+    eval("result = this.element.querySelector('" + query + "')." + method + ";");
+    return result;
+  }
+
+  /**
    * Sets the ID of the HTML element
    *
    * @param id The ID of the HTML element
