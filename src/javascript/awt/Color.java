@@ -19,6 +19,13 @@ public class Color {
   public final int blue;
   public final int alpha;
 
+  private final static double U_MIN = -0.50059;
+  private final static double U_MAX = 0.50058997;
+  private final static double DIFF_U = U_MAX - U_MIN;
+  private final static double V_MIN = -0.49981302;
+  private final static double V_MAX = 0.499813;
+  private final static double DIFF_V = V_MAX - V_MIN;
+
   public Color(int red, int green, int blue, int alpha) {
     this.red = red;
     this.green = green;
@@ -422,5 +429,52 @@ public class Color {
     }
 
     cmyk.$set(3, parseInt(255 * K));
+  }
+
+  /**
+   * Converts YUV components of a color to a set of RGB components
+   *
+   * @param yuv the yuv array
+   * @param rgb the rgb array
+   */
+  public static void YUVtoRGB(Array<Double> yuv, Array<Integer> rgb) {
+    int R = parseInt(255 * (0.713 * yuv.$get(0) + DIFF_V * yuv.$get(2) + V_MIN) / 0.713);
+    int B = parseInt(255 * (0.565 * yuv.$get(0) + DIFF_U * yuv.$get(1) + U_MIN) / 0.565);
+    int G = parseInt((255 * yuv.$get(0) - 0.114 * B - 0.299 * R) / 0.587);
+
+    if (R < 0) {
+      R = 0;
+    }
+    if (R > 255) {
+      R = 255;
+    }
+    if (G < 0) {
+      G = 0;
+    }
+    if (G > 255) {
+      G = 255;
+    }
+    if (B < 0) {
+      B = 0;
+    }
+    if (B > 255) {
+      B = 255;
+    }
+
+    rgb.$set(0, R);
+    rgb.$set(1, G);
+    rgb.$set(2, B);
+  }
+
+  /**
+   * Converts RGB components of a color to a set of YUV components
+   *
+   * @param rgb the rgb array
+   * @param yuv the cmyk array
+   */
+  public static void RGBtoYUV(Array<Integer> rgb, Array<Double> yuv) {
+    yuv.$set(0, 0.299 * rgb.$get(0) / 255 + 0.587 * rgb.$get(1) / 255 + 0.114 * rgb.$get(2) / 255);
+    yuv.$set(1, ((rgb.$get(2) / 255 - yuv.$get(0)) * 0.565 - Color.U_MIN) / Color.DIFF_U);
+    yuv.$set(2, ((rgb.$get(0) / 255 - yuv.$get(0)) * 0.713 - Color.V_MIN) / Color.DIFF_V);
   }
 }

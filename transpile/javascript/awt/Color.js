@@ -13,6 +13,18 @@ class Color {
 
    alpha = 0;
 
+  static  U_MIN = -0.50059;
+
+  static  U_MAX = 0.50058997;
+
+  static  DIFF_U = U_MAX - U_MIN;
+
+  static  V_MIN = -0.49981302;
+
+  static  V_MAX = 0.499813;
+
+  static  DIFF_V = V_MAX - V_MIN;
+
   constructor(red, green, blue, alpha) {
     this.red = red;
     this.green = green;
@@ -397,5 +409,50 @@ class Color {
       cmyk[2] = parseInt(255 * (1 - B - K) / (1 - K));
     }
     cmyk[3] = parseInt(255 * K);
+  }
+
+  /**
+   * Converts YUV components of a color to a set of RGB components
+   *
+   * @param yuv the yuv array
+   * @param rgb the rgb array
+   */
+  static  YUVtoRGB(yuv, rgb) {
+    let R = parseInt(255 * (0.713 * yuv[0] + DIFF_V * yuv[2] + V_MIN) / 0.713);
+    let B = parseInt(255 * (0.565 * yuv[0] + DIFF_U * yuv[1] + U_MIN) / 0.565);
+    let G = parseInt((255 * yuv[0] - 0.114 * B - 0.299 * R) / 0.587);
+    if (R < 0) {
+      R = 0;
+    }
+    if (R > 255) {
+      R = 255;
+    }
+    if (G < 0) {
+      G = 0;
+    }
+    if (G > 255) {
+      G = 255;
+    }
+    if (B < 0) {
+      B = 0;
+    }
+    if (B > 255) {
+      B = 255;
+    }
+    rgb[0] = R;
+    rgb[1] = G;
+    rgb[2] = B;
+  }
+
+  /**
+   * Converts RGB components of a color to a set of YUV components
+   *
+   * @param rgb the rgb array
+   * @param yuv the cmyk array
+   */
+  static  RGBtoYUV(rgb, yuv) {
+    yuv[0] = 0.299 * rgb[0] / 255 + 0.587 * rgb[1] / 255 + 0.114 * rgb[2] / 255;
+    yuv[1] = ((rgb[2] / 255 - yuv[0]) * 0.565 - Color.U_MIN) / Color.DIFF_U;
+    yuv[2] = ((rgb[0] / 255 - yuv[0]) * 0.713 - Color.V_MIN) / Color.DIFF_V;
   }
 }
