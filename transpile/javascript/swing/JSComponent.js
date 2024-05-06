@@ -392,6 +392,16 @@ class JSComponent {
   }
 
   /**
+   * Removes an attribute of a child the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   */
+   removeChildAttributeByQuery(query, key) {
+    this.element.querySelector(query).removeAttribute(key);
+  }
+
+  /**
    * Clears the text content of a child of the HTML element
    *
    * @param query The query selector

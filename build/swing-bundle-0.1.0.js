@@ -1145,39 +1145,21 @@ class ChangeListener {
  */
 class JSColorChooser {
 
-  // private static $HTMLElement input;
   constructor() {
   }
+
   /**
    * Shows a dialog to select the color
    *
-   * @param color The initial color
+   * @param title The title
+   * @param color The initial color (it can be null)
+   * @param opacityVisible true to make the opacity selectors visible, false
+   * otherwise
+   * @param extraTabs An array of extra tabs (it can be null)
    * @param response The function to call on close
    */
-  // public static void showDialog(Color color, $Apply_1_Void<Color> response) {
-  // document.querySelectorAll(".jscolorchooser-static").forEach(element -> element.parentElement.removeChild(element));
-  // 
-  // JSColorChooser.input = ($HTMLElement) document.createElement("input");
-  // JSColorChooser.input.classList.add("jscolorchooser-static");
-  // JSColorChooser.input.setAttribute("type", "color");
-  // JSColorChooser.input.style.display = "none";
-  // JSColorChooser.input.$set("value", $exists(color) ? color.getRGB_HEX(): "");
-  // JSColorChooser.input.onchange = (event) -> JSColorChooser.onchange(JSColorChooser.input.value, response);
-  // 
-  // document.body.appendChild(JSColorChooser.input);
-  // 
-  // Event event = document.createEvent("MouseEvents");
-  // event.initEvent("click", false, false);
-  // JSColorChooser.input.dispatchEvent(event);
-  // }
-  // private static Object onchange(String value, $Apply_1_Void<Color> response) {
-  // document.body.removeChild(JSColorChooser.input);
-  // 
-  // if ($exists(response)) {
-  // response.$apply(Color.fromRGB_HEX(value));
-  // }
-  // return null;
-  // }
+  static  showDialog(title, color, opacityVisible, extraTabs, response) {
+  }
 }
 /**
  * The javax.swing.JComponent clone
@@ -1570,6 +1552,16 @@ class JSComponent {
    */
    getChildAttributeByQuery(query, key) {
     return this.element.querySelector(query).getAttribute(key);
+  }
+
+  /**
+   * Removes an attribute of a child the HTML element
+   *
+   * @param query The query selector
+   * @param key The attribute key
+   */
+   removeChildAttributeByQuery(query, key) {
+    this.element.querySelector(query).removeAttribute(key);
   }
 
   /**
@@ -3572,6 +3564,11 @@ class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, "cmyk");
   }
 
+  /**
+   * Adds an extra tab
+   * @param title The title
+   * @param panel The extra tab
+   */
    addExtraTab(title, panel) {
     this.extraTabs.push(panel);
     this.addPanel(title, panel);
@@ -4675,6 +4672,21 @@ class JSOptionPane {
     dialog.setVisible(true);
   }
 
+  static  showInputDialog(component, title, addChangeListener, isValid, response) {
+    let dialog = JSOptionPane.createDialog(component, title);
+    JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
+    JSOptionPane.setOkEnabled(dialog, isValid);
+    addChangeListener(event => JSOptionPane.setOkEnabled(dialog, isValid));
+  }
+
+  static  setOkEnabled(dialog, isValid) {
+    if (isValid()) {
+      dialog.removeChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
+    } else {
+      dialog.setChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
+    }
+  }
+
   static  createDialog(message, title) {
     let dialog = new JSDialog();
     dialog.getContentPane().setLayout(new BorderLayout(20, 20));
@@ -4752,6 +4764,7 @@ class JSOptionPane {
   static  addButton(dialog, panel, label, option) {
     let button = new JSButton();
     button.setText(label);
+    button.cssAddClass("jsoptionpane-option-" + option);
     button.addActionListener(event => {
       JSOptionPane.RESPONSE = option;
       dialog.setVisible(false);

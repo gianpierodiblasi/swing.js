@@ -121,6 +121,11 @@ class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, "cmyk");
   }
 
+  /**
+   * Adds an extra tab
+   * @param title The title
+   * @param panel The extra tab
+   */
    addExtraTab(title, panel) {
     this.extraTabs.push(panel);
     this.addPanel(title, panel);

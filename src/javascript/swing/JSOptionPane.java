@@ -1,7 +1,9 @@
 package javascript.swing;
 
 import javascript.awt.BorderLayout;
+import javascript.swing.event.ChangeListener;
 import javascript.util.Translations;
+import simulation.js.$Apply_0_T;
 import simulation.js.$Apply_0_Void;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
@@ -80,6 +82,21 @@ public class JSOptionPane {
     dialog.setVisible(true);
   }
 
+  public static void showInputDialog(JSComponent component, String title, $Apply_1_Void<ChangeListener> addChangeListener, $Apply_0_T<Boolean> isValid, $Apply_1_Void<Integer> response) {
+    JSDialog dialog = JSOptionPane.createDialog(component, title);
+    JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
+    JSOptionPane.setOkEnabled(dialog, isValid);
+    addChangeListener.$apply(event -> JSOptionPane.setOkEnabled(dialog, isValid));
+  }
+
+  private static void setOkEnabled(JSDialog dialog, $Apply_0_T<Boolean> isValid) {
+    if (isValid.$apply()) {
+      dialog.removeChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
+    } else {
+      dialog.setChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
+    }
+  }
+
   @SuppressWarnings("null")
   private static JSDialog createDialog(Object message, String title) {
     JSDialog dialog = new JSDialog();
@@ -155,7 +172,7 @@ public class JSOptionPane {
     JSOptionPane.RESPONSE = JSOptionPane.CLOSED_OPTION;
     dialog.addWindowClosedListener(event -> {
       dialog.dispose();
-      
+
       if ($exists(response)) {
         response.$apply(JSOptionPane.RESPONSE);
       }
@@ -165,6 +182,7 @@ public class JSOptionPane {
   private static void addButton(JSDialog dialog, JSPanel panel, String label, int option) {
     JSButton button = new JSButton();
     button.setText(label);
+    button.cssAddClass("jsoptionpane-option-" + option);
     button.addActionListener(event -> {
       JSOptionPane.RESPONSE = option;
       dialog.setVisible(false);

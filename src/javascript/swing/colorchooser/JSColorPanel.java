@@ -142,6 +142,11 @@ public class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, "cmyk");
   }
 
+  /**
+   * Adds an extra tab
+   * @param title The title
+   * @param panel The extra tab
+   */
   public void addExtraTab(String title, JSAbstractColorExtraTabPanel panel) {
     this.extraTabs.push(panel);
     this.addPanel(title, panel);
@@ -201,7 +206,7 @@ public class JSColorPanel extends JSPanel {
    *
    * @return The selected color
    */
-  @SuppressWarnings("StringEquality")
+  @SuppressWarnings({"StringEquality", "null"})
   public Color getSelectedColor() {
     Color color = null;
     for (int index = 0; index < this.extraTabs.length; index++) {

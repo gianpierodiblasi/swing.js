@@ -81,6 +81,21 @@ class JSOptionPane {
     dialog.setVisible(true);
   }
 
+  static  showInputDialog(component, title, addChangeListener, isValid, response) {
+    let dialog = JSOptionPane.createDialog(component, title);
+    JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
+    JSOptionPane.setOkEnabled(dialog, isValid);
+    addChangeListener(event => JSOptionPane.setOkEnabled(dialog, isValid));
+  }
+
+  static  setOkEnabled(dialog, isValid) {
+    if (isValid()) {
+      dialog.removeChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled");
+    } else {
+      dialog.setChildAttributeByQuery("jsoptionpane-option-" + JSOptionPane.OK_OPTION, "disabled", "disabled");
+    }
+  }
+
   static  createDialog(message, title) {
     let dialog = new JSDialog();
     dialog.getContentPane().setLayout(new BorderLayout(20, 20));
@@ -158,6 +173,7 @@ class JSOptionPane {
   static  addButton(dialog, panel, label, option) {
     let button = new JSButton();
     button.setText(label);
+    button.cssAddClass("jsoptionpane-option-" + option);
     button.addActionListener(event => {
       JSOptionPane.RESPONSE = option;
       dialog.setVisible(false);
