@@ -82,12 +82,23 @@ public class JSOptionPane {
     dialog.setVisible(true);
   }
 
+  /**
+   * Shows an input dialog, this method does not stop the code flow
+   *
+   * @param component The component containing the input to select
+   * @param title The title
+   * @param addChangeListener The function to call to add a change listener to
+   * the component
+   * @param isValid The function to call when the component's value changes to
+   * verify if the selected value is valid
+   * @param response The function to call on close
+   */
   public static void showInputDialog(JSComponent component, String title, $Apply_1_Void<ChangeListener> addChangeListener, $Apply_0_T<Boolean> isValid, $Apply_1_Void<Integer> response) {
     JSDialog dialog = JSOptionPane.createDialog(component, title);
     JSOptionPane.addButtons(dialog, "OK_CANCEL", response);
     JSOptionPane.setOkEnabled(dialog, isValid);
     addChangeListener.$apply(event -> JSOptionPane.setOkEnabled(dialog, isValid));
-    
+
     dialog.setVisible(true);
   }
 
