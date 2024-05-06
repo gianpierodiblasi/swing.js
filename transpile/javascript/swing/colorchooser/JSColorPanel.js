@@ -13,6 +13,8 @@ class JSColorPanel extends JSPanel {
 
    hslPanel = new JSColorHSLPanel();
 
+   yuvPanel = new JSColorHSLPanel();
+
    rgbPanel = new JSColorRGBPanel();
 
    cmykPanel = new JSColorCMYKPanel();
@@ -49,6 +51,7 @@ class JSColorPanel extends JSPanel {
     this.addPanel(Translations.JSColorChooser_PALETTE, this.swatchesPanel);
     this.addPanel("HSV", this.hsvPanel);
     this.addPanel("HSL", this.hslPanel);
+    this.addPanel("YUV", this.yuvPanel);
     this.addPanel("RGB", this.rgbPanel);
     this.addPanel("CMYK", this.cmykPanel);
     let gridBagConstraints = new GridBagConstraints();
@@ -110,15 +113,17 @@ class JSColorPanel extends JSPanel {
       let c = this.swatchesPanel.getSelectedColor();
       this.hsvPanel.setSelectedColor(c);
       this.hslPanel.setSelectedColor(c);
+      this.yuvPanel.setSelectedColor(c);
       this.rgbPanel.setSelectedColor(c);
       this.cmykPanel.setSelectedColor(c);
       this.extraTabs.forEach(tab => tab.setSelectedColor(c));
       this.onchange(false);
     });
-    this.addChangeListenerToPanel(this.hsvPanel, this.hslPanel, this.rgbPanel, this.cmykPanel, "hsv");
-    this.addChangeListenerToPanel(this.hslPanel, this.hsvPanel, this.rgbPanel, this.cmykPanel, "hsl");
-    this.addChangeListenerToPanel(this.rgbPanel, this.hsvPanel, this.hslPanel, this.cmykPanel, "rgb");
-    this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, "cmyk");
+    this.addChangeListenerToPanel(this.hsvPanel, this.hslPanel, this.yuvPanel, this.rgbPanel, this.cmykPanel, "hsv");
+    this.addChangeListenerToPanel(this.hslPanel, this.hsvPanel, this.yuvPanel, this.rgbPanel, this.cmykPanel, "hsl");
+    this.addChangeListenerToPanel(this.yuvPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, this.cmykPanel, "yuv");
+    this.addChangeListenerToPanel(this.rgbPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.cmykPanel, "rgb");
+    this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.rgbPanel, "cmyk");
   }
 
   /**
@@ -139,13 +144,14 @@ class JSColorPanel extends JSPanel {
     this.pane.addTab(title, panel);
   }
 
-   addChangeListenerToPanel(source, dest1, dest2, dest3, currentTab) {
+   addChangeListenerToPanel(source, dest1, dest2, dest3, dest4, currentTab) {
     source.addChangeListener(event => {
       if (!source.getValueIsAdjusting()) {
         let color = source.getSelectedColor();
         dest1.setSelectedColor(color);
         dest2.setSelectedColor(color);
         dest3.setSelectedColor(color);
+        dest4.setSelectedColor(color);
         this.extraTabs.forEach(tab => tab.setSelectedColor(color));
       }
       this.currentTab = currentTab;
@@ -160,6 +166,7 @@ class JSColorPanel extends JSPanel {
         let color = source.getSelectedColor();
         this.hsvPanel.setSelectedColor(color);
         this.hslPanel.setSelectedColor(color);
+        this.yuvPanel.setSelectedColor(color);
         this.rgbPanel.setSelectedColor(color);
         this.cmykPanel.setSelectedColor(color);
         this.extraTabs.filter(tab => tab !== source).forEach(tab => tab.setSelectedColor(color));
@@ -199,6 +206,9 @@ class JSColorPanel extends JSPanel {
         case "hsl":
           color = this.hslPanel.getSelectedColor();
           break;
+        case "yuv":
+          color = this.yuvPanel.getSelectedColor();
+          break;
         case "rgb":
         default:
           color = this.rgbPanel.getSelectedColor();
@@ -219,6 +229,7 @@ class JSColorPanel extends JSPanel {
    setSelectedColor(color) {
     this.hsvPanel.setSelectedColor(color);
     this.hslPanel.setSelectedColor(color);
+    this.yuvPanel.setSelectedColor(color);
     this.rgbPanel.setSelectedColor(color);
     this.cmykPanel.setSelectedColor(color);
     this.extraTabs.forEach(tab => tab.setSelectedColor(color));

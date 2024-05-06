@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":10,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":9,"i21":9,"i22":10,"i23":10,"i24":9,"i25":9,"i26":9};
+var data = {"i0":9,"i1":10,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":9,"i21":9,"i22":10,"i23":10,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -417,6 +417,22 @@ extends java.lang.Object</pre>
         def.js.Array&lt;java.lang.Double&gt;&nbsp;hsv)</code></th>
 <td class="colLast">
 <div class="block">Converts RGB components of a color to a set of HSV components</div>
+</td>
+</tr>
+<tr id="i27" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RGBtoYUV(def.js.Array,def.js.Array)">RGBtoYUV</a></span>&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
+        def.js.Array&lt;java.lang.Double&gt;&nbsp;yuv)</code></th>
+<td class="colLast">
+<div class="block">Converts RGB components of a color to a set of YUV components</div>
+</td>
+</tr>
+<tr id="i28" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#YUVtoRGB(def.js.Array,def.js.Array)">YUVtoRGB</a></span>&#8203;(def.js.Array&lt;java.lang.Double&gt;&nbsp;yuv,
+        def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb)</code></th>
+<td class="colLast">
+<div class="block">Converts YUV components of a color to a set of RGB components</div>
 </td>
 </tr>
 </table>
@@ -904,7 +920,7 @@ extends java.lang.Object</pre>
 <a id="RGBtoCMYK(def.js.Array,def.js.Array)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>RGBtoCMYK</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;RGBtoCMYK&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
@@ -914,6 +930,38 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>rgb</code> - the rgb array</dd>
 <dd><code>cmyk</code> - the cmyk array</dd>
+</dl>
+</li>
+</ul>
+<a id="YUVtoRGB(def.js.Array,def.js.Array)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>YUVtoRGB</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;YUVtoRGB&#8203;(def.js.Array&lt;java.lang.Double&gt;&nbsp;yuv,
+                            def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb)</pre>
+<div class="block">Converts YUV components of a color to a set of RGB components</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>yuv</code> - the yuv array</dd>
+<dd><code>rgb</code> - the rgb array</dd>
+</dl>
+</li>
+</ul>
+<a id="RGBtoYUV(def.js.Array,def.js.Array)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>RGBtoYUV</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;RGBtoYUV&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
+                            def.js.Array&lt;java.lang.Double&gt;&nbsp;yuv)</pre>
+<div class="block">Converts RGB components of a color to a set of YUV components</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>rgb</code> - the rgb array</dd>
+<dd><code>yuv</code> - the cmyk array</dd>
 </dl>
 </li>
 </ul>
