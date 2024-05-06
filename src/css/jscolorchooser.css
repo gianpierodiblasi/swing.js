@@ -1,0 +1,66 @@
+.jscolorchooser {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--main-color);
+
+  min-width: 5rem;
+  border: 2px solid var(--main-action-bgcolor);
+  border-radius: var(--roundness);
+}
+.jscolorchooser:hover:not([disabled]), .jscolorchooser:has(summary:focus) {
+  box-shadow: .15rem .15rem .15rem var(--main-action-bgcolor);
+}
+.jscolorchooser[disabled] {
+  filter: opacity(0.5);
+  cursor: default;
+  pointer-events: none;
+}
+
+.jscolorchooser summary {
+  list-style: none;
+  cursor: pointer;
+  padding: .5rem;
+  min-height: 2.4ex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  outline: none;
+}
+.jscolorchooser summary::-webkit-details-marker {
+  display: none;
+}
+.jscolorchooser summary::after {
+  content: "\25BC";
+  color: var(--main-action-bgcolor);
+}
+.jscolorchooser summary * {
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.jscolorchooser summary .jscolorchooser-preview {
+  align-self : stretch;
+  flex-grow: 1;
+  display: grid;
+  grid-template: "c";
+  border-radius: calc(var(--roundness) - .2rem);
+  background-position: 0 0, 0 .5rem, 0 1rem;
+  background-repeat: repeat-x;
+  background-size: 1rem .5rem, 1rem .5rem, 1rem .5rem;
+  background-image: linear-gradient(90deg, #DDD .5rem, white .5rem), linear-gradient(90deg, white .5rem, #DDD .5rem), linear-gradient(90deg, #DDD .5rem, white .5rem);
+}
+.jscolorchooser summary .jscolorchooser-preview .jscolorchooser-preview-transparent {
+  grid-area: c;
+  border-radius: calc(var(--roundness) - .3rem);
+}
+
+.jscolorchooser .jscolorpanel {
+  z-index: 100;
+  position: absolute;
+  margin: .5rem 0 0 0;
+  padding: .5rem;
+  box-shadow: 0 0 .5rem var(--main-action-bgcolor);
+  border-radius: .5rem;
+  background: var(--main-bgcolor);
+}

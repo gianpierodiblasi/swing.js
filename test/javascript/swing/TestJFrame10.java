@@ -49,6 +49,28 @@ public class TestJFrame10 extends javax.swing.JFrame {
         console.log(colorPanelNoOpacity.getSelectedColor().getARGB_HEX());
       }
     });
+
+    final JSColorChooser chooser = new JSColorChooser();
+    ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser, null);
+    chooser.addChangeListener(event -> {
+      if (this.jCheckBox1.isSelected() || !chooser.getValueIsAdjusting()) {
+        console.log(chooser.getSelectedColor().getARGB_HEX());
+      }
+    });
+    
+    JSColorChooser chooser2 = new JSColorChooser();
+    chooser2.setEnabled(false);
+    ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser2, null);
+
+    chooser2 = new JSColorChooser();
+    chooser2.setSelectedColor(new Color(255, 0, 0, 255));
+    chooser2.setCloseOnChange(false);
+    ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser2, null);
+
+    chooser2 = new JSColorChooser();
+    chooser2.setEnabled(false);
+    chooser2.setSelectedColor(new Color(255, 0, 0, 255));
+    ((JSPanel) SwingJS.convert(this.jPanel1)).add(chooser2, null);
   }
 
   /**

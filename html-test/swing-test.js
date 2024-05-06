@@ -195,6 +195,24 @@ class TestJSFrame10 extends JSFrame {
         console.log(colorPanelNoOpacity.getSelectedColor().getARGB_HEX());
       }
     });
+    let chooser = new JSColorChooser();
+    (SwingJS.convert(this.jPanel1)).add(chooser, null);
+    chooser.addChangeListener(event => {
+      if (this.jCheckBox1.isSelected() || !chooser.getValueIsAdjusting()) {
+        console.log(chooser.getSelectedColor().getARGB_HEX());
+      }
+    });
+    let chooser2 = new JSColorChooser();
+    chooser2.setEnabled(false);
+    (SwingJS.convert(this.jPanel1)).add(chooser2, null);
+    chooser2 = new JSColorChooser();
+    chooser2.setSelectedColor(new Color(255, 0, 0, 255));
+    chooser2.setCloseOnChange(false);
+    (SwingJS.convert(this.jPanel1)).add(chooser2, null);
+    chooser2 = new JSColorChooser();
+    chooser2.setEnabled(false);
+    chooser2.setSelectedColor(new Color(255, 0, 0, 255));
+    (SwingJS.convert(this.jPanel1)).add(chooser2, null);
   }
 
   /**
