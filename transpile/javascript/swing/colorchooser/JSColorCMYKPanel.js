@@ -49,11 +49,6 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
    getSelectedColor() {
     let cmyk = new Array();
     let rgb = new Array();
@@ -65,11 +60,6 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     return new Color(rgb[0], rgb[1], rgb[2], 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
    setSelectedColor(color) {
     let rgb = new Array();
     let cmyk = new Array();

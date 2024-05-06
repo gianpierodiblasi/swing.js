@@ -222,6 +222,22 @@ class JSAbstractColorFormatPanel extends JSPanel {
     });
   }
 
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+   getSelectedColor() {
+  }
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+   setSelectedColor(color) {
+  }
+
    getStrokeStyle(style) {
     return style;
   }

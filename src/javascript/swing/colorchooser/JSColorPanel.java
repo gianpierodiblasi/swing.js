@@ -25,11 +25,13 @@ import static simulation.js.$Globals.$typeof;
  */
 public class JSColorPanel extends JSPanel {
 
+  private final JSTabbedPane pane = new JSTabbedPane();
   private final JSColorSwatchesPanel swatchesPanel = new JSColorSwatchesPanel();
   private final JSColorHSVPanel hsvPanel = new JSColorHSVPanel();
   private final JSColorHSLPanel hslPanel = new JSColorHSLPanel();
   private final JSColorRGBPanel rgbPanel = new JSColorRGBPanel();
   private final JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
+  private final Array<JSAbstractColorExtraTabPanel> extraTabs = new Array<>();
 
   private final JSLabel opacity = new JSLabel();
   private final JSSlider opacitySlider = new JSSlider();
@@ -54,19 +56,18 @@ public class JSColorPanel extends JSPanel {
 
     GridBagConstraints gridBagConstraints;
 
-    JSTabbedPane pane = new JSTabbedPane();
-    this.addPanel(pane, Translations.JSColorChooser_PALETTE, this.swatchesPanel);
-    this.addPanel(pane, "HSV", this.hsvPanel);
-    this.addPanel(pane, "HSL", this.hslPanel);
-    this.addPanel(pane, "RGB", this.rgbPanel);
-    this.addPanel(pane, "CMYK", this.cmykPanel);
+    this.addPanel(Translations.JSColorChooser_PALETTE, this.swatchesPanel);
+    this.addPanel("HSV", this.hsvPanel);
+    this.addPanel("HSL", this.hslPanel);
+    this.addPanel("RGB", this.rgbPanel);
+    this.addPanel("CMYK", this.cmykPanel);
 
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
-    this.add(pane, gridBagConstraints);
+    this.add(this.pane, gridBagConstraints);
 
     this.opacity.setText(Translations.JSColorChooser_OPACITY);
     gridBagConstraints = new GridBagConstraints();
@@ -179,10 +180,31 @@ public class JSColorPanel extends JSPanel {
     });
   }
 
-  private void addPanel(JSTabbedPane pane, String title, JSComponent component) {
+  public void addExtraTab(String title, JSAbstractColorExtraTabPanel panel) {
+    this.extraTabs.push(panel);
+    this.addPanel(title, panel);
+  }
+
+  private void addPanel(String title, JSComponent component) {
     JSPanel panel = new JSPanel();
     panel.add(component, null);
-    pane.addTab(title, panel);
+    this.pane.addTab(title, panel);
+  }
+
+  private void addChangeListenerToPanel(JSAbstractColorFormatPanel source, JSAbstractColorFormatPanel dest1, JSAbstractColorFormatPanel dest2, JSAbstractColorFormatPanel dest3, String currentTab) {
+
+    source.addChangeListener(event -> {
+      if (!source.getValueIsAdjusting()) {
+        Color color = source.getSelectedColor();
+        dest1.setSelectedColor(color);
+        dest2.setSelectedColor(color);
+        dest3.setSelectedColor(color);
+        this.extraTabs.forEach(tab -> tab.setSelectedColor(color));
+      }
+
+      this.currentTab = currentTab;
+      this.onchange(source.getValueIsAdjusting());
+    });
   }
 
   private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {

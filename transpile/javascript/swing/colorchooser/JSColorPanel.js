@@ -5,6 +5,8 @@
  */
 class JSColorPanel extends JSPanel {
 
+   pane = new JSTabbedPane();
+
    swatchesPanel = new JSColorSwatchesPanel();
 
    hsvPanel = new JSColorHSVPanel();
@@ -14,6 +16,8 @@ class JSColorPanel extends JSPanel {
    rgbPanel = new JSColorRGBPanel();
 
    cmykPanel = new JSColorCMYKPanel();
+
+   extraTabs = new Array();
 
    opacity = new JSLabel();
 
@@ -43,18 +47,17 @@ class JSColorPanel extends JSPanel {
     this.cssAddClass("jscolorpanel");
     this.setLayout(new GridBagLayout());
     let gridBagConstraints = null;
-    let pane = new JSTabbedPane();
-    this.addPanel(pane, Translations.JSColorChooser_PALETTE, this.swatchesPanel);
-    this.addPanel(pane, "HSV", this.hsvPanel);
-    this.addPanel(pane, "HSL", this.hslPanel);
-    this.addPanel(pane, "RGB", this.rgbPanel);
-    this.addPanel(pane, "CMYK", this.cmykPanel);
+    this.addPanel(Translations.JSColorChooser_PALETTE, this.swatchesPanel);
+    this.addPanel("HSV", this.hsvPanel);
+    this.addPanel("HSL", this.hslPanel);
+    this.addPanel("RGB", this.rgbPanel);
+    this.addPanel("CMYK", this.cmykPanel);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
-    this.add(pane, gridBagConstraints);
+    this.add(this.pane, gridBagConstraints);
     this.opacity.setText(Translations.JSColorChooser_OPACITY);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -149,10 +152,29 @@ class JSColorPanel extends JSPanel {
     });
   }
 
-   addPanel(pane, title, component) {
+   addExtraTab(title, panel) {
+    this.extraTabs.push(panel);
+    this.addPanel(title, panel);
+  }
+
+   addPanel(title, component) {
     let panel = new JSPanel();
     panel.add(component, null);
-    pane.addTab(title, panel);
+    this.pane.addTab(title, panel);
+  }
+
+   addChangeListenerToPanel(source, dest1, dest2, dest3, currentTab) {
+    source.addChangeListener(event => {
+      if (!source.getValueIsAdjusting()) {
+        let color = source.getSelectedColor();
+        dest1.setSelectedColor(color);
+        dest2.setSelectedColor(color);
+        dest3.setSelectedColor(color);
+        this.extraTabs.forEach(tab => tab.setSelectedColor(color));
+      }
+      this.currentTab = currentTab;
+      this.onchange(source.getValueIsAdjusting());
+    });
   }
 
    sliderToSpinner(slider, spinner) {

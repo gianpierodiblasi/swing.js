@@ -40,11 +40,6 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
    getSelectedColor() {
     let hsv = new Array();
     let rgb = new Array();
@@ -55,11 +50,6 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     return new Color(rgb[0], rgb[1], rgb[2], 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
    setSelectedColor(color) {
     let rgb = new Array();
     let hsv = new Array();

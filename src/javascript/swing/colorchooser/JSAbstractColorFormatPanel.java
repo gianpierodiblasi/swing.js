@@ -5,6 +5,7 @@ import def.dom.CanvasPattern;
 import static def.dom.Globals.document;
 import def.dom.MouseEvent;
 import def.js.Array;
+import javascript.awt.Color;
 import javascript.awt.GridBagConstraints;
 import javascript.awt.GridBagLayout;
 import javascript.awt.Insets;
@@ -245,6 +246,20 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
       }
     });
   }
+
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+  public abstract Color getSelectedColor();
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+  public abstract void setSelectedColor(Color color);
 
   private String getStrokeStyle(String style) {
     return style;

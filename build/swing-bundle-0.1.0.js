@@ -2225,6 +2225,59 @@ class JSPanel extends JSComponent {
   }
 }
 /**
+ * The abstract panel to add extra tabs to the JSColorPanel
+ *
+ * @author gianpiero.diblasi
+ */
+class JSAbstractColorExtraTabPanel extends JSPanel {
+
+   listeners = new Array();
+
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+   getSelectedColor() {
+  }
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+   setSelectedColor(color) {
+  }
+
+  /**
+   * Returns if the selected color is "adjusting"
+   *
+   * @return true if the selected color is adjusting, false otherwise
+   */
+   getValueIsAdjusting() {
+  }
+
+  /**
+   * Adds a change listener
+   *
+   * @param listener The listener
+   */
+   addChangeListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onchange() {
+    let event = new ChangeEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.stateChanged(event);
+      }
+    });
+  }
+}
+/**
  * The abstract panel to show colors in a color format
  *
  * @author gianpiero.diblasi
@@ -2448,6 +2501,22 @@ class JSAbstractColorFormatPanel extends JSPanel {
     });
   }
 
+  /**
+   * Returns the selected color
+   *
+   * @return The selected color
+   */
+   getSelectedColor() {
+  }
+
+  /**
+   * Sets the selected color
+   *
+   * @param color The selected color
+   */
+   setSelectedColor(color) {
+  }
+
    getStrokeStyle(style) {
     return style;
   }
@@ -2503,11 +2572,6 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
    getSelectedColor() {
     let cmyk = new Array();
     let rgb = new Array();
@@ -2519,11 +2583,6 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     return new Color(rgb[0], rgb[1], rgb[2], 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
    setSelectedColor(color) {
     let rgb = new Array();
     let cmyk = new Array();
@@ -2704,11 +2763,6 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
    getSelectedColor() {
     let hsl = new Array();
     let rgb = new Array();
@@ -2719,11 +2773,6 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     return new Color(rgb[0], rgb[1], rgb[2], 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
    setSelectedColor(color) {
     let rgb = new Array();
     let hsl = new Array();
@@ -2900,11 +2949,6 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
    getSelectedColor() {
     let hsv = new Array();
     let rgb = new Array();
@@ -2915,11 +2959,6 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
     return new Color(rgb[0], rgb[1], rgb[2], 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
    setSelectedColor(color) {
     let rgb = new Array();
     let hsv = new Array();
@@ -3096,20 +3135,10 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
    getSelectedColor() {
     return new Color(this.redSlider.getValue(), this.greenSlider.getValue(), this.blueSlider.getValue(), 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
    setSelectedColor(color) {
     this.setColor(color.red, color.green, color.blue, false, false);
   }
@@ -3408,6 +3437,8 @@ class JSColorSwatchesPanel extends JSAbstractColorSwatchesPanel {
  */
 class JSColorPanel extends JSPanel {
 
+   pane = new JSTabbedPane();
+
    swatchesPanel = new JSColorSwatchesPanel();
 
    hsvPanel = new JSColorHSVPanel();
@@ -3417,6 +3448,8 @@ class JSColorPanel extends JSPanel {
    rgbPanel = new JSColorRGBPanel();
 
    cmykPanel = new JSColorCMYKPanel();
+
+   extraTabs = new Array();
 
    opacity = new JSLabel();
 
@@ -3446,18 +3479,17 @@ class JSColorPanel extends JSPanel {
     this.cssAddClass("jscolorpanel");
     this.setLayout(new GridBagLayout());
     let gridBagConstraints = null;
-    let pane = new JSTabbedPane();
-    this.addPanel(pane, Translations.JSColorChooser_PALETTE, this.swatchesPanel);
-    this.addPanel(pane, "HSV", this.hsvPanel);
-    this.addPanel(pane, "HSL", this.hslPanel);
-    this.addPanel(pane, "RGB", this.rgbPanel);
-    this.addPanel(pane, "CMYK", this.cmykPanel);
+    this.addPanel(Translations.JSColorChooser_PALETTE, this.swatchesPanel);
+    this.addPanel("HSV", this.hsvPanel);
+    this.addPanel("HSL", this.hslPanel);
+    this.addPanel("RGB", this.rgbPanel);
+    this.addPanel("CMYK", this.cmykPanel);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
-    this.add(pane, gridBagConstraints);
+    this.add(this.pane, gridBagConstraints);
     this.opacity.setText(Translations.JSColorChooser_OPACITY);
     gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -3552,10 +3584,29 @@ class JSColorPanel extends JSPanel {
     });
   }
 
-   addPanel(pane, title, component) {
+   addExtraTab(title, panel) {
+    this.extraTabs.push(panel);
+    this.addPanel(title, panel);
+  }
+
+   addPanel(title, component) {
     let panel = new JSPanel();
     panel.add(component, null);
-    pane.addTab(title, panel);
+    this.pane.addTab(title, panel);
+  }
+
+   addChangeListenerToPanel(source, dest1, dest2, dest3, currentTab) {
+    source.addChangeListener(event => {
+      if (!source.getValueIsAdjusting()) {
+        let color = source.getSelectedColor();
+        dest1.setSelectedColor(color);
+        dest2.setSelectedColor(color);
+        dest3.setSelectedColor(color);
+        this.extraTabs.forEach(tab => tab.setSelectedColor(color));
+      }
+      this.currentTab = currentTab;
+      this.onchange(source.getValueIsAdjusting());
+    });
   }
 
    sliderToSpinner(slider, spinner) {

@@ -47,11 +47,7 @@ public class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
+  @Override
   public Color getSelectedColor() {
     Array<Double> hsl = new Array<>();
     Array<Integer> rgb = new Array<>();
@@ -64,11 +60,7 @@ public class JSColorHSLPanel extends JSAbstractColorFormatPanel {
     return new Color(rgb.$get(0), rgb.$get(1), rgb.$get(2), 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
+  @Override
   public void setSelectedColor(Color color) {
     Array<Integer> rgb = new Array<>();
     Array<Double> hsl = new Array<>();

@@ -47,20 +47,12 @@ public class JSColorRGBPanel extends JSAbstractColorFormatPanel {
     this.drawAll();
   }
 
-  /**
-   * Returns the selected color
-   *
-   * @return The selected color
-   */
+  @Override
   public Color getSelectedColor() {
     return new Color(this.redSlider.getValue(), this.greenSlider.getValue(), this.blueSlider.getValue(), 255);
   }
 
-  /**
-   * Sets the selected color
-   *
-   * @param color The selected color
-   */
+  @Override
   public void setSelectedColor(Color color) {
     this.setColor(color.red, color.green, color.blue, false, false);
   }
