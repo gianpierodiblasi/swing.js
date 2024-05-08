@@ -673,6 +673,14 @@ class Insets {
 
    right = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param top The top value
+   * @param left The left value
+   * @param bottom The bottom value
+   * @param right The right value
+   */
   constructor(top, left, bottom, right) {
     this.top = top;
     this.left = left;
@@ -5320,6 +5328,15 @@ class AbstractComboBoxModelAndRenderer {
   }
 }
 /**
+ * The abstract key/value implementation of the AbstractComboBoxModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <K> The key type
+ * @param <V> The value type
+ */
+class AbstractKeyValueComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
+}
+/**
  * The default implementation of the AbstractComboBoxModelAndRenderer
  *
  * @author gianpiero.diblasi
@@ -5330,6 +5347,22 @@ class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
    render(element) {
     let label = document.createElement("label");
     label.textContent = element ? element.toString() : "";
+    return label;
+  }
+}
+/**
+ * The default key/value implementation of the
+ * AbstractKeyValueComboBoxModelAndRenderer
+ *
+ * @author gianpiero.diblasi
+ * @param <K> The key type
+ * @param <V> The value type
+ */
+class DefaultKeyValueComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
+
+   render(element) {
+    let label = document.createElement("label");
+    label.textContent = element ? element.value.toString() : "";
     return label;
   }
 }
