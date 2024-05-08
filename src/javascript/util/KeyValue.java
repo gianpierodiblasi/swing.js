@@ -1,5 +1,7 @@
 package javascript.util;
 
+import static def.js.Globals.eval;
+
 /**
  * A key/value object
  *
@@ -19,12 +21,20 @@ public class KeyValue<K extends Comparable<K>, V> implements Comparable<KeyValue
    * @param value The value
    */
   public KeyValue(K key, V value) {
+    super();
+
     this.key = key;
     this.value = value;
   }
 
   @Override
   public int compareTo(KeyValue<K, V> other) {
-    return this.key.compareTo(other.key);
+    try {
+      return this.key.compareTo(other.key);
+    } catch (Exception ex) {
+      int result = 0;
+      eval("result = this.key < other.key ? -1 : this.key > other.key ? +1 : 0");
+      return result;
+    }
   }
 }

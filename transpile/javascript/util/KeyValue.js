@@ -18,11 +18,18 @@ class KeyValue extends Comparable {
    * @param value The value
    */
   constructor(key, value) {
+    super();
     this.key = key;
     this.value = value;
   }
 
    compareTo(other) {
-    return this.key.compareTo(other.key);
+    try {
+      return this.key.compareTo(other.key);
+    } catch (ex) {
+      let result = 0;
+      eval("result = this.key < other.key ? -1 : this.key > other.key ? +1 : 0");
+      return result;
+    }
   }
 }
