@@ -12,6 +12,14 @@ public class Insets {
   public int bottom;
   public int right;
 
+  /**
+   * Creates the object
+   *
+   * @param top The top value
+   * @param left The left value
+   * @param bottom The bottom value
+   * @param right The right value
+   */
   public Insets(int top, int left, int bottom, int right) {
     this.top = top;
     this.left = left;
