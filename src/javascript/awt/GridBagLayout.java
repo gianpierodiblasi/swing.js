@@ -182,6 +182,6 @@ public class GridBagLayout implements LayoutManager {
     }
 
     component.getStyle().margin = constraints.insets.top + "px " + constraints.insets.right + "px " + constraints.insets.bottom + "px " + constraints.insets.left + "px";
-    component.getStyle().padding = constraints.ipady + "px " + constraints.ipadx + "px";
+//    component.getStyle().padding = constraints.ipady + "px " + constraints.ipadx + "px";
   }
 }
