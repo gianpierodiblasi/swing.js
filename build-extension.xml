@@ -106,7 +106,7 @@
   </target>
   
   <target name="javadoc">
-    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${basedir}/lib/jsweet-core-6.3.1.jar"
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${jsweet.jar}"
              windowtitle="swing.js" overview="${src.dir}/overview.html"
              excludepackagenames="simulation.*" additionalparam="-notimestamp --frames">
     </javadoc>
