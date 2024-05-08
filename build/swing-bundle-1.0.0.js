@@ -5794,6 +5794,9 @@ class Translations {
   constructor() {
   }
 
+  /**
+   * Sets the English language
+   */
   static  setEnglish() {
     Translations.JSOptionPane_OK = "OK";
     Translations.JSOptionPane_YES = "Yes";
@@ -5815,6 +5818,9 @@ class Translations {
     Translations.JSColorChooser_PREVIEW = "Preview";
   }
 
+  /**
+   * Sets the Italian language
+   */
   static  setItalian() {
     Translations.JSOptionPane_OK = "OK";
     Translations.JSOptionPane_YES = "Si";
