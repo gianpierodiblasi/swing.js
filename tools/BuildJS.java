@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class BuildJS {
 
   private final static List<String> toRename = List.of("Button", "CheckBox", "ComboBox", "Component", "Dialog", "Frame", "Label", "Panel", "ProgressBar", "RadioButton", "Slider", "Spinner", "TabbedPane", "TextField", "ToggleButton");
+  private final static List<String> skipParent = List.of("Comparable");
 
   @SuppressWarnings({"UseOfSystemOutOrSystemErr", "CallToPrintStackTrace", "MismatchedQueryAndUpdateOfCollection"})
   private static void watch(File swingjs, File in, File out, boolean findParent, boolean rename) throws Exception {
@@ -78,7 +79,9 @@ public class BuildJS {
     nodes.forEach(node -> {
       if (node.parentName != null) {
         nodes.stream().filter(parent -> parent.name.equals(node.parentName)).findFirst().ifPresentOrElse(parent -> parent.children.add(node), () -> {
-          if (findParent) {
+          if (BuildJS.skipParent.contains(node.parentName)) {
+            node.parentName = null;
+          } else if (findParent) {
             System.err.println(" parent class not found name = " + node.name + ", parentName = " + node.parentName);
           } else {
             node.parentName = null;

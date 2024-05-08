@@ -1,4 +1,11 @@
 document.addEventListener("click", (event) => document.querySelectorAll("details").forEach(detail => !detail.contains(event.target) ? detail.removeAttribute("open") : ""));
+
+class Comparable {
+
+  compareTo(other) {
+    return 0;
+  }
+}
 /**
  * The java.awt.Color clone
  *
@@ -5769,6 +5776,34 @@ class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
   }
 }
 /**
+ * A key/value object
+ *
+ * @author gianpiero.diblasi
+ * @param <K> The key type
+ * @param <V> The value type
+ */
+class KeyValue extends Comparable {
+
+   key = null;
+
+   value = null;
+
+  /**
+   * Creates the object
+   *
+   * @param key The key
+   * @param value The value
+   */
+  constructor(key, value) {
+    this.key = key;
+    this.value = value;
+  }
+
+   compareTo(other) {
+    return this.key.compareTo(other.key);
+  }
+}
+/**
  * The object managing the translations, currently only the English and Italian
  * languages are managed
  *
@@ -5875,8 +5910,3 @@ class Translations {
     Translations.JSColorChooser_PREVIEW = "Anteprima";
   }
 }
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
