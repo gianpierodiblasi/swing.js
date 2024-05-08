@@ -45,6 +45,9 @@ public class Translations {
   private Translations() {
   }
 
+  /**
+   * Sets the English language
+   */
   public static void setEnglish() {
     Translations.JSOptionPane_OK = "OK";
     Translations.JSOptionPane_YES = "Yes";
@@ -66,6 +69,9 @@ public class Translations {
     Translations.JSColorChooser_PREVIEW = "Preview";
   }
 
+  /**
+   * Sets the Italian language
+   */
   public static void setItalian() {
     Translations.JSOptionPane_OK = "OK";
     Translations.JSOptionPane_YES = "Si";

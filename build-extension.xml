@@ -105,11 +105,12 @@
     </java>
   </target>
   
-  <target name="javadoc">
+  <target name="javadoc" depends="version">
     <javadoc sourcepath="${src.dir}" destdir="${doc.dir}" classpath="${jsweet.jar}"
              windowtitle="swing.js" overview="${src.dir}/overview.html"
              excludepackagenames="simulation.*" additionalparam="-notimestamp --frames">
     </javadoc>
+    <zip destfile="${build.dir}/swing-bundle-${version}-javadoc.zip" basedir="${doc.dir}"/>
   </target>
   
   <target name="build" depends="clean,build_jar,build_js_min,build_css_min,build_js-test,javadoc">
