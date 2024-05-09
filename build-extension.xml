@@ -54,7 +54,7 @@
   
   <target name="build_java" depends="version">
     <mkdir dir="${class.dir}"/>
-    <javac srcdir="${src.dir}" destdir="${class.dir}" classpath="${jsweet.jar}" includeantruntime="false"/>
+    <javac srcdir="${src.dir}" destdir="${class.dir}" classpath="${jsweet.jar}" includeantruntime="false" debug="true" debuglevel="lines,vars,source"/>
   </target>
   
   <target name="build_js" depends="version,transpile">
