@@ -9,6 +9,7 @@
     "num up" 1fr
     "num down" 1fr /
     1fr auto;
+  justify-items: end;
 
   min-width: 10rem;
   border: 2px solid var(--main-action-bgcolor);
