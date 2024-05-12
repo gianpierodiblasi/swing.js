@@ -155,7 +155,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton17 = new JRadioButton();
     jRadioButton18 = new JRadioButton();
     jRadioButton19 = new JRadioButton();
-    jRadioButton20 = new JRadioButton();
+    jComboBox1 = new JComboBox<>();
     jPanel3 = new JPanel();
     jButton10 = new JButton();
     filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
@@ -164,7 +164,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jButton12 = new JButton();
     filler3 = new Box.Filler(new Dimension(0, 50), new Dimension(0, 50), new Dimension(32767, 50));
     jPanel5 = new JPanel();
-    jComboBox1 = new JComboBox<>();
     jComboBox2 = new JComboBox<>();
     jComboBox3 = new JComboBox<>();
     jComboBox4 = new JComboBox<>();
@@ -173,6 +172,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jTextField1 = new JTextField();
     jTextField2 = new JTextField();
     jTextField3 = new JTextField();
+    jRadioButton20 = new JRadioButton();
     jPanel6 = new JPanel();
     jPanel4 = new JPanel();
     jCheckBox1 = new JCheckBox();
@@ -340,11 +340,7 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jRadioButton19.setContentAreaFilled(false);
     jPanel2.add(jRadioButton19);
 
-    buttonGroup2.add(jRadioButton20);
-    jRadioButton20.setText("jRadioButton12");
-    jRadioButton20.setContentAreaFilled(false);
-    jRadioButton20.setEnabled(false);
-    jPanel2.add(jRadioButton20);
+    jPanel2.add(jComboBox1);
 
     getContentPane().add(jPanel2, BorderLayout.PAGE_END);
 
@@ -363,8 +359,6 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jPanel3.add(filler3);
 
     getContentPane().add(jPanel3, BorderLayout.LINE_START);
-
-    jPanel5.add(jComboBox1);
 
     jComboBox2.setEnabled(false);
     jPanel5.add(jComboBox2);
@@ -389,6 +383,12 @@ public class TestJFrame2 extends javax.swing.JFrame {
     jTextField3.setEditable(false);
     jTextField3.setText("jTextField3");
     jPanel5.add(jTextField3);
+
+    buttonGroup2.add(jRadioButton20);
+    jRadioButton20.setText("jRadioButton12");
+    jRadioButton20.setContentAreaFilled(false);
+    jRadioButton20.setEnabled(false);
+    jPanel5.add(jRadioButton20);
 
     getContentPane().add(jPanel5, BorderLayout.CENTER);
 

@@ -136,6 +136,9 @@
   box-shadow: 0 0 .5rem var(--main-action-bgcolor);
   border-radius: .5rem;
   background: var(--main-bgcolor);
+  visibility: hidden;
+  top: 0px;
+  left: 0px;
 }
 .jscolorpanel {
 }
@@ -220,6 +223,9 @@
   box-shadow: 0 0 .5rem var(--main-action-bgcolor);
   border-radius: .5rem;
   background: var(--main-bgcolor);
+  visibility: hidden;
+  top: 0px;
+  left: 0px;
 }
 
 .jscombobox li {

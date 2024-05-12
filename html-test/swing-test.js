@@ -402,7 +402,7 @@ class TestJSFrame2 extends JSFrame {
     this.jRadioButton17 = new JSRadioButton();let jRadioButton17 = this.jRadioButton17;
     this.jRadioButton18 = new JSRadioButton();let jRadioButton18 = this.jRadioButton18;
     this.jRadioButton19 = new JSRadioButton();let jRadioButton19 = this.jRadioButton19;
-    this.jRadioButton20 = new JSRadioButton();let jRadioButton20 = this.jRadioButton20;
+    this.jComboBox1 = new JSComboBox();let jComboBox1 = this.jComboBox1;
     this.jPanel3 = new JSPanel();let jPanel3 = this.jPanel3;
     this.jButton10 = new JSButton();let jButton10 = this.jButton10;
     this.filler2 = new Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));let filler2 = this.filler2;
@@ -411,7 +411,6 @@ class TestJSFrame2 extends JSFrame {
     this.jButton12 = new JSButton();let jButton12 = this.jButton12;
     this.filler3 = new Filler(new Dimension(0, 50), new Dimension(0, 50), new Dimension(32767, 50));let filler3 = this.filler3;
     this.jPanel5 = new JSPanel();let jPanel5 = this.jPanel5;
-    this.jComboBox1 = new JSComboBox();let jComboBox1 = this.jComboBox1;
     this.jComboBox2 = new JSComboBox();let jComboBox2 = this.jComboBox2;
     this.jComboBox3 = new JSComboBox();let jComboBox3 = this.jComboBox3;
     this.jComboBox4 = new JSComboBox();let jComboBox4 = this.jComboBox4;
@@ -420,6 +419,7 @@ class TestJSFrame2 extends JSFrame {
     this.jTextField1 = new JSTextField();let jTextField1 = this.jTextField1;
     this.jTextField2 = new JSTextField();let jTextField2 = this.jTextField2;
     this.jTextField3 = new JSTextField();let jTextField3 = this.jTextField3;
+    this.jRadioButton20 = new JSRadioButton();let jRadioButton20 = this.jRadioButton20;
     this.jPanel6 = new JSPanel();let jPanel6 = this.jPanel6;
     this.jPanel4 = new JSPanel();let jPanel4 = this.jPanel4;
     this.jCheckBox1 = new JSCheckBox();let jCheckBox1 = this.jCheckBox1;
@@ -556,11 +556,7 @@ class TestJSFrame2 extends JSFrame {
     jRadioButton19.setText("jRadioButton11");
     jRadioButton19.setContentAreaFilled(false);
     jPanel2.add(jRadioButton19);
-    buttonGroup2.add(jRadioButton20);
-    jRadioButton20.setText("jRadioButton12");
-    jRadioButton20.setContentAreaFilled(false);
-    jRadioButton20.setEnabled(false);
-    jPanel2.add(jRadioButton20);
+    jPanel2.add(jComboBox1);
     this.getContentPane().add(jPanel2, BorderLayout.PAGE_END);
     jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
     jButton10.setText("jButton10");
@@ -573,7 +569,6 @@ class TestJSFrame2 extends JSFrame {
     jPanel3.add(jButton12);
     jPanel3.add(filler3);
     this.getContentPane().add(jPanel3, BorderLayout.LINE_START);
-    jPanel5.add(jComboBox1);
     jComboBox2.setEnabled(false);
     jPanel5.add(jComboBox2);
     jPanel5.add(jComboBox3);
@@ -591,6 +586,11 @@ class TestJSFrame2 extends JSFrame {
     jTextField3.setEditable(false);
     jTextField3.setText("jTextField3");
     jPanel5.add(jTextField3);
+    buttonGroup2.add(jRadioButton20);
+    jRadioButton20.setText("jRadioButton12");
+    jRadioButton20.setContentAreaFilled(false);
+    jRadioButton20.setEnabled(false);
+    jPanel5.add(jRadioButton20);
     this.getContentPane().add(jPanel5, BorderLayout.CENTER);
     jPanel6.setLayout(new GridLayout(1, 2, 10, 0));
     jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.Y_AXIS));

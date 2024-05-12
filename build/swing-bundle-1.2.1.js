@@ -1597,7 +1597,20 @@ class JSComponent {
   }
 
   /**
-   * Sets an attribute of a child of the HTML element
+   * Returns a property of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
+   *
+   * @param query The query selector
+   * @param key The property key
+   * @return The property value
+   */
+   getChildPropertyByQuery(query, key) {
+    return this.element.querySelector(query)[key];
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
    *
    * @param index The child index
    * @param key The attribute key
@@ -1608,7 +1621,8 @@ class JSComponent {
   }
 
   /**
-   * Sets an attribute of a child of the HTML element
+   * Sets an attribute of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
    *
    * @param query The query selector
    * @param key The attribute key
@@ -1619,7 +1633,8 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute of a child of the HTML element
+   * Returns an attribute of a child of the HTML element (for example
+   * <i>value</i> is a property, <i>readonly</i> is an attribute)
    *
    * @param index The child index
    * @param key The attribute key
@@ -1630,7 +1645,8 @@ class JSComponent {
   }
 
   /**
-   * Returns an attribute of a child of the HTML element
+   * Returns an attribute of a child of the HTML element (for example
+   * <i>value</i> is a property, <i>readonly</i> is an attribute)
    *
    * @param query The query selector
    * @param key The attribute key
@@ -1641,7 +1657,8 @@ class JSComponent {
   }
 
   /**
-   * Removes an attribute of a child the HTML element
+   * Removes an attribute of a child the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
    *
    * @param query The query selector
    * @param key The attribute key
@@ -2053,15 +2070,31 @@ class JSColorChooser extends JSComponent {
     this.cssAddClass("jscolorchooser");
     this.addEventListener("toggle", event => {
       if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+        this.getChilStyleByQuery(".jscolorpanel").visibility = "visible";
         let rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
-        if (rect.left + rect.width > document.body.scrollWidth) {
+        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
+        if (rectSummary.left + rect.width < document.body.scrollWidth) {
+          this.getChilStyleByQuery(".jscolorpanel").left = rectSummary.left + "px";
+        } else if (rectSummary.right - rect.width > 0) {
+          this.getChilStyleByQuery(".jscolorpanel").left = (rectSummary.right - rect.width) + "px";
+        } else {
+          this.getChilStyleByQuery(".jscolorpanel").left = "auto";
           this.getChilStyleByQuery(".jscolorpanel").right = "5px";
         }
-        if (rect.top + rect.height > document.body.scrollHeight) {
+        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
+          this.getChilStyleByQuery(".jscolorpanel").top = rectSummary.bottom + "px";
+        } else if (rectSummary.top - rect.height > 0) {
+          this.getChilStyleByQuery(".jscolorpanel").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+        } else {
+          this.getChilStyleByQuery(".jscolorpanel").top = "auto";
           this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
         }
+      } else {
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("visibility");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("top");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("left");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
       }
     });
     let color = this.getSelectedColor();
@@ -2224,15 +2257,31 @@ class JSComboBox extends JSComponent {
     this.cssAddClass("jscombobox");
     this.addEventListener("toggle", event => {
       if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery("ul").removeProperty("right");
-        this.getChilStyleByQuery("ul").removeProperty("bottom");
+        this.getChilStyleByQuery("ul").visibility = "visible";
         let rect = this.invokeInTree("ul", "getBoundingClientRect()");
-        if (rect.left + rect.width > document.body.scrollWidth) {
+        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
+        if (rectSummary.left + rect.width < document.body.scrollWidth) {
+          this.getChilStyleByQuery("ul").left = rectSummary.left + "px";
+        } else if (rectSummary.right - rect.width > 0) {
+          this.getChilStyleByQuery("ul").left = (rectSummary.right - rect.width) + "px";
+        } else {
+          this.getChilStyleByQuery("ul").left = "auto";
           this.getChilStyleByQuery("ul").right = "5px";
         }
-        if (rect.top + rect.height > document.body.scrollHeight) {
+        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
+          this.getChilStyleByQuery("ul").top = rectSummary.bottom + "px";
+        } else if (rectSummary.top - rect.height > 0) {
+          this.getChilStyleByQuery("ul").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+        } else {
+          this.getChilStyleByQuery("ul").top = "auto";
           this.getChilStyleByQuery("ul").bottom = "5px";
         }
+      } else {
+        this.getChilStyleByQuery("ul").removeProperty("visibility");
+        this.getChilStyleByQuery("ul").removeProperty("top");
+        this.getChilStyleByQuery("ul").removeProperty("left");
+        this.getChilStyleByQuery("ul").removeProperty("bottom");
+        this.getChilStyleByQuery("ul").removeProperty("right");
       }
     });
     this.appendNodeChild(document.createElement("summary"));

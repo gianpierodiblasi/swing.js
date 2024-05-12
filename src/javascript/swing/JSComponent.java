@@ -375,7 +375,20 @@ public class JSComponent {
   }
 
   /**
-   * Sets an attribute of a child of the HTML element
+   * Returns a property of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
+   *
+   * @param query The query selector
+   * @param key The property key
+   * @return The property value
+   */
+  public String getChildPropertyByQuery(String query, String key) {
+    return this.element.querySelector(query).$get(key);
+  }
+
+  /**
+   * Sets an attribute of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
    *
    * @param index The child index
    * @param key The attribute key
@@ -386,7 +399,8 @@ public class JSComponent {
   }
 
   /**
-   * Sets an attribute of a child of the HTML element
+   * Sets an attribute of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
    *
    * @param query The query selector
    * @param key The attribute key
@@ -397,7 +411,8 @@ public class JSComponent {
   }
 
   /**
-   * Returns an attribute of a child of the HTML element
+   * Returns an attribute of a child of the HTML element (for example
+   * <i>value</i> is a property, <i>readonly</i> is an attribute)
    *
    * @param index The child index
    * @param key The attribute key
@@ -408,7 +423,8 @@ public class JSComponent {
   }
 
   /**
-   * Returns an attribute of a child of the HTML element
+   * Returns an attribute of a child of the HTML element (for example
+   * <i>value</i> is a property, <i>readonly</i> is an attribute)
    *
    * @param query The query selector
    * @param key The attribute key
@@ -419,7 +435,8 @@ public class JSComponent {
   }
 
   /**
-   * Removes an attribute of a child the HTML element
+   * Removes an attribute of a child the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
    *
    * @param query The query selector
    * @param key The attribute key

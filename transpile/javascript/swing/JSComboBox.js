@@ -15,15 +15,31 @@ class JSComboBox extends JSComponent {
     this.cssAddClass("jscombobox");
     this.addEventListener("toggle", event => {
       if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery("ul").removeProperty("right");
-        this.getChilStyleByQuery("ul").removeProperty("bottom");
+        this.getChilStyleByQuery("ul").visibility = "visible";
         let rect = this.invokeInTree("ul", "getBoundingClientRect()");
-        if (rect.left + rect.width > document.body.scrollWidth) {
+        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
+        if (rectSummary.left + rect.width < document.body.scrollWidth) {
+          this.getChilStyleByQuery("ul").left = rectSummary.left + "px";
+        } else if (rectSummary.right - rect.width > 0) {
+          this.getChilStyleByQuery("ul").left = (rectSummary.right - rect.width) + "px";
+        } else {
+          this.getChilStyleByQuery("ul").left = "auto";
           this.getChilStyleByQuery("ul").right = "5px";
         }
-        if (rect.top + rect.height > document.body.scrollHeight) {
+        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
+          this.getChilStyleByQuery("ul").top = rectSummary.bottom + "px";
+        } else if (rectSummary.top - rect.height > 0) {
+          this.getChilStyleByQuery("ul").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+        } else {
+          this.getChilStyleByQuery("ul").top = "auto";
           this.getChilStyleByQuery("ul").bottom = "5px";
         }
+      } else {
+        this.getChilStyleByQuery("ul").removeProperty("visibility");
+        this.getChilStyleByQuery("ul").removeProperty("top");
+        this.getChilStyleByQuery("ul").removeProperty("left");
+        this.getChilStyleByQuery("ul").removeProperty("bottom");
+        this.getChilStyleByQuery("ul").removeProperty("right");
       }
     });
     this.appendNodeChild(document.createElement("summary"));

@@ -23,15 +23,31 @@ class JSColorChooser extends JSComponent {
     this.cssAddClass("jscolorchooser");
     this.addEventListener("toggle", event => {
       if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+        this.getChilStyleByQuery(".jscolorpanel").visibility = "visible";
         let rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
-        if (rect.left + rect.width > document.body.scrollWidth) {
+        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
+        if (rectSummary.left + rect.width < document.body.scrollWidth) {
+          this.getChilStyleByQuery(".jscolorpanel").left = rectSummary.left + "px";
+        } else if (rectSummary.right - rect.width > 0) {
+          this.getChilStyleByQuery(".jscolorpanel").left = (rectSummary.right - rect.width) + "px";
+        } else {
+          this.getChilStyleByQuery(".jscolorpanel").left = "auto";
           this.getChilStyleByQuery(".jscolorpanel").right = "5px";
         }
-        if (rect.top + rect.height > document.body.scrollHeight) {
+        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
+          this.getChilStyleByQuery(".jscolorpanel").top = rectSummary.bottom + "px";
+        } else if (rectSummary.top - rect.height > 0) {
+          this.getChilStyleByQuery(".jscolorpanel").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+        } else {
+          this.getChilStyleByQuery(".jscolorpanel").top = "auto";
           this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
         }
+      } else {
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("visibility");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("top");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("left");
+        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
       }
     });
     let color = this.getSelectedColor();
