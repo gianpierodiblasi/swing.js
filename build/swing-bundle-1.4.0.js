@@ -1738,6 +1738,15 @@ class AbstractButton extends JSComponent {
   }
 
   /**
+   * Clone of javax.swing.AbstractButton.setTooltip
+   *
+   * @param text The text
+   */
+   setTooltip(text) {
+    this.setAttribute("title", text);
+  }
+
+  /**
    * Sets the icon
    *
    * @param producer The icon producer
@@ -1766,15 +1775,6 @@ class JSButton extends AbstractButton {
    */
    setText(text) {
     this.setContent(text);
-  }
-
-  /**
-   * Clone of javax.swing.JButton.setTooltip
-   *
-   * @param text The text
-   */
-   setTooltip(text) {
-    this.setAttribute("title", text);
   }
 
   /**

@@ -50,6 +50,15 @@ public abstract class AbstractButton extends JSComponent {
   }
 
   /**
+   * Clone of javax.swing.AbstractButton.setTooltip
+   *
+   * @param text The text
+   */
+  public void setTooltip(String text) {
+    this.setAttribute("title", text);
+  }
+  
+  /**
    * Sets the icon
    *
    * @param producer The icon producer
