@@ -207,7 +207,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>protected abstract def.dom.Node</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#render(T)">render</a></span>&#8203;(<a href="AbstractComboBoxModelAndRenderer.html" title="type parameter in AbstractComboBoxModelAndRenderer">T</a>&nbsp;element)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#render(T,boolean)">render</a></span>&#8203;(<a href="AbstractComboBoxModelAndRenderer.html" title="type parameter in AbstractComboBoxModelAndRenderer">T</a>&nbsp;element,
+      boolean&nbsp;inlist)</code></th>
 <td class="colLast">
 <div class="block">Renders an element</div>
 </td>
@@ -322,19 +323,22 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="render(java.lang.Comparable)">
+<a id="render(java.lang.Comparable,boolean)">
 <!--   -->
-</a><a id="render(T)">
+</a><a id="render(T,boolean)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>render</h4>
-<pre class="methodSignature">protected abstract&nbsp;def.dom.Node&nbsp;render&#8203;(<a href="AbstractComboBoxModelAndRenderer.html" title="type parameter in AbstractComboBoxModelAndRenderer">T</a>&nbsp;element)</pre>
+<pre class="methodSignature">protected abstract&nbsp;def.dom.Node&nbsp;render&#8203;(<a href="AbstractComboBoxModelAndRenderer.html" title="type parameter in AbstractComboBoxModelAndRenderer">T</a>&nbsp;element,
+                                       boolean&nbsp;inlist)</pre>
 <div class="block">Renders an element</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>element</code> - The element</dd>
+<dd><code>inlist</code> - true if the rendered element is added to the list, false
+ otherwise (the rendered element is used to show the selected value)</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The renderer element</dd>
 </dl>

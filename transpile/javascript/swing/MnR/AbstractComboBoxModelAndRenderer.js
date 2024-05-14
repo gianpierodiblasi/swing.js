@@ -19,10 +19,10 @@ class AbstractComboBoxModelAndRenderer {
    */
    setComboBox(combobox) {
     this.combobox = combobox;
-    this.combobox.appendNodeChildInTree("summary", this.render(null));
+    this.combobox.appendNodeChildInTree("summary", this.render(null, false));
     this.elements.forEach(element => this.addOption(element));
     this.combobox.clearChildContentByQuery("summary");
-    this.combobox.appendNodeChildInTree("summary", this.render(this.selected));
+    this.combobox.appendNodeChildInTree("summary", this.render(this.selected, false));
   }
 
   /**
@@ -45,7 +45,7 @@ class AbstractComboBoxModelAndRenderer {
     });
     if (this.combobox) {
       this.combobox.clearChildContentByQuery("summary");
-      this.combobox.appendNodeChildInTree("summary", this.render(this.selected));
+      this.combobox.appendNodeChildInTree("summary", this.render(this.selected, false));
     }
   }
 
@@ -63,11 +63,11 @@ class AbstractComboBoxModelAndRenderer {
 
    addOption(element) {
     let li = document.createElement("li");
-    li.appendChild(this.render(element));
+    li.appendChild(this.render(element, true));
     li.addEventListener("click", event => {
       this.selected = element;
       this.combobox.clearChildContentByQuery("summary");
-      this.combobox.appendNodeChildInTree("summary", this.render(element));
+      this.combobox.appendNodeChildInTree("summary", this.render(element, false));
       this.combobox.removeAttribute("open");
       this.combobox.invoke("querySelector('summary').focus()");
       this.combobox.onclick();
@@ -79,8 +79,10 @@ class AbstractComboBoxModelAndRenderer {
    * Renders an element
    *
    * @param element The element
+   * @param inlist true if the rendered element is added to the list, false
+   * otherwise (the rendered element is used to show the selected value)
    * @return The renderer element
    */
-   render(element) {
+   render(element, inlist) {
   }
 }

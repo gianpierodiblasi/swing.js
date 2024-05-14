@@ -14,7 +14,7 @@ import static simulation.js.$Globals.$exists;
 public class DefaultComboBoxModelAndRenderer<T extends Comparable<T>> extends AbstractComboBoxModelAndRenderer<T> {
 
   @Override
-  protected Node render(T element) {
+  protected Node render(T element, boolean inlist) {
     HTMLElement label = document.createElement("label");
     label.textContent = $exists(element) ? element.toString() : "";
     return label;

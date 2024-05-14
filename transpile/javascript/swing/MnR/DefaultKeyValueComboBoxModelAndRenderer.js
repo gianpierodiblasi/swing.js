@@ -8,7 +8,7 @@
  */
 class DefaultKeyValueComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
 
-   render(element) {
+   render(element, inlist) {
     let label = document.createElement("label");
     label.textContent = element ? element.value.toString() : "";
     return label;

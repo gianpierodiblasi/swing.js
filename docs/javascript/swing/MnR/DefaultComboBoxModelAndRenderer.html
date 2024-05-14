@@ -194,7 +194,8 @@ extends <a href="AbstractComboBoxModelAndRenderer.html" title="class in javascri
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>protected def.dom.Node</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#render(T)">render</a></span>&#8203;(<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a>&nbsp;element)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#render(T,boolean)">render</a></span>&#8203;(<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a>&nbsp;element,
+      boolean&nbsp;inlist)</code></th>
 <td class="colLast">
 <div class="block">Renders an element</div>
 </td>
@@ -249,22 +250,25 @@ extends <a href="AbstractComboBoxModelAndRenderer.html" title="class in javascri
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="render(java.lang.Comparable)">
+<a id="render(java.lang.Comparable,boolean)">
 <!--   -->
-</a><a id="render(T)">
+</a><a id="render(T,boolean)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>render</h4>
-<pre class="methodSignature">protected&nbsp;def.dom.Node&nbsp;render&#8203;(<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a>&nbsp;element)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="AbstractComboBoxModelAndRenderer.html#render(T)">AbstractComboBoxModelAndRenderer</a></code></span></div>
+<pre class="methodSignature">protected&nbsp;def.dom.Node&nbsp;render&#8203;(<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a>&nbsp;element,
+                              boolean&nbsp;inlist)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="AbstractComboBoxModelAndRenderer.html#render(T,boolean)">AbstractComboBoxModelAndRenderer</a></code></span></div>
 <div class="block">Renders an element</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="AbstractComboBoxModelAndRenderer.html#render(T)">render</a></code>&nbsp;in class&nbsp;<code><a href="AbstractComboBoxModelAndRenderer.html" title="class in javascript.swing.MnR">AbstractComboBoxModelAndRenderer</a>&lt;<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a> extends java.lang.Comparable&lt;<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a>&gt;&gt;</code></dd>
+<dd><code><a href="AbstractComboBoxModelAndRenderer.html#render(T,boolean)">render</a></code>&nbsp;in class&nbsp;<code><a href="AbstractComboBoxModelAndRenderer.html" title="class in javascript.swing.MnR">AbstractComboBoxModelAndRenderer</a>&lt;<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a> extends java.lang.Comparable&lt;<a href="DefaultComboBoxModelAndRenderer.html" title="type parameter in DefaultComboBoxModelAndRenderer">T</a>&gt;&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>element</code> - The element</dd>
+<dd><code>inlist</code> - true if the rendered element is added to the list, false
+ otherwise (the rendered element is used to show the selected value)</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The renderer element</dd>
 </dl>

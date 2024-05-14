@@ -6,7 +6,7 @@
  */
 class DefaultComboBoxModelAndRenderer extends AbstractComboBoxModelAndRenderer {
 
-   render(element) {
+   render(element, inlist) {
     let label = document.createElement("label");
     label.textContent = element ? element.toString() : "";
     return label;
