@@ -93,7 +93,7 @@ public class GridBagLayout implements LayoutManager {
     }
 
     for (int index = 1; index <= array.length; index++) {
-      final double gridsize = index;
+      double gridsize = index;
       this.constraintsArray.filter(constraint -> constraint.get(keySize) == gridsize).forEach(constraint -> {
         boolean ok = false;
         for (int index2 = (int) constraint.get(keyAxis); index2 < constraint.get(keyAxis) + constraint.get(keySize); index2++) {
