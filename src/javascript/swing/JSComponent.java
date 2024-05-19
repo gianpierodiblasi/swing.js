@@ -395,7 +395,8 @@ public class JSComponent {
    * @param value The property value
    */
   public void setChildPropertyByQuery(String query, String key, String value) {
-    this.element.querySelector(query).$set(key, value);
+    Element el = this.element.querySelector(query);
+    el.$set(key, value);
   }
 
   /**

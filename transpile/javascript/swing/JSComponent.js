@@ -382,7 +382,8 @@ class JSComponent {
    * @param value The property value
    */
    setChildPropertyByQuery(query, key, value) {
-    [key] = value;
+    let el = this.element.querySelector(query);
+    el[key] = value;
   }
 
   /**
