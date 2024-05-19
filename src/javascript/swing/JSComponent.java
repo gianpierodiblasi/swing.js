@@ -387,6 +387,18 @@ public class JSComponent {
   }
 
   /**
+   * Sets a property of a child of the HTML element (for example <i>value</i>
+   * is a property, <i>readonly</i> is an attribute)
+   *
+   * @param query The query selector
+   * @param key The property key
+   * @param value The property value
+   */
+  public void setChildPropertyByQuery(String query, String key, String value) {
+    this.element.querySelector(query).$set(key, value);
+  }
+
+  /**
    * Sets an attribute of a child of the HTML element (for example <i>value</i>
    * is a property, <i>readonly</i> is an attribute)
    *
