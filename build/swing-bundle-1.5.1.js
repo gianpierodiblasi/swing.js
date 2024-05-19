@@ -3982,7 +3982,7 @@ class JSColorPanel extends JSPanel {
 
    hslPanel = new JSColorHSLPanel();
 
-   yuvPanel = new JSColorHSLPanel();
+   yuvPanel = new JSColorYUVPanel();
 
    rgbPanel = new JSColorRGBPanel();
 

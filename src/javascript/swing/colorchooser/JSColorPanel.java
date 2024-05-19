@@ -30,7 +30,7 @@ public class JSColorPanel extends JSPanel {
   private final JSColorSwatchesPanel swatchesPanel = new JSColorSwatchesPanel();
   private final JSColorHSVPanel hsvPanel = new JSColorHSVPanel();
   private final JSColorHSLPanel hslPanel = new JSColorHSLPanel();
-  private final JSColorHSLPanel yuvPanel = new JSColorHSLPanel();
+  private final JSColorYUVPanel yuvPanel = new JSColorYUVPanel();
   private final JSColorRGBPanel rgbPanel = new JSColorRGBPanel();
   private final JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
   private final Array<JSAbstractColorExtraTabPanel> extraTabs = new Array<>();
