@@ -838,6 +838,12 @@
   --main-color: #dee2e6;
   --main-bgcolor: #212529;
 }
+.dark-mode a:link {
+  color: lightskyblue;
+}
+.dark-mode a:visited {
+  color: #6d4b8d;
+}
 
 html, body {
   height: 100%;
