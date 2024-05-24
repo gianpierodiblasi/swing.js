@@ -77,6 +77,7 @@ class JSProgressBar extends JSComponent {
    */
    setIndeterminate(b) {
     this.indeterminate = b;
+    this.setOrientation(this.orientation);
     this.setProgress();
   }
 
