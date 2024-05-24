@@ -57,7 +57,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.square.addEventListener("mousedown", event -> this.squareEvent((MouseEvent) event, "down"));
     this.square.addEventListener("mousemove", event -> this.squareEvent((MouseEvent) event, "move"));
     this.square.addEventListener("mouseup", event -> this.squareEvent((MouseEvent) event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
 
     this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
@@ -65,7 +65,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.rect.addEventListener("mousedown", event -> this.rectEvent((MouseEvent) event, "down"));
     this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
     this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.CENTER, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
   }
 
   protected void addRadio(JSRadioButton radio, String text, boolean selected, int gridx, int gridy) {
