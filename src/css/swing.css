@@ -10,6 +10,7 @@
 :root.dark-mode {
   --main-color: #dee2e6;
   --main-bgcolor: #212529;
+  --main-action-color: #dee2e6;
 }
 
 html, body {
