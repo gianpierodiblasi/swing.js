@@ -5167,8 +5167,6 @@ class JSOptionPane {
 
   static  PLAIN_MESSAGE = -1;
 
-  static  RESPONSE = JSOptionPane.CLOSED_OPTION;
-
   constructor() {
   }
 
@@ -5288,40 +5286,41 @@ class JSOptionPane {
 
   static  addButtons(dialog, optionType, response) {
     let panel = new JSPanel();
+    let RESPONSE = new Object();
+    RESPONSE["RESPONSE"] = JSOptionPane.CLOSED_OPTION;
     switch(optionType) {
       case "OK":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, JSOptionPane.DEFAULT_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, RESPONSE, JSOptionPane.DEFAULT_OPTION);
         break;
       case "OK_CANCEL":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, JSOptionPane.OK_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, JSOptionPane.CANCEL_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_OK, RESPONSE, JSOptionPane.OK_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, RESPONSE, JSOptionPane.CANCEL_OPTION);
         break;
       case "YES_NO":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, JSOptionPane.YES_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, RESPONSE, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, RESPONSE, JSOptionPane.NO_OPTION);
         break;
       case "YES_NO_CANCEL":
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, JSOptionPane.YES_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, JSOptionPane.NO_OPTION);
-        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, JSOptionPane.CANCEL_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_YES, RESPONSE, JSOptionPane.YES_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_NO, RESPONSE, JSOptionPane.NO_OPTION);
+        JSOptionPane.addButton(dialog, panel, Translations.JSOptionPane_CANCEL, RESPONSE, JSOptionPane.CANCEL_OPTION);
         break;
     }
     dialog.getContentPane().add(panel, BorderLayout.SOUTH);
-    JSOptionPane.RESPONSE = JSOptionPane.CLOSED_OPTION;
     dialog.addWindowClosedListener(event => {
       dialog.dispose();
       if (response) {
-        response(JSOptionPane.RESPONSE);
+        response(RESPONSE["RESPONSE"]);
       }
     });
   }
 
-  static  addButton(dialog, panel, label, option) {
+  static  addButton(dialog, panel, label, RESPONSE, option) {
     let button = new JSButton();
     button.setText(label);
     button.cssAddClass("jsoptionpane-option-" + option);
     button.addActionListener(event => {
-      JSOptionPane.RESPONSE = option;
+      RESPONSE["RESPONSE"] = option;
       dialog.setVisible(false);
     });
     panel.add(button, null);
