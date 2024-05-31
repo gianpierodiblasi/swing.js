@@ -37,7 +37,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.yellow, Translations.JSColorChooser_YELLOW, false, 2, 4);
     let label = new JSLabel();
     label.setText(Translations.JSColorChooser_BLACK);
-    this.addComponent(label, 2, 6, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    this.add(label, new GBC(2, 6).a(GBC.WEST));
     this.addSlider(this.cyanSlider, this.cyanSpinner, 0, 255, 2, 1);
     this.addSlider(this.magentaSlider, this.magentaSpinner, 0, 255, 2, 3);
     this.addSlider(this.yellowSlider, this.yellowSpinner, 0, 255, 2, 5);

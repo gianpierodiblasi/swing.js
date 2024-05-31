@@ -4,7 +4,7 @@ import def.dom.ImageData;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
-import javascript.awt.GridBagConstraints;
+import javascript.awt.GBC;
 import javascript.swing.JSLabel;
 import javascript.swing.JSRadioButton;
 import javascript.swing.JSSlider;
@@ -44,7 +44,7 @@ public class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
 
     JSLabel label = new JSLabel();
     label.setText(Translations.JSColorChooser_BLACK);
-    this.addComponent(label, 2, 6, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    this.add(label, new GBC(2, 6).a(GBC.WEST));
 
     this.addSlider(this.cyanSlider, this.cyanSpinner, 0, 255, 2, 1);
     this.addSlider(this.magentaSlider, this.magentaSpinner, 0, 255, 2, 3);

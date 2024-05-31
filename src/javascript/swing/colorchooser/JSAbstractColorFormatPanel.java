@@ -6,9 +6,8 @@ import static def.dom.Globals.document;
 import def.dom.MouseEvent;
 import def.js.Array;
 import javascript.awt.Color;
-import javascript.awt.GridBagConstraints;
+import javascript.awt.GBC;
 import javascript.awt.GridBagLayout;
-import javascript.awt.Insets;
 import javascript.swing.ButtonGroup;
 import javascript.swing.JSComponent;
 import javascript.swing.JSPanel;
@@ -20,7 +19,6 @@ import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
 import jsweet.util.union.Union4;
 import simulation.dom.$CanvasRenderingContext2D;
-import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
 
 /**
@@ -57,7 +55,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.square.addEventListener("mousedown", event -> this.squareEvent((MouseEvent) event, "down"));
     this.square.addEventListener("mousemove", event -> this.squareEvent((MouseEvent) event, "move"));
     this.square.addEventListener("mouseup", event -> this.squareEvent((MouseEvent) event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.add(this.square, new GBC(0, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
 
     this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
@@ -65,7 +63,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.rect.addEventListener("mousedown", event -> this.rectEvent((MouseEvent) event, "down"));
     this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
     this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.add(this.rect, new GBC(1, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
   }
 
   protected void addRadio(JSRadioButton radio, String text, boolean selected, int gridx, int gridy) {
@@ -74,7 +72,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     radio.setText(text);
     radio.setSelected(selected);
     radio.addActionListener(event -> this.drawAll());
-    this.addComponent(radio, gridx, gridy, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    this.add(radio, new GBC(gridx, gridy).a(GBC.WEST));
   }
 
   protected void addSlider(JSSlider slider, JSSpinner spinner, int value, int max, int gridx, int gridy) {
@@ -82,7 +80,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     slider.setMaximum(max);
     slider.getStyle().minWidth = "20rem";
     slider.addChangeListener(event -> this.sliderToSpinner(slider, spinner));
-    this.addComponent(slider, gridx, gridy, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
+    this.add(slider, new GBC(gridx, gridy).w(2).f(GBC.HORIZONTAL).wx(1));
   }
 
   protected void addSpinner(JSSpinner spinner, JSSlider slider, int value, int max, int gridx, int gridy) {
@@ -92,25 +90,7 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event -> this.spinnerToSlider(spinner, slider));
 
-    this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-  }
-
-  protected void addComponent(JSComponent component, int gridx, int gridy, int gridwidth, int gridheight, int anchor, int fill, double weightx, double weighty, Insets insets) {
-    GridBagConstraints gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = gridx;
-    gridBagConstraints.gridy = gridy;
-    gridBagConstraints.gridwidth = gridwidth;
-    gridBagConstraints.gridheight = gridheight;
-    gridBagConstraints.anchor = anchor;
-    gridBagConstraints.fill = fill;
-    gridBagConstraints.weightx = weightx;
-    gridBagConstraints.weighty = weighty;
-
-    if ($exists(insets)) {
-      gridBagConstraints.insets = insets;
-    }
-
-    this.add(component, gridBagConstraints);
+    this.add(spinner, new GBC(gridx, gridy).a(GBC.EAST));
   }
 
   private void sliderToSpinner(JSSlider slider, JSSpinner spinner) {

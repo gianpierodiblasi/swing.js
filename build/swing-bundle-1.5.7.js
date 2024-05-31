@@ -666,6 +666,131 @@ class GridBagConstraints {
   }
 }
 /**
+ * Utility object to simplify the use of the GridBagConstraints object
+ *
+ * @author gianpiero.diblasi
+ */
+class GBC extends GridBagConstraints {
+
+  /**
+   * Creates the object
+   *
+   * @param gridx The gridx
+   * @param gridy The gridy
+   */
+  constructor(gridx, gridy) {
+    super();
+    this.gridx = gridx;
+    this.gridy = gridy;
+  }
+
+  /**
+   * Sets the grid width
+   *
+   * @param gridwidth The grid width
+   * @return This object
+   */
+   w(gridwidth) {
+    this.gridwidth = gridwidth;
+    return this;
+  }
+
+  /**
+   * Sets the grid height
+   *
+   * @param gridheight The grid height
+   * @return This object
+   */
+   h(gridheight) {
+    this.gridheight = gridheight;
+    return this;
+  }
+
+  /**
+   * Sets the grid size
+   *
+   * @param gridwidth The grid width
+   * @param gridheight The grid height
+   * @return This object
+   */
+   wh(gridwidth, gridheight) {
+    this.gridwidth = gridwidth;
+    this.gridheight = gridheight;
+    return this;
+  }
+
+  /**
+   * Sets the x weight
+   *
+   * @param weightx The x weight
+   * @return This object
+   */
+   wx(weightx) {
+    this.weightx = weightx;
+    return this;
+  }
+
+  /**
+   * Sets the y weight
+   *
+   * @param weighty The y weight
+   * @return This object
+   */
+   wy(weighty) {
+    this.weighty = weighty;
+    return this;
+  }
+
+  /**
+   * Sets the weight
+   *
+   * @param weightx The x weight
+   * @param weighty The y weight
+   * @return This object
+   */
+   wxy(weightx, weighty) {
+    this.weightx = weightx;
+    this.weighty = weighty;
+    return this;
+  }
+
+  /**
+   * Sets the anchor
+   *
+   * @param anchor The anchor
+   * @return This object
+   */
+   a(anchor) {
+    this.anchor = anchor;
+    return this;
+  }
+
+  /**
+   * Sets the fill direction
+   *
+   * @param fill The fill direction
+   * @return This object
+   */
+   f(fill) {
+    this.fill = fill;
+    return this;
+  }
+
+  /**
+   * Sets the insets
+   *
+   * @param top The spacing to use on top
+   * @param left The spacing to use to the left
+   * @param bottom The spacing to use on the bottom
+   * @param right The spacing to use to the right
+   * @return This object
+   */
+   i(top, left, bottom, right) {
+    this.insets = new Insets(top, left, bottom, right);
+    return this;
+  }
+}
+/**
  * The java.awt.Insets clone
  *
  * @author gianpiero.diblasi
@@ -2668,14 +2793,14 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
     this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
     this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.add(this.square, new GBC(0, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
     this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
     this.rect.getStyle().cursor = "pointer";
     this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
     this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
     this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.add(this.rect, new GBC(1, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
   }
 
    addRadio(radio, text, selected, gridx, gridy) {
@@ -2683,7 +2808,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
     radio.setText(text);
     radio.setSelected(selected);
     radio.addActionListener(event => this.drawAll());
-    this.addComponent(radio, gridx, gridy, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    this.add(radio, new GBC(gridx, gridy).a(GBC.WEST));
   }
 
    addSlider(slider, spinner, value, max, gridx, gridy) {
@@ -2691,7 +2816,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
     slider.setMaximum(max);
     slider.getStyle().minWidth = "20rem";
     slider.addChangeListener(event => this.sliderToSpinner(slider, spinner));
-    this.addComponent(slider, gridx, gridy, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
+    this.add(slider, new GBC(gridx, gridy).w(2).f(GBC.HORIZONTAL).wx(1));
   }
 
    addSpinner(spinner, slider, value, max, gridx, gridy) {
@@ -2700,23 +2825,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
     spinner.getChilStyleByQuery("input[type=number]").minWidth = "2.5rem";
     spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event => this.spinnerToSlider(spinner, slider));
-    this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-  }
-
-   addComponent(component, gridx, gridy, gridwidth, gridheight, anchor, fill, weightx, weighty, insets) {
-    let gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = gridx;
-    gridBagConstraints.gridy = gridy;
-    gridBagConstraints.gridwidth = gridwidth;
-    gridBagConstraints.gridheight = gridheight;
-    gridBagConstraints.anchor = anchor;
-    gridBagConstraints.fill = fill;
-    gridBagConstraints.weightx = weightx;
-    gridBagConstraints.weighty = weighty;
-    if (insets) {
-      gridBagConstraints.insets = insets;
-    }
-    this.add(component, gridBagConstraints);
+    this.add(spinner, new GBC(gridx, gridy).a(GBC.EAST));
   }
 
    sliderToSpinner(slider, spinner) {
@@ -2911,7 +3020,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
     this.addRadio(this.yellow, Translations.JSColorChooser_YELLOW, false, 2, 4);
     let label = new JSLabel();
     label.setText(Translations.JSColorChooser_BLACK);
-    this.addComponent(label, 2, 6, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    this.add(label, new GBC(2, 6).a(GBC.WEST));
     this.addSlider(this.cyanSlider, this.cyanSpinner, 0, 255, 2, 1);
     this.addSlider(this.magentaSlider, this.magentaSpinner, 0, 255, 2, 3);
     this.addSlider(this.yellowSlider, this.yellowSpinner, 0, 255, 2, 5);

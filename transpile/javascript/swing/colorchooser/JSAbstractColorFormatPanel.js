@@ -38,14 +38,14 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
     this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
     this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
-    this.addComponent(this.square, 0, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.add(this.square, new GBC(0, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
     this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
     this.rect.getStyle().cursor = "pointer";
     this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
     this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
     this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
-    this.addComponent(this.rect, 1, 0, 1, 7, GridBagConstraints.NORTH, GridBagConstraints.NONE, 0, 0, new Insets(0, 0, 0, 5));
+    this.add(this.rect, new GBC(1, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
   }
 
    addRadio(radio, text, selected, gridx, gridy) {
@@ -53,7 +53,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
     radio.setText(text);
     radio.setSelected(selected);
     radio.addActionListener(event => this.drawAll());
-    this.addComponent(radio, gridx, gridy, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.NONE, 0, 0, null);
+    this.add(radio, new GBC(gridx, gridy).a(GBC.WEST));
   }
 
    addSlider(slider, spinner, value, max, gridx, gridy) {
@@ -61,7 +61,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
     slider.setMaximum(max);
     slider.getStyle().minWidth = "20rem";
     slider.addChangeListener(event => this.sliderToSpinner(slider, spinner));
-    this.addComponent(slider, gridx, gridy, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, 1, 0, null);
+    this.add(slider, new GBC(gridx, gridy).w(2).f(GBC.HORIZONTAL).wx(1));
   }
 
    addSpinner(spinner, slider, value, max, gridx, gridy) {
@@ -70,23 +70,7 @@ class JSAbstractColorFormatPanel extends JSPanel {
     spinner.getChilStyleByQuery("input[type=number]").minWidth = "2.5rem";
     spinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     spinner.addChangeListener(event => this.spinnerToSlider(spinner, slider));
-    this.addComponent(spinner, gridx, gridy, 1, 1, GridBagConstraints.LINE_END, GridBagConstraints.NONE, 0, 0, null);
-  }
-
-   addComponent(component, gridx, gridy, gridwidth, gridheight, anchor, fill, weightx, weighty, insets) {
-    let gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = gridx;
-    gridBagConstraints.gridy = gridy;
-    gridBagConstraints.gridwidth = gridwidth;
-    gridBagConstraints.gridheight = gridheight;
-    gridBagConstraints.anchor = anchor;
-    gridBagConstraints.fill = fill;
-    gridBagConstraints.weightx = weightx;
-    gridBagConstraints.weighty = weighty;
-    if (insets) {
-      gridBagConstraints.insets = insets;
-    }
-    this.add(component, gridBagConstraints);
+    this.add(spinner, new GBC(gridx, gridy).a(GBC.EAST));
   }
 
    sliderToSpinner(slider, spinner) {
