@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":10,"i16":10,"i17":6,"i18":6,"i19":6};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":10,"i15":10,"i16":6,"i17":6,"i18":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -179,27 +179,37 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <tr class="altColor">
 <td class="colFirst"><code>protected simulation.dom.$CanvasRenderingContext2D</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ctxRect">ctxRect</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">The rendering context of the rect</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected simulation.dom.$CanvasRenderingContext2D</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ctxSquare">ctxSquare</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">The rendering context of the square</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RECT_HEIGHT">RECT_HEIGHT</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">The rect height</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RECT_WIDTH">RECT_WIDTH</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">the rect width</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#SQUARE_SIZE">SQUARE_SIZE</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">The square size</div>
+</td>
 </tr>
 </table>
 </li>
@@ -222,7 +232,9 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <tr class="altColor">
 <td class="colFirst"><code>protected </code></td>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">JSAbstractColorFormatPanel</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates the object</div>
+</td>
 </tr>
 </table>
 </li>
@@ -251,28 +263,16 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addComponent(javascript.swing.JSComponent,int,int,int,int,int,int,double,double,javascript.awt.Insets)">addComponent</a></span>&#8203;(<a href="../JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component,
-            int&nbsp;gridx,
-            int&nbsp;gridy,
-            int&nbsp;gridwidth,
-            int&nbsp;gridheight,
-            int&nbsp;anchor,
-            int&nbsp;fill,
-            double&nbsp;weightx,
-            double&nbsp;weighty,
-            <a href="../../awt/Insets.html" title="class in javascript.awt">Insets</a>&nbsp;insets)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addRadio(javascript.swing.JSRadioButton,java.lang.String,boolean,int,int)">addRadio</a></span>&#8203;(<a href="../JSRadioButton.html" title="class in javascript.swing">JSRadioButton</a>&nbsp;radio,
         java.lang.String&nbsp;text,
         boolean&nbsp;selected,
         int&nbsp;gridx,
         int&nbsp;gridy)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds a radio button</div>
+</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addSlider(javascript.swing.JSSlider,javascript.swing.JSSpinner,int,int,int,int)">addSlider</a></span>&#8203;(<a href="../JSSlider.html" title="class in javascript.swing">JSSlider</a>&nbsp;slider,
          <a href="../JSSpinner.html" title="class in javascript.swing">JSSpinner</a>&nbsp;spinner,
@@ -280,9 +280,11 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
          int&nbsp;max,
          int&nbsp;gridx,
          int&nbsp;gridy)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds a slider</div>
+</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addSpinner(javascript.swing.JSSpinner,javascript.swing.JSSlider,int,int,int,int)">addSpinner</a></span>&#8203;(<a href="../JSSpinner.html" title="class in javascript.swing">JSSpinner</a>&nbsp;spinner,
           <a href="../JSSlider.html" title="class in javascript.swing">JSSlider</a>&nbsp;slider,
@@ -290,91 +292,117 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
           int&nbsp;max,
           int&nbsp;gridx,
           int&nbsp;gridy)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds a spinner</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItRect(java.lang.String)">canDoItRect</a></span>&#8203;(java.lang.String&nbsp;type)</code></th>
+<td class="colLast">
+<div class="block">Checks if a mouse event can be managed on the rect</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItRect(java.lang.String)">canDoItRect</a></span>&#8203;(java.lang.String&nbsp;type)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItSquare(java.lang.String)">canDoItSquare</a></span>&#8203;(java.lang.String&nbsp;type)</code></th>
+<td class="colLast">
+<div class="block">Checks if a mouse event can be managed on the square</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>protected boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItSquare(java.lang.String)">canDoItSquare</a></span>&#8203;(java.lang.String&nbsp;type)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawAll()">drawAll</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Draws all objects</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawAll()">drawAll</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawCircle(double,double)">drawCircle</a></span>&#8203;(double&nbsp;x,
+          double&nbsp;y)</code></th>
+<td class="colLast">
+<div class="block">Draws the circle selector</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawCircle(double,double)">drawCircle</a></span>&#8203;(double&nbsp;x,
-          double&nbsp;y)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawLine(double)">drawLine</a></span>&#8203;(double&nbsp;y)</code></th>
+<td class="colLast">
+<div class="block">Draws the line</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawLine(double)">drawLine</a></span>&#8203;(double&nbsp;y)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>protected abstract void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawRect()">drawRect</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Draws the rect</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawRect()">drawRect</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawRectSelector()">drawRectSelector</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Draws the rect selector</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>protected abstract void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawRectSelector()">drawRectSelector</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawSquare()">drawSquare</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Draws the square</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawSquare()">drawSquare</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawSquareSelector()">drawSquareSelector</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Draws the square selector</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code>protected abstract void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawSquareSelector()">drawSquareSelector</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i14" class="altColor">
 <td class="colFirst"><code>abstract <a href="../../awt/Color.html" title="class in javascript.awt">Color</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSelectedColor()">getSelectedColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the selected color</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValueIsAdjusting()">getValueIsAdjusting</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns if the selected color is "adjusting"</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onchange(boolean)">onchange</a></span>&#8203;(boolean&nbsp;b)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">To call to invoke a change event</div>
+</td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rectEvent(def.dom.MouseEvent,java.lang.String)">rectEvent</a></span>&#8203;(def.dom.MouseEvent&nbsp;event,
          java.lang.String&nbsp;type)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Manages a mouse event on the rect</div>
+</td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSelectedColor(javascript.awt.Color)">setSelectedColor</a></span>&#8203;(<a href="../../awt/Color.html" title="class in javascript.awt">Color</a>&nbsp;color)</code></th>
 <td class="colLast">
 <div class="block">Sets the selected color</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#squareEvent(def.dom.MouseEvent,java.lang.String)">squareEvent</a></span>&#8203;(def.dom.MouseEvent&nbsp;event,
            java.lang.String&nbsp;type)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Manages a mouse event on the square</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -421,6 +449,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>ctxSquare</h4>
 <pre>protected final&nbsp;simulation.dom.$CanvasRenderingContext2D ctxSquare</pre>
+<div class="block">The rendering context of the square</div>
 </li>
 </ul>
 <a id="ctxRect">
@@ -430,6 +459,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>ctxRect</h4>
 <pre>protected final&nbsp;simulation.dom.$CanvasRenderingContext2D ctxRect</pre>
+<div class="block">The rendering context of the rect</div>
 </li>
 </ul>
 <a id="SQUARE_SIZE">
@@ -439,6 +469,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>SQUARE_SIZE</h4>
 <pre>protected static final&nbsp;int SQUARE_SIZE</pre>
+<div class="block">The square size</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#javascript.swing.colorchooser.JSAbstractColorFormatPanel.SQUARE_SIZE">Constant Field Values</a></dd>
@@ -452,6 +483,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>RECT_WIDTH</h4>
 <pre>protected static final&nbsp;int RECT_WIDTH</pre>
+<div class="block">the rect width</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#javascript.swing.colorchooser.JSAbstractColorFormatPanel.RECT_WIDTH">Constant Field Values</a></dd>
@@ -465,6 +497,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>RECT_HEIGHT</h4>
 <pre>protected static final&nbsp;int RECT_HEIGHT</pre>
+<div class="block">The rect height</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#javascript.swing.colorchooser.JSAbstractColorFormatPanel.RECT_HEIGHT">Constant Field Values</a></dd>
@@ -488,6 +521,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>JSAbstractColorFormatPanel</h4>
 <pre>protected&nbsp;JSAbstractColorFormatPanel()</pre>
+<div class="block">Creates the object</div>
 </li>
 </ul>
 </li>
@@ -511,6 +545,15 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
                         boolean&nbsp;selected,
                         int&nbsp;gridx,
                         int&nbsp;gridy)</pre>
+<div class="block">Adds a radio button</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>radio</code> - The radio button</dd>
+<dd><code>text</code> - The text</dd>
+<dd><code>selected</code> - true to select the radio button, false otherwise</dd>
+<dd><code>gridx</code> - The grid x</dd>
+<dd><code>gridy</code> - The grid y</dd>
+</dl>
 </li>
 </ul>
 <a id="addSlider(javascript.swing.JSSlider,javascript.swing.JSSpinner,int,int,int,int)">
@@ -525,6 +568,16 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
                          int&nbsp;max,
                          int&nbsp;gridx,
                          int&nbsp;gridy)</pre>
+<div class="block">Adds a slider</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>slider</code> - The slider</dd>
+<dd><code>spinner</code> - The connected spinner</dd>
+<dd><code>value</code> - The value</dd>
+<dd><code>max</code> - The max value</dd>
+<dd><code>gridx</code> - The grid x</dd>
+<dd><code>gridy</code> - The grid y</dd>
+</dl>
 </li>
 </ul>
 <a id="addSpinner(javascript.swing.JSSpinner,javascript.swing.JSSlider,int,int,int,int)">
@@ -539,24 +592,16 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
                           int&nbsp;max,
                           int&nbsp;gridx,
                           int&nbsp;gridy)</pre>
-</li>
-</ul>
-<a id="addComponent(javascript.swing.JSComponent,int,int,int,int,int,int,double,double,javascript.awt.Insets)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addComponent</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;addComponent&#8203;(<a href="../JSComponent.html" title="class in javascript.swing">JSComponent</a>&nbsp;component,
-                            int&nbsp;gridx,
-                            int&nbsp;gridy,
-                            int&nbsp;gridwidth,
-                            int&nbsp;gridheight,
-                            int&nbsp;anchor,
-                            int&nbsp;fill,
-                            double&nbsp;weightx,
-                            double&nbsp;weighty,
-                            <a href="../../awt/Insets.html" title="class in javascript.awt">Insets</a>&nbsp;insets)</pre>
+<div class="block">Adds a spinner</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>spinner</code> - The spinner</dd>
+<dd><code>slider</code> - The connected slider</dd>
+<dd><code>value</code> - The value</dd>
+<dd><code>max</code> - The max value</dd>
+<dd><code>gridx</code> - The grid x</dd>
+<dd><code>gridy</code> - The grid y</dd>
+</dl>
 </li>
 </ul>
 <a id="drawAll()">
@@ -566,6 +611,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>drawAll</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;drawAll()</pre>
+<div class="block">Draws all objects</div>
 </li>
 </ul>
 <a id="drawSquare()">
@@ -575,6 +621,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>drawSquare</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;drawSquare()</pre>
+<div class="block">Draws the square</div>
 </li>
 </ul>
 <a id="drawSquareSelector()">
@@ -584,6 +631,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>drawSquareSelector</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;drawSquareSelector()</pre>
+<div class="block">Draws the square selector</div>
 </li>
 </ul>
 <a id="drawCircle(double,double)">
@@ -594,6 +642,12 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <h4>drawCircle</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;drawCircle&#8203;(double&nbsp;x,
                           double&nbsp;y)</pre>
+<div class="block">Draws the circle selector</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - The x-axis coordinate</dd>
+<dd><code>y</code> - The y-axis coordinate</dd>
+</dl>
 </li>
 </ul>
 <a id="drawRect()">
@@ -603,6 +657,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>drawRect</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;drawRect()</pre>
+<div class="block">Draws the rect</div>
 </li>
 </ul>
 <a id="drawRectSelector()">
@@ -612,6 +667,7 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>drawRectSelector</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;drawRectSelector()</pre>
+<div class="block">Draws the rect selector</div>
 </li>
 </ul>
 <a id="drawLine(double)">
@@ -621,6 +677,11 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>drawLine</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;drawLine&#8203;(double&nbsp;y)</pre>
+<div class="block">Draws the line</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>y</code> - The y-axis coordinate</dd>
+</dl>
 </li>
 </ul>
 <a id="squareEvent(def.dom.MouseEvent,java.lang.String)">
@@ -631,6 +692,12 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <h4>squareEvent</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;squareEvent&#8203;(def.dom.MouseEvent&nbsp;event,
                                     java.lang.String&nbsp;type)</pre>
+<div class="block">Manages a mouse event on the square</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>event</code> - The mouse event</dd>
+<dd><code>type</code> - The event type</dd>
+</dl>
 </li>
 </ul>
 <a id="canDoItSquare(java.lang.String)">
@@ -640,6 +707,14 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>canDoItSquare</h4>
 <pre class="methodSignature">protected&nbsp;boolean&nbsp;canDoItSquare&#8203;(java.lang.String&nbsp;type)</pre>
+<div class="block">Checks if a mouse event can be managed on the square</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - The event type</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if the mouse event can be managed on the square, false
+ otherwise</dd>
+</dl>
 </li>
 </ul>
 <a id="rectEvent(def.dom.MouseEvent,java.lang.String)">
@@ -650,6 +725,12 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <h4>rectEvent</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;rectEvent&#8203;(def.dom.MouseEvent&nbsp;event,
                                   java.lang.String&nbsp;type)</pre>
+<div class="block">Manages a mouse event on the rect</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>event</code> - The mouse event</dd>
+<dd><code>type</code> - The event type</dd>
+</dl>
 </li>
 </ul>
 <a id="canDoItRect(java.lang.String)">
@@ -659,6 +740,14 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>canDoItRect</h4>
 <pre class="methodSignature">protected&nbsp;boolean&nbsp;canDoItRect&#8203;(java.lang.String&nbsp;type)</pre>
+<div class="block">Checks if a mouse event can be managed on the rect</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - The event type</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if the mouse event can be managed on the square, false
+ otherwise</dd>
+</dl>
 </li>
 </ul>
 <a id="getValueIsAdjusting()">
@@ -696,6 +785,11 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 <li class="blockList">
 <h4>onchange</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;onchange&#8203;(boolean&nbsp;b)</pre>
+<div class="block">To call to invoke a change event</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>b</code> - true if the value is adjusting, false otherwise</dd>
+</dl>
 </li>
 </ul>
 <a id="getSelectedColor()">

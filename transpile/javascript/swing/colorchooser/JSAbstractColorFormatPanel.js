@@ -226,7 +226,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
    * Checks if a mouse event can be managed on the square
    *
    * @param type The event type
-   * @return
+   * @return true if the mouse event can be managed on the square, false
+   * otherwise
    */
    canDoItSquare(type) {
     switch(type) {
@@ -256,7 +257,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
    * Checks if a mouse event can be managed on the rect
    *
    * @param type The event type
-   * @return
+   * @return true if the mouse event can be managed on the square, false
+   * otherwise
    */
    canDoItRect(type) {
     switch(type) {
