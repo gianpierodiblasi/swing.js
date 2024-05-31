@@ -27,6 +27,9 @@ class JSProgressBar extends JSComponent {
 
    string = "";
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jsprogressbar");

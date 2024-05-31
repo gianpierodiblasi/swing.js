@@ -9,10 +9,16 @@ class JSAbstractColorFormatPanel extends JSPanel {
 
    square = new JSComponent(document.createElement("canvas"));
 
+  /**
+   * The rendering context of the square
+   */
    ctxSquare = this.square.invoke("getContext('2d')");
 
    rect = new JSComponent(document.createElement("canvas"));
 
+  /**
+   * The rendering context of the rect
+   */
    ctxRect = this.rect.invoke("getContext('2d')");
 
    listeners = new Array();
@@ -23,12 +29,24 @@ class JSAbstractColorFormatPanel extends JSPanel {
 
    valueIsAdjusting = false;
 
+  /**
+   * The square size
+   */
   static  SQUARE_SIZE = 180;
 
+  /**
+   * the rect width
+   */
   static  RECT_WIDTH = 25;
 
+  /**
+   * The rect height
+   */
   static  RECT_HEIGHT = 180;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
     this.setLayout(new GridBagLayout());
@@ -48,6 +66,15 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.add(this.rect, new GBC(1, 0).h(7).a(GBC.NORTH).i(0, 0, 0, 5));
   }
 
+  /**
+   * Adds a radio button
+   *
+   * @param radio The radio button
+   * @param text The text
+   * @param selected true to select the radio button, false otherwise
+   * @param gridx The grid x
+   * @param gridy The grid y
+   */
    addRadio(radio, text, selected, gridx, gridy) {
     this.buttonGroup.add(radio);
     radio.setText(text);
@@ -56,6 +83,16 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.add(radio, new GBC(gridx, gridy).a(GBC.WEST));
   }
 
+  /**
+   * Adds a slider
+   *
+   * @param slider The slider
+   * @param spinner The connected spinner
+   * @param value The value
+   * @param max The max value
+   * @param gridx The grid x
+   * @param gridy The grid y
+   */
    addSlider(slider, spinner, value, max, gridx, gridy) {
     slider.setValue(value);
     slider.setMaximum(max);
@@ -64,6 +101,16 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.add(slider, new GBC(gridx, gridy).w(2).f(GBC.HORIZONTAL).wx(1));
   }
 
+  /**
+   * Adds a spinner
+   *
+   * @param spinner The spinner
+   * @param slider The connected slider
+   * @param value The value
+   * @param max The max value
+   * @param gridx The grid x
+   * @param gridy The grid y
+   */
    addSpinner(spinner, slider, value, max, gridx, gridy) {
     spinner.setModel(new SpinnerNumberModel(value, 0, max, 1));
     spinner.getStyle().minWidth = "3rem";
@@ -85,6 +132,9 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.onchange(spinner.getValueIsAdjusting());
   }
 
+  /**
+   * Draws all objects
+   */
    drawAll() {
     this.drawSquare();
     this.drawSquareSelector();
@@ -92,12 +142,24 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.drawRectSelector();
   }
 
+  /**
+   * Draws the square
+   */
    drawSquare() {
   }
 
+  /**
+   * Draws the square selector
+   */
    drawSquareSelector() {
   }
 
+  /**
+   * Draws the circle selector
+   *
+   * @param x The x-axis coordinate
+   * @param y The y-axis coordinate
+   */
    drawCircle(x, y) {
     let dash = new Array();
     this.ctxSquare.beginPath();
@@ -115,12 +177,23 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.ctxSquare.stroke();
   }
 
+  /**
+   * Draws the rect
+   */
    drawRect() {
   }
 
+  /**
+   * Draws the rect selector
+   */
    drawRectSelector() {
   }
 
+  /**
+   * Draws the line
+   *
+   * @param y The y-axis coordinate
+   */
    drawLine(y) {
     let dash = new Array();
     this.ctxRect.beginPath();
@@ -140,9 +213,21 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.ctxRect.stroke();
   }
 
+  /**
+   * Manages a mouse event on the square
+   *
+   * @param event The mouse event
+   * @param type The event type
+   */
    squareEvent(event, type) {
   }
 
+  /**
+   * Checks if a mouse event can be managed on the square
+   *
+   * @param type The event type
+   * @return
+   */
    canDoItSquare(type) {
     switch(type) {
       case "down":
@@ -158,9 +243,21 @@ class JSAbstractColorFormatPanel extends JSPanel {
     }
   }
 
+  /**
+   * Manages a mouse event on the rect
+   *
+   * @param event The mouse event
+   * @param type The event type
+   */
    rectEvent(event, type) {
   }
 
+  /**
+   * Checks if a mouse event can be managed on the rect
+   *
+   * @param type The event type
+   * @return
+   */
    canDoItRect(type) {
     switch(type) {
       case "down":
@@ -194,6 +291,11 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.listeners.push(listener);
   }
 
+  /**
+   * To call to invoke a change event
+   *
+   * @param b true if the value is adjusting, false otherwise
+   */
    onchange(b) {
     this.valueIsAdjusting = b;
     let event = new ChangeEvent();

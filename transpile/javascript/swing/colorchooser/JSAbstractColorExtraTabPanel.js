@@ -40,6 +40,9 @@ class JSAbstractColorExtraTabPanel extends JSPanel {
     this.listeners.push(listener);
   }
 
+  /**
+   * to call to invoke a change event
+   */
    onchange() {
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {

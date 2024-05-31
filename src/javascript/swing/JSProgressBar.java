@@ -26,6 +26,9 @@ public class JSProgressBar extends JSComponent {
   private boolean stringPainted;
   private String string = "";
 
+  /**
+   * Creates the object
+   */
   public JSProgressBar() {
     super(document.createElement("div"));
 

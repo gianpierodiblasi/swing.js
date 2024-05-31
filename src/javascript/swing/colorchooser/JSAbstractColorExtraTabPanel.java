@@ -46,6 +46,9 @@ public abstract class JSAbstractColorExtraTabPanel extends JSPanel {
     this.listeners.push(listener);
   }
 
+  /**
+   * to call to invoke a change event
+   */
   protected void onchange() {
     ChangeEvent event = new ChangeEvent();
 
