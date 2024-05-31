@@ -29,6 +29,9 @@ class JSSlider extends JSComponent {
 
    dataListID = "DataList_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jsslider");

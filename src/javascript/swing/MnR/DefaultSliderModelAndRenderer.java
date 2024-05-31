@@ -10,6 +10,9 @@ import javascript.swing.JSSlider;
  */
 public class DefaultSliderModelAndRenderer<T> extends AbstractSliderModelAndRenderer<T> {
 
+  /**
+   * Creates the object
+   */
   public DefaultSliderModelAndRenderer() {
     super(true);
   }

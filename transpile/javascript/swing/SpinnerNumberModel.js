@@ -13,6 +13,14 @@ class SpinnerNumberModel {
 
    stepSize = 0.0;
 
+  /**
+   * Creates the object
+   *
+   * @param value The value
+   * @param minimum The minimum value
+   * @param maximum The maximum value
+   * @param stepSize The step
+   */
   constructor(value, minimum, maximum, stepSize) {
     this.value = value;
     this.minimum = minimum;

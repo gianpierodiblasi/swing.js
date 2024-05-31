@@ -13,6 +13,9 @@ class JSDialog extends JSComponent {
 
    listeners = new Array();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("dialog"));
     this.cssAddClass("jsdialog");

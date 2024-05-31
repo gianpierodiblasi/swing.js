@@ -20,6 +20,9 @@ public class GridBagLayout implements LayoutManager {
 
   private int position = 1;
 
+  /**
+   * Creates the object
+   */
   public GridBagLayout() {
     super();
   }

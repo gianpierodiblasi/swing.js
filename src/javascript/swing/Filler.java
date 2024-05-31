@@ -10,6 +10,13 @@ import javascript.awt.Dimension;
  */
 public class Filler extends JSComponent {
 
+  /**
+   * Creates the object
+   *
+   * @param min The mininum dimension
+   * @param pref The preferred dimension
+   * @param max The maximum dimension
+   */
   public Filler(Dimension min, Dimension pref, Dimension max) {
     super(document.createElement("span"));
 

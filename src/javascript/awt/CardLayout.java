@@ -14,6 +14,12 @@ public class CardLayout implements LayoutManager {
   private final int hGap;
   private final int vGap;
 
+  /**
+   * Creates the object
+   *
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   public CardLayout(int hGap, int vGap) {
     super();
 

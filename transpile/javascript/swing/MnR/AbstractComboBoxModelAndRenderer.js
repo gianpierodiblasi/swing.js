@@ -34,6 +34,11 @@ class AbstractComboBoxModelAndRenderer {
     return this.selected;
   }
 
+  /**
+   * Sets the selected element
+   *
+   * @param element The selected element
+   */
    setSelectedElement(element) {
     this.selected = null;
     this.elements.forEach(el => {

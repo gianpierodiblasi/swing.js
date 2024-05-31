@@ -10,6 +10,9 @@ class JSComboBox extends JSComponent {
 
    modelAndRenderer = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("details"));
     this.cssAddClass("jscombobox");

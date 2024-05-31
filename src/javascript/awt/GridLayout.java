@@ -16,6 +16,14 @@ public class GridLayout implements LayoutManager {
   private final int hGap;
   private final int vGap;
 
+  /**
+   * Creates the object
+   *
+   * @param rows The row count
+   * @param cols The column count
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   public GridLayout(int rows, int cols, int hGap, int vGap) {
     super();
 

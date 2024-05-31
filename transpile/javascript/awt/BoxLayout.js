@@ -15,6 +15,12 @@ class BoxLayout extends LayoutManager {
 
    axis = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param target The target component
+   * @param axis The axis
+   */
   constructor(target, axis) {
     super();
     this.axis = axis;

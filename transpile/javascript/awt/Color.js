@@ -25,6 +25,14 @@ class Color {
 
   static  DIFF_V = Color.V_MAX - Color.V_MIN;
 
+  /**
+   * Creates the object
+   *
+   * @param red The red component (in the range [0,255])
+   * @param green The green component (in the range [0,255])
+   * @param blue The blue component (in the range [0,255])
+   * @param alpha The alpha component (in the range [0,255])
+   */
   constructor(red, green, blue, alpha) {
     this.red = red;
     this.green = green;

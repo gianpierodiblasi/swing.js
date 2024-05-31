@@ -21,6 +21,13 @@ class FlowLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param align The alignment
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(align, hGap, vGap) {
     super();
     this.align = align;

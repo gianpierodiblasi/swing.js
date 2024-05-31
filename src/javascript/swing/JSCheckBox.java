@@ -14,6 +14,9 @@ public class JSCheckBox extends AbstractButton {
   private final $HTMLElement checkbox;
   private final Text text;
 
+  /**
+   * Creates the object
+   */
   public JSCheckBox() {
     super(document.createElement("label"));
 

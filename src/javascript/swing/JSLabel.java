@@ -9,6 +9,9 @@ import static def.dom.Globals.document;
  */
 public class JSLabel extends JSComponent {
 
+  /**
+   * Creates the object
+   */
   public JSLabel() {
     super(document.createElement("label"));
     this.cssAddClass("jslabel");

@@ -7,6 +7,9 @@ class JSTextField extends JSComponent {
 
    listeners = new Array();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("input"));
     this.cssAddClass("jstextfield");

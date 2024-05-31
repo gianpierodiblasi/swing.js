@@ -17,6 +17,12 @@ public class BoxLayout implements LayoutManager {
 
   private final int axis;
 
+  /**
+   * Creates the object
+   *
+   * @param target The target component
+   * @param axis The axis
+   */
   public BoxLayout(JSComponent target, int axis) {
     super();
 

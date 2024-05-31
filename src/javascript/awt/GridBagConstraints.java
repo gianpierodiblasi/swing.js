@@ -58,6 +58,9 @@ public class GridBagConstraints {
   public int ipadx;
   public int ipady;
 
+  /**
+   * Creates the object
+   */
   public GridBagConstraints() {
     this.gridx = GridBagConstraints.RELATIVE;
     this.gridy = GridBagConstraints.RELATIVE;

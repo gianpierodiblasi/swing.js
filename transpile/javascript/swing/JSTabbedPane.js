@@ -37,6 +37,9 @@ class JSTabbedPane extends JSPanel {
 
    tabPlacement = JSTabbedPane.TOP;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
     this.cssAddClass("jstabbedpane");

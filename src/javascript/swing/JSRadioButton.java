@@ -14,6 +14,9 @@ public class JSRadioButton extends AbstractButton {
   private final $HTMLElement radiobutton;
   private final Text text;
 
+  /**
+   * Creates the object
+   */
   public JSRadioButton() {
     super(document.createElement("label"));
 

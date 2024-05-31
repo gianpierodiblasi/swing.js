@@ -14,6 +14,9 @@ public class JSToggleButton extends AbstractButton {
   private final $HTMLElement togglebutton;
   private final Text text;
 
+  /**
+   * Creates the object
+   */
   public JSToggleButton() {
     super(document.createElement("label"));
 

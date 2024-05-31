@@ -5,6 +5,9 @@
  */
 class JSButton extends AbstractButton {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("button"));
     this.cssAddClass("jsbutton");

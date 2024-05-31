@@ -19,6 +19,9 @@ class JSSpinner extends JSComponent {
 
    listeners = new Array();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jsspinner");

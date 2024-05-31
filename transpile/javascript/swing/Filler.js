@@ -5,6 +5,13 @@
  */
 class Filler extends JSComponent {
 
+  /**
+   * Creates the object
+   *
+   * @param min The mininum dimension
+   * @param pref The preferred dimension
+   * @param max The maximum dimension
+   */
   constructor(min, pref, max) {
     super(document.createElement("span"));
     this.cssAddClass("jscomponent-box-filler");

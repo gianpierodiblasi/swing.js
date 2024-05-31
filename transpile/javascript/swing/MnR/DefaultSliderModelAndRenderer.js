@@ -6,6 +6,9 @@
  */
 class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(true);
   }

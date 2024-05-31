@@ -33,6 +33,14 @@ class Color {
 
   static  DIFF_V = Color.V_MAX - Color.V_MIN;
 
+  /**
+   * Creates the object
+   *
+   * @param red The red component (in the range [0,255])
+   * @param green The green component (in the range [0,255])
+   * @param blue The blue component (in the range [0,255])
+   * @param alpha The alpha component (in the range [0,255])
+   */
   constructor(red, green, blue, alpha) {
     this.red = red;
     this.green = green;
@@ -475,6 +483,12 @@ class Dimension {
 
    height = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param width The width
+   * @param height The height
+   */
   constructor(width, height) {
     this.width = width;
     this.height = height;
@@ -617,6 +631,9 @@ class GridBagConstraints {
 
    ipady = 0;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     this.gridx = GridBagConstraints.RELATIVE;
     this.gridy = GridBagConstraints.RELATIVE;
@@ -891,6 +908,12 @@ class BorderLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(hGap, vGap) {
     super();
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
@@ -930,6 +953,12 @@ class BoxLayout extends LayoutManager {
 
    axis = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param target The target component
+   * @param axis The axis
+   */
   constructor(target, axis) {
     super();
     this.axis = axis;
@@ -973,6 +1002,12 @@ class CardLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(hGap, vGap) {
     super();
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;
@@ -1035,6 +1070,13 @@ class FlowLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param align The alignment
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(align, hGap, vGap) {
     super();
     this.align = align;
@@ -1087,6 +1129,9 @@ class GridBagLayout extends LayoutManager {
 
    position = 1;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
   }
@@ -1252,6 +1297,14 @@ class GridLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param rows The row count
+   * @param cols The column count
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(rows, cols, hGap, vGap) {
     super();
     this.rows = rows;
@@ -1301,6 +1354,12 @@ class Point {
 
    y = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param x The x-axis coordinate
+   * @param y The y-axis coordinate
+   */
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -1900,6 +1959,9 @@ class AbstractButton extends JSComponent {
  */
 class JSButton extends AbstractButton {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("button"));
     this.cssAddClass("jsbutton");
@@ -1939,6 +2001,9 @@ class JSCheckBox extends AbstractButton {
 
    text = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("label"));
     this.cssAddClass("jscheckbox");
@@ -2006,6 +2071,9 @@ class JSRadioButton extends AbstractButton {
 
    text = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("label"));
     this.cssAddClass("jsradiobutton");
@@ -2093,6 +2161,9 @@ class JSToggleButton extends AbstractButton {
 
    text = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("label"));
     this.cssAddClass("jstogglebutton");
@@ -2169,6 +2240,13 @@ class JSToggleButton extends AbstractButton {
  */
 class Filler extends JSComponent {
 
+  /**
+   * Creates the object
+   *
+   * @param min The mininum dimension
+   * @param pref The preferred dimension
+   * @param max The maximum dimension
+   */
   constructor(min, pref, max) {
     super(document.createElement("span"));
     this.cssAddClass("jscomponent-box-filler");
@@ -2390,6 +2468,9 @@ class JSComboBox extends JSComponent {
 
    modelAndRenderer = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("details"));
     this.cssAddClass("jscombobox");
@@ -2513,6 +2594,9 @@ class JSDialog extends JSComponent {
 
    listeners = new Array();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("dialog"));
     this.cssAddClass("jsdialog");
@@ -2600,6 +2684,9 @@ class JSFrame extends JSComponent {
 
    contentPane = new JSPanel();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.querySelector("body"));
     this.cssAddClass("jsframe");
@@ -2639,6 +2726,9 @@ class JSFrame extends JSComponent {
  */
 class JSLabel extends JSComponent {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("label"));
     this.cssAddClass("jslabel");
@@ -2662,6 +2752,9 @@ class JSPanel extends JSComponent {
 
    layoutManager = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jspanel");
@@ -4394,6 +4487,9 @@ class JSTabbedPane extends JSPanel {
 
    tabPlacement = JSTabbedPane.TOP;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
     this.cssAddClass("jstabbedpane");
@@ -4695,6 +4791,9 @@ class JSSlider extends JSComponent {
 
    dataListID = "DataList_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jsslider");
@@ -4946,6 +5045,9 @@ class JSSpinner extends JSComponent {
 
    listeners = new Array();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jsspinner");
@@ -5078,6 +5180,9 @@ class JSTextField extends JSComponent {
 
    listeners = new Array();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("input"));
     this.cssAddClass("jstextfield");
@@ -5443,6 +5548,11 @@ class AbstractComboBoxModelAndRenderer {
     return this.selected;
   }
 
+  /**
+   * Sets the selected element
+   *
+   * @param element The selected element
+   */
    setSelectedElement(element) {
     this.selected = null;
     this.elements.forEach(el => {
@@ -5643,6 +5753,9 @@ class AbstractSliderModelAndRenderer {
  */
 class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(true);
   }
@@ -5660,6 +5773,9 @@ class DefaultSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
  */
 class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(false);
   }
@@ -5696,6 +5812,14 @@ class SpinnerNumberModel {
 
    stepSize = 0.0;
 
+  /**
+   * Creates the object
+   *
+   * @param value The value
+   * @param minimum The minimum value
+   * @param maximum The maximum value
+   * @param stepSize The step
+   */
   constructor(value, minimum, maximum, stepSize) {
     this.value = value;
     this.minimum = minimum;

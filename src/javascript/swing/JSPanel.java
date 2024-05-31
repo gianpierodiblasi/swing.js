@@ -14,6 +14,9 @@ public class JSPanel extends JSComponent {
 
   private LayoutManager layoutManager;
 
+  /**
+   * Creates the object
+   */
   public JSPanel() {
     super(document.createElement("div"));
 

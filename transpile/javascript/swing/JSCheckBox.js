@@ -9,6 +9,9 @@ class JSCheckBox extends AbstractButton {
 
    text = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("label"));
     this.cssAddClass("jscheckbox");

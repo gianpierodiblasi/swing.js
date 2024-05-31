@@ -21,6 +21,13 @@ public class FlowLayout implements LayoutManager {
   private final int hGap;
   private final int vGap;
 
+  /**
+   * Creates the object
+   *
+   * @param align The alignment
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   public FlowLayout(int align, int hGap, int vGap) {
     super();
 

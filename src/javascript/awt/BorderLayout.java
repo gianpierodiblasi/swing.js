@@ -29,6 +29,12 @@ public class BorderLayout implements LayoutManager {
   private final int hGap;
   private final int vGap;
 
+  /**
+   * Creates the object
+   *
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   public BorderLayout(int hGap, int vGap) {
     super();
 

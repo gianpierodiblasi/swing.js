@@ -19,6 +19,9 @@ public class JSComboBox<T extends Comparable<T>> extends JSComponent {
   private final Array<ActionListener> listeners = new Array<>();
   private AbstractComboBoxModelAndRenderer<T> modelAndRenderer;
 
+  /**
+   * Creates the object
+   */
   @SuppressWarnings("StringEquality")
   public JSComboBox() {
     super(document.createElement("details"));
@@ -43,7 +46,7 @@ public class JSComboBox<T extends Comparable<T>> extends JSComponent {
         if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
           this.getChilStyleByQuery("ul").top = rectSummary.bottom + "px";
         } else if (rectSummary.top - rect.height > 0) {
-          this.getChilStyleByQuery("ul").top = "calc("+(rectSummary.top - rect.height) + "px - 1rem)";
+          this.getChilStyleByQuery("ul").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
         } else {
           this.getChilStyleByQuery("ul").top = "auto";
           this.getChilStyleByQuery("ul").bottom = "5px";

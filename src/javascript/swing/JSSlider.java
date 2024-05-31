@@ -36,6 +36,9 @@ public class JSSlider extends JSComponent {
   private final $HTMLElement dataList;
   private final String dataListID = "DataList_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
 
+  /**
+   * Creates the object
+   */
   public JSSlider() {
     super(document.createElement("div"));
 

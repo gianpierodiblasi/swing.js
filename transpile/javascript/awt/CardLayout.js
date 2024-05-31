@@ -9,6 +9,12 @@ class CardLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(hGap, vGap) {
     super();
     this.hGap = typeof hGap === "undefined" ? 0 : hGap;

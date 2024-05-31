@@ -15,6 +15,9 @@ class GridBagLayout extends LayoutManager {
 
    position = 1;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super();
   }

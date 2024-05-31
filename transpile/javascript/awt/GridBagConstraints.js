@@ -91,6 +91,9 @@ class GridBagConstraints {
 
    ipady = 0;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     this.gridx = GridBagConstraints.RELATIVE;
     this.gridy = GridBagConstraints.RELATIVE;

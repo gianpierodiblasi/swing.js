@@ -7,6 +7,9 @@ class JSPanel extends JSComponent {
 
    layoutManager = null;
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("div"));
     this.cssAddClass("jspanel");

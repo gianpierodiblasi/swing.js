@@ -5,6 +5,9 @@
  */
 class JSLabel extends JSComponent {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.createElement("label"));
     this.cssAddClass("jslabel");

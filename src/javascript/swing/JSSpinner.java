@@ -26,6 +26,9 @@ public class JSSpinner extends JSComponent {
 
   private final Array<ChangeListener> listeners = new Array<>();
 
+  /**
+   * Creates the object
+   */
   public JSSpinner() {
     super(document.createElement("div"));
     this.cssAddClass("jsspinner");

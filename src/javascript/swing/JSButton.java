@@ -9,6 +9,9 @@ import static def.dom.Globals.document;
  */
 public class JSButton extends AbstractButton {
 
+  /**
+   * Creates the object
+   */
   public JSButton() {
     super(document.createElement("button"));
 

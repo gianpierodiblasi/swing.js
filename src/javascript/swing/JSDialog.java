@@ -21,6 +21,9 @@ public class JSDialog extends JSComponent {
 
   private final Array<WindowClosedListener> listeners = new Array<>();
 
+  /**
+   * Creates the object
+   */
   public JSDialog() {
     super(document.createElement("dialog"));
 

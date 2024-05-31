@@ -26,6 +26,14 @@ public class Color {
   private final static double V_MAX = 0.499813;
   private final static double DIFF_V = Color.V_MAX - Color.V_MIN;
 
+  /**
+   * Creates the object
+   *
+   * @param red The red component (in the range [0,255])
+   * @param green The green component (in the range [0,255])
+   * @param blue The blue component (in the range [0,255])
+   * @param alpha The alpha component (in the range [0,255])
+   */
   public Color(int red, int green, int blue, int alpha) {
     this.red = red;
     this.green = green;

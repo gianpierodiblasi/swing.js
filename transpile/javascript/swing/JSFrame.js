@@ -7,6 +7,9 @@ class JSFrame extends JSComponent {
 
    contentPane = new JSPanel();
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(document.querySelector("body"));
     this.cssAddClass("jsframe");

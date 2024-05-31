@@ -15,6 +15,9 @@ public class JSFrame extends JSComponent {
 
   private final JSPanel contentPane = new JSPanel();
 
+  /**
+   * Creates the object
+   */
   public JSFrame() {
     super((HTMLElement) document.querySelector("body"));
 

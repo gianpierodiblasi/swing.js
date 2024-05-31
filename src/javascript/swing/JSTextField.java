@@ -15,6 +15,9 @@ public class JSTextField extends JSComponent {
 
   private final Array<ActionListener> listeners = new Array<>();
 
+  /**
+   * Creates the object
+   */
   public JSTextField() {
     super(document.createElement("input"));
 

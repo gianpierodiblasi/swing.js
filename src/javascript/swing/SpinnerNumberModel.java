@@ -12,6 +12,14 @@ public class SpinnerNumberModel {
   private final double maximum;
   private final double stepSize;
 
+  /**
+   * Creates the object
+   *
+   * @param value The value
+   * @param minimum The minimum value
+   * @param maximum The maximum value
+   * @param stepSize The step
+   */
   public SpinnerNumberModel(double value, double minimum, double maximum, double stepSize) {
     this.value = value;
     this.minimum = minimum;

@@ -13,6 +13,14 @@ class GridLayout extends LayoutManager {
 
    vGap = 0;
 
+  /**
+   * Creates the object
+   *
+   * @param rows The row count
+   * @param cols The column count
+   * @param hGap The horizontal gap
+   * @param vGap The vertical gap
+   */
   constructor(rows, cols, hGap, vGap) {
     super();
     this.rows = rows;

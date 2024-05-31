@@ -7,6 +7,9 @@
  */
 class HTMLImageSliderModelAndRenderer extends AbstractSliderModelAndRenderer {
 
+  /**
+   * Creates the object
+   */
   constructor() {
     super(false);
   }

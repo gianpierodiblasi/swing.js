@@ -42,6 +42,11 @@ public abstract class AbstractComboBoxModelAndRenderer<T extends Comparable<T>> 
     return this.selected;
   }
 
+  /**
+   * Sets the selected element
+   *
+   * @param element The selected element
+   */
   public void setSelectedElement(T element) {
     this.selected = null;
     this.elements.forEach(el -> {
