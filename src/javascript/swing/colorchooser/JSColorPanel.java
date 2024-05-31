@@ -3,9 +3,8 @@ package javascript.swing.colorchooser;
 import static def.dom.Globals.document;
 import def.js.Array;
 import javascript.awt.Color;
-import javascript.awt.GridBagConstraints;
+import javascript.awt.GBC;
 import javascript.awt.GridBagLayout;
-import javascript.awt.Insets;
 import javascript.swing.JSComponent;
 import javascript.swing.JSLabel;
 import javascript.swing.JSPanel;
@@ -63,50 +62,27 @@ public class JSColorPanel extends JSPanel {
     this.addPanel("RGB", this.rgbPanel);
     this.addPanel("CMYK", this.cmykPanel);
 
-    GridBagConstraints gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.BOTH;
-    this.add(this.pane, gridBagConstraints);
+    this.add(this.pane, new GBC(0, 0).w(2).f(GBC.BOTH));
 
     this.opacity.setText(Translations.JSColorChooser_OPACITY);
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    this.add(this.opacity, gridBagConstraints);
+    this.add(this.opacity, new GBC(0, 1).a(GBC.WEST));
 
     this.opacitySlider.setMaximum(255);
     this.opacitySlider.setValue(255);
     this.opacitySlider.getStyle().minWidth = "20rem";
     this.opacitySlider.addChangeListener(event -> this.sliderToSpinner(this.opacitySlider, this.opacitySpinner));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.add(this.opacitySlider, gridBagConstraints);
+    this.add(this.opacitySlider, new GBC(0, 2).w(2).f(GBC.HORIZONTAL));
 
     this.opacitySpinner.setModel(new SpinnerNumberModel(255, 0, 255, 1));
     this.opacitySpinner.getStyle().minWidth = "3rem";
     this.opacitySpinner.getChilStyleByQuery("input[type=number]").minWidth = "2.5rem";
     this.opacitySpinner.getChilStyleByQuery("input[type=number]").width = "2.5rem";
     this.opacitySpinner.addChangeListener(event -> this.spinnerToSlider(this.opacitySpinner, this.opacitySlider));
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_END;
-    this.add(this.opacitySpinner, gridBagConstraints);
+    this.add(this.opacitySpinner, new GBC(1, 1).a(GBC.EAST));
 
     JSLabel label = new JSLabel();
     label.setText(Translations.JSColorChooser_PREVIEW);
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.anchor = GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new Insets(5, 0, 2, 0);
-    this.add(label, gridBagConstraints);
+    this.add(label, new GBC(0, 3).a(GBC.WEST).i(5, 0, 2, 0));
 
     Color color = this.getSelectedColor();
     this.component.cssAddClass("jscolorpanel-preview-opaque");
@@ -119,13 +95,7 @@ public class JSColorPanel extends JSPanel {
     this.container.appendChild(this.component);
     this.container.appendChild(this.componentOpacity);
     this.setContainerBorder(color);
-
-    gridBagConstraints = new GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-    this.add(this.container, gridBagConstraints);
+    this.add(this.container, new GBC(0, 4).w(2).f(GBC.HORIZONTAL));
 
     this.swatchesPanel.addActionListener(event -> {
       Color c = this.swatchesPanel.getSelectedColor();
