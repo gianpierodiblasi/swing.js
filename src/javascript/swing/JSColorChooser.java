@@ -8,7 +8,6 @@ import javascript.swing.colorchooser.JSAbstractColorExtraTabPanel;
 import javascript.swing.colorchooser.JSColorPanel;
 import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
-import simulation.dom.$DOMRect;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.$typeof;
@@ -18,7 +17,7 @@ import static simulation.js.$Globals.$typeof;
  *
  * @author gianpiero.diblasi
  */
-public class JSColorChooser extends JSComponent {
+public class JSColorChooser extends JSDropDown {
 
   private final JSComponent container = new JSComponent(document.createElement("div"));
   private final JSComponent componentOpacity = new JSComponent(document.createElement("div"));
@@ -30,44 +29,10 @@ public class JSColorChooser extends JSComponent {
   /**
    * Creates the object
    */
-  @SuppressWarnings("StringEquality")
   public JSColorChooser() {
-    super(document.createElement("details"));
-
+    super();
     this.cssAddClass("jscolorchooser");
-    this.addEventListener("toggle", event -> {
-      if ("" + this.getProperty("open") == "true") {
-        this.getChilStyleByQuery(".jscolorpanel").visibility = "visible";
-
-        $DOMRect rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
-        $DOMRect rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
-
-        if (rectSummary.left + rect.width < document.body.scrollWidth) {
-          this.getChilStyleByQuery(".jscolorpanel").left = rectSummary.left + "px";
-        } else if (rectSummary.right - rect.width > 0) {
-          this.getChilStyleByQuery(".jscolorpanel").left = (rectSummary.right - rect.width) + "px";
-        } else {
-          this.getChilStyleByQuery(".jscolorpanel").left = "auto";
-          this.getChilStyleByQuery(".jscolorpanel").right = "5px";
-        }
-
-        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
-          this.getChilStyleByQuery(".jscolorpanel").top = rectSummary.bottom + "px";
-        } else if (rectSummary.top - rect.height > 0) {
-          this.getChilStyleByQuery(".jscolorpanel").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
-        } else {
-          this.getChilStyleByQuery(".jscolorpanel").top = "auto";
-          this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
-        }
-      } else {
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("visibility");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("top");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("left");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
-      }
-    });
-
+    
     Color color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
@@ -76,7 +41,6 @@ public class JSColorChooser extends JSComponent {
     this.container.appendChild(this.componentOpacity);
     this.setContainerBorder(color);
 
-    this.appendNodeChild(document.createElement("summary"));
     this.appendChildInTree("summary", this.container);
 
     this.panel.addChangeListener(event -> this.onchange());

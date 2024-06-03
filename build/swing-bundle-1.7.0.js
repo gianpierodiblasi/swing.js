@@ -2262,11 +2262,152 @@ class Filler extends JSComponent {
   }
 }
 /**
+ * The javax.swing.JDialog clone
+ *
+ * @author gianpiero.diblasi
+ */
+class JSDialog extends JSComponent {
+
+   title = new JSLabel();
+
+   close = new JSButton();
+
+   contentPane = new JSPanel();
+
+   listeners = new Array();
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super(document.createElement("dialog"));
+    this.cssAddClass("jsdialog");
+    this.addEventListener("close", event => this.onclose());
+    this.appendNodeChild(document.createElement("article"));
+    let header = document.createElement("header");
+    header.classList.add("jsdialog-header");
+    this.appendNodeChildInTree("article", header);
+    let panel = new JSPanel();
+    panel.setLayout(new BorderLayout(0, 0));
+    panel.add(this.title, BorderLayout.CENTER);
+    panel.add(this.close, BorderLayout.EAST);
+    this.close.addActionListener(event => this.setVisible(false));
+    this.appendChildInTree("header", panel);
+    this.contentPane.setLayout(new BorderLayout(0, 0));
+    this.contentPane.cssAddClass("jsdialog-content");
+    this.appendChildInTree("article", this.contentPane);
+    this.appendInBody();
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.dispose
+   */
+   dispose() {
+    this.removeFromBody();
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.setTitle
+   *
+   * @param title The title
+   */
+   setTitle(title) {
+    this.title.setText(title);
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.getContentPane
+   *
+   * @return The content pane
+   */
+   getContentPane() {
+    return this.contentPane;
+  }
+
+  /**
+   * Clone of javax.swing.JDialog.setVisible
+   *
+   * @param b true to show the dialog, false otherwise
+   */
+   setVisible(b) {
+    if (!b) {
+      this.invoke("close()");
+    } else {
+      this.invoke("showModal()");
+    }
+  }
+
+  /**
+   * Adds a listener of window closed
+   *
+   * @param listener The listener
+   */
+   addWindowClosedListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onclose() {
+    let event = new WindowEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.windowClosed(event);
+      }
+    });
+  }
+}
+/**
+ * The abstract component for dropdown objects
+ *
+ * @author gianpiero.diblasi
+ */
+class JSDropDown extends JSComponent {
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super(document.createElement("details"));
+    this.cssAddClass("jsdropdown");
+    this.appendNodeChild(document.createElement("summary"));
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.getChilStyleByQuery("*:nth-child(2)").visibility = "visible";
+        let rect = this.invokeInTree("*:nth-child(2)", "getBoundingClientRect()");
+        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
+        if (rectSummary.left + rect.width < document.body.scrollWidth) {
+          this.getChilStyleByQuery("*:nth-child(2)").left = rectSummary.left + "px";
+        } else if (rectSummary.right - rect.width > 0) {
+          this.getChilStyleByQuery("*:nth-child(2)").left = (rectSummary.right - rect.width) + "px";
+        } else {
+          this.getChilStyleByQuery("*:nth-child(2)").left = "auto";
+          this.getChilStyleByQuery("*:nth-child(2)").right = "5px";
+        }
+        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
+          this.getChilStyleByQuery("*:nth-child(2)").top = rectSummary.bottom + "px";
+        } else if (rectSummary.top - rect.height > 0) {
+          this.getChilStyleByQuery("*:nth-child(2)").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+        } else {
+          this.getChilStyleByQuery("*:nth-child(2)").top = "auto";
+          this.getChilStyleByQuery("*:nth-child(2)").bottom = "5px";
+        }
+      } else {
+        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("visibility");
+        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("top");
+        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("left");
+        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("bottom");
+        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("right");
+      }
+    });
+  }
+}
+/**
  * The javax.swing.JColorChooser clone
  *
  * @author gianpiero.diblasi
  */
-class JSColorChooser extends JSComponent {
+class JSColorChooser extends JSDropDown {
 
    container = new JSComponent(document.createElement("div"));
 
@@ -2282,44 +2423,14 @@ class JSColorChooser extends JSComponent {
    * Creates the object
    */
   constructor() {
-    super(document.createElement("details"));
+    super();
     this.cssAddClass("jscolorchooser");
-    this.addEventListener("toggle", event => {
-      if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery(".jscolorpanel").visibility = "visible";
-        let rect = this.invokeInTree(".jscolorpanel", "getBoundingClientRect()");
-        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
-        if (rectSummary.left + rect.width < document.body.scrollWidth) {
-          this.getChilStyleByQuery(".jscolorpanel").left = rectSummary.left + "px";
-        } else if (rectSummary.right - rect.width > 0) {
-          this.getChilStyleByQuery(".jscolorpanel").left = (rectSummary.right - rect.width) + "px";
-        } else {
-          this.getChilStyleByQuery(".jscolorpanel").left = "auto";
-          this.getChilStyleByQuery(".jscolorpanel").right = "5px";
-        }
-        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
-          this.getChilStyleByQuery(".jscolorpanel").top = rectSummary.bottom + "px";
-        } else if (rectSummary.top - rect.height > 0) {
-          this.getChilStyleByQuery(".jscolorpanel").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
-        } else {
-          this.getChilStyleByQuery(".jscolorpanel").top = "auto";
-          this.getChilStyleByQuery(".jscolorpanel").bottom = "5px";
-        }
-      } else {
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("visibility");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("top");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("bottom");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("left");
-        this.getChilStyleByQuery(".jscolorpanel").removeProperty("right");
-      }
-    });
     let color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
     this.container.cssAddClass("jscolorchooser-preview");
     this.container.appendChild(this.componentOpacity);
     this.setContainerBorder(color);
-    this.appendNodeChild(document.createElement("summary"));
     this.appendChildInTree("summary", this.container);
     this.panel.addChangeListener(event => this.onchange());
     this.appendChild(this.panel);
@@ -2462,7 +2573,7 @@ class JSColorChooser extends JSComponent {
  * @author gianpiero.diblasi
  * @param <T> The type
  */
-class JSComboBox extends JSComponent {
+class JSComboBox extends JSDropDown {
 
    listeners = new Array();
 
@@ -2472,38 +2583,8 @@ class JSComboBox extends JSComponent {
    * Creates the object
    */
   constructor() {
-    super(document.createElement("details"));
+    super();
     this.cssAddClass("jscombobox");
-    this.addEventListener("toggle", event => {
-      if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery("ul").visibility = "visible";
-        let rect = this.invokeInTree("ul", "getBoundingClientRect()");
-        let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
-        if (rectSummary.left + rect.width < document.body.scrollWidth) {
-          this.getChilStyleByQuery("ul").left = rectSummary.left + "px";
-        } else if (rectSummary.right - rect.width > 0) {
-          this.getChilStyleByQuery("ul").left = (rectSummary.right - rect.width) + "px";
-        } else {
-          this.getChilStyleByQuery("ul").left = "auto";
-          this.getChilStyleByQuery("ul").right = "5px";
-        }
-        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
-          this.getChilStyleByQuery("ul").top = rectSummary.bottom + "px";
-        } else if (rectSummary.top - rect.height > 0) {
-          this.getChilStyleByQuery("ul").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
-        } else {
-          this.getChilStyleByQuery("ul").top = "auto";
-          this.getChilStyleByQuery("ul").bottom = "5px";
-        }
-      } else {
-        this.getChilStyleByQuery("ul").removeProperty("visibility");
-        this.getChilStyleByQuery("ul").removeProperty("top");
-        this.getChilStyleByQuery("ul").removeProperty("left");
-        this.getChilStyleByQuery("ul").removeProperty("bottom");
-        this.getChilStyleByQuery("ul").removeProperty("right");
-      }
-    });
-    this.appendNodeChild(document.createElement("summary"));
     this.appendNodeChild(document.createElement("ul"));
   }
 
@@ -2577,102 +2658,6 @@ class JSComboBox extends JSComponent {
     } else {
       this.setAttribute("tabIndex", "-1");
     }
-  }
-}
-/**
- * The javax.swing.JDialog clone
- *
- * @author gianpiero.diblasi
- */
-class JSDialog extends JSComponent {
-
-   title = new JSLabel();
-
-   close = new JSButton();
-
-   contentPane = new JSPanel();
-
-   listeners = new Array();
-
-  /**
-   * Creates the object
-   */
-  constructor() {
-    super(document.createElement("dialog"));
-    this.cssAddClass("jsdialog");
-    this.addEventListener("close", event => this.onclose());
-    this.appendNodeChild(document.createElement("article"));
-    let header = document.createElement("header");
-    header.classList.add("jsdialog-header");
-    this.appendNodeChildInTree("article", header);
-    let panel = new JSPanel();
-    panel.setLayout(new BorderLayout(0, 0));
-    panel.add(this.title, BorderLayout.CENTER);
-    panel.add(this.close, BorderLayout.EAST);
-    this.close.addActionListener(event => this.setVisible(false));
-    this.appendChildInTree("header", panel);
-    this.contentPane.setLayout(new BorderLayout(0, 0));
-    this.contentPane.cssAddClass("jsdialog-content");
-    this.appendChildInTree("article", this.contentPane);
-    this.appendInBody();
-  }
-
-  /**
-   * Clone of javax.swing.JDialog.dispose
-   */
-   dispose() {
-    this.removeFromBody();
-  }
-
-  /**
-   * Clone of javax.swing.JDialog.setTitle
-   *
-   * @param title The title
-   */
-   setTitle(title) {
-    this.title.setText(title);
-  }
-
-  /**
-   * Clone of javax.swing.JDialog.getContentPane
-   *
-   * @return The content pane
-   */
-   getContentPane() {
-    return this.contentPane;
-  }
-
-  /**
-   * Clone of javax.swing.JDialog.setVisible
-   *
-   * @param b true to show the dialog, false otherwise
-   */
-   setVisible(b) {
-    if (!b) {
-      this.invoke("close()");
-    } else {
-      this.invoke("showModal()");
-    }
-  }
-
-  /**
-   * Adds a listener of window closed
-   *
-   * @param listener The listener
-   */
-   addWindowClosedListener(listener) {
-    this.listeners.push(listener);
-  }
-
-   onclose() {
-    let event = new WindowEvent();
-    this.listeners.forEach(listener => {
-      if (typeof listener === "function") {
-        listener(event);
-      } else {
-        listener.windowClosed(event);
-      }
-    });
   }
 }
 /**
