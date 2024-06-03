@@ -14,7 +14,7 @@ class JSComboBox extends JSDropDown {
    * Creates the object
    */
   constructor() {
-    super();
+    super("ul");
     this.cssAddClass("jscombobox");
     this.appendNodeChild(document.createElement("ul"));
   }

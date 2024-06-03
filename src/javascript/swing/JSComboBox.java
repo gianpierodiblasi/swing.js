@@ -22,7 +22,7 @@ public class JSComboBox<T extends Comparable<T>> extends JSDropDown {
    * Creates the object
    */
   public JSComboBox() {
-    super();
+    super("ul");
     this.cssAddClass("jscombobox");
     this.appendNodeChild(document.createElement("ul"));
   }

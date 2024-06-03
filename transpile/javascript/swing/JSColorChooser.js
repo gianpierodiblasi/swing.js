@@ -19,7 +19,7 @@ class JSColorChooser extends JSDropDown {
    * Creates the object
    */
   constructor() {
-    super();
+    super(".jscolorpanel");
     this.cssAddClass("jscolorchooser");
     let color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");

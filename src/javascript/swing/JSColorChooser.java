@@ -30,7 +30,7 @@ public class JSColorChooser extends JSDropDown {
    * Creates the object
    */
   public JSColorChooser() {
-    super();
+    super(".jscolorpanel");
     this.cssAddClass("jscolorchooser");
     
     Color color = this.getSelectedColor();

@@ -7,38 +7,41 @@ class JSDropDown extends JSComponent {
 
   /**
    * Creates the object
+   *
+   * @param dropDownContentSelector The CSS selector to select the content
+   * inside the dropdown
    */
-  constructor() {
+  constructor(dropDownContentSelector) {
     super(document.createElement("details"));
     this.cssAddClass("jsdropdown");
     this.appendNodeChild(document.createElement("summary"));
     this.addEventListener("toggle", event => {
       if ("" + this.getProperty("open") === "true") {
-        this.getChilStyleByQuery("*:nth-child(2)").visibility = "visible";
-        let rect = this.invokeInTree("*:nth-child(2)", "getBoundingClientRect()");
+        this.getChilStyleByQuery(dropDownContentSelector).visibility = "visible";
+        let rect = this.invokeInTree(dropDownContentSelector, "getBoundingClientRect()");
         let rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
         if (rectSummary.left + rect.width < document.body.scrollWidth) {
-          this.getChilStyleByQuery("*:nth-child(2)").left = rectSummary.left + "px";
+          this.getChilStyleByQuery(dropDownContentSelector).left = rectSummary.left + "px";
         } else if (rectSummary.right - rect.width > 0) {
-          this.getChilStyleByQuery("*:nth-child(2)").left = (rectSummary.right - rect.width) + "px";
+          this.getChilStyleByQuery(dropDownContentSelector).left = (rectSummary.right - rect.width) + "px";
         } else {
-          this.getChilStyleByQuery("*:nth-child(2)").left = "auto";
-          this.getChilStyleByQuery("*:nth-child(2)").right = "5px";
+          this.getChilStyleByQuery(dropDownContentSelector).left = "auto";
+          this.getChilStyleByQuery(dropDownContentSelector).right = "5px";
         }
         if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
-          this.getChilStyleByQuery("*:nth-child(2)").top = rectSummary.bottom + "px";
+          this.getChilStyleByQuery(dropDownContentSelector).top = rectSummary.bottom + "px";
         } else if (rectSummary.top - rect.height > 0) {
-          this.getChilStyleByQuery("*:nth-child(2)").top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+          this.getChilStyleByQuery(dropDownContentSelector).top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
         } else {
-          this.getChilStyleByQuery("*:nth-child(2)").top = "auto";
-          this.getChilStyleByQuery("*:nth-child(2)").bottom = "5px";
+          this.getChilStyleByQuery(dropDownContentSelector).top = "auto";
+          this.getChilStyleByQuery(dropDownContentSelector).bottom = "5px";
         }
       } else {
-        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("visibility");
-        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("top");
-        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("left");
-        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("bottom");
-        this.getChilStyleByQuery("*:nth-child(2)").removeProperty("right");
+        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("visibility");
+        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("top");
+        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("left");
+        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("bottom");
+        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("right");
       }
     });
   }
