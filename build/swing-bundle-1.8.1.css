@@ -769,8 +769,8 @@
 }
 
 .jstogglebutton-outline {
-  color: var(--main-color);
-  background: var(--main-bgcolor);
+  color: var(--main-color) !important;
+  background: var(--main-bgcolor) !important;
 }
 .jstogglebutton-outline:has(input:checked) {
   background-image: linear-gradient(
@@ -779,7 +779,7 @@
     var(--main-bgcolor) 15%,
     var(--main-bgcolor) 85%,
     var(--main-action-bgcolor) 100%
-    );
+    ) !important;
 }:root {
   --font-family: arial;
   --font-size: 14px;
