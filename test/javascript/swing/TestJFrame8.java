@@ -23,7 +23,7 @@ public class TestJFrame8 extends javax.swing.JFrame {
     this.initComponents();
     this.postInitComponents();
   }
-
+  
   private void postInitComponents() {
   }
 
@@ -71,17 +71,17 @@ public class TestJFrame8 extends javax.swing.JFrame {
   private void jButton3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     this.open(JSFileChooser.FOLDER_SELECTION);
   }//GEN-LAST:event_jButton3ActionPerformed
-
+  
   private void open(int selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
       document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-
+      
       files.forEach(file -> {
         FileReader fileReader = new FileReader();
         fileReader.onload = event -> {
           $Image img = ($Image) document.createElement("img");
           img.src = (String) fileReader.result;
-
+          
           document.querySelector(".center").appendChild(img);
           return null;
         };
@@ -89,7 +89,29 @@ public class TestJFrame8 extends javax.swing.JFrame {
       });
     });
   }
-
+  
+//  private void open2(boolean multiple) {
+//    Array<Array<String>> types = new Array<>();
+//    types.$set("image/gif", new Array<>(".gif"));
+//    types.$set("image/png", new Array<>(".png"));
+//    types.$set("image/jpeg", new Array<>(".jpeg", ".jpg"));
+//    types.$set("application/zip", new Array<>(".z4i"));
+//    JSFilePicker.showOpenFilePicker("VERYLONGID", types, true, multiple, 0, handles -> {
+//      document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
+//      
+//      handles.forEach(handle -> handle.getFile().then(file -> {
+//        FileReader fileReader = new FileReader();
+//        fileReader.onload = event -> {
+//          $Image img = ($Image) document.createElement("img");
+//          img.src = (String) fileReader.result;
+//          
+//          document.querySelector(".center").appendChild(img);
+//          return null;
+//        };
+//        fileReader.readAsDataURL(file);
+//      }));
+//    });
+//  }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
   private JButton jButton2;

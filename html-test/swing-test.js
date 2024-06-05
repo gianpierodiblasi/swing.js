@@ -1888,6 +1888,28 @@ class TestJSFrame8 extends JSFrame {
     });
   }
 
+  // private void open2(boolean multiple) {
+  // Array<Array<String>> types = new Array<>();
+  // types.$set("image/gif", new Array<>(".gif"));
+  // types.$set("image/png", new Array<>(".png"));
+  // types.$set("image/jpeg", new Array<>(".jpeg", ".jpg"));
+  // types.$set("application/zip", new Array<>(".z4i"));
+  // JSFilePicker.showOpenFilePicker("VERYLONGID", types, true, multiple, 0, handles -> {
+  // document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
+  // 
+  // handles.forEach(handle -> handle.getFile().then(file -> {
+  // FileReader fileReader = new FileReader();
+  // fileReader.onload = event -> {
+  // $Image img = ($Image) document.createElement("img");
+  // img.src = (String) fileReader.result;
+  // 
+  // document.querySelector(".center").appendChild(img);
+  // return null;
+  // };
+  // fileReader.readAsDataURL(file);
+  // }));
+  // });
+  // }
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton1 = null;
 
