@@ -2,8 +2,12 @@ package javascript.swing;
 
 import static def.dom.Globals.document;
 import def.dom.HTMLElement;
+import def.js.Array;
 import javascript.awt.BorderLayout;
 import javascript.awt.CardLayout;
+import javascript.swing.event.ChangeEvent;
+import javascript.swing.event.ChangeListener;
+import static simulation.js.$Globals.$typeof;
 
 /**
  * The javax.swing.JTabbedPane clone
@@ -32,6 +36,7 @@ public class JSTabbedPane extends JSPanel {
   private final ButtonGroup tabsGroup = new ButtonGroup();
 
   private int tabPlacement = JSTabbedPane.TOP;
+  private final Array<ChangeListener> listeners = new Array<>();
 
   /**
    * Creates the object
@@ -135,7 +140,11 @@ public class JSTabbedPane extends JSPanel {
     JSRadioButton button = new JSRadioButton();
     button.setText(title);
     button.setSelected(this.tabsGroup.getButtonCount() == 0);
-    button.addActionListener(event -> this.contentLayout.show(this.content, title));
+
+    button.addActionListener(event -> {
+      this.contentLayout.show(this.content, title);
+      this.onchange();
+    });
 
     this.tabs.insertNodeBeforeInTree("nav ul", document.createElement("li"), "nav ul li:last-child");
     this.tabs.appendChildInTree("nav ul li:nth-last-child(2)", button);
@@ -143,5 +152,26 @@ public class JSTabbedPane extends JSPanel {
     this.tabsGroup.add(button);
 
     this.content.add(component, title);
+  }
+
+  /**
+   * Clone of javax.swing.JTabbedPane.addChangeListener
+   *
+   * @param listener The listener
+   */
+  public void addChangeListener(ChangeListener listener) {
+    this.listeners.push(listener);
+  }
+
+  private void onchange() {
+    ChangeEvent event = new ChangeEvent();
+
+    this.listeners.forEach(listener -> {
+      if ($typeof(listener, "function")) {
+        listener.$apply(event);
+      } else {
+        listener.stateChanged(event);
+      }
+    });
   }
 }

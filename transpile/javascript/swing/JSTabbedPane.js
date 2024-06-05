@@ -37,6 +37,8 @@ class JSTabbedPane extends JSPanel {
 
    tabPlacement = JSTabbedPane.TOP;
 
+   listeners = new Array();
+
   /**
    * Creates the object
    */
@@ -134,10 +136,33 @@ class JSTabbedPane extends JSPanel {
     let button = new JSRadioButton();
     button.setText(title);
     button.setSelected(this.tabsGroup.getButtonCount() === 0);
-    button.addActionListener(event => this.contentLayout.show(this.content, title));
+    button.addActionListener(event => {
+      this.contentLayout.show(this.content, title);
+      this.onchange();
+    });
     this.tabs.insertNodeBeforeInTree("nav ul", document.createElement("li"), "nav ul li:last-child");
     this.tabs.appendChildInTree("nav ul li:nth-last-child(2)", button);
     this.tabsGroup.add(button);
     this.content.add(component, title);
+  }
+
+  /**
+   * Clone of javax.swing.JTabbedPane.addChangeListener
+   *
+   * @param listener The listener
+   */
+   addChangeListener(listener) {
+    this.listeners.push(listener);
+  }
+
+   onchange() {
+    let event = new ChangeEvent();
+    this.listeners.forEach(listener => {
+      if (typeof listener === "function") {
+        listener(event);
+      } else {
+        listener.stateChanged(event);
+      }
+    });
   }
 }

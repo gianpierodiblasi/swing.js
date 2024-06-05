@@ -10,6 +10,8 @@ import simulation.dom.$DOMRect;
  */
 public abstract class JSDropDown extends JSComponent {
 
+  private final String dropDownContentSelector;
+
   /**
    * Creates the object
    *
@@ -22,38 +24,51 @@ public abstract class JSDropDown extends JSComponent {
     this.cssAddClass("jsdropdown");
     this.appendNodeChild(document.createElement("summary"));
 
+    this.dropDownContentSelector = dropDownContentSelector;
+
     this.addEventListener("toggle", event -> {
       if ("" + this.getProperty("open") == "true") {
-        this.getChilStyleByQuery(dropDownContentSelector).visibility = "visible";
-
-        $DOMRect rect = this.invokeInTree(dropDownContentSelector, "getBoundingClientRect()");
-        $DOMRect rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
-
-        if (rectSummary.left + rect.width < document.body.scrollWidth) {
-          this.getChilStyleByQuery(dropDownContentSelector).left = rectSummary.left + "px";
-        } else if (rectSummary.right - rect.width > 0) {
-          this.getChilStyleByQuery(dropDownContentSelector).left = (rectSummary.right - rect.width) + "px";
-        } else {
-          this.getChilStyleByQuery(dropDownContentSelector).left = "auto";
-          this.getChilStyleByQuery(dropDownContentSelector).right = "5px";
-        }
-
-        if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
-          this.getChilStyleByQuery(dropDownContentSelector).top = rectSummary.bottom + "px";
-        } else if (rectSummary.top - rect.height > 0) {
-          this.getChilStyleByQuery(dropDownContentSelector).top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
-        } else {
-          this.getChilStyleByQuery(dropDownContentSelector).top = "auto";
-          this.getChilStyleByQuery(dropDownContentSelector).bottom = "5px";
-        }
+        this.computePopupPosition();
       } else {
-        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("visibility");
-        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("top");
-        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("left");
-        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("bottom");
-        this.getChilStyleByQuery(dropDownContentSelector).removeProperty("right");
+        this.resetPopupPosition();
       }
     });
   }
 
+  /**
+   * Computes the popup position
+   */
+  protected void computePopupPosition() {
+    this.resetPopupPosition();
+    this.getChilStyleByQuery(this.dropDownContentSelector).visibility = "visible";
+
+    $DOMRect rect = this.invokeInTree(this.dropDownContentSelector, "getBoundingClientRect()");
+    $DOMRect rectSummary = this.invokeInTree("summary", "getBoundingClientRect()");
+
+    if (rectSummary.left + rect.width < document.body.scrollWidth) {
+      this.getChilStyleByQuery(this.dropDownContentSelector).left = rectSummary.left + "px";
+    } else if (rectSummary.right - rect.width > 0) {
+      this.getChilStyleByQuery(this.dropDownContentSelector).left = (rectSummary.right - rect.width) + "px";
+    } else {
+      this.getChilStyleByQuery(this.dropDownContentSelector).left = "auto";
+      this.getChilStyleByQuery(this.dropDownContentSelector).right = "5px";
+    }
+
+    if (rectSummary.bottom + rect.height < document.body.scrollHeight) {
+      this.getChilStyleByQuery(this.dropDownContentSelector).top = rectSummary.bottom + "px";
+    } else if (rectSummary.top - rect.height > 0) {
+      this.getChilStyleByQuery(this.dropDownContentSelector).top = "calc(" + (rectSummary.top - rect.height) + "px - 1rem)";
+    } else {
+      this.getChilStyleByQuery(this.dropDownContentSelector).top = "auto";
+      this.getChilStyleByQuery(this.dropDownContentSelector).bottom = "5px";
+    }
+  }
+
+  private void resetPopupPosition() {
+    this.getChilStyleByQuery(this.dropDownContentSelector).removeProperty("visibility");
+    this.getChilStyleByQuery(this.dropDownContentSelector).removeProperty("top");
+    this.getChilStyleByQuery(this.dropDownContentSelector).removeProperty("left");
+    this.getChilStyleByQuery(this.dropDownContentSelector).removeProperty("bottom");
+    this.getChilStyleByQuery(this.dropDownContentSelector).removeProperty("right");
+  }
 }
