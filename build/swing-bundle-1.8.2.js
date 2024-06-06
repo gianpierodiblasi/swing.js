@@ -5457,6 +5457,27 @@ class JSFileChooser {
   }
 }
 /**
+ * A file selector based on the JavaScript File System Access API
+ *
+ * @author gianpiero.diblasi
+ */
+class JSFilePicker {
+
+  constructor() {
+  }
+
+  /**
+   * Shows an open file picker
+   *
+   * @param options The options
+   * @param maximumFileSize The maximum allowed file size in Mbytes, a value
+   * less than or equal to 0 to set no constraint on the size
+   * @param response The function to call on close
+   */
+  static  showOpenFilePicker(options, maximumFileSize, response) {
+  }
+}
+/**
  * The javax.swing.JOptionPane clone
  *
  * @author gianpiero.diblasi
@@ -6196,6 +6217,170 @@ class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
     let img = document.createElement("img");
     img.src = this.src;
     return img;
+  }
+}
+/**
+ * The simulation of the FileSystemHandle object
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemHandle {
+
+   kind = "";
+
+   name = "";
+
+   isSameEntry(fileSystemHandle) {
+  }
+}
+/**
+ * The simulation of the FileSystemDirectoryHandle object
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemDirectoryHandle extends FileSystemHandle {
+
+   getDirectoryHandle(name, options) {
+  }
+
+   getFileHandle(name, options) {
+  }
+
+   removeEntry(name, options) {
+  }
+
+   resolve(possibleDescendant) {
+  }
+}
+/**
+ * The simulation of the FileSystemFileHandle object
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemFileHandle extends FileSystemHandle {
+
+   getFile() {
+  }
+
+   createWritable(options) {
+  }
+}
+/**
+ * The options used when getting a FileSystemHandle
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemHandleGetOptions {
+
+   create = false;
+}
+/**
+ * The options used when removing a FileSystemHandle
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemHandleRemoveOptions {
+
+   recursive = false;
+}
+/**
+ * The options used when creating a FileSystemWritableFileStream
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemWritableFileStreamCreateOptions {
+
+   keepExistingData = false;
+}
+/**
+ * The options used when opening a file
+ *
+ * @author gianpiero.diblasi
+ */
+class OpenFilePickerOptions {
+
+   id = null;
+
+   startIn = null;
+
+   multiple = false;
+
+   types = new Array();
+
+   excludeAcceptAllOption = false;
+}
+/**
+ * The types in the options used when opening a file
+ *
+ * @author gianpiero.diblasi
+ */
+class OpenFilePickerOptionsType {
+
+   description = null;
+
+   accept = new Object();
+
+   pushAccept(mime, extensions) {
+    this.accept[mime] = extensions;
+  }
+}
+/**
+ * The simulation of the WritableStream object
+ *
+ * @author gianpiero.diblasi
+ */
+class WritableStream {
+
+   locked = false;
+
+   getWriter() {
+  }
+
+   close() {
+  }
+
+   abort(reason) {
+  }
+}
+/**
+ * The simulation of the FileSystemWritableFileStream object
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemWritableFileStream extends WritableStream {
+
+   write(data) {
+  }
+
+   seek(position) {
+  }
+
+   truncate(size) {
+  }
+}
+/**
+ * The simulation of the WritableStreamDefaultWriter object
+ *
+ * @author gianpiero.diblasi
+ */
+class WritableStreamDefaultWriter {
+
+   ready = null;
+
+   closed = null;
+
+   desiredSize = 0;
+
+   write(chunk) {
+  }
+
+   close() {
+  }
+
+   abort(reason) {
+  }
+
+   releaseLock() {
   }
 }
 /**
