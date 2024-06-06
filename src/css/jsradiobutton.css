@@ -60,6 +60,7 @@
 }
 .jsradiobutton[role=toggle] input {
   width: 0px;
+  display: none;
 }
 .jsradiobutton[role=toggle] input::after {
   content: "";
