@@ -5,6 +5,7 @@ import static def.dom.Globals.console;
 import static def.dom.Globals.document;
 import def.js.Array;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javascript.util.fsa.OpenFilePickerOptions;
 import javascript.util.fsa.OpenFilePickerOptionsType;
@@ -45,9 +46,12 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton2 = new JButton();
     jButton3 = new JButton();
     jButton4 = new JButton();
+    jButton5 = new JButton();
     jPanel2 = new JPanel();
 
     setTitle("Test File Chooser");
+
+    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
 
     jButton1.setText("Open Single File");
     jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -64,6 +68,10 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton4.setText("Open Single File FSA API");
     jButton4.addActionListener(this::jButton4ActionPerformed);
     jPanel1.add(jButton4);
+
+    jButton5.setText("Open Multiple File FSA API");
+    jButton5.addActionListener(this::jButton5ActionPerformed);
+    jPanel1.add(jButton5);
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     getContentPane().add(jPanel2, BorderLayout.CENTER);
@@ -84,6 +92,10 @@ public class TestJFrame8 extends javax.swing.JFrame {
   private void jButton4ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     this.open2(false);
   }//GEN-LAST:event_jButton4ActionPerformed
+
+  private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    this.open2(true);
+  }//GEN-LAST:event_jButton5ActionPerformed
 
   private void open(int selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
@@ -108,12 +120,12 @@ public class TestJFrame8 extends javax.swing.JFrame {
     options.excludeAcceptAllOption = true;
     options.multiple = multiple;
     options.id = "CURRENT_ID";
-    
+
     OpenFilePickerOptionsType type = new OpenFilePickerOptionsType();
     type.description = "Immagini";
-    type.pushAccept("image/z4i", new Array<>(".gif",".png"));
+    type.pushAccept("image/z4i", new Array<>(".gif", ".png"));
     options.types.push(type);
-    
+
     type = new OpenFilePickerOptionsType();
     type.description = "Solo GIF";
     type.pushAccept("image/gif", new Array<>(".gif"));
@@ -147,11 +159,14 @@ public class TestJFrame8 extends javax.swing.JFrame {
       }));
     });
   }
+
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private JButton jButton1;
   private JButton jButton2;
   private JButton jButton3;
   private JButton jButton4;
+  private JButton jButton5;
   private JPanel jPanel1;
   private JPanel jPanel2;
   // End of variables declaration//GEN-END:variables

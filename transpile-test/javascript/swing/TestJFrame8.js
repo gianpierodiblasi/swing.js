@@ -26,8 +26,10 @@ class TestJFrame8 extends JFrame {
     this.jButton2 = new JButton();let jButton2 = this.jButton2;
     this.jButton3 = new JButton();let jButton3 = this.jButton3;
     this.jButton4 = new JButton();let jButton4 = this.jButton4;
+    this.jButton5 = new JButton();let jButton5 = this.jButton5;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.setTitle("Test File Chooser");
+    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
     jButton1.setText("Open Single File");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);
@@ -40,6 +42,9 @@ class TestJFrame8 extends JFrame {
     jButton4.setText("Open Single File FSA API");
     jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton4);
+    jButton5.setText("Open Multiple File FSA API");
+    jButton5.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton5ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton5);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
@@ -69,6 +74,12 @@ class TestJFrame8 extends JFrame {
   }
 
   // GEN-LAST:event_jButton4ActionPerformed
+   jButton5ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton5ActionPerformed
+    this.open2(true);
+  }
+
+  // GEN-LAST:event_jButton5ActionPerformed
    open(selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files => {
       document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
@@ -130,6 +141,8 @@ class TestJFrame8 extends JFrame {
    jButton3 = null;
 
    jButton4 = null;
+
+   jButton5 = null;
 
    jPanel1 = null;
 
