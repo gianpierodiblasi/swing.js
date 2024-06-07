@@ -5463,10 +5463,19 @@ class JSFileChooser {
  */
 class JSFilePicker {
 
-  static  JSFilePickerDB = null;
+  static  DB = null;
 
   static {
-    window.indexedDB.open("swing.js-JSFilePickerDB", 1).onupgradeneeded = event => {
+    let request = window.indexedDB.open("swing.js-JSFilePickerDB", 1);
+    request.onupgradeneeded = event => {
+      JSFilePicker.DB = event.target["result"];
+      let options = new Object();
+      options["keyPath"] = "id";
+      JSFilePicker.DB.createObjectStore("handles", options);
+      return null;
+    };
+    request.onsuccess = event => {
+      JSFilePicker.DB = event.target["result"];
       return null;
     };
   }
@@ -5483,15 +5492,46 @@ class JSFilePicker {
    * @param response The function to call on close
    */
   static  showOpenFilePicker(options, maximumFileSize, response) {
-    // if (!$exists(options.startIn)) {
-    // eval("delete options.startIn");
-    // }
-    if (options.id) {
+    if (options.id && JSFilePicker.DB) {
+      let request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
+      request.onsuccess = event => {
+        let result = event.target["result"];
+        if (result) {
+          options.startIn = result["handle"];
+          JSFilePicker.openFilePicker(options, maximumFileSize, response);
+        } else {
+          eval("delete options.startIn");
+          JSFilePicker.openFilePicker(options, maximumFileSize, response);
+        }
+        return null;
+      };
+      request.onerror = event => {
+        eval("delete options.startIn");
+        JSFilePicker.openFilePicker(options, maximumFileSize, response);
+        return null;
+      };
     } else {
-      window.showOpenFilePicker(options).then(handles => {
-        JSFilePicker.purgeFileSystemFileHandle(new Array(), handles, options.types, 0, maximumFileSize, response);
-      });
+      eval("delete options.startIn");
+      JSFilePicker.openFilePicker(options, maximumFileSize, response);
     }
+  }
+
+  static  openFilePicker(options, maximumFileSize, response) {
+    window.showOpenFilePicker(options).then(handles => {
+      if (options.id && JSFilePicker.DB) {
+        let transaction = JSFilePicker.DB.transaction("handles", "readwrite");
+        transaction.oncomplete = event => {
+          JSFilePicker.purgeFileSystemFileHandle(new Array(), handles, options.types, 0, maximumFileSize, response);
+          return null;
+        };
+        let json = new Object();
+        json["id"] = options.id;
+        json["handle"] = handles[0];
+        transaction.objectStore("handles").put(json);
+      } else {
+        JSFilePicker.purgeFileSystemFileHandle(new Array(), handles, options.types, 0, maximumFileSize, response);
+      }
+    });
   }
 
   static  purgeFileSystemFileHandle(finalHandles, handles, types, index, maximumFileSize, response) {
@@ -6335,6 +6375,8 @@ class FileSystemWritableFileStreamCreateOptions {
 class OpenFilePickerOptions {
 
    id = null;
+
+   startIn = null;
 
    multiple = false;
 

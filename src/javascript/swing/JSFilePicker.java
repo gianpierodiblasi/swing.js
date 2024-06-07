@@ -1,7 +1,11 @@
 package javascript.swing;
 
 import def.dom.IDBDatabase;
+import def.dom.IDBOpenDBRequest;
+import def.dom.IDBRequest;
+import def.dom.IDBTransaction;
 import def.js.Array;
+import static def.js.Globals.eval;
 import def.js.Object;
 import javascript.util.fsa.FileSystemFileHandle;
 import javascript.util.fsa.OpenFilePickerOptions;
@@ -9,6 +13,7 @@ import javascript.util.fsa.OpenFilePickerOptionsType;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.window;
+import simulation.js.$Object;
 
 /**
  * A file selector based on the JavaScript File System Access API
@@ -17,10 +22,22 @@ import static simulation.js.$Globals.window;
  */
 public class JSFilePicker {
 
-  private static IDBDatabase JSFilePickerDB;
+  private static IDBDatabase DB;
 
   static {
-    window.indexedDB.open("swing.js-JSFilePickerDB", 1).onupgradeneeded = event -> {
+    @SuppressWarnings("StaticNonFinalUsedInInitialization")
+    IDBOpenDBRequest request = window.indexedDB.open("swing.js-JSFilePickerDB", 1);
+    request.onupgradeneeded = event -> {
+      JSFilePicker.DB = (IDBDatabase) event.target.$get("result");
+
+      $Object options = new $Object();
+      options.$set("keyPath", "id");
+      JSFilePicker.DB.createObjectStore("handles", options);
+
+      return null;
+    };
+    request.onsuccess = event -> {
+      JSFilePicker.DB = (IDBDatabase) event.target.$get("result");
       return null;
     };
   }
@@ -37,16 +54,48 @@ public class JSFilePicker {
    * @param response The function to call on close
    */
   public static void showOpenFilePicker(OpenFilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
-//    if (!$exists(options.startIn)) {
-//      eval("delete options.startIn");
-//    }
+    if ($exists(options.id) && $exists(JSFilePicker.DB)) {
+      IDBRequest request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
+      request.onsuccess = event -> {
+        $Object result = ($Object) event.target.$get("result");
+        if ($exists(result)) {
+          options.startIn = result.$get("handle");
+          JSFilePicker.openFilePicker(options, maximumFileSize, response);
+        } else {
+          eval("delete options.startIn");
+          JSFilePicker.openFilePicker(options, maximumFileSize, response);
+        }
 
-    if ($exists(options.id)) {
+        return null;
+      };
+      request.onerror = event -> {
+        eval("delete options.startIn");
+        JSFilePicker.openFilePicker(options, maximumFileSize, response);
+        return null;
+      };
     } else {
-      window.showOpenFilePicker(options).then(handles -> {
-        JSFilePicker.purgeFileSystemFileHandle(new Array<>(), handles, options.types, 0, maximumFileSize, response);
-      });
+      eval("delete options.startIn");
+      JSFilePicker.openFilePicker(options, maximumFileSize, response);
     }
+  }
+
+  private static void openFilePicker(OpenFilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
+    window.showOpenFilePicker(options).then(handles -> {
+      if ($exists(options.id) && $exists(JSFilePicker.DB)) {
+        IDBTransaction transaction = JSFilePicker.DB.transaction("handles", "readwrite");
+        transaction.oncomplete = event -> {
+          JSFilePicker.purgeFileSystemFileHandle(new Array<>(), handles, options.types, 0, maximumFileSize, response);
+          return null;
+        };
+
+        $Object json = new $Object();
+        json.$set("id", options.id);
+        json.$set("handle", handles.$get(0));
+        transaction.objectStore("handles").put(json);
+      } else {
+        JSFilePicker.purgeFileSystemFileHandle(new Array<>(), handles, options.types, 0, maximumFileSize, response);
+      }
+    });
   }
 
   @SuppressWarnings("unchecked")
