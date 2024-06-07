@@ -5551,6 +5551,55 @@ class JSFilePicker {
       response(finalHandles);
     }
   }
+
+  /**
+   * Shows a save file picker
+   *
+   * @param options The options
+   * @param response The function to call on close
+   */
+  static  showSaveFilePicker(options, response) {
+    if (options.id && JSFilePicker.DB) {
+      let request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
+      request.onsuccess = event => {
+        let result = event.target["result"];
+        if (result) {
+          options.startIn = result["handle"];
+          JSFilePicker.saveFilePicker(options, response);
+        } else {
+          eval("delete options.startIn");
+          JSFilePicker.saveFilePicker(options, response);
+        }
+        return null;
+      };
+      request.onerror = event => {
+        eval("delete options.startIn");
+        JSFilePicker.saveFilePicker(options, response);
+        return null;
+      };
+    } else {
+      eval("delete options.startIn");
+      JSFilePicker.saveFilePicker(options, response);
+    }
+  }
+
+  static  saveFilePicker(options, response) {
+    window.showSaveFilePicker(options).then(handle => {
+      if (options.id && JSFilePicker.DB) {
+        let transaction = JSFilePicker.DB.transaction("handles", "readwrite");
+        transaction.oncomplete = event => {
+          response(handle);
+          return null;
+        };
+        let json = new Object();
+        json["id"] = options.id;
+        json["handle"] = handle;
+        transaction.objectStore("handles").put(json);
+      } else {
+        response(handle);
+      }
+    });
+  }
 }
 /**
  * The javax.swing.JOptionPane clone

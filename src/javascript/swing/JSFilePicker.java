@@ -7,9 +7,9 @@ import def.dom.IDBTransaction;
 import def.js.Array;
 import static def.js.Globals.eval;
 import def.js.Object;
-import javascript.util.fsa.FileSystemFileHandle;
 import javascript.util.fsa.FilePickerOptions;
 import javascript.util.fsa.FilePickerOptionsType;
+import javascript.util.fsa.FileSystemFileHandle;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.window;
@@ -119,5 +119,56 @@ public class JSFilePicker {
     } else if ($exists(response)) {
       response.$apply(finalHandles);
     }
+  }
+
+  /**
+   * Shows a save file picker
+   *
+   * @param options The options
+   * @param response The function to call on close
+   */
+  public static void showSaveFilePicker(FilePickerOptions options, $Apply_1_Void<FileSystemFileHandle> response) {
+    if ($exists(options.id) && $exists(JSFilePicker.DB)) {
+      IDBRequest request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
+      request.onsuccess = event -> {
+        $Object result = ($Object) event.target.$get("result");
+        if ($exists(result)) {
+          options.startIn = result.$get("handle");
+          JSFilePicker.saveFilePicker(options, response);
+        } else {
+          eval("delete options.startIn");
+          JSFilePicker.saveFilePicker(options, response);
+        }
+
+        return null;
+      };
+      request.onerror = event -> {
+        eval("delete options.startIn");
+        JSFilePicker.saveFilePicker(options, response);
+        return null;
+      };
+    } else {
+      eval("delete options.startIn");
+      JSFilePicker.saveFilePicker(options, response);
+    }
+  }
+
+  private static void saveFilePicker(FilePickerOptions options, $Apply_1_Void<FileSystemFileHandle> response) {
+    window.showSaveFilePicker(options).then(handle -> {
+      if ($exists(options.id) && $exists(JSFilePicker.DB)) {
+        IDBTransaction transaction = JSFilePicker.DB.transaction("handles", "readwrite");
+        transaction.oncomplete = event -> {
+          response.$apply(handle);
+          return null;
+        };
+
+        $Object json = new $Object();
+        json.$set("id", options.id);
+        json.$set("handle", handle);
+        transaction.objectStore("handles").put(json);
+      } else {
+        response.$apply(handle);
+      }
+    });
   }
 }

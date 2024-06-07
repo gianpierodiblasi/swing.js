@@ -3,8 +3,8 @@ package simulation.dom;
 import def.dom.Window;
 import def.js.Array;
 import def.js.Promise;
-import javascript.util.fsa.FileSystemFileHandle;
 import javascript.util.fsa.FilePickerOptions;
+import javascript.util.fsa.FileSystemFileHandle;
 
 /**
  * The simulation of the Window object
@@ -17,7 +17,7 @@ public class $Window extends Window {
     return null;
   }
 
-//  public Promise<FileSystemFileHandle> showSaveFilePicker($Object options) {
-//    return null;
-//  }
+  public Promise<FileSystemFileHandle> showSaveFilePicker(FilePickerOptions options) {
+    return null;
+  }
 }

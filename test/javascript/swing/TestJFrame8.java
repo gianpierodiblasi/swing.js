@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javascript.util.fsa.FilePickerOptions;
 import javascript.util.fsa.FilePickerOptionsType;
+import javascript.util.fsa.FileSystemWritableFileStreamCreateOptions;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import simulation.dom.$Image;
@@ -47,6 +48,7 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton3 = new JButton();
     jButton4 = new JButton();
     jButton5 = new JButton();
+    jButton6 = new JButton();
     jPanel2 = new JPanel();
 
     setTitle("Test File Chooser");
@@ -73,6 +75,10 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton5.addActionListener(this::jButton5ActionPerformed);
     jPanel1.add(jButton5);
 
+    jButton6.setText("Save File FSA API");
+    jButton6.addActionListener(this::jButton6ActionPerformed);
+    jPanel1.add(jButton6);
+
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     getContentPane().add(jPanel2, BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
@@ -96,6 +102,31 @@ public class TestJFrame8 extends javax.swing.JFrame {
   private void jButton5ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     this.open2(true);
   }//GEN-LAST:event_jButton5ActionPerformed
+
+  private void jButton6ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    FilePickerOptions options = new FilePickerOptions();
+    options.excludeAcceptAllOption = true;
+    options.id = "CURRENT_ID";
+    options.suggestedName = "pippo.txt";
+
+    FilePickerOptionsType type = new FilePickerOptionsType();
+    type.description = "TESTO";
+    type.pushAccept("text/plain", new Array<>(".txt"));
+    options.types.push(type);
+
+    console.log(options);
+
+    JSFilePicker.showSaveFilePicker(options, handle -> {
+      console.log(handle);
+
+      FileSystemWritableFileStreamCreateOptions createOptions = new FileSystemWritableFileStreamCreateOptions();
+
+      handle.createWritable(createOptions).then(writable -> {
+        writable.write("ciao mamma guarda come mi diverto");
+        writable.close();
+      });
+    });
+  }//GEN-LAST:event_jButton6ActionPerformed
 
   private void open(int selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
@@ -167,6 +198,7 @@ public class TestJFrame8 extends javax.swing.JFrame {
   private JButton jButton3;
   private JButton jButton4;
   private JButton jButton5;
+  private JButton jButton6;
   private JPanel jPanel1;
   private JPanel jPanel2;
   // End of variables declaration//GEN-END:variables
