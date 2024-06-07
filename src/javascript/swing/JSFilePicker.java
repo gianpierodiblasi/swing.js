@@ -55,49 +55,9 @@ public class JSFilePicker {
    * @param response The function to call on close
    */
   public static void showOpenFilePicker(FilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
-    JSFilePicker.showPicker(options, () -> JSFilePicker.openFilePicker(options, maximumFileSize, response));
-  }
-
-  private static void openFilePicker(FilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
-    window.showOpenFilePicker(options).then(handles -> {
-      if ($exists(options.id) && $exists(JSFilePicker.DB)) {
-        IDBTransaction transaction = JSFilePicker.DB.transaction("handles", "readwrite");
-        transaction.oncomplete = event -> {
-          JSFilePicker.purgeFileSystemFileHandle(new Array<>(), handles, options.types, 0, maximumFileSize, response);
-          return null;
-        };
-
-        $Object json = new $Object();
-        json.$set("id", options.id);
-        json.$set("handle", handles.$get(0));
-        transaction.objectStore("handles").put(json);
-      } else {
-        JSFilePicker.purgeFileSystemFileHandle(new Array<>(), handles, options.types, 0, maximumFileSize, response);
-      }
-    });
-  }
-
-  @SuppressWarnings("unchecked")
-  private static void purgeFileSystemFileHandle(Array<FileSystemFileHandle> finalHandles, Array<FileSystemFileHandle> handles, Array<FilePickerOptionsType> types, int index, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
-    if (index < handles.length) {
-      handles.$get(index).getFile().then(file -> {
-        boolean sizeOk = maximumFileSize <= 0 || file.size / (1024 * 1024) <= maximumFileSize;
-
-        Array<String> exts = new Array<>();
-        types.forEach(type -> Object.keys(type.accept).forEach(key -> ((Iterable<String>) type.accept.$get(key)).forEach(ext -> exts.push(ext))));
-
-        def.js.String name = new def.js.String(file.name);
-        boolean typeOk = types.length == 0 || exts.indexOf("." + name.split(".").pop().toLowerCase()) != -1;
-
-        if (sizeOk && typeOk) {
-          finalHandles.push(handles.$get(index));
-        }
-
-        JSFilePicker.purgeFileSystemFileHandle(finalHandles, handles, types, index + 1, maximumFileSize, response);
-      });
-    } else if ($exists(response)) {
-      response.$apply(finalHandles);
-    }
+    JSFilePicker.showPicker(options, () -> window.showOpenFilePicker(options).then(handles -> {
+      JSFilePicker.afterPicking(options, handles.$get(0), () -> JSFilePicker.purgeFileSystemFileHandle(new Array<>(), handles, options.types, 0, maximumFileSize, response));
+    }));
   }
 
   /**
@@ -107,26 +67,9 @@ public class JSFilePicker {
    * @param response The function to call on close
    */
   public static void showSaveFilePicker(FilePickerOptions options, $Apply_1_Void<FileSystemFileHandle> response) {
-    JSFilePicker.showPicker(options, () -> JSFilePicker.saveFilePicker(options, response));
-  }
-
-  private static void saveFilePicker(FilePickerOptions options, $Apply_1_Void<FileSystemFileHandle> response) {
-    window.showSaveFilePicker(options).then(handle -> {
-      if ($exists(options.id) && $exists(JSFilePicker.DB)) {
-        IDBTransaction transaction = JSFilePicker.DB.transaction("handles", "readwrite");
-        transaction.oncomplete = event -> {
-          response.$apply(handle);
-          return null;
-        };
-
-        $Object json = new $Object();
-        json.$set("id", options.id);
-        json.$set("handle", handle);
-        transaction.objectStore("handles").put(json);
-      } else {
-        response.$apply(handle);
-      }
-    });
+    JSFilePicker.showPicker(options, () -> window.showSaveFilePicker(options).then(handle -> {
+      JSFilePicker.afterPicking(options, handle, () -> response.$apply(handle));
+    }));
   }
 
   private static void showPicker(FilePickerOptions options, $Apply_0_Void action) {
@@ -152,6 +95,46 @@ public class JSFilePicker {
     } else {
       eval("delete options.startIn");
       action.$apply();
+    }
+  }
+
+  private static void afterPicking(FilePickerOptions options, FileSystemFileHandle handle, $Apply_0_Void action) {
+    if ($exists(options.id) && $exists(JSFilePicker.DB)) {
+      IDBTransaction transaction = JSFilePicker.DB.transaction("handles", "readwrite");
+      transaction.oncomplete = event -> {
+        action.$apply();
+        return null;
+      };
+
+      $Object json = new $Object();
+      json.$set("id", options.id);
+      json.$set("handle", handle);
+      transaction.objectStore("handles").put(json);
+    } else {
+      action.$apply();
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  private static void purgeFileSystemFileHandle(Array<FileSystemFileHandle> finalHandles, Array<FileSystemFileHandle> handles, Array<FilePickerOptionsType> types, int index, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
+    if (index < handles.length) {
+      handles.$get(index).getFile().then(file -> {
+        boolean sizeOk = maximumFileSize <= 0 || file.size / (1024 * 1024) <= maximumFileSize;
+
+        Array<String> exts = new Array<>();
+        types.forEach(type -> Object.keys(type.accept).forEach(key -> ((Iterable<String>) type.accept.$get(key)).forEach(ext -> exts.push(ext))));
+
+        def.js.String name = new def.js.String(file.name);
+        boolean typeOk = types.length == 0 || exts.indexOf("." + name.split(".").pop().toLowerCase()) != -1;
+
+        if (sizeOk && typeOk) {
+          finalHandles.push(handles.$get(index));
+        }
+
+        JSFilePicker.purgeFileSystemFileHandle(finalHandles, handles, types, index + 1, maximumFileSize, response);
+      });
+    } else if ($exists(response)) {
+      response.$apply(finalHandles);
     }
   }
 }

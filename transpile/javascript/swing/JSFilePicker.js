@@ -34,43 +34,9 @@ class JSFilePicker {
    * @param response The function to call on close
    */
   static  showOpenFilePicker(options, maximumFileSize, response) {
-    JSFilePicker.showPicker(options, () => JSFilePicker.openFilePicker(options, maximumFileSize, response));
-  }
-
-  static  openFilePicker(options, maximumFileSize, response) {
-    window.showOpenFilePicker(options).then(handles => {
-      if (options.id && JSFilePicker.DB) {
-        let transaction = JSFilePicker.DB.transaction("handles", "readwrite");
-        transaction.oncomplete = event => {
-          JSFilePicker.purgeFileSystemFileHandle(new Array(), handles, options.types, 0, maximumFileSize, response);
-          return null;
-        };
-        let json = new Object();
-        json["id"] = options.id;
-        json["handle"] = handles[0];
-        transaction.objectStore("handles").put(json);
-      } else {
-        JSFilePicker.purgeFileSystemFileHandle(new Array(), handles, options.types, 0, maximumFileSize, response);
-      }
-    });
-  }
-
-  static  purgeFileSystemFileHandle(finalHandles, handles, types, index, maximumFileSize, response) {
-    if (index < handles.length) {
-      handles[index].getFile().then(file => {
-        let sizeOk = maximumFileSize <= 0 || file.size / (1024 * 1024) <= maximumFileSize;
-        let exts = new Array();
-        types.forEach(type => Object.keys(type.accept).forEach(key => (type.accept[key]).forEach(ext => exts.push(ext))));
-        let name = new String(file.name);
-        let typeOk = types.length === 0 || exts.indexOf("." + name.split(".").pop().toLowerCase()) !== -1;
-        if (sizeOk && typeOk) {
-          finalHandles.push(handles[index]);
-        }
-        JSFilePicker.purgeFileSystemFileHandle(finalHandles, handles, types, index + 1, maximumFileSize, response);
-      });
-    } else if (response) {
-      response(finalHandles);
-    }
+    JSFilePicker.showPicker(options, () => window.showOpenFilePicker(options).then(handles => {
+      JSFilePicker.afterPicking(options, handles[0], () => JSFilePicker.purgeFileSystemFileHandle(new Array(), handles, options.types, 0, maximumFileSize, response));
+    }));
   }
 
   /**
@@ -80,25 +46,9 @@ class JSFilePicker {
    * @param response The function to call on close
    */
   static  showSaveFilePicker(options, response) {
-    JSFilePicker.showPicker(options, () => JSFilePicker.saveFilePicker(options, response));
-  }
-
-  static  saveFilePicker(options, response) {
-    window.showSaveFilePicker(options).then(handle => {
-      if (options.id && JSFilePicker.DB) {
-        let transaction = JSFilePicker.DB.transaction("handles", "readwrite");
-        transaction.oncomplete = event => {
-          response(handle);
-          return null;
-        };
-        let json = new Object();
-        json["id"] = options.id;
-        json["handle"] = handle;
-        transaction.objectStore("handles").put(json);
-      } else {
-        response(handle);
-      }
-    });
+    JSFilePicker.showPicker(options, () => window.showSaveFilePicker(options).then(handle => {
+      JSFilePicker.afterPicking(options, handle, () => response(handle));
+    }));
   }
 
   static  showPicker(options, action) {
@@ -123,6 +73,40 @@ class JSFilePicker {
     } else {
       eval("delete options.startIn");
       action();
+    }
+  }
+
+  static  afterPicking(options, handle, action) {
+    if (options.id && JSFilePicker.DB) {
+      let transaction = JSFilePicker.DB.transaction("handles", "readwrite");
+      transaction.oncomplete = event => {
+        action();
+        return null;
+      };
+      let json = new Object();
+      json["id"] = options.id;
+      json["handle"] = handle;
+      transaction.objectStore("handles").put(json);
+    } else {
+      action();
+    }
+  }
+
+  static  purgeFileSystemFileHandle(finalHandles, handles, types, index, maximumFileSize, response) {
+    if (index < handles.length) {
+      handles[index].getFile().then(file => {
+        let sizeOk = maximumFileSize <= 0 || file.size / (1024 * 1024) <= maximumFileSize;
+        let exts = new Array();
+        types.forEach(type => Object.keys(type.accept).forEach(key => (type.accept[key]).forEach(ext => exts.push(ext))));
+        let name = new String(file.name);
+        let typeOk = types.length === 0 || exts.indexOf("." + name.split(".").pop().toLowerCase()) !== -1;
+        if (sizeOk && typeOk) {
+          finalHandles.push(handles[index]);
+        }
+        JSFilePicker.purgeFileSystemFileHandle(finalHandles, handles, types, index + 1, maximumFileSize, response);
+      });
+    } else if (response) {
+      response(finalHandles);
     }
   }
 }
