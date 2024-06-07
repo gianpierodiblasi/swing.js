@@ -58,10 +58,10 @@ swing.js has been tested on:
 - Windows
   - chrome 124
   - edge 124
-  - firefox 125
+  - firefox 125 (JSFilePicker is not supported)
 - Android
-  - chrome 124
-  - edge 124
+  - chrome 124 (JSFilePicker is not supported)
+  - edge 124 (JSFilePicker is not supported)
 
 ## Dependencies
 - josetta - [link](https://github.com/gianpierodiblasi/josetta)
