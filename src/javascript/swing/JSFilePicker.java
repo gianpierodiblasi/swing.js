@@ -10,6 +10,7 @@ import def.js.Object;
 import javascript.util.fsa.FilePickerOptions;
 import javascript.util.fsa.FilePickerOptionsType;
 import javascript.util.fsa.FileSystemFileHandle;
+import simulation.js.$Apply_0_Void;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.window;
@@ -54,29 +55,7 @@ public class JSFilePicker {
    * @param response The function to call on close
    */
   public static void showOpenFilePicker(FilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
-    if ($exists(options.id) && $exists(JSFilePicker.DB)) {
-      IDBRequest request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
-      request.onsuccess = event -> {
-        $Object result = ($Object) event.target.$get("result");
-        if ($exists(result)) {
-          options.startIn = result.$get("handle");
-          JSFilePicker.openFilePicker(options, maximumFileSize, response);
-        } else {
-          eval("delete options.startIn");
-          JSFilePicker.openFilePicker(options, maximumFileSize, response);
-        }
-
-        return null;
-      };
-      request.onerror = event -> {
-        eval("delete options.startIn");
-        JSFilePicker.openFilePicker(options, maximumFileSize, response);
-        return null;
-      };
-    } else {
-      eval("delete options.startIn");
-      JSFilePicker.openFilePicker(options, maximumFileSize, response);
-    }
+    JSFilePicker.showPicker(options, () -> JSFilePicker.openFilePicker(options, maximumFileSize, response));
   }
 
   private static void openFilePicker(FilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
@@ -128,29 +107,7 @@ public class JSFilePicker {
    * @param response The function to call on close
    */
   public static void showSaveFilePicker(FilePickerOptions options, $Apply_1_Void<FileSystemFileHandle> response) {
-    if ($exists(options.id) && $exists(JSFilePicker.DB)) {
-      IDBRequest request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
-      request.onsuccess = event -> {
-        $Object result = ($Object) event.target.$get("result");
-        if ($exists(result)) {
-          options.startIn = result.$get("handle");
-          JSFilePicker.saveFilePicker(options, response);
-        } else {
-          eval("delete options.startIn");
-          JSFilePicker.saveFilePicker(options, response);
-        }
-
-        return null;
-      };
-      request.onerror = event -> {
-        eval("delete options.startIn");
-        JSFilePicker.saveFilePicker(options, response);
-        return null;
-      };
-    } else {
-      eval("delete options.startIn");
-      JSFilePicker.saveFilePicker(options, response);
-    }
+    JSFilePicker.showPicker(options, () -> JSFilePicker.saveFilePicker(options, response));
   }
 
   private static void saveFilePicker(FilePickerOptions options, $Apply_1_Void<FileSystemFileHandle> response) {
@@ -170,5 +127,31 @@ public class JSFilePicker {
         response.$apply(handle);
       }
     });
+  }
+
+  private static void showPicker(FilePickerOptions options, $Apply_0_Void action) {
+    if ($exists(options.id) && $exists(JSFilePicker.DB)) {
+      IDBRequest request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
+      request.onsuccess = event -> {
+        $Object result = ($Object) event.target.$get("result");
+        if ($exists(result)) {
+          options.startIn = result.$get("handle");
+          action.$apply();
+        } else {
+          eval("delete options.startIn");
+          action.$apply();
+        }
+
+        return null;
+      };
+      request.onerror = event -> {
+        eval("delete options.startIn");
+        action.$apply();
+        return null;
+      };
+    } else {
+      eval("delete options.startIn");
+      action.$apply();
+    }
   }
 }

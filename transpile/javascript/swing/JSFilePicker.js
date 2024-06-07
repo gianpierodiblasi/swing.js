@@ -34,28 +34,7 @@ class JSFilePicker {
    * @param response The function to call on close
    */
   static  showOpenFilePicker(options, maximumFileSize, response) {
-    if (options.id && JSFilePicker.DB) {
-      let request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
-      request.onsuccess = event => {
-        let result = event.target["result"];
-        if (result) {
-          options.startIn = result["handle"];
-          JSFilePicker.openFilePicker(options, maximumFileSize, response);
-        } else {
-          eval("delete options.startIn");
-          JSFilePicker.openFilePicker(options, maximumFileSize, response);
-        }
-        return null;
-      };
-      request.onerror = event => {
-        eval("delete options.startIn");
-        JSFilePicker.openFilePicker(options, maximumFileSize, response);
-        return null;
-      };
-    } else {
-      eval("delete options.startIn");
-      JSFilePicker.openFilePicker(options, maximumFileSize, response);
-    }
+    JSFilePicker.showPicker(options, () => JSFilePicker.openFilePicker(options, maximumFileSize, response));
   }
 
   static  openFilePicker(options, maximumFileSize, response) {
@@ -101,28 +80,7 @@ class JSFilePicker {
    * @param response The function to call on close
    */
   static  showSaveFilePicker(options, response) {
-    if (options.id && JSFilePicker.DB) {
-      let request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
-      request.onsuccess = event => {
-        let result = event.target["result"];
-        if (result) {
-          options.startIn = result["handle"];
-          JSFilePicker.saveFilePicker(options, response);
-        } else {
-          eval("delete options.startIn");
-          JSFilePicker.saveFilePicker(options, response);
-        }
-        return null;
-      };
-      request.onerror = event => {
-        eval("delete options.startIn");
-        JSFilePicker.saveFilePicker(options, response);
-        return null;
-      };
-    } else {
-      eval("delete options.startIn");
-      JSFilePicker.saveFilePicker(options, response);
-    }
+    JSFilePicker.showPicker(options, () => JSFilePicker.saveFilePicker(options, response));
   }
 
   static  saveFilePicker(options, response) {
@@ -141,5 +99,30 @@ class JSFilePicker {
         response(handle);
       }
     });
+  }
+
+  static  showPicker(options, action) {
+    if (options.id && JSFilePicker.DB) {
+      let request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
+      request.onsuccess = event => {
+        let result = event.target["result"];
+        if (result) {
+          options.startIn = result["handle"];
+          action();
+        } else {
+          eval("delete options.startIn");
+          action();
+        }
+        return null;
+      };
+      request.onerror = event => {
+        eval("delete options.startIn");
+        action();
+        return null;
+      };
+    } else {
+      eval("delete options.startIn");
+      action();
+    }
   }
 }
