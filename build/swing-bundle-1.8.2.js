@@ -6295,6 +6295,40 @@ class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
   }
 }
 /**
+ * The options used when opening a file
+ *
+ * @author gianpiero.diblasi
+ */
+class FilePickerOptions {
+
+   id = null;
+
+   suggestedName = null;
+
+   startIn = null;
+
+   multiple = false;
+
+   types = new Array();
+
+   excludeAcceptAllOption = false;
+}
+/**
+ * The types in the options used when opening a file
+ *
+ * @author gianpiero.diblasi
+ */
+class FilePickerOptionsType {
+
+   description = null;
+
+   accept = new Object();
+
+   pushAccept(mime, extensions) {
+    this.accept[mime] = extensions;
+  }
+}
+/**
  * The simulation of the FileSystemHandle object
  *
  * @author gianpiero.diblasi
@@ -6347,38 +6381,6 @@ class FileSystemHandleRemoveOptions {
 class FileSystemWritableFileStreamCreateOptions {
 
    keepExistingData = false;
-}
-/**
- * The options used when opening a file
- *
- * @author gianpiero.diblasi
- */
-class OpenFilePickerOptions {
-
-   id = null;
-
-   startIn = null;
-
-   multiple = false;
-
-   types = new Array();
-
-   excludeAcceptAllOption = false;
-}
-/**
- * The types in the options used when opening a file
- *
- * @author gianpiero.diblasi
- */
-class OpenFilePickerOptionsType {
-
-   description = null;
-
-   accept = new Object();
-
-   pushAccept(mime, extensions) {
-    this.accept[mime] = extensions;
-  }
 }
 /**
  * The simulation of the WritableStream object

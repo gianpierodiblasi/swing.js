@@ -8,7 +8,7 @@ import def.js.Object;
  *
  * @author gianpiero.diblasi
  */
-public class OpenFilePickerOptionsType {
+public class FilePickerOptionsType {
 
   public String description;
   public Object accept = new Object();

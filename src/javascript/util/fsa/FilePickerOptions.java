@@ -7,11 +7,12 @@ import def.js.Array;
  *
  * @author gianpiero.diblasi
  */
-public class OpenFilePickerOptions {
+public class FilePickerOptions {
 
   public String id;
+  public String suggestedName;
   public FileSystemHandle startIn;
   public boolean multiple;
-  public Array<OpenFilePickerOptionsType> types = new Array<>();
+  public Array<FilePickerOptionsType> types = new Array<>();
   public boolean excludeAcceptAllOption;
 }

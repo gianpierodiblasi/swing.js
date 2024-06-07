@@ -3,9 +3,11 @@
  *
  * @author gianpiero.diblasi
  */
-class OpenFilePickerOptions {
+class FilePickerOptions {
 
    id = null;
+
+   suggestedName = null;
 
    startIn = null;
 

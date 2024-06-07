@@ -4,7 +4,7 @@ import def.dom.Window;
 import def.js.Array;
 import def.js.Promise;
 import javascript.util.fsa.FileSystemFileHandle;
-import javascript.util.fsa.OpenFilePickerOptions;
+import javascript.util.fsa.FilePickerOptions;
 
 /**
  * The simulation of the Window object
@@ -13,7 +13,7 @@ import javascript.util.fsa.OpenFilePickerOptions;
  */
 public class $Window extends Window {
 
-  public Promise<Array<FileSystemFileHandle>> showOpenFilePicker(OpenFilePickerOptions options) {
+  public Promise<Array<FileSystemFileHandle>> showOpenFilePicker(FilePickerOptions options) {
     return null;
   }
 

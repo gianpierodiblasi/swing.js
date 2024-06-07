@@ -3,7 +3,7 @@
  *
  * @author gianpiero.diblasi
  */
-class OpenFilePickerOptionsType {
+class FilePickerOptionsType {
 
    description = null;
 

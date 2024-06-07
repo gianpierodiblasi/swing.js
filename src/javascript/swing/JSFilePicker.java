@@ -8,8 +8,8 @@ import def.js.Array;
 import static def.js.Globals.eval;
 import def.js.Object;
 import javascript.util.fsa.FileSystemFileHandle;
-import javascript.util.fsa.OpenFilePickerOptions;
-import javascript.util.fsa.OpenFilePickerOptionsType;
+import javascript.util.fsa.FilePickerOptions;
+import javascript.util.fsa.FilePickerOptionsType;
 import simulation.js.$Apply_1_Void;
 import static simulation.js.$Globals.$exists;
 import static simulation.js.$Globals.window;
@@ -53,7 +53,7 @@ public class JSFilePicker {
    * less than or equal to 0 to set no constraint on the size
    * @param response The function to call on close
    */
-  public static void showOpenFilePicker(OpenFilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
+  public static void showOpenFilePicker(FilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
     if ($exists(options.id) && $exists(JSFilePicker.DB)) {
       IDBRequest request = JSFilePicker.DB.transaction("handles", "readonly").objectStore("handles").get(options.id);
       request.onsuccess = event -> {
@@ -79,7 +79,7 @@ public class JSFilePicker {
     }
   }
 
-  private static void openFilePicker(OpenFilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
+  private static void openFilePicker(FilePickerOptions options, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
     window.showOpenFilePicker(options).then(handles -> {
       if ($exists(options.id) && $exists(JSFilePicker.DB)) {
         IDBTransaction transaction = JSFilePicker.DB.transaction("handles", "readwrite");
@@ -99,7 +99,7 @@ public class JSFilePicker {
   }
 
   @SuppressWarnings("unchecked")
-  private static void purgeFileSystemFileHandle(Array<FileSystemFileHandle> finalHandles, Array<FileSystemFileHandle> handles, Array<OpenFilePickerOptionsType> types, int index, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
+  private static void purgeFileSystemFileHandle(Array<FileSystemFileHandle> finalHandles, Array<FileSystemFileHandle> handles, Array<FilePickerOptionsType> types, int index, int maximumFileSize, $Apply_1_Void<Array<FileSystemFileHandle>> response) {
     if (index < handles.length) {
       handles.$get(index).getFile().then(file -> {
         boolean sizeOk = maximumFileSize <= 0 || file.size / (1024 * 1024) <= maximumFileSize;

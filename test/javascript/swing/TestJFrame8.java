@@ -7,8 +7,8 @@ import def.js.Array;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import javascript.util.fsa.OpenFilePickerOptions;
-import javascript.util.fsa.OpenFilePickerOptionsType;
+import javascript.util.fsa.FilePickerOptions;
+import javascript.util.fsa.FilePickerOptionsType;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import simulation.dom.$Image;
@@ -116,27 +116,27 @@ public class TestJFrame8 extends javax.swing.JFrame {
   }
 
   private void open2(boolean multiple) {
-    OpenFilePickerOptions options = new OpenFilePickerOptions();
+    FilePickerOptions options = new FilePickerOptions();
     options.excludeAcceptAllOption = true;
     options.multiple = multiple;
     options.id = "CURRENT_ID";
 
-    OpenFilePickerOptionsType type = new OpenFilePickerOptionsType();
+    FilePickerOptionsType type = new FilePickerOptionsType();
     type.description = "Immagini";
     type.pushAccept("image/z4i", new Array<>(".gif", ".png"));
     options.types.push(type);
 
-    type = new OpenFilePickerOptionsType();
+    type = new FilePickerOptionsType();
     type.description = "Solo GIF";
     type.pushAccept("image/gif", new Array<>(".gif"));
     options.types.push(type);
 
-    type = new OpenFilePickerOptionsType();
+    type = new FilePickerOptionsType();
     type.description = "Solo PNG";
     type.pushAccept("image/png", new Array<>(".png"));
     options.types.push(type);
 
-    type = new OpenFilePickerOptionsType();
+    type = new FilePickerOptionsType();
     type.description = "pizzApazzA";
     type.pushAccept("application/z4i", new Array<>(".z4i"));
     options.types.push(type);

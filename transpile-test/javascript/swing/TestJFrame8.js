@@ -97,23 +97,23 @@ class TestJFrame8 extends JFrame {
   }
 
    open2(multiple) {
-    let options = new OpenFilePickerOptions();
+    let options = new FilePickerOptions();
     options.excludeAcceptAllOption = true;
     options.multiple = multiple;
     options.id = "CURRENT_ID";
-    let type = new OpenFilePickerOptionsType();
+    let type = new FilePickerOptionsType();
     type.description = "Immagini";
     type.pushAccept("image/z4i", new Array(".gif", ".png"));
     options.types.push(type);
-    type = new OpenFilePickerOptionsType();
+    type = new FilePickerOptionsType();
     type.description = "Solo GIF";
     type.pushAccept("image/gif", new Array(".gif"));
     options.types.push(type);
-    type = new OpenFilePickerOptionsType();
+    type = new FilePickerOptionsType();
     type.description = "Solo PNG";
     type.pushAccept("image/png", new Array(".png"));
     options.types.push(type);
-    type = new OpenFilePickerOptionsType();
+    type = new FilePickerOptionsType();
     type.description = "pizzApazzA";
     type.pushAccept("application/z4i", new Array(".z4i"));
     options.types.push(type);
