@@ -25,6 +25,7 @@ class TestJFrame8 extends JFrame {
     this.jButton1 = new JButton();let jButton1 = this.jButton1;
     this.jButton2 = new JButton();let jButton2 = this.jButton2;
     this.jButton3 = new JButton();let jButton3 = this.jButton3;
+    this.jButton4 = new JButton();let jButton4 = this.jButton4;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.setTitle("Test File Chooser");
     jButton1.setText("Open Single File");
@@ -36,6 +37,9 @@ class TestJFrame8 extends JFrame {
     jButton3.setText("Open Files in Folder");
     jButton3.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton3ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton3);
+    jButton4.setText("Open Single File FSA API");
+    jButton4.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton4ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton4);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
@@ -59,6 +63,12 @@ class TestJFrame8 extends JFrame {
   }
 
   // GEN-LAST:event_jButton3ActionPerformed
+   jButton4ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton4ActionPerformed
+    this.open2(false);
+  }
+
+  // GEN-LAST:event_jButton4ActionPerformed
    open(selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files => {
       document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
@@ -75,34 +85,51 @@ class TestJFrame8 extends JFrame {
     });
   }
 
-  // private void open2(boolean multiple) {
-  // Array<Array<String>> types = new Array<>();
-  // types.$set("image/gif", new Array<>(".gif"));
-  // types.$set("image/png", new Array<>(".png"));
-  // types.$set("image/jpeg", new Array<>(".jpeg", ".jpg"));
-  // types.$set("application/zip", new Array<>(".z4i"));
-  // JSFilePicker.showOpenFilePicker("VERYLONGID", types, true, multiple, 0, handles -> {
-  // document.querySelectorAll("img").forEach(img -> img.parentElement.removeChild(img));
-  // 
-  // handles.forEach(handle -> handle.getFile().then(file -> {
-  // FileReader fileReader = new FileReader();
-  // fileReader.onload = event -> {
-  // $Image img = ($Image) document.createElement("img");
-  // img.src = (String) fileReader.result;
-  // 
-  // document.querySelector(".center").appendChild(img);
-  // return null;
-  // };
-  // fileReader.readAsDataURL(file);
-  // }));
-  // });
-  // }
+   open2(multiple) {
+    let options = new OpenFilePickerOptions();
+    options.excludeAcceptAllOption = true;
+    options.multiple = multiple;
+    options.id = "CURRENT_ID";
+    let type = new OpenFilePickerOptionsType();
+    type.description = "Immagini";
+    type.pushAccept("image/z4i", new Array(".gif", ".png"));
+    options.types.push(type);
+    type = new OpenFilePickerOptionsType();
+    type.description = "Solo GIF";
+    type.pushAccept("image/gif", new Array(".gif"));
+    options.types.push(type);
+    type = new OpenFilePickerOptionsType();
+    type.description = "Solo PNG";
+    type.pushAccept("image/png", new Array(".png"));
+    options.types.push(type);
+    type = new OpenFilePickerOptionsType();
+    type.description = "pizzApazzA";
+    type.pushAccept("application/z4i", new Array(".z4i"));
+    options.types.push(type);
+    console.log(options);
+    JSFilePicker.showOpenFilePicker(options, 0, handles => {
+      document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
+      handles.forEach(h => h.getFile().then(file => {
+        let fileReader = new FileReader();
+        fileReader.onload = event => {
+          let img = document.createElement("img");
+          img.src = fileReader.result;
+          document.querySelector(".center").appendChild(img);
+          return null;
+        };
+        fileReader.readAsDataURL(file);
+      }));
+    });
+  }
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
    jButton1 = null;
 
    jButton2 = null;
 
    jButton3 = null;
+
+   jButton4 = null;
 
    jPanel1 = null;
 

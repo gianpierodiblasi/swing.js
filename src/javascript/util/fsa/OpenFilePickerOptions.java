@@ -10,7 +10,6 @@ import def.js.Array;
 public class OpenFilePickerOptions {
 
   public String id;
-  public FileSystemHandle startIn;
   public boolean multiple;
   public Array<OpenFilePickerOptionsType> types = new Array<>();
   public boolean excludeAcceptAllOption;

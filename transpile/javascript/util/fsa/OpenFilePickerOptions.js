@@ -7,8 +7,6 @@ class OpenFilePickerOptions {
 
    id = null;
 
-   startIn = null;
-
    multiple = false;
 
    types = new Array();

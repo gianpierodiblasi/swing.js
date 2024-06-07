@@ -1,11 +1,15 @@
 package simulation.js;
 
+import simulation.dom.$Window;
+
 /**
  * Simulation of the global functions
  *
  * @author gianpiero.diblasi
  */
 public class $Globals {
+
+  public static $Window window;
 
   public static boolean $exists(Object object) {
     return false;
