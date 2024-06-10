@@ -298,14 +298,16 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItRect(java.lang.String)">canDoItRect</a></span>&#8203;(java.lang.String&nbsp;type)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItRect(def.dom.MouseEvent,java.lang.String)">canDoItRect</a></span>&#8203;(def.dom.MouseEvent&nbsp;event,
+           java.lang.String&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">Checks if a mouse event can be managed on the rect</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItSquare(java.lang.String)">canDoItSquare</a></span>&#8203;(java.lang.String&nbsp;type)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#canDoItSquare(def.dom.MouseEvent,java.lang.String)">canDoItSquare</a></span>&#8203;(def.dom.MouseEvent&nbsp;event,
+             java.lang.String&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">Checks if a mouse event can be managed on the square</div>
 </td>
@@ -700,16 +702,18 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 </dl>
 </li>
 </ul>
-<a id="canDoItSquare(java.lang.String)">
+<a id="canDoItSquare(def.dom.MouseEvent,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>canDoItSquare</h4>
-<pre class="methodSignature">protected&nbsp;boolean&nbsp;canDoItSquare&#8203;(java.lang.String&nbsp;type)</pre>
+<pre class="methodSignature">protected&nbsp;boolean&nbsp;canDoItSquare&#8203;(def.dom.MouseEvent&nbsp;event,
+                                java.lang.String&nbsp;type)</pre>
 <div class="block">Checks if a mouse event can be managed on the square</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>event</code> - The mouse event</dd>
 <dd><code>type</code> - The event type</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if the mouse event can be managed on the square, false
@@ -733,16 +737,18 @@ extends <a href="../JSPanel.html" title="class in javascript.swing">JSPanel</a><
 </dl>
 </li>
 </ul>
-<a id="canDoItRect(java.lang.String)">
+<a id="canDoItRect(def.dom.MouseEvent,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>canDoItRect</h4>
-<pre class="methodSignature">protected&nbsp;boolean&nbsp;canDoItRect&#8203;(java.lang.String&nbsp;type)</pre>
+<pre class="methodSignature">protected&nbsp;boolean&nbsp;canDoItRect&#8203;(def.dom.MouseEvent&nbsp;event,
+                              java.lang.String&nbsp;type)</pre>
 <div class="block">Checks if a mouse event can be managed on the rect</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>event</code> - The mouse event</dd>
 <dd><code>type</code> - The event type</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if the mouse event can be managed on the square, false

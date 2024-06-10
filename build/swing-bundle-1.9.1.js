@@ -2907,6 +2907,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.square.setProperty("width", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
+    this.square.addEventListener("mouseenter", event => this.squareEvent(event, "enter"));
+    this.square.addEventListener("mouseleave", event => this.squareEvent(event, "leave"));
     this.square.addEventListener("mousedown", event => this.squareEvent(event, "down"));
     this.square.addEventListener("mousemove", event => this.squareEvent(event, "move"));
     this.square.addEventListener("mouseup", event => this.squareEvent(event, "up"));
@@ -2914,6 +2916,8 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
     this.rect.getStyle().cursor = "pointer";
+    this.rect.addEventListener("mouseenter", event => this.rectEvent(event, "enter"));
+    this.rect.addEventListener("mouseleave", event => this.rectEvent(event, "leave"));
     this.rect.addEventListener("mousedown", event => this.rectEvent(event, "down"));
     this.rect.addEventListener("mousemove", event => this.rectEvent(event, "move"));
     this.rect.addEventListener("mouseup", event => this.rectEvent(event, "up"));
@@ -3079,20 +3083,27 @@ class JSAbstractColorFormatPanel extends JSPanel {
   /**
    * Checks if a mouse event can be managed on the square
    *
+   * @param event The mouse event
    * @param type The event type
    * @return true if the mouse event can be managed on the square, false
    * otherwise
    */
-   canDoItSquare(type) {
+   canDoItSquare(event, type) {
     switch(type) {
+      case "enter":
+        this.squareDown = event.buttons === 1;
+        return this.squareDown;
       case "down":
         this.squareDown = true;
-        return true;
+        return this.squareDown;
       case "move":
         return this.squareDown;
       case "up":
         this.squareDown = false;
-        return true;
+        return !this.squareDown;
+      case "leave":
+        this.squareDown = false;
+        return this.squareDown;
       default:
         return false;
     }
@@ -3110,20 +3121,27 @@ class JSAbstractColorFormatPanel extends JSPanel {
   /**
    * Checks if a mouse event can be managed on the rect
    *
+   * @param event The mouse event
    * @param type The event type
    * @return true if the mouse event can be managed on the square, false
    * otherwise
    */
-   canDoItRect(type) {
+   canDoItRect(event, type) {
     switch(type) {
+      case "enter":
+        this.rectDown = event.buttons === 1;
+        return this.rectDown;
       case "down":
         this.rectDown = true;
-        return true;
+        return this.rectDown;
       case "move":
         return this.rectDown;
       case "up":
         this.rectDown = false;
-        return true;
+        return !this.rectDown;
+      case "leave":
+        this.rectDown = false;
+        return this.rectDown;
       default:
         return false;
     }
@@ -3348,7 +3366,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.cyan.isSelected()) {
       this.setColor(this.cyanSlider.getValue(), parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.magenta.isSelected()) {
@@ -3359,7 +3377,7 @@ class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.cyan.isSelected()) {
       this.setColor(parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type !== "up");
     } else if (this.magenta.isSelected()) {
@@ -3536,7 +3554,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSLPanel.SQUARE_SIZE, 100 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.saturation.isSelected()) {
@@ -3547,7 +3565,7 @@ class JSColorHSLPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(360 * (JSColorHSLPanel.SQUARE_SIZE - event.offsetY) / JSColorHSLPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.lightnessSpinner.getValue(), true, type !== "up");
     } else if (this.saturation.isSelected()) {
@@ -3722,7 +3740,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.saturation.isSelected()) {
@@ -3733,7 +3751,7 @@ class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true, type !== "up");
     } else if (this.saturation.isSelected()) {
@@ -3888,7 +3906,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.red.isSelected()) {
       this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type !== "up");
     } else if (this.green.isSelected()) {
@@ -3899,7 +3917,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.red.isSelected()) {
       this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true, type !== "up");
     } else if (this.green.isSelected()) {
@@ -4074,7 +4092,7 @@ class JSColorYUVPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.y.isSelected()) {
       this.setColor(this.ySpinner.getValue(), 100 * event.offsetX / JSColorYUVPanel.SQUARE_SIZE, 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.u.isSelected()) {
@@ -4085,7 +4103,7 @@ class JSColorYUVPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.y.isSelected()) {
       this.setColor(100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, this.uSpinner.getValue(), this.vSpinner.getValue(), true, type !== "up");
     } else if (this.u.isSelected()) {
@@ -5200,12 +5218,14 @@ class JSSpinner extends JSComponent {
     this.up.tabIndex = -1;
     this.up.addEventListener("mousedown", event => this.spin(true));
     this.up.addEventListener("mouseup", event => this.run = false);
+    this.up.addEventListener("mouseleave", event => this.run = false);
     this.appendNodeChild(this.up);
     this.down.textContent = "\u25BC";
     this.down.style.setProperty("grid-area", "down");
     this.down.tabIndex = -1;
     this.down.addEventListener("mousedown", event => this.spin(false));
     this.down.addEventListener("mouseup", event => this.run = false);
+    this.down.addEventListener("mouseleave", event => this.run = false);
     this.appendNodeChild(this.down);
   }
 

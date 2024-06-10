@@ -193,7 +193,7 @@ public class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
   @Override
   @SuppressWarnings("StringEquality")
   protected void squareEvent(MouseEvent event, String type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.cyan.isSelected()) {
       this.setColor(this.cyanSlider.getValue(), parseInt(255 * event.offsetX / JSColorCMYKPanel.SQUARE_SIZE), parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.blackSlider.getValue(), true, type != "up");
     } else if (this.magenta.isSelected()) {
@@ -206,7 +206,7 @@ public class JSColorCMYKPanel extends JSAbstractColorFormatPanel {
   @Override
   @SuppressWarnings("StringEquality")
   protected void rectEvent(MouseEvent event, String type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.cyan.isSelected()) {
       this.setColor(parseInt(255 * (JSColorCMYKPanel.SQUARE_SIZE - event.offsetY) / JSColorCMYKPanel.SQUARE_SIZE), this.magentaSlider.getValue(), this.yellowSlider.getValue(), this.blackSlider.getValue(), true, type != "up");
     } else if (this.magenta.isSelected()) {

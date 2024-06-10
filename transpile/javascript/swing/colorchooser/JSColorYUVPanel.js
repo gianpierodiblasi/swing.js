@@ -150,7 +150,7 @@ class JSColorYUVPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.y.isSelected()) {
       this.setColor(this.ySpinner.getValue(), 100 * event.offsetX / JSColorYUVPanel.SQUARE_SIZE, 100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, true, type !== "up");
     } else if (this.u.isSelected()) {
@@ -161,7 +161,7 @@ class JSColorYUVPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.y.isSelected()) {
       this.setColor(100 * (JSColorYUVPanel.SQUARE_SIZE - event.offsetY) / JSColorYUVPanel.SQUARE_SIZE, this.uSpinner.getValue(), this.vSpinner.getValue(), true, type !== "up");
     } else if (this.u.isSelected()) {

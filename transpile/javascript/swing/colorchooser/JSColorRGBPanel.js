@@ -130,7 +130,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 
    squareEvent(event, type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.red.isSelected()) {
       this.setColor(this.redSlider.getValue(), parseInt(255 * event.offsetX / JSColorRGBPanel.SQUARE_SIZE), parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), true, type !== "up");
     } else if (this.green.isSelected()) {
@@ -141,7 +141,7 @@ class JSColorRGBPanel extends JSAbstractColorFormatPanel {
   }
 
    rectEvent(event, type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.red.isSelected()) {
       this.setColor(parseInt(255 * (JSColorRGBPanel.SQUARE_SIZE - event.offsetY) / JSColorRGBPanel.SQUARE_SIZE), this.greenSlider.getValue(), this.blueSlider.getValue(), true, type !== "up");
     } else if (this.green.isSelected()) {

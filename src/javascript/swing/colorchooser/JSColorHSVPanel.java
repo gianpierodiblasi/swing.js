@@ -179,7 +179,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   @Override
   @SuppressWarnings("StringEquality")
   protected void squareEvent(MouseEvent event, String type) {
-    if (!this.canDoItSquare(type)) {
+    if (!this.canDoItSquare(event, type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(this.hueSpinner.getValue(), 100 * event.offsetX / JSColorHSVPanel.SQUARE_SIZE, 100 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, true, type != "up");
     } else if (this.saturation.isSelected()) {
@@ -192,7 +192,7 @@ public class JSColorHSVPanel extends JSAbstractColorFormatPanel {
   @Override
   @SuppressWarnings("StringEquality")
   protected void rectEvent(MouseEvent event, String type) {
-    if (!this.canDoItRect(type)) {
+    if (!this.canDoItRect(event, type)) {
     } else if (this.hue.isSelected()) {
       this.setColor(360 * (JSColorHSVPanel.SQUARE_SIZE - event.offsetY) / JSColorHSVPanel.SQUARE_SIZE, this.saturationSpinner.getValue(), this.valueSpinner.getValue(), true, type != "up");
     } else if (this.saturation.isSelected()) {

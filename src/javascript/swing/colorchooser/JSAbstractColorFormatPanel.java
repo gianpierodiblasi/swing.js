@@ -74,6 +74,8 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.square.setProperty("width", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.setProperty("height", "" + JSAbstractColorFormatPanel.SQUARE_SIZE);
     this.square.getStyle().cursor = "pointer";
+    this.square.addEventListener("mouseenter", event -> this.squareEvent((MouseEvent) event, "enter"));
+    this.square.addEventListener("mouseleave", event -> this.squareEvent((MouseEvent) event, "leave"));
     this.square.addEventListener("mousedown", event -> this.squareEvent((MouseEvent) event, "down"));
     this.square.addEventListener("mousemove", event -> this.squareEvent((MouseEvent) event, "move"));
     this.square.addEventListener("mouseup", event -> this.squareEvent((MouseEvent) event, "up"));
@@ -82,6 +84,8 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
     this.rect.setProperty("width", "" + JSAbstractColorFormatPanel.RECT_WIDTH);
     this.rect.setProperty("height", "" + JSAbstractColorFormatPanel.RECT_HEIGHT);
     this.rect.getStyle().cursor = "pointer";
+    this.rect.addEventListener("mouseenter", event -> this.rectEvent((MouseEvent) event, "enter"));
+    this.rect.addEventListener("mouseleave", event -> this.rectEvent((MouseEvent) event, "leave"));
     this.rect.addEventListener("mousedown", event -> this.rectEvent((MouseEvent) event, "down"));
     this.rect.addEventListener("mousemove", event -> this.rectEvent((MouseEvent) event, "move"));
     this.rect.addEventListener("mouseup", event -> this.rectEvent((MouseEvent) event, "up"));
@@ -250,20 +254,27 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
   /**
    * Checks if a mouse event can be managed on the square
    *
+   * @param event The mouse event
    * @param type The event type
    * @return true if the mouse event can be managed on the square, false
    * otherwise
    */
-  protected boolean canDoItSquare(String type) {
+  protected boolean canDoItSquare(MouseEvent event, String type) {
     switch (type) {
+      case "enter":
+        this.squareDown = event.buttons == 1;
+        return this.squareDown;
       case "down":
         this.squareDown = true;
-        return true;
+        return this.squareDown;
       case "move":
         return this.squareDown;
       case "up":
         this.squareDown = false;
-        return true;
+        return !this.squareDown;
+      case "leave":
+        this.squareDown = false;
+        return this.squareDown;
       default:
         return false;
     }
@@ -280,20 +291,27 @@ public abstract class JSAbstractColorFormatPanel extends JSPanel {
   /**
    * Checks if a mouse event can be managed on the rect
    *
+   * @param event The mouse event
    * @param type The event type
    * @return true if the mouse event can be managed on the square, false
    * otherwise
    */
-  protected boolean canDoItRect(String type) {
+  protected boolean canDoItRect(MouseEvent event, String type) {
     switch (type) {
+      case "enter":
+        this.rectDown = event.buttons == 1;
+        return this.rectDown;
       case "down":
         this.rectDown = true;
-        return true;
+        return this.rectDown;
       case "move":
         return this.rectDown;
       case "up":
         this.rectDown = false;
-        return true;
+        return !this.rectDown;
+      case "leave":
+        this.rectDown = false;
+        return this.rectDown;
       default:
         return false;
     }
