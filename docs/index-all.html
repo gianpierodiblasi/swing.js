@@ -551,6 +551,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Creates the object</div>
 </dd>
+<dt><a href="javascript/util/fsa/DirectoryPickerOptions.html" title="class in javascript.util.fsa"><span class="typeNameLink">DirectoryPickerOptions</span></a> - Class in <a href="javascript/util/fsa/package-summary.html">javascript.util.fsa</a></dt>
+<dd>
+<div class="block">The options used when opening a directory</div>
+</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/DirectoryPickerOptions.html#%3Cinit%3E()">DirectoryPickerOptions()</a></span> - Constructor for class javascript.util.fsa.<a href="javascript/util/fsa/DirectoryPickerOptions.html" title="class in javascript.util.fsa">DirectoryPickerOptions</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSDialog.html#dispose()">dispose()</a></span> - Method in class javascript.swing.<a href="javascript/swing/JSDialog.html" title="class in javascript.swing">JSDialog</a></dt>
 <dd>
 <div class="block">Clone of javax.swing.JDialog.dispose</div>
@@ -635,7 +641,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSTabbedPane.html#END">END</a></span> - Static variable in class javascript.swing.<a href="javascript/swing/JSTabbedPane.html" title="class in javascript.swing">JSTabbedPane</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#entries(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">entries(FileSystemDirectoryHandle, $Apply_1_Void&lt;Array&lt;FileSystemHandle&gt;&gt;)</a></span> - Static method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>
+<div class="block">Utility method to simulate the entries method in FileSystemDirectoryHandle</div>
+</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSOptionPane.html#ERROR_MESSAGE">ERROR_MESSAGE</a></span> - Static variable in class javascript.swing.<a href="javascript/swing/JSOptionPane.html" title="class in javascript.swing">JSOptionPane</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#EVAL_ENTRIES">EVAL_ENTRIES</a></span> - Static variable in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#EVAL_KEYS">EVAL_KEYS</a></span> - Static variable in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#EVAL_VALUES">EVAL_VALUES</a></span> - Static variable in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FilePickerOptions.html#excludeAcceptAllOption">excludeAcceptAllOption</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/FilePickerOptions.html" title="class in javascript.util.fsa">FilePickerOptions</a></dt>
 <dd>&nbsp;</dd>
@@ -651,16 +667,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="javascript/util/fsa/FilePickerOptions.html" title="class in javascript.util.fsa"><span class="typeNameLink">FilePickerOptions</span></a> - Class in <a href="javascript/util/fsa/package-summary.html">javascript.util.fsa</a></dt>
 <dd>
-<div class="block">The options used when opening a file</div>
+<div class="block">The options used when opening/saving a file</div>
 </dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FilePickerOptions.html#%3Cinit%3E()">FilePickerOptions()</a></span> - Constructor for class javascript.util.fsa.<a href="javascript/util/fsa/FilePickerOptions.html" title="class in javascript.util.fsa">FilePickerOptions</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="javascript/util/fsa/FilePickerOptionsType.html" title="class in javascript.util.fsa"><span class="typeNameLink">FilePickerOptionsType</span></a> - Class in <a href="javascript/util/fsa/package-summary.html">javascript.util.fsa</a></dt>
 <dd>
-<div class="block">The types in the options used when opening a file</div>
+<div class="block">The types in the options used when opening/saving a file</div>
 </dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FilePickerOptionsType.html#%3Cinit%3E()">FilePickerOptionsType()</a></span> - Constructor for class javascript.util.fsa.<a href="javascript/util/fsa/FilePickerOptionsType.html" title="class in javascript.util.fsa">FilePickerOptionsType</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa"><span class="typeNameLink">FileSystemDirectoryHandle</span></a> - Interface in <a href="javascript/util/fsa/package-summary.html">javascript.util.fsa</a></dt>
+<dd>
+<div class="block">The simulation of the FileSystemDirectoryHandle object</div>
+</dd>
 <dt><a href="javascript/util/fsa/FileSystemFileHandle.html" title="interface in javascript.util.fsa"><span class="typeNameLink">FileSystemFileHandle</span></a> - Interface in <a href="javascript/util/fsa/package-summary.html">javascript.util.fsa</a></dt>
 <dd>
 <div class="block">The simulation of the FileSystemFileHandle object</div>
@@ -823,11 +843,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Clone of javax.swing.JFrame.getContentPane</div>
 </dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#getDirectoryHandle(java.lang.String,javascript.util.fsa.FileSystemHandleGetOptions)">getDirectoryHandle(String, FileSystemHandleGetOptions)</a></span> - Method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/MnR/AbstractSliderModelAndRenderer.html#getElementAt(int)">getElementAt(int)</a></span> - Method in class javascript.swing.MnR.<a href="javascript/swing/MnR/AbstractSliderModelAndRenderer.html" title="class in javascript.swing.MnR">AbstractSliderModelAndRenderer</a></dt>
 <dd>
 <div class="block">Returns the element at an index</div>
 </dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemFileHandle.html#getFile()">getFile()</a></span> - Method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemFileHandle.html" title="interface in javascript.util.fsa">FileSystemFileHandle</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#getFileHandle(java.lang.String,javascript.util.fsa.FileSystemHandleGetOptions)">getFileHandle(String, FileSystemHandleGetOptions)</a></span> - Method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSComponent.html#getID()">getID()</a></span> - Method in class javascript.swing.<a href="javascript/swing/JSComponent.html" title="class in javascript.swing">JSComponent</a></dt>
 <dd>
@@ -1068,6 +1092,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Sets the insets</div>
 </dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/DirectoryPickerOptions.html#id">id</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/DirectoryPickerOptions.html" title="class in javascript.util.fsa">DirectoryPickerOptions</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FilePickerOptions.html#id">id</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/FilePickerOptions.html" title="class in javascript.util.fsa">FilePickerOptions</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSOptionPane.html#INFORMATION_MESSAGE">INFORMATION_MESSAGE</a></span> - Static variable in class javascript.swing.<a href="javascript/swing/JSOptionPane.html" title="class in javascript.swing">JSOptionPane</a></dt>
@@ -1450,6 +1476,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/util/KeyValue.html#key">key</a></span> - Variable in class javascript.util.<a href="javascript/util/KeyValue.html" title="class in javascript.util">KeyValue</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#keys(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">keys(FileSystemDirectoryHandle, $Apply_1_Void&lt;Array&lt;String&gt;&gt;)</a></span> - Static method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>
+<div class="block">Utility method to simulate the keys method in FileSystemDirectoryHandle</div>
+</dd>
 <dt><a href="javascript/util/KeyValue.html" title="class in javascript.util"><span class="typeNameLink">KeyValue</span></a>&lt;<a href="javascript/util/KeyValue.html" title="type parameter in KeyValue">K</a> extends java.lang.Comparable&lt;<a href="javascript/util/KeyValue.html" title="type parameter in KeyValue">K</a>&gt;,&#8203;<a href="javascript/util/KeyValue.html" title="type parameter in KeyValue">V</a>&gt; - Class in <a href="javascript/util/package-summary.html">javascript.util</a></dt>
 <dd>
 <div class="block">A key/value object</div>
@@ -1523,6 +1553,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Sets the global main color, to complete the setting the <i>build</i> method
  has to be called</div>
+</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/DirectoryPickerOptions.html#mode">mode</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/DirectoryPickerOptions.html" title="class in javascript.util.fsa">DirectoryPickerOptions</a></dt>
+<dd>
+<div class="block">"read" or "readwrite"</div>
 </dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FilePickerOptions.html#multiple">multiple</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/FilePickerOptions.html" title="class in javascript.util.fsa">FilePickerOptions</a></dt>
 <dd>&nbsp;</dd>
@@ -1686,6 +1720,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Removes an attribute of a child the HTML element (for example <i>value</i>
  is a property, <i>readonly</i> is an attribute)</div>
 </dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#removeEntry(java.lang.String,javascript.util.fsa.FileSystemHandleRemoveOptions)">removeEntry(String, FileSystemHandleRemoveOptions)</a></span> - Method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSComponent.html#removeFromBody()">removeFromBody()</a></span> - Method in class javascript.swing.<a href="javascript/swing/JSComponent.html" title="class in javascript.swing">JSComponent</a></dt>
 <dd>
 <div class="block">Removes the HTML element from the BODY element</div>
@@ -1723,6 +1759,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Resets the panel managed by this layout manager (all custom configurations
  will be removed)</div>
 </dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#resolve(javascript.util.fsa.FileSystemHandle)">resolve(FileSystemHandle)</a></span> - Method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/awt/Color.html#RGBtoCMYK(def.js.Array,def.js.Array)">RGBtoCMYK(Array&lt;Integer&gt;, Array&lt;Integer&gt;)</a></span> - Static method in class javascript.awt.<a href="javascript/awt/Color.html" title="class in javascript.awt">Color</a></dt>
 <dd>
 <div class="block">Converts RGB components of a color to a set of CMYK components</div>
@@ -2135,6 +2173,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSTabbedPane.html#START">START</a></span> - Static variable in class javascript.swing.<a href="javascript/swing/JSTabbedPane.html" title="class in javascript.swing">JSTabbedPane</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/DirectoryPickerOptions.html#startIn">startIn</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/DirectoryPickerOptions.html" title="class in javascript.util.fsa">DirectoryPickerOptions</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/util/fsa/FilePickerOptions.html#startIn">startIn</a></span> - Variable in class javascript.util.fsa.<a href="javascript/util/fsa/FilePickerOptions.html" title="class in javascript.util.fsa">FilePickerOptions</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/event/ChangeListener.html#stateChanged(javascript.swing.event.ChangeEvent)">stateChanged(ChangeEvent)</a></span> - Method in interface javascript.swing.event.<a href="javascript/swing/event/ChangeListener.html" title="interface in javascript.swing.event">ChangeListener</a></dt>
@@ -2176,6 +2216,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="memberNameLink"><a href="javascript/util/KeyValue.html#value">value</a></span> - Variable in class javascript.util.<a href="javascript/util/KeyValue.html" title="class in javascript.util">KeyValue</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="javascript/util/fsa/FileSystemDirectoryHandle.html#values(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">values(FileSystemDirectoryHandle, $Apply_1_Void&lt;Array&lt;FileSystemHandle&gt;&gt;)</a></span> - Static method in interface javascript.util.fsa.<a href="javascript/util/fsa/FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a></dt>
+<dd>
+<div class="block">Utility method to simulate the values method in FileSystemDirectoryHandle</div>
+</dd>
 <dt><span class="memberNameLink"><a href="javascript/awt/GridBagConstraints.html#VERTICAL">VERTICAL</a></span> - Static variable in class javascript.awt.<a href="javascript/awt/GridBagConstraints.html" title="class in javascript.awt">GridBagConstraints</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="javascript/swing/JSProgressBar.html#VERTICAL">VERTICAL</a></span> - Static variable in class javascript.swing.<a href="javascript/swing/JSProgressBar.html" title="class in javascript.swing">JSProgressBar</a></dt>

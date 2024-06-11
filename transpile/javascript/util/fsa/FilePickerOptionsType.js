@@ -1,5 +1,5 @@
 /**
- * The types in the options used when opening a file
+ * The types in the options used when opening/saving a file
  *
  * @author gianpiero.diblasi
  */

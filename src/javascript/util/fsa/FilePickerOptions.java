@@ -3,7 +3,7 @@ package javascript.util.fsa;
 import def.js.Array;
 
 /**
- * The options used when opening a file
+ * The options used when opening/saving a file
  *
  * @author gianpiero.diblasi
  */
