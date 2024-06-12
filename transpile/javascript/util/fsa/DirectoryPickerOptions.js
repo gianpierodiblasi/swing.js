@@ -3,14 +3,10 @@
  *
  * @author gianpiero.diblasi
  */
-class DirectoryPickerOptions {
-
-   id = null;
+class DirectoryPickerOptions extends FileSystemPickerOptions {
 
   /**
    * "read" or "readwrite"
    */
    mode = "read";
-
-   startIn = null;
 }

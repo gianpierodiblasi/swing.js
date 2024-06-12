@@ -26,6 +26,18 @@ class JSFilePicker {
   }
 
   /**
+   * Shows a directory picker
+   *
+   * @param options The options
+   * @param response The function to call on close
+   */
+  static  showDirectoryPicker(options, response) {
+    JSFilePicker.showPicker(options, () => window.showDirectoryPicker(options).then(handle => {
+      JSFilePicker.afterPicking(options, handle, () => response(handle));
+    }));
+  }
+
+  /**
    * Shows an open file picker
    *
    * @param options The options

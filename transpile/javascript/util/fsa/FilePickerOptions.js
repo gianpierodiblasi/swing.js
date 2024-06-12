@@ -3,13 +3,9 @@
  *
  * @author gianpiero.diblasi
  */
-class FilePickerOptions {
-
-   id = null;
+class FilePickerOptions extends FileSystemPickerOptions {
 
    suggestedName = null;
-
-   startIn = null;
 
    multiple = false;
 

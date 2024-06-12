@@ -1,12 +1,49 @@
 document.addEventListener("click", (event) => document.querySelectorAll("details").forEach(detail => !detail.contains(event.target) ? detail.removeAttribute("open") : ""));
-
 class Comparable {
 
   compareTo(other) {
     return 0;
   }
 }
-/**
+
+async function FileSystemDirectoryHandle_getEntries(handle, apply) {
+  var entries = [];
+  for await (let [key, value] of handle.entries()) {
+    entries[key] = value;
+  }
+  apply(entries);
+}
+async function FileSystemDirectoryHandle_getEntriesIterator(handle, apply) {
+  for await (let [key, value] of handle.entries()) {
+    apply(key, value);
+  }
+}
+
+async function FileSystemDirectoryHandle_getKeys(handle, apply) {
+  var keys = [];
+  for await (let key of handle.keys()) {
+    keys.push(key);
+  }
+  apply(keys);
+}
+async function FileSystemDirectoryHandle_getKeysIterator(handle, apply) {
+  for await (let key of handle.keys()) {
+    apply(key);
+  }
+}
+
+async function FileSystemDirectoryHandle_getValues(handle, apply) {
+  var values = [];
+  for await (let value of handle.values()) {
+    values.push(value);
+  }
+  apply(values);
+}
+async function FileSystemDirectoryHandle_getValuesIterator(handle, apply) {
+  for await (let value of handle.values()) {
+    apply(value);
+  }
+}/**
  * The java.awt.Color clone
  *
  * @author gianpiero.diblasi
@@ -5504,6 +5541,18 @@ class JSFilePicker {
   }
 
   /**
+   * Shows a directory picker
+   *
+   * @param options The options
+   * @param response The function to call on close
+   */
+  static  showDirectoryPicker(options, response) {
+    JSFilePicker.showPicker(options, () => window.showDirectoryPicker(options).then(handle => {
+      JSFilePicker.afterPicking(options, handle, () => response(handle));
+    }));
+  }
+
+  /**
    * Shows an open file picker
    *
    * @param options The options
@@ -6331,41 +6380,6 @@ class DefaultHTMLImageProducer extends AbstractHTMLImageProducer {
   }
 }
 /**
- * The options used when opening a directory
- *
- * @author gianpiero.diblasi
- */
-class DirectoryPickerOptions {
-
-   id = null;
-
-  /**
-   * "read" or "readwrite"
-   */
-   mode = "read";
-
-   startIn = null;
-}
-/**
- * The options used when opening/saving a file
- *
- * @author gianpiero.diblasi
- */
-class FilePickerOptions {
-
-   id = null;
-
-   suggestedName = null;
-
-   startIn = null;
-
-   multiple = false;
-
-   types = new Array();
-
-   excludeAcceptAllOption = false;
-}
-/**
  * The types in the options used when opening/saving a file
  *
  * @author gianpiero.diblasi
@@ -6413,12 +6427,6 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    resolve(possibleDescendant) {
   }
 
-  static  EVAL_ENTRIES = "var entries = [];" + "var getEntries = async (h, a) => {\n" + "	for await (let [key, value] of h.entries()) entries[key] = value;\n" + "	a(entries);\n" + "};" + "getEntries(handle,apply);";
-
-  static  EVAL_KEYS = "var keys = [];" + "var getKeys = async (h, a) => {\n" + "	for await (let key of h.keys()) keys.push(key);\n" + "	a(keys);\n" + "};" + "getKeys(handle,apply);";
-
-  static  EVAL_VALUES = "var values = [];" + "var getValues = async (h, a) => {\n" + "	for await (let value of h.values()) values.push(value);\n" + "	a(values);\n" + "};" + "getValues(handle,apply);";
-
   /**
    * Utility method to simulate the entries method in FileSystemDirectoryHandle
    *
@@ -6426,7 +6434,17 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    * @param apply The method to call on the obtained entries
    */
   static  entries(handle, apply) {
-    eval(FileSystemDirectoryHandle.EVAL_ENTRIES);
+    FileSystemDirectoryHandle_getEntries(handle, apply);
+  }
+
+  /**
+   * Utility method to simulate the entries method in FileSystemDirectoryHandle
+   *
+   * @param handle The handle
+   * @param apply The method to call on the obtained entries
+   */
+  static  entriesIterator(handle, apply) {
+    FileSystemDirectoryHandle_getEntriesIterator(handle, apply);
   }
 
   /**
@@ -6436,7 +6454,17 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    * @param apply The method to call on the obtained keys
    */
   static  keys(handle, apply) {
-    eval(FileSystemDirectoryHandle.EVAL_KEYS);
+    FileSystemDirectoryHandle_getKeys(handle, apply);
+  }
+
+  /**
+   * Utility method to simulate the keys method in FileSystemDirectoryHandle
+   *
+   * @param handle The handle
+   * @param apply The method to call on the obtained keys
+   */
+  static  keysIterator(handle, apply) {
+    FileSystemDirectoryHandle_getKeysIterator(handle, apply);
   }
 
   /**
@@ -6446,7 +6474,17 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    * @param apply The method to call on the obtained values
    */
   static  values(handle, apply) {
-    eval(FileSystemDirectoryHandle.EVAL_VALUES);
+    FileSystemDirectoryHandle_getValues(handle, apply);
+  }
+
+  /**
+   * Utility method to simulate the values method in FileSystemDirectoryHandle
+   *
+   * @param handle The handle
+   * @param apply The method to call on the obtained values
+   */
+  static  valuesIterator(handle, apply) {
+    FileSystemDirectoryHandle_getValuesIterator(handle, apply);
   }
 }
 /**
@@ -6479,6 +6517,45 @@ class FileSystemHandleGetOptions {
 class FileSystemHandleRemoveOptions {
 
    recursive = false;
+}
+/**
+ * The common object of the options used when opening/saving a file or opening a
+ * directory
+ *
+ * @author gianpiero.diblasi
+ */
+class FileSystemPickerOptions {
+
+   id = null;
+
+   startIn = null;
+}
+/**
+ * The options used when opening a directory
+ *
+ * @author gianpiero.diblasi
+ */
+class DirectoryPickerOptions extends FileSystemPickerOptions {
+
+  /**
+   * "read" or "readwrite"
+   */
+   mode = "read";
+}
+/**
+ * The options used when opening/saving a file
+ *
+ * @author gianpiero.diblasi
+ */
+class FilePickerOptions extends FileSystemPickerOptions {
+
+   suggestedName = null;
+
+   multiple = false;
+
+   types = new Array();
+
+   excludeAcceptAllOption = false;
 }
 /**
  * The options used when creating a FileSystemWritableFileStream

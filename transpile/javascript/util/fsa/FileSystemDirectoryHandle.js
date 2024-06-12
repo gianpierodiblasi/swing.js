@@ -17,12 +17,6 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    resolve(possibleDescendant) {
   }
 
-  static  EVAL_ENTRIES = "var entries = [];" + "var getEntries = async (h, a) => {\n" + "	for await (let [key, value] of h.entries()) entries[key] = value;\n" + "	a(entries);\n" + "};" + "getEntries(handle,apply);";
-
-  static  EVAL_KEYS = "var keys = [];" + "var getKeys = async (h, a) => {\n" + "	for await (let key of h.keys()) keys.push(key);\n" + "	a(keys);\n" + "};" + "getKeys(handle,apply);";
-
-  static  EVAL_VALUES = "var values = [];" + "var getValues = async (h, a) => {\n" + "	for await (let value of h.values()) values.push(value);\n" + "	a(values);\n" + "};" + "getValues(handle,apply);";
-
   /**
    * Utility method to simulate the entries method in FileSystemDirectoryHandle
    *
@@ -30,7 +24,17 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    * @param apply The method to call on the obtained entries
    */
   static  entries(handle, apply) {
-    eval(FileSystemDirectoryHandle.EVAL_ENTRIES);
+    FileSystemDirectoryHandle_getEntries(handle, apply);
+  }
+
+  /**
+   * Utility method to simulate the entries method in FileSystemDirectoryHandle
+   *
+   * @param handle The handle
+   * @param apply The method to call on the obtained entries
+   */
+  static  entriesIterator(handle, apply) {
+    FileSystemDirectoryHandle_getEntriesIterator(handle, apply);
   }
 
   /**
@@ -40,7 +44,17 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    * @param apply The method to call on the obtained keys
    */
   static  keys(handle, apply) {
-    eval(FileSystemDirectoryHandle.EVAL_KEYS);
+    FileSystemDirectoryHandle_getKeys(handle, apply);
+  }
+
+  /**
+   * Utility method to simulate the keys method in FileSystemDirectoryHandle
+   *
+   * @param handle The handle
+   * @param apply The method to call on the obtained keys
+   */
+  static  keysIterator(handle, apply) {
+    FileSystemDirectoryHandle_getKeysIterator(handle, apply);
   }
 
   /**
@@ -50,6 +64,16 @@ class FileSystemDirectoryHandle extends FileSystemHandle {
    * @param apply The method to call on the obtained values
    */
   static  values(handle, apply) {
-    eval(FileSystemDirectoryHandle.EVAL_VALUES);
+    FileSystemDirectoryHandle_getValues(handle, apply);
+  }
+
+  /**
+   * Utility method to simulate the values method in FileSystemDirectoryHandle
+   *
+   * @param handle The handle
+   * @param apply The method to call on the obtained values
+   */
+  static  valuesIterator(handle, apply) {
+    FileSystemDirectoryHandle_getValuesIterator(handle, apply);
   }
 }

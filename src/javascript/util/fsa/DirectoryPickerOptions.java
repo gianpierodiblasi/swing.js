@@ -5,14 +5,10 @@ package javascript.util.fsa;
  *
  * @author gianpiero.diblasi
  */
-public class DirectoryPickerOptions {
-
-  public String id;
+public class DirectoryPickerOptions extends FileSystemPickerOptions {
 
   /**
    * "read" or "readwrite"
    */
   public String mode = "read";
-  
-  public FileSystemHandle startIn;
 }

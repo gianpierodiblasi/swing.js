@@ -7,11 +7,9 @@ import def.js.Array;
  *
  * @author gianpiero.diblasi
  */
-public class FilePickerOptions {
+public class FilePickerOptions extends FileSystemPickerOptions {
 
-  public String id;
   public String suggestedName;
-  public FileSystemHandle startIn;
   public boolean multiple;
   public Array<FilePickerOptionsType> types = new Array<>();
   public boolean excludeAcceptAllOption;

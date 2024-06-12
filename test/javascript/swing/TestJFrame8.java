@@ -7,8 +7,10 @@ import def.js.Array;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import javascript.util.fsa.DirectoryPickerOptions;
 import javascript.util.fsa.FilePickerOptions;
 import javascript.util.fsa.FilePickerOptionsType;
+import javascript.util.fsa.FileSystemDirectoryHandle;
 import javascript.util.fsa.FileSystemWritableFileStreamCreateOptions;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -49,11 +51,12 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton4 = new JButton();
     jButton5 = new JButton();
     jButton6 = new JButton();
+    jButton7 = new JButton();
     jPanel2 = new JPanel();
 
     setTitle("Test File Chooser");
 
-    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
+    jPanel1.setLayout(new GridLayout(3, 3, 5, 5));
 
     jButton1.setText("Open Single File");
     jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -78,6 +81,10 @@ public class TestJFrame8 extends javax.swing.JFrame {
     jButton6.setText("Save File FSA API");
     jButton6.addActionListener(this::jButton6ActionPerformed);
     jPanel1.add(jButton6);
+
+    jButton7.setText("Open Directory FSA API");
+    jButton7.addActionListener(this::jButton7ActionPerformed);
+    jPanel1.add(jButton7);
 
     getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     getContentPane().add(jPanel2, BorderLayout.CENTER);
@@ -127,6 +134,26 @@ public class TestJFrame8 extends javax.swing.JFrame {
       });
     });
   }//GEN-LAST:event_jButton6ActionPerformed
+
+  private void jButton7ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    DirectoryPickerOptions options = new DirectoryPickerOptions();
+    options.id = "CURRENT_ID";
+
+    console.log(options);
+
+    JSFilePicker.showDirectoryPicker(options, handle -> {
+      console.log(handle);
+
+      FileSystemDirectoryHandle.entries(handle, entries -> console.log(entries));
+      FileSystemDirectoryHandle.entriesIterator(handle, (key, h) -> console.log(key + " " + h));
+
+      FileSystemDirectoryHandle.keys(handle, keys -> console.log(keys));
+      FileSystemDirectoryHandle.keysIterator(handle, key -> console.log(key));
+
+      FileSystemDirectoryHandle.values(handle, values -> console.log(values));
+      FileSystemDirectoryHandle.valuesIterator(handle, value -> console.log(value));
+    });
+  }//GEN-LAST:event_jButton7ActionPerformed
 
   private void open(int selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files -> {
@@ -199,6 +226,7 @@ public class TestJFrame8 extends javax.swing.JFrame {
   private JButton jButton4;
   private JButton jButton5;
   private JButton jButton6;
+  private JButton jButton7;
   private JPanel jPanel1;
   private JPanel jPanel2;
   // End of variables declaration//GEN-END:variables

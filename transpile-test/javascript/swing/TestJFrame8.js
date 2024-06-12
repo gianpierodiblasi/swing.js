@@ -28,9 +28,10 @@ class TestJFrame8 extends JFrame {
     this.jButton4 = new JButton();let jButton4 = this.jButton4;
     this.jButton5 = new JButton();let jButton5 = this.jButton5;
     this.jButton6 = new JButton();let jButton6 = this.jButton6;
+    this.jButton7 = new JButton();let jButton7 = this.jButton7;
     this.jPanel2 = new JPanel();let jPanel2 = this.jPanel2;
     this.setTitle("Test File Chooser");
-    jPanel1.setLayout(new GridLayout(2, 3, 5, 5));
+    jPanel1.setLayout(new GridLayout(3, 3, 5, 5));
     jButton1.setText("Open Single File");
     jButton1.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton1ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton1);
@@ -49,6 +50,9 @@ class TestJFrame8 extends JFrame {
     jButton6.setText("Save File FSA API");
     jButton6.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton6ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
     jPanel1.add(jButton6);
+    jButton7.setText("Open Directory FSA API");
+    jButton7.addActionListener((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => this.jButton7ActionPerformed(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10));
+    jPanel1.add(jButton7);
     this.getContentPane().add(jPanel1, BorderLayout.PAGE_START);
     this.getContentPane().add(jPanel2, BorderLayout.CENTER);
   }
@@ -106,6 +110,23 @@ class TestJFrame8 extends JFrame {
   }
 
   // GEN-LAST:event_jButton6ActionPerformed
+   jButton7ActionPerformed(evt) {
+    // GEN-FIRST:event_jButton7ActionPerformed
+    let options = new DirectoryPickerOptions();
+    options.id = "CURRENT_ID";
+    console.log(options);
+    JSFilePicker.showDirectoryPicker(options, handle => {
+      console.log(handle);
+      FileSystemDirectoryHandle.entries(handle, entries => console.log(entries));
+      FileSystemDirectoryHandle.entriesIterator(handle, (key, h) => console.log(key + " " + h));
+      FileSystemDirectoryHandle.keys(handle, keys => console.log(keys));
+      FileSystemDirectoryHandle.keysIterator(handle, key => console.log(key));
+      FileSystemDirectoryHandle.values(handle, values => console.log(values));
+      FileSystemDirectoryHandle.valuesIterator(handle, value => console.log(value));
+    });
+  }
+
+  // GEN-LAST:event_jButton7ActionPerformed
    open(selectionType) {
     JSFileChooser.showOpenDialog(".gif,.png,.jpeg,.jpg", selectionType, 0, files => {
       document.querySelectorAll("img").forEach(img => img.parentElement.removeChild(img));
@@ -171,6 +192,8 @@ class TestJFrame8 extends JFrame {
    jButton5 = null;
 
    jButton6 = null;
+
+   jButton7 = null;
 
    jPanel1 = null;
 
