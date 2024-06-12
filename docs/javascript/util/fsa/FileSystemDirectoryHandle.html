@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":6,"i2":6,"i3":1,"i4":6,"i5":6,"i6":1};
+var data = {"i0":1,"i1":1,"i2":6,"i3":6,"i4":1,"i5":1,"i6":6,"i7":6,"i8":1,"i9":1};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -99,7 +99,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -151,29 +151,6 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<table class="memberSummary">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Field</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EVAL_ENTRIES">EVAL_ENTRIES</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EVAL_KEYS">EVAL_KEYS</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EVAL_VALUES">EVAL_VALUES</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
 <ul class="blockList">
 <li class="blockList"><a id="fields.inherited.from.class.javascript.util.fsa.FileSystemHandle">
 <!--   -->
@@ -207,18 +184,26 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#entriesIterator(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_2_Void)">entriesIterator</a></span>&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
+               simulation.js.$Apply_2_Void&lt;java.lang.String,&#8203;<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&gt;&nbsp;apply)</code></th>
+<td class="colLast">
+<div class="block">Utility method to simulate the entries method in FileSystemDirectoryHandle</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>def.js.Promise&lt;<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDirectoryHandle(java.lang.String,javascript.util.fsa.FileSystemHandleGetOptions)">getDirectoryHandle</a></span>&#8203;(java.lang.String&nbsp;name,
                   <a href="FileSystemHandleGetOptions.html" title="class in javascript.util.fsa">FileSystemHandleGetOptions</a>&nbsp;options)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>def.js.Promise&lt;<a href="FileSystemFileHandle.html" title="interface in javascript.util.fsa">FileSystemFileHandle</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFileHandle(java.lang.String,javascript.util.fsa.FileSystemHandleGetOptions)">getFileHandle</a></span>&#8203;(java.lang.String&nbsp;name,
              <a href="FileSystemHandleGetOptions.html" title="class in javascript.util.fsa">FileSystemHandleGetOptions</a>&nbsp;options)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#keys(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">keys</a></span>&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
     simulation.js.$Apply_1_Void&lt;def.js.Array&lt;java.lang.String&gt;&gt;&nbsp;apply)</code></th>
@@ -226,21 +211,37 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 <div class="block">Utility method to simulate the keys method in FileSystemDirectoryHandle</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#keysIterator(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">keysIterator</a></span>&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
+            simulation.js.$Apply_1_Void&lt;java.lang.String&gt;&nbsp;apply)</code></th>
+<td class="colLast">
+<div class="block">Utility method to simulate the keys method in FileSystemDirectoryHandle</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>def.js.Promise&lt;java.lang.Void&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEntry(java.lang.String,javascript.util.fsa.FileSystemHandleRemoveOptions)">removeEntry</a></span>&#8203;(java.lang.String&nbsp;name,
            <a href="FileSystemHandleRemoveOptions.html" title="class in javascript.util.fsa">FileSystemHandleRemoveOptions</a>&nbsp;options)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>def.js.Promise&lt;def.js.Array&lt;java.lang.String&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolve(javascript.util.fsa.FileSystemHandle)">resolve</a></span>&#8203;(<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&nbsp;possibleDescendant)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#values(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">values</a></span>&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
       simulation.js.$Apply_1_Void&lt;def.js.Array&lt;<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&gt;&gt;&nbsp;apply)</code></th>
+<td class="colLast">
+<div class="block">Utility method to simulate the values method in FileSystemDirectoryHandle</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#valuesIterator(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">valuesIterator</a></span>&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
+              simulation.js.$Apply_1_Void&lt;<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&gt;&nbsp;apply)</code></th>
 <td class="colLast">
 <div class="block">Utility method to simulate the values method in FileSystemDirectoryHandle</div>
 </td>
@@ -262,55 +263,6 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.detail">
-<!--   -->
-</a>
-<h3>Field Detail</h3>
-<a id="EVAL_ENTRIES">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>EVAL_ENTRIES</h4>
-<pre>static final&nbsp;java.lang.String EVAL_ENTRIES</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../constant-values.html#javascript.util.fsa.FileSystemDirectoryHandle.EVAL_ENTRIES">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a id="EVAL_KEYS">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>EVAL_KEYS</h4>
-<pre>static final&nbsp;java.lang.String EVAL_KEYS</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../constant-values.html#javascript.util.fsa.FileSystemDirectoryHandle.EVAL_KEYS">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a id="EVAL_VALUES">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>EVAL_VALUES</h4>
-<pre>static final&nbsp;java.lang.String EVAL_VALUES</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../constant-values.html#javascript.util.fsa.FileSystemDirectoryHandle.EVAL_VALUES">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-</li>
-</ul>
-</section>
 <!-- ============ METHOD DETAIL ========== -->
 <section role="region">
 <ul class="blockList">
@@ -373,6 +325,22 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 </dl>
 </li>
 </ul>
+<a id="entriesIterator(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_2_Void)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>entriesIterator</h4>
+<pre class="methodSignature">static&nbsp;void&nbsp;entriesIterator&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
+                            simulation.js.$Apply_2_Void&lt;java.lang.String,&#8203;<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&gt;&nbsp;apply)</pre>
+<div class="block">Utility method to simulate the entries method in FileSystemDirectoryHandle</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>handle</code> - The handle</dd>
+<dd><code>apply</code> - The method to call on the obtained entries</dd>
+</dl>
+</li>
+</ul>
 <a id="keys(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">
 <!--   -->
 </a>
@@ -389,14 +357,46 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 </dl>
 </li>
 </ul>
+<a id="keysIterator(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>keysIterator</h4>
+<pre class="methodSignature">static&nbsp;void&nbsp;keysIterator&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
+                         simulation.js.$Apply_1_Void&lt;java.lang.String&gt;&nbsp;apply)</pre>
+<div class="block">Utility method to simulate the keys method in FileSystemDirectoryHandle</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>handle</code> - The handle</dd>
+<dd><code>apply</code> - The method to call on the obtained keys</dd>
+</dl>
+</li>
+</ul>
 <a id="values(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>values</h4>
 <pre class="methodSignature">static&nbsp;void&nbsp;values&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
                    simulation.js.$Apply_1_Void&lt;def.js.Array&lt;<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&gt;&gt;&nbsp;apply)</pre>
+<div class="block">Utility method to simulate the values method in FileSystemDirectoryHandle</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>handle</code> - The handle</dd>
+<dd><code>apply</code> - The method to call on the obtained values</dd>
+</dl>
+</li>
+</ul>
+<a id="valuesIterator(javascript.util.fsa.FileSystemDirectoryHandle,simulation.js.$Apply_1_Void)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>valuesIterator</h4>
+<pre class="methodSignature">static&nbsp;void&nbsp;valuesIterator&#8203;(<a href="FileSystemDirectoryHandle.html" title="interface in javascript.util.fsa">FileSystemDirectoryHandle</a>&nbsp;handle,
+                           simulation.js.$Apply_1_Void&lt;<a href="FileSystemHandle.html" title="interface in javascript.util.fsa">FileSystemHandle</a>&gt;&nbsp;apply)</pre>
 <div class="block">Utility method to simulate the values method in FileSystemDirectoryHandle</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -467,7 +467,7 @@ extends <a href="FileSystemHandle.html" title="interface in javascript.util.fsa"
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
