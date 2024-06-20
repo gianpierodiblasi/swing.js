@@ -59,7 +59,11 @@ swing.js has been tested on:
   - chrome 124
   - edge 124
   - firefox 125 (JSFilePicker is not supported)
-- ChromeOS 125
+- Chrome OS 125
+- Debian 12
+  - chrome 124
+  - edge 124
+  - firefox 125 (JSFilePicker is not supported)
 - Android
   - chrome 124 (JSFilePicker is not supported)
   - edge 124 (JSFilePicker is not supported)
