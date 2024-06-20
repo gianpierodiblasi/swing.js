@@ -55,10 +55,11 @@ Currently only the English and Italian languages are managed.
 
 ## Test
 swing.js has been tested on:
-- Windows
+- Windows 11
   - chrome 124
   - edge 124
   - firefox 125 (JSFilePicker is not supported)
+- ChromeOS 125
 - Android
   - chrome 124 (JSFilePicker is not supported)
   - edge 124 (JSFilePicker is not supported)

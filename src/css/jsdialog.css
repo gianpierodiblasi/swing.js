@@ -31,7 +31,9 @@
   cursor: pointer;
 }
 .jsdialog header button::after {
-  content: "\2716";
+  font-family: monospace;
+  font-size: larger;
+  content: "x";
 }
 .jsdialog .jsdialog-content {
   padding: 1rem;
