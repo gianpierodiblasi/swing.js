@@ -14,6 +14,11 @@
   justify-content: center;
   outline: none;
 }
+@supports (-moz-appearance:none) {
+  .jsbutton {
+    font-weight: 400;
+  }
+}
 
 .jsbutton:hover, .jsbutton:focus {
   filter: drop-shadow(.15rem .15rem .15rem var(--main-action-bgcolor));
