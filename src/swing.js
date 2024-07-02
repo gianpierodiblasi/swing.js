@@ -1,4 +1,17 @@
-document.addEventListener("click", (event) => document.querySelectorAll("details").forEach(detail => !detail.contains(event.target) ? detail.removeAttribute("open") : ""));
+document.addEventListener("click", (event) => {
+  let found = false;
+  document.querySelectorAll("dialog").forEach(dialog => {
+    if (dialog.contains(event.target)) {
+      found = true;
+      dialog.querySelectorAll("details").forEach(detail => !detail.contains(event.target) ? detail.removeAttribute("open") : "");
+    }
+  });
+
+  if (!found) {
+    document.querySelectorAll("details").forEach(detail => !detail.contains(event.target) ? detail.removeAttribute("open") : "");
+  }
+});
+
 class Comparable {
 
   compareTo(other) {
