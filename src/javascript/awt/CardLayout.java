@@ -1,8 +1,11 @@
 package javascript.awt;
 
+import def.js.Array;
+import def.js.Date;
 import javascript.swing.JSComponent;
 import javascript.swing.JSPanel;
 import static simulation.js.$Globals.$typeof;
+import static simulation.js.$Globals.parseInt;
 
 /**
  * The java.awt.CardLayout clone
@@ -13,6 +16,7 @@ public class CardLayout implements LayoutManager {
 
   private final int hGap;
   private final int vGap;
+  private final Array<String> cardMapping = new Array<>();
 
   /**
    * Creates the object
@@ -42,7 +46,11 @@ public class CardLayout implements LayoutManager {
   public void addInPanel(JSPanel panel, JSComponent component, Object constraints) {
     panel.appendChild(component);
 
-    component.setAttribute("card", (String) constraints);
+    String name = (String) constraints;
+    String mapping = "Card_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
+    this.cardMapping.$set(name, mapping);
+
+    component.setAttribute("card", mapping);
     component.setAttribute("old-display", component.getStyle().display);
     if (panel.getChildCount() > 1) {
       component.getStyle().display = "none";
@@ -61,6 +69,8 @@ public class CardLayout implements LayoutManager {
     for (int index = 0; index < parent.getChildCount(); index++) {
       parent.getChilStyleByIndex(index).display = "none";
     }
-    parent.getChilStyleByQuery("[card=\"" + name + "\"]").display = parent.getChildAttributeByQuery("[card=\"" + name + "\"]", "old-display");
+
+    String mapping = this.cardMapping.$get(name);
+    parent.getChilStyleByQuery("[card=\"" + mapping + "\"]").display = parent.getChildAttributeByQuery("[card=\"" + mapping + "\"]", "old-display");
   }
 }

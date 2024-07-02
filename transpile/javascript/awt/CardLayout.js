@@ -9,6 +9,8 @@ class CardLayout extends LayoutManager {
 
    vGap = 0;
 
+   cardMapping = new Array();
+
   /**
    * Creates the object
    *
@@ -32,7 +34,10 @@ class CardLayout extends LayoutManager {
 
    addInPanel(panel, component, constraints) {
     panel.appendChild(component);
-    component.setAttribute("card", constraints);
+    let name = constraints;
+    let mapping = "Card_" + new Date().getTime() + "_" + parseInt(1000 * Math.random());
+    this.cardMapping[name] = mapping;
+    component.setAttribute("card", mapping);
     component.setAttribute("old-display", component.getStyle().display);
     if (panel.getChildCount() > 1) {
       component.getStyle().display = "none";
@@ -51,6 +56,7 @@ class CardLayout extends LayoutManager {
     for (let index = 0; index < parent.getChildCount(); index++) {
       parent.getChilStyleByIndex(index).display = "none";
     }
-    parent.getChilStyleByQuery("[card=\"" + name + "\"]").display = parent.getChildAttributeByQuery("[card=\"" + name + "\"]", "old-display");
+    let mapping = this.cardMapping[name];
+    parent.getChilStyleByQuery("[card=\"" + mapping + "\"]").display = parent.getChildAttributeByQuery("[card=\"" + mapping + "\"]", "old-display");
   }
 }
