@@ -165,17 +165,16 @@ class JSAbstractColorFormatPanel extends JSPanel {
    * @param y The y-axis coordinate
    */
    drawCircle(x, y) {
+    this.ctxSquare.lineWidth = 3;
     let dash = new Array();
     this.ctxSquare.beginPath();
     this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
     this.ctxSquare.strokeStyle = this.getStrokeStyle("black");
     this.ctxSquare.setLineDash(dash);
     this.ctxSquare.stroke();
     dash.push(2.5, 2.5);
     this.ctxSquare.beginPath();
     this.ctxSquare.arc(x * JSColorRGBPanel.SQUARE_SIZE, (1 - y) * JSColorRGBPanel.SQUARE_SIZE, 5, 0, 2 * Math.PI);
-    this.ctxSquare.closePath();
     this.ctxSquare.strokeStyle = this.getStrokeStyle("white");
     this.ctxSquare.setLineDash(dash);
     this.ctxSquare.stroke();
@@ -199,11 +198,11 @@ class JSAbstractColorFormatPanel extends JSPanel {
    * @param y The y-axis coordinate
    */
    drawLine(y) {
+    this.ctxRect.lineWidth = 3;
     let dash = new Array();
     this.ctxRect.beginPath();
     this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
     this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
     this.ctxRect.strokeStyle = this.getStrokeStyle("black");
     this.ctxRect.setLineDash(dash);
     this.ctxRect.stroke();
@@ -211,7 +210,6 @@ class JSAbstractColorFormatPanel extends JSPanel {
     this.ctxRect.beginPath();
     this.ctxRect.moveTo(0, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
     this.ctxRect.lineTo(JSColorRGBPanel.RECT_WIDTH, (1 - y) * JSColorRGBPanel.RECT_HEIGHT);
-    this.ctxRect.closePath();
     this.ctxRect.strokeStyle = this.getStrokeStyle("white");
     this.ctxRect.setLineDash(dash);
     this.ctxRect.stroke();
