@@ -6169,7 +6169,7 @@ class SpinnerNumberModel {
    * @param spinner The spinner
    */
    setJSSpinner(spinner) {
-    spinner.setChildAttributeByQuery("input", "value", "" + this.value);
+    spinner.setChildPropertyByQuery("input", "valueAsNumber", "" + this.value);
     spinner.setChildAttributeByQuery("input", "max", "" + this.maximum);
     spinner.setChildAttributeByQuery("input", "min", "" + this.minimum);
     spinner.setChildAttributeByQuery("input", "step", "" + this.stepSize);
