@@ -32,7 +32,7 @@ public class JSColorChooser extends JSDropDown {
   public JSColorChooser() {
     super(".jscolorpanel");
     this.cssAddClass("jscolorchooser");
-    
+
     Color color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
@@ -180,7 +180,9 @@ public class JSColorChooser extends JSDropDown {
 
     JSOptionPane.showInputDialog(panel, title, (changeListener) -> panel.addChangeListener(changeListener), () -> true, res -> {
       if (res == JSOptionPane.OK_OPTION) {
-        response.$apply(panel.getSelectedColor());
+        Color selected = panel.getSelectedColor();
+        Color.pushHistory(selected);
+        response.$apply(selected);
       }
     });
   }

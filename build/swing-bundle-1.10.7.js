@@ -2707,7 +2707,9 @@ class JSColorChooser extends JSDropDown {
     }
     JSOptionPane.showInputDialog(panel, title, (changeListener) => panel.addChangeListener(changeListener), () => true, res => {
       if (res === JSOptionPane.OK_OPTION) {
-        response(panel.getSelectedColor());
+        let selected = panel.getSelectedColor();
+        Color.pushHistory(selected);
+        response(selected);
       }
     });
   }
@@ -4510,6 +4512,8 @@ class JSColorPanel extends JSPanel {
 
    cmykPanel = new JSColorCMYKPanel();
 
+   historyPanel = new JSColorHistoryPanel();
+
    extraTabs = new Array();
 
    opacity = new JSLabel();
@@ -4541,6 +4545,7 @@ class JSColorPanel extends JSPanel {
     this.addPanel("YUV", this.yuvPanel);
     this.addPanel("RGB", this.rgbPanel);
     this.addPanel("CMYK", this.cmykPanel);
+    this.addPanel(Translations.JSColorChooser_HISTORY, this.historyPanel);
     this.add(this.pane, new GBC(0, 0).w(2).f(GBC.BOTH));
     this.opacity.setText(Translations.JSColorChooser_OPACITY);
     this.add(this.opacity, new GBC(0, 1).a(GBC.WEST));
@@ -4575,6 +4580,20 @@ class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.yuvPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, this.cmykPanel, "yuv");
     this.addChangeListenerToPanel(this.rgbPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.cmykPanel, "rgb");
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.rgbPanel, "cmyk");
+    this.historyPanel.addActionListener(event => {
+      let c = this.historyPanel.getSelectedColor();
+      this.hsvPanel.setSelectedColor(c);
+      this.hslPanel.setSelectedColor(c);
+      this.yuvPanel.setSelectedColor(c);
+      this.rgbPanel.setSelectedColor(c);
+      this.cmykPanel.setSelectedColor(c);
+      this.extraTabs.forEach(tab => tab.setSelectedColor(c));
+      if (this.opacityVisible) {
+        this.opacitySlider.setValue(c.alpha);
+        this.opacitySpinner.setValue(c.alpha);
+      }
+      this.onchange(false);
+    });
   }
 
   /**
@@ -6829,6 +6848,8 @@ class Translations {
 
   static  JSColorChooser_PALETTE = "";
 
+  static  JSColorChooser_HISTORY = "";
+
   static  JSColorChooser_PREVIEW = "";
 
   static {
@@ -6867,6 +6888,7 @@ class Translations {
     Translations.JSColorChooser_BLACK = "Black";
     Translations.JSColorChooser_OPACITY = "Opacity";
     Translations.JSColorChooser_PALETTE = "Palette";
+    Translations.JSColorChooser_HISTORY = "History";
     Translations.JSColorChooser_PREVIEW = "Preview";
   }
 
@@ -6891,6 +6913,7 @@ class Translations {
     Translations.JSColorChooser_BLACK = "Nero";
     Translations.JSColorChooser_OPACITY = "Opacit\u00E0";
     Translations.JSColorChooser_PALETTE = "Tavolozza";
+    Translations.JSColorChooser_HISTORY = "Cronologia";
     Translations.JSColorChooser_PREVIEW = "Anteprima";
   }
 }

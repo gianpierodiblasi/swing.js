@@ -158,7 +158,9 @@ class JSColorChooser extends JSDropDown {
     }
     JSOptionPane.showInputDialog(panel, title, (changeListener) => panel.addChangeListener(changeListener), () => true, res => {
       if (res === JSOptionPane.OK_OPTION) {
-        response(panel.getSelectedColor());
+        let selected = panel.getSelectedColor();
+        Color.pushHistory(selected);
+        response(selected);
       }
     });
   }

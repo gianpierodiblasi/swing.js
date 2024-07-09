@@ -40,6 +40,8 @@ class Translations {
 
   static  JSColorChooser_PALETTE = "";
 
+  static  JSColorChooser_HISTORY = "";
+
   static  JSColorChooser_PREVIEW = "";
 
   static {
@@ -78,6 +80,7 @@ class Translations {
     Translations.JSColorChooser_BLACK = "Black";
     Translations.JSColorChooser_OPACITY = "Opacity";
     Translations.JSColorChooser_PALETTE = "Palette";
+    Translations.JSColorChooser_HISTORY = "History";
     Translations.JSColorChooser_PREVIEW = "Preview";
   }
 
@@ -102,6 +105,7 @@ class Translations {
     Translations.JSColorChooser_BLACK = "Nero";
     Translations.JSColorChooser_OPACITY = "Opacit\u00E0";
     Translations.JSColorChooser_PALETTE = "Tavolozza";
+    Translations.JSColorChooser_HISTORY = "Cronologia";
     Translations.JSColorChooser_PREVIEW = "Anteprima";
   }
 }

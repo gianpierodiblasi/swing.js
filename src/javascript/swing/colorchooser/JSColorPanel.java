@@ -31,6 +31,7 @@ public class JSColorPanel extends JSPanel {
   private final JSColorYUVPanel yuvPanel = new JSColorYUVPanel();
   private final JSColorRGBPanel rgbPanel = new JSColorRGBPanel();
   private final JSColorCMYKPanel cmykPanel = new JSColorCMYKPanel();
+  private final JSColorHistoryPanel historyPanel = new JSColorHistoryPanel();
   private final Array<JSAbstractColorExtraTabPanel> extraTabs = new Array<>();
 
   private final JSLabel opacity = new JSLabel();
@@ -58,6 +59,7 @@ public class JSColorPanel extends JSPanel {
     this.addPanel("YUV", this.yuvPanel);
     this.addPanel("RGB", this.rgbPanel);
     this.addPanel("CMYK", this.cmykPanel);
+    this.addPanel(Translations.JSColorChooser_HISTORY, this.historyPanel);
 
     this.add(this.pane, new GBC(0, 0).w(2).f(GBC.BOTH));
 
@@ -101,6 +103,23 @@ public class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.yuvPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, this.cmykPanel, "yuv");
     this.addChangeListenerToPanel(this.rgbPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.cmykPanel, "rgb");
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.rgbPanel, "cmyk");
+
+    this.historyPanel.addActionListener(event -> {
+      Color c = this.historyPanel.getSelectedColor();
+      this.hsvPanel.setSelectedColor(c);
+      this.hslPanel.setSelectedColor(c);
+      this.yuvPanel.setSelectedColor(c);
+      this.rgbPanel.setSelectedColor(c);
+      this.cmykPanel.setSelectedColor(c);
+      this.extraTabs.forEach(tab -> tab.setSelectedColor(c));
+
+      if (this.opacityVisible) {
+        this.opacitySlider.setValue(c.alpha);
+        this.opacitySpinner.setValue(c.alpha);
+      }
+
+      this.onchange(false);
+    });
   }
 
   /**
@@ -262,7 +281,7 @@ public class JSColorPanel extends JSPanel {
 
   private void onchange(boolean b) {
     this.colorPreview.setColor(this.getSelectedColor());
-    
+
     this.valueIsAdjusting = b;
     ChangeEvent event = new ChangeEvent();
 
