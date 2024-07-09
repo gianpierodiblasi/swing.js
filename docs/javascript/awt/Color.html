@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":10,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":9,"i21":9,"i22":10,"i23":10,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9};
+var data = {"i0":9,"i1":10,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":9,"i22":9,"i23":10,"i24":10,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -305,69 +305,76 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
+<td class="colFirst"><code>static def.js.Array&lt;<a href="Color.html" title="class in javascript.awt">Color</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHistory()">getHistory</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the color history</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGB()">getRGB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the RGB integer representing this Color</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>def.js.Array&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGB_Components()">getRGB_Components</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the components of this Color</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGB_HEX()">getRGB_HEX</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the RGB hex string representing this Color</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGB_String()">getRGB_String</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the RGB string representing this Color</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGBA()">getRGBA</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the RGBA integer representing this Color</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>def.js.Array&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGBA_Components()">getRGBA_Components</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the components of this Color</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGBA_HEX()">getRGBA_HEX</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the RGBA hex string representing this Color</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRGBA_String()">getRGBA_String</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the RGBA string representing this Color</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="Color.html" title="class in javascript.awt">Color</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gray()">gray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Converts this Color to gray scaled, the transparency is not changed</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#HSLtoRGB(def.js.Array,def.js.Array)">HSLtoRGB</a></span>&#8203;(def.js.Array&lt;java.lang.Double&gt;&nbsp;hsl,
         def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb)</code></th>
@@ -375,7 +382,7 @@ extends java.lang.Object</pre>
 <div class="block">Converts HSL components of a color to a set of RGB components</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#HSVtoRGB(def.js.Array,def.js.Array)">HSVtoRGB</a></span>&#8203;(def.js.Array&lt;java.lang.Double&gt;&nbsp;hsv,
         def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb)</code></th>
@@ -383,21 +390,35 @@ extends java.lang.Object</pre>
 <div class="block">Converts HSV components of a color to a set of RGB components</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="Color.html" title="class in javascript.awt">Color</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lighted(double)">lighted</a></span>&#8203;(double&nbsp;lightingFactor)</code></th>
 <td class="colLast">
 <div class="block">Lights up this Color, the transparency is not changed</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="Color.html" title="class in javascript.awt">Color</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#negative()">negative</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Converts this Color to negative, the transparency is not changed</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushHistory(javascript.awt.Color)">pushHistory</a></span>&#8203;(<a href="Color.html" title="class in javascript.awt">Color</a>&nbsp;color)</code></th>
+<td class="colLast">
+<div class="block">Pushes a color in the color history (if not already present)</div>
+</td>
+</tr>
+<tr id="i26" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetHistory()">resetHistory</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Resets the color history</div>
+</td>
+</tr>
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RGBtoCMYK(def.js.Array,def.js.Array)">RGBtoCMYK</a></span>&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
          def.js.Array&lt;java.lang.Integer&gt;&nbsp;cmyk)</code></th>
@@ -405,7 +426,7 @@ extends java.lang.Object</pre>
 <div class="block">Converts RGB components of a color to a set of CMYK components</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RGBtoHSL(def.js.Array,def.js.Array)">RGBtoHSL</a></span>&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
         def.js.Array&lt;java.lang.Double&gt;&nbsp;hsl)</code></th>
@@ -413,7 +434,7 @@ extends java.lang.Object</pre>
 <div class="block">Converts RGB components of a color to a set of HSL components</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RGBtoHSV(def.js.Array,def.js.Array)">RGBtoHSV</a></span>&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
         def.js.Array&lt;java.lang.Double&gt;&nbsp;hsv)</code></th>
@@ -421,7 +442,7 @@ extends java.lang.Object</pre>
 <div class="block">Converts RGB components of a color to a set of HSV components</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RGBtoYUV(def.js.Array,def.js.Array)">RGBtoYUV</a></span>&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
         def.js.Array&lt;java.lang.Double&gt;&nbsp;yuv)</code></th>
@@ -429,7 +450,7 @@ extends java.lang.Object</pre>
 <div class="block">Converts RGB components of a color to a set of YUV components</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#YUVtoRGB(def.js.Array,def.js.Array)">YUVtoRGB</a></span>&#8203;(def.js.Array&lt;java.lang.Double&gt;&nbsp;yuv,
         def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb)</code></th>
@@ -962,7 +983,7 @@ extends java.lang.Object</pre>
 <a id="RGBtoYUV(def.js.Array,def.js.Array)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>RGBtoYUV</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;RGBtoYUV&#8203;(def.js.Array&lt;java.lang.Integer&gt;&nbsp;rgb,
@@ -973,6 +994,44 @@ extends java.lang.Object</pre>
 <dd><code>rgb</code> - the rgb array</dd>
 <dd><code>yuv</code> - the cmyk array</dd>
 </dl>
+</li>
+</ul>
+<a id="pushHistory(javascript.awt.Color)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pushHistory</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;pushHistory&#8203;(<a href="Color.html" title="class in javascript.awt">Color</a>&nbsp;color)</pre>
+<div class="block">Pushes a color in the color history (if not already present)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>color</code> - The color</dd>
+</dl>
+</li>
+</ul>
+<a id="getHistory()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHistory</h4>
+<pre class="methodSignature">public static&nbsp;def.js.Array&lt;<a href="Color.html" title="class in javascript.awt">Color</a>&gt;&nbsp;getHistory()</pre>
+<div class="block">Returns the color history</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The color history</dd>
+</dl>
+</li>
+</ul>
+<a id="resetHistory()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>resetHistory</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;resetHistory()</pre>
+<div class="block">Resets the color history</div>
 </li>
 </ul>
 </li>
