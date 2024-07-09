@@ -43,7 +43,7 @@ public class JSColorHistoryPanel extends JSPanel {
     colorPreview.setColor(c);
 
     JSButton button = new JSButton();
-    button.setTooltip(c.red + ", " + c.green + ", " + c.blue + "," + c.alpha);
+    button.setTooltip(c.red + ", " + c.green + ", " + c.blue + ", " + c.alpha);
     button.appendChild(colorPreview);
     button.getStyle().padding = "0px";
     button.getStyle().width = "100%";
