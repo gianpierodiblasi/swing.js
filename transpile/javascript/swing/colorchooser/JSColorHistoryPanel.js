@@ -16,6 +16,14 @@ class JSColorHistoryPanel extends JSPanel {
     super();
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     this.getStyle().overflowY = "scroll";
+    this.reload();
+  }
+
+  /**
+   * Reloads the color history
+   */
+   reload() {
+    this.clearContent();
     Color.getHistory().forEach(element => this.addButton(element));
   }
 

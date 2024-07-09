@@ -293,4 +293,11 @@ public class JSColorPanel extends JSPanel {
       }
     });
   }
+
+  /**
+   * Reloads the color history
+   */
+  public void reloadHistory() {
+    this.historyPanel.reload();
+  }
 }

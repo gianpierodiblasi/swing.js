@@ -13,6 +13,8 @@ class JSColorChooser extends JSDropDown {
 
    closeOnChange = true;
 
+   changed = false;
+
    listeners = new Array();
 
   /**
@@ -21,6 +23,13 @@ class JSColorChooser extends JSDropDown {
   constructor() {
     super(".jscolorpanel");
     this.cssAddClass("jscolorchooser");
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.panel.reloadHistory();
+      } else if (this.changed) {
+        Color.pushHistory(this.panel.getSelectedColor());
+      }
+    });
     let color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
@@ -91,6 +100,7 @@ class JSColorChooser extends JSDropDown {
   }
 
    onchange() {
+    this.changed = true;
     let color = this.getSelectedColor();
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
     this.setContainerBorder(color);

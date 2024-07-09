@@ -24,14 +24,25 @@ public class JSColorChooser extends JSDropDown {
   private final JSColorPanel panel = new JSColorPanel();
 
   private boolean closeOnChange = true;
+  private boolean changed;
+  
   private final Array<ChangeListener> listeners = new Array<>();
 
   /**
    * Creates the object
    */
+  @SuppressWarnings("StringEquality")
   public JSColorChooser() {
     super(".jscolorpanel");
     this.cssAddClass("jscolorchooser");
+
+    this.addEventListener("toggle", event -> {
+      if ("" + this.getProperty("open") == "true") {
+        this.panel.reloadHistory();
+      } else if (this.changed) {
+        Color.pushHistory(this.panel.getSelectedColor());
+      }
+    });
 
     Color color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
@@ -107,6 +118,8 @@ public class JSColorChooser extends JSDropDown {
   }
 
   private void onchange() {
+    this.changed = true;
+
     Color color = this.getSelectedColor();
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
     this.setContainerBorder(color);
@@ -115,7 +128,7 @@ public class JSColorChooser extends JSDropDown {
       this.removeAttribute("open");
       this.invoke("querySelector('summary').focus()");
     }
-
+    
     ChangeEvent event = new ChangeEvent();
 
     this.listeners.forEach(listener -> {

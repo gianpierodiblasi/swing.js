@@ -2562,6 +2562,8 @@ class JSColorChooser extends JSDropDown {
 
    closeOnChange = true;
 
+   changed = false;
+
    listeners = new Array();
 
   /**
@@ -2570,6 +2572,13 @@ class JSColorChooser extends JSDropDown {
   constructor() {
     super(".jscolorpanel");
     this.cssAddClass("jscolorchooser");
+    this.addEventListener("toggle", event => {
+      if ("" + this.getProperty("open") === "true") {
+        this.panel.reloadHistory();
+      } else if (this.changed) {
+        Color.pushHistory(this.panel.getSelectedColor());
+      }
+    });
     let color = this.getSelectedColor();
     this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
@@ -2640,6 +2649,7 @@ class JSColorChooser extends JSDropDown {
   }
 
    onchange() {
+    this.changed = true;
     let color = this.getSelectedColor();
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
     this.setContainerBorder(color);
@@ -4442,6 +4452,14 @@ class JSColorHistoryPanel extends JSPanel {
     super();
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     this.getStyle().overflowY = "scroll";
+    this.reload();
+  }
+
+  /**
+   * Reloads the color history
+   */
+   reload() {
+    this.clearContent();
     Color.getHistory().forEach(element => this.addButton(element));
   }
 
@@ -4757,6 +4775,13 @@ class JSColorPanel extends JSPanel {
         listener.stateChanged(event);
       }
     });
+  }
+
+  /**
+   * Reloads the color history
+   */
+   reloadHistory() {
+    this.historyPanel.reload();
   }
 }
 /**

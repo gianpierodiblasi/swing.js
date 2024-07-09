@@ -265,4 +265,11 @@ class JSColorPanel extends JSPanel {
       }
     });
   }
+
+  /**
+   * Reloads the color history
+   */
+   reloadHistory() {
+    this.historyPanel.reload();
+  }
 }
