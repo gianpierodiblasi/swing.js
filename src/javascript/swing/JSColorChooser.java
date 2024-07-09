@@ -1,11 +1,11 @@
 package javascript.swing;
 
-import static def.dom.Globals.document;
 import def.js.Array;
 import def.js.Object;
 import javascript.awt.Color;
 import javascript.swing.colorchooser.JSAbstractColorExtraTabPanel;
 import javascript.swing.colorchooser.JSColorPanel;
+import javascript.swing.colorchooser.JSColorPreview;
 import javascript.swing.event.ChangeEvent;
 import javascript.swing.event.ChangeListener;
 import simulation.js.$Apply_1_Void;
@@ -19,13 +19,12 @@ import static simulation.js.$Globals.$typeof;
  */
 public class JSColorChooser extends JSDropDown {
 
-  private final JSComponent container = new JSComponent(document.createElement("div"));
-  private final JSComponent componentOpacity = new JSComponent(document.createElement("div"));
+  private final JSColorPreview colorPreview = new JSColorPreview();
   private final JSColorPanel panel = new JSColorPanel();
 
   private boolean closeOnChange = true;
   private boolean changed;
-  
+
   private final Array<ChangeListener> listeners = new Array<>();
 
   /**
@@ -44,15 +43,8 @@ public class JSColorChooser extends JSDropDown {
       }
     });
 
-    Color color = this.getSelectedColor();
-    this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-
-    this.container.cssAddClass("jscolorchooser-preview");
-    this.container.appendChild(this.componentOpacity);
-    this.setContainerBorder(color);
-
-    this.appendChildInTree("summary", this.container);
+    this.colorPreview.setColor(this.getSelectedColor());
+    this.appendChildInTree("summary", this.colorPreview);
 
     this.panel.addChangeListener(event -> this.onchange());
     this.appendChild(this.panel);
@@ -84,10 +76,7 @@ public class JSColorChooser extends JSDropDown {
    */
   public void setSelectedColor(Color color) {
     this.panel.setSelectedColor(color);
-
-    Color c = this.getSelectedColor();
-    this.componentOpacity.getStyle().backgroundColor = c.getRGBA_String();
-    this.setContainerBorder(c);
+    this.colorPreview.setColor(this.getSelectedColor());
   }
 
   /**
@@ -120,15 +109,13 @@ public class JSColorChooser extends JSDropDown {
   private void onchange() {
     this.changed = true;
 
-    Color color = this.getSelectedColor();
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.setContainerBorder(color);
+    this.colorPreview.setColor(this.getSelectedColor());
 
     if (!this.getValueIsAdjusting() && this.closeOnChange) {
       this.removeAttribute("open");
       this.invoke("querySelector('summary').focus()");
     }
-    
+
     ChangeEvent event = new ChangeEvent();
 
     this.listeners.forEach(listener -> {
@@ -138,16 +125,6 @@ public class JSColorChooser extends JSDropDown {
         listener.stateChanged(event);
       }
     });
-  }
-
-  private void setContainerBorder(Color color) {
-    Array<Integer> rgb = new Array<>();
-    Array<Double> hsl = new Array<>();
-    rgb.$set(0, color.red);
-    rgb.$set(1, color.green);
-    rgb.$set(2, color.blue);
-    Color.RGBtoHSL(rgb, hsl);
-    this.container.getStyle().border = "1px solid " + (hsl.$get(2) > 0.5 ? color.darkened(0.1).getRGB_HEX() : color.lighted(0.1).getRGB_HEX());
   }
 
   @Override

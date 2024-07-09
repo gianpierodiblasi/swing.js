@@ -29,12 +29,13 @@ class JSColorHistoryPanel extends JSPanel {
 
    addButton(c) {
     let colorPreview = new JSColorPreview();
-    colorPreview.getStyle().minWidth = "10rem";
+    colorPreview.getStyle().width = "100%";
     colorPreview.setColor(c);
     let button = new JSButton();
     button.setTooltip(c.red + ", " + c.green + ", " + c.blue + "," + c.alpha);
     button.appendChild(colorPreview);
     button.getStyle().padding = "0px";
+    button.getStyle().width = "100%";
     button.getStyle().border = "2px solid transparent";
     button.getStyle().background = "transparent";
     button.addActionListener(event => {

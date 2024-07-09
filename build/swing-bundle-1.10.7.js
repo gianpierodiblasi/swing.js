@@ -2554,9 +2554,7 @@ class JSDropDown extends JSComponent {
  */
 class JSColorChooser extends JSDropDown {
 
-   container = new JSComponent(document.createElement("div"));
-
-   componentOpacity = new JSComponent(document.createElement("div"));
+   colorPreview = new JSColorPreview();
 
    panel = new JSColorPanel();
 
@@ -2579,13 +2577,8 @@ class JSColorChooser extends JSDropDown {
         Color.pushHistory(this.panel.getSelectedColor());
       }
     });
-    let color = this.getSelectedColor();
-    this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.container.cssAddClass("jscolorchooser-preview");
-    this.container.appendChild(this.componentOpacity);
-    this.setContainerBorder(color);
-    this.appendChildInTree("summary", this.container);
+    this.colorPreview.setColor(this.getSelectedColor());
+    this.appendChildInTree("summary", this.colorPreview);
     this.panel.addChangeListener(event => this.onchange());
     this.appendChild(this.panel);
   }
@@ -2616,9 +2609,7 @@ class JSColorChooser extends JSDropDown {
    */
    setSelectedColor(color) {
     this.panel.setSelectedColor(color);
-    let c = this.getSelectedColor();
-    this.componentOpacity.getStyle().backgroundColor = c.getRGBA_String();
-    this.setContainerBorder(c);
+    this.colorPreview.setColor(this.getSelectedColor());
   }
 
   /**
@@ -2650,9 +2641,7 @@ class JSColorChooser extends JSDropDown {
 
    onchange() {
     this.changed = true;
-    let color = this.getSelectedColor();
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.setContainerBorder(color);
+    this.colorPreview.setColor(this.getSelectedColor());
     if (!this.getValueIsAdjusting() && this.closeOnChange) {
       this.removeAttribute("open");
       this.invoke("querySelector('summary').focus()");
@@ -2665,16 +2654,6 @@ class JSColorChooser extends JSDropDown {
         listener.stateChanged(event);
       }
     });
-  }
-
-   setContainerBorder(color) {
-    let rgb = new Array();
-    let hsl = new Array();
-    rgb[0] = color.red;
-    rgb[1] = color.green;
-    rgb[2] = color.blue;
-    Color.RGBtoHSL(rgb, hsl);
-    this.container.getStyle().border = "1px solid " + (hsl[2] > 0.5 ? color.darkened(0.1).getRGB_HEX() : color.lighted(0.1).getRGB_HEX());
   }
 
    setEnabled(b) {
@@ -4465,12 +4444,13 @@ class JSColorHistoryPanel extends JSPanel {
 
    addButton(c) {
     let colorPreview = new JSColorPreview();
-    colorPreview.getStyle().minWidth = "10rem";
+    colorPreview.getStyle().width = "100%";
     colorPreview.setColor(c);
     let button = new JSButton();
     button.setTooltip(c.red + ", " + c.green + ", " + c.blue + "," + c.alpha);
     button.appendChild(colorPreview);
     button.getStyle().padding = "0px";
+    button.getStyle().width = "100%";
     button.getStyle().border = "2px solid transparent";
     button.getStyle().background = "transparent";
     button.addActionListener(event => {
@@ -4598,6 +4578,8 @@ class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.yuvPanel, this.hsvPanel, this.hslPanel, this.rgbPanel, this.cmykPanel, "yuv");
     this.addChangeListenerToPanel(this.rgbPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.cmykPanel, "rgb");
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.rgbPanel, "cmyk");
+    this.historyPanel.getStyle().width = "100%";
+    this.historyPanel.getStyle().height = "calc(100% - 10px)";
     this.historyPanel.addActionListener(event => {
       let c = this.historyPanel.getSelectedColor();
       this.hsvPanel.setSelectedColor(c);

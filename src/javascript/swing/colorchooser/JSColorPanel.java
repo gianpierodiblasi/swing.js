@@ -104,6 +104,9 @@ public class JSColorPanel extends JSPanel {
     this.addChangeListenerToPanel(this.rgbPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.cmykPanel, "rgb");
     this.addChangeListenerToPanel(this.cmykPanel, this.hsvPanel, this.yuvPanel, this.hslPanel, this.rgbPanel, "cmyk");
 
+    this.historyPanel.getStyle().width = "100%";
+    this.historyPanel.getStyle().height = "calc(100% - 10px)";
+
     this.historyPanel.addActionListener(event -> {
       Color c = this.historyPanel.getSelectedColor();
       this.hsvPanel.setSelectedColor(c);

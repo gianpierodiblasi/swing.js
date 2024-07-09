@@ -2,18 +2,8 @@
   min-width: 5rem;
 }
 
-.jscolorchooser summary .jscolorchooser-preview {
+.jscolorchooser summary .jscolorpreview {
   align-self : stretch;
   flex-grow: 1;
-  display: grid;
-  grid-template: "c";
-  border-radius: calc(var(--roundness) - .2rem);
-  background-position: 0 0, 0 .5rem, 0 1rem;
-  background-repeat: repeat-x;
-  background-size: 1rem .5rem, 1rem .5rem, 1rem .5rem;
-  background-image: linear-gradient(90deg, #DDD .5rem, white .5rem), linear-gradient(90deg, white .5rem, #DDD .5rem), linear-gradient(90deg, #DDD .5rem, white .5rem);
-}
-.jscolorchooser summary .jscolorchooser-preview .jscolorchooser-preview-transparent {
-  grid-area: c;
-  border-radius: calc(var(--roundness) - .3rem);
+  height: auto;
 }

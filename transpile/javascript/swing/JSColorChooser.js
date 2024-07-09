@@ -5,9 +5,7 @@
  */
 class JSColorChooser extends JSDropDown {
 
-   container = new JSComponent(document.createElement("div"));
-
-   componentOpacity = new JSComponent(document.createElement("div"));
+   colorPreview = new JSColorPreview();
 
    panel = new JSColorPanel();
 
@@ -30,13 +28,8 @@ class JSColorChooser extends JSDropDown {
         Color.pushHistory(this.panel.getSelectedColor());
       }
     });
-    let color = this.getSelectedColor();
-    this.componentOpacity.cssAddClass("jscolorchooser-preview-transparent");
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.container.cssAddClass("jscolorchooser-preview");
-    this.container.appendChild(this.componentOpacity);
-    this.setContainerBorder(color);
-    this.appendChildInTree("summary", this.container);
+    this.colorPreview.setColor(this.getSelectedColor());
+    this.appendChildInTree("summary", this.colorPreview);
     this.panel.addChangeListener(event => this.onchange());
     this.appendChild(this.panel);
   }
@@ -67,9 +60,7 @@ class JSColorChooser extends JSDropDown {
    */
    setSelectedColor(color) {
     this.panel.setSelectedColor(color);
-    let c = this.getSelectedColor();
-    this.componentOpacity.getStyle().backgroundColor = c.getRGBA_String();
-    this.setContainerBorder(c);
+    this.colorPreview.setColor(this.getSelectedColor());
   }
 
   /**
@@ -101,9 +92,7 @@ class JSColorChooser extends JSDropDown {
 
    onchange() {
     this.changed = true;
-    let color = this.getSelectedColor();
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.setContainerBorder(color);
+    this.colorPreview.setColor(this.getSelectedColor());
     if (!this.getValueIsAdjusting() && this.closeOnChange) {
       this.removeAttribute("open");
       this.invoke("querySelector('summary').focus()");
@@ -116,16 +105,6 @@ class JSColorChooser extends JSDropDown {
         listener.stateChanged(event);
       }
     });
-  }
-
-   setContainerBorder(color) {
-    let rgb = new Array();
-    let hsl = new Array();
-    rgb[0] = color.red;
-    rgb[1] = color.green;
-    rgb[2] = color.blue;
-    Color.RGBtoHSL(rgb, hsl);
-    this.container.getStyle().border = "1px solid " + (hsl[2] > 0.5 ? color.darkened(0.1).getRGB_HEX() : color.lighted(0.1).getRGB_HEX());
   }
 
    setEnabled(b) {
