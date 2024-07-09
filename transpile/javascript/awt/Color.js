@@ -25,6 +25,8 @@ class Color {
 
   static  DIFF_V = Color.V_MAX - Color.V_MIN;
 
+  static  history = new Array();
+
   /**
    * Creates the object
    *
@@ -462,5 +464,34 @@ class Color {
     yuv[0] = 0.299 * rgb[0] / 255 + 0.587 * rgb[1] / 255 + 0.114 * rgb[2] / 255;
     yuv[1] = ((rgb[2] / 255 - yuv[0]) * 0.565 - Color.U_MIN) / Color.DIFF_U;
     yuv[2] = ((rgb[0] / 255 - yuv[0]) * 0.713 - Color.V_MIN) / Color.DIFF_V;
+  }
+
+  /**
+   * Pushes a color in the color history (if not already present)
+   *
+   * @param color The color
+   */
+  static  pushHistory(color) {
+    let index = Color.history.findIndex(element => element.red === color.red && element.green === color.green && element.blue === color.blue && element.alpha === color.alpha);
+    if (index !== -1) {
+      Color.history.splice(index, 1);
+    }
+    Color.history.unshift(color);
+  }
+
+  /**
+   * Returns the color history
+   *
+   * @return The color history
+   */
+  static  getHistory() {
+    return Color.history.map(color => color);
+  }
+
+  /**
+   * Resets the color history
+   */
+  static  resetHistory() {
+    Color.history.length = 0;
   }
 }

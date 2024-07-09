@@ -83,6 +83,8 @@ class Color {
 
   static  DIFF_V = Color.V_MAX - Color.V_MIN;
 
+  static  history = new Array();
+
   /**
    * Creates the object
    *
@@ -520,6 +522,35 @@ class Color {
     yuv[0] = 0.299 * rgb[0] / 255 + 0.587 * rgb[1] / 255 + 0.114 * rgb[2] / 255;
     yuv[1] = ((rgb[2] / 255 - yuv[0]) * 0.565 - Color.U_MIN) / Color.DIFF_U;
     yuv[2] = ((rgb[0] / 255 - yuv[0]) * 0.713 - Color.V_MIN) / Color.DIFF_V;
+  }
+
+  /**
+   * Pushes a color in the color history (if not already present)
+   *
+   * @param color The color
+   */
+  static  pushHistory(color) {
+    let index = Color.history.findIndex(element => element.red === color.red && element.green === color.green && element.blue === color.blue && element.alpha === color.alpha);
+    if (index !== -1) {
+      Color.history.splice(index, 1);
+    }
+    Color.history.unshift(color);
+  }
+
+  /**
+   * Returns the color history
+   *
+   * @return The color history
+   */
+  static  getHistory() {
+    return Color.history.map(color => color);
+  }
+
+  /**
+   * Resets the color history
+   */
+  static  resetHistory() {
+    Color.history.length = 0;
   }
 }
 /**
@@ -2287,6 +2318,41 @@ class JSToggleButton extends AbstractButton {
     } else {
       this.cssAddClass("jstogglebutton-outline");
     }
+  }
+}
+/**
+ * The preview of a color
+ *
+ * @author gianpiero.diblasi
+ */
+class JSColorPreview extends JSComponent {
+
+   component = new JSComponent(document.createElement("div"));
+
+   componentOpacity = new JSComponent(document.createElement("div"));
+
+  /**
+   * Creates the object
+   */
+  constructor() {
+    super(document.createElement("div"));
+    this.cssAddClass("jscolorpreview");
+    this.component.cssAddClass("jscolorpreview-opaque");
+    this.componentOpacity.cssAddClass("jscolorpreview-transparent");
+    this.appendChild(this.component);
+    this.appendChild(this.componentOpacity);
+  }
+
+   setColor(color) {
+    this.component.getStyle().backgroundColor = color.getRGB_String();
+    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
+    let rgb = new Array();
+    let hsl = new Array();
+    rgb[0] = color.red;
+    rgb[1] = color.green;
+    rgb[2] = color.blue;
+    Color.RGBtoHSL(rgb, hsl);
+    this.getStyle().border = "1px solid " + (hsl[2] > 0.5 ? color.darkened(0.1).getRGB_HEX() : color.lighted(0.1).getRGB_HEX());
   }
 }
 /**
@@ -4380,11 +4446,7 @@ class JSColorPanel extends JSPanel {
 
    opacitySpinner = new JSSpinner();
 
-   container = new JSComponent(document.createElement("div"));
-
-   component = new JSComponent(document.createElement("div"));
-
-   componentOpacity = new JSComponent(document.createElement("div"));
+   colorPreview = new JSColorPreview();
 
    listeners = new Array();
 
@@ -4424,16 +4486,8 @@ class JSColorPanel extends JSPanel {
     let label = new JSLabel();
     label.setText(Translations.JSColorChooser_PREVIEW);
     this.add(label, new GBC(0, 3).a(GBC.WEST).i(5, 0, 2, 0));
-    let color = this.getSelectedColor();
-    this.component.cssAddClass("jscolorpanel-preview-opaque");
-    this.component.getStyle().backgroundColor = color.getRGB_String();
-    this.componentOpacity.cssAddClass("jscolorpanel-preview-transparent");
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.container.cssAddClass("jscolorpanel-preview");
-    this.container.appendChild(this.component);
-    this.container.appendChild(this.componentOpacity);
-    this.setContainerBorder(color);
-    this.add(this.container, new GBC(0, 4).w(2).f(GBC.HORIZONTAL));
+    this.colorPreview.setColor(this.getSelectedColor());
+    this.add(this.colorPreview, new GBC(0, 4).w(2).f(GBC.HORIZONTAL));
     this.swatchesPanel.addActionListener(event => {
       let c = this.swatchesPanel.getSelectedColor();
       this.hsvPanel.setSelectedColor(c);
@@ -4562,10 +4616,7 @@ class JSColorPanel extends JSPanel {
       this.opacitySlider.setValue(color.alpha);
       this.opacitySpinner.setValue(color.alpha);
     }
-    let c = this.getSelectedColor();
-    this.component.getStyle().backgroundColor = c.getRGB_String();
-    this.componentOpacity.getStyle().backgroundColor = c.getRGBA_String();
-    this.setContainerBorder(c);
+    this.colorPreview.setColor(this.getSelectedColor());
   }
 
   /**
@@ -4605,10 +4656,7 @@ class JSColorPanel extends JSPanel {
   }
 
    onchange(b) {
-    let color = this.getSelectedColor();
-    this.component.getStyle().backgroundColor = color.getRGB_String();
-    this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
-    this.setContainerBorder(color);
+    this.colorPreview.setColor(this.getSelectedColor());
     this.valueIsAdjusting = b;
     let event = new ChangeEvent();
     this.listeners.forEach(listener => {
@@ -4618,16 +4666,6 @@ class JSColorPanel extends JSPanel {
         listener.stateChanged(event);
       }
     });
-  }
-
-   setContainerBorder(color) {
-    let rgb = new Array();
-    let hsl = new Array();
-    rgb[0] = color.red;
-    rgb[1] = color.green;
-    rgb[2] = color.blue;
-    Color.RGBtoHSL(rgb, hsl);
-    this.container.getStyle().border = "1px solid " + (hsl[2] > 0.5 ? color.darkened(0.1).getRGB_HEX() : color.lighted(0.1).getRGB_HEX());
   }
 }
 /**

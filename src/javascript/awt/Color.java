@@ -26,6 +26,8 @@ public class Color {
   private final static double V_MAX = 0.499813;
   private final static double DIFF_V = Color.V_MAX - Color.V_MIN;
 
+  private final static Array<Color> history = new Array<>();
+
   /**
    * Creates the object
    *
@@ -484,5 +486,34 @@ public class Color {
     yuv.$set(0, 0.299 * rgb.$get(0) / 255 + 0.587 * rgb.$get(1) / 255 + 0.114 * rgb.$get(2) / 255);
     yuv.$set(1, ((rgb.$get(2) / 255 - yuv.$get(0)) * 0.565 - Color.U_MIN) / Color.DIFF_U);
     yuv.$set(2, ((rgb.$get(0) / 255 - yuv.$get(0)) * 0.713 - Color.V_MIN) / Color.DIFF_V);
+  }
+
+  /**
+   * Pushes a color in the color history (if not already present)
+   *
+   * @param color The color
+   */
+  public static void pushHistory(Color color) {
+    int index = Color.history.findIndex(element -> element.red == color.red && element.green == color.green && element.blue == color.blue && element.alpha == color.alpha);
+    if (index != -1) {
+      Color.history.splice(index, 1);
+    }
+    Color.history.unshift(color);
+  }
+
+  /**
+   * Returns the color history
+   *
+   * @return The color history
+   */
+  public static Array<Color> getHistory() {
+    return Color.history.map(color -> color);
+  }
+
+  /**
+   * Resets the color history
+   */
+  public static void resetHistory() {
+    Color.history.length = 0;
   }
 }
