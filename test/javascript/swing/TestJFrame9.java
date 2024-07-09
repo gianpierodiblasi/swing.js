@@ -3,15 +3,18 @@ package javascript.swing;
 import static def.dom.Globals.console;
 import java.awt.BorderLayout;
 import javascript.SwingJS;
+import javascript.awt.Color;
 import javascript.swing.colorchooser.JSColorCMYKPanel;
 import javascript.swing.colorchooser.JSColorHSLPanel;
 import javascript.swing.colorchooser.JSColorHSVPanel;
+import javascript.swing.colorchooser.JSColorHistoryPanel;
 import javascript.swing.colorchooser.JSColorMiniSwatchesPanel;
 import javascript.swing.colorchooser.JSColorRGBPanel;
 import javascript.swing.colorchooser.JSColorSwatchesPanel;
 import javascript.swing.colorchooser.JSColorYUVPanel;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import static simulation.js.$Globals.parseInt;
 
 /**
  *
@@ -30,6 +33,10 @@ public class TestJFrame9 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
+    for (int i = 0; i < 100; i++) {
+      Color.pushHistory(new Color(parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random())));
+    }
+
     JSColorMiniSwatchesPanel miniSwatchesPanel = new JSColorMiniSwatchesPanel();
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(miniSwatchesPanel, null);
 
@@ -50,6 +57,10 @@ public class TestJFrame9 extends javax.swing.JFrame {
 
     JSColorYUVPanel yuvPanel = new JSColorYUVPanel();
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(yuvPanel, null);
+
+    JSColorHistoryPanel historyPanel = new JSColorHistoryPanel();
+    historyPanel.getStyle().maxHeight = "200px";
+    ((JSPanel) SwingJS.convert(this.jPanel2)).add(historyPanel, null);
 
     miniSwatchesPanel.addActionListener(event -> {
       console.log(miniSwatchesPanel.getSelectedColor().getRGB_HEX());
@@ -114,7 +125,7 @@ public class TestJFrame9 extends javax.swing.JFrame {
         yuvPanel.setSelectedColor(cmykPanel.getSelectedColor());
       }
     });
-    
+
     yuvPanel.addChangeListener(event -> {
       if (this.jCheckBox1.isSelected() || !yuvPanel.getValueIsAdjusting()) {
         console.log(yuvPanel.getSelectedColor().getRGB_HEX());
@@ -124,6 +135,16 @@ public class TestJFrame9 extends javax.swing.JFrame {
         rgbPanel.setSelectedColor(yuvPanel.getSelectedColor());
         cmykPanel.setSelectedColor(yuvPanel.getSelectedColor());
       }
+    });
+
+    historyPanel.addActionListener(event -> {
+      console.log(historyPanel.getSelectedColor().getRGB_HEX());
+
+      hsvPanel.setSelectedColor(historyPanel.getSelectedColor());
+      hslPanel.setSelectedColor(historyPanel.getSelectedColor());
+      rgbPanel.setSelectedColor(historyPanel.getSelectedColor());
+      cmykPanel.setSelectedColor(historyPanel.getSelectedColor());
+      yuvPanel.setSelectedColor(historyPanel.getSelectedColor());
     });
   }
 

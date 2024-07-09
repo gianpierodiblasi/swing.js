@@ -2028,6 +2028,9 @@ class TestJSFrame9 extends JSFrame {
   }
 
    postInitComponents() {
+    for (let i = 0; i < 100; i++) {
+      Color.pushHistory(new Color(parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random())));
+    }
     let miniSwatchesPanel = new JSColorMiniSwatchesPanel();
     (SwingJS.convert(this.jPanel2)).add(miniSwatchesPanel, null);
     let swatchesPanel = new JSColorSwatchesPanel();
@@ -2042,6 +2045,9 @@ class TestJSFrame9 extends JSFrame {
     (SwingJS.convert(this.jPanel2)).add(cmykPanel, null);
     let yuvPanel = new JSColorYUVPanel();
     (SwingJS.convert(this.jPanel2)).add(yuvPanel, null);
+    let historyPanel = new JSColorHistoryPanel();
+    historyPanel.getStyle().maxHeight = "200px";
+    (SwingJS.convert(this.jPanel2)).add(historyPanel, null);
     miniSwatchesPanel.addActionListener(event => {
       console.log(miniSwatchesPanel.getSelectedColor().getRGB_HEX());
       hsvPanel.setSelectedColor(miniSwatchesPanel.getSelectedColor());
@@ -2102,6 +2108,14 @@ class TestJSFrame9 extends JSFrame {
         rgbPanel.setSelectedColor(yuvPanel.getSelectedColor());
         cmykPanel.setSelectedColor(yuvPanel.getSelectedColor());
       }
+    });
+    historyPanel.addActionListener(event => {
+      console.log(historyPanel.getSelectedColor().getRGB_HEX());
+      hsvPanel.setSelectedColor(historyPanel.getSelectedColor());
+      hslPanel.setSelectedColor(historyPanel.getSelectedColor());
+      rgbPanel.setSelectedColor(historyPanel.getSelectedColor());
+      cmykPanel.setSelectedColor(historyPanel.getSelectedColor());
+      yuvPanel.setSelectedColor(historyPanel.getSelectedColor());
     });
   }
 

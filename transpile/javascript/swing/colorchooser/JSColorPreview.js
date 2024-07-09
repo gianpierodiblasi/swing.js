@@ -1,5 +1,5 @@
 /**
- * The preview of a color
+ * The component to preview a color
  *
  * @author gianpiero.diblasi
  */
@@ -21,6 +21,11 @@ class JSColorPreview extends JSComponent {
     this.appendChild(this.componentOpacity);
   }
 
+  /**
+   * Sets the color to preview
+   *
+   * @param color The color to preview
+   */
    setColor(color) {
     this.component.getStyle().backgroundColor = color.getRGB_String();
     this.componentOpacity.getStyle().backgroundColor = color.getRGBA_String();
