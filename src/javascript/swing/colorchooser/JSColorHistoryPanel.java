@@ -3,6 +3,7 @@ package javascript.swing.colorchooser;
 import def.js.Array;
 import javascript.awt.BoxLayout;
 import javascript.awt.Color;
+import javascript.awt.GridLayout;
 import javascript.awt.event.ActionEvent;
 import javascript.awt.event.ActionListener;
 import javascript.swing.JSButton;
@@ -24,8 +25,7 @@ public class JSColorHistoryPanel extends JSPanel {
    */
   public JSColorHistoryPanel() {
     super();
-    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    this.getStyle().overflowY = "scroll";
+    this.setLayout(new GridLayout(8, 6, 5, 5));
     this.reload();
   }
 
@@ -40,6 +40,7 @@ public class JSColorHistoryPanel extends JSPanel {
   private void addButton(Color c) {
     JSColorPreview colorPreview = new JSColorPreview();
     colorPreview.getStyle().width = "100%";
+    colorPreview.getStyle().height = "100%";
     colorPreview.setColor(c);
 
     JSButton button = new JSButton();
@@ -47,6 +48,7 @@ public class JSColorHistoryPanel extends JSPanel {
     button.appendChild(colorPreview);
     button.getStyle().padding = "0px";
     button.getStyle().width = "100%";
+    button.getStyle().height = "100%";
     button.getStyle().border = "2px solid transparent";
     button.getStyle().background = "transparent";
 

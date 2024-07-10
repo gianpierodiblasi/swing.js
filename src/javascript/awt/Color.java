@@ -499,6 +499,7 @@ public class Color {
       Color.history.splice(index, 1);
     }
     Color.history.unshift(color);
+    Color.history.splice(48);
   }
 
   /**

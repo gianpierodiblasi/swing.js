@@ -13,6 +13,9 @@ class TestJFrame10 extends JFrame {
   }
 
    postInitComponents() {
+    for (let i = 0; i < 100; i++) {
+      Color.pushHistory(new Color(parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random())));
+    }
     let colorPanel = new JSColorPanel();
     (SwingJS.convert(this.jPanel2)).add(colorPanel, null);
     let colorPanelNoOpacity = new JSColorPanel();

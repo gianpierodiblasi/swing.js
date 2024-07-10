@@ -535,6 +535,7 @@ class Color {
       Color.history.splice(index, 1);
     }
     Color.history.unshift(color);
+    Color.history.splice(48);
   }
 
   /**
@@ -4429,8 +4430,7 @@ class JSColorHistoryPanel extends JSPanel {
    */
   constructor() {
     super();
-    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    this.getStyle().overflowY = "scroll";
+    this.setLayout(new GridLayout(8, 6, 5, 5));
     this.reload();
   }
 
@@ -4445,12 +4445,14 @@ class JSColorHistoryPanel extends JSPanel {
    addButton(c) {
     let colorPreview = new JSColorPreview();
     colorPreview.getStyle().width = "100%";
+    colorPreview.getStyle().height = "100%";
     colorPreview.setColor(c);
     let button = new JSButton();
     button.setTooltip(c.red + ", " + c.green + ", " + c.blue + ", " + c.alpha);
     button.appendChild(colorPreview);
     button.getStyle().padding = "0px";
     button.getStyle().width = "100%";
+    button.getStyle().height = "100%";
     button.getStyle().border = "2px solid transparent";
     button.getStyle().background = "transparent";
     button.addActionListener(event => {

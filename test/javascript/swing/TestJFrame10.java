@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import static simulation.js.$Globals.$exists;
+import static simulation.js.$Globals.parseInt;
 
 /**
  *
@@ -31,6 +32,10 @@ public class TestJFrame10 extends javax.swing.JFrame {
   }
 
   private void postInitComponents() {
+    for (int i = 0; i < 100; i++) {
+      Color.pushHistory(new Color(parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random()), parseInt(255 * Math.random())));
+    }
+    
     JSColorPanel colorPanel = new JSColorPanel();
     ((JSPanel) SwingJS.convert(this.jPanel2)).add(colorPanel, null);
 
