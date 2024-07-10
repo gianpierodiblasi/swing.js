@@ -6,6 +6,7 @@ import def.js.RegExp;
 import def.js.RegExpExecArray;
 import static simulation.js.$Globals.parseInt;
 import simulation.js.$Number;
+import simulation.js.$Object;
 
 /**
  * The java.awt.Color clone
@@ -194,6 +195,20 @@ public class Color {
   }
 
   /**
+   * Returns this Color as a JSON object
+   *
+   * @return This Color as a JSON object
+   */
+  public $Object getJSON() {
+    $Object json = new $Object();
+    json.$set("red", this.red);
+    json.$set("green", this.green);
+    json.$set("blue", this.blue);
+    json.$set("alpha", this.alpha);
+    return json;
+  }
+
+  /**
    * Creates a Color from a RGB integer color
    *
    * @param color The color
@@ -254,6 +269,16 @@ public class Color {
   public static Color fromARGB_HEX(String color) {
     RegExpExecArray result = new RegExp("^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$", "i").exec(color);
     return new Color(parseInt(result.$get(2), 16), parseInt(result.$get(3), 16), parseInt(result.$get(4), 16), parseInt(result.$get(1), 16));
+  }
+
+  /**
+   * Creates a Color from a JSON object
+   *
+   * @param json The JSON object
+   * @return The Color
+   */
+  public static Color fromJSON($Object json) {
+    return new Color(json.$get("red"), json.$get("green"), json.$get("blue"), json.$get("alpha"));
   }
 
   /**

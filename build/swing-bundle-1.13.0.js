@@ -240,6 +240,20 @@ class Color {
   }
 
   /**
+   * Returns this Color as a JSON object
+   *
+   * @return This Color as a JSON object
+   */
+   getJSON() {
+    let json = new Object();
+    json["red"] = this.red;
+    json["green"] = this.green;
+    json["blue"] = this.blue;
+    json["alpha"] = this.alpha;
+    return json;
+  }
+
+  /**
    * Creates a Color from a RGB integer color
    *
    * @param color The color
@@ -300,6 +314,16 @@ class Color {
   static  fromARGB_HEX(color) {
     let result = new RegExp("^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$", "i").exec(color);
     return new Color(parseInt(result[2], 16), parseInt(result[3], 16), parseInt(result[4], 16), parseInt(result[1], 16));
+  }
+
+  /**
+   * Creates a Color from a JSON object
+   *
+   * @param json The JSON object
+   * @return The Color
+   */
+  static  fromJSON(json) {
+    return new Color(json["red"], json["green"], json["blue"], json["alpha"]);
   }
 
   /**
