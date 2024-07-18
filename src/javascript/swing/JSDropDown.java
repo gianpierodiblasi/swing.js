@@ -10,7 +10,10 @@ import simulation.dom.$DOMRect;
  */
 public abstract class JSDropDown extends JSComponent {
 
-  private final String dropDownContentSelector;
+  /**
+   * The CSS selector to select the content inside the dropdown
+   */
+  protected final String dropDownContentSelector;
 
   /**
    * Creates the object

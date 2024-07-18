@@ -5,6 +5,9 @@
  */
 class JSDropDown extends JSComponent {
 
+  /**
+   * The CSS selector to select the content inside the dropdown
+   */
    dropDownContentSelector = null;
 
   /**
