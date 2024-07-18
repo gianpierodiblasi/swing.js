@@ -13,22 +13,21 @@ import static simulation.js.$Globals.parseInt;
  * @author gianpiero.diblasi
  */
 public class JSDropDownMenu extends JSDropDown {
-
+  
   private final JSLabel label = new JSLabel();
   private final JSPanel panel = new JSPanel();
-
+  
   private int count;
 
   /**
    * Creates the object
    */
-  @SuppressWarnings("StringEquality")
   public JSDropDownMenu() {
-    super("DropDownContentSelector" + new Date().getTime() + "_" + parseInt(1000 * Math.random()));
-
+    super(".DropDownContentSelector" + new Date().getTime() + "_" + parseInt(1000 * Math.random()));
+    
     this.appendChildInTree("summary", this.label);
-
-    this.panel.cssAddClass(this.dropDownContentSelector);
+    
+    this.panel.cssAddClass(this.dropDownContentSelector.substring(1));
     this.panel.setLayout(new GridBagLayout());
     this.appendChild(this.panel);
   }
@@ -58,7 +57,7 @@ public class JSDropDownMenu extends JSDropDown {
     });
     this.panel.add(button, new GBC(0, this.count).i($exists(this.count) ? 1 : 0, 0, 0, 0).f(GBC.HORIZONTAL));
     this.count++;
-
+    
     return button;
   }
 }
