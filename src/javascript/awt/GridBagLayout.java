@@ -180,7 +180,7 @@ public class GridBagLayout implements LayoutManager {
         component.getStyle().setProperty("justify-self", "stretch");
         break;
       case GridBagConstraints.VERTICAL:
-        component.getStyle().setProperty("place-self", "stretch");
+        component.getStyle().setProperty("align-self", "stretch");
         break;
     }
 

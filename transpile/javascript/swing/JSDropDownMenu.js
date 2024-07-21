@@ -16,6 +16,7 @@ class JSDropDownMenu extends JSDropDown {
    */
   constructor() {
     super(".DropDownContentSelector" + new Date().getTime() + "_" + parseInt(1000 * Math.random()));
+    this.cssAddClass("jsdropdownmenu");
     this.appendChildInTree("summary", this.label);
     this.panel.cssAddClass(this.dropDownContentSelector.substring(1));
     this.panel.setLayout(new GridBagLayout());

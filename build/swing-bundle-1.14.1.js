@@ -1387,7 +1387,7 @@ class GridBagLayout extends LayoutManager {
         component.getStyle().setProperty("justify-self", "stretch");
         break;
       case GridBagConstraints.VERTICAL:
-        component.getStyle().setProperty("place-self", "stretch");
+        component.getStyle().setProperty("align-self", "stretch");
         break;
     }
     component.getStyle().margin = constraints.insets.top + "px " + constraints.insets.right + "px " + constraints.insets.bottom + "px " + constraints.insets.left + "px";
@@ -2842,6 +2842,7 @@ class JSDropDownMenu extends JSDropDown {
    */
   constructor() {
     super(".DropDownContentSelector" + new Date().getTime() + "_" + parseInt(1000 * Math.random()));
+    this.cssAddClass("jsdropdownmenu");
     this.appendChildInTree("summary", this.label);
     this.panel.cssAddClass(this.dropDownContentSelector.substring(1));
     this.panel.setLayout(new GridBagLayout());
